@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:rest_client/rest_client.dart';
+import 'package:json_class/json_class.dart';
 
 @immutable
 class ThemeDecoder {
@@ -17,7 +17,7 @@ class ThemeDecoder {
         actionsIconTheme: decodeIconThemeData(value['actionsIconTheme']),
         brightness: decodeBrightness(value['brightness']),
         color: decodeColor(value['color']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         iconTheme: decodeIconThemeData(value['iconTheme']),
         textTheme: decodeTextTheme(value['textTheme']),
       );
@@ -33,7 +33,7 @@ class ThemeDecoder {
       result = BorderSide(
         color: decodeColor(value['color']),
         style: decodeBorderStyle(value['style']),
-        width: Jsonable.parseDouble(value['width']),
+        width: JsonClass.parseDouble(value['width']),
       );
     }
 
@@ -63,7 +63,8 @@ class ThemeDecoder {
           result = BorderRadius.all(decodeRadius(value['radius']));
           break;
         case 'circular':
-          result = BorderRadius.circular(Jsonable.parseDouble(value['radius']));
+          result =
+              BorderRadius.circular(JsonClass.parseDouble(value['radius']));
           break;
         case 'horizontal':
           result = BorderRadius.horizontal(
@@ -123,7 +124,7 @@ class ThemeDecoder {
     if (value != null) {
       result = BottomAppBarTheme(
         color: decodeColor(value['color']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         shape: decodeNotchedShape(value['shape']),
       );
     }
@@ -138,16 +139,16 @@ class ThemeDecoder {
   //   if (value != null) {
   //     result = BottomNavigationBarThemeData(
   //       backgroundColor: decodeColor(value['backgroundColor']),
-  //       elevation: Jsonable.parseDouble(value['elevation']),
+  //       elevation: JsonClass.parseDouble(value['elevation']),
   //       selectedIconTheme: decodeIconThemeData(value['selectedIconTheme']),
   //       selectedItemColor: decodeColor(value['selectedItemColor']),
   //       selectedLabelStyle: decodeTextStyle(value['selectedLabelStyle']),
   //       showSelectedLabels: value['showSelectedLabels'] == null
   //           ? null
-  //           : Jsonable.parseBool(value['showSelectedLabels']),
+  //           : JsonClass.parseBool(value['showSelectedLabels']),
   //       showUnselectedLabels: value['showUnselectedLabels'] == null
   //           ? null
-  //           : Jsonable.parseBool(value['showUnselectedLabels']),
+  //           : JsonClass.parseBool(value['showUnselectedLabels']),
   //       type: decodeBottomNavigationBarType(value['type']),
   //     );
   //   }
@@ -187,9 +188,9 @@ class ThemeDecoder {
       result = BottomSheetThemeData(
         backgroundColor: decodeColor(value['backgroundColor']),
         clipBehavior: decodeClip(value['clipBehavior']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         modalBackgroundColor: decodeColor(value['modalBackgroundColor']),
-        modalElevation: Jsonable.parseDouble(value['modalElevation']),
+        modalElevation: JsonClass.parseDouble(value['modalElevation']),
         shape: decodeShapeBorder(value['shape']),
       );
     }
@@ -202,10 +203,10 @@ class ThemeDecoder {
 
     if (value != null) {
       result = BoxConstraints(
-        maxHeight: Jsonable.parseDouble(value['maxHeight']),
-        maxWidth: Jsonable.parseDouble(value['maxWidth']),
-        minHeight: Jsonable.parseDouble(value['minHeight']),
-        minWidth: Jsonable.parseDouble(value['minWidth']),
+        maxHeight: JsonClass.parseDouble(value['maxHeight']),
+        maxWidth: JsonClass.parseDouble(value['maxWidth']),
+        minHeight: JsonClass.parseDouble(value['minHeight']),
+        minWidth: JsonClass.parseDouble(value['minWidth']),
       );
     }
 
@@ -232,9 +233,9 @@ class ThemeDecoder {
         alignment: decodeMainAxisAlignment(value['alignment']),
         buttonAlignedDropdown: value['buttonAlignedDropdown'] == null
             ? null
-            : Jsonable.parseBool(value['buttonAlignedDropdown']),
-        buttonHeight: Jsonable.parseDouble(value['buttonHeight']),
-        buttonMinWidth: Jsonable.parseDouble(value['buttonMinWidth']),
+            : JsonClass.parseBool(value['buttonAlignedDropdown']),
+        buttonHeight: JsonClass.parseDouble(value['buttonHeight']),
+        buttonMinWidth: JsonClass.parseDouble(value['buttonMinWidth']),
         buttonPadding: decodeEdgeInsetsGeometry(value['buttonPadding']),
         buttonTextTheme: decodeButtonTextTheme(value['buttonTextTheme']),
         layoutBehavior: decodeButtonLayoutBehavior(value['layoutBehavior']),
@@ -307,18 +308,18 @@ class ThemeDecoder {
       result = ButtonThemeData(
         alignedDropdown: value['alignedDropdown'] == null
             ? null
-            : Jsonable.parseBool(['alignedDropdown']),
+            : JsonClass.parseBool(['alignedDropdown']),
         buttonColor: decodeColor(value['buttonColor']),
         colorScheme: decodeColorScheme(value['colorScheme']),
         disabledColor: decodeColor(value['disabledColor']),
         focusColor: decodeColor(value['focusColor']),
-        height: Jsonable.parseDouble(value['height']),
+        height: JsonClass.parseDouble(value['height']),
         highlightColor: decodeColor(value['highlightColor']),
         hoverColor: decodeColor(value['hoverColor']),
         layoutBehavior: decodeButtonLayoutBehavior(value['layoutBehavior']),
         materialTapTargetSize:
             decodeMaterialTapTargetSize(value['materialTapTargetSize']),
-        minWidth: Jsonable.parseDouble(value['minWidth']),
+        minWidth: JsonClass.parseDouble(value['minWidth']),
         padding: decodeEdgeInsetsGeometry(value['padding']),
         shape: decodeShapeBorder(value['shape']),
         splashColor: decodeColor(value['splashColor']),
@@ -336,7 +337,7 @@ class ThemeDecoder {
       result = CardTheme(
         clipBehavior: decodeClip(value['clipBehavior']),
         color: decodeColor(value['color']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         margin: decodeEdgeInsetsGeometry(value['margin']),
         shadowColor: decodeColor(value['shadowColor']),
         shape: decodeShapeBorder(value['shape']),
@@ -356,11 +357,11 @@ class ThemeDecoder {
         checkmarkColor: decodeColor(value['checkmarkColor']),
         deleteIconColor: decodeColor(value['deleteIconColor']),
         disabledColor: decodeColor(value['disabledColor']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         labelPadding: decodeEdgeInsetsGeometry(value['labelPadding']),
         labelStyle: decodeTextStyle(value['labelStyle']),
         padding: decodeEdgeInsetsGeometry(value['padding']),
-        pressElevation: Jsonable.parseDouble(value['pressElevation']),
+        pressElevation: JsonClass.parseDouble(value['pressElevation']),
         secondaryLabelStyle: decodeTextStyle(value['secondaryLabelStyle']),
         secondarySelectedColor: decodeColor(value['secondarySelectedColor']),
         selectedColor: decodeColor(value['selectedColor']),
@@ -369,7 +370,7 @@ class ThemeDecoder {
         shadowColor: decodeColor(value['shadowColor']),
         showCheckmark: value['showCheckmark'] == null
             ? null
-            : Jsonable.parseBool(value['showCheckmark']),
+            : JsonClass.parseBool(value['showCheckmark']),
       );
     }
 
@@ -514,7 +515,7 @@ class ThemeDecoder {
       result = DialogTheme(
         backgroundColor: decodeColor(value['backgroundColor']),
         contentTextStyle: decodeTextStyle(value['contentTextStyle']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         shape: decodeShapeBorder(value['shape']),
         titleTextStyle: decodeTextStyle(value['titleTextStyle']),
       );
@@ -529,10 +530,10 @@ class ThemeDecoder {
     if (value != null) {
       result = DividerThemeData(
         color: decodeColor(value['color']),
-        endIndent: Jsonable.parseDouble(value['endIndent']),
-        indent: Jsonable.parseDouble(value['indent']),
-        space: Jsonable.parseDouble(value['space']),
-        thickness: Jsonable.parseDouble(value['thickness']),
+        endIndent: JsonClass.parseDouble(value['endIndent']),
+        indent: JsonClass.parseDouble(value['indent']),
+        space: JsonClass.parseDouble(value['space']),
+        thickness: JsonClass.parseDouble(value['thickness']),
       );
     }
 
@@ -544,10 +545,10 @@ class ThemeDecoder {
 
     if (value != null) {
       result = EdgeInsets.only(
-        bottom: Jsonable.parseDouble(value['bottom']),
-        left: Jsonable.parseDouble(value['left']),
-        right: Jsonable.parseDouble(value['right']),
-        top: Jsonable.parseDouble(value['top']),
+        bottom: JsonClass.parseDouble(value['bottom']),
+        left: JsonClass.parseDouble(value['left']),
+        right: JsonClass.parseDouble(value['right']),
+        top: JsonClass.parseDouble(value['top']),
       );
     }
 
@@ -561,14 +562,14 @@ class ThemeDecoder {
     if (value != null) {
       result = FloatingActionButtonThemeData(
         backgroundColor: decodeColor(value['backgroundColor']),
-        disabledElevation: Jsonable.parseDouble(value['disabledElevation']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        disabledElevation: JsonClass.parseDouble(value['disabledElevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         focusColor: decodeColor(value['focusColor']),
-        focusElevation: Jsonable.parseDouble(value['focusElevation']),
+        focusElevation: JsonClass.parseDouble(value['focusElevation']),
         foregroundColor: decodeColor(value['foregroundColor']),
-        highlightElevation: Jsonable.parseDouble(value['highlightElevation']),
+        highlightElevation: JsonClass.parseDouble(value['highlightElevation']),
         hoverColor: decodeColor(value['hoverColor']),
-        hoverElevation: Jsonable.parseDouble(value['hoverElevation']),
+        hoverElevation: JsonClass.parseDouble(value['hoverElevation']),
         shape: decodeShapeBorder(value['shape']),
         splashColor: decodeColor(value['splashColor']),
       );
@@ -614,7 +615,7 @@ class ThemeDecoder {
     if (value != null) {
       result = FontFeature(
         value['feature'],
-        Jsonable.parseInt(value['value']),
+        JsonClass.parseInt(value['value']),
       );
     }
 
@@ -724,8 +725,8 @@ class ThemeDecoder {
     if (value != null) {
       result = IconThemeData(
         color: decodeColor(value['color']),
-        opacity: Jsonable.parseDouble(value['opacity']),
-        size: Jsonable.parseDouble(value['size']),
+        opacity: JsonClass.parseDouble(value['opacity']),
+        size: JsonClass.parseDouble(value['size']),
       );
     }
 
@@ -772,35 +773,35 @@ class ThemeDecoder {
       result = InputDecorationTheme(
         alignLabelWithHint: value['alignLabelWithHint'] == null
             ? null
-            : Jsonable.parseBool(value['alignLabelWithHint']),
+            : JsonClass.parseBool(value['alignLabelWithHint']),
         border: decodeInputBorder(value['border']),
         contentPadding: decodeEdgeInsetsGeometry(value['contentPadding']),
         counterStyle: decodeTextStyle(value['counterStyle']),
         disabledBorder: decodeInputBorder(value['disabledBorder']),
         enabledBorder: decodeInputBorder(value['enabledBorder']),
         errorBorder: decodeInputBorder(value['errorBorder']),
-        errorMaxLines: Jsonable.parseInt(value['errorMaxLines']),
+        errorMaxLines: JsonClass.parseInt(value['errorMaxLines']),
         errorStyle: decodeTextStyle(value['errorStyle']),
         fillColor: decodeColor(value['fillColor']),
         filled: value['filled'] == null
             ? null
-            : Jsonable.parseBool(value['filled']),
+            : JsonClass.parseBool(value['filled']),
         floatingLabelBehavior: decodeFloatingLabelBehavior(
           value['floatingLabelBehavior'],
         ),
         focusColor: decodeColor(value['focusColor']),
         focusedBorder: decodeInputBorder(value['focusedBorder']),
         focusedErrorBorder: decodeInputBorder(value['focusedErrorBorder']),
-        helperMaxLines: Jsonable.parseInt(value['helperMaxLines']),
+        helperMaxLines: JsonClass.parseInt(value['helperMaxLines']),
         helperStyle: decodeTextStyle(value['helperStyle']),
         hintStyle: decodeTextStyle(value['hintStyle']),
         hoverColor: decodeColor(value['hoverColor']),
         isCollapsed: value['isCollapsed'] == null
             ? null
-            : Jsonable.parseBool(value['isCollapsed']),
+            : JsonClass.parseBool(value['isCollapsed']),
         isDense: value['isDense'] == null
             ? null
-            : Jsonable.parseBool(value['isDense']),
+            : JsonClass.parseBool(value['isDense']),
         labelStyle: decodeTextStyle(value['labelStyle']),
         prefixStyle: decodeTextStyle(value['prefixStyle']),
         suffixStyle: decodeTextStyle(value['suffixStyle']),
@@ -937,7 +938,7 @@ class ThemeDecoder {
     if (value != null) {
       var swatches = <int, Color>{};
       value['swatches'].forEach(
-        (key, value) => swatches[Jsonable.parseInt(key)] = decodeColor(value),
+        (key, value) => swatches[JsonClass.parseInt(key)] = decodeColor(value),
       );
 
       result = MaterialColor(
@@ -1011,8 +1012,8 @@ class ThemeDecoder {
     if (value != null) {
       result = NavigationRailThemeData(
         backgroundColor: decodeColor(value['backgroundColor']),
-        elevation: Jsonable.parseDouble(value['elevation']),
-        groupAlignment: Jsonable.parseDouble(value['groupAlignment']),
+        elevation: JsonClass.parseDouble(value['elevation']),
+        groupAlignment: JsonClass.parseDouble(value['groupAlignment']),
         labelType: decodeNavigationRailLabelType(value['labelType']),
         selectedIconTheme: decodeIconThemeData(value['selectedIconTheme']),
         selectedLabelTextStyle:
@@ -1053,8 +1054,8 @@ class ThemeDecoder {
 
     if (value != null) {
       result = Offset(
-        Jsonable.parseDouble(value['dx']),
-        Jsonable.parseDouble(value['dy']),
+        JsonClass.parseDouble(value['dx']),
+        JsonClass.parseDouble(value['dy']),
       );
     }
 
@@ -1067,7 +1068,7 @@ class ThemeDecoder {
     if (value != null) {
       result = PopupMenuThemeData(
         color: decodeColor(value['color']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         shape: decodeShapeBorder(value['shape']),
         textStyle: decodeTextStyle(value['textStyle']),
       );
@@ -1094,13 +1095,13 @@ class ThemeDecoder {
 
       switch (type) {
         case 'circular':
-          result = Radius.circular(Jsonable.parseDouble(value['radius']));
+          result = Radius.circular(JsonClass.parseDouble(value['radius']));
           break;
 
         case 'elliptical':
           result = Radius.elliptical(
-            Jsonable.parseDouble(value['x']),
-            Jsonable.parseDouble(value['y']),
+            JsonClass.parseDouble(value['x']),
+            JsonClass.parseDouble(value['y']),
           );
           break;
 
@@ -1130,13 +1131,13 @@ class ThemeDecoder {
       switch (type) {
         case 'round':
           result = RoundRangeSliderThumbShape(
-            disabledThumbRadius: Jsonable.parseDouble(
+            disabledThumbRadius: JsonClass.parseDouble(
               value['disabledThumbRadius'],
             ),
-            // elevation: Jsonable.parseDouble(value['elevation']),
+            // elevation: JsonClass.parseDouble(value['elevation']),
             enabledThumbRadius:
-                Jsonable.parseDouble(value['enabledThumbRadius']),
-            // pressedElevation: Jsonable.parseDouble(value['pressedElevation']),
+                JsonClass.parseDouble(value['enabledThumbRadius']),
+            // pressedElevation: JsonClass.parseDouble(value['pressedElevation']),
           );
           break;
       }
@@ -1163,7 +1164,7 @@ class ThemeDecoder {
       switch (type) {
         case 'round':
           result = RoundRangeSliderTickMarkShape(
-            tickMarkRadius: Jsonable.parseDouble(value['tickMarkRadius']),
+            tickMarkRadius: JsonClass.parseDouble(value['tickMarkRadius']),
           );
           break;
       }
@@ -1231,7 +1232,7 @@ class ThemeDecoder {
 
     if (value != null) {
       result = Shadow(
-        blurRadius: Jsonable.parseDouble(value['blurRadius']),
+        blurRadius: JsonClass.parseDouble(value['blurRadius']),
         color: decodeColor(value['color']),
         offset: decodeOffset(value['offset']),
       );
@@ -1370,7 +1371,7 @@ class ThemeDecoder {
         disabledThumbColor: decodeColor(value['disabledThumbColor']),
         inactiveTickMarkColor: decodeColor(value['inactiveTickMarkColor']),
         inactiveTrackColor: decodeColor(value['inactiveTrackColor']),
-        minThumbSeparation: Jsonable.parseDouble(value['minThumbSeparation']),
+        minThumbSeparation: JsonClass.parseDouble(value['minThumbSeparation']),
         overlappingShapeStrokeColor: decodeColor(
           value['overlappingShapeStrokeColor'],
         ),
@@ -1388,7 +1389,7 @@ class ThemeDecoder {
             decodeShowValueIndicator(value['showValueIndicator']),
         thumbColor: decodeColor(value['thumbColor']),
         thumbShape: decodeSliderComponentShape(value['thumbShape']),
-        trackHeight: Jsonable.parseDouble(value['trackHeight']),
+        trackHeight: JsonClass.parseDouble(value['trackHeight']),
         trackShape: decodeSliderTrackShape(value['trackShape']),
         valueIndicatorColor: decodeColor(value['valueIndicatorColor']),
         valueIndicatorShape: decodeSliderComponentShape(
@@ -1420,7 +1421,7 @@ class ThemeDecoder {
       switch (type) {
         case 'rectangular':
           result = RectangularSliderTrackShape(
-            disabledThumbGapWidth: Jsonable.parseDouble(
+            disabledThumbGapWidth: JsonClass.parseDouble(
               value['disabledThumbGapWidth'],
             ),
           );
@@ -1471,7 +1472,7 @@ class ThemeDecoder {
         behavior: decodeSnackBarBehavior(value['behavior']),
         contentTextStyle: decodeTextStyle(value['contentTextStyle']),
         disabledActionTextColor: decodeColor(value['disabledActionTextColor']),
-        elevation: Jsonable.parseDouble(value['elevation']),
+        elevation: JsonClass.parseDouble(value['elevation']),
         shape: decodeShapeBorder(value['shape']),
       );
     }
@@ -1686,7 +1687,8 @@ class ThemeDecoder {
         decoration: decodeTextDecoration(value['decoration']),
         decorationColor: decodeColor(value['decorationColor']),
         decorationStyle: decodeTextDecorationStyle(value['decorationStyle']),
-        decorationThickness: Jsonable.parseDouble(value['decorationThickness']),
+        decorationThickness:
+            JsonClass.parseDouble(value['decorationThickness']),
         fontFamily: value['fontFamily'],
         fontFamilyFallback: value['fontFamilyFallback'] == null
             ? null
@@ -1699,15 +1701,15 @@ class ThemeDecoder {
                 ),
               ),
         fontWeight: decodeFontWeight(value['fontWeight']),
-        fontSize: Jsonable.parseDouble(value['fontSize']),
+        fontSize: JsonClass.parseDouble(value['fontSize']),
         fontStyle: decodeFontStyle(value['fontStyle']),
-        height: Jsonable.parseDouble(value['height']),
+        height: JsonClass.parseDouble(value['height']),
         inherit: value['inherit'] == null
             ? null
-            : Jsonable.parseBool(
+            : JsonClass.parseBool(
                 value['inherit'],
               ),
-        letterSpacing: Jsonable.parseDouble(value['letterSpacing']),
+        letterSpacing: JsonClass.parseDouble(value['letterSpacing']),
         locale: decodeLocale(value['locale']),
         package: value['package'],
         shadows: value['shadows'] == null
@@ -1718,7 +1720,7 @@ class ThemeDecoder {
                 ),
               ),
         textBaseline: decodeTextBaseline(value['textBaseline']),
-        wordSpacing: Jsonable.parseDouble(value['wordSpacing']),
+        wordSpacing: JsonClass.parseDouble(value['wordSpacing']),
       );
     }
 
@@ -1761,7 +1763,7 @@ class ThemeDecoder {
         appBarTheme: decodeAppBarTheme(value['appBarTheme']),
         applyElevationOverlayColor: value['applyElevationOverlayColor'] == null
             ? null
-            : Jsonable.parseBool(value['applyElevationOverlayColor']),
+            : JsonClass.parseBool(value['applyElevationOverlayColor']),
         bannerTheme: decodeMaterialBannerThemeData(value['bannerTheme']),
         backgroundColor: decodeColor(value['backgroundColor']),
         bottomAppBarColor: decodeColor(value['bottomAppBarColor']),
@@ -1791,7 +1793,7 @@ class ThemeDecoder {
         errorColor: decodeColor(value['errorColor']),
         // fixTextFieldOutlineLabel: value['fixTextFieldOutlineLabel'] == null
         //     ? null
-        //     : Jsonable.parseBool(value['fixTextFieldOutlineLabel']),
+        //     : JsonClass.parseBool(value['fixTextFieldOutlineLabel']),
         floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
           value['floatingActionButtonTheme'],
         ),
@@ -1855,7 +1857,7 @@ class ThemeDecoder {
       result = ToggleButtonsThemeData(
         borderColor: decodeColor(value['borderColor']),
         borderRadius: decodeBorderRadius(value['borderRadius']),
-        borderWidth: Jsonable.parseDouble(value['borderWidth']),
+        borderWidth: JsonClass.parseDouble(value['borderWidth']),
         color: decodeColor(value['color']),
         constraints: decodeBoxConstraints(value['constraints']),
         disabledBorderColor: decodeColor(value['disabledBorderColor']),
@@ -1883,17 +1885,17 @@ class ThemeDecoder {
       result = TooltipThemeData(
         excludeFromSemantics: value['excludeFromSemantics'] == null
             ? null
-            : Jsonable.parseBool(value['excludeFromSemantics']),
-        height: Jsonable.parseDouble(value['height']),
+            : JsonClass.parseBool(value['excludeFromSemantics']),
+        height: JsonClass.parseDouble(value['height']),
         margin: decodeEdgeInsetsGeometry(value['margin']),
         padding: decodeEdgeInsetsGeometry(value['padding']),
         preferBelow: value['preferBelow'] == null
             ? null
-            : Jsonable.parseBool(value['preferBelow']),
-        showDuration: Jsonable.parseDurationFromMillis(value['showDuration']),
+            : JsonClass.parseBool(value['preferBelow']),
+        showDuration: JsonClass.parseDurationFromMillis(value['showDuration']),
         textStyle: decodeTextStyle(value['textStyle']),
-        verticalOffset: Jsonable.parseDouble(value['verticalOffset']),
-        waitDuration: Jsonable.parseDurationFromMillis(value['waitDuration']),
+        verticalOffset: JsonClass.parseDouble(value['verticalOffset']),
+        waitDuration: JsonClass.parseDurationFromMillis(value['waitDuration']),
       );
     }
 

@@ -25,20 +25,6 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
-  static Map<String, dynamic> encodeBorderSide(BorderSide value) {
-    Map<String, dynamic> result;
-
-    if (value != null) {
-      result = <String, dynamic>{
-        'color': encodeColor(value.color),
-        'style': encodeBorderStyle(value.style),
-        'width': value.width,
-      };
-    }
-
-    return _stripNull(result);
-  }
-
   static Map<String, dynamic> encodeBorderRadius(BorderRadius value) {
     Map<String, dynamic> result;
 
@@ -49,6 +35,20 @@ class ThemeEncoder {
         'topLeft': encodeRadius(value.topLeft),
         'topRight': encodeRadius(value.topRight),
         'type': 'only',
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  static Map<String, dynamic> encodeBorderSide(BorderSide value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'color': encodeColor(value.color),
+        'style': encodeBorderStyle(value.style),
+        'width': value.width,
       };
     }
 
@@ -149,8 +149,9 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'maxHeight': value.maxHeight,
-        'maxWidth': value.maxWidth,
+        'maxHeight':
+            value.maxHeight == double.infinity ? null : value.maxHeight,
+        'maxWidth': value.maxWidth == double.infinity ? null : value.maxWidth,
         'minHeight': value.minHeight,
         'minWidth': value.minWidth,
       };
@@ -592,7 +593,7 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
-  static Map<String, dynamic> encodeInputBorder(OutlineInputBorder value) {
+  static Map<String, dynamic> encodeInputBorder(InputBorder value) {
     assert(value == null ||
         value is OutlineInputBorder ||
         value is UnderlineInputBorder);
@@ -603,6 +604,7 @@ class ThemeEncoder {
         result = {
           'borderRadius': encodeBorderRadius(value.borderRadius),
           'borderSide': encodeBorderSide(value.borderSide),
+          'gapPadding': value.gapPadding,
           'type': 'outline',
         };
       } else if (value is UnderlineInputBorder) {
@@ -746,6 +748,7 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
         'leadingPadding': encodeEdgeInsetsGeometry(value.leadingPadding),
+        'padding': encodeEdgeInsetsGeometry(value.padding),
       };
     }
 
@@ -757,18 +760,18 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'primary': value.value,
+        'primary': encodeColor(Color(value.value)),
         'swatches': {
-          '50': value.shade50,
-          '100': value.shade100,
-          '200': value.shade200,
-          '300': value.shade300,
-          '400': value.shade400,
-          '500': value.shade500,
-          '600': value.shade600,
-          '700': value.shade700,
-          '800': value.shade800,
-          '900': value.shade900,
+          '50': encodeColor(value.shade50),
+          '100': encodeColor(value.shade100),
+          '200': encodeColor(value.shade200),
+          '300': encodeColor(value.shade300),
+          '400': encodeColor(value.shade400),
+          '500': encodeColor(value.shade500),
+          '600': encodeColor(value.shade600),
+          '700': encodeColor(value.shade700),
+          '800': encodeColor(value.shade800),
+          '900': encodeColor(value.shade900),
         },
       };
     }
@@ -939,7 +942,7 @@ class ThemeEncoder {
 
     if (value != null) {
       if (value is RectangularRangeSliderTrackShape) {
-        result = 'rectangle';
+        result = 'rectangular';
       } else if (value is RoundedRectRangeSliderTrackShape) {
         result = 'rounded';
       }
@@ -983,7 +986,7 @@ class ThemeEncoder {
   }
 
   static Map<String, dynamic> encodeShapeBorder(ShapeBorder value) {
-    assert(value != null ||
+    assert(value == null ||
         value is CircleBorder ||
         value is ContinuousRectangleBorder ||
         value is RoundedRectangleBorder);
@@ -1276,7 +1279,7 @@ class ThemeEncoder {
   static String encodeTextDecorationStyle(TextDecorationStyle value) {
     String result;
 
-    if (value == null) {
+    if (value != null) {
       switch (value) {
         case TextDecorationStyle.dashed:
           result = 'dashed';
@@ -1310,7 +1313,6 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'backgroundColor': encodeColor(value.backgroundColor),
         'color': encodeColor(value.color),
-        'debugLabel': value.debugLabel,
         'decoration': encodeTextDecoration(value.decoration),
         'decorationColor': encodeColor(value.decorationColor),
         'decorationStyle': encodeTextDecorationStyle(value.decorationStyle),
@@ -1319,9 +1321,11 @@ class ThemeEncoder {
         'fontFamilyFallback': value.fontFamilyFallback,
         'fontFeatures': value.fontFeatures == null
             ? null
-            : value.fontFeatures.map(
-                (value) => encodeFontFeature(value),
-              ),
+            : value.fontFeatures
+                .map(
+                  (value) => encodeFontFeature(value),
+                )
+                .toList(),
         'fontWeight': encodeFontWeight(value.fontWeight),
         'fontSize': value.fontSize,
         'fontStyle': encodeFontStyle(value.fontStyle),

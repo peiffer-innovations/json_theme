@@ -26,20 +26,6 @@ class ThemeDecoder {
     return result;
   }
 
-  static BorderSide decodeBorderSide(dynamic value) {
-    BorderSide result;
-
-    if (value != null) {
-      result = BorderSide(
-        color: decodeColor(value['color']),
-        style: decodeBorderStyle(value['style']),
-        width: JsonClass.parseDouble(value['width']),
-      );
-    }
-
-    return result;
-  }
-
   static BorderRadius decodeBorderRadius(dynamic value) {
     assert(value == null || value['type'] != null);
     _checkSupported(
@@ -51,7 +37,7 @@ class ThemeDecoder {
         'only',
         'vertical',
       ],
-      value,
+      value == null ? null : value['type'],
     );
 
     BorderRadius result;
@@ -63,8 +49,9 @@ class ThemeDecoder {
           result = BorderRadius.all(decodeRadius(value['radius']));
           break;
         case 'circular':
-          result =
-              BorderRadius.circular(JsonClass.parseDouble(value['radius']));
+          result = BorderRadius.circular(
+            JsonClass.parseDouble(value['radius']),
+          );
           break;
         case 'horizontal':
           result = BorderRadius.horizontal(
@@ -87,6 +74,20 @@ class ThemeDecoder {
           );
           break;
       }
+    }
+
+    return result;
+  }
+
+  static BorderSide decodeBorderSide(dynamic value) {
+    BorderSide result;
+
+    if (value != null) {
+      result = BorderSide(
+        color: decodeColor(value['color']),
+        style: decodeBorderStyle(value['style']),
+        width: JsonClass.parseDouble(value['width'], 1.0),
+      );
     }
 
     return result;
@@ -203,10 +204,10 @@ class ThemeDecoder {
 
     if (value != null) {
       result = BoxConstraints(
-        maxHeight: JsonClass.parseDouble(value['maxHeight']),
-        maxWidth: JsonClass.parseDouble(value['maxWidth']),
-        minHeight: JsonClass.parseDouble(value['minHeight']),
-        minWidth: JsonClass.parseDouble(value['minWidth']),
+        maxHeight: JsonClass.parseDouble(value['maxHeight'], double.infinity),
+        maxWidth: JsonClass.parseDouble(value['maxWidth'], double.infinity),
+        minHeight: JsonClass.parseDouble(value['minHeight'], 0),
+        minWidth: JsonClass.parseDouble(value['minWidth'], 0),
       );
     }
 
@@ -306,20 +307,19 @@ class ThemeDecoder {
 
     if (value != null) {
       result = ButtonThemeData(
-        alignedDropdown: value['alignedDropdown'] == null
-            ? null
-            : JsonClass.parseBool(['alignedDropdown']),
+        alignedDropdown: JsonClass.parseBool(value['alignedDropdown']),
         buttonColor: decodeColor(value['buttonColor']),
         colorScheme: decodeColorScheme(value['colorScheme']),
         disabledColor: decodeColor(value['disabledColor']),
         focusColor: decodeColor(value['focusColor']),
-        height: JsonClass.parseDouble(value['height']),
+        height: JsonClass.parseDouble(value['height'], 36.0),
         highlightColor: decodeColor(value['highlightColor']),
         hoverColor: decodeColor(value['hoverColor']),
-        layoutBehavior: decodeButtonLayoutBehavior(value['layoutBehavior']),
+        layoutBehavior: decodeButtonLayoutBehavior(value['layoutBehavior']) ??
+            ButtonBarLayoutBehavior.padded,
         materialTapTargetSize:
             decodeMaterialTapTargetSize(value['materialTapTargetSize']),
-        minWidth: JsonClass.parseDouble(value['minWidth']),
+        minWidth: JsonClass.parseDouble(value['minWidth'], 88.0),
         padding: decodeEdgeInsetsGeometry(value['padding']),
         shape: decodeShapeBorder(value['shape']),
         splashColor: decodeColor(value['splashColor']),
@@ -545,10 +545,10 @@ class ThemeDecoder {
 
     if (value != null) {
       result = EdgeInsets.only(
-        bottom: JsonClass.parseDouble(value['bottom']),
-        left: JsonClass.parseDouble(value['left']),
-        right: JsonClass.parseDouble(value['right']),
-        top: JsonClass.parseDouble(value['top']),
+        bottom: JsonClass.parseDouble(value['bottom'], 0.0),
+        left: JsonClass.parseDouble(value['left'], 0.0),
+        right: JsonClass.parseDouble(value['right'], 0.0),
+        top: JsonClass.parseDouble(value['top'], 0.0),
       );
     }
 
@@ -750,15 +750,22 @@ class ThemeDecoder {
       switch (type) {
         case 'outline':
           result = OutlineInputBorder(
-            borderRadius: decodeBorderRadius(value['borderRadius']),
-            borderSide: decodeBorderSide(value['borderSide']),
+            borderRadius: decodeBorderRadius(value['borderRadius']) ??
+                BorderRadius.all(Radius.circular(4.0)),
+            borderSide: decodeBorderSide(value['borderSide']) ?? BorderSide(),
+            gapPadding: JsonClass.parseDouble(value['gapPadding'], 4.0),
           );
           break;
 
         case 'underline':
           result = UnderlineInputBorder(
-              borderRadius: decodeBorderRadius(value['borderRadius']),
-              borderSide: decodeBorderSide(value['borderSide']));
+                  borderRadius: decodeBorderRadius(value['borderRadius']) ??
+                      BorderRadius.only(
+                        topLeft: Radius.circular(4.0),
+                        topRight: Radius.circular(4.0),
+                      ),
+                  borderSide: decodeBorderSide(value['borderSide'])) ??
+              BorderSide();
           break;
       }
     }
@@ -771,9 +778,7 @@ class ThemeDecoder {
 
     if (value != null) {
       result = InputDecorationTheme(
-        alignLabelWithHint: value['alignLabelWithHint'] == null
-            ? null
-            : JsonClass.parseBool(value['alignLabelWithHint']),
+        alignLabelWithHint: JsonClass.parseBool(value['alignLabelWithHint']),
         border: decodeInputBorder(value['border']),
         contentPadding: decodeEdgeInsetsGeometry(value['contentPadding']),
         counterStyle: decodeTextStyle(value['counterStyle']),
@@ -783,9 +788,7 @@ class ThemeDecoder {
         errorMaxLines: JsonClass.parseInt(value['errorMaxLines']),
         errorStyle: decodeTextStyle(value['errorStyle']),
         fillColor: decodeColor(value['fillColor']),
-        filled: value['filled'] == null
-            ? null
-            : JsonClass.parseBool(value['filled']),
+        filled: JsonClass.parseBool(value['filled']),
         floatingLabelBehavior: decodeFloatingLabelBehavior(
           value['floatingLabelBehavior'],
         ),
@@ -796,12 +799,8 @@ class ThemeDecoder {
         helperStyle: decodeTextStyle(value['helperStyle']),
         hintStyle: decodeTextStyle(value['hintStyle']),
         hoverColor: decodeColor(value['hoverColor']),
-        isCollapsed: value['isCollapsed'] == null
-            ? null
-            : JsonClass.parseBool(value['isCollapsed']),
-        isDense: value['isDense'] == null
-            ? null
-            : JsonClass.parseBool(value['isDense']),
+        isCollapsed: JsonClass.parseBool(value['isCollapsed']),
+        isDense: JsonClass.parseBool(value['isDense']),
         labelStyle: decodeTextStyle(value['labelStyle']),
         prefixStyle: decodeTextStyle(value['prefixStyle']),
         suffixStyle: decodeTextStyle(value['suffixStyle']),
@@ -926,6 +925,7 @@ class ThemeDecoder {
         backgroundColor: decodeColor(value['backgroundColor']),
         contentTextStyle: decodeTextStyle(value['contentTextStyle']),
         leadingPadding: decodeEdgeInsetsGeometry(value['leadingPadding']),
+        padding: decodeEdgeInsetsGeometry(value['padding']),
       );
     }
 
@@ -937,7 +937,9 @@ class ThemeDecoder {
 
     if (value != null) {
       var swatches = <int, Color>{};
-      value['swatches'].forEach(
+
+      var swatchesIn = value['swatches'];
+      swatchesIn.forEach(
         (key, value) => swatches[JsonClass.parseInt(key)] = decodeColor(value),
       );
 
@@ -1134,10 +1136,12 @@ class ThemeDecoder {
             disabledThumbRadius: JsonClass.parseDouble(
               value['disabledThumbRadius'],
             ),
-            // elevation: JsonClass.parseDouble(value['elevation']),
-            enabledThumbRadius:
-                JsonClass.parseDouble(value['enabledThumbRadius']),
-            // pressedElevation: JsonClass.parseDouble(value['pressedElevation']),
+            // elevation: JsonClass.parseDouble(value['elevation'], 1.0),
+            enabledThumbRadius: JsonClass.parseDouble(
+              value['enabledThumbRadius'],
+              10.0,
+            ),
+            // pressedElevation: JsonClass.parseDouble(value['pressedElevation'], 6.0,),
           );
           break;
       }
@@ -1206,7 +1210,7 @@ class ThemeDecoder {
       'RangeSliderValueIndicatorShape.type',
       [
         'paddle',
-        'rectangular',
+        // 'rectangular',
       ],
       value,
     );
@@ -1232,7 +1236,7 @@ class ThemeDecoder {
 
     if (value != null) {
       result = Shadow(
-        blurRadius: JsonClass.parseDouble(value['blurRadius']),
+        blurRadius: JsonClass.parseDouble(value['blurRadius'], 0.0),
         color: decodeColor(value['color']),
         offset: decodeOffset(value['offset']),
       );
@@ -1423,6 +1427,7 @@ class ThemeDecoder {
           result = RectangularSliderTrackShape(
             disabledThumbGapWidth: JsonClass.parseDouble(
               value['disabledThumbGapWidth'],
+              2.0,
             ),
           );
           break;
@@ -1649,7 +1654,7 @@ class ThemeDecoder {
     );
     TextDecorationStyle result;
 
-    if (value == null) {
+    if (value != null) {
       switch (value) {
         case 'dashed':
           result = TextDecorationStyle.dashed;
@@ -1683,7 +1688,6 @@ class ThemeDecoder {
       result = TextStyle(
         backgroundColor: decodeColor(value['backgroundColor']),
         color: decodeColor(value['color']),
-        debugLabel: value['debugLabel'],
         decoration: decodeTextDecoration(value['decoration']),
         decorationColor: decodeColor(value['decorationColor']),
         decorationStyle: decodeTextDecorationStyle(value['decorationStyle']),
@@ -1696,7 +1700,7 @@ class ThemeDecoder {
         fontFeatures: value['fontFeatures'] == null
             ? null
             : List<FontFeature>.from(
-                value['fontFeatures'].value(
+                value['fontFeatures'].map(
                   (value) => decodeFontFeature(value),
                 ),
               ),
@@ -1705,7 +1709,7 @@ class ThemeDecoder {
         fontStyle: decodeFontStyle(value['fontStyle']),
         height: JsonClass.parseDouble(value['height']),
         inherit: value['inherit'] == null
-            ? null
+            ? true
             : JsonClass.parseBool(
                 value['inherit'],
               ),
@@ -1881,7 +1885,9 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(
-          value['decoration'], 'TooltipThemeData.decoration is not supported');
+        value['decoration'] == null,
+        'TooltipThemeData.decoration is not supported',
+      );
       result = TooltipThemeData(
         excludeFromSemantics: value['excludeFromSemantics'] == null
             ? null

@@ -1,3 +1,8 @@
+## [1.0.1] - June 15th, 2020
+
+* Added encoder / decoder for `CrossAxisAlignment`
+
+
 ## [1.0.0] - June 13th, 2020
 
 * Added [example](http://github.com/peiffer-innovations/json_theme/example)

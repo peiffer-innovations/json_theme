@@ -468,6 +468,44 @@ class ThemeDecoder {
     return result;
   }
 
+  static CrossAxisAlignment decodeCrossAxisAlignment(dynamic value) {
+    _checkSupported(
+      'CrossAxisAlignment',
+      [
+        'baseline',
+        'center',
+        'end',
+        'start',
+        'stretch',
+      ],
+      value,
+    );
+
+    CrossAxisAlignment result;
+
+    if (value != null) {
+      switch (value) {
+        case 'baseline':
+          result = CrossAxisAlignment.baseline;
+          break;
+        case 'center':
+          result = CrossAxisAlignment.center;
+          break;
+        case 'end':
+          result = CrossAxisAlignment.end;
+          break;
+        case 'start':
+          result = CrossAxisAlignment.start;
+          break;
+        case 'stretch':
+          result = CrossAxisAlignment.stretch;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static CupertinoTextThemeData decodeCupertinoTextThemeData(dynamic value) {
     CupertinoTextThemeData result;
 

@@ -359,6 +359,32 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  static String encodeCrossAxisAlignment(CrossAxisAlignment value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case CrossAxisAlignment.baseline:
+          result = 'baseline';
+          break;
+        case CrossAxisAlignment.center:
+          result = 'center';
+          break;
+        case CrossAxisAlignment.end:
+          result = 'end';
+          break;
+        case CrossAxisAlignment.start:
+          result = 'start';
+          break;
+        case CrossAxisAlignment.stretch:
+          result = 'stretch';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static Map<String, dynamic> encodeCupertinoTextThemeData(
     CupertinoTextThemeData value,
   ) {

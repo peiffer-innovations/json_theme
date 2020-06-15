@@ -63,6 +63,16 @@ Plain string that must be one of:
 * `none` ==> `Clip.none`
 
 
+**CrossAxisAlignment**
+
+Plain string that must be one of:
+* `baseline` ==> `CrossAxisAlignment.baseline`
+* `center` ==> `CrossAxisAlignment.center`
+* `end` ==> `CrossAxisAlignment.end`
+* `start` ==> `CrossAxisAlignment.start`
+* `stretch` ==> `CrossAxisAlignment.stretch`
+
+
 **FloatingLabelBehavior**
 
 Plain string that must be one of:

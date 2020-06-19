@@ -1,3 +1,9 @@
+## [1.0.2] - June 19th, 2020
+
+* Added several new encoders and decoders
+* Started adding DartDocs
+
+
 ## [1.0.1] - June 15th, 2020
 
 * Added encoder / decoder for `CrossAxisAlignment`
@@ -7,12 +13,12 @@
 
 * Added [example](http://github.com/peiffer-innovations/json_theme/example)
 * Added documentation
-* Added Unit Tetss
+* Added Unit Tests
 
 
 ## [0.1.2] - June 11th, 2020
 
-* Updated to use [json_class](https://pub.dev/packages/json_class) vs `rest_client` to reduce foot print
+* Updated to use [json_class](https://pub.dev/packages/json_class) vs `rest_client` to reduce footprint
 
 
 ## [0.1.1] - June 2nd, 2020

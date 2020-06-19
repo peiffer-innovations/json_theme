@@ -1,12 +1,70 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 class ThemeEncoder {
   ThemeEncoder._();
+
+  /// Encodes the given [value] to an String representation of the [Alignment].
+  /// Supported values are:
+  ///  * `bottomCenter`
+  ///  * `bottomLeft`
+  ///  * `bottomRight`
+  ///  * `center`
+  ///  * `centerLeft`
+  ///  * `centerRight`
+  ///  * `topCenter`
+  ///  * `topLeft`
+  ///  * `topRight`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeAlignment(Alignment value) {
+    String result;
+
+    if (value != null) {
+      if (value.x == Alignment.bottomCenter.x &&
+          value.y == Alignment.bottomCenter.y) {
+        result = 'bottomCenter';
+      }
+      if (value.x == Alignment.bottomLeft.x &&
+          value.y == Alignment.bottomLeft.y) {
+        result = 'bottomLeft';
+      }
+      if (value.x == Alignment.bottomRight.x &&
+          value.y == Alignment.bottomRight.y) {
+        result = 'bottomRight';
+      }
+
+      if (value.x == Alignment.center.x && value.y == Alignment.center.y) {
+        result = 'center';
+      }
+      if (value.x == Alignment.centerLeft.x &&
+          value.y == Alignment.centerLeft.y) {
+        result = 'centerLeft';
+      }
+      if (value.x == Alignment.centerRight.x &&
+          value.y == Alignment.centerRight.y) {
+        result = 'centerRight';
+      }
+
+      if (value.x == Alignment.topCenter.x &&
+          value.y == Alignment.topCenter.y) {
+        result = 'topCenter';
+      }
+      if (value.x == Alignment.topLeft.x && value.y == Alignment.topLeft.y) {
+        result = 'topLeft';
+      }
+      if (value.x == Alignment.topRight.x && value.y == Alignment.topRight.y) {
+        result = 'topRight';
+      }
+    }
+
+    return result;
+  }
 
   static Map<String, dynamic> encodeAppBarTheme(AppBarTheme value) {
     Map<String, dynamic> result;
@@ -23,6 +81,186 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `horizontal`
+  ///  * `vertical`
+  static String encodeAxis(Axis value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case Axis.horizontal:
+          result = 'horizontal';
+          break;
+
+        case Axis.vertical:
+          result = 'vertical';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [BlendMode].  Supported values are:
+  /// * `clear`
+  /// * `color`
+  /// * `colorBurn`
+  /// * `colorDodge`
+  /// * `darken`
+  /// * `difference`
+  /// * `dst`
+  /// * `dstATop`
+  /// * `dstIn`
+  /// * `dstOut`
+  /// * `dstOver`
+  /// * `exclusion`
+  /// * `hardLight`
+  /// * `hue`
+  /// * `lighten`
+  /// * `luminosity`
+  /// * `modulate`
+  /// * `multiply`
+  /// * `overlay`
+  /// * `plus`
+  /// * `saturation`
+  /// * `screen`
+  /// * `softLight`
+  /// * `src`
+  /// * `srcATop`
+  /// * `srcIn`
+  /// * `srcOut`
+  /// * `srcOver`
+  /// * `xor`
+  static String encodeBlendMode(BlendMode value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case BlendMode.clear:
+          result = 'clear';
+          break;
+
+        case BlendMode.color:
+          result = 'color';
+          break;
+
+        case BlendMode.colorBurn:
+          result = 'colorBurn';
+          break;
+
+        case BlendMode.colorDodge:
+          result = 'colorDodge';
+          break;
+
+        case BlendMode.darken:
+          result = 'darken';
+          break;
+
+        case BlendMode.difference:
+          result = 'difference';
+          break;
+
+        case BlendMode.dst:
+          result = 'dst';
+          break;
+
+        case BlendMode.dstATop:
+          result = 'dstATop';
+          break;
+
+        case BlendMode.dstIn:
+          result = 'dstIn';
+          break;
+
+        case BlendMode.dstOut:
+          result = 'dstOut';
+          break;
+
+        case BlendMode.dstOver:
+          result = 'dstOver';
+          break;
+
+        case BlendMode.exclusion:
+          result = 'exclusion';
+          break;
+
+        case BlendMode.hardLight:
+          result = 'hardLight';
+          break;
+
+        case BlendMode.hue:
+          result = 'hue';
+          break;
+
+        case BlendMode.lighten:
+          result = 'lighten';
+          break;
+
+        case BlendMode.luminosity:
+          result = 'luminosity';
+          break;
+
+        case BlendMode.modulate:
+          result = 'modulate';
+          break;
+
+        case BlendMode.multiply:
+          result = 'multiply';
+          break;
+
+        case BlendMode.overlay:
+          result = 'overlay';
+          break;
+
+        case BlendMode.plus:
+          result = 'plus';
+          break;
+
+        case BlendMode.saturation:
+          result = 'saturation';
+          break;
+
+        case BlendMode.screen:
+          result = 'screen';
+          break;
+
+        case BlendMode.softLight:
+          result = 'softLight';
+          break;
+
+        case BlendMode.src:
+          result = 'src';
+          break;
+
+        case BlendMode.srcATop:
+          result = 'srcATop';
+          break;
+
+        case BlendMode.srcIn:
+          result = 'srcIn';
+          break;
+
+        case BlendMode.srcOut:
+          result = 'srcOut';
+          break;
+
+        case BlendMode.srcOver:
+          result = 'srcOver';
+          break;
+
+        case BlendMode.xor:
+          result = 'xor';
+          break;
+      }
+
+      return result;
+    }
+
+    return result;
   }
 
   static Map<String, dynamic> encodeBorderRadius(BorderRadius value) {
@@ -55,6 +293,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `none`
+  ///  * `solid`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeBorderStyle(BorderStyle value) {
     String result;
 
@@ -108,6 +352,12 @@ class ThemeEncoder {
   //   return _stripNull(result);
   // }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `fixed`
+  ///  * `shifting`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeBottomNavigationBarType(BottomNavigationBarType value) {
     String result;
 
@@ -144,6 +394,49 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] into a JSON compatible map.  This produces a Map
+  /// in the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": <BorderSide>,
+  ///   "left": <BorderSide>,
+  ///   "right": <BorderSide>,
+  ///   "top": <BorderSide>
+  /// }
+  /// ```
+  /// A [value] of [null] will result in [null] being returned.
+  ///
+  /// See also:
+  ///  * [encodeBorderSide]
+  static Map<String, dynamic> encodeBoxBorder(Border value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'bottom': encodeBorderSide(value.bottom),
+        'left': encodeBorderSide(value.left),
+        'right': encodeBorderSide(value.right),
+        'top': encodeBorderSide(value.top),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] into a JSON compatible map.  This produces a Map
+  /// in the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "maxHeight": <double>,
+  ///   "maxWidth": <double>,
+  ///   "minHeight": <double>,
+  ///   "minWidth": <double>
+  /// }
+  /// ```
+  ///
+  /// A [value] of [null] will result in [null] being returned.
   static Map<String, dynamic> encodeBoxConstraints(BoxConstraints value) {
     Map<String, dynamic> result;
 
@@ -160,6 +453,156 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] into a JSON compatible map.  This produces a Map
+  /// in the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundBlendMode": <BlendMode>,
+  ///   "border": <BoxBorder>,
+  ///   "borderRadius": <BorderRadius>,
+  ///   "boxShadow": <BoxShadow[]>
+  ///   "color": <Color>,
+  ///   "gradient": <Gradient>,
+  ///   "shape": <BoxShape>
+  /// }
+  /// ```
+  ///
+  /// A [value] of [null] will result in [null] being returned.
+  ///
+  /// See also:
+  ///  * [encodeBlendMode]
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBoxBorder]
+  ///  * [encodeBoxShadow]
+  ///  * [encodeBoxShape]
+  ///  * [encodeColor]
+  ///  * [encodeGradient]
+  static Map<String, dynamic> encodeBoxDecoration(BoxDecoration value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'backgroundBlendMode': encodeBlendMode(value.backgroundBlendMode),
+        'border': encodeBoxBorder(value.border),
+        'borderRadius': encodeBorderRadius(value.borderRadius),
+        'boxShadow': _encodeList(
+          value.boxShadow,
+          (value) => encodeBoxShadow(value),
+        ),
+        'color': encodeColor(value.color),
+        'gradient': encodeGradient(value.gradient),
+        'shape': encodeBoxShape(value.shape),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `contain`
+  ///  * `cover`
+  ///  * `fill`
+  ///  * `fitHeight`
+  ///  * `fitWidth`
+  ///  * `none`
+  ///  * `scaleDown`
+  static String encodeBoxFit(BoxFit value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case BoxFit.contain:
+          result = 'contain';
+          break;
+
+        case BoxFit.cover:
+          result = 'cover';
+          break;
+
+        case BoxFit.fill:
+          result = 'fill';
+          break;
+
+        case BoxFit.fitHeight:
+          result = 'fitHeight';
+          break;
+
+        case BoxFit.fitWidth:
+          result = 'fitWidth';
+          break;
+
+        case BoxFit.none:
+          result = 'none';
+          break;
+
+        case BoxFit.scaleDown:
+          result = 'scaleDown';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] into a JSON compatible map.  This produces a Map
+  /// in the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "blurRadius": <double>,
+  ///   "color": <Color>,
+  ///   "offset": <Offset>,
+  ///   "spreadRadius": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeOffset]
+  static Map<String, dynamic> encodeBoxShadow(dynamic value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'blurRadius': value.blurRadius,
+        'color': encodeColor(value.color),
+        'offset': encodeOffset(value.offset),
+        'spreadRadius': value.spreadRadius,
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a [BoxShape].  Supported values are:
+  ///  * `circle`
+  ///  * `rectangle`
+  static String encodeBoxShape(BoxShape value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case BoxShape.circle:
+          result = 'circle';
+          break;
+
+        case BoxShape.rectangle:
+          result = 'rectangle';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `dark`
+  ///  * `light`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeBrightness(Brightness value) {
     String result;
 
@@ -200,6 +643,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `constrained`
+  ///  * `padded`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeButtonLayoutBehavior(ButtonBarLayoutBehavior value) {
     String result;
 
@@ -217,6 +666,13 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `accent`
+  ///  * `normal`
+  ///  * `primary`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeButtonTextTheme(ButtonTextTheme value) {
     String result;
 
@@ -301,6 +757,14 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `antiAlias`
+  ///  * `antiAliasWithSaveLayer`
+  ///  * `hardEdge`
+  ///  * `none`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeClip(Clip value) {
     String result;
 
@@ -324,6 +788,10 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  This will always
+  /// use a hash encoded 8 digit string: "#aarrbbgg" format.
+  ///
+  /// This will return [null] if the value is [null].
   static String encodeColor(Color value) {
     String result;
 
@@ -359,6 +827,15 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `baseline`
+  ///  * `center`
+  ///  * `end`
+  ///  * `start`
+  ///  * `stretch`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeCrossAxisAlignment(CrossAxisAlignment value) {
     String result;
 
@@ -459,6 +936,28 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `down`
+  ///  * `start`
+  static String encodeDragStartBehavior(DragStartBehavior value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case DragStartBehavior.down:
+          result = 'down';
+          break;
+
+        case DragStartBehavior.start:
+          result = 'start';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static Map<String, dynamic> encodeEdgeInsetsGeometry(EdgeInsets value) {
     Map<String, dynamic> result;
 
@@ -472,6 +971,28 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `loose`
+  ///  * `tight`
+  static String encodeFlexFit(FlexFit value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case FlexFit.loose:
+          result = 'loose';
+          break;
+
+        case FlexFit.tight:
+          result = 'tight';
+          break;
+      }
+    }
+
+    return result;
   }
 
   static Map<String, dynamic> encodeFloatingActionButtonThemeData(
@@ -498,6 +1019,13 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `always`
+  ///  * `auto`
+  ///  * `never`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeFloatingLabelBehavior(FloatingLabelBehavior value) {
     String result;
 
@@ -533,6 +1061,19 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `w100`
+  ///  * `w200`
+  ///  * `w300`
+  ///  * `w400`
+  ///  * `w500`
+  ///  * `w600`
+  ///  * `w700`
+  ///  * `w800`
+  ///  * `w900`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeFontWeight(FontWeight value) {
     String result;
 
@@ -587,6 +1128,12 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `italic`
+  ///  * `normal`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeFontStyle(FontStyle value) {
     String result;
 
@@ -600,6 +1147,168 @@ class ThemeEncoder {
           result = 'normal';
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  This only
+  /// supports the following [Gradient] subclasses:
+  ///  * [LinearGradient]
+  ///  * [RadialGradient]
+  ///  * [SweepGradient]
+  ///
+  /// The emitted JSON will depend on the [Gradient] type and are each described
+  /// below:
+  ///
+  /// [LinearGradient]
+  /// ```json
+  /// {
+  ///   "begin": <Alignment>,
+  ///   "colors": <Color[]>,
+  ///   "end": <Alignment>,
+  ///   "stops": <double[]>,
+  ///   "tileMode": <TileMode>,
+  ///   "transform": <GradientTransform>
+  ///   "type": "linear",
+  /// }
+  /// ```
+  ///
+  /// [RadialGradient]
+  /// ```json
+  /// {
+  ///   "center": <Alignment>,
+  ///   "colors": <Color[]>,
+  ///   "focal": <Alignment>,
+  ///   "focalRadius": <double>,
+  ///   "radius": <double>,
+  ///   "stops": <double[]>,
+  ///   "tileMode": <TileMode>,
+  ///   "transform": <GradientTransform>
+  ///   "type": "radial",
+  /// }
+  /// ```
+  ///
+  /// [SweepGradient]
+  /// ```json
+  /// {
+  ///   "center": <Alignment>,
+  ///   "colors": <Color[]>,
+  ///   "endAngle": <double>,
+  ///   "startAngle": <double>,
+  ///   "stops": <double[]>,
+  ///   "tileMode": <TileMode>,
+  ///   "transform": <GradientTransform>
+  ///   "type": "sweep",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeAlignment]
+  ///  * [encodeGradientTransform]
+  ///  * [encodeTileMode]
+  static Map<String, dynamic> encodeGradient(Gradient value) {
+    assert(value == null ||
+        value is LinearGradient ||
+        value is RadialGradient ||
+        value is SweepGradient);
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      if (value is LinearGradient) {
+        result = {
+          'begin': encodeAlignment(value.begin),
+          'colors': _encodeList<String>(
+            value.colors,
+            (value) => encodeColor(value),
+          ),
+          'end': encodeAlignment(value.end),
+          'stops': value.stops,
+          'tileMode': encodeTileMode(value.tileMode),
+          'transform': encodeGradientTransform(value.transform),
+          'type': 'linear',
+        };
+      } else if (value is RadialGradient) {
+        result = {
+          'center': encodeAlignment(value.center),
+          'colors': _encodeList<String>(
+            value.colors,
+            (value) => encodeColor(value),
+          ),
+          'focal': encodeAlignment(value.focal),
+          'focalRadius': value.focalRadius,
+          'radius': value.radius,
+          'stops': value.stops,
+          'tileMode': encodeTileMode(value.tileMode),
+          'transform': encodeGradientTransform(value.transform),
+          'type': 'radial',
+        };
+      } else if (value is SweepGradient) {
+        result = {
+          'center': encodeAlignment(value.center),
+          'colors': _encodeList<String>(
+            value.colors,
+            (value) => encodeColor(value),
+          ),
+          'endAngle': value.endAngle,
+          'startAngle': value.startAngle,
+          'stops': value.stops,
+          'tileMode': encodeTileMode(value.tileMode),
+          'transform': encodeGradientTransform(value.transform),
+          'type': 'sweep',
+        };
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  This only
+  /// supports the following [GradientTransform] subclasses:
+  ///  * [GradientRotation]
+  ///
+  /// The emitted JSON will depend on the [GradientTransform] type and are each
+  /// described below:
+  ///
+  /// [GradientRotation]
+  /// ```json
+  /// {
+  ///   "radians": <double>
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeGradientTransform(GradientTransform value) {
+    assert(value == null || value is GradientRotation);
+    Map<String, dynamic> result;
+
+    if (value != null && value is GradientRotation) {
+      result = {
+        'radians': value.radians,
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.
+  ///
+  /// ```json
+  /// {
+  ///   "codePoint": <int>,
+  ///   "fontFamily": <String>,
+  ///   "fontPackage": <String>,
+  ///   "matchTextDirection": <bool>
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeIconData(IconData value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'codePoint': value.codePoint,
+        'fontFamily': value.fontFamily,
+        'fontPackage': value.fontPackage,
+        'matchTextDirection': value.matchTextDirection,
+      };
     }
 
     return result;
@@ -684,6 +1393,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `splash`
+  ///  * `ripple`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeInteractiveInkFeatureFactory(
     InteractiveInkFeatureFactory value,
   ) {
@@ -719,6 +1434,16 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `spaceAround`
+  ///  * `spaceBetween`
+  ///  * `spaceEvenly`
+  ///  * `start`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeMainAxisAlignment(MainAxisAlignment value) {
     String result;
 
@@ -748,6 +1473,12 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `max`
+  ///  * `min`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeMainAxisSize(MainAxisSize value) {
     String result;
     if (value != null) {
@@ -805,6 +1536,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `padded`
+  ///  * `shrinkWrap`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeMaterialTapTargetSize(MaterialTapTargetSize value) {
     String result;
 
@@ -822,6 +1559,99 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `button`
+  ///  * `canvas`
+  ///  * `card`
+  ///  * `circle`
+  ///  * `transparency`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeMaterialType(MaterialType value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case MaterialType.button:
+          result = 'button';
+          break;
+        case MaterialType.canvas:
+          result = 'canvas';
+          break;
+        case MaterialType.card:
+          result = 'card';
+          break;
+        case MaterialType.circle:
+          result = 'circle';
+          break;
+        case MaterialType.transparency:
+          result = 'transparency';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] to a [Matrix4]. This will encode the [value] into a 16
+  /// element [List] of [double].
+  ///
+  /// The array takes the following format:
+  /// ```
+  /// [
+  ///   x0,
+  ///   x1,
+  ///   x2,
+  ///   x3,
+  ///   y0,
+  ///   y1,
+  ///   y2,
+  ///   y3,
+  ///   z0,
+  ///   z1,
+  ///   z2,
+  ///   z3,
+  ///   w0,
+  ///   w1,
+  ///   w2,
+  ///   w3
+  /// ]
+  /// ```
+  static List<double> encodeMatrix4(Matrix4 value) {
+    List<double> result;
+
+    if (value != null) {
+      result = [
+        value.row0.x,
+        value.row1.x,
+        value.row2.x,
+        value.row3.x,
+        value.row0.y,
+        value.row1.y,
+        value.row2.y,
+        value.row3.y,
+        value.row0.z,
+        value.row1.z,
+        value.row2.z,
+        value.row3.z,
+        value.row0.w,
+        value.row1.w,
+        value.row2.w,
+        value.row3.w,
+      ];
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `all`
+  ///  * `none`
+  ///  * `selected`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeNavigationRailLabelType(NavigationRailLabelType value) {
     String result;
 
@@ -869,6 +1699,11 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `circular`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeNotchedShape(NotchedShape value) {
     assert(value == null || value is CircularNotchedRectangle);
     String result;
@@ -891,6 +1726,29 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `clip`
+  ///  * `visible`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeOverflow(Overflow value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case Overflow.clip:
+          result = 'clip';
+          break;
+        case Overflow.visible:
+          result = 'visible';
+          break;
+      }
+    }
+
+    return result;
   }
 
   static Map<String, dynamic> encodePopupMenuThemeData(
@@ -960,6 +1818,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `rectangular`
+  ///  * `rounded`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeRangeSliderTrackShape(RangeSliderTrackShape value) {
     assert(value == null ||
         value is RectangularRangeSliderTrackShape ||
@@ -977,6 +1841,11 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `paddle`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeRangeSliderValueIndicatorShape(
     RangeSliderValueIndicatorShape value,
   ) {
@@ -992,6 +1861,63 @@ class ThemeEncoder {
         // } else if (value is RectangularRangeSliderValueIndicatorShape) {
         //   result = 'rectangular';
       }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] to a JSON compatible Map.
+  ///
+  /// This returns the JSON representation to follow the structure:
+  /// ```json
+  /// {
+  ///   "parent": <ScrollPhysics>,
+  ///   "type": <String>
+  /// }
+  /// ```
+  ///
+  /// Where "type" will be one of:
+  ///  * `always`
+  ///  * `bouncing`
+  ///  * `clamping`
+  ///  * `fixedExtent`
+  ///  * `never`
+  ///  * `page`
+  static Map<String, dynamic> encodeScrollPhysics(ScrollPhysics value) {
+    assert(value == null ||
+        value is AlwaysScrollableScrollPhysics ||
+        value is BouncingScrollPhysics ||
+        value is ClampingScrollPhysics ||
+        value is FixedExtentScrollPhysics ||
+        value is NeverScrollableScrollPhysics ||
+        value is PageScrollPhysics);
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      String type;
+
+      if (value is AlwaysScrollableScrollPhysics) {
+        type = 'always';
+      } else if (value is BouncingScrollPhysics) {
+        type = 'bouncing';
+      } else if (value is ClampingScrollPhysics) {
+        type = 'clamping';
+      } else if (value is FixedExtentScrollPhysics) {
+        type = 'fixedExtent';
+      } else if (value is NeverScrollableScrollPhysics) {
+        type = 'never';
+      } else if (value is PageScrollPhysics) {
+        type = 'page';
+      }
+
+      if (type == null) {
+        throw Exception(
+            'Unknown ScrollPhysics class encounted: ${value.runtimeType}');
+      }
+      result = {
+        'parent': encodeScrollPhysics(value.parent),
+        'type': type,
+      };
     }
 
     return result;
@@ -1042,6 +1968,14 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `always`
+  ///  * `never`
+  ///  * `onlyForContinuous`
+  ///  * `onlyForDiscrete`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeShowValueIndicator(ShowValueIndicator value) {
     String result;
 
@@ -1068,6 +2002,11 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `noOverlay`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeSliderComponentShape(
     SliderComponentShape value,
   ) {
@@ -1161,6 +2100,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `fixed`
+  ///  * `floating`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeSnackBarBehavior(SnackBarBehavior value) {
     String result;
 
@@ -1197,6 +2142,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `label`
+  ///  * `tab`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeTabBarIndicatorSize(TabBarIndicatorSize value) {
     String result;
 
@@ -1210,6 +2161,71 @@ class ThemeEncoder {
           result = 'tab';
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `expand`
+  ///  * `loose`
+  ///  * `passthrough`
+  static String encodeStackFit(StackFit value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case StackFit.expand:
+          result = 'expand';
+          break;
+
+        case StackFit.loose:
+          result = 'loose';
+          break;
+
+        case StackFit.passthrough:
+          result = 'passthrough';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "fontFamily": <String>,
+  ///   "fontFamilyFallback": <String[]>,
+  ///   "fontSize": <double>,
+  ///   "fontStyle": <FontStyle>,
+  ///   "fontWeight": <FontWeight>
+  ///   "forceStrutHeight": <bool>,
+  ///   "height": <double>,
+  ///   "leading": <double>,
+  ///   "package": <String>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeFontStyle]
+  ///  * [encodeFontWeight]
+  static Map<String, dynamic> encodeStrutStyle(StrutStyle value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'fontFamily': value.fontFamily,
+        'fontFamilyFallback': value.fontFamilyFallback,
+        'fontSize': value.fontSize,
+        'fontStyle': encodeFontStyle(value.fontStyle),
+        'fontWeight': encodeFontWeight(value.fontWeight),
+        'forceStrutHeight': value.forceStrutHeight,
+        'height': value.height,
+        'leading': value.leading,
+      };
     }
 
     return result;
@@ -1232,6 +2248,16 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `android`
+  ///  * `fuchsia`
+  ///  * `iOS`
+  ///  * `linux`
+  ///  * `macOS`
+  ///  * `windows`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeTargetPlatform(TargetPlatform value) {
     String result;
 
@@ -1266,6 +2292,51 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `justify`
+  ///  * `left`
+  ///  * `right`
+  ///  * `start`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextAlign(TextAlign value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextAlign.center:
+          result = 'center';
+          break;
+        case TextAlign.end:
+          result = 'end';
+          break;
+        case TextAlign.justify:
+          result = 'justify';
+          break;
+        case TextAlign.left:
+          result = 'left';
+          break;
+        case TextAlign.right:
+          result = 'right';
+          break;
+        case TextAlign.start:
+          result = 'start';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `alphabetic`
+  ///  * `ideographic`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeTextBaseline(TextBaseline value) {
     String result;
 
@@ -1284,6 +2355,14 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `lineThrough`
+  ///  * `none`
+  ///  * `overline`
+  ///  * `underline`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeTextDecoration(TextDecoration value) {
     String result;
 
@@ -1302,6 +2381,15 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `dashed`
+  ///  * `dotted`
+  ///  * `double`
+  ///  * `solid`
+  ///  * `wavy`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeTextDecorationStyle(TextDecorationStyle value) {
     String result;
 
@@ -1325,6 +2413,85 @@ class ThemeEncoder {
 
         case TextDecorationStyle.wavy:
           result = 'wavy';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a String representation.  Supported values are:
+  ///  * `ltr`
+  ///  * `rtl`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextDirection(TextDirection value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextDirection.ltr:
+          result = 'ltr';
+          break;
+
+        case TextDirection.rtl:
+          result = 'rtl';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "applyHeightToFirstAscent": <bool>,
+  ///   "applyHeightToLastDescent": <bool>
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeTextHeightBehavior(
+    TextHeightBehavior value,
+  ) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'applyHeightToFirstAscent': value.applyHeightToFirstAscent,
+        'applyHeightToLastDescent': value.applyHeightToLastDescent,
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a String representation.  Supported values are:
+  ///  * `clip`
+  ///  * `ellipsis`
+  ///  * `fade`
+  ///  * `visible`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextOverflow(TextOverflow value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextOverflow.clip:
+          result = 'clip';
+          break;
+
+        case TextOverflow.ellipsis:
+          result = 'ellipsis';
+          break;
+
+        case TextOverflow.fade:
+          result = 'fade';
+          break;
+
+        case TextOverflow.visible:
+          result = 'visible';
           break;
       }
     }
@@ -1394,6 +2561,28 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the [value] into a String representation.  Supported values are:
+  ///  * `longestLine`
+  ///  * `parent`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextWidthBasis(TextWidthBasis value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextWidthBasis.longestLine:
+          result = 'longestLine';
+          break;
+        case TextWidthBasis.parent:
+          result = 'parent';
+          break;
+      }
+    }
+
+    return result;
   }
 
   static Map<String, dynamic> encodeThemeData(ThemeData value) {
@@ -1489,6 +2678,32 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the [value] to a [TileMode].  Supported values are:
+  ///  * `clamp`
+  ///  * `mirror`
+  ///  * `repeated`
+  static String encodeTileMode(TileMode value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TileMode.clamp:
+          result = 'clamp';
+          break;
+
+        case TileMode.mirror:
+          result = 'mirror';
+          break;
+
+        case TileMode.repeated:
+          result = 'repeated';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static Map<String, dynamic> encodeToggleButtonsThemeData(
     ToggleButtonsThemeData value,
   ) {
@@ -1553,6 +2768,12 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `down`
+  ///  * `up`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeVerticalDirection(VerticalDirection value) {
     String result;
 
@@ -1570,6 +2791,13 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `comfortable`
+  ///  * `compact`
+  ///  * `standard`
+  ///
+  /// All other values, including [null], will result in [null].
   static String encodeVisualDensity(VisualDensity value) {
     String result;
 
@@ -1607,5 +2835,21 @@ class ThemeEncoder {
     }
 
     return result?.isNotEmpty == true ? result : null;
+  }
+
+  static List<T> _encodeList<T>(
+    Iterable<dynamic> list,
+    T Function(dynamic value) encoder,
+  ) {
+    List<T> result;
+
+    if (list != null) {
+      result = [];
+      for (var value in list) {
+        result.add(encoder(value));
+      }
+    }
+
+    return result;
   }
 }

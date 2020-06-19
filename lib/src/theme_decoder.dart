@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:json_class/json_class.dart';
@@ -8,6 +9,69 @@ import 'package:json_class/json_class.dart';
 @immutable
 class ThemeDecoder {
   ThemeDecoder._();
+
+  /// Decodes the given [value] to an [Alignment].  Supported values are:
+  ///  * `bottomCenter`
+  ///  * `bottomLeft`
+  ///  * `bottomRight`
+  ///  * `center`
+  ///  * `centerLeft`
+  ///  * `centerRight`
+  ///  * `topCenter`
+  ///  * `topLeft`
+  ///  * `topRight`
+  static Alignment decodeAlignment(String value) {
+    _checkSupported(
+      'Alignment',
+      [
+        'bottomCenter',
+        'bottomLeft',
+        'bottomRight',
+        'center',
+        'centerLeft',
+        'centerRight',
+        'topCenter',
+        'topLeft',
+        'topRight',
+      ],
+      value,
+    );
+    AlignmentGeometry result;
+
+    if (value != null) {
+      switch (value) {
+        case 'bottomCenter':
+          result = Alignment.bottomCenter;
+          break;
+        case 'bottomLeft':
+          result = Alignment.bottomLeft;
+          break;
+        case 'bottomRight':
+          result = Alignment.bottomRight;
+          break;
+        case 'center':
+          result = Alignment.center;
+          break;
+        case 'centerLeft':
+          result = Alignment.centerLeft;
+          break;
+        case 'centerRight':
+          result = Alignment.centerRight;
+          break;
+        case 'topCenter':
+          result = Alignment.topCenter;
+          break;
+        case 'topLeft':
+          result = Alignment.topLeft;
+          break;
+        case 'topRight':
+          result = Alignment.topRight;
+          break;
+      }
+    }
+
+    return result;
+  }
 
   static AppBarTheme decodeAppBarTheme(dynamic value) {
     AppBarTheme result;
@@ -26,8 +90,228 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [Axis].  Supported values are:
+  ///  * `horizontal`
+  ///  * `vertical`
+  static Axis decodeAxis(String value) {
+    _checkSupported(
+      'Axis',
+      [
+        'horizontal',
+        'vertical',
+      ],
+      value,
+    );
+    Axis result;
+
+    if (value != null) {
+      switch (value) {
+        case 'horizontal':
+          result = Axis.horizontal;
+          break;
+        case 'vertical':
+          result = Axis.vertical;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [BlendMode].  Supported values are:
+  /// * `clear`
+  /// * `color`
+  /// * `colorBurn`
+  /// * `colorDodge`
+  /// * `darken`
+  /// * `difference`
+  /// * `dst`
+  /// * `dstATop`
+  /// * `dstIn`
+  /// * `dstOut`
+  /// * `dstOver`
+  /// * `exclusion`
+  /// * `hardLight`
+  /// * `hue`
+  /// * `lighten`
+  /// * `luminosity`
+  /// * `modulate`
+  /// * `multiply`
+  /// * `overlay`
+  /// * `plus`
+  /// * `saturation`
+  /// * `screen`
+  /// * `softLight`
+  /// * `src`
+  /// * `srcATop`
+  /// * `srcIn`
+  /// * `srcOut`
+  /// * `srcOver`
+  /// * `xor`
+  static BlendMode decodeBlendMode(String value) {
+    _checkSupported(
+      'BlendMode',
+      [
+        'clear',
+        'color',
+        'colorBurn',
+        'colorDodge',
+        'darken',
+        'difference',
+        'dst',
+        'dstATop',
+        'dstIn',
+        'dstOut',
+        'dstOver',
+        'exclusion',
+        'hardLight',
+        'hue',
+        'lighten',
+        'luminosity',
+        'modulate',
+        'multiply',
+        'overlay',
+        'plus',
+        'saturation',
+        'screen',
+        'softLight',
+        'src',
+        'srcATop',
+        'srcIn',
+        'srcOut',
+        'srcOver',
+        'xor',
+      ],
+      value,
+    );
+
+    BlendMode result;
+
+    if (value != null) {
+      switch (value) {
+        case 'clear':
+          result = BlendMode.clear;
+          break;
+
+        case 'color':
+          result = BlendMode.color;
+          break;
+
+        case 'colorBurn':
+          result = BlendMode.colorBurn;
+          break;
+
+        case 'colorDodge':
+          result = BlendMode.colorDodge;
+          break;
+
+        case 'darken':
+          result = BlendMode.darken;
+          break;
+
+        case 'difference':
+          result = BlendMode.difference;
+          break;
+
+        case 'dst':
+          result = BlendMode.dst;
+          break;
+
+        case 'dstATop':
+          result = BlendMode.dstATop;
+          break;
+
+        case 'dstIn':
+          result = BlendMode.dstIn;
+          break;
+
+        case 'dstOut':
+          result = BlendMode.dstOut;
+          break;
+
+        case 'dstOver':
+          result = BlendMode.dstOver;
+          break;
+
+        case 'exclusion':
+          result = BlendMode.exclusion;
+          break;
+
+        case 'hardLight':
+          result = BlendMode.hardLight;
+          break;
+
+        case 'hue':
+          result = BlendMode.hue;
+          break;
+
+        case 'lighten':
+          result = BlendMode.lighten;
+          break;
+
+        case 'luminosity':
+          result = BlendMode.luminosity;
+          break;
+
+        case 'modulate':
+          result = BlendMode.modulate;
+          break;
+
+        case 'multiply':
+          result = BlendMode.multiply;
+          break;
+
+        case 'overlay':
+          result = BlendMode.overlay;
+          break;
+
+        case 'plus':
+          result = BlendMode.plus;
+          break;
+
+        case 'saturation':
+          result = BlendMode.saturation;
+          break;
+
+        case 'screen':
+          result = BlendMode.screen;
+          break;
+
+        case 'softLight':
+          result = BlendMode.softLight;
+          break;
+
+        case 'src':
+          result = BlendMode.src;
+          break;
+
+        case 'srcATop':
+          result = BlendMode.srcATop;
+          break;
+
+        case 'srcIn':
+          result = BlendMode.srcIn;
+          break;
+
+        case 'srcOut':
+          result = BlendMode.srcOut;
+          break;
+
+        case 'srcOver':
+          result = BlendMode.srcOver;
+          break;
+
+        case 'xor':
+          result = BlendMode.xor;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static BorderRadius decodeBorderRadius(dynamic value) {
-    assert(value == null || value['type'] != null);
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'BorderRadius',
       [
@@ -93,7 +377,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static BorderStyle decodeBorderStyle(dynamic value) {
+  /// Decodes the [value] to a [BorderStyle].  Supported values are:
+  ///  * `none`
+  ///  * `solid`
+  static BorderStyle decodeBorderStyle(String value) {
     _checkSupported(
       'BorderStyle',
       [
@@ -157,7 +444,10 @@ class ThemeDecoder {
   //   return result;
   // }
 
-  static BottomNavigationBarType decodeBottomNavigationBarType(dynamic value) {
+  /// Decodes the [value] to a [BottomNavigationBarType].  Supported values are:
+  ///  * `fixed`
+  ///  * `shifting`
+  static BottomNavigationBarType decodeBottomNavigationBarType(String value) {
     _checkSupported(
       'BottomNavigationBarType',
       [
@@ -199,6 +489,48 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] into a [BoxBorder].  If the value is [null]
+  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// that in JSON would look like:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": <BorderSide>,
+  ///   "left": <BorderSide>,
+  ///   "right": <BorderSide>,
+  ///   "top": <BorderSide>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderSide]
+  static BoxBorder decodeBoxBorder(dynamic value) {
+    BoxBorder result;
+
+    if (value != null) {
+      result = Border(
+        bottom: decodeBorderSide(value['bottom']),
+        left: decodeBorderSide(value['left']),
+        right: decodeBorderSide(value['right']),
+        top: decodeBorderSide(value['top']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [BoxConstraints].  If the value is [null]
+  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// that in JSON would look like:
+  ///
+  /// ```json
+  /// {
+  ///   "maxHeight": <double>,
+  ///   "maxWidth": <double>,
+  ///   "minHeight": <double>,
+  ///   "minWidth": <double>
+  /// }
+  /// ```
   static BoxConstraints decodeBoxConstraints(dynamic value) {
     BoxConstraints result;
 
@@ -214,7 +546,144 @@ class ThemeDecoder {
     return result;
   }
 
-  static Brightness decodeBrightness(dynamic value) {
+  /// Decodes the given [value] into a [BoxDecoration].  If the value is [null]
+  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// that in JSON would look like:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundBlendMode": <BlendMode>,
+  ///   "border": <BoxBorder>,
+  ///   "borderRadius": <BorderRadius>,
+  ///   "boxShadow": <BoxShadow[]>
+  ///   "color": <Color>,
+  ///   "gradient": <Gradient>,
+  ///   "shape": <BoxShape>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBlendMode]
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBoxBorder]
+  ///  * [decodeBoxShadow]
+  ///  * [decodeBoxShape]
+  ///  * [decodeColor]
+  ///  * [decodeGradient]
+  static BoxDecoration decodeBoxDecoration(dynamic value) {
+    BoxDecoration result;
+
+    if (value != null) {
+      result = BoxDecoration(
+        backgroundBlendMode: decodeBlendMode(value['backgroundBlendMode']),
+        border: decodeBoxBorder(value['border']),
+        borderRadius: decodeBorderRadius(value['borderRadius']),
+        boxShadow: _decodeDynamicList(value['boxShadow'], decodeBoxShadow),
+        color: decodeColor(value['color']),
+        gradient: decodeGradient(value['gradient']),
+        shape: decodeBoxShape(value['shape']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [BoxFit].  Supported values are:
+  ///  * `contain`
+  ///  * `cover`
+  ///  * `fill`
+  ///  * `fitHeight`
+  ///  * `fitWidth`
+  ///  * `none`
+  ///  * `scaleDown`
+  static BoxFit decodeBoxFit(String value) {
+    BoxFit result;
+
+    if (value != null) {
+      switch (value) {
+        case 'contain':
+          result = BoxFit.contain;
+          break;
+        case 'cover':
+          result = BoxFit.cover;
+          break;
+        case 'fill':
+          result = BoxFit.fill;
+          break;
+        case 'fitHeight':
+          result = BoxFit.fitHeight;
+          break;
+        case 'fitWidth':
+          result = BoxFit.fitWidth;
+          break;
+        case 'none':
+          result = BoxFit.none;
+          break;
+        case 'scaleDown':
+          result = BoxFit.scaleDown;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [BoxDecoration].  If the value is [null]
+  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// that in JSON would look like:
+  ///
+  /// ```json
+  /// {
+  ///   "blurRadius": <double>,
+  ///   "color": <Color>,
+  ///   "offset": <Offset>,
+  ///   "spreadRadius": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeOffset]
+  static BoxShadow decodeBoxShadow(dynamic value) {
+    BoxShadow result;
+
+    if (value != null) {
+      result = BoxShadow(
+        blurRadius: JsonClass.parseDouble(value['blurRadius']),
+        color: decodeColor(value['color']),
+        offset: decodeOffset(value['offset']),
+        spreadRadius: JsonClass.parseDouble(value['spreadRadius']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [BoxShape].  Supported values are:
+  ///  * `circle`
+  ///  * `rectangle`
+  static BoxShape decodeBoxShape(String value) {
+    BoxShape result;
+
+    if (value != null) {
+      switch (value) {
+        case 'circle':
+          result = BoxShape.circle;
+          break;
+
+        case 'rectangle':
+          result = BoxShape.rectangle;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [Brightness].  Supported values are:
+  ///  * `light`
+  ///  * `dark`
+  static Brightness decodeBrightness(String value) {
     Brightness result;
 
     if (value != null) {
@@ -248,7 +717,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static ButtonBarLayoutBehavior decodeButtonLayoutBehavior(dynamic value) {
+  /// Decodes the [value] to a [ButtonBarLayoutBehavior].  Supported values are:
+  ///  * `constrained`
+  ///  * `padded`
+  static ButtonBarLayoutBehavior decodeButtonLayoutBehavior(String value) {
     _checkSupported(
       'ButtonBarLayoutBehavior',
       [
@@ -273,7 +745,11 @@ class ThemeDecoder {
     return result;
   }
 
-  static ButtonTextTheme decodeButtonTextTheme(dynamic value) {
+  /// Decodes the [value] to a [ButtonTextTheme].  Supported values are:
+  ///  * `accent`
+  ///  * `normal`
+  ///  * `primary`
+  static ButtonTextTheme decodeButtonTextTheme(String value) {
     _checkSupported(
       'ButtonTextTheme',
       [
@@ -377,7 +853,12 @@ class ThemeDecoder {
     return result;
   }
 
-  static Clip decodeClip(dynamic value) {
+  /// Decodes the [value] to a [Clip].  Supported values are:
+  ///  * `antiAlias`
+  ///  * `antiAliasWithSaveLayer`
+  ///  * `hardEdge`
+  ///  * `none`
+  static Clip decodeClip(String value) {
     _checkSupported(
       'Clip',
       [
@@ -410,8 +891,17 @@ class ThemeDecoder {
     return result;
   }
 
-  static Color decodeColor(dynamic value) {
-    assert(value == null || value is String);
+  /// Decodes a given [value] into a color.  A [value] of [null] will result in
+  /// [null] being returned.
+  ///
+  /// This supports the following formats:
+  ///  * `rgb`
+  ///  * `rrggbb`
+  ///  * `aarrggbb`
+  ///  * `#rgb`
+  ///  * `#rrggbb`
+  ///  * `#aarrggbb`
+  static Color decodeColor(String value) {
     Color result;
 
     if (value != null) {
@@ -468,7 +958,13 @@ class ThemeDecoder {
     return result;
   }
 
-  static CrossAxisAlignment decodeCrossAxisAlignment(dynamic value) {
+  /// Decodes the [value] to a [CrossAxisAlignment].  Supported values are:
+  ///  * `baseLine`
+  ///  * `center`
+  ///  * `end`
+  ///  * `start`
+  ///  * `stretch`
+  static CrossAxisAlignment decodeCrossAxisAlignment(String value) {
     _checkSupported(
       'CrossAxisAlignment',
       [
@@ -578,6 +1074,34 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [DragStartBehavior].  Supported values are:
+  ///  * `horizontal`
+  ///  * `start`
+  static DragStartBehavior decodeDragStartBehavior(String value) {
+    _checkSupported(
+      'DragStartBehavior',
+      [
+        'down',
+        'start',
+      ],
+      value,
+    );
+    DragStartBehavior result;
+
+    if (value != null) {
+      switch (value) {
+        case 'down':
+          result = DragStartBehavior.down;
+          break;
+        case 'start':
+          result = DragStartBehavior.start;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static EdgeInsetsGeometry decodeEdgeInsetsGeometry(dynamic value) {
     EdgeInsetsGeometry result;
 
@@ -588,6 +1112,38 @@ class ThemeDecoder {
         right: JsonClass.parseDouble(value['right'], 0.0),
         top: JsonClass.parseDouble(value['top'], 0.0),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [FlexFit].  Supported values are:
+  ///  * `baseLine`
+  ///  * `center`
+  ///  * `end`
+  ///  * `start`
+  ///  * `stretch`
+  static FlexFit decodeFlexFit(String value) {
+    _checkSupported(
+      'FlexFit',
+      [
+        'loose',
+        'tight',
+      ],
+      value,
+    );
+
+    FlexFit result;
+
+    if (value != null) {
+      switch (value) {
+        case 'loose':
+          result = FlexFit.loose;
+          break;
+        case 'tight':
+          result = FlexFit.tight;
+          break;
+      }
     }
 
     return result;
@@ -616,7 +1172,11 @@ class ThemeDecoder {
     return result;
   }
 
-  static FloatingLabelBehavior decodeFloatingLabelBehavior(dynamic value) {
+  /// Decodes the [value] to a [FloatingLabelBehavior].  Supported values are:
+  ///  * `always`
+  ///  * `auto`
+  ///  * `never`
+  static FloatingLabelBehavior decodeFloatingLabelBehavior(String value) {
     _checkSupported(
       'FloatingLabelBehavior',
       [
@@ -660,7 +1220,19 @@ class ThemeDecoder {
     return result;
   }
 
-  static FontWeight decodeFontWeight(dynamic value) {
+  /// Decodes the [value] to a [FontWeight].  Supported values are:
+  ///  * `bold`
+  ///  * `normal`
+  ///  * `w100`
+  ///  * `w200`
+  ///  * `w300`
+  ///  * `w400`
+  ///  * `w500`
+  ///  * `w600`
+  ///  * `w700`
+  ///  * `w800`
+  ///  * `w900`
+  static FontWeight decodeFontWeight(String value) {
     _checkSupported(
       'FontWeight',
       [
@@ -731,7 +1303,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static FontStyle decodeFontStyle(dynamic value) {
+  /// Decodes the [value] to a [FontStyle].  Supported values are:
+  ///  * `italic`
+  ///  * `normal`
+  static FontStyle decodeFontStyle(String value) {
     _checkSupported(
       'FontStyle',
       [
@@ -752,6 +1327,188 @@ class ThemeDecoder {
           result = FontStyle.normal;
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [Gradient].  If the value is [null]
+  /// then [null] will be returned.
+  ///
+  /// When the [value] is not [null], this expects a type attribute of one of
+  /// the following values:
+  ///  * `linear`
+  ///  * `radial`
+  ///  * `sweep`
+  ///
+  /// The expected JSON will depend on the specified type and are each described
+  /// below:
+  ///
+  /// Type: `linear`
+  /// ```json
+  /// {
+  ///   "begin": <Alignment>,
+  ///   "colors": <Color[]>,
+  ///   "end": <Alignment>,
+  ///   "stops": <double[]>,
+  ///   "tileMode": <TileMode>,
+  ///   "transform": <GradientTransform>
+  ///   "type": "linear",
+  /// }
+  /// ```
+  ///
+  /// Type: `radial`
+  /// ```json
+  /// {
+  ///   "center": <Alignment>,
+  ///   "colors": <Color[]>,
+  ///   "focal": <Alignment>,
+  ///   "focalRadius": <double>,
+  ///   "radius": <double>,
+  ///   "stops": <double[]>,
+  ///   "tileMode": <TileMode>,
+  ///   "transform": <GradientTransform>
+  ///   "type": "radial",
+  /// }
+  /// ```
+  ///
+  /// Type: `sweep`
+  /// ```json
+  /// {
+  ///   "center": <Alignment>,
+  ///   "colors": <Color[]>,
+  ///   "endAngle": <double>,
+  ///   "startAngle": <double>,
+  ///   "stops": <double[]>,
+  ///   "tileMode": <TileMode>,
+  ///   "transform": <GradientTransform>
+  ///   "type": "sweep",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeAlignment]
+  ///  * [decodeGradientTransform]
+  ///  * [decodeTileMode]
+  static Gradient decodeGradient(dynamic value) {
+    assert(value == null || value['type'] is String);
+    _checkSupported(
+      'Gradient',
+      [
+        'linear',
+        'radial',
+        'sweep',
+      ],
+      value == null ? null : value['type'],
+    );
+    Gradient result;
+
+    if (value != null) {
+      var type = value['type'];
+      switch (type) {
+        case 'linear':
+          result = LinearGradient(
+            begin: decodeAlignment(value['begin']),
+            colors: _decodeStringList<Color>(
+              value['colors'],
+              decodeColor,
+            ),
+            end: decodeAlignment(value['end']),
+            stops: _decodeDynamicList<double>(
+              value['stops'],
+              (value) => JsonClass.parseDouble(value),
+            ),
+            tileMode: decodeTileMode(value['tileMode']),
+            transform: decodeGradientTransform(value['transform']),
+          );
+          break;
+        case 'radial':
+          result = RadialGradient(
+            center: decodeAlignment(value['center']),
+            colors: _decodeStringList<Color>(
+              value['colors'],
+              decodeColor,
+            ),
+            focal: decodeAlignment(value['focal']),
+            focalRadius: JsonClass.parseDouble(value['focalRadius']),
+            radius: JsonClass.parseDouble(value['radius']),
+            stops: _decodeDynamicList<double>(
+              value['stops'],
+              (value) => JsonClass.parseDouble(value),
+            ),
+            tileMode: decodeTileMode(value['tileMode']),
+            transform: decodeGradientTransform(value['transform']),
+          );
+          break;
+        case 'sweep':
+          result = SweepGradient(
+            center: decodeAlignment(value['center']),
+            colors: _decodeStringList<Color>(
+              value['colors'],
+              decodeColor,
+            ),
+            endAngle: JsonClass.parseDouble(value['endAngle']),
+            startAngle: JsonClass.parseDouble(value['startAngle']),
+            stops: _decodeDynamicList<double>(
+              value['stops'],
+              (value) => JsonClass.parseDouble(value),
+            ),
+            tileMode: decodeTileMode(value['tileMode']),
+            transform: decodeGradientTransform(value['transform']),
+          );
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [GradientTransform].  If the value is
+  /// [null] then [null] will be returned.
+  ///
+  /// When the [value] is not [null], this will always return a concrete
+  /// implementation of [GradientRotation].
+  ///
+  /// ```json
+  /// {
+  ///   "radians": <double>
+  /// }
+  /// ```
+  static GradientTransform decodeGradientTransform(dynamic value) {
+    GradientTransform result;
+
+    if (value != null) {
+      result = GradientRotation(
+        JsonClass.parseDouble(value['radians']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into an [IconData].  If the value is [null] then
+  /// [null] will be returned.
+  ///
+  /// ```json
+  /// {
+  ///   "codePoint": <int>,
+  ///   "fontFamily": <String>,
+  ///   "fontPackage": <String>,
+  ///   "matchTextDirection": <bool>
+  /// }
+  /// ```
+  static IconData decodeIconData(dynamic value) {
+    IconData result;
+
+    if (value != null) {
+      result = IconData(
+        JsonClass.parseInt(value['codePoint']),
+        fontFamily: value['fontFamily'],
+        fontPackage: value['fontPackage'],
+        matchTextDirection: value['matchTextDirection'] == null
+            ? null
+            : JsonClass.parseBool(value['matchTextDirection']),
+      );
     }
 
     return result;
@@ -848,8 +1605,12 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to an [InteractiveInkFeatureFactory].  Supported
+  /// values are:
+  ///  * `splash`
+  ///  * `ripple`
   static InteractiveInkFeatureFactory decodeInteractiveInkFeatureFactory(
-    dynamic value,
+    String value,
   ) {
     _checkSupported(
       'InteractiveInkFeatureFactory',
@@ -889,7 +1650,14 @@ class ThemeDecoder {
     return result;
   }
 
-  static MainAxisAlignment decodeMainAxisAlignment(dynamic value) {
+  /// Decodes the [value] to a [MainAxisAlignment].  Supported values are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `spaceAround`
+  ///  * `spaceBetween`
+  ///  * `spaceEvenly`
+  ///  * `start`
+  static MainAxisAlignment decodeMainAxisAlignment(String value) {
     _checkSupported(
       'MainAxisAlignment',
       [
@@ -931,7 +1699,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static MainAxisSize decodeMainAxisSize(dynamic value) {
+  /// Decodes the [value] to a [MainAxisSize].  Supported values are:
+  ///  * `max`
+  ///  * `min`
+  static MainAxisSize decodeMainAxisSize(String value) {
     MainAxisSize result;
     _checkSupported(
       'MainAxisSize',
@@ -990,7 +1761,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static MaterialTapTargetSize decodeMaterialTapTargetSize(dynamic value) {
+  /// Decodes the [value] to a [MaterialTargetTapSize].  Supported values are:
+  ///  * `padded`
+  ///  * `shrinkWrap`
+  static MaterialTapTargetSize decodeMaterialTapTargetSize(String value) {
     _checkSupported(
       'MaterialTapTargetSize',
       [
@@ -1015,7 +1789,106 @@ class ThemeDecoder {
     return result;
   }
 
-  static NavigationRailLabelType decodeNavigationRailLabelType(dynamic value) {
+  /// Decodes the [value] to a [MaterialType].  Supported values are:
+  ///  * `button`
+  ///  * `canvas`
+  ///  * `card`
+  ///  * `circle`
+  ///  * `transparency`
+  static MaterialType decodeMaterialType(String value) {
+    _checkSupported(
+      'MaterialType',
+      [
+        'button',
+        'canvas',
+        'card',
+        'circle',
+        'transparency',
+      ],
+      value,
+    );
+    MaterialType result;
+
+    if (value != null) {
+      switch (value) {
+        case 'button':
+          result = MaterialType.button;
+          break;
+        case 'canvas':
+          result = MaterialType.canvas;
+          break;
+        case 'card':
+          result = MaterialType.card;
+          break;
+        case 'circle':
+          result = MaterialType.circle;
+          break;
+        case 'transparency':
+          result = MaterialType.transparency;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [Matrix4]. This requires the value to be an
+  /// [Iterable] of [double] with exactly 16 elements in it.
+  ///
+  /// The array is expected to be in the following format:
+  /// ```
+  /// [
+  ///   x0,
+  ///   x1,
+  ///   x2,
+  ///   x3,
+  ///   y0,
+  ///   y1,
+  ///   y2,
+  ///   y3,
+  ///   z0,
+  ///   z1,
+  ///   z2,
+  ///   z3,
+  ///   w0,
+  ///   w1,
+  ///   w2,
+  ///   w3
+  /// ]
+  /// ```
+  static Matrix4 decodeMatrix4(Iterable<double> value) {
+    Matrix4 result;
+
+    if (value != null) {
+      var list = value.toList();
+      result = Matrix4(
+        JsonClass.parseDouble(list[0]),
+        JsonClass.parseDouble(list[1]),
+        JsonClass.parseDouble(list[2]),
+        JsonClass.parseDouble(list[3]),
+        JsonClass.parseDouble(list[4]),
+        JsonClass.parseDouble(list[5]),
+        JsonClass.parseDouble(list[6]),
+        JsonClass.parseDouble(list[7]),
+        JsonClass.parseDouble(list[8]),
+        JsonClass.parseDouble(list[9]),
+        JsonClass.parseDouble(list[10]),
+        JsonClass.parseDouble(list[11]),
+        JsonClass.parseDouble(list[12]),
+        JsonClass.parseDouble(list[13]),
+        JsonClass.parseDouble(list[14]),
+        JsonClass.parseDouble(list[15]),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [NavigationRailLabelType].  Supported values are:
+  ///  * `all`
+  ///  * `none`
+  ///  * `selected`
+  static NavigationRailLabelType decodeNavigationRailLabelType(String value) {
     _checkSupported(
       'NavigationRailLabelType',
       [
@@ -1068,7 +1941,9 @@ class ThemeDecoder {
     return result;
   }
 
-  static NotchedShape decodeNotchedShape(dynamic value) {
+  /// Decodes the [value] to a [NotchedShape].  Supported values are:
+  ///  * `circular`
+  static NotchedShape decodeNotchedShape(String value) {
     _checkSupported(
       'NotchedShape',
       [
@@ -1102,6 +1977,35 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [Overflow].  Supported values are:
+  ///  * `clip`
+  ///  * `visible`
+  static Overflow decodeOverflow(String value) {
+    _checkSupported(
+      'Overflow',
+      [
+        'clip',
+        'visible',
+      ],
+      value,
+    );
+    Overflow result;
+
+    if (value != null) {
+      switch (value) {
+        case 'clip':
+          result = Overflow.clip;
+          break;
+        case '':
+        case 'visible':
+          result = Overflow.visible;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static PopupMenuThemeData decodePopupMenuThemeData(dynamic value) {
     PopupMenuThemeData result;
 
@@ -1118,7 +2022,7 @@ class ThemeDecoder {
   }
 
   static Radius decodeRadius(dynamic value) {
-    assert(value == null || value['type'] != null);
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'Radius.type',
       [
@@ -1155,7 +2059,7 @@ class ThemeDecoder {
   }
 
   static RangeSliderThumbShape decodeRangeSliderThumbShape(dynamic value) {
-    assert(value == null || value['type'] != null);
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'RangeSliderThumbShape.type',
       [
@@ -1190,7 +2094,7 @@ class ThemeDecoder {
 
   static RangeSliderTickMarkShape decodeRangeSliderTickMarkShape(
       dynamic value) {
-    assert(value == null || value['type'] != null);
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'RangeSliderTickMarkShape.type',
       [
@@ -1215,7 +2119,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static RangeSliderTrackShape decodeRangeSliderTrackShape(dynamic value) {
+  /// Decodes the [value] to a [RangeSliderTrackShape].  Supported values are:
+  ///  * `rectangular`
+  ///  * `rounded`
+  static RangeSliderTrackShape decodeRangeSliderTrackShape(String value) {
     _checkSupported(
       'RangeSliderTrackShape',
       [
@@ -1241,8 +2148,11 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [RangeSliderValueIndicatorShape].  Supported
+  /// values are:
+  ///  * `paddle`
   static RangeSliderValueIndicatorShape decodeRangeSliderValueIndicatorShape(
-    dynamic value,
+    String value,
   ) {
     _checkSupported(
       'RangeSliderValueIndicatorShape.type',
@@ -1269,6 +2179,83 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [ScrollPhysics].  If [value] is not [null] then
+  /// it must contain a property named "type" with one of the following values:
+  ///  * `always`
+  ///  * `bouncing`
+  ///  * `clamping`
+  ///  * `fixedExtent`
+  ///  * `never`
+  ///  * `page`
+  ///
+  /// This expects the JSON representation to follow the structure:
+  /// ```json
+  /// {
+  ///   "parent": <ScrollPhysics>,
+  ///   "type": <String>
+  /// }
+  /// ```
+  static ScrollPhysics decodeScrollPhysics(dynamic value) {
+    assert(value == null || value['type'] is String);
+    _checkSupported(
+      'ScrollPhysics.type',
+      [
+        'always',
+        'bouncing',
+        'clamping',
+        'fixedExtent',
+        'never',
+        'page',
+      ],
+      value == null ? null : value['type'],
+    );
+    ScrollPhysics result;
+
+    if (value != null) {
+      var type = value['type'];
+
+      switch (type) {
+        case 'always':
+          result = AlwaysScrollableScrollPhysics(
+            parent: decodeScrollPhysics(value['parent']),
+          );
+          break;
+
+        case 'bouncing':
+          result = BouncingScrollPhysics(
+            parent: decodeScrollPhysics(value['parent']),
+          );
+          break;
+
+        case 'clamping':
+          result = ClampingScrollPhysics(
+            parent: decodeScrollPhysics(value['parent']),
+          );
+          break;
+
+        case 'fixedExtent':
+          result = FixedExtentScrollPhysics(
+            parent: decodeScrollPhysics(value['parent']),
+          );
+          break;
+
+        case 'never':
+          result = NeverScrollableScrollPhysics(
+            parent: decodeScrollPhysics(value['parent']),
+          );
+          break;
+
+        case 'page':
+          result = PageScrollPhysics(
+            parent: decodeScrollPhysics(value['parent']),
+          );
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static Shadow decodeShadow(dynamic value) {
     Shadow result;
 
@@ -1284,7 +2271,7 @@ class ThemeDecoder {
   }
 
   static ShapeBorder decodeShapeBorder(dynamic value) {
-    assert(value == null || value['type'] != null);
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'ShapeBorder.type',
       [
@@ -1329,7 +2316,12 @@ class ThemeDecoder {
     return result;
   }
 
-  static ShowValueIndicator decodeShowValueIndicator(dynamic value) {
+  /// Decodes the [value] to a [ShowValueIndicator].  Supported values are:
+  ///  * `always`
+  ///  * `never`
+  ///  * `onlyForContinuous`
+  ///  * `onlyForDiscrete`
+  static ShowValueIndicator decodeShowValueIndicator(String value) {
     _checkSupported(
       'ShowValueIndicator',
       [
@@ -1365,7 +2357,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static SliderComponentShape decodeSliderComponentShape(dynamic value) {
+  /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
+  ///  * `noOverlay`
+  ///  * `noThumb`
+  static SliderComponentShape decodeSliderComponentShape(String value) {
     _checkSupported(
       'SliderComponentShape',
       [
@@ -1447,7 +2442,7 @@ class ThemeDecoder {
   }
 
   static SliderTrackShape decodeSliderTrackShape(dynamic value) {
-    assert(value == null || value['type'] != null);
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'type',
       [
@@ -1479,7 +2474,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static SnackBarBehavior decodeSnackBarBehavior(dynamic value) {
+  /// Decodes a [value] to a [SnackBarBehavior].  Supported values are:
+  ///  * `fixed`
+  ///  * `floating`
+  static SnackBarBehavior decodeSnackBarBehavior(String value) {
     _checkSupported(
       'SnackBarBehavior',
       [
@@ -1523,7 +2521,82 @@ class ThemeDecoder {
     return result;
   }
 
-  static TabBarIndicatorSize decodeTabBarIndicatorSize(dynamic value) {
+  /// Decodes a [value] to a [StackFit].  Supported values are:
+  ///  * `expand`
+  ///  * `loose`
+  ///  * `passthrough`
+  static StackFit decodeStackFit(String value) {
+    StackFit result;
+
+    if (value != null) {
+      switch (value) {
+        case 'expand':
+          result = StackFit.expand;
+          break;
+
+        case 'loose':
+          result = StackFit.loose;
+          break;
+
+        case 'passthrough':
+          result = StackFit.passthrough;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [StrutStyle].  If the value is [null]
+  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// that in JSON would look like:
+  ///
+  /// ```json
+  /// {
+  ///   "fontFamily": <String>,
+  ///   "fontFamilyFallback": <String[]>,
+  ///   "fontSize": <double>,
+  ///   "fontStyle": <FontStyle>,
+  ///   "fontWeight": <FontWeight>
+  ///   "forceStrutHeight": <bool>,
+  ///   "height": <double>,
+  ///   "leading": <double>,
+  ///   "package": <String>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeFontStyle]
+  ///  * [decodeFontWeight]
+  static StrutStyle decodeStrutStyle(dynamic value) {
+    StrutStyle result;
+
+    if (value != null) {
+      result = StrutStyle(
+        fontFamily: value['fontFamily'],
+        fontFamilyFallback: _decodeStringList(
+          value['fontFamilyFallback'],
+          (value) => value,
+        ),
+        fontSize: JsonClass.parseDouble(value['fontSize']),
+        fontStyle: decodeFontStyle(value['fontStyle']),
+        fontWeight: decodeFontWeight(value['fontWeight']),
+        forceStrutHeight: value['forceStrutHeight'] == null
+            ? null
+            : JsonClass.parseBool(value['forceStrutHeight']),
+        height: JsonClass.parseDouble(value['height']),
+        leading: JsonClass.parseDouble(value['leading']),
+        package: value['package'],
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes a [value] to a [TabBarIndicatorSize].  Supported values are:
+  ///  * `label`
+  ///  * `tab`
+  static TabBarIndicatorSize decodeTabBarIndicatorSize(String value) {
     _checkSupported(
       'TabBarIndicatorSize',
       [
@@ -1570,7 +2643,14 @@ class ThemeDecoder {
     return result;
   }
 
-  static TargetPlatform decodeTargetPlatform(dynamic value) {
+  /// Decodes a [value] to a [TargetPlatform].  Supported values are:
+  ///  * `android`
+  ///  * `fuchsia`
+  ///  * `iOS`
+  ///  * `linux`
+  ///  * `macOS`
+  ///  * `windows`
+  static TargetPlatform decodeTargetPlatform(String value) {
     _checkSupported(
       'TargetPlatform',
       [
@@ -1616,7 +2696,46 @@ class ThemeDecoder {
     return result;
   }
 
-  static TextBaseline decodeTextBaseline(dynamic value) {
+  /// Decodes the [value] to a [TextAlign].  Supported values are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `justify`
+  ///  * `left`
+  ///  * `right`
+  ///  * `start`
+  static TextAlign decodeTextAlign(String value) {
+    TextAlign result;
+
+    if (value != null) {
+      switch (value) {
+        case 'center':
+          result = TextAlign.center;
+          break;
+        case 'end':
+          result = TextAlign.end;
+          break;
+        case 'justify':
+          result = TextAlign.justify;
+          break;
+        case 'left':
+          result = TextAlign.left;
+          break;
+        case 'right':
+          result = TextAlign.right;
+          break;
+        case 'start':
+          result = TextAlign.start;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextBaseline].  Supported values are:
+  ///  * `alphabetic`
+  ///  * `ideographic`
+  static TextBaseline decodeTextBaseline(String value) {
     _checkSupported(
       'TextBaseline',
       [
@@ -1642,7 +2761,12 @@ class ThemeDecoder {
     return result;
   }
 
-  static TextDecoration decodeTextDecoration(dynamic value) {
+  /// Decodes the [value] to a [TextDecoration].  Supported values are:
+  ///  * `lineThrough`
+  ///  * `none`
+  ///  * `overline`
+  ///  * `underline`
+  static TextDecoration decodeTextDecoration(String value) {
     _checkSupported(
       'TextDecoration',
       [
@@ -1678,7 +2802,13 @@ class ThemeDecoder {
     return result;
   }
 
-  static TextDecorationStyle decodeTextDecorationStyle(dynamic value) {
+  /// Decodes the [value] to a [TextDecorationStyle].  Supported values are:
+  ///  * `dashed`
+  ///  * `dotted`
+  ///  * `double`
+  ///  * `solid`
+  ///  * `wavy`
+  static TextDecorationStyle decodeTextDecorationStyle(String value) {
     _checkSupported(
       'TextDecorationStyle',
       [
@@ -1712,6 +2842,100 @@ class ThemeDecoder {
 
         case 'wavy':
           result = TextDecorationStyle.wavy;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextDirection].  Supported values are:
+  ///  * `ltr`
+  ///  * `rtl`
+  static TextDirection decodeTextDirection(String value) {
+    _checkSupported(
+      'TextDirection',
+      [
+        'ltr',
+        'rtl',
+      ],
+      value,
+    );
+    TextDirection result;
+
+    if (value != null) {
+      switch (value) {
+        case 'ltr':
+          result = TextDirection.ltr;
+          break;
+
+        case 'rtl':
+          result = TextDirection.rtl;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [TextHeightBehavior].  If the value is
+  /// [null] then [null] will be returned.  Otherwise, this expects a Map like
+  /// value that in JSON would look like:
+  ///
+  /// ```json
+  /// {
+  ///   "applyHeightToFirstAscent": <bool>,
+  ///   "applyHeightToLastDescent": <bool>
+  /// }
+  /// ```
+  static TextHeightBehavior decodeTextHeightBehavior(dynamic value) {
+    TextHeightBehavior result;
+
+    if (value != null) {
+      result = TextHeightBehavior(
+        applyHeightToFirstAscent: value['applyHeightToFirstAscent'] == null
+            ? null
+            : JsonClass.parseBool(value['applyHeightToLastDescent']),
+        applyHeightToLastDescent: value['applyHeightToLastDescent'] == null
+            ? null
+            : JsonClass.parseBool(value['applyHeightToLastDescent']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextOverflow].  Supported values are:
+  ///  * `clip`
+  ///  * `ellipsis`
+  ///  * `fade`
+  ///  * `visible`
+  static TextOverflow decodeTextOverflow(String value) {
+    _checkSupported(
+      'TextOverflow',
+      [
+        'clip',
+        'ellipsis',
+        'fade',
+        'visible',
+      ],
+      value,
+    );
+    TextOverflow result;
+
+    if (value != null) {
+      switch (value) {
+        case 'clip':
+          result = TextOverflow.clip;
+          break;
+        case 'ellipsis':
+          result = TextOverflow.ellipsis;
+          break;
+        case 'fade':
+          result = TextOverflow.fade;
+          break;
+        case 'visible':
+          result = TextOverflow.visible;
           break;
       }
     }
@@ -1788,6 +3012,34 @@ class ThemeDecoder {
         subtitle1: decodeTextStyle(value['subtitle1']),
         subtitle2: decodeTextStyle(value['subtitle2']),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextWidthBasis].  Supported values are:
+  ///  * `longestLine`
+  ///  * `parent`
+  static TextWidthBasis decodeTextWidthBasis(String value) {
+    _checkSupported(
+      'TextWidthBasis',
+      [
+        'longestLine',
+        'parent',
+      ],
+      value,
+    );
+    TextWidthBasis result;
+
+    if (value != null) {
+      switch (value) {
+        case 'longestLine':
+          result = TextWidthBasis.longestLine;
+          break;
+        case 'parent':
+          result = TextWidthBasis.parent;
+          break;
+      }
     }
 
     return result;
@@ -1892,6 +3144,41 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [TileMode].  Supported values are:
+  ///  * `clamp`
+  ///  * `mirror`
+  ///  * `repeated`
+  static TileMode decodeTileMode(String value) {
+    _checkSupported(
+      'TileMode',
+      [
+        'clamp',
+        'mirror',
+        'repeated',
+      ],
+      value,
+    );
+    TileMode result;
+
+    if (value != null) {
+      switch (value) {
+        case 'clamp':
+          result = TileMode.clamp;
+          break;
+
+        case 'mirror':
+          result = TileMode.mirror;
+          break;
+
+        case 'repeated':
+          result = TileMode.repeated;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static ToggleButtonsThemeData decodeToggleButtonsThemeData(dynamic value) {
     ToggleButtonsThemeData result;
 
@@ -1963,7 +3250,10 @@ class ThemeDecoder {
     return result;
   }
 
-  static VerticalDirection decodeVerticalDirection(dynamic value) {
+  /// Decodes the [value] to a [VerticalDirection].  Supported values are:
+  ///  * `down`
+  ///  * `up`
+  static VerticalDirection decodeVerticalDirection(String value) {
     _checkSupported(
       'VerticalDirection',
       [
@@ -1988,7 +3278,12 @@ class ThemeDecoder {
     return result;
   }
 
-  static VisualDensity decodeVisualDensity(dynamic value) {
+  /// Decodes the [value] to a [VisualDensity].  Supported values are:
+  ///  * `adaptivePlatformDensity`
+  ///  * `comfortable`
+  ///  * `compact`
+  ///  * `standard`
+  static VisualDensity decodeVisualDensity(String value) {
     _checkSupported(
       'VisualDensity',
       [
@@ -2034,5 +3329,37 @@ class ThemeDecoder {
       value == null || supported.contains(value),
       '$type($value) is not supported.  Supported values: $supported',
     );
+  }
+
+  static List<T> _decodeDynamicList<T>(
+    Iterable<dynamic> list,
+    T Function(dynamic value) decoder,
+  ) {
+    List<T> result;
+
+    if (list != null) {
+      result = [];
+      for (var value in list) {
+        result.add(decoder(value));
+      }
+    }
+
+    return result;
+  }
+
+  static List<T> _decodeStringList<T>(
+    Iterable<dynamic> list,
+    T Function(String value) decoder,
+  ) {
+    List<T> result;
+
+    if (list != null) {
+      result = [];
+      for (var value in list) {
+        result.add(decoder(value));
+      }
+    }
+
+    return result;
   }
 }

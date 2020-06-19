@@ -15,6 +15,62 @@ The decoders will throw `assert` errors when unsupported properties are encounte
 
 As close as possible, the names used in the Dart APIs are replicated.  However, there are instances where the class is different for things like `Shape` objects, or there's an enum like `VerticalDirection`.  Those are all documented in this section.
 
+
+**Alignment**
+
+Plain string that must be one of:
+* `bottomCenter` => `Alignment.bottomCenter`
+* `bottomLeft` => `Alignment.bottomLeft`
+* `bottomRight` => `Alignment.bottomRight`
+* `center` => `Alignment.center`
+* `centerLeft` => `Alignment.centerLeft`
+* `centerRight` => `Alignment.centerRight`
+* `topCenter` => `Alignment.topCenter`
+* `topLeft` => `Alignment.topLeft`
+* `topRight` => `Alignment.topRight`
+
+
+**Axis**
+
+Plain string that must be one of:
+* `horizontal` => `Axis.horizontal`
+* `vertical` => `Axis.vertical`
+
+
+**BlendMode**
+
+Plain string that must be one of:
+* `clear` => `BlendMode.clear`
+* `color` => `BlendMode.color`
+* `colorBurn` => `BlendMode.colorBurn`
+* `colorDodge` => `BlendMode.colorDodge`
+* `darken` => `BlendMode.darken`
+* `difference` => `BlendMode.difference`
+* `dst` => `BlendMode.dst`
+* `dstATop` => `BlendMode.dstATop`
+* `dstIn` => `BlendMode.dstIn`
+* `dstOut` => `BlendMode.dstOut`
+* `dstOver` => `BlendMode.dstOver`
+* `exclusion` => `BlendMode.exclusion`
+* `hardLight` => `BlendMode.hardLight`
+* `hue` => `BlendMode.hue`
+* `lighten` => `BlendMode.lighten`
+* `luminosity` => `BlendMode.luminosity`
+* `modulate` => `BlendMode.modulate`
+* `multiply` => `BlendMode.multiply`
+* `overlay` => `BlendMode.overlay`
+* `plus` => `BlendMode.plus`
+* `saturation` => `BlendMode.saturation`
+* `screen` => `BlendMode.screen`
+* `softLight` => `BlendMode.softLight`
+* `src` => `BlendMode.src`
+* `srcATop` => `BlendMode.srcATop`
+* `srcIn` => `BlendMode.srcIn`
+* `srcOut` => `BlendMode.srcOut`
+* `srcOver` => `BlendMode.srcOver`
+* `xor` => `BlendMode.xor`
+
+
 **BorderRadius**
 
 Requires a `type` value that must be one of:
@@ -39,7 +95,19 @@ Plain string that must be one of:
 * `shifting` ==> BottomNavigationBarType.shifting
 
 
-**ButtonBarLayoutBehavior
+**BoxFit**
+
+Plain string that must be one of:
+* `contain` ==> `BoxFit.contain`
+* `cover` ==> `BoxFit.cover`
+* `fill` ==> `BoxFit.fill`
+* `fitHeight` ==> `BoxFit.fitHeight`
+* `fitWidth` ==> `BoxFit.fitWidth`
+* `none` ==> `BoxFit.none`
+* `scaleDown` ==> `BoxFit.scaleDown`
+
+
+**ButtonBarLayoutBehavior**
 
 Plain string that must be one of:
 * `constrained` ==> `ButtonBarLayoutBehavior.constrained`
@@ -73,6 +141,20 @@ Plain string that must be one of:
 * `stretch` ==> `CrossAxisAlignment.stretch`
 
 
+**DragStartBehavior**
+
+Plain string that must be one of:
+* `down` ==> `DragStartBehavior.down`
+* `start` ==> `DragStartBehavior.start`
+
+
+**FlexFit**
+
+Plain string that must be one of:
+* `loose` ==> `FlexFit.loose`
+* `tight` ==> `FlexFit.tight`
+
+
 **FloatingLabelBehavior**
 
 Plain string that must be one of:
@@ -102,6 +184,14 @@ Plain string that must be one of:
 Plain string that must be one of:
 * `italic` ==> `FontStyle.italic`
 * `normal` ==> `FontStyle.normal`
+
+
+**Gradient**
+
+Requires a `type` value that must be one of:
+* `linear` ==> `LinearGradient`
+* `radial` ==> `RadialGradient`
+* `sweep` ==> `SweepGradient`
 
 
 **InputBorder**
@@ -143,6 +233,16 @@ Plain string that must be one of:
 * `shrinkWrap` ==> `MaterialTapTargetSize.shrinkWrap`
 
 
+**MaterialType**
+
+Plain string that must be one of:
+* `button` ==> `MaterialType.button`
+* `canvas` ==> `MaterialType.canvas`
+* `card` ==> `MaterialType.card`
+* `circle` ==>`MaterialType.circle`
+* `transparency` ==> `MaterialType.transparency`
+
+
 **NavigationRailLabelType**
 
 Plain string that must be one of:
@@ -155,6 +255,13 @@ Plain string that must be one of:
 
 Plain string that must be one of:
 * `circular` ==> `CircularNotchedRectangle`
+
+
+**Overflow**
+
+Plain string that must be one of:
+* `clip` ==> `Overflow.clip`
+* `visible` ==> `Overflow.visible`
 
 
 **Radius**
@@ -189,6 +296,17 @@ Plain string that must be one of:
 
 Requires a `type` value that must be one of:
 * `paddle` ==> `PaddleRangeSliderValueIndicatorShape`
+
+
+**ScrollPhysics**
+
+Requires a `type` value that must be one of:
+* `always` ==> `AlwaysScrollableScrollPhysics`
+* `bouncing` ==> `BouncingScrollPhysics`
+* `clamping` ==> `ClampingScrollPhysics`
+* `fixedExtent` ==> `FixedExtentScrollPhysics`
+* `never` ==> `NeverScrollableScrollPhysics`
+* `page` ==> `PageScrollPhysics`
 
 
 **ShapeBorder**
@@ -229,6 +347,14 @@ Plain string that must be one of:
 * `floating` ==> `SnackBarBehavior.floating`
 
 
+**StackFit**
+
+Plain string that must be one of:
+* `expand` ==> `StackFit.expand`
+* `loose` ==> `StackFit.loose`
+* `passthrough` ==> `StackFit.passthrough`
+
+
 **TabBarIndicatorSize**
 
 Plain string that must be one of:
@@ -245,6 +371,17 @@ Plain string that must be one of:
 * `linux` ==> `TargetPlatform.linux`
 * `macOS` ==> `TargetPlatform.macOS`
 * `windows` ==> `TargetPlatform.windows`
+
+
+**TextAlign**
+
+Plain string that must be one of:
+* `center` ==> `TextAlign.center`
+* `end` ==> `TextAlign.end`
+* `justify` ==> `TextAlign.justify`
+* `left` ==> `TextAlign.left`
+* `right` ==> `TextAlign.right`
+* `start` ==> `TextAlign.start`
 
 
 **TextBaseline**
@@ -271,6 +408,37 @@ Plain string that must be one of:
 * `double` ==> `TextDecorationStyle.double`
 * `solid` ==> `TextDecorationStyle.solid`
 * `wavy` ==> `TextDecorationStyle.wavy`
+
+
+**TextDirection**
+
+Plain string that must be one of:
+* `ltr` ==> `TextDirection.ltr`
+* `rtl` ==> `TextDirection.rtl`
+
+
+**TextOverflow**
+
+Plain string that must be one of:
+* `clip` ==> `TextOverflow.clip`
+* `ellipsis` ==> `TextOverflow.ellipsis`
+* `fade` ==> `TextOverflow.fade`
+* `visible` ==> `TextOverflow.visible`
+
+
+**TextWidthBasis**
+
+Plain string that must be one of:
+* `longestLine` ==> `TextWidthBasis.longestLine`
+* `parent` ==> `TextWidthBasis.parent`
+
+
+**TileMode**
+
+Plain string that must be one of:
+* `clamp` ==> `TileMode.clamp`
+* `mirror` ==> `TileMode.mirror`
+* `repeated` ==> `TileMode.repeated`
 
 
 **VerticalDirection**

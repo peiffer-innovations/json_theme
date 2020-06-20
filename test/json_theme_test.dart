@@ -1526,6 +1526,42 @@ void main() {
     expect(ThemeEncoder.encodeFlexFit(FlexFit.tight), 'tight');
   });
 
+  test('FloatingActionButtonAnimator', () {
+    expect(ThemeDecoder.decodeFloatingActionButtonAnimator(null), null);
+    expect(ThemeEncoder.encodeFloatingActionButtonAnimator(null), null);
+
+    expect(
+      ThemeDecoder.decodeFloatingActionButtonAnimator('scaling'),
+      FloatingActionButtonAnimator.scaling,
+    );
+    expect(
+      ThemeEncoder.encodeFloatingActionButtonAnimator(
+          FloatingActionButtonAnimator.scaling),
+      'scaling',
+    );
+  });
+
+  test('FloatingActionButtonLocation', () {
+    expect(ThemeDecoder.decodeFloatingActionButtonLocation(null), null);
+    expect(ThemeEncoder.encodeFloatingActionButtonLocation(null), null);
+
+    var values = <String, FloatingActionButtonLocation>{
+      'centerDocked': FloatingActionButtonLocation.centerDocked,
+      'centerFloat': FloatingActionButtonLocation.centerFloat,
+      'endDocked': FloatingActionButtonLocation.endDocked,
+      'endFloat': FloatingActionButtonLocation.endFloat,
+      'endTop': FloatingActionButtonLocation.endTop,
+      'miniStartTop': FloatingActionButtonLocation.miniStartTop,
+      'startTop': FloatingActionButtonLocation.startTop,
+    };
+
+    values.forEach((key, value) {
+      expect(ThemeDecoder.decodeFloatingActionButtonLocation(key), value);
+
+      expect(ThemeEncoder.encodeFloatingActionButtonLocation(value), key);
+    });
+  });
+
   test('FloatingActionButtonThemeData', () {
     expect(ThemeDecoder.decodeFloatingActionButtonThemeData(null), null);
     expect(ThemeEncoder.encodeFloatingActionButtonThemeData(null), null);

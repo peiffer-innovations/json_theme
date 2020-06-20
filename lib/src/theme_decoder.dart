@@ -1149,8 +1149,84 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [FloatingActionButtonAnimator].  Supported values
+  /// are:
+  ///  * `scaling`
+  static FloatingActionButtonAnimator decodeFloatingActionButtonAnimator(
+    dynamic value,
+  ) {
+    _checkSupported(
+      'FloatingActionButtonAnimator',
+      [
+        'scaling',
+      ],
+      value,
+    );
+    FloatingActionButtonAnimator result;
+
+    if (value != null) {
+      switch (value) {
+        case 'scaling':
+          result = FloatingActionButtonAnimator.scaling;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [FloatingActionButtonLocation].  Supported values
+  /// are:
+  ///  * `centerDocked`
+  ///  * `centerFloat`
+  ///  * `endDocked`
+  ///  * `endFloat`
+  ///  * `endTop`
+  ///  * `miniStartTop`
+  ///  * `startTop`
+  static FloatingActionButtonLocation decodeFloatingActionButtonLocation(
+    String value,
+  ) {
+    FloatingActionButtonLocation result;
+
+    if (value != null) {
+      switch (value) {
+        case 'centerDocked':
+          result = FloatingActionButtonLocation.centerDocked;
+          break;
+
+        case 'centerFloat':
+          result = FloatingActionButtonLocation.centerFloat;
+          break;
+
+        case 'endDocked':
+          result = FloatingActionButtonLocation.endDocked;
+          break;
+
+        case 'endFloat':
+          result = FloatingActionButtonLocation.endFloat;
+          break;
+
+        case 'endTop':
+          result = FloatingActionButtonLocation.endTop;
+          break;
+
+        case 'miniStartTop':
+          result = FloatingActionButtonLocation.miniStartTop;
+          break;
+
+        case 'startTop':
+          result = FloatingActionButtonLocation.startTop;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static FloatingActionButtonThemeData decodeFloatingActionButtonThemeData(
-      dynamic value) {
+    dynamic value,
+  ) {
     FloatingActionButtonThemeData result;
 
     if (value != null) {

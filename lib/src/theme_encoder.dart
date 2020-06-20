@@ -995,6 +995,59 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `scaling`
+  static String encodeFloatingActionButtonAnimator(
+    FloatingActionButtonAnimator value,
+  ) {
+    assert(value == null || value == FloatingActionButtonAnimator.scaling);
+    String result;
+
+    if (value != null) {
+      if (value == FloatingActionButtonAnimator.scaling) {
+        result = 'scaling';
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] to a String.  Supported values
+  /// are:
+  ///  * `centerDocked`
+  ///  * `centerFloat`
+  ///  * `endDocked`
+  ///  * `endFloat`
+  ///  * `endTop`
+  ///  * `miniStartTop`
+  ///  * `startTop`
+  static String encodeFloatingActionButtonLocation(
+    FloatingActionButtonLocation value,
+  ) {
+    String result;
+
+    if (value != null) {
+      if (value == FloatingActionButtonLocation.centerDocked) {
+        result = 'centerDocked';
+      } else if (value == FloatingActionButtonLocation.centerFloat) {
+        result = 'centerFloat';
+      } else if (value == FloatingActionButtonLocation.endDocked) {
+        result = 'endDocked';
+      } else if (value == FloatingActionButtonLocation.endFloat) {
+        result = 'endFloat';
+      } else if (value == FloatingActionButtonLocation.endTop) {
+        result = 'endTop';
+      } else if (value == FloatingActionButtonLocation.miniStartTop) {
+        result = 'miniStartTop';
+      } else if (value == FloatingActionButtonLocation.startTop) {
+        result = 'startTop';
+      }
+    }
+
+    return result;
+  }
+
   static Map<String, dynamic> encodeFloatingActionButtonThemeData(
     FloatingActionButtonThemeData value,
   ) {

@@ -155,6 +155,24 @@ Plain string that must be one of:
 * `tight` ==> `FlexFit.tight`
 
 
+**FloatingActionButtonAnimator**
+
+Plain string that must be one of:
+* `scaling` ==> `FloatingActionButtonAnimator.scaling`
+
+
+**FloatingActionButtonLocation**
+
+Plain string that must be one of:
+* `centerDocked` ==> `FloatingActionButtonLocation.centerDocked`
+* `centerFloat` ==> `FloatingActionButtonLocation.centerFloat`
+* `endDocked` ==> `FloatingActionButtonLocation.endDocked`
+* `endFloat` ==> `FloatingActionButtonLocation.endFloat`
+* `endTop` ==> `FloatingActionButtonLocation.endTop`
+* `miniStartTop` ==> `FloatingActionButtonLocation.miniStartTop`
+* `startTop` ==> `FloatingActionButtonLocation.startTop`
+
+
 **FloatingLabelBehavior**
 
 Plain string that must be one of:

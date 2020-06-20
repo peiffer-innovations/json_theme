@@ -1,3 +1,9 @@
+## [1.0.3] - June 20th, 2020
+
+* Added encoder / decoder for: `FloatingActionButtonAnimator`
+* Added encoder / decoder for: `FloatingActionButtonLocation`
+
+
 ## [1.0.2] - June 19th, 2020
 
 * Added several new encoders and decoders

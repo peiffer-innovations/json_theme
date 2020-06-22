@@ -5,6 +5,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+/// Encoder capable of converting Flutter Theme related classes and enums into
+/// JSON compatible values.
+///
+/// Unless otherwise stated, each function will return [null] when given an
+/// input of [null].
 @immutable
 class ThemeEncoder {
   ThemeEncoder._();
@@ -66,6 +71,23 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "actionsIconTheme": <IconThemeData>,
+  ///   "brightness": <Brightness>,
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "iconTheme": <IconThemeData>,
+  ///   "textTheme": <TextTheme>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBrightness]
+  ///  * [encodeColor]
+  ///  * [encodeIconThemeData]
   static Map<String, dynamic> encodeAppBarTheme(AppBarTheme value) {
     Map<String, dynamic> result;
 
@@ -105,7 +127,7 @@ class ThemeEncoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [BlendMode].  Supported values are:
+  /// encodes the given [value] to an [BlendMode].  Supported values are:
   /// * `clear`
   /// * `color`
   /// * `colorBurn`
@@ -263,6 +285,20 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "bottomLeft": <Radius>,
+  ///   "bottomRight": <Radius>,
+  ///   "topLeft": <Radius>,
+  ///   "topRight": <Radius>,
+  ///   "type": "only"
+  /// }
+  /// ```
+  ///  ///
+  /// See also:
+  ///  * [encodeRadius]
   static Map<String, dynamic> encodeBorderRadius(BorderRadius value) {
     Map<String, dynamic> result;
 
@@ -279,6 +315,19 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "style": <BorderStyle>,
+  ///   "width": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderStyle]
+  ///  * [encodeColor]
   static Map<String, dynamic> encodeBorderSide(BorderSide value) {
     Map<String, dynamic> result;
 
@@ -317,6 +366,19 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "shape": <NotchedShape>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeNotchedShape]
   static Map<String, dynamic> encodeBottomAppBarTheme(BottomAppBarTheme value) {
     Map<String, dynamic> result;
 
@@ -375,6 +437,23 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "clipBehavior": <Clip>,
+  ///   "elevation": <double>,
+  ///   "modalBackgroundColor": <Color>,
+  ///   "modalElevation": <double>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeClip]
+  ///  * [encodeColor]
+  ///  * [encodeShapeBorder]
   static Map<String, dynamic> encodeBottomSheetThemeData(
     BottomSheetThemeData value,
   ) {
@@ -621,6 +700,29 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": <MainAxisAlignment>,
+  ///   "buttonAlignedDropdown": <bool>,
+  ///   "buttonHeight": <double>,
+  ///   "buttonMinWidth": <double>,
+  ///   "buttonPadding": <EdgeInsetsGeometry>,
+  ///   "buttonTextTheme": <ButtonTextTheme>,
+  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "mainAxisSize": <MainAxisSize>,
+  ///   "overflowDirection": <VerticalDirection>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonTextTheme]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeButtonLayoutBehavior]
+  ///  * [encodeMainAxisAlignment]
+  ///  * [encodeMainAxisSize]
+  ///  * [encodeVerticalDirection]
   static Map<String, dynamic> encodeButtonBarThemeData(
     ButtonBarThemeData value,
   ) {
@@ -693,6 +795,36 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "alignedDropdown": <bool>,
+  ///   "buttonColor": <Color>,
+  ///   "colorScheme": <ColorScheme>,
+  ///   "disabledColor": <Color>,
+  ///   "focusColor": <Color>,
+  ///   "height": <double>,
+  ///   "highlightColor": <Color>,
+  ///   "hoverColor": <Color>,
+  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "minWidth": <double>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "shape": <ShapeBorder>,
+  ///   "splashColor": <Color>,
+  ///   "textTheme": <ButtonTextTheme>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonLayoutBehavior]
+  ///  * [encodeButtonTextTheme]
+  ///  * [encodeColor]
+  ///  * [encodeColorScheme]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeShapeBorder]
   static Map<String, dynamic> encodeButtonThemeData(ButtonThemeData value) {
     Map<String, dynamic> result;
 
@@ -712,6 +844,24 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "clipBehavior": <Clip>,
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "margin": <EdgeInsetsGeometry>,
+  ///   "shadowColor": <Color>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeClip]
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeShapeBorder]
   static Map<String, dynamic> encodeCardTheme(CardTheme value) {
     Map<String, dynamic> result;
 
@@ -729,6 +879,36 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "brightness": <Brightness>,
+  ///   "checkmarkColor": <Color>,
+  ///   "deleteIconColor": <Color>,
+  ///   "disabledColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "labelPadding": <EdgeInsetsGeometry>,
+  ///   "labelStyle": <TextStyle>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "pressElevation": <double>,
+  ///   "secondaryLabelStyle": <TextStyle>,
+  ///   "secondarySelectedColor": <Color>,
+  ///   "selectedColor": <Color>,
+  ///   "shape": <ShapeBorder>,
+  ///   "selectedShadowColor": <Color>,
+  ///   "shadowColor": <Color>,
+  ///   "showCheckmark": <bool>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBrightness]
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeChipThemeData(ChipThemeData value) {
     Map<String, dynamic> result;
 
@@ -803,6 +983,29 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "background": <Color>,
+  ///   "brightness": <Brightness>,
+  ///   "error": <Color>,
+  ///   "onBackground": <Color>,
+  ///   "onError": <Color>,
+  ///   "onPrimary": <Color>,
+  ///   "onSecondary": <Color>,
+  ///   "onSurface": <Color>,
+  ///   "primary": <Color>,
+  ///   "primaryVariant": <Color>,
+  ///   "secondary": <Color>,
+  ///   "secondaryVariant": <Color>,
+  ///   "surface": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBrightness]
+  ///  * [encodeColor]
   static Map<String, dynamic> encodeColorScheme(ColorScheme value) {
     Map<String, dynamic> result;
 
@@ -862,6 +1065,25 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "actionTextStyle": <TextStyle>,
+  ///   "dateTimePickerTextStyle": <TextStyle>,
+  ///   "navActionTextStyle": <TextStyle>,
+  ///   "navLargeTitleTextStyle":<TextStyle>,
+  ///   "navTitleTextStyle": <TextStyle>,
+  ///   "pickerTextStyle": <TextStyle>,
+  ///   "primaryColor": <Color>
+  ///   "tabLabelTextStyle": <TextStyle>,
+  ///   "textStyle": <TextStyle>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeCupertinoTextThemeData(
     CupertinoTextThemeData value,
   ) {
@@ -885,6 +1107,23 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "barBackgroundColor": <Color>,
+  ///   "brightness": <Brightness>,
+  ///   "primaryColor": <Color>,
+  ///   "primaryContrastingColor": <Color>,
+  ///   "scaffoldBackgroundColor": <Color>,
+  ///   "textTheme": <CupertinoTextThemeData>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBrightness]
+  ///  * [encodeColor]
+  ///  * [encodeCupertinoTextThemeData]
   static Map<String, dynamic> encodeCupertinoThemeData(
     CupertinoThemeData value,
   ) {
@@ -904,6 +1143,22 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "contentTextStyle": <TextStyle>,
+  ///   "elevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  ///   "titleTextStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBrightness]
+  ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeDialogTheme(DialogTheme value) {
     Map<String, dynamic> result;
 
@@ -920,6 +1175,20 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "endIndent": <double>,
+  ///   "indent": <double>,
+  ///   "space": <double>,
+  ///   "thickness": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
   static Map<String, dynamic> encodeDividerThemeData(DividerThemeData value) {
     Map<String, dynamic> result;
 
@@ -958,6 +1227,17 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON compatible [Map].  The returned result
+  /// will always have the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": <double>,
+  ///   "left": <double>,
+  ///   "right": <double>,
+  ///   "top": <double>
+  /// }
+  /// ```
   static Map<String, dynamic> encodeEdgeInsetsGeometry(EdgeInsets value) {
     Map<String, dynamic> result;
 
@@ -1048,6 +1328,27 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "disabledElevation": <double>,
+  ///   "elevation": <double>,
+  ///   "focusColor": <Color>,
+  ///   "focusElevation": <double>,
+  ///   "foregroundColor": <Color>,
+  ///   "highlightElevation": <double>,
+  ///   "hoverColor": <Color>,
+  ///   "hoverElevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  ///   "splashColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeShapeBorder]
   static Map<String, dynamic> encodeFloatingActionButtonThemeData(
     FloatingActionButtonThemeData value,
   ) {
@@ -1101,6 +1402,14 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "feature": <String>,
+  ///   "value": <int>
+  /// }
+  /// ```
   static Map<String, dynamic> encodeFontFeature(FontFeature value) {
     Map<String, dynamic> result;
 
@@ -1367,6 +1676,18 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "opacity": <double>,
+  ///   "size": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
   static Map<String, dynamic> encodeIconThemeData(IconThemeData value) {
     Map<String, dynamic> result;
 
@@ -1381,6 +1702,33 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.  This only supports
+  /// the following subclasses:
+  ///  * `OutlineInputBorder`
+  ///  * `UnderlineInputBorder`
+  ///
+  /// The returned structure depends on the subclass.
+  ///
+  /// `OutlineInputBorder`
+  /// ```json
+  /// {
+  ///   borderRadius: <BorderRadius>,
+  ///   borderSide: <BorderSide>,
+  ///   gapPadding: <double>
+  /// }
+  /// ```
+  ///
+  /// `UnderlineInputborder`
+  /// ```json
+  /// {
+  ///   borderRadius: <BorderRadius>,
+  ///   borderSide: <BorderSide>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBorderSide]
   static Map<String, dynamic> encodeInputBorder(InputBorder value) {
     assert(value == null ||
         value is OutlineInputBorder ||
@@ -1407,6 +1755,43 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "alignLabelWithHint": <bool>,
+  ///   "border": <InputBorder>,
+  ///   "contentPadding": <EdgeInsetsGeometry>,
+  ///   "counterStyle": <TextStyle>,
+  ///   "disabledBorder": <InputBorder>,
+  ///   "enabledBorder": <InputBorder>,
+  ///   "errorBorder": <InputBorder>,
+  ///   "errorMaxLines": <int>,
+  ///   "errorStyle": <TextStyle>,
+  ///   "fillColor": <Color>,
+  ///   "filled": <bool>,
+  ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
+  ///   "focusColor": <Color>,
+  ///   "focusedBorder": <InputBorder>,
+  ///   "focusedErrorBorder": <InputBorder>,
+  ///   "helperMaxLines": <int>,
+  ///   "helperStyle": <TextStyle>,
+  ///   "hintStyle": <TextStyle>,
+  ///   "hoverColor": <Color>,
+  ///   "isCollapsed": <bool>,
+  ///   "isDense": <bool>,
+  ///   "labelStyle": <TextStyle>,
+  ///   "prefixStyle": <TextStyle>,
+  ///   "suffixStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeInputBorder]
+  ///  * [encodeFloatingLabelBehavior]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeInputDecorationTheme(
     InputDecorationTheme value,
   ) {
@@ -1474,6 +1859,14 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a  JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "countryCode": <String>,
+  ///   "languageCode": <String>
+  /// }
+  /// ```
   static Map<String, dynamic> encodeLocale(Locale value) {
     Map<String, dynamic> result;
 
@@ -1548,6 +1941,21 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "contentTextStyle": <TextStyle>,
+  ///   "leadingPadding": <EdgeInsetsGeometry>,
+  ///   "padding": <EdgeInsetsGeometry>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeMaterialBannerThemeData(
     MaterialBannerThemeData value,
   ) {
@@ -1565,6 +1973,17 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "primary": <Color>,
+  ///   "swatches": <Map<String, Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
   static Map<String, dynamic> encodeMaterialColor(MaterialColor value) {
     Map<String, dynamic> result;
 
@@ -1727,6 +2146,26 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "groupAlignment": <double>,
+  ///   "labelType": <NavigationRailLabelType>,
+  ///   "selectedIconTheme": <IconThemeData>,
+  ///   "selectedLabelTextStyle": <TextStyle>,
+  ///   "unselectedIconTheme": <IconThemeData>,
+  ///   "unselectedLabelTextStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeIconThemeData]
+  ///  * [encodeNavigationRailLabelType]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeNavigationRailThemeData(
     NavigationRailThemeData value,
   ) {
@@ -1768,6 +2207,14 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "dx": <double>,
+  ///   "dy": <double>
+  /// }
+  /// ```
   static Map<String, dynamic> encodeOffset(Offset value) {
     Map<String, dynamic> result;
 
@@ -1804,6 +2251,21 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  ///   "textStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodePopupMenuThemeData(
     PopupMenuThemeData value,
   ) {
@@ -1821,6 +2283,15 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON compatible map.
+  ///
+  /// ```json
+  /// {
+  ///  "type": "elliptical",
+  ///   "x": <double>,
+  ///   "y": <double>
+  /// }
+  /// ```
   static Map<String, dynamic> encodeRadius(Radius value) {
     Map<String, dynamic> result;
 
@@ -1835,6 +2306,20 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.  This only supports
+  /// the following subclasses:
+  ///  * `RoundRangeSliderThumbShape`
+  ///
+  /// The structure of the other attributes depends on the subclass.
+  ///
+  /// Type: `round`
+  /// ```json
+  /// {
+  ///   "disabledThumbRadius": <double>,
+  ///   "enabledThumbRadius": <double>,
+  ///   "type": "round"
+  /// }
+  /// ```
   static Map<String, dynamic> encodeRangeSliderThumbShape(
     RoundRangeSliderThumbShape value,
   ) {
@@ -1854,6 +2339,19 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.  This only supports
+  /// the following subclasses:
+  ///  * `RoundRangeSliderTickMarkShape`
+  ///
+  /// The structure of the other attributes depends on the subclass.
+  ///
+  /// `RoundRangeSliderTickMarkShape`
+  /// ```json
+  /// {
+  ///   "tickMarkRadius": <double>,
+  ///   "type": "round"
+  /// }
+  /// ```
   static Map<String, dynamic> encodeRangeSliderTickMarkShape(
     RangeSliderTickMarkShape value,
   ) {
@@ -1976,6 +2474,19 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.
+  ///
+  /// ```json
+  /// {
+  ///   "blurRadius": <double>,
+  ///   "color": <Color>,
+  ///   "offset": <Offset>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeOffset]
   static Map<String, dynamic> encodeShadow(Shadow value) {
     Map<String, dynamic> result;
 
@@ -1990,6 +2501,38 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The value structure
+  /// returned the type of the [ShapeBorder] passed in.
+  ///
+  /// `CircleBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "circle"
+  /// }
+  /// ```
+  ///
+  /// `ContinuousRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rectangle"
+  /// }
+  /// ```
+  ///
+  /// `RoundedRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rounded"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBorderSide]
   static Map<String, dynamic> encodeShapeBorder(ShapeBorder value) {
     assert(value == null ||
         value is CircleBorder ||
@@ -2078,6 +2621,46 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "activeTickMarkColor": <Color>,
+  ///   "activeTrackColor": <Color>,
+  ///   "disabledActiveTickMarkColor": <Color>,
+  ///   "disabledActiveTrackColor": <Color>,
+  ///   "disabledInactiveTickMarkColor": <Color>,
+  ///   "disabledInactiveTrackColor": <Color>,
+  ///   "disabledThumbColor": <Color>,
+  ///   "inactiveTickMarkColor": <Color>,
+  ///   "inactiveTrackColor": <Color>,
+  ///   "minThumbSeparation": <double>,
+  ///   "overlappingShapeStrokeColor": <Color>,
+  ///   "overlayColor": <Color>,
+  ///   "overlayShape": <SliderComponentShape>,
+  ///   "rangeThumbShape": <RangeSliderThumbShape>,
+  ///   "rangeTickMarkShape": <RangeSliderTickMarkShape>,
+  ///   "rangeTrackShape": <RangeSliderTrackShape>,
+  ///   "rangeValueIndicatorShape": <RangeSliderValueIndicatorShape>,
+  ///   "showValueIndicator": <ShowValueIndicator>,
+  ///   "thumbColor": <Color>,
+  ///   "thumbShape": <SliderComponentShape>,
+  ///   "trackHeight": <double>,
+  ///   "trackShape": <SliderTrackShape>,
+  ///   "valueIndicatorColor": <Color>,
+  ///   "valueIndicatorShape": <SliderComponentShape>,
+  ///   "valueIndicatorTextStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeShowValueIndicator]
+  ///  * [encodeSliderComponentShape]
+  ///  * [encodeRangeSliderThumbShape]
+  ///  * [encodeRangeSliderTickMarkShape]
+  ///  * [encodeRangeSliderTrackShape]
+  ///  * [encodeRangeSliderValueIndicatorShape]
   static Map<String, dynamic> encodeSliderThemeData(SliderThemeData value) {
     Map<String, dynamic> result;
 
@@ -2131,6 +2714,36 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON representation.  This only supports
+  /// encoding the following subclasses:
+  ///  * `RectangularSliderTrackShape`
+  ///  * `RoundedRectSliderTrackShape`
+  ///
+  /// The schema for the rest of the attributes depends on the sub-class.
+  ///
+  /// `RectangularSliderTrackShape``
+  /// ```json
+  /// {
+  ///   "disabledThumbGapWidth": <double>,
+  ///   "type": "rectangular"
+  /// }
+  /// ```
+  ///
+  /// `RoundedRectSliderTrackShape`
+  /// ```json
+  /// {
+  ///   "type": "round"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeShowValueIndicator]
+  ///  * [encodeSliderComponentShape]
+  ///  * [encodeRangeSliderThumbShape]
+  ///  * [encodeRangeSliderTickMarkShape]
+  ///  * [encodeRangeSliderTrackShape]
+  ///  * [encodeRangeSliderValueIndicatorShape]
   static Map<String, dynamic> encodeSliderTrackShape(SliderTrackShape value) {
     assert(value == null ||
         value is RectangularSliderTrackShape ||
@@ -2177,6 +2790,25 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "actionTextColor": <Color>,
+  ///   "backgroundColor": <Color>,
+  ///   "behavior": <SnackBarBehavior>,
+  ///   "contentTextStyle": <TextStyle>,
+  ///   "disabledActionTextColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeSnackBarBehavior]
+  ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeSnackBarThemeData(SnackBarThemeData value) {
     Map<String, dynamic> result;
 
@@ -2284,6 +2916,24 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "indicatorSize": <TabBarIndicatorSize>,
+  ///   "labelPadding": <EdgeInsetsGeometry>,
+  ///   "labelColor": <Color>,
+  ///   "labelStyle": <TextStyle>,
+  ///   "unselectedLabelColor": <Color>,
+  ///   "unselectedLabelStyle": <TextStyle>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeTabBarIndicatorSize]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeTabBarTheme(TabBarTheme value) {
     Map<String, dynamic> result;
 
@@ -2552,6 +3202,42 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes a given [value] into a JSON compatible Map structure.  This will
+  /// return the following structure:
+  ///
+  /// ```json
+  ///   "backgroundColor": <Color>,
+  ///   "color": <Color>,
+  ///   "decoration": <TextDecoration>,
+  ///   "decorationColor": <Color>,
+  ///   "decorationStyle": <TextDecorationStyle>,
+  ///   "decorationThickness": <double>,
+  ///   "fontFamily": value['fontFamily'],
+  ///   "fontFamilyFallback": <String[]>,
+  ///   "fontFeatures": <FontFeature[]>,
+  ///   "fontWeight": <FontWeight>,
+  ///   "fontSize": <double>,
+  ///   "fontStyle": <FontStyle>,
+  ///   "height": <double>,
+  ///   "inherit": <bool>,
+  ///   "letterSpacing": <double>,
+  ///   "locale": <Locale>,
+  ///   "package": <String>,
+  ///   "shadows": <Shadow[]>,
+  ///   "textBaseline": <TextBaseline>,
+  ///   "wordSpacing": <double>
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeFontFeature]
+  ///  * [encodeFontStyle]
+  ///  * [encodeFontWeight]
+  ///  * [encodeLocale]
+  ///  * [encodeShadow]
+  ///  * [encodeTextbaseline]
+  ///  * [encodeTextDecoration]
+  ///  * [encodeTextDecorationStyle]
   static Map<String, dynamic> encodeTextStyle(TextStyle value) {
     Map<String, dynamic> result;
 
@@ -2592,6 +3278,29 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The returned Map will
+  /// have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "bodyText1": <TextStyle>,
+  ///   "bodyText2": <TextStyle>,
+  ///   "button": <TextStyle>,
+  ///   "caption": <TextStyle>,
+  ///   "headline1": <TextStyle>,
+  ///   "headline2": <TextStyle>,
+  ///   "headline3": <TextStyle>,
+  ///   "headline4": <TextStyle>,
+  ///   "headline5": <TextStyle>,
+  ///   "headline6": <TextStyle>,
+  ///   "overline": <TextStyle>,
+  ///   "subtitle1": <TextStyle>,
+  ///   "subtitle2": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeTextTheme(TextTheme value) {
     Map<String, dynamic> result;
 
@@ -2638,6 +3347,108 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The returned Map will
+  /// have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "accentColor": <Color>,
+  ///   "accentColorBrightness": <Brightness>,
+  ///   "accentIconTheme": <IconThemeData>,
+  ///   "accentTextTheme": <TextTheme>,
+  ///   "appBarTheme": <AppBarTheme>,
+  ///   "applyElevationOverlayColor": <bool>,
+  ///   "bannerTheme": <MaterialBannerThemeData>,
+  ///   "backgroundColor": <Color>,
+  ///   "bottomAppBarColor": <Color>,
+  ///   "bottomAppBarTheme": <BottomAppBarTheme>,
+  ///   "brightness": <Brightness>,
+  ///   "bottomSheetTheme": <BottomSheetThemeData>,
+  ///   "buttonColor": <Color>,
+  ///   "buttonBarTheme": <ButtonBarThemeData>,
+  ///   "buttonTheme": <ButtonThemeData>,
+  ///   "canvasColor": <Color>,
+  ///   "cardColor": <Color>,
+  ///   "cardTheme": <CardTheme>,
+  ///   "chipTheme": <ChipThemeData>,
+  ///   "colorScheme": <ColorScheme>,
+  ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
+  ///   "cursorColor": <Color>,
+  ///   "dialogBackgroundColor": <Color>,
+  ///   "dialogTheme": <DialogTheme>,
+  ///   "disabledColor": <Color>,
+  ///   "dividerColor": <Color>,
+  ///   "dividerTheme": <DividerThemeData>,
+  ///   "errorColor": <Color>,
+  ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
+  ///   "focusColor": <Color>,
+  ///   "fontFamily": <String>,
+  ///   "highlightColor": <Color>,
+  ///   "hintColor": <Color>,
+  ///   "hoverColor": <Color>,
+  ///   "iconTheme": <IconThemeData>,
+  ///   "indicatorColor": <Color>,
+  ///   "inputDecorationTheme": <InputDecorationTheme>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "navigationRailTheme": <NavigationRailThemeData>,
+  ///   "platform": <TargetPlatform>,
+  ///   "popupMenuTheme": <PopupMenuThemeData>,
+  ///   "primaryColor": <Color>,
+  ///   "primaryColorBrightness": <Brightness>,
+  ///   "primaryColorDark": <Color>,
+  ///   "primaryColorLight": <Color>,
+  ///   "primaryIconTheme": <IconThemeData>,
+  ///   "primarySwatch": <MaterialColor>,
+  ///   "primaryTextTheme": <TextTheme>,
+  ///   "scaffoldBackgroundColor": <Color>,
+  ///   "secondaryHeaderColor": <Color>,
+  ///   "selectedRowColor": <Color>,
+  ///   "sliderTheme": <SliderThemeData>,
+  ///   "snackBarTheme": SnackBarThemeData>,
+  ///   "splashColor": <Color>,
+  ///   "splashFactory": <InteractiveInkFeatureFactory>,
+  ///   "tabBarTheme": <TabBarTheme>,
+  ///   "textSelectionColor": <Color>,
+  ///   "textSelectionHandleColor": <Color>,
+  ///   "textTheme": <TextTheme>,
+  ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
+  ///   "toggleableActiveColor": <Color>,
+  ///   "tooltipTheme": <TooltipThemeData>,
+  ///   "typography": <Typography>,
+  ///   "unselectedWidgetColor": <Color>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeAppBarTheme]
+  ///  * [encodeBrightness]
+  ///  * [encodeBottomAppBarTheme]
+  ///  * [encodeBottomSheetThemeData]
+  ///  * [encodeButtonBarThemeData]
+  ///  * [encodeButtonThemeData]
+  ///  * [encodeCardTheme]
+  ///  * [encodeChipThemeData]
+  ///  * [encodeColor]
+  ///  * [encodeColorScheme]
+  ///  * [encodeDialogTheme]
+  ///  * [encodeDividerThemeData]
+  ///  * [encodeFloatingActionButtonThemeData]
+  ///  * [encodeIconThemeData]
+  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeInteractiveInkFeatureFactory]
+  ///  * [encodeMaterialBannerThemeData]
+  ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeNavigationRailThemeData]
+  ///  * [encodePopupMenuThemeData]
+  ///  * [encodeSliderThemeData]
+  ///  * [encodeSnackBarThemeData]
+  ///  * [encodeTabBarTheme]
+  ///  * [encodeTargetPlatform]
+  ///  * [encodeTextStyle]
+  ///  * [encodeToggleButtonsThemeData]
+  ///  * [encodeTypography]
+  ///  * [encodeVisualDensity]
   static Map<String, dynamic> encodeThemeData(ThemeData value) {
     Map<String, dynamic> result;
 
@@ -2757,6 +3568,34 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The returned returned
+  /// value will have the following structure.
+  ///
+  /// ```json
+  /// {
+  ///   "borderColor": <Color>,
+  ///   "borderRadius": <BorderRadius>,
+  ///   "borderWidth": <double>,
+  ///   "color": <Color>,
+  ///   "constraints": <BoxConstraints>,
+  ///   "disabledBorderColor": <Color>,
+  ///   "disabledColor": <Color>,
+  ///   "fillColor": <Color>,
+  ///   "focusColor": <Color>,
+  ///   "highlightColor": <Color>,
+  ///   "hoverColor": <Color>,
+  ///   "selectedBorderColor": <Color>,
+  ///   "selectedColor": <Color>,
+  ///   "splashColor": <Color>,
+  ///   "textStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBoxConstraints]
+  ///  * [encodeColor]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeToggleButtonsThemeData(
     ToggleButtonsThemeData value,
   ) {
@@ -2785,6 +3624,26 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The returned returned
+  /// value will have the following structure.
+  ///
+  /// ```json
+  /// {
+  ///   "excludeFromSemantics": <bool>,
+  ///   "height": <double>,
+  ///   "margin": <EdgeInsetsGeometry>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "preferBelow": <bool>
+  ///   "showDuration": <int; millis>,
+  ///   "textStyle": <TextStyle>,
+  ///   "verticalOffset": <double>,
+  ///   "waitDuration": <int; millis>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic> encodeTooltipThemeData(TooltipThemeData value) {
     Map<String, dynamic> result;
 
@@ -2805,6 +3664,23 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The returned returned
+  /// value will have the following structure.
+  ///
+  /// ```json
+  /// {
+  ///   "black": <TextTheme>,
+  ///   "dense": <TextTheme>,
+  ///   "englishLike": <TextTheme>,
+  ///   "platform": <TargetPlatform>,
+  ///   "tall": <TextTheme>,
+  ///   "white": <TextTheme>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeTargetPlatform]
+  ///  * [encodeTextTheme]
   static Map<String, dynamic> encodeTypography(Typography value) {
     Map<String, dynamic> result;
 

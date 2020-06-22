@@ -1513,6 +1513,23 @@ void main() {
       decoded,
       entry,
     );
+
+    expect(
+      ThemeDecoder.decodeEdgeInsetsGeometry('16'),
+      EdgeInsets.all(16.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsetsGeometry(16),
+      EdgeInsets.all(16.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2]),
+      EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2, 3.0, '4.0']),
+      EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
+    );
   });
 
   test('FlexFit', () {

@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:json_class/json_class.dart';
 
+/// Decoder capable of converting JSON compatible values into Flutter Theme
+/// related classes and enums.
+///
+/// Unless otherwise stated, each function will return [null] when given an
+/// input of [null].
 @immutable
 class ThemeDecoder {
   ThemeDecoder._();
@@ -73,6 +78,24 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [AppBarTheme].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "actionsIconTheme": <IconThemeData>,
+  ///   "brightness": <Brightness>,
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "iconTheme": <IconThemeData>,
+  ///   "textTheme": <TextTheme>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBrightness]
+  ///  * [decodeColor]
+  ///  * [decodeIconThemeData]
   static AppBarTheme decodeAppBarTheme(dynamic value) {
     AppBarTheme result;
 
@@ -310,6 +333,62 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given value to a [BorderRadius].  The expected structure
+  /// depends on the value passed in for the "type" attribute.  The expected
+  /// "type" values must be one of:
+  ///  * `all`
+  ///  * `circular`
+  ///  * `horizontal`
+  ///  * `only`
+  ///  * `vertical`
+  ///
+  /// Type: `all` expects a structure:
+  /// ```json
+  /// {
+  ///   "radius": <Radius>,
+  ///   "type": "all"
+  /// }
+  /// ```
+  ///
+  /// Type: `circular` expects a structure:
+  /// ```json
+  /// {
+  ///   "radius": <double>,
+  ///   "type": "circular"
+  /// }
+  /// ```
+  ///
+  /// Type: `horizontal` expects a structure:
+  /// ```json
+  /// {
+  ///   "left": <Radius>,
+  ///   "right": <Radius>,
+  ///   "type": "all"
+  /// }
+  /// ```
+  ///
+  /// Type: `only` expects a structure:
+  /// ```json
+  /// {
+  ///   "bottomLeft": <Radius>,
+  ///   "bottomRight": <Radius>,
+  ///   "topLeft": <Radius>,
+  ///   "topRight": <Radius>,
+  ///   "type": "only"
+  /// }
+  /// ```
+  ///
+  /// Type: `vertical` expects a structure:
+  /// ```json
+  /// {
+  ///   "bottom": <Radius>,
+  ///   "top": <Radius>,
+  ///   "type": "vertical"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeRadius]
   static BorderRadius decodeBorderRadius(dynamic value) {
     assert(value == null || value['type'] is String);
     _checkSupported(
@@ -363,6 +442,20 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [BorderSide].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "style": <BorderStyle>,
+  ///   "width": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderStyle]
+  ///  * [decodeColor]
   static BorderSide decodeBorderSide(dynamic value) {
     BorderSide result;
 
@@ -406,6 +499,20 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [BottomAppBarTheme].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "shape": <NotchedShape>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeNotchedShape]
   static BottomAppBarTheme decodeBottomAppBarTheme(dynamic value) {
     BottomAppBarTheme result;
 
@@ -472,6 +579,24 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [BottomSheetThemeData].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "clipBehavior": <Clip>,
+  ///   "elevation": <double>,
+  ///   "modalBackgroundColor": <Color>,
+  ///   "modalElevation": <double>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeClip]
+  ///  * [decodeColor]
+  ///  * [decodeShapeBorder]
   static BottomSheetThemeData decodeBottomSheetThemeData(dynamic value) {
     BottomSheetThemeData result;
 
@@ -695,6 +820,30 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [ButtonBarThemeData].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": <MainAxisAlignment>,
+  ///   "buttonAlignedDropdown": <bool>,
+  ///   "buttonHeight": <double>,
+  ///   "buttonMinWidth": <double>,
+  ///   "buttonPadding": <EdgeInsetsGeometry>,
+  ///   "buttonTextTheme": <ButtonTextTheme>,
+  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "mainAxisSize": <MainAxisSize>,
+  ///   "overflowDirection": <VerticalDirection>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonTextTheme]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeButtonLayoutBehavior]
+  ///  * [decodeMainAxisAlignment]
+  ///  * [decodeMainAxisSize]
+  ///  * [decodeVerticalDirection]
   static ButtonBarThemeData decodeButtonBarThemeData(dynamic value) {
     ButtonBarThemeData result;
 
@@ -778,6 +927,37 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [ButtonThemeData].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "alignedDropdown": <bool>,
+  ///   "buttonColor": <Color>,
+  ///   "colorScheme": <ColorScheme>,
+  ///   "disabledColor": <Color>,
+  ///   "focusColor": <Color>,
+  ///   "height": <double>,
+  ///   "highlightColor": <Color>,
+  ///   "hoverColor": <Color>,
+  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "minWidth": <double>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "shape": <ShapeBorder>,
+  ///   "splashColor": <Color>,
+  ///   "textTheme": <ButtonTextTheme>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonLayoutBehavior]
+  ///  * [decodeButtonTextTheme]
+  ///  * [decodeColor]
+  ///  * [decodeColorScheme]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeShapeBorder]
   static ButtonThemeData decodeButtonThemeData(dynamic value) {
     ButtonThemeData result;
 
@@ -806,6 +986,25 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [CardTheme].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "clipBehavior": <Clip>,
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "margin": <EdgeInsetsGeometry>,
+  ///   "shadowColor": <Color>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeClip]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeShapeBorder]
   static CardTheme decodeCardTheme(dynamic value) {
     CardTheme result;
 
@@ -823,6 +1022,37 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [CardTheme].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "brightness": <Brightness>,
+  ///   "checkmarkColor": <Color>,
+  ///   "deleteIconColor": <Color>,
+  ///   "disabledColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "labelPadding": <EdgeInsetsGeometry>,
+  ///   "labelStyle": <TextStyle>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "pressElevation": <double>,
+  ///   "secondaryLabelStyle": <TextStyle>,
+  ///   "secondarySelectedColor": <Color>,
+  ///   "selectedColor": <Color>,
+  ///   "shape": <ShapeBorder>,
+  ///   "selectedShadowColor": <Color>,
+  ///   "shadowColor": <Color>,
+  ///   "showCheckmark": <bool>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBrightness]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
   static ChipThemeData decodeChipThemeData(dynamic value) {
     ChipThemeData result;
 
@@ -934,6 +1164,30 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [CardTheme].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "background": <Color>,
+  ///   "brightness": <Brightness>,
+  ///   "error": <Color>,
+  ///   "onBackground": <Color>,
+  ///   "onError": <Color>,
+  ///   "onPrimary": <Color>,
+  ///   "onSecondary": <Color>,
+  ///   "onSurface": <Color>,
+  ///   "primary": <Color>,
+  ///   "primaryVariant": <Color>,
+  ///   "secondary": <Color>,
+  ///   "secondaryVariant": <Color>,
+  ///   "surface": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBrightness]
+  ///  * [decodeColor]
   static ColorScheme decodeColorScheme(dynamic value) {
     ColorScheme result;
 
@@ -1002,6 +1256,26 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [CupertinoTextThemeData].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "actionTextStyle": <TextStyle>,
+  ///   "dateTimePickerTextStyle": <TextStyle>,
+  ///   "navActionTextStyle": <TextStyle>,
+  ///   "navLargeTitleTextStyle":<TextStyle>,
+  ///   "navTitleTextStyle": <TextStyle>,
+  ///   "pickerTextStyle": <TextStyle>,
+  ///   "primaryColor": <Color>
+  ///   "tabLabelTextStyle": <TextStyle>,
+  ///   "textStyle": <TextStyle>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeTextStyle]
   static CupertinoTextThemeData decodeCupertinoTextThemeData(dynamic value) {
     CupertinoTextThemeData result;
 
@@ -1025,6 +1299,24 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [CupertinoThemeData].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "barBackgroundColor": <Color>,
+  ///   "brightness": <Brightness>,
+  ///   "primaryColor": <Color>,
+  ///   "primaryContrastingColor": <Color>,
+  ///   "scaffoldBackgroundColor": <Color>,
+  ///   "textTheme": <CupertinoTextThemeData>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBrightness]
+  ///  * [decodeColor]
+  ///  * [decodeCupertinoTextThemeData]
   static CupertinoThemeData decodeCupertinoThemeData(dynamic value) {
     CupertinoThemeData result;
 
@@ -1042,6 +1334,23 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [DialogTheme].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "contentTextStyle": <TextStyle>,
+  ///   "elevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  ///   "titleTextStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBrightness]
+  ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
   static DialogTheme decodeDialogTheme(dynamic value) {
     DialogTheme result;
 
@@ -1058,6 +1367,21 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [DividerThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "endIndent": <double>,
+  ///   "indent": <double>,
+  ///   "space": <double>,
+  ///   "thickness": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
   static DividerThemeData decodeDividerThemeData(dynamic value) {
     DividerThemeData result;
 
@@ -1102,16 +1426,57 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] into an [EdgeInsetsGeometry].
+  ///
+  /// If the value is a
+  /// [String], [double], or [int] then this will parse the number and pass it
+  /// to [EdgeInsets.all].
+  ///
+  /// If the value is an array with two entities, this call
+  /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
+  /// the second as the vertical.
+  ///
+  /// If the value is an array with four entities, this call
+  /// [EdgeInsets.fromLTRB] passing each element in order.
+  ///
+  /// Finally, this may be a Map-like structure in the following JSON format:
+  /// ```json
+  /// {
+  ///   "bottom": <double>,
+  ///   "left": <double>,
+  ///   "right": <double>,
+  ///   "top": <double>
+  /// }
+  /// ```
   static EdgeInsetsGeometry decodeEdgeInsetsGeometry(dynamic value) {
     EdgeInsetsGeometry result;
 
     if (value != null) {
-      result = EdgeInsets.only(
-        bottom: JsonClass.parseDouble(value['bottom'], 0.0),
-        left: JsonClass.parseDouble(value['left'], 0.0),
-        right: JsonClass.parseDouble(value['right'], 0.0),
-        top: JsonClass.parseDouble(value['top'], 0.0),
-      );
+      if (value is String || value is double || value is int) {
+        result = EdgeInsets.all(JsonClass.parseDouble(value));
+      } else if (value is List) {
+        assert(value.length == 2 || value.length == 4);
+        if (value.length == 2) {
+          result = EdgeInsets.symmetric(
+            horizontal: JsonClass.parseDouble(value[0]),
+            vertical: JsonClass.parseDouble(value[1]),
+          );
+        } else if (value.length == 4) {
+          result = EdgeInsets.fromLTRB(
+            JsonClass.parseDouble(value[0]),
+            JsonClass.parseDouble(value[1]),
+            JsonClass.parseDouble(value[2]),
+            JsonClass.parseDouble(value[3]),
+          );
+        }
+      } else {
+        result = EdgeInsets.only(
+          bottom: JsonClass.parseDouble(value['bottom'], 0.0),
+          left: JsonClass.parseDouble(value['left'], 0.0),
+          right: JsonClass.parseDouble(value['right'], 0.0),
+          top: JsonClass.parseDouble(value['top'], 0.0),
+        );
+      }
     }
 
     return result;
@@ -1224,6 +1589,28 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [FloatingActionButtonThemeData].  This
+  /// expects the given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "disabledElevation": <double>,
+  ///   "elevation": <double>,
+  ///   "focusColor": <Color>,
+  ///   "focusElevation": <double>,
+  ///   "foregroundColor": <Color>,
+  ///   "highlightElevation": <double>,
+  ///   "hoverColor": <Color>,
+  ///   "hoverElevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  ///   "splashColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeShapeBorder]
   static FloatingActionButtonThemeData decodeFloatingActionButtonThemeData(
     dynamic value,
   ) {
@@ -1283,6 +1670,15 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [FontFeature].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "feature": <String>,
+  ///   "value": <int>
+  /// }
+  /// ```
   static FontFeature decodeFontFeature(dynamic value) {
     FontFeature result;
 
@@ -1590,6 +1986,19 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] into an [IconThemeData].  If the value is [null]
+  /// then [null] will be returned.
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "opacity": <double>,
+  ///   "size": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
   static IconThemeData decodeIconThemeData(dynamic value) {
     IconThemeData result;
 
@@ -1604,6 +2013,33 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [InputBorder].  This expects a specific
+  /// "type" attribute to be one of:
+  ///  * `outline`
+  ///  * `underline`
+  ///
+  /// The expected structure depends on the exact "type" value passed in.
+  ///
+  /// Type: `outline`
+  /// ```json
+  /// {
+  ///   borderRadius: <BorderRadius>,
+  ///   borderSide: <BorderSide>,
+  ///   gapPadding: <double>
+  /// }
+  /// ```
+  ///
+  /// Type: `underline`
+  /// ```json
+  /// {
+  ///   borderRadius: <BorderRadius>,
+  ///   borderSide: <BorderSide>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBorderSide]
   static InputBorder decodeInputBorder(dynamic value) {
     _checkSupported(
       'InputBorder.type',
@@ -1644,6 +2080,44 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [InputDecorationTheme].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alignLabelWithHint": <bool>,
+  ///   "border": <InputBorder>,
+  ///   "contentPadding": <EdgeInsetsGeometry>,
+  ///   "counterStyle": <TextStyle>,
+  ///   "disabledBorder": <InputBorder>,
+  ///   "enabledBorder": <InputBorder>,
+  ///   "errorBorder": <InputBorder>,
+  ///   "errorMaxLines": <int>,
+  ///   "errorStyle": <TextStyle>,
+  ///   "fillColor": <Color>,
+  ///   "filled": <bool>,
+  ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
+  ///   "focusColor": <Color>,
+  ///   "focusedBorder": <InputBorder>,
+  ///   "focusedErrorBorder": <InputBorder>,
+  ///   "helperMaxLines": <int>,
+  ///   "helperStyle": <TextStyle>,
+  ///   "hintStyle": <TextStyle>,
+  ///   "hoverColor": <Color>,
+  ///   "isCollapsed": <bool>,
+  ///   "isDense": <bool>,
+  ///   "labelStyle": <TextStyle>,
+  ///   "prefixStyle": <TextStyle>,
+  ///   "suffixStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeInputBorder]
+  ///  * [decodeFloatingLabelBehavior]
+  ///  * [decodeTextStyle]
   static InputDecorationTheme decodeInputDecorationTheme(dynamic value) {
     InputDecorationTheme result;
 
@@ -1713,6 +2187,15 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [Locale].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "countryCode": <String>,
+  ///   "languageCode": <String>
+  /// }
+  /// ```
   static Locale decodeLocale(dynamic value) {
     Locale result;
 
@@ -1802,6 +2285,22 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [MaterialBannerThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "contentTextStyle": <TextStyle>,
+  ///   "leadingPadding": <EdgeInsetsGeometry>,
+  ///   "padding": <EdgeInsetsGeometry>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeTextStyle]
   static MaterialBannerThemeData decodeMaterialBannerThemeData(dynamic value) {
     MaterialBannerThemeData result;
 
@@ -1817,6 +2316,18 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [MaterialColor].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "primary": <Color>,
+  ///   "swatches": <Map<String, Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
   static MaterialColor decodeMaterialColor(dynamic value) {
     MaterialColor result;
 
@@ -1995,6 +2506,27 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [NavigationRailThemeData].  This expects
+  /// the given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "groupAlignment": <double>,
+  ///   "labelType": <NavigationRailLabelType>,
+  ///   "selectedIconTheme": <IconThemeData>,
+  ///   "selectedLabelTextStyle": <TextStyle>,
+  ///   "unselectedIconTheme": <IconThemeData>,
+  ///   "unselectedLabelTextStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeIconThemeData]
+  ///  * [decodeNavigationRailLabelType]
+  ///  * [decodeTextStyle]
   static NavigationRailThemeData decodeNavigationRailThemeData(dynamic value) {
     NavigationRailThemeData result;
 
@@ -2040,6 +2572,15 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [Offset].  This expects the given [value]
+  /// to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "dx": <double>,
+  ///   "dy": <double>
+  /// }
+  /// ```
   static Offset decodeOffset(dynamic value) {
     Offset result;
 
@@ -2082,6 +2623,22 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  ///   "textStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
   static PopupMenuThemeData decodePopupMenuThemeData(dynamic value) {
     PopupMenuThemeData result;
 
@@ -2097,6 +2654,37 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [Radius].  This expects a "type" attribute
+  /// to be one of:
+  ///  * `circular`
+  ///  * `elliptical`
+  ///  * `zero`
+  ///
+  /// The structure of the other attributes depends on the "type".
+  ///
+  /// Type: `circular`
+  /// ```json
+  /// {
+  ///   "radius": <double>,
+  ///   "type": "circular"
+  /// }
+  /// ```
+  ///
+  /// Type: `elliptical`
+  /// ```json
+  /// {
+  ///  "type": "elliptical",
+  ///   "x": <double>,
+  ///   "y": <double>
+  /// }
+  /// ```
+  ///
+  /// Type: `zero`
+  /// ```json
+  /// {
+  ///   "type": "zero"
+  /// }
+  /// ```
   static Radius decodeRadius(dynamic value) {
     assert(value == null || value['type'] is String);
     _checkSupported(
@@ -2134,6 +2722,20 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [RangeSliderThumbShape].  This expects a
+  /// "type" attribute to be one of:
+  ///  * `round`
+  ///
+  /// The structure of the other attributes depends on the "type".
+  ///
+  /// Type: `round`
+  /// ```json
+  /// {
+  ///   "disabledThumbRadius": <double>,
+  ///   "enabledThumbRadius": <double>,
+  ///   "type": "round"
+  /// }
+  /// ```
   static RangeSliderThumbShape decodeRangeSliderThumbShape(dynamic value) {
     assert(value == null || value['type'] is String);
     _checkSupported(
@@ -2168,6 +2770,19 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [RangeSliderTickMarkShape].  This expects
+  /// a "type" attribute to be one of:
+  ///  * `round`
+  ///
+  /// The structure of the other attributes depends on the "type".
+  ///
+  /// Type: `round`
+  /// ```json
+  /// {
+  ///   "tickMarkRadius": <double>,
+  ///   "type": "round"
+  /// }
+  /// ```
   static RangeSliderTickMarkShape decodeRangeSliderTickMarkShape(
       dynamic value) {
     assert(value == null || value['type'] is String);
@@ -2332,6 +2947,20 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [Shadow].  This expects the [value] to have
+  /// the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "blurRadius": <double>,
+  ///   "color": <Color>,
+  ///   "offset": <Offset>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeOffset]
   static Shadow decodeShadow(dynamic value) {
     Shadow result;
 
@@ -2346,6 +2975,44 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a given Map-like value into a [ShapeBorder].  The value returned
+  /// depends on the "type" parameter.  The "type" must be one of:
+  ///  * `circle`
+  ///  * `rectangle`
+  ///  * `rounded`
+  ///
+  /// The JSON format of the [value] depends on the "type" and the associated
+  /// class.
+  ///
+  /// `CircleBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "circle"
+  /// }
+  /// ```
+  ///
+  /// `ContinuousRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rectangle"
+  /// }
+  /// ```
+  ///
+  /// `RoundedRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rounded"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBorderSide]
   static ShapeBorder decodeShapeBorder(dynamic value) {
     assert(value == null || value['type'] is String);
     _checkSupported(
@@ -2462,12 +3129,53 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [SliderThemeData].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "activeTickMarkColor": <Color>,
+  ///   "activeTrackColor": <Color>,
+  ///   "disabledActiveTickMarkColor": <Color>,
+  ///   "disabledActiveTrackColor": <Color>,
+  ///   "disabledInactiveTickMarkColor": <Color>,
+  ///   "disabledInactiveTrackColor": <Color>,
+  ///   "disabledThumbColor": <Color>,
+  ///   "inactiveTickMarkColor": <Color>,
+  ///   "inactiveTrackColor": <Color>,
+  ///   "minThumbSeparation": <double>,
+  ///   "overlappingShapeStrokeColor": <Color>,
+  ///   "overlayColor": <Color>,
+  ///   "overlayShape": <SliderComponentShape>,
+  ///   "rangeThumbShape": <RangeSliderThumbShape>,
+  ///   "rangeTickMarkShape": <RangeSliderTickMarkShape>,
+  ///   "rangeTrackShape": <RangeSliderTrackShape>,
+  ///   "rangeValueIndicatorShape": <RangeSliderValueIndicatorShape>,
+  ///   "showValueIndicator": <ShowValueIndicator>,
+  ///   "thumbColor": <Color>,
+  ///   "thumbShape": <SliderComponentShape>,
+  ///   "trackHeight": <double>,
+  ///   "trackShape": <SliderTrackShape>,
+  ///   "valueIndicatorColor": <Color>,
+  ///   "valueIndicatorShape": <SliderComponentShape>,
+  ///   "valueIndicatorTextStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeShowValueIndicator]
+  ///  * [decodeSliderComponentShape]
+  ///  * [decodeRangeSliderThumbShape]
+  ///  * [decodeRangeSliderTickMarkShape]
+  ///  * [decodeRangeSliderTrackShape]
+  ///  * [decodeRangeSliderValueIndicatorShape]
   static SliderThemeData decodeSliderThemeData(dynamic value) {
     SliderThemeData result;
 
     if (value != null) {
-      assert(
-          value[''] == null, 'SliderThemeData.tickMarkShape is not supported');
+      assert(value['tickMarkShape'] == null,
+          'SliderThemeData.tickMarkShape is not supported');
       result = SliderThemeData(
         activeTickMarkColor: decodeColor(value['activeTickMarkColor']),
         activeTrackColor: decodeColor(value['activeTrackColor']),
@@ -2517,6 +3225,37 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [SliderTrackShape].  This expects the
+  /// [value] to have an attribute named "type" that is one of the following
+  /// values:
+  ///  * `rectangular`
+  ///  * `rounded`
+  ///
+  /// The schema for the rest of the attributes depends on the "type".
+  ///
+  /// Type: `rectangular`
+  /// ```json
+  /// {
+  ///   "disabledThumbGapWidth": <double>,
+  ///   "type": "rectangular"
+  /// }
+  /// ```
+  ///
+  /// Type: `round`
+  /// ```json
+  /// {
+  ///   "type": "round"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeShowValueIndicator]
+  ///  * [decodeSliderComponentShape]
+  ///  * [decodeRangeSliderThumbShape]
+  ///  * [decodeRangeSliderTickMarkShape]
+  ///  * [decodeRangeSliderTrackShape]
+  ///  * [decodeRangeSliderValueIndicatorShape]
   static SliderTrackShape decodeSliderTrackShape(dynamic value) {
     assert(value == null || value['type'] is String);
     _checkSupported(
@@ -2579,6 +3318,26 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [SnackBarThemeData].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "actionTextColor": <Color>,
+  ///   "backgroundColor": <Color>,
+  ///   "behavior": <SnackBarBehavior>,
+  ///   "contentTextStyle": <TextStyle>,
+  ///   "disabledActionTextColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "shape": <ShapeBorder>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeSnackBarBehavior]
+  ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
   static SnackBarThemeData decodeSnackBarThemeData(dynamic value) {
     SnackBarThemeData result;
 
@@ -2698,6 +3457,25 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [TabBarTheme].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "indicatorSize": <TabBarIndicatorSize>,
+  ///   "labelPadding": <EdgeInsetsGeometry>,
+  ///   "labelColor": <Color>,
+  ///   "labelStyle": <TextStyle>,
+  ///   "unselectedLabelColor": <Color>,
+  ///   "unselectedLabelStyle": <TextStyle>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeTabBarIndicatorSize]
+  ///  * [decodeTextStyle]
   static TabBarTheme decodeTabBarTheme(dynamic value) {
     TabBarTheme result;
 
@@ -3019,6 +3797,42 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a given Map-like [value] into a [TextStyle].  This expects the
+  /// given [value] to have the following structure:
+  ///
+  /// ```json
+  ///   "backgroundColor": <Color>,
+  ///   "color": <Color>,
+  ///   "decoration": <TextDecoration>,
+  ///   "decorationColor": <Color>,
+  ///   "decorationStyle": <TextDecorationStyle>,
+  ///   "decorationThickness": <double>,
+  ///   "fontFamily": value['fontFamily'],
+  ///   "fontFamilyFallback": <String[]>,
+  ///   "fontFeatures": <FontFeature[]>,
+  ///   "fontWeight": <FontWeight>,
+  ///   "fontSize": <double>,
+  ///   "fontStyle": <FontStyle>,
+  ///   "height": <double>,
+  ///   "inherit": <bool>,
+  ///   "letterSpacing": <double>,
+  ///   "locale": <Locale>,
+  ///   "package": <String>,
+  ///   "shadows": <Shadow[]>,
+  ///   "textBaseline": <TextBaseline>,
+  ///   "wordSpacing": <double>
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeFontFeature]
+  ///  * [decodeFontStyle]
+  ///  * [decodeFontWeight]
+  ///  * [decodeLocale]
+  ///  * [decodeShadow]
+  ///  * [decodeTextbaseline]
+  ///  * [decodeTextDecoration]
+  ///  * [decodeTextDecorationStyle]
   static TextStyle decodeTextStyle(dynamic value) {
     TextStyle result;
 
@@ -3069,6 +3883,29 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [TextTheme].  This expects the [value] to
+  /// have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "bodyText1": <TextStyle>,
+  ///   "bodyText2": <TextStyle>,
+  ///   "button": <TextStyle>,
+  ///   "caption": <TextStyle>,
+  ///   "headline1": <TextStyle>,
+  ///   "headline2": <TextStyle>,
+  ///   "headline3": <TextStyle>,
+  ///   "headline4": <TextStyle>,
+  ///   "headline5": <TextStyle>,
+  ///   "headline6": <TextStyle>,
+  ///   "overline": <TextStyle>,
+  ///   "subtitle1": <TextStyle>,
+  ///   "subtitle2": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeTextStyle]
   static TextTheme decodeTextTheme(dynamic value) {
     TextTheme result;
 
@@ -3121,6 +3958,108 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [ThemeData].  This expects the [value] to
+  /// have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "accentColor": <Color>,
+  ///   "accentColorBrightness": <Brightness>,
+  ///   "accentIconTheme": <IconThemeData>,
+  ///   "accentTextTheme": <TextTheme>,
+  ///   "appBarTheme": <AppBarTheme>,
+  ///   "applyElevationOverlayColor": <bool>,
+  ///   "bannerTheme": <MaterialBannerThemeData>,
+  ///   "backgroundColor": <Color>,
+  ///   "bottomAppBarColor": <Color>,
+  ///   "bottomAppBarTheme": <BottomAppBarTheme>,
+  ///   "brightness": <Brightness>,
+  ///   "bottomSheetTheme": <BottomSheetThemeData>,
+  ///   "buttonColor": <Color>,
+  ///   "buttonBarTheme": <ButtonBarThemeData>,
+  ///   "buttonTheme": <ButtonThemeData>,
+  ///   "canvasColor": <Color>,
+  ///   "cardColor": <Color>,
+  ///   "cardTheme": <CardTheme>,
+  ///   "chipTheme": <ChipThemeData>,
+  ///   "colorScheme": <ColorScheme>,
+  ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
+  ///   "cursorColor": <Color>,
+  ///   "dialogBackgroundColor": <Color>,
+  ///   "dialogTheme": <DialogTheme>,
+  ///   "disabledColor": <Color>,
+  ///   "dividerColor": <Color>,
+  ///   "dividerTheme": <DividerThemeData>,
+  ///   "errorColor": <Color>,
+  ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
+  ///   "focusColor": <Color>,
+  ///   "fontFamily": <String>,
+  ///   "highlightColor": <Color>,
+  ///   "hintColor": <Color>,
+  ///   "hoverColor": <Color>,
+  ///   "iconTheme": <IconThemeData>,
+  ///   "indicatorColor": <Color>,
+  ///   "inputDecorationTheme": <InputDecorationTheme>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "navigationRailTheme": <NavigationRailThemeData>,
+  ///   "platform": <TargetPlatform>,
+  ///   "popupMenuTheme": <PopupMenuThemeData>,
+  ///   "primaryColor": <Color>,
+  ///   "primaryColorBrightness": <Brightness>,
+  ///   "primaryColorDark": <Color>,
+  ///   "primaryColorLight": <Color>,
+  ///   "primaryIconTheme": <IconThemeData>,
+  ///   "primarySwatch": <MaterialColor>,
+  ///   "primaryTextTheme": <TextTheme>,
+  ///   "scaffoldBackgroundColor": <Color>,
+  ///   "secondaryHeaderColor": <Color>,
+  ///   "selectedRowColor": <Color>,
+  ///   "sliderTheme": <SliderThemeData>,
+  ///   "snackBarTheme": SnackBarThemeData>,
+  ///   "splashColor": <Color>,
+  ///   "splashFactory": <InteractiveInkFeatureFactory>,
+  ///   "tabBarTheme": <TabBarTheme>,
+  ///   "textSelectionColor": <Color>,
+  ///   "textSelectionHandleColor": <Color>,
+  ///   "textTheme": <TextTheme>,
+  ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
+  ///   "toggleableActiveColor": <Color>,
+  ///   "tooltipTheme": <TooltipThemeData>,
+  ///   "typography": <Typography>,
+  ///   "unselectedWidgetColor": <Color>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeAppBarTheme]
+  ///  * [decodeBrightness]
+  ///  * [decodeBottomAppBarTheme]
+  ///  * [decodeBottomSheetThemeData]
+  ///  * [decodeButtonBarThemeData]
+  ///  * [decodeButtonThemeData]
+  ///  * [decodeCardTheme]
+  ///  * [decodeChipThemeData]
+  ///  * [decodeColor]
+  ///  * [decodeColorScheme]
+  ///  * [decodeDialogTheme]
+  ///  * [decodeDividerThemeData]
+  ///  * [decodeFloatingActionButtonThemeData]
+  ///  * [decodeIconThemeData]
+  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInteractiveInkFeatureFactory]
+  ///  * [decodeMaterialBannerThemeData]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeNavigationRailThemeData]
+  ///  * [decodePopupMenuThemeData]
+  ///  * [decodeSliderThemeData]
+  ///  * [decodeSnackBarThemeData]
+  ///  * [decodeTabBarTheme]
+  ///  * [decodeTargetPlatform]
+  ///  * [decodeTextStyle]
+  ///  * [decodeToggleButtonsThemeData]
+  ///  * [decodeTypography]
+  ///  * [decodeVisualDensity]
   static ThemeData decodeThemeData(dynamic value) {
     ThemeData result;
 
@@ -3255,6 +4194,34 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [ToggleButtonsThemeData].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "borderColor": <Color>,
+  ///   "borderRadius": <BorderRadius>,
+  ///   "borderWidth": <double>,
+  ///   "color": <Color>,
+  ///   "constraints": <BoxConstraints>,
+  ///   "disabledBorderColor": <Color>,
+  ///   "disabledColor": <Color>,
+  ///   "fillColor": <Color>,
+  ///   "focusColor": <Color>,
+  ///   "highlightColor": <Color>,
+  ///   "hoverColor": <Color>,
+  ///   "selectedBorderColor": <Color>,
+  ///   "selectedColor": <Color>,
+  ///   "splashColor": <Color>,
+  ///   "textStyle": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBoxConstraints]
+  ///  * [decodeColor]
+  ///  * [decodeTextStyle]
   static ToggleButtonsThemeData decodeToggleButtonsThemeData(dynamic value) {
     ToggleButtonsThemeData result;
 
@@ -3281,6 +4248,26 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [TooltipThemeData].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "excludeFromSemantics": <bool>,
+  ///   "height": <double>,
+  ///   "margin": <EdgeInsetsGeometry>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "preferBelow": <bool>
+  ///   "showDuration": <int; millis>,
+  ///   "textStyle": <TextStyle>,
+  ///   "verticalOffset": <double>,
+  ///   "waitDuration": <int; millis>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeTextStyle]
   static TooltipThemeData decodeTooltipThemeData(dynamic value) {
     TooltipThemeData result;
 
@@ -3309,6 +4296,23 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [Typography].  This expects the [value] to
+  /// have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "black": <TextTheme>,
+  ///   "dense": <TextTheme>,
+  ///   "englishLike": <TextTheme>,
+  ///   "platform": <TargetPlatform>,
+  ///   "tall": <TextTheme>,
+  ///   "white": <TextTheme>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeTargetPlatform]
+  ///  * [decodeTextTheme]
   static Typography decodeTypography(dynamic value) {
     Typography result;
 

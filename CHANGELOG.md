@@ -1,3 +1,9 @@
+## [1.0.4] - June 21st, 2020
+
+* Added more value option to `ThemeDecoder.decodeEdgeInsetsGeometry`
+* Completed DartDocs for all public functions.
+
+
 ## [1.0.3] - June 20th, 2020
 
 * Added encoder / decoder for: `FloatingActionButtonAnimator`

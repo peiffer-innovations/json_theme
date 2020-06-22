@@ -19,56 +19,56 @@ As close as possible, the names used in the Dart APIs are replicated.  However, 
 **Alignment**
 
 Plain string that must be one of:
-* `bottomCenter` => `Alignment.bottomCenter`
-* `bottomLeft` => `Alignment.bottomLeft`
-* `bottomRight` => `Alignment.bottomRight`
-* `center` => `Alignment.center`
-* `centerLeft` => `Alignment.centerLeft`
-* `centerRight` => `Alignment.centerRight`
-* `topCenter` => `Alignment.topCenter`
-* `topLeft` => `Alignment.topLeft`
-* `topRight` => `Alignment.topRight`
+* `bottomCenter` ==> `Alignment.bottomCenter`
+* `bottomLeft` ==> `Alignment.bottomLeft`
+* `bottomRight` ==> `Alignment.bottomRight`
+* `center` ==> `Alignment.center`
+* `centerLeft` ==> `Alignment.centerLeft`
+* `centerRight` ==> `Alignment.centerRight`
+* `topCenter` ==> `Alignment.topCenter`
+* `topLeft` ==> `Alignment.topLeft`
+* `topRight` ==> `Alignment.topRight`
 
 
 **Axis**
 
 Plain string that must be one of:
-* `horizontal` => `Axis.horizontal`
-* `vertical` => `Axis.vertical`
+* `horizontal` ==> `Axis.horizontal`
+* `vertical` ==> `Axis.vertical`
 
 
 **BlendMode**
 
 Plain string that must be one of:
-* `clear` => `BlendMode.clear`
-* `color` => `BlendMode.color`
-* `colorBurn` => `BlendMode.colorBurn`
-* `colorDodge` => `BlendMode.colorDodge`
-* `darken` => `BlendMode.darken`
-* `difference` => `BlendMode.difference`
-* `dst` => `BlendMode.dst`
-* `dstATop` => `BlendMode.dstATop`
-* `dstIn` => `BlendMode.dstIn`
-* `dstOut` => `BlendMode.dstOut`
-* `dstOver` => `BlendMode.dstOver`
-* `exclusion` => `BlendMode.exclusion`
-* `hardLight` => `BlendMode.hardLight`
-* `hue` => `BlendMode.hue`
-* `lighten` => `BlendMode.lighten`
-* `luminosity` => `BlendMode.luminosity`
-* `modulate` => `BlendMode.modulate`
-* `multiply` => `BlendMode.multiply`
-* `overlay` => `BlendMode.overlay`
-* `plus` => `BlendMode.plus`
-* `saturation` => `BlendMode.saturation`
-* `screen` => `BlendMode.screen`
-* `softLight` => `BlendMode.softLight`
-* `src` => `BlendMode.src`
-* `srcATop` => `BlendMode.srcATop`
-* `srcIn` => `BlendMode.srcIn`
-* `srcOut` => `BlendMode.srcOut`
-* `srcOver` => `BlendMode.srcOver`
-* `xor` => `BlendMode.xor`
+* `clear` ==> `BlendMode.clear`
+* `color` ==> `BlendMode.color`
+* `colorBurn` ==> `BlendMode.colorBurn`
+* `colorDodge` ==> `BlendMode.colorDodge`
+* `darken` ==> `BlendMode.darken`
+* `difference` ==> `BlendMode.difference`
+* `dst` ==> `BlendMode.dst`
+* `dstATop` ==> `BlendMode.dstATop`
+* `dstIn` ==> `BlendMode.dstIn`
+* `dstOut` ==> `BlendMode.dstOut`
+* `dstOver` ==> `BlendMode.dstOver`
+* `exclusion` ==> `BlendMode.exclusion`
+* `hardLight` ==> `BlendMode.hardLight`
+* `hue` ==> `BlendMode.hue`
+* `lighten` ==> `BlendMode.lighten`
+* `luminosity` ==> `BlendMode.luminosity`
+* `modulate` ==> `BlendMode.modulate`
+* `multiply` ==> `BlendMode.multiply`
+* `overlay` ==> `BlendMode.overlay`
+* `plus` ==> `BlendMode.plus`
+* `saturation` ==> `BlendMode.saturation`
+* `screen` ==> `BlendMode.screen`
+* `softLight` ==> `BlendMode.softLight`
+* `src` ==> `BlendMode.src`
+* `srcATop` ==> `BlendMode.srcATop`
+* `srcIn` ==> `BlendMode.srcIn`
+* `srcOut` ==> `BlendMode.srcOut`
+* `srcOver` ==> `BlendMode.srcOver`
+* `xor` ==> `BlendMode.xor`
 
 
 **BorderRadius**

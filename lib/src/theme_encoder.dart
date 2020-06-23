@@ -1255,6 +1255,38 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `high`
+  ///  * `low`
+  ///  * `medium`
+  ///  * `none`
+  static String encodeFilterQuality(FilterQuality value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case FilterQuality.high:
+          result = 'high';
+          break;
+
+        case FilterQuality.low:
+          result = 'low';
+          break;
+
+        case FilterQuality.medium:
+          result = 'medium';
+          break;
+
+        case FilterQuality.none:
+          result = 'none';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `loose`
   ///  * `tight`
   static String encodeFlexFit(FlexFit value) {
@@ -1651,7 +1683,34 @@ class ThemeEncoder {
     return result;
   }
 
-  /// Encodes the given [value] to the String representation.
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `deferToChild`
+  ///  * `opaque`
+  ///  * `translucent`
+  static String encodeHitTestBehavior(HitTestBehavior value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case HitTestBehavior.deferToChild:
+          result = 'deferToChild';
+          break;
+
+        case HitTestBehavior.opaque:
+          result = 'opaque';
+          break;
+
+        case HitTestBehavior.translucent:
+          result = 'translucent';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the JSON representation.
   ///
   /// ```json
   /// {
@@ -1702,6 +1761,36 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] into a String representation.  Supported values
+  /// are:
+  /// * `noRepeat`
+  /// * `repeat`
+  /// * `repeatX`
+  /// * `repeatY`
+  static String encodeImageRepeat(ImageRepeat value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case ImageRepeat.noRepeat:
+          result = 'noRepeat';
+          break;
+        case ImageRepeat.repeat:
+          result = 'repeat';
+          break;
+        case ImageRepeat.repeatX:
+          result = 'repeatX';
+          break;
+        case ImageRepeat.repeatY:
+          result = 'repeatY';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  ///
   /// Encodes the given [value] to a JSON representation.  This only supports
   /// the following subclasses:
   ///  * `OutlineInputBorder`
@@ -2417,7 +2506,35 @@ class ThemeEncoder {
     return result;
   }
 
-  /// Encodes the [value] to a JSON compatible Map.
+  /// Encodes the given [value] to a JSON compatible Map.
+  ///
+  /// This returns the JSON representation to follow the structure:
+  /// ```json
+  /// {
+  ///   "bottom": <double>,
+  ///   "left": <double>,
+  ///   "right": <double>,
+  ///   "top": <double>,
+  ///   "type": "ltrb"
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeRect(Rect value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'bottom': value.bottom,
+        'left': value.left,
+        'right': value.right,
+        'top': value.top,
+        'type': 'ltrb',
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a JSON compatible Map.
   ///
   /// This returns the JSON representation to follow the structure:
   /// ```json

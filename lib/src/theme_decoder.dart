@@ -1482,6 +1482,37 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [FilterQuality].  Supported values are:
+  ///  * `high`
+  ///  * `low`
+  ///  * `medium`
+  ///  * `none`
+  static FilterQuality decodeFilterQuality(String value) {
+    FilterQuality result;
+
+    if (value != null) {
+      switch (value) {
+        case 'high':
+          result = FilterQuality.high;
+          break;
+
+        case 'low':
+          result = FilterQuality.low;
+          break;
+
+        case 'medium':
+          result = FilterQuality.medium;
+          break;
+
+        case 'none':
+          result = FilterQuality.none;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [FlexFit].  Supported values are:
   ///  * `baseLine`
   ///  * `center`
@@ -1958,6 +1989,32 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] into a [HitTestBehavior].  Supported values are:
+  /// * `deferToChild`
+  /// * `opaque`
+  /// * `translucent`
+  static HitTestBehavior decodeHitTestBehavior(String value) {
+    HitTestBehavior result;
+
+    if (value != null) {
+      switch (value) {
+        case 'deferToChild':
+          result = HitTestBehavior.deferToChild;
+          break;
+
+        case 'opaque':
+          result = HitTestBehavior.opaque;
+          break;
+
+        case 'translucent':
+          result = HitTestBehavior.translucent;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] into an [IconData].  If the value is [null] then
   /// [null] will be returned.
   ///
@@ -2008,6 +2065,34 @@ class ThemeDecoder {
         opacity: JsonClass.parseDouble(value['opacity']),
         size: JsonClass.parseDouble(value['size']),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into an [ImageRepeat].  Supported values are:
+  /// * `noRepeat`
+  /// * `repeat`
+  /// * `repeatX`
+  /// * `repeatY`
+  static ImageRepeat decodeImageRepeat(String value) {
+    ImageRepeat result;
+
+    if (value != null) {
+      switch (value) {
+        case 'noRepeat':
+          result = ImageRepeat.noRepeat;
+          break;
+        case 'repeat':
+          result = ImageRepeat.repeat;
+          break;
+        case 'repeatX':
+          result = ImageRepeat.repeatX;
+          break;
+        case 'repeatY':
+          result = ImageRepeat.repeatY;
+          break;
+      }
     }
 
     return result;
@@ -2864,6 +2949,168 @@ class ThemeDecoder {
         // case 'rectangular':
         //   result = RectangularRangeSliderValueIndicatorShape();
         //   break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [Rect].  If [value] is not [null] then
+  /// it must contain a property named "type" with one of the following values:
+  ///  * `center`
+  ///  * `circle`
+  ///  * `largest`
+  ///  * `ltrb`
+  ///  * `ltwh`
+  ///  * `points`
+  ///  * `zero`
+  ///
+  /// The structure of the remaining attributes depends on the "type" property.
+  ///
+  /// Type: `center`
+  /// ```json
+  /// {
+  ///   "center": {
+  ///     "dx": <double>,
+  ///     "dy": <double>
+  ///   },
+  ///   "height": <double>,
+  ///   "width": <double>,
+  ///   "type": "center"
+  /// }
+  /// ```
+  ///
+  /// Type: `circle`
+  /// ```json
+  /// {
+  ///   "center": {
+  ///     "dx": <double>,
+  ///     "dy": <double>
+  ///   },
+  ///   "radius": <double>,
+  ///   "type": "circle"
+  /// }
+  /// ```
+  ///
+  /// Type: `largest`
+  /// ```json
+  /// {
+  ///   "type": "largest"
+  /// }
+  /// ```
+  ///
+  /// Type: `ltrb`
+  /// ```json
+  /// {
+  ///   "bottom": <double>,
+  ///   "left": <double>,
+  ///   "right": <double>,
+  ///   "top": <double>,
+  ///   "type": "ltrb"
+  /// }
+  /// ```
+  ///
+  /// Type: `ltwh`
+  /// ```json
+  /// {
+  ///   "left": <double>,
+  ///   "height": <double>,
+  ///   "top": <double>,
+  ///   "type": "ltwh",
+  ///   "width": <double>
+  /// }
+  /// ```
+  ///
+  /// Type: `points`
+  /// ```json
+  /// {
+  ///   "a": {
+  ///     "dx": <double>,
+  ///     "dy": <double>
+  ///   },
+  ///   "b": {
+  ///     "dx": <double>,
+  ///     "dy": <double>
+  ///   }
+  /// }
+  /// ```
+  ///
+  /// Type: `zero`
+  /// ```json
+  /// {
+  ///   "type": "zero"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeOffset]
+  static Rect decodeRect(dynamic value) {
+    assert(value == null || value['type'] is String);
+    _checkSupported(
+      'Rect.type',
+      [
+        'center',
+        'circle',
+        'largest',
+        'ltrb',
+        'ltwh',
+        'points',
+        'zero',
+      ],
+      value == null ? null : value['type'],
+    );
+    Rect result;
+
+    if (value != null) {
+      String type = value['type'];
+      switch (type) {
+        case 'center':
+          result = Rect.fromCenter(
+            center: decodeOffset(value['center']),
+            height: JsonClass.parseDouble(value['height']),
+            width: JsonClass.parseDouble(value['width']),
+          );
+          break;
+
+        case 'circle':
+          result = Rect.fromCircle(
+            center: decodeOffset(value['center']),
+            radius: JsonClass.parseDouble(value['radius']),
+          );
+          break;
+
+        case 'largest':
+          result = Rect.largest;
+          break;
+
+        case 'ltrb':
+          result = Rect.fromLTRB(
+            JsonClass.parseDouble(value['left']),
+            JsonClass.parseDouble(value['top']),
+            JsonClass.parseDouble(value['right']),
+            JsonClass.parseDouble(value['bottom']),
+          );
+          break;
+
+        case 'ltwh':
+          result = Rect.fromLTWH(
+            JsonClass.parseDouble(value['left']),
+            JsonClass.parseDouble(value['top']),
+            JsonClass.parseDouble(value['width']),
+            JsonClass.parseDouble(value['height']),
+          );
+          break;
+
+        case 'points':
+          result = Rect.fromPoints(
+            decodeOffset(value['a']),
+            decodeOffset(value['b']),
+          );
+          break;
+
+        case 'zero':
+          result = Rect.zero;
+          break;
       }
     }
 

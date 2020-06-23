@@ -1532,6 +1532,21 @@ void main() {
     );
   });
 
+  test('FilterQuality', () {
+    expect(ThemeDecoder.decodeFilterQuality(null), null);
+    expect(ThemeEncoder.encodeFilterQuality(null), null);
+
+    expect(ThemeDecoder.decodeFilterQuality('high'), FilterQuality.high);
+    expect(ThemeDecoder.decodeFilterQuality('low'), FilterQuality.low);
+    expect(ThemeDecoder.decodeFilterQuality('medium'), FilterQuality.medium);
+    expect(ThemeDecoder.decodeFilterQuality('none'), FilterQuality.none);
+
+    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.high), 'high');
+    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.low), 'low');
+    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.medium), 'medium');
+    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.none), 'none');
+  });
+
   test('FlexFit', () {
     expect(ThemeDecoder.decodeFlexFit(null), null);
     expect(ThemeEncoder.encodeFlexFit(null), null);
@@ -1875,6 +1890,37 @@ void main() {
     );
   });
 
+  test('HitTestBehavior', () {
+    expect(ThemeDecoder.decodeHitTestBehavior(null), null);
+    expect(ThemeEncoder.encodeHitTestBehavior(null), null);
+
+    expect(
+      ThemeDecoder.decodeHitTestBehavior('deferToChild'),
+      HitTestBehavior.deferToChild,
+    );
+    expect(
+      ThemeDecoder.decodeHitTestBehavior('opaque'),
+      HitTestBehavior.opaque,
+    );
+    expect(
+      ThemeDecoder.decodeHitTestBehavior('translucent'),
+      HitTestBehavior.translucent,
+    );
+
+    expect(
+      ThemeEncoder.encodeHitTestBehavior(HitTestBehavior.deferToChild),
+      'deferToChild',
+    );
+    expect(
+      ThemeEncoder.encodeHitTestBehavior(HitTestBehavior.opaque),
+      'opaque',
+    );
+    expect(
+      ThemeEncoder.encodeHitTestBehavior(HitTestBehavior.translucent),
+      'translucent',
+    );
+  });
+
   test('IconData', () {
     expect(ThemeDecoder.decodeIconData(null), null);
     expect(ThemeEncoder.encodeIconData(null), null);
@@ -1931,6 +1977,21 @@ void main() {
       decoded,
       entry,
     );
+  });
+
+  test('ImageRepeat', () {
+    expect(ThemeDecoder.decodeImageRepeat(null), null);
+    expect(ThemeEncoder.encodeImageRepeat(null), null);
+
+    expect(ThemeDecoder.decodeImageRepeat('noRepeat'), ImageRepeat.noRepeat);
+    expect(ThemeDecoder.decodeImageRepeat('repeat'), ImageRepeat.repeat);
+    expect(ThemeDecoder.decodeImageRepeat('repeatX'), ImageRepeat.repeatX);
+    expect(ThemeDecoder.decodeImageRepeat('repeatY'), ImageRepeat.repeatY);
+
+    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.noRepeat), 'noRepeat');
+    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.repeat), 'repeat');
+    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.repeatX), 'repeatX');
+    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.repeatY), 'repeatY');
   });
 
   test('InputBorder', () {
@@ -2969,6 +3030,126 @@ void main() {
     expect(
       decoded.runtimeType,
       entry.runtimeType,
+    );
+  });
+
+  test('Rect', () {
+    expect(ThemeDecoder.decodeRect(null), null);
+    expect(ThemeEncoder.encodeRect(null), null);
+
+    var entry = Rect.fromLTRB(1.0, 2.0, 3.0, 4.0);
+
+    var encoded = ThemeEncoder.encodeRect(entry);
+    var decoded = ThemeDecoder.decodeRect(encoded);
+
+    expect(encoded, {
+      'bottom': 4.0,
+      'left': 1.0,
+      'right': 3.0,
+      'top': 2.0,
+      'type': 'ltrb',
+    });
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    expect(
+      ThemeDecoder.decodeRect({
+        'center': {
+          'dx': 1.0,
+          'dy': 2.0,
+        },
+        'height': 3.0,
+        'width': 4.0,
+        'type': 'center',
+      }),
+      Rect.fromCenter(
+        center: Offset(1.0, 2.0),
+        height: 3.0,
+        width: 4.0,
+      ),
+    );
+
+    expect(
+      ThemeDecoder.decodeRect({
+        'center': {
+          'dx': 1.0,
+          'dy': 2.0,
+        },
+        'radius': 3.0,
+        'type': 'circle',
+      }),
+      Rect.fromCircle(
+        center: Offset(1.0, 2.0),
+        radius: 3.0,
+      ),
+    );
+    expect(
+      ThemeDecoder.decodeRect({
+        'type': 'largest',
+      }),
+      Rect.largest,
+    );
+    expect(
+      ThemeDecoder.decodeRect({
+        'bottom': 4.0,
+        'left': 1.0,
+        'right': 3.0,
+        'top': 2.0,
+        'type': 'ltrb',
+      }),
+      Rect.fromLTRB(
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+      ),
+    );
+    expect(
+      ThemeDecoder.decodeRect({
+        'height': 4.0,
+        'left': 1.0,
+        'top': 2.0,
+        'type': 'ltwh',
+        'width': 3.0,
+      }),
+      Rect.fromLTWH(
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+      ),
+    );
+    expect(
+      ThemeDecoder.decodeRect({
+        'a': {
+          'dx': 1.0,
+          'dy': 2.0,
+        },
+        'b': {
+          'dx': 3.0,
+          'dy': 4.0,
+        },
+        'type': 'points',
+      }),
+      Rect.fromPoints(
+        Offset(
+          1.0,
+          2.0,
+        ),
+        Offset(
+          3.0,
+          4.0,
+        ),
+      ),
+    );
+    expect(
+      ThemeDecoder.decodeRect({
+        'type': 'zero',
+      }),
+      Rect.zero,
     );
   });
 

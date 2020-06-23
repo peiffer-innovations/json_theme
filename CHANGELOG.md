@@ -1,3 +1,11 @@
+## [1.0.5] - June 22nd, 2020
+
+* Added encoder / decoder for `FilterQuality`
+* Added encoder / decoder for `ImageRepeat`
+* Added encoder / decoder for `HitTestBehavior`
+* Added encoder / decoder for `Rect`
+
+
 ## [1.0.4] - June 21st, 2020
 
 * Added more value option to `ThemeDecoder.decodeEdgeInsetsGeometry`

@@ -148,6 +148,14 @@ Plain string that must be one of:
 * `start` ==> `DragStartBehavior.start`
 
 
+**FilterQuality**
+Plain string that must be one of:
+* `high` ==> `FilterQuality.high`
+* `low` ==> `FilterQuality.low`
+* `medium` ==> `FilterQuality.medium`
+* `none` ==> `FilterQuality.none`
+
+
 **FlexFit**
 
 Plain string that must be one of:
@@ -210,6 +218,23 @@ Requires a `type` value that must be one of:
 * `linear` ==> `LinearGradient`
 * `radial` ==> `RadialGradient`
 * `sweep` ==> `SweepGradient`
+
+
+**HitTestBehavior**
+
+Plain string that must be one of:
+* `deferToChild` ==> `HitTestBehavior.deferToChild`
+* `opaque` ==> `HitTestBehavior.opaque`
+* `translucent` ==> `HitTestBehavior.translucent`
+
+
+**ImageRepeat**
+
+Plain string that must be one of:
+* `noRepeat` ==> `ImageRepeat.noRepeat`
+* `repeat` ==> `ImageRepeat.repeat`
+* `repeatX` ==> `ImageRepeat.repeatX`
+* `repeatY` ==> `ImageRepeat.repeatY`
 
 
 **InputBorder**
@@ -314,6 +339,19 @@ Plain string that must be one of:
 
 Requires a `type` value that must be one of:
 * `paddle` ==> `PaddleRangeSliderValueIndicatorShape`
+
+
+**Rect**
+
+Requires a `type` value that must be one of:
+
+* `center` ==> `Rect.fromCenter`
+* `circle` ==> `Rect.fromCircle`
+* `largest` ==> `Rect.largest`
+* `ltrb` ==> `Rect.fromLTRB`
+* `ltwh` ==> `Rect.fromLTWH`
+* `points` ==> `Rect.fromPoints`
+* `zero` ==> `Rect.zero`
 
 
 **ScrollPhysics**

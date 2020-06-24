@@ -426,6 +426,19 @@ void main() {
       decoded,
       entry,
     );
+
+    expect(
+      ThemeDecoder.decodeBoxBorder({
+        'color': '#000',
+        'style': 'solid',
+        'width': 1,
+      }),
+      Border.all(
+        color: Color(0xff000000),
+        style: BorderStyle.solid,
+        width: 1.0,
+      ),
+    );
   });
 
   test('BoxConstraints', () {

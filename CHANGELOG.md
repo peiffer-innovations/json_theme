@@ -1,3 +1,9 @@
+## [1.0.6] - June 23rd, 2020
+
+* Fix for `IconData`
+* Added secondary decoding option for `BoxBorder`
+
+
 ## [1.0.5] - June 22nd, 2020
 
 * Added encoder / decoder for `FilterQuality`

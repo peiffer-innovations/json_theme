@@ -461,8 +461,8 @@ class ThemeDecoder {
 
     if (value != null) {
       result = BorderSide(
-        color: decodeColor(value['color']),
-        style: decodeBorderStyle(value['style']),
+        color: decodeColor(value['color']) ?? #ff000000,
+        style: decodeBorderStyle(value['style']) ?? BorderStyle.solid,
         width: JsonClass.parseDouble(value['width'], 1.0),
       );
     }
@@ -615,8 +615,14 @@ class ThemeDecoder {
   }
 
   /// Decodes the given [value] into a [BoxBorder].  If the value is [null]
-  /// then [null] will be returned.  Otherwise, this expects a Map like value
-  /// that in JSON would look like:
+  /// then [null] will be returned.
+  ///
+  /// This accepts two separate types of JSON.  If the [value] has any of:
+  /// "color", "style", "width", then this will apply the border to all sides
+  /// using [Border.all] and passing in the results from [decodeVorderSide].
+  ///
+  /// If none of the above attributes are found, this expects a full object that
+  /// defines all sides as follows:
   ///
   /// ```json
   /// {
@@ -633,12 +639,23 @@ class ThemeDecoder {
     BoxBorder result;
 
     if (value != null) {
-      result = Border(
-        bottom: decodeBorderSide(value['bottom']),
-        left: decodeBorderSide(value['left']),
-        right: decodeBorderSide(value['right']),
-        top: decodeBorderSide(value['top']),
-      );
+      if (value['color'] != null ||
+          value['style'] != null ||
+          value['width'] != null) {
+        var side = decodeBorderSide(value);
+        result = Border.all(
+          color: side.color,
+          style: side.style,
+          width: side.width,
+        );
+      } else {
+        result = Border(
+          bottom: decodeBorderSide(value['bottom']),
+          left: decodeBorderSide(value['left']),
+          right: decodeBorderSide(value['right']),
+          top: decodeBorderSide(value['top']),
+        );
+      }
     }
 
     return result;
@@ -706,7 +723,7 @@ class ThemeDecoder {
         boxShadow: _decodeDynamicList(value['boxShadow'], decodeBoxShadow),
         color: decodeColor(value['color']),
         gradient: decodeGradient(value['gradient']),
-        shape: decodeBoxShape(value['shape']),
+        shape: decodeBoxShape(value['shape']) ?? BoxShape.rectangle,
       );
     }
 
@@ -2034,9 +2051,7 @@ class ThemeDecoder {
         JsonClass.parseInt(value['codePoint']),
         fontFamily: value['fontFamily'],
         fontPackage: value['fontPackage'],
-        matchTextDirection: value['matchTextDirection'] == null
-            ? null
-            : JsonClass.parseBool(value['matchTextDirection']),
+        matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
       );
     }
 

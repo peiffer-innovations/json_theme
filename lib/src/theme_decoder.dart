@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -333,9 +334,16 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given value to a [BorderRadius].  The expected structure
-  /// depends on the value passed in for the "type" attribute.  The expected
-  /// "type" values must be one of:
+  /// Decodes the given value to a [BorderRadius].  The [value] may be a
+  /// [String], an  [int], a [double], or a Map-like object.
+  ///
+  /// When the [value] is a [String], [int], or [double] then the value will be
+  /// parsed via [JsonClass.parseDouble] and the result will be passed to
+  /// [BorderRadius.circular].
+  ///
+  /// If the [value] is a Map-like object then the expected structure depends on
+  /// on the value passed in for the "type" attribute.  The expected "type"
+  /// values must be one of:
   ///  * `all`
   ///  * `circular`
   ///  * `horizontal`
@@ -390,52 +398,58 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeRadius]
   static BorderRadius decodeBorderRadius(dynamic value) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'BorderRadius',
-      [
-        'all',
-        'circular',
-        'horizontal',
-        'only',
-        'vertical',
-      ],
-      value == null ? null : value['type'],
-    );
-
+    var radius = JsonClass.parseDouble(value);
     BorderRadius result;
 
-    if (value != null) {
-      String type = value['type'];
-      switch (type) {
-        case 'all':
-          result = BorderRadius.all(decodeRadius(value['radius']));
-          break;
-        case 'circular':
-          result = BorderRadius.circular(
-            JsonClass.parseDouble(value['radius']),
-          );
-          break;
-        case 'horizontal':
-          result = BorderRadius.horizontal(
-            left: decodeRadius(value['left']),
-            right: decodeRadius(value['right']),
-          );
-          break;
-        case 'only':
-          result = BorderRadius.only(
-            bottomLeft: decodeRadius(value['bottomLeft']),
-            bottomRight: decodeRadius(value['bottomRight']),
-            topLeft: decodeRadius(value['topLeft']),
-            topRight: decodeRadius(value['topRight']),
-          );
-          break;
-        case 'vertical':
-          result = BorderRadius.vertical(
-            bottom: decodeRadius(value['bottom']),
-            top: decodeRadius(value['top']),
-          );
-          break;
+    if (radius != null) {
+      result = BorderRadius.circular(radius);
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'BorderRadius',
+        [
+          'all',
+          'circular',
+          'horizontal',
+          'only',
+          'vertical',
+        ],
+        value == null ? null : value['type'],
+      );
+
+      if (value != null) {
+        String type = value['type'];
+        switch (type) {
+          case 'all':
+            result =
+                BorderRadius.all(decodeRadius(value['radius']) ?? Radius.zero);
+            break;
+          case 'circular':
+            result = BorderRadius.circular(
+              JsonClass.parseDouble(value['radius']),
+            );
+            break;
+          case 'horizontal':
+            result = BorderRadius.horizontal(
+              left: decodeRadius(value['left']) ?? Radius.zero,
+              right: decodeRadius(value['right']) ?? Radius.zero,
+            );
+            break;
+          case 'only':
+            result = BorderRadius.only(
+              bottomLeft: decodeRadius(value['bottomLeft']) ?? Radius.zero,
+              bottomRight: decodeRadius(value['bottomRight']) ?? Radius.zero,
+              topLeft: decodeRadius(value['topLeft']) ?? Radius.zero,
+              topRight: decodeRadius(value['topRight']) ?? Radius.zero,
+            );
+            break;
+          case 'vertical':
+            result = BorderRadius.vertical(
+              bottom: decodeRadius(value['bottom']) ?? Radius.zero,
+              top: decodeRadius(value['top']) ?? Radius.zero,
+            );
+            break;
+        }
       }
     }
 
@@ -650,10 +664,10 @@ class ThemeDecoder {
         );
       } else {
         result = Border(
-          bottom: decodeBorderSide(value['bottom']),
-          left: decodeBorderSide(value['left']),
-          right: decodeBorderSide(value['right']),
-          top: decodeBorderSide(value['top']),
+          bottom: decodeBorderSide(value['bottom']) ?? BorderSide.none,
+          left: decodeBorderSide(value['left']) ?? BorderSide.none,
+          right: decodeBorderSide(value['right']) ?? BorderSide.none,
+          top: decodeBorderSide(value['top']) ?? BorderSide.none,
         );
       }
     }
@@ -791,10 +805,10 @@ class ThemeDecoder {
 
     if (value != null) {
       result = BoxShadow(
-        blurRadius: JsonClass.parseDouble(value['blurRadius']),
-        color: decodeColor(value['color']),
-        offset: decodeOffset(value['offset']),
-        spreadRadius: JsonClass.parseDouble(value['spreadRadius']),
+        blurRadius: JsonClass.parseDouble(value['blurRadius'], 0),
+        color: decodeColor(value['color']) ?? const Color(0xFF000000),
+        offset: decodeOffset(value['offset']) ?? Offset.zero,
+        spreadRadius: JsonClass.parseDouble(value['spreadRadius'], 0),
       );
     }
 
@@ -1475,8 +1489,8 @@ class ThemeDecoder {
         assert(value.length == 2 || value.length == 4);
         if (value.length == 2) {
           result = EdgeInsets.symmetric(
-            horizontal: JsonClass.parseDouble(value[0]),
-            vertical: JsonClass.parseDouble(value[1]),
+            horizontal: JsonClass.parseDouble(value[0], 0),
+            vertical: JsonClass.parseDouble(value[1], 0),
           );
         } else if (value.length == 4) {
           result = EdgeInsets.fromLTRB(
@@ -1928,52 +1942,58 @@ class ThemeDecoder {
       switch (type) {
         case 'linear':
           result = LinearGradient(
-            begin: decodeAlignment(value['begin']),
+            begin: decodeAlignment(value['begin']) ?? Alignment.centerLeft,
             colors: _decodeStringList<Color>(
               value['colors'],
               decodeColor,
             ),
-            end: decodeAlignment(value['end']),
+            end: decodeAlignment(value['end']) ?? Alignment.centerRight,
             stops: _decodeDynamicList<double>(
               value['stops'],
               (value) => JsonClass.parseDouble(value),
             ),
-            tileMode: decodeTileMode(value['tileMode']),
+            tileMode: decodeTileMode(value['tileMode']) ?? TileMode.clamp,
             transform: decodeGradientTransform(value['transform']),
           );
           break;
         case 'radial':
           result = RadialGradient(
-            center: decodeAlignment(value['center']),
+            center: decodeAlignment(value['center']) ?? Alignment.center,
             colors: _decodeStringList<Color>(
               value['colors'],
               decodeColor,
             ),
             focal: decodeAlignment(value['focal']),
-            focalRadius: JsonClass.parseDouble(value['focalRadius']),
-            radius: JsonClass.parseDouble(value['radius']),
+            focalRadius: JsonClass.parseDouble(value['focalRadius'], 0.0),
+            radius: JsonClass.parseDouble(value['radius'], 0.5),
             stops: _decodeDynamicList<double>(
               value['stops'],
               (value) => JsonClass.parseDouble(value),
             ),
-            tileMode: decodeTileMode(value['tileMode']),
+            tileMode: decodeTileMode(value['tileMode']) ?? TileMode.clamp,
             transform: decodeGradientTransform(value['transform']),
           );
           break;
         case 'sweep':
           result = SweepGradient(
-            center: decodeAlignment(value['center']),
+            center: decodeAlignment(value['center']) ?? Alignment.center,
             colors: _decodeStringList<Color>(
               value['colors'],
               decodeColor,
             ),
-            endAngle: JsonClass.parseDouble(value['endAngle']),
-            startAngle: JsonClass.parseDouble(value['startAngle']),
+            endAngle: JsonClass.parseDouble(
+              value['endAngle'],
+              math.pi * 2,
+            ),
+            startAngle: JsonClass.parseDouble(
+              value['startAngle'],
+              0.0,
+            ),
             stops: _decodeDynamicList<double>(
               value['stops'],
               (value) => JsonClass.parseDouble(value),
             ),
-            tileMode: decodeTileMode(value['tileMode']),
+            tileMode: decodeTileMode(value['tileMode']) ?? TileMode.clamp,
             transform: decodeGradientTransform(value['transform']),
           );
           break;
@@ -2235,8 +2255,9 @@ class ThemeDecoder {
         fillColor: decodeColor(value['fillColor']),
         filled: JsonClass.parseBool(value['filled']),
         floatingLabelBehavior: decodeFloatingLabelBehavior(
-          value['floatingLabelBehavior'],
-        ),
+              value['floatingLabelBehavior'],
+            ) ??
+            FloatingLabelBehavior.auto,
         focusColor: decodeColor(value['focusColor']),
         focusedBorder: decodeInputBorder(value['focusedBorder']),
         focusedErrorBorder: decodeInputBorder(value['focusedErrorBorder']),
@@ -2686,8 +2707,8 @@ class ThemeDecoder {
 
     if (value != null) {
       result = Offset(
-        JsonClass.parseDouble(value['dx']),
-        JsonClass.parseDouble(value['dy']),
+        JsonClass.parseDouble(value['dx'], 0),
+        JsonClass.parseDouble(value['dy'], 0),
       );
     }
 
@@ -2754,13 +2775,18 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to a [Radius].  This expects a "type" attribute
-  /// to be one of:
+  /// Decodes the given [value] to a [Radius].  This can be a [String], [int],
+  /// [double], or an object.  If this is an object, there must be a "type"
+  /// attribute that is one of:
   ///  * `circular`
   ///  * `elliptical`
   ///  * `zero`
   ///
-  /// The structure of the other attributes depends on the "type".
+  /// When passed in as a [String], [int], or [double] then this will use
+  /// [JsonClass.parseDouble] to parse the number to send to [Radius.circular].
+  ///
+  /// Otherwise, if this is an object then the structure of the other attributes
+  /// depends on the "type".
   ///
   /// Type: `circular`
   /// ```json
@@ -2786,36 +2812,42 @@ class ThemeDecoder {
   /// }
   /// ```
   static Radius decodeRadius(dynamic value) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'Radius.type',
-      [
-        'circular',
-        'elliptical',
-        'zero',
-      ],
-      value == null ? null : value['type'],
-    );
     Radius result;
+    var radius = JsonClass.parseDouble(value);
 
-    if (value != null) {
-      String type = value['type'];
+    if (radius != null) {
+      result = Radius.circular(radius);
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'Radius.type',
+        [
+          'circular',
+          'elliptical',
+          'zero',
+        ],
+        value == null ? null : value['type'],
+      );
 
-      switch (type) {
-        case 'circular':
-          result = Radius.circular(JsonClass.parseDouble(value['radius']));
-          break;
+      if (value != null) {
+        String type = value['type'];
 
-        case 'elliptical':
-          result = Radius.elliptical(
-            JsonClass.parseDouble(value['x']),
-            JsonClass.parseDouble(value['y']),
-          );
-          break;
+        switch (type) {
+          case 'circular':
+            result = Radius.circular(JsonClass.parseDouble(value['radius']));
+            break;
 
-        case 'zero':
-          result = Radius.zero;
-          break;
+          case 'elliptical':
+            result = Radius.elliptical(
+              JsonClass.parseDouble(value['x'], 0),
+              JsonClass.parseDouble(value['y'], 0),
+            );
+            break;
+
+          case 'zero':
+            result = Radius.zero;
+            break;
+        }
       }
     }
 
@@ -3294,25 +3326,27 @@ class ThemeDecoder {
       switch (type) {
         case 'circle':
           result = CircleBorder(
-            side: decodeBorderSide(value['side']),
+            side: decodeBorderSide(value['side'] ?? BorderSide.none),
           );
           break;
 
         case 'rectangle':
           result = ContinuousRectangleBorder(
             borderRadius: decodeBorderRadius(
-              value['borderRadius'],
-            ),
-            side: decodeBorderSide(value['side']),
+                  value['borderRadius'],
+                ) ??
+                BorderRadius.zero,
+            side: decodeBorderSide(value['side']) ?? BorderSide.none,
           );
           break;
 
         case 'rounded':
           result = RoundedRectangleBorder(
             borderRadius: decodeBorderRadius(
-              value['borderRadius'],
-            ),
-            side: decodeBorderSide(value['side']),
+                  value['borderRadius'],
+                ) ??
+                BorderRadius.zero,
+            side: decodeBorderSide(value['side']) ?? BorderSide.none,
           );
           break;
       }
@@ -4010,10 +4044,10 @@ class ThemeDecoder {
     if (value != null) {
       result = TextHeightBehavior(
         applyHeightToFirstAscent: value['applyHeightToFirstAscent'] == null
-            ? null
+            ? true
             : JsonClass.parseBool(value['applyHeightToLastDescent']),
         applyHeightToLastDescent: value['applyHeightToLastDescent'] == null
-            ? null
+            ? true
             : JsonClass.parseBool(value['applyHeightToLastDescent']),
       );
     }

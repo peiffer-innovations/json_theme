@@ -236,6 +236,8 @@ void main() {
       entry,
       decoded,
     );
+
+    expect(ThemeDecoder.decodeBorderRadius(16), BorderRadius.circular(16));
   });
 
   test('BorderSide', () {
@@ -1175,6 +1177,53 @@ void main() {
     expect(
       decoded,
       entry,
+    );
+  });
+
+  test('CrossAxisAlignment', () {
+    expect(ThemeDecoder.decodeCrossAxisAlignment(null), null);
+    expect(ThemeEncoder.encodeCrossAxisAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeCrossAxisAlignment('baseline'),
+      CrossAxisAlignment.baseline,
+    );
+    expect(
+      ThemeDecoder.decodeCrossAxisAlignment('center'),
+      CrossAxisAlignment.center,
+    );
+    expect(
+      ThemeDecoder.decodeCrossAxisAlignment('end'),
+      CrossAxisAlignment.end,
+    );
+    expect(
+      ThemeDecoder.decodeCrossAxisAlignment('start'),
+      CrossAxisAlignment.start,
+    );
+    expect(
+      ThemeDecoder.decodeCrossAxisAlignment('stretch'),
+      CrossAxisAlignment.stretch,
+    );
+
+    expect(
+      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.baseline),
+      'baseline',
+    );
+    expect(
+      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.end),
+      'end',
+    );
+    expect(
+      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.start),
+      'start',
+    );
+    expect(
+      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.stretch),
+      'stretch',
     );
   });
 
@@ -2936,6 +2985,8 @@ void main() {
       }),
       Radius.zero,
     );
+
+    expect(ThemeDecoder.decodeRadius(16), Radius.circular(16));
   });
 
   test('RangeSliderThumbShape', () {

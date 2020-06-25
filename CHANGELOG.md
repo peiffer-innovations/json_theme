@@ -1,3 +1,8 @@
+## [1.0.7] - June 24th, 2020
+
+* Fixed more default values in `ThemeDecoder`
+
+
 ## [1.0.6] - June 23rd, 2020
 
 * Fix for `IconData`

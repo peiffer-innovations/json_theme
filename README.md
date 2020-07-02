@@ -396,6 +396,20 @@ Plain string that must be one of:
 * `rounded` ==> `RoundedRectSliderTrackShape`
 
 
+**SmartDashesType**
+
+Plain string that must be one of:
+* `disabled` ==> `SmartDashesType.disabled`
+* `enabled` ==> `SmartDashesType.enabled`
+
+
+**SmartQuotesType**
+
+Plain string that must be one of:
+* `disabled` ==> `SmartQuotesType.disabled`
+* `enabled` ==> `SmartQuotesType.enabled`
+
+
 **SnackBarBehavior**
 
 Plain string that must be one of:
@@ -440,11 +454,28 @@ Plain string that must be one of:
 * `start` ==> `TextAlign.start`
 
 
+**TextAlignVertical**
+
+Plain string that must be one of:
+* `bottom` ==> `TextAlignVertical.bottom`
+* `center` ==> `TextAlignVertical.center`
+* `top` ==> `TextAlignVertical.top`
+
+
 **TextBaseline**
 
 Plain string that must be one of:
 * `alphabetic` ==> `TextBaseline.alphabetic`
 * `ideographic` ==> `TextBaseline.ideographic`
+
+
+**TextCapitalization**
+
+Plain string that must be one of:
+* `characters` ==> `TextCapitalization.characters`
+* `none` ==> `TextCapitalization.none`
+* `sentences` ==> `TextCapitalization.sentences`
+* `words` ==> `TextCapitalization.words`
 
 
 **TextDecoration**
@@ -471,6 +502,37 @@ Plain string that must be one of:
 Plain string that must be one of:
 * `ltr` ==> `TextDirection.ltr`
 * `rtl` ==> `TextDirection.rtl`
+
+
+**TextInputAction**
+
+Plain string that must be one of:
+* `continueAction` ==> `TextInputAction.continueAction`
+* `done` ==> `TextInputAction.done`
+* `emergencyCall` ==> `TextInputAction.emergencyCall`
+* `go` ==> `TextInputAction.go`
+* `join` ==> `TextInputAction.join`
+* `newline` ==> `TextInputAction.newline`
+* `next` ==> `TextInputAction.next`
+* `none` ==> `TextInputAction.none`
+* `previous` ==> `TextInputAction.previous`
+* `route` ==> `TextInputAction.route`
+* `search` ==> `TextInputAction.search`
+* `send` ==> `TextInputAction.send`
+* `unspecified` ==> `TextInputAction.unspecified`
+
+
+**TextInputType**
+
+Plain string that must be one of:
+* `datetime` ==> `TextInputType.datetime`
+* `emailAddress` ==> `TextInputType.emailAddress`
+* `multiline` ==> `TextInputType.multiline`
+* `number` ==> `TextInputType.number`
+* `phone` ==> `TextInputType.phone`
+* `text` ==> `TextInputType.text`
+* `url` ==> `TextInputType.url`
+* `visiblePassword` ==> `TextInputType.visiblePassword`
 
 
 **TextOverflow**

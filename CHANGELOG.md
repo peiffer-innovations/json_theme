@@ -1,3 +1,14 @@
+## [1.0.8] - July 2nd, 2020
+
+* Added decoders for...
+  * `SmartDashesType`
+  * `SmartQuotesType`
+  * `TextAlignVertical`
+  * `TextCapitalization`
+  * `TextInputAction`
+  * `TextInputType`
+
+
 ## [1.0.7] - June 24th, 2020
 
 * Fixed more default values in `ThemeDecoder`

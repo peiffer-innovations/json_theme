@@ -2885,6 +2885,52 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `disabled`
+  ///  * `enabled`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeSmartDashesType(SmartDashesType value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case SmartDashesType.disabled:
+          result = 'disabled';
+          break;
+        case SmartDashesType.enabled:
+          result = 'enabled';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `disabled`
+  ///  * `enabled`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeSmartQuotesType(SmartQuotesType value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case SmartQuotesType.disabled:
+          result = 'disabled';
+          break;
+        case SmartQuotesType.enabled:
+          result = 'enabled';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `fixed`
   ///  * `floating`
   ///
@@ -3153,6 +3199,33 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `bottom`
+  ///  * `center`
+  ///  * `top`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextAlignVertical(TextAlignVertical value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextAlignVertical.bottom:
+          result = 'bottom';
+          break;
+        case TextAlignVertical.center:
+          result = 'center';
+          break;
+        case TextAlignVertical.top:
+          result = 'top';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `alphabetic`
   ///  * `ideographic`
   ///
@@ -3168,6 +3241,40 @@ class ThemeEncoder {
 
         case TextBaseline.ideographic:
           result = 'ideographic';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `characters`
+  ///  * `none`
+  ///  * `sentences`
+  ///  * `words`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextCapitalization(TextCapitalization value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextCapitalization.characters:
+          result = 'characters';
+          break;
+
+        case TextCapitalization.none:
+          result = 'none';
+          break;
+
+        case TextCapitalization.sentences:
+          result = 'sentences';
+          break;
+
+        case TextCapitalization.words:
+          result = 'words';
           break;
       }
     }
@@ -3257,6 +3364,121 @@ class ThemeEncoder {
         case TextDirection.rtl:
           result = 'rtl';
           break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a String representation.  Supported values are:
+  ///  * `continueAction`
+  ///  * `done`
+  ///  * `emergencyCall`
+  ///  * `go`
+  ///  * `join`
+  ///  * `newline`
+  ///  * `next`
+  ///  * `none`
+  ///  * `previous`
+  ///  * `route`
+  ///  * `search`
+  ///  * `send`
+  ///  * `unspecified`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextInputAction(TextInputAction value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TextInputAction.continueAction:
+          result = 'continueAction';
+          break;
+
+        case TextInputAction.done:
+          result = 'done';
+          break;
+
+        case TextInputAction.emergencyCall:
+          result = 'emergencyCall';
+          break;
+
+        case TextInputAction.go:
+          result = 'go';
+          break;
+
+        case TextInputAction.join:
+          result = 'join';
+          break;
+
+        case TextInputAction.newline:
+          result = 'newline';
+          break;
+
+        case TextInputAction.next:
+          result = 'next';
+          break;
+
+        case TextInputAction.none:
+          result = 'none';
+          break;
+
+        case TextInputAction.previous:
+          result = 'previous';
+          break;
+
+        case TextInputAction.route:
+          result = 'route';
+          break;
+
+        case TextInputAction.search:
+          result = 'search';
+          break;
+
+        case TextInputAction.send:
+          result = 'send';
+          break;
+
+        case TextInputAction.unspecified:
+          result = 'unspecified';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a String representation.  Supported values are:
+  ///  * `datetime`
+  ///  * `emailAddress`
+  ///  * `multiline`
+  ///  * `number`
+  ///  * `phone`
+  ///  * `text`
+  ///  * `url`
+  ///  * `visiblePassword`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTextInputType(TextInputType value) {
+    String result;
+
+    if (value != null) {
+      if (value.index == TextInputType.datetime.index) {
+        result = 'datetime';
+      } else if (value.index == TextInputType.emailAddress.index) {
+        result = 'emailAddress';
+      } else if (value.index == TextInputType.multiline.index) {
+        result = 'multiline';
+      } else if (value.index == TextInputType.number.index) {
+        result = 'number';
+      } else if (value.index == TextInputType.phone.index) {
+        result = 'phone';
+      } else if (value.index == TextInputType.text.index) {
+        result = 'text';
+      } else if (value.index == TextInputType.url.index) {
+        result = 'url';
+      } else if (value.index == TextInputType.visiblePassword.index) {
+        result = 'visiblePassword';
       }
     }
 
@@ -3739,6 +3961,31 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON compatible Map.  The returned returned
+  /// value will have the following structure.
+  ///
+  /// ```json
+  /// {
+  ///   "copy": <bool>,
+  ///   "cut": <bool>,
+  ///   "paste": <bool>,
+  ///   "selectAll": <bool>
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeToolbarOptions(ToolbarOptions value) {
+    Map<String, dynamic> result;
+    if (value != null) {
+      result = {
+        'copy': value.copy,
+        'cut': value.cut,
+        'paste': value.paste,
+        'selectAll': value.selectAll,
+      };
+    }
+
+    return result;
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned

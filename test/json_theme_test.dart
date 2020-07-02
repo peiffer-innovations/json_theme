@@ -3851,6 +3851,47 @@ void main() {
     );
   });
 
+  test('SmartDashesType', () {
+    expect(ThemeDecoder.decodeSmartDashesType(null), null);
+    expect(ThemeEncoder.encodeSmartDashesType(null), null);
+
+    expect(
+      ThemeDecoder.decodeSmartDashesType('disabled'),
+      SmartDashesType.disabled,
+    );
+    expect(
+      ThemeDecoder.decodeSmartDashesType('enabled'),
+      SmartDashesType.enabled,
+    );
+
+    expect(ThemeEncoder.encodeSmartDashesType(SmartDashesType.disabled),
+        'disabled');
+    expect(
+      ThemeEncoder.encodeSmartDashesType(SmartDashesType.enabled),
+      'enabled',
+    );
+  });
+
+  test('SmartQuotesType', () {
+    expect(ThemeDecoder.decodeSmartQuotesType(null), null);
+    expect(ThemeEncoder.encodeSmartQuotesType(null), null);
+
+    expect(
+      ThemeDecoder.decodeSmartQuotesType('disabled'),
+      SmartQuotesType.disabled,
+    );
+    expect(
+      ThemeDecoder.decodeSmartQuotesType('enabled'),
+      SmartQuotesType.enabled,
+    );
+
+    expect(ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.disabled),
+        'disabled');
+    expect(
+      ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.enabled),
+      'enabled',
+    );
+  });
   test('StackFit', () {
     expect(ThemeDecoder.decodeStackFit(null), null);
     expect(ThemeEncoder.encodeStackFit(null), null);
@@ -4052,6 +4093,37 @@ void main() {
     expect(ThemeEncoder.encodeTextAlign(TextAlign.start), 'start');
   });
 
+  test('TextAlignVertical', () {
+    expect(ThemeDecoder.decodeTextAlignVertical(null), null);
+    expect(ThemeEncoder.encodeTextAlignVertical(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextAlignVertical('bottom'),
+      TextAlignVertical.bottom,
+    );
+    expect(
+      ThemeDecoder.decodeTextAlignVertical('center'),
+      TextAlignVertical.center,
+    );
+    expect(
+      ThemeDecoder.decodeTextAlignVertical('top'),
+      TextAlignVertical.top,
+    );
+
+    expect(
+      ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.bottom),
+      'bottom',
+    );
+    expect(
+      ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.top),
+      'top',
+    );
+  });
+
   test('TextBaseline', () {
     expect(ThemeDecoder.decodeTextBaseline(null), null);
     expect(ThemeEncoder.encodeTextBaseline(null), null);
@@ -4072,6 +4144,45 @@ void main() {
     expect(
       ThemeEncoder.encodeTextBaseline(TextBaseline.ideographic),
       'ideographic',
+    );
+  });
+
+  test('TextCapitalization', () {
+    expect(ThemeDecoder.decodeTextCapitalization(null), null);
+    expect(ThemeEncoder.encodeTextCapitalization(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextCapitalization('characters'),
+      TextCapitalization.characters,
+    );
+    expect(
+      ThemeDecoder.decodeTextCapitalization('none'),
+      TextCapitalization.none,
+    );
+    expect(
+      ThemeDecoder.decodeTextCapitalization('sentences'),
+      TextCapitalization.sentences,
+    );
+    expect(
+      ThemeDecoder.decodeTextCapitalization('words'),
+      TextCapitalization.words,
+    );
+
+    expect(
+      ThemeEncoder.encodeTextCapitalization(TextCapitalization.characters),
+      'characters',
+    );
+    expect(
+      ThemeEncoder.encodeTextCapitalization(TextCapitalization.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.encodeTextCapitalization(TextCapitalization.sentences),
+      'sentences',
+    );
+    expect(
+      ThemeEncoder.encodeTextCapitalization(TextCapitalization.words),
+      'words',
     );
   });
 
@@ -4207,6 +4318,188 @@ void main() {
     expect(
       decoded,
       entry,
+    );
+  });
+
+  test('TextInputAction', () {
+    expect(ThemeDecoder.decodeTextInputAction(null), null);
+    expect(ThemeEncoder.encodeTextInputAction(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextInputAction('continueAction'),
+      TextInputAction.continueAction,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('done'),
+      TextInputAction.done,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('emergencyCall'),
+      TextInputAction.emergencyCall,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('go'),
+      TextInputAction.go,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('join'),
+      TextInputAction.join,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('newline'),
+      TextInputAction.newline,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('next'),
+      TextInputAction.next,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('none'),
+      TextInputAction.none,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('previous'),
+      TextInputAction.previous,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('route'),
+      TextInputAction.route,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('search'),
+      TextInputAction.search,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('send'),
+      TextInputAction.send,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputAction('unspecified'),
+      TextInputAction.unspecified,
+    );
+
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.continueAction),
+      'continueAction',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.done),
+      'done',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.emergencyCall),
+      'emergencyCall',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.go),
+      'go',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.join),
+      'join',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.newline),
+      'newline',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.next),
+      'next',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.previous),
+      'previous',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.route),
+      'route',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.search),
+      'search',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.send),
+      'send',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputAction(TextInputAction.unspecified),
+      'unspecified',
+    );
+  });
+
+  test('TextInnputType', () {
+    expect(ThemeDecoder.decodeTextInputType(null), null);
+    expect(ThemeEncoder.encodeTextInputType(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextInputType('datetime'),
+      TextInputType.datetime,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('emailAddress'),
+      TextInputType.emailAddress,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('multiline'),
+      TextInputType.multiline,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('number'),
+      TextInputType.number,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('phone'),
+      TextInputType.phone,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('text'),
+      TextInputType.text,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('url'),
+      TextInputType.url,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('visiblePassword'),
+      TextInputType.visiblePassword,
+    );
+
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.datetime),
+      'datetime',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.emailAddress),
+      'emailAddress',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.multiline),
+      'multiline',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.number),
+      'number',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.phone),
+      'phone',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.text),
+      'text',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.url),
+      'url',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.visiblePassword),
+      'visiblePassword',
     );
   });
 
@@ -5438,6 +5731,45 @@ void main() {
     expect(
       decoded,
       entry,
+    );
+  });
+
+  test('ToolbarOptions', () {
+    expect(ThemeDecoder.decodeToolbarOptions(null), null);
+    expect(ThemeEncoder.encodeToolbarOptions(null), null);
+
+    var entry = ToolbarOptions(
+      copy: true,
+      cut: true,
+      paste: true,
+      selectAll: true,
+    );
+
+    var encoded = ThemeEncoder.encodeToolbarOptions(entry);
+    var decoded = ThemeDecoder.decodeToolbarOptions(encoded);
+
+    expect(encoded, {
+      'copy': true,
+      'cut': true,
+      'paste': true,
+      'selectAll': true,
+    });
+
+    expect(
+      decoded.copy,
+      entry.copy,
+    );
+    expect(
+      decoded.cut,
+      entry.cut,
+    );
+    expect(
+      decoded.paste,
+      entry.paste,
+    );
+    expect(
+      decoded.selectAll,
+      entry.selectAll,
     );
   });
 

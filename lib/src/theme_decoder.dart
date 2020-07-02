@@ -3585,6 +3585,62 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a [value] to a [SmartDashesType].  Supported values are:
+  ///  * `disabled`
+  ///  * `enabled`
+  static SmartDashesType decodeSmartDashesType(String value) {
+    _checkSupported(
+      'SmartDashesType',
+      [
+        'disabled',
+        'enabled',
+      ],
+      value,
+    );
+    SmartDashesType result;
+
+    if (value != null) {
+      switch (value) {
+        case 'disabled':
+          result = SmartDashesType.disabled;
+          break;
+        case 'enabled':
+          result = SmartDashesType.enabled;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes a [value] to a [SmartQuotesType].  Supported values are:
+  ///  * `disabled`
+  ///  * `enabled`
+  static SmartQuotesType decodeSmartQuotesType(String value) {
+    _checkSupported(
+      'SmartQuotesType',
+      [
+        'disabled',
+        'enabled',
+      ],
+      value,
+    );
+    SmartQuotesType result;
+
+    if (value != null) {
+      switch (value) {
+        case 'disabled':
+          result = SmartQuotesType.disabled;
+          break;
+        case 'enabled':
+          result = SmartQuotesType.enabled;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes a [value] to a [SnackBarBehavior].  Supported values are:
   ///  * `fixed`
   ///  * `floating`
@@ -3882,6 +3938,30 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [TextAlignVertical].  Supported values are:
+  ///  * `bottom`
+  ///  * `center`
+  ///  * `top`
+  static TextAlignVertical decodeTextAlignVertical(String value) {
+    TextAlignVertical result;
+
+    if (value != null) {
+      switch (value) {
+        case 'bottom':
+          result = TextAlignVertical.bottom;
+          break;
+        case 'center':
+          result = TextAlignVertical.center;
+          break;
+        case 'top':
+          result = TextAlignVertical.top;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [TextBaseline].  Supported values are:
   ///  * `alphabetic`
   ///  * `ideographic`
@@ -3904,6 +3984,47 @@ class ThemeDecoder {
 
         case 'ideographic':
           result = TextBaseline.ideographic;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextCapitalization].  Supported values are:
+  ///  * `characters`
+  ///  * `none`
+  ///  * `sentences`
+  ///  * `words`
+  static TextCapitalization decodeTextCapitalization(String value) {
+    _checkSupported(
+      'TextCapitalization',
+      [
+        'characters',
+        'none',
+        'sentences',
+        'words',
+      ],
+      value,
+    );
+    TextCapitalization result;
+
+    if (value != null) {
+      switch (value) {
+        case 'characters':
+          result = TextCapitalization.characters;
+          break;
+
+        case 'none':
+          result = TextCapitalization.none;
+          break;
+
+        case 'sentences':
+          result = TextCapitalization.sentences;
+          break;
+
+        case 'words':
+          result = TextCapitalization.words;
           break;
       }
     }
@@ -4050,6 +4171,166 @@ class ThemeDecoder {
             ? true
             : JsonClass.parseBool(value['applyHeightToLastDescent']),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextInputAction].  Supported values are:
+  ///  * `continueAction`
+  ///  * `done`
+  ///  * `emergencyCall`
+  ///  * `go`
+  ///  * `join`
+  ///  * `newline`
+  ///  * `next`
+  ///  * `none`
+  ///  * `previous`
+  ///  * `route`
+  ///  * `search`
+  ///  * `send`
+  ///  * `unspecified`
+  static TextInputAction decodeTextInputAction(String value) {
+    _checkSupported(
+      'TextInputAction',
+      [
+        'continueAction',
+        'done',
+        'emergencyCall',
+        'go',
+        'join',
+        'newline',
+        'next',
+        'none',
+        'previous',
+        'route',
+        'search',
+        'send',
+        'unspecified',
+      ],
+      value,
+    );
+    TextInputAction result;
+
+    if (value != null) {
+      switch (value) {
+        case 'continueAction':
+          result = TextInputAction.continueAction;
+          break;
+
+        case 'done':
+          result = TextInputAction.done;
+          break;
+
+        case 'emergencyCall':
+          result = TextInputAction.emergencyCall;
+          break;
+
+        case 'go':
+          result = TextInputAction.go;
+          break;
+
+        case 'join':
+          result = TextInputAction.join;
+          break;
+
+        case 'newline':
+          result = TextInputAction.newline;
+          break;
+
+        case 'next':
+          result = TextInputAction.next;
+          break;
+
+        case 'none':
+          result = TextInputAction.none;
+          break;
+
+        case 'previous':
+          result = TextInputAction.previous;
+          break;
+
+        case 'route':
+          result = TextInputAction.route;
+          break;
+
+        case 'search':
+          result = TextInputAction.search;
+          break;
+
+        case 'send':
+          result = TextInputAction.send;
+          break;
+
+        case 'unspecified':
+          result = TextInputAction.unspecified;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextInputType].  Supported values are:
+  ///  * `datetime`
+  ///  * `emailAddress`
+  ///  * `multiline`
+  ///  * `number`
+  ///  * `phone`
+  ///  * `text`
+  ///  * `url`
+  ///  * `visiblePassword`
+  static TextInputType decodeTextInputType(dynamic value) {
+    _checkSupported(
+      'TextInputType',
+      [
+        'datetime',
+        'emailAddress',
+        'multiline',
+        'number',
+        'phone',
+        'text',
+        'url',
+        'visiblePassword',
+      ],
+      value,
+    );
+    TextInputType result;
+
+    if (value != null) {
+      switch (value) {
+        case 'datetime':
+          result = TextInputType.datetime;
+          break;
+
+        case 'emailAddress':
+          result = TextInputType.emailAddress;
+          break;
+
+        case 'multiline':
+          result = TextInputType.multiline;
+          break;
+
+        case 'number':
+          result = TextInputType.number;
+          break;
+
+        case 'phone':
+          result = TextInputType.phone;
+          break;
+
+        case 'text':
+          result = TextInputType.text;
+          break;
+
+        case 'url':
+          result = TextInputType.url;
+          break;
+
+        case 'visiblePassword':
+          result = TextInputType.visiblePassword;
+          break;
+      }
     }
 
     return result;
@@ -4538,6 +4819,31 @@ class ThemeDecoder {
         selectedColor: decodeColor(value['selectedColor']),
         splashColor: decodeColor(value['splashColor']),
         textStyle: decodeTextStyle(value['textStyle']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [ToolbarOptions].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "copy": <bool>,
+  ///   "cut": <bool>,
+  ///   "paste": <bool>,
+  ///   "selectAll": <bool>
+  /// }
+  /// ```
+  static ToolbarOptions decodeToolbarOptions(Map<String, dynamic> value) {
+    ToolbarOptions result;
+    if (value != null) {
+      result = ToolbarOptions(
+        copy: JsonClass.parseBool(value['copy']),
+        cut: JsonClass.parseBool(value['cut']),
+        paste: JsonClass.parseBool(value['paste']),
+        selectAll: JsonClass.parseBool(value['selectAll']),
       );
     }
 

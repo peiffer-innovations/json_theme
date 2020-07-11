@@ -476,11 +476,6 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeBoxConstraints({}),
-      BoxConstraints(),
-    );
-
-    expect(
       decoded,
       entry,
     );
@@ -730,27 +725,28 @@ void main() {
     );
   });
 
-  test('ButtonLayoutBehavior', () {
-    expect(ThemeDecoder.decodeButtonLayoutBehavior(null), null);
-    expect(ThemeEncoder.encodeButtonLayoutBehavior(null), null);
+  test('ButtonBarLayoutBehavior', () {
+    expect(ThemeDecoder.decodeButtonBarLayoutBehavior(null), null);
+    expect(ThemeEncoder.encodeButtonBarLayoutBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeButtonLayoutBehavior('constrained'),
+      ThemeDecoder.decodeButtonBarLayoutBehavior('constrained'),
       ButtonBarLayoutBehavior.constrained,
     );
     expect(
-      ThemeDecoder.decodeButtonLayoutBehavior('padded'),
+      ThemeDecoder.decodeButtonBarLayoutBehavior('padded'),
       ButtonBarLayoutBehavior.padded,
     );
 
     expect(
-      ThemeEncoder.encodeButtonLayoutBehavior(
+      ThemeEncoder.encodeButtonBarLayoutBehavior(
         ButtonBarLayoutBehavior.constrained,
       ),
       'constrained',
     );
     expect(
-      ThemeEncoder.encodeButtonLayoutBehavior(ButtonBarLayoutBehavior.padded),
+      ThemeEncoder.encodeButtonBarLayoutBehavior(
+          ButtonBarLayoutBehavior.padded),
       'padded',
     );
   });
@@ -1116,8 +1112,8 @@ void main() {
   });
 
   test('Color', () {
-    expect(ThemeDecoder.decodeClip(null), null);
-    expect(ThemeEncoder.encodeClip(null), null);
+    expect(ThemeDecoder.decodeColor(null), null);
+    expect(ThemeEncoder.encodeColor(null), null);
 
     var entry = _kColor;
 

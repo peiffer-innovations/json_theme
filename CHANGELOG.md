@@ -1,3 +1,8 @@
+## [1.1.0] - July 11th, 2020
+
+* Added JSON Schema validators for all objects
+
+
 ## [1.0.8] - July 2nd, 2020
 
 * Added decoders for...

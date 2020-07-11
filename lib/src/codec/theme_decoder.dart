@@ -4,8 +4,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:json_class/json_class.dart';
+
+import '../schema/schema_validator.dart';
 
 /// Decoder capable of converting JSON compatible values into Flutter Theme
 /// related classes and enums.
@@ -26,7 +29,10 @@ class ThemeDecoder {
   ///  * `topCenter`
   ///  * `topLeft`
   ///  * `topRight`
-  static Alignment decodeAlignment(String value) {
+  static Alignment decodeAlignment(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'Alignment',
       [
@@ -42,9 +48,14 @@ class ThemeDecoder {
       ],
       value,
     );
-    AlignmentGeometry result;
+    Alignment result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'alignment',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'bottomCenter':
           result = Alignment.bottomCenter;
@@ -97,17 +108,40 @@ class ThemeDecoder {
   ///  * [decodeBrightness]
   ///  * [decodeColor]
   ///  * [decodeIconThemeData]
-  static AppBarTheme decodeAppBarTheme(dynamic value) {
+  static AppBarTheme decodeAppBarTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     AppBarTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'app_bar_theme',
+        value: value,
+        validate: validate,
+      ));
       result = AppBarTheme(
-        actionsIconTheme: decodeIconThemeData(value['actionsIconTheme']),
-        brightness: decodeBrightness(value['brightness']),
-        color: decodeColor(value['color']),
+        actionsIconTheme: decodeIconThemeData(
+          value['actionsIconTheme'],
+          validate: false,
+        ),
+        brightness: decodeBrightness(
+          value['brightness'],
+          validate: false,
+        ),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        iconTheme: decodeIconThemeData(value['iconTheme']),
-        textTheme: decodeTextTheme(value['textTheme']),
+        iconTheme: decodeIconThemeData(
+          value['iconTheme'],
+          validate: false,
+        ),
+        textTheme: decodeTextTheme(
+          value['textTheme'],
+          validate: false,
+        ),
       );
     }
 
@@ -117,7 +151,10 @@ class ThemeDecoder {
   /// Decodes the given [value] to an [Axis].  Supported values are:
   ///  * `horizontal`
   ///  * `vertical`
-  static Axis decodeAxis(String value) {
+  static Axis decodeAxis(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'Axis',
       [
@@ -129,6 +166,11 @@ class ThemeDecoder {
     Axis result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'axis',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'horizontal':
           result = Axis.horizontal;
@@ -172,7 +214,10 @@ class ThemeDecoder {
   /// * `srcOut`
   /// * `srcOver`
   /// * `xor`
-  static BlendMode decodeBlendMode(String value) {
+  static BlendMode decodeBlendMode(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'BlendMode',
       [
@@ -212,6 +257,11 @@ class ThemeDecoder {
     BlendMode result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'blend_mode',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'clear':
           result = BlendMode.clear;
@@ -335,7 +385,7 @@ class ThemeDecoder {
   }
 
   /// Decodes the given value to a [BorderRadius].  The [value] may be a
-  /// [String], an  [int], a [double], or a Map-like object.
+  /// [String], an [int], a [double], or a Map-like object.
   ///
   /// When the [value] is a [String], [int], or [double] then the value will be
   /// parsed via [JsonClass.parseDouble] and the result will be passed to
@@ -371,7 +421,7 @@ class ThemeDecoder {
   /// {
   ///   "left": <Radius>,
   ///   "right": <Radius>,
-  ///   "type": "all"
+  ///   "type": "horizontal"
   /// }
   /// ```
   ///
@@ -397,10 +447,13 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeRadius]
-  static BorderRadius decodeBorderRadius(dynamic value) {
-    var radius = JsonClass.parseDouble(value);
+  static BorderRadius decodeBorderRadius(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BorderRadius result;
 
+    var radius = JsonClass.parseDouble(value);
     if (radius != null) {
       result = BorderRadius.circular(radius);
     } else {
@@ -418,7 +471,13 @@ class ThemeDecoder {
       );
 
       if (value != null) {
+        assert(SchemaValidator.validate(
+          schema: 'border_radius',
+          value: value,
+          validate: validate,
+        ));
         String type = value['type'];
+
         switch (type) {
           case 'all':
             result =
@@ -431,22 +490,54 @@ class ThemeDecoder {
             break;
           case 'horizontal':
             result = BorderRadius.horizontal(
-              left: decodeRadius(value['left']) ?? Radius.zero,
-              right: decodeRadius(value['right']) ?? Radius.zero,
+              left: decodeRadius(
+                    value['left'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
+              right: decodeRadius(
+                    value['right'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
             );
             break;
           case 'only':
             result = BorderRadius.only(
-              bottomLeft: decodeRadius(value['bottomLeft']) ?? Radius.zero,
-              bottomRight: decodeRadius(value['bottomRight']) ?? Radius.zero,
-              topLeft: decodeRadius(value['topLeft']) ?? Radius.zero,
-              topRight: decodeRadius(value['topRight']) ?? Radius.zero,
+              bottomLeft: decodeRadius(
+                    value['bottomLeft'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
+              bottomRight: decodeRadius(
+                    value['bottomRight'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
+              topLeft: decodeRadius(
+                    value['topLeft'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
+              topRight: decodeRadius(
+                    value['topRight'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
             );
             break;
           case 'vertical':
             result = BorderRadius.vertical(
-              bottom: decodeRadius(value['bottom']) ?? Radius.zero,
-              top: decodeRadius(value['top']) ?? Radius.zero,
+              bottom: decodeRadius(
+                    value['bottom'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
+              top: decodeRadius(
+                    value['top'],
+                    validate: false,
+                  ) ??
+                  Radius.zero,
             );
             break;
         }
@@ -470,13 +561,29 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderStyle]
   ///  * [decodeColor]
-  static BorderSide decodeBorderSide(dynamic value) {
+  static BorderSide decodeBorderSide(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BorderSide result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'border_side',
+        value: value,
+        validate: validate,
+      ));
       result = BorderSide(
-        color: decodeColor(value['color']) ?? #ff000000,
-        style: decodeBorderStyle(value['style']) ?? BorderStyle.solid,
+        color: decodeColor(
+              value['color'],
+              validate: false,
+            ) ??
+            #ff000000,
+        style: decodeBorderStyle(
+              value['style'],
+              validate: false,
+            ) ??
+            BorderStyle.solid,
         width: JsonClass.parseDouble(value['width'], 1.0),
       );
     }
@@ -487,7 +594,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BorderStyle].  Supported values are:
   ///  * `none`
   ///  * `solid`
-  static BorderStyle decodeBorderStyle(String value) {
+  static BorderStyle decodeBorderStyle(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'BorderStyle',
       [
@@ -499,6 +609,11 @@ class ThemeDecoder {
     BorderStyle result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'border_style',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'none':
           result = BorderStyle.none;
@@ -527,14 +642,28 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeNotchedShape]
-  static BottomAppBarTheme decodeBottomAppBarTheme(dynamic value) {
+  static BottomAppBarTheme decodeBottomAppBarTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BottomAppBarTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'bottom_app_bar_theme',
+        value: value,
+        validate: validate,
+      ));
       result = BottomAppBarTheme(
-        color: decodeColor(value['color']),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        shape: decodeNotchedShape(value['shape']),
+        shape: decodeNotchedShape(
+          value['shape'],
+          validate: false,
+        ),
       );
     }
 
@@ -542,23 +671,23 @@ class ThemeDecoder {
   }
 
   // static BottomNavigationBarThemeData decodeBottomNavigationBarThemeData(
-  //     dynamic value) {
+  //     dynamic value, {bool validate = true,}) {
   //   BottomNavigationBarThemeData result;
 
   //   if (value != null) {
   //     result = BottomNavigationBarThemeData(
-  //       backgroundColor: decodeColor(value['backgroundColor']),
+  //       backgroundColor: decodeColor(value['backgroundColor'], validate: false,),
   //       elevation: JsonClass.parseDouble(value['elevation']),
-  //       selectedIconTheme: decodeIconThemeData(value['selectedIconTheme']),
-  //       selectedItemColor: decodeColor(value['selectedItemColor']),
-  //       selectedLabelStyle: decodeTextStyle(value['selectedLabelStyle']),
+  //       selectedIconTheme: decodeIconThemeData(value['selectedIconTheme'], validate: false,),
+  //       selectedItemColor: decodeColor(value['selectedItemColor'], validate: false,),
+  //       selectedLabelStyle: decodeTextStyle(value['selectedLabelStyle'], validate: false,),
   //       showSelectedLabels: value['showSelectedLabels'] == null
   //           ? null
   //           : JsonClass.parseBool(value['showSelectedLabels']),
   //       showUnselectedLabels: value['showUnselectedLabels'] == null
   //           ? null
   //           : JsonClass.parseBool(value['showUnselectedLabels']),
-  //       type: decodeBottomNavigationBarType(value['type']),
+  //       type: decodeBottomNavigationBarType(value['type'], validate: false,),
   //     );
   //   }
 
@@ -568,7 +697,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BottomNavigationBarType].  Supported values are:
   ///  * `fixed`
   ///  * `shifting`
-  static BottomNavigationBarType decodeBottomNavigationBarType(String value) {
+  static BottomNavigationBarType decodeBottomNavigationBarType(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'BottomNavigationBarType',
       [
@@ -580,6 +712,11 @@ class ThemeDecoder {
     BottomNavigationBarType result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'bottom_navigation_bar_type',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'fixed':
           result = BottomNavigationBarType.fixed;
@@ -611,17 +748,37 @@ class ThemeDecoder {
   ///  * [decodeClip]
   ///  * [decodeColor]
   ///  * [decodeShapeBorder]
-  static BottomSheetThemeData decodeBottomSheetThemeData(dynamic value) {
+  static BottomSheetThemeData decodeBottomSheetThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BottomSheetThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'bottom_sheet_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = BottomSheetThemeData(
-        backgroundColor: decodeColor(value['backgroundColor']),
-        clipBehavior: decodeClip(value['clipBehavior']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        clipBehavior: decodeClip(
+          value['clipBehavior'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        modalBackgroundColor: decodeColor(value['modalBackgroundColor']),
+        modalBackgroundColor: decodeColor(
+          value['modalBackgroundColor'],
+          validate: false,
+        ),
         modalElevation: JsonClass.parseDouble(value['modalElevation']),
-        shape: decodeShapeBorder(value['shape']),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
       );
     }
 
@@ -633,7 +790,7 @@ class ThemeDecoder {
   ///
   /// This accepts two separate types of JSON.  If the [value] has any of:
   /// "color", "style", "width", then this will apply the border to all sides
-  /// using [Border.all] and passing in the results from [decodeVorderSide].
+  /// using [Border.all] and passing in the results from [decodeBorderSide].
   ///
   /// If none of the above attributes are found, this expects a full object that
   /// defines all sides as follows:
@@ -649,7 +806,10 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeBorderSide]
-  static BoxBorder decodeBoxBorder(dynamic value) {
+  static BoxBorder decodeBoxBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BoxBorder result;
 
     if (value != null) {
@@ -663,11 +823,32 @@ class ThemeDecoder {
           width: side.width,
         );
       } else {
+        assert(SchemaValidator.validate(
+          schema: 'box_border',
+          value: value,
+          validate: validate,
+        ));
         result = Border(
-          bottom: decodeBorderSide(value['bottom']) ?? BorderSide.none,
-          left: decodeBorderSide(value['left']) ?? BorderSide.none,
-          right: decodeBorderSide(value['right']) ?? BorderSide.none,
-          top: decodeBorderSide(value['top']) ?? BorderSide.none,
+          bottom: decodeBorderSide(
+                value['bottom'],
+                validate: false,
+              ) ??
+              BorderSide.none,
+          left: decodeBorderSide(
+                value['left'],
+                validate: false,
+              ) ??
+              BorderSide.none,
+          right: decodeBorderSide(
+                value['right'],
+                validate: false,
+              ) ??
+              BorderSide.none,
+          top: decodeBorderSide(
+                value['top'],
+                validate: false,
+              ) ??
+              BorderSide.none,
         );
       }
     }
@@ -687,10 +868,18 @@ class ThemeDecoder {
   ///   "minWidth": <double>
   /// }
   /// ```
-  static BoxConstraints decodeBoxConstraints(dynamic value) {
+  static BoxConstraints decodeBoxConstraints(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BoxConstraints result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'box_constraints',
+        value: value,
+        validate: validate,
+      ));
       result = BoxConstraints(
         maxHeight: JsonClass.parseDouble(value['maxHeight'], double.infinity),
         maxWidth: JsonClass.parseDouble(value['maxWidth'], double.infinity),
@@ -726,18 +915,45 @@ class ThemeDecoder {
   ///  * [decodeBoxShape]
   ///  * [decodeColor]
   ///  * [decodeGradient]
-  static BoxDecoration decodeBoxDecoration(dynamic value) {
+  static BoxDecoration decodeBoxDecoration(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BoxDecoration result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'box_decoration',
+        value: value,
+        validate: validate,
+      ));
       result = BoxDecoration(
-        backgroundBlendMode: decodeBlendMode(value['backgroundBlendMode']),
-        border: decodeBoxBorder(value['border']),
-        borderRadius: decodeBorderRadius(value['borderRadius']),
+        backgroundBlendMode: decodeBlendMode(
+          value['backgroundBlendMode'],
+          validate: false,
+        ),
+        border: decodeBoxBorder(
+          value['border'],
+          validate: false,
+        ),
+        borderRadius: decodeBorderRadius(
+          value['borderRadius'],
+          validate: false,
+        ),
         boxShadow: _decodeDynamicList(value['boxShadow'], decodeBoxShadow),
-        color: decodeColor(value['color']),
-        gradient: decodeGradient(value['gradient']),
-        shape: decodeBoxShape(value['shape']) ?? BoxShape.rectangle,
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
+        gradient: decodeGradient(
+          value['gradient'],
+          validate: false,
+        ),
+        shape: decodeBoxShape(
+              value['shape'],
+              validate: false,
+            ) ??
+            BoxShape.rectangle,
       );
     }
 
@@ -752,10 +968,18 @@ class ThemeDecoder {
   ///  * `fitWidth`
   ///  * `none`
   ///  * `scaleDown`
-  static BoxFit decodeBoxFit(String value) {
+  static BoxFit decodeBoxFit(
+    String value, {
+    bool validate = true,
+  }) {
     BoxFit result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'box_fit',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'contain':
           result = BoxFit.contain;
@@ -800,14 +1024,30 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeOffset]
-  static BoxShadow decodeBoxShadow(dynamic value) {
+  static BoxShadow decodeBoxShadow(
+    dynamic value, {
+    bool validate = true,
+  }) {
     BoxShadow result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'box_shadow',
+        value: value,
+        validate: validate,
+      ));
       result = BoxShadow(
         blurRadius: JsonClass.parseDouble(value['blurRadius'], 0),
-        color: decodeColor(value['color']) ?? const Color(0xFF000000),
-        offset: decodeOffset(value['offset']) ?? Offset.zero,
+        color: decodeColor(
+              value['color'],
+              validate: false,
+            ) ??
+            const Color(0xFF000000),
+        offset: decodeOffset(
+              value['offset'],
+              validate: false,
+            ) ??
+            Offset.zero,
         spreadRadius: JsonClass.parseDouble(value['spreadRadius'], 0),
       );
     }
@@ -818,10 +1058,18 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BoxShape].  Supported values are:
   ///  * `circle`
   ///  * `rectangle`
-  static BoxShape decodeBoxShape(String value) {
+  static BoxShape decodeBoxShape(
+    String value, {
+    bool validate = true,
+  }) {
     BoxShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'box_shape',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'circle':
           result = BoxShape.circle;
@@ -839,13 +1087,57 @@ class ThemeDecoder {
   /// Decodes the [value] to a [Brightness].  Supported values are:
   ///  * `light`
   ///  * `dark`
-  static Brightness decodeBrightness(String value) {
+  static Brightness decodeBrightness(
+    String value, {
+    bool validate = true,
+  }) {
     Brightness result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'brightness',
+        value: value,
+        validate: validate,
+      ));
       result = value == 'light'
           ? Brightness.light
           : value == 'dark' ? Brightness.dark : null;
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [ButtonBarLayoutBehavior].  Supported values are:
+  ///  * `constrained`
+  ///  * `padded`
+  static ButtonBarLayoutBehavior decodeButtonBarLayoutBehavior(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'ButtonBarLayoutBehavior',
+      [
+        'constrained',
+        'padded',
+      ],
+      value,
+    );
+    ButtonBarLayoutBehavior result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'button_bar_layout_behavior',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'constrained':
+          result = ButtonBarLayoutBehavior.constrained;
+          break;
+        case 'padded':
+          result = ButtonBarLayoutBehavior.padded;
+          break;
+      }
     }
 
     return result;
@@ -862,64 +1154,62 @@ class ThemeDecoder {
   ///   "buttonMinWidth": <double>,
   ///   "buttonPadding": <EdgeInsetsGeometry>,
   ///   "buttonTextTheme": <ButtonTextTheme>,
-  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
   ///   "mainAxisSize": <MainAxisSize>,
   ///   "overflowDirection": <VerticalDirection>,
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [decodeButtonBarLayoutBehavior]
   ///  * [decodeButtonTextTheme]
   ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeButtonLayoutBehavior]
   ///  * [decodeMainAxisAlignment]
   ///  * [decodeMainAxisSize]
   ///  * [decodeVerticalDirection]
-  static ButtonBarThemeData decodeButtonBarThemeData(dynamic value) {
+  static ButtonBarThemeData decodeButtonBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     ButtonBarThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'button_bar_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = ButtonBarThemeData(
-        alignment: decodeMainAxisAlignment(value['alignment']),
+        alignment: decodeMainAxisAlignment(
+          value['alignment'],
+          validate: false,
+        ),
         buttonAlignedDropdown: value['buttonAlignedDropdown'] == null
             ? null
             : JsonClass.parseBool(value['buttonAlignedDropdown']),
         buttonHeight: JsonClass.parseDouble(value['buttonHeight']),
         buttonMinWidth: JsonClass.parseDouble(value['buttonMinWidth']),
-        buttonPadding: decodeEdgeInsetsGeometry(value['buttonPadding']),
-        buttonTextTheme: decodeButtonTextTheme(value['buttonTextTheme']),
-        layoutBehavior: decodeButtonLayoutBehavior(value['layoutBehavior']),
-        mainAxisSize: decodeMainAxisSize(value['mainAxisSize']),
-        overflowDirection: decodeVerticalDirection(value['overflowDirection']),
+        buttonPadding: decodeEdgeInsetsGeometry(
+          value['buttonPadding'],
+          validate: false,
+        ),
+        buttonTextTheme: decodeButtonTextTheme(
+          value['buttonTextTheme'],
+          validate: false,
+        ),
+        layoutBehavior: decodeButtonBarLayoutBehavior(
+          value['layoutBehavior'],
+          validate: false,
+        ),
+        mainAxisSize: decodeMainAxisSize(
+          value['mainAxisSize'],
+          validate: false,
+        ),
+        overflowDirection: decodeVerticalDirection(
+          value['overflowDirection'],
+          validate: false,
+        ),
       );
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [ButtonBarLayoutBehavior].  Supported values are:
-  ///  * `constrained`
-  ///  * `padded`
-  static ButtonBarLayoutBehavior decodeButtonLayoutBehavior(String value) {
-    _checkSupported(
-      'ButtonBarLayoutBehavior',
-      [
-        'constrained',
-        'padded',
-      ],
-      value,
-    );
-    ButtonBarLayoutBehavior result;
-
-    if (value != null) {
-      switch (value) {
-        case 'constrained':
-          result = ButtonBarLayoutBehavior.constrained;
-          break;
-        case 'padded':
-          result = ButtonBarLayoutBehavior.padded;
-          break;
-      }
     }
 
     return result;
@@ -929,7 +1219,10 @@ class ThemeDecoder {
   ///  * `accent`
   ///  * `normal`
   ///  * `primary`
-  static ButtonTextTheme decodeButtonTextTheme(String value) {
+  static ButtonTextTheme decodeButtonTextTheme(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'ButtonTextTheme',
       [
@@ -942,6 +1235,11 @@ class ThemeDecoder {
     ButtonTextTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'button_text_theme',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'accent':
           result = ButtonTextTheme.accent;
@@ -971,7 +1269,7 @@ class ThemeDecoder {
   ///   "height": <double>,
   ///   "highlightColor": <Color>,
   ///   "hoverColor": <Color>,
-  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "minWidth": <double>,
   ///   "padding": <EdgeInsetsGeometry>,
@@ -982,35 +1280,78 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
-  ///  * [decodeButtonLayoutBehavior]
+  ///  * [decodeButtonBarLayoutBehavior]
   ///  * [decodeButtonTextTheme]
   ///  * [decodeColor]
   ///  * [decodeColorScheme]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeShapeBorder]
-  static ButtonThemeData decodeButtonThemeData(dynamic value) {
+  static ButtonThemeData decodeButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     ButtonThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'button_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = ButtonThemeData(
         alignedDropdown: JsonClass.parseBool(value['alignedDropdown']),
-        buttonColor: decodeColor(value['buttonColor']),
-        colorScheme: decodeColorScheme(value['colorScheme']),
-        disabledColor: decodeColor(value['disabledColor']),
-        focusColor: decodeColor(value['focusColor']),
+        buttonColor: decodeColor(
+          value['buttonColor'],
+          validate: false,
+        ),
+        colorScheme: decodeColorScheme(
+          value['colorScheme'],
+          validate: false,
+        ),
+        disabledColor: decodeColor(
+          value['disabledColor'],
+          validate: false,
+        ),
+        focusColor: decodeColor(
+          value['focusColor'],
+          validate: false,
+        ),
         height: JsonClass.parseDouble(value['height'], 36.0),
-        highlightColor: decodeColor(value['highlightColor']),
-        hoverColor: decodeColor(value['hoverColor']),
-        layoutBehavior: decodeButtonLayoutBehavior(value['layoutBehavior']) ??
+        highlightColor: decodeColor(
+          value['highlightColor'],
+          validate: false,
+        ),
+        hoverColor: decodeColor(
+          value['hoverColor'],
+          validate: false,
+        ),
+        layoutBehavior: decodeButtonBarLayoutBehavior(
+              value['layoutBehavior'],
+              validate: false,
+            ) ??
             ButtonBarLayoutBehavior.padded,
-        materialTapTargetSize:
-            decodeMaterialTapTargetSize(value['materialTapTargetSize']),
+        materialTapTargetSize: decodeMaterialTapTargetSize(
+          value['materialTapTargetSize'],
+          validate: false,
+        ),
         minWidth: JsonClass.parseDouble(value['minWidth'], 88.0),
-        padding: decodeEdgeInsetsGeometry(value['padding']),
-        shape: decodeShapeBorder(value['shape']),
-        splashColor: decodeColor(value['splashColor']),
-        textTheme: decodeButtonTextTheme(value['textTheme']),
+        padding: decodeEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        splashColor: decodeColor(
+          value['splashColor'],
+          validate: false,
+        ),
+        textTheme: decodeButtonTextTheme(
+          value['textTheme'],
+          validate: false,
+        ),
       );
     }
 
@@ -1036,17 +1377,40 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
-  static CardTheme decodeCardTheme(dynamic value) {
+  static CardTheme decodeCardTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     CardTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'card_theme',
+        value: value,
+        validate: validate,
+      ));
       result = CardTheme(
-        clipBehavior: decodeClip(value['clipBehavior']),
-        color: decodeColor(value['color']),
+        clipBehavior: decodeClip(
+          value['clipBehavior'],
+          validate: false,
+        ),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        margin: decodeEdgeInsetsGeometry(value['margin']),
-        shadowColor: decodeColor(value['shadowColor']),
-        shape: decodeShapeBorder(value['shape']),
+        margin: decodeEdgeInsetsGeometry(
+          value['margin'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
       );
     }
 
@@ -1084,27 +1448,77 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static ChipThemeData decodeChipThemeData(dynamic value) {
+  static ChipThemeData decodeChipThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     ChipThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'chip_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = ChipThemeData(
-        backgroundColor: decodeColor(value['backgroundColor']),
-        brightness: decodeBrightness(value['brightness']),
-        checkmarkColor: decodeColor(value['checkmarkColor']),
-        deleteIconColor: decodeColor(value['deleteIconColor']),
-        disabledColor: decodeColor(value['disabledColor']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        brightness: decodeBrightness(
+          value['brightness'],
+          validate: false,
+        ),
+        checkmarkColor: decodeColor(
+          value['checkmarkColor'],
+          validate: false,
+        ),
+        deleteIconColor: decodeColor(
+          value['deleteIconColor'],
+          validate: false,
+        ),
+        disabledColor: decodeColor(
+          value['disabledColor'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        labelPadding: decodeEdgeInsetsGeometry(value['labelPadding']),
-        labelStyle: decodeTextStyle(value['labelStyle']),
-        padding: decodeEdgeInsetsGeometry(value['padding']),
+        labelPadding: decodeEdgeInsetsGeometry(
+          value['labelPadding'],
+          validate: false,
+        ),
+        labelStyle: decodeTextStyle(
+          value['labelStyle'],
+          validate: false,
+        ),
+        padding: decodeEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
         pressElevation: JsonClass.parseDouble(value['pressElevation']),
-        secondaryLabelStyle: decodeTextStyle(value['secondaryLabelStyle']),
-        secondarySelectedColor: decodeColor(value['secondarySelectedColor']),
-        selectedColor: decodeColor(value['selectedColor']),
-        shape: decodeShapeBorder(value['shape']),
-        selectedShadowColor: decodeColor(value['selectedShadowColor']),
-        shadowColor: decodeColor(value['shadowColor']),
+        secondaryLabelStyle: decodeTextStyle(
+          value['secondaryLabelStyle'],
+          validate: false,
+        ),
+        secondarySelectedColor: decodeColor(
+          value['secondarySelectedColor'],
+          validate: false,
+        ),
+        selectedColor: decodeColor(
+          value['selectedColor'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        selectedShadowColor: decodeColor(
+          value['selectedShadowColor'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
         showCheckmark: value['showCheckmark'] == null
             ? null
             : JsonClass.parseBool(value['showCheckmark']),
@@ -1119,7 +1533,10 @@ class ThemeDecoder {
   ///  * `antiAliasWithSaveLayer`
   ///  * `hardEdge`
   ///  * `none`
-  static Clip decodeClip(String value) {
+  static Clip decodeClip(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'Clip',
       [
@@ -1133,6 +1550,11 @@ class ThemeDecoder {
     Clip result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'clip',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'antiAlias':
           result = Clip.antiAlias;
@@ -1162,10 +1584,18 @@ class ThemeDecoder {
   ///  * `#rgb`
   ///  * `#rrggbb`
   ///  * `#aarrggbb`
-  static Color decodeColor(String value) {
+  static Color decodeColor(
+    String value, {
+    bool validate = true,
+  }) {
     Color result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'color',
+        value: value,
+        validate: validate,
+      ));
       var i = 0;
 
       if (value?.startsWith('#') == true) {
@@ -1219,24 +1649,71 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBrightness]
   ///  * [decodeColor]
-  static ColorScheme decodeColorScheme(dynamic value) {
+  static ColorScheme decodeColorScheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     ColorScheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'color_scheme',
+        value: value,
+        validate: validate,
+      ));
       result = ColorScheme(
-        background: decodeColor(value['background']),
-        brightness: decodeBrightness(value['brightness']),
-        error: decodeColor(value['error']),
-        onBackground: decodeColor(value['onBackground']),
-        onError: decodeColor(value['onError']),
-        onPrimary: decodeColor(value['onPrimary']),
-        onSecondary: decodeColor(value['onSecondary']),
-        onSurface: decodeColor(value['onSurface']),
-        primary: decodeColor(value['primary']),
-        primaryVariant: decodeColor(value['primaryVariant']),
-        secondary: decodeColor(value['secondary']),
-        secondaryVariant: decodeColor(value['secondaryVariant']),
-        surface: decodeColor(value['surface']),
+        background: decodeColor(
+          value['background'],
+          validate: false,
+        ),
+        brightness: decodeBrightness(
+          value['brightness'],
+          validate: false,
+        ),
+        error: decodeColor(
+          value['error'],
+          validate: false,
+        ),
+        onBackground: decodeColor(
+          value['onBackground'],
+          validate: false,
+        ),
+        onError: decodeColor(
+          value['onError'],
+          validate: false,
+        ),
+        onPrimary: decodeColor(
+          value['onPrimary'],
+          validate: false,
+        ),
+        onSecondary: decodeColor(
+          value['onSecondary'],
+          validate: false,
+        ),
+        onSurface: decodeColor(
+          value['onSurface'],
+          validate: false,
+        ),
+        primary: decodeColor(
+          value['primary'],
+          validate: false,
+        ),
+        primaryVariant: decodeColor(
+          value['primaryVariant'],
+          validate: false,
+        ),
+        secondary: decodeColor(
+          value['secondary'],
+          validate: false,
+        ),
+        secondaryVariant: decodeColor(
+          value['secondaryVariant'],
+          validate: false,
+        ),
+        surface: decodeColor(
+          value['surface'],
+          validate: false,
+        ),
       );
     }
 
@@ -1249,7 +1726,10 @@ class ThemeDecoder {
   ///  * `end`
   ///  * `start`
   ///  * `stretch`
-  static CrossAxisAlignment decodeCrossAxisAlignment(String value) {
+  static CrossAxisAlignment decodeCrossAxisAlignment(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'CrossAxisAlignment',
       [
@@ -1265,6 +1745,11 @@ class ThemeDecoder {
     CrossAxisAlignment result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'cross_axis_alignment',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'baseline':
           result = CrossAxisAlignment.baseline;
@@ -1307,23 +1792,55 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeTextStyle]
-  static CupertinoTextThemeData decodeCupertinoTextThemeData(dynamic value) {
+  static CupertinoTextThemeData decodeCupertinoTextThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     CupertinoTextThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'cupertino_text_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = CupertinoTextThemeData(
-        actionTextStyle: decodeTextStyle(value['actionTextStyle']),
+        actionTextStyle: decodeTextStyle(
+          value['actionTextStyle'],
+          validate: false,
+        ),
         dateTimePickerTextStyle: decodeTextStyle(
           value['dateTimePickerTextStyle'],
+          validate: false,
         ),
-        navActionTextStyle: decodeTextStyle(value['navActionTextStyle']),
-        navLargeTitleTextStyle:
-            decodeTextStyle(value['navLargeTitleTextStyle']),
-        navTitleTextStyle: decodeTextStyle(value['navTitleTextStyle']),
-        pickerTextStyle: decodeTextStyle(value['pickerTextStyle']),
-        primaryColor: decodeColor(value['primaryColor']),
-        tabLabelTextStyle: decodeTextStyle(value['tabLabelTextStyle']),
-        textStyle: decodeTextStyle(value['textStyle']),
+        navActionTextStyle: decodeTextStyle(
+          value['navActionTextStyle'],
+          validate: false,
+        ),
+        navLargeTitleTextStyle: decodeTextStyle(
+          value['navLargeTitleTextStyle'],
+          validate: false,
+        ),
+        navTitleTextStyle: decodeTextStyle(
+          value['navTitleTextStyle'],
+          validate: false,
+        ),
+        pickerTextStyle: decodeTextStyle(
+          value['pickerTextStyle'],
+          validate: false,
+        ),
+        primaryColor: decodeColor(
+          value['primaryColor'],
+          validate: false,
+        ),
+        tabLabelTextStyle: decodeTextStyle(
+          value['tabLabelTextStyle'],
+          validate: false,
+        ),
+        textStyle: decodeTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -1348,17 +1865,43 @@ class ThemeDecoder {
   ///  * [decodeBrightness]
   ///  * [decodeColor]
   ///  * [decodeCupertinoTextThemeData]
-  static CupertinoThemeData decodeCupertinoThemeData(dynamic value) {
+  static CupertinoThemeData decodeCupertinoThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     CupertinoThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'cupertino_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = CupertinoThemeData(
-        barBackgroundColor: decodeColor(value['barBackgroundColor']),
-        brightness: decodeBrightness(value['brightness']),
-        primaryColor: decodeColor(value['primaryColor']),
-        primaryContrastingColor: decodeColor(value['primaryContrastingColor']),
-        scaffoldBackgroundColor: decodeColor(value['scaffoldBackgroundColor']),
-        textTheme: decodeCupertinoTextThemeData(value['textTheme']),
+        barBackgroundColor: decodeColor(
+          value['barBackgroundColor'],
+          validate: false,
+        ),
+        brightness: decodeBrightness(
+          value['brightness'],
+          validate: false,
+        ),
+        primaryColor: decodeColor(
+          value['primaryColor'],
+          validate: false,
+        ),
+        primaryContrastingColor: decodeColor(
+          value['primaryContrastingColor'],
+          validate: false,
+        ),
+        scaffoldBackgroundColor: decodeColor(
+          value['scaffoldBackgroundColor'],
+          validate: false,
+        ),
+        textTheme: decodeCupertinoTextThemeData(
+          value['textTheme'],
+          validate: false,
+        ),
       );
     }
 
@@ -1382,16 +1925,36 @@ class ThemeDecoder {
   ///  * [decodeBrightness]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static DialogTheme decodeDialogTheme(dynamic value) {
+  static DialogTheme decodeDialogTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     DialogTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'dialog_theme',
+        value: value,
+        validate: validate,
+      ));
       result = DialogTheme(
-        backgroundColor: decodeColor(value['backgroundColor']),
-        contentTextStyle: decodeTextStyle(value['contentTextStyle']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        contentTextStyle: decodeTextStyle(
+          value['contentTextStyle'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        shape: decodeShapeBorder(value['shape']),
-        titleTextStyle: decodeTextStyle(value['titleTextStyle']),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        titleTextStyle: decodeTextStyle(
+          value['titleTextStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -1413,12 +1976,23 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static DividerThemeData decodeDividerThemeData(dynamic value) {
+  static DividerThemeData decodeDividerThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     DividerThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'divider_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = DividerThemeData(
-        color: decodeColor(value['color']),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         endIndent: JsonClass.parseDouble(value['endIndent']),
         indent: JsonClass.parseDouble(value['indent']),
         space: JsonClass.parseDouble(value['space']),
@@ -1432,7 +2006,10 @@ class ThemeDecoder {
   /// Decodes the given [value] to an [DragStartBehavior].  Supported values are:
   ///  * `horizontal`
   ///  * `start`
-  static DragStartBehavior decodeDragStartBehavior(String value) {
+  static DragStartBehavior decodeDragStartBehavior(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'DragStartBehavior',
       [
@@ -1444,6 +2021,11 @@ class ThemeDecoder {
     DragStartBehavior result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'drag_start_behavior',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'down':
           result = DragStartBehavior.down;
@@ -1459,9 +2041,8 @@ class ThemeDecoder {
 
   /// Decodes the [value] into an [EdgeInsetsGeometry].
   ///
-  /// If the value is a
-  /// [String], [double], or [int] then this will parse the number and pass it
-  /// to [EdgeInsets.all].
+  /// If the value is a [String], [double], or [int] then this will parse the
+  /// number and pass it to [EdgeInsets.all].
   ///
   /// If the value is an array with two entities, this call
   /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
@@ -1479,7 +2060,10 @@ class ThemeDecoder {
   ///   "top": <double>
   /// }
   /// ```
-  static EdgeInsetsGeometry decodeEdgeInsetsGeometry(dynamic value) {
+  static EdgeInsetsGeometry decodeEdgeInsetsGeometry(
+    dynamic value, {
+    bool validate = true,
+  }) {
     EdgeInsetsGeometry result;
 
     if (value != null) {
@@ -1501,6 +2085,11 @@ class ThemeDecoder {
           );
         }
       } else {
+        assert(SchemaValidator.validate(
+          schema: 'edge_insets_geometry',
+          value: value,
+          validate: validate,
+        ));
         result = EdgeInsets.only(
           bottom: JsonClass.parseDouble(value['bottom'], 0.0),
           left: JsonClass.parseDouble(value['left'], 0.0),
@@ -1518,10 +2107,27 @@ class ThemeDecoder {
   ///  * `low`
   ///  * `medium`
   ///  * `none`
-  static FilterQuality decodeFilterQuality(String value) {
+  static FilterQuality decodeFilterQuality(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+        'FilterQuality',
+        [
+          'high',
+          'low',
+          'medium',
+          'none',
+        ],
+        value);
     FilterQuality result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'filter_quality',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'high':
           result = FilterQuality.high;
@@ -1550,7 +2156,10 @@ class ThemeDecoder {
   ///  * `end`
   ///  * `start`
   ///  * `stretch`
-  static FlexFit decodeFlexFit(String value) {
+  static FlexFit decodeFlexFit(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'FlexFit',
       [
@@ -1563,6 +2172,11 @@ class ThemeDecoder {
     FlexFit result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'flex_fit',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'loose':
           result = FlexFit.loose;
@@ -1580,8 +2194,9 @@ class ThemeDecoder {
   /// are:
   ///  * `scaling`
   static FloatingActionButtonAnimator decodeFloatingActionButtonAnimator(
-    dynamic value,
-  ) {
+    dynamic value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'FloatingActionButtonAnimator',
       [
@@ -1592,6 +2207,11 @@ class ThemeDecoder {
     FloatingActionButtonAnimator result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'floating_action_button_animator',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'scaling':
           result = FloatingActionButtonAnimator.scaling;
@@ -1612,11 +2232,30 @@ class ThemeDecoder {
   ///  * `miniStartTop`
   ///  * `startTop`
   static FloatingActionButtonLocation decodeFloatingActionButtonLocation(
-    String value,
-  ) {
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'FloatingActionButtonLocation',
+      [
+        'centerDocked',
+        'centerFloat',
+        'endDocked',
+        'endFloat',
+        'endTop',
+        'miniStartTop',
+        'startTop',
+      ],
+      value,
+    );
     FloatingActionButtonLocation result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'floating_action_button_location',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'centerDocked':
           result = FloatingActionButtonLocation.centerDocked;
@@ -1674,23 +2313,47 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeShapeBorder]
   static FloatingActionButtonThemeData decodeFloatingActionButtonThemeData(
-    dynamic value,
-  ) {
+    dynamic value, {
+    bool validate = true,
+  }) {
     FloatingActionButtonThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'floating_action_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = FloatingActionButtonThemeData(
-        backgroundColor: decodeColor(value['backgroundColor']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
         disabledElevation: JsonClass.parseDouble(value['disabledElevation']),
         elevation: JsonClass.parseDouble(value['elevation']),
-        focusColor: decodeColor(value['focusColor']),
+        focusColor: decodeColor(
+          value['focusColor'],
+          validate: false,
+        ),
         focusElevation: JsonClass.parseDouble(value['focusElevation']),
-        foregroundColor: decodeColor(value['foregroundColor']),
+        foregroundColor: decodeColor(
+          value['foregroundColor'],
+          validate: false,
+        ),
         highlightElevation: JsonClass.parseDouble(value['highlightElevation']),
-        hoverColor: decodeColor(value['hoverColor']),
+        hoverColor: decodeColor(
+          value['hoverColor'],
+          validate: false,
+        ),
         hoverElevation: JsonClass.parseDouble(value['hoverElevation']),
-        shape: decodeShapeBorder(value['shape']),
-        splashColor: decodeColor(value['splashColor']),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        splashColor: decodeColor(
+          value['splashColor'],
+          validate: false,
+        ),
       );
     }
 
@@ -1701,7 +2364,10 @@ class ThemeDecoder {
   ///  * `always`
   ///  * `auto`
   ///  * `never`
-  static FloatingLabelBehavior decodeFloatingLabelBehavior(String value) {
+  static FloatingLabelBehavior decodeFloatingLabelBehavior(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'FloatingLabelBehavior',
       [
@@ -1714,6 +2380,11 @@ class ThemeDecoder {
     FloatingLabelBehavior result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'floating_label_behavior',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'always':
           result = FloatingLabelBehavior.always;
@@ -1741,14 +2412,59 @@ class ThemeDecoder {
   ///   "value": <int>
   /// }
   /// ```
-  static FontFeature decodeFontFeature(dynamic value) {
+  static FontFeature decodeFontFeature(
+    dynamic value, {
+    bool validate = true,
+  }) {
     FontFeature result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'font_feature',
+        value: value,
+        validate: validate,
+      ));
       result = FontFeature(
         value['feature'],
         JsonClass.parseInt(value['value']),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [FontStyle].  Supported values are:
+  ///  * `italic`
+  ///  * `normal`
+  static FontStyle decodeFontStyle(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'FontStyle',
+      [
+        'italic',
+        'normal',
+      ],
+      value,
+    );
+    FontStyle result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'font_style',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'italic':
+          result = FontStyle.italic;
+          break;
+
+        case 'normal':
+          result = FontStyle.normal;
+          break;
+      }
     }
 
     return result;
@@ -1766,7 +2482,10 @@ class ThemeDecoder {
   ///  * `w700`
   ///  * `w800`
   ///  * `w900`
-  static FontWeight decodeFontWeight(String value) {
+  static FontWeight decodeFontWeight(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'FontWeight',
       [
@@ -1787,6 +2506,11 @@ class ThemeDecoder {
     FontWeight result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'font_weight',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'bold':
           result = FontWeight.bold;
@@ -1830,35 +2554,6 @@ class ThemeDecoder {
 
         case 'w900':
           result = FontWeight.w900;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [FontStyle].  Supported values are:
-  ///  * `italic`
-  ///  * `normal`
-  static FontStyle decodeFontStyle(String value) {
-    _checkSupported(
-      'FontStyle',
-      [
-        'italic',
-        'normal',
-      ],
-      value,
-    );
-    FontStyle result;
-
-    if (value != null) {
-      switch (value) {
-        case 'italic':
-          result = FontStyle.italic;
-          break;
-
-        case 'normal':
-          result = FontStyle.normal;
           break;
       }
     }
@@ -1924,7 +2619,10 @@ class ThemeDecoder {
   ///  * [decodeAlignment]
   ///  * [decodeGradientTransform]
   ///  * [decodeTileMode]
-  static Gradient decodeGradient(dynamic value) {
+  static Gradient decodeGradient(
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'Gradient',
@@ -1938,45 +2636,84 @@ class ThemeDecoder {
     Gradient result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'gradient',
+        value: value,
+        validate: validate,
+      ));
       var type = value['type'];
+
       switch (type) {
         case 'linear':
           result = LinearGradient(
-            begin: decodeAlignment(value['begin']) ?? Alignment.centerLeft,
+            begin: decodeAlignment(
+                  value['begin'],
+                  validate: false,
+                ) ??
+                Alignment.centerLeft,
             colors: _decodeStringList<Color>(
               value['colors'],
               decodeColor,
             ),
-            end: decodeAlignment(value['end']) ?? Alignment.centerRight,
+            end: decodeAlignment(
+                  value['end'],
+                  validate: false,
+                ) ??
+                Alignment.centerRight,
             stops: _decodeDynamicList<double>(
               value['stops'],
               (value) => JsonClass.parseDouble(value),
             ),
-            tileMode: decodeTileMode(value['tileMode']) ?? TileMode.clamp,
-            transform: decodeGradientTransform(value['transform']),
+            tileMode: decodeTileMode(
+                  value['tileMode'],
+                  validate: false,
+                ) ??
+                TileMode.clamp,
+            transform: decodeGradientTransform(
+              value['transform'],
+              validate: false,
+            ),
           );
           break;
         case 'radial':
           result = RadialGradient(
-            center: decodeAlignment(value['center']) ?? Alignment.center,
+            center: decodeAlignment(
+                  value['center'],
+                  validate: false,
+                ) ??
+                Alignment.center,
             colors: _decodeStringList<Color>(
               value['colors'],
               decodeColor,
             ),
-            focal: decodeAlignment(value['focal']),
+            focal: decodeAlignment(
+              value['focal'],
+              validate: false,
+            ),
             focalRadius: JsonClass.parseDouble(value['focalRadius'], 0.0),
             radius: JsonClass.parseDouble(value['radius'], 0.5),
             stops: _decodeDynamicList<double>(
               value['stops'],
               (value) => JsonClass.parseDouble(value),
             ),
-            tileMode: decodeTileMode(value['tileMode']) ?? TileMode.clamp,
-            transform: decodeGradientTransform(value['transform']),
+            tileMode: decodeTileMode(
+                  value['tileMode'],
+                  validate: false,
+                ) ??
+                TileMode.clamp,
+            transform: decodeGradientTransform(
+              value['transform'],
+              validate: false,
+            ),
           );
           break;
         case 'sweep':
           result = SweepGradient(
-            center: decodeAlignment(value['center']) ?? Alignment.center,
+            center: decodeAlignment(
+                  value['center'],
+                  validate: false,
+                ) ??
+                Alignment.center,
             colors: _decodeStringList<Color>(
               value['colors'],
               decodeColor,
@@ -1993,8 +2730,15 @@ class ThemeDecoder {
               value['stops'],
               (value) => JsonClass.parseDouble(value),
             ),
-            tileMode: decodeTileMode(value['tileMode']) ?? TileMode.clamp,
-            transform: decodeGradientTransform(value['transform']),
+            tileMode: decodeTileMode(
+                  value['tileMode'],
+                  validate: false,
+                ) ??
+                TileMode.clamp,
+            transform: decodeGradientTransform(
+              value['transform'],
+              validate: false,
+            ),
           );
           break;
       }
@@ -2014,10 +2758,18 @@ class ThemeDecoder {
   ///   "radians": <double>
   /// }
   /// ```
-  static GradientTransform decodeGradientTransform(dynamic value) {
+  static GradientTransform decodeGradientTransform(
+    dynamic value, {
+    bool validate = true,
+  }) {
     GradientTransform result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'gradient_transform',
+        value: value,
+        validate: validate,
+      ));
       result = GradientRotation(
         JsonClass.parseDouble(value['radians']),
       );
@@ -2030,10 +2782,27 @@ class ThemeDecoder {
   /// * `deferToChild`
   /// * `opaque`
   /// * `translucent`
-  static HitTestBehavior decodeHitTestBehavior(String value) {
+  static HitTestBehavior decodeHitTestBehavior(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'HitTestBehavior',
+      [
+        'deferToChild',
+        'opaque',
+        'translucent',
+      ],
+      value,
+    );
     HitTestBehavior result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'hit_test_behavior',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'deferToChild':
           result = HitTestBehavior.deferToChild;
@@ -2063,10 +2832,18 @@ class ThemeDecoder {
   ///   "matchTextDirection": <bool>
   /// }
   /// ```
-  static IconData decodeIconData(dynamic value) {
+  static IconData decodeIconData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     IconData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'icon_data',
+        value: value,
+        validate: validate,
+      ));
       result = IconData(
         JsonClass.parseInt(value['codePoint']),
         fontFamily: value['fontFamily'],
@@ -2091,12 +2868,23 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static IconThemeData decodeIconThemeData(dynamic value) {
+  static IconThemeData decodeIconThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     IconThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'icon_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = IconThemeData(
-        color: decodeColor(value['color']),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         opacity: JsonClass.parseDouble(value['opacity']),
         size: JsonClass.parseDouble(value['size']),
       );
@@ -2110,10 +2898,28 @@ class ThemeDecoder {
   /// * `repeat`
   /// * `repeatX`
   /// * `repeatY`
-  static ImageRepeat decodeImageRepeat(String value) {
+  static ImageRepeat decodeImageRepeat(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'ImageRepeat',
+      [
+        'noRepeat',
+        'repeat',
+        'repeatX',
+        'repeatY',
+      ],
+      value,
+    );
     ImageRepeat result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'image_repeat',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'noRepeat':
           result = ImageRepeat.noRepeat;
@@ -2160,7 +2966,10 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
-  static InputBorder decodeInputBorder(dynamic value) {
+  static InputBorder decodeInputBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'InputBorder.type',
       [
@@ -2172,26 +2981,44 @@ class ThemeDecoder {
     InputBorder result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'input_border',
+        value: value,
+        validate: validate,
+      ));
       String type = value['type'];
 
       switch (type) {
         case 'outline':
           result = OutlineInputBorder(
-            borderRadius: decodeBorderRadius(value['borderRadius']) ??
+            borderRadius: decodeBorderRadius(
+                  value['borderRadius'],
+                  validate: false,
+                ) ??
                 BorderRadius.all(Radius.circular(4.0)),
-            borderSide: decodeBorderSide(value['borderSide']) ?? BorderSide(),
+            borderSide: decodeBorderSide(
+                  value['borderSide'],
+                  validate: false,
+                ) ??
+                BorderSide(),
             gapPadding: JsonClass.parseDouble(value['gapPadding'], 4.0),
           );
           break;
 
         case 'underline':
           result = UnderlineInputBorder(
-                  borderRadius: decodeBorderRadius(value['borderRadius']) ??
+                  borderRadius: decodeBorderRadius(
+                        value['borderRadius'],
+                        validate: false,
+                      ) ??
                       BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
                       ),
-                  borderSide: decodeBorderSide(value['borderSide'])) ??
+                  borderSide: decodeBorderSide(
+                    value['borderSide'],
+                    validate: false,
+                  )) ??
               BorderSide();
           break;
       }
@@ -2238,38 +3065,98 @@ class ThemeDecoder {
   ///  * [decodeInputBorder]
   ///  * [decodeFloatingLabelBehavior]
   ///  * [decodeTextStyle]
-  static InputDecorationTheme decodeInputDecorationTheme(dynamic value) {
+  static InputDecorationTheme decodeInputDecorationTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     InputDecorationTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'input_decoration_theme',
+        value: value,
+        validate: validate,
+      ));
       result = InputDecorationTheme(
         alignLabelWithHint: JsonClass.parseBool(value['alignLabelWithHint']),
-        border: decodeInputBorder(value['border']),
-        contentPadding: decodeEdgeInsetsGeometry(value['contentPadding']),
-        counterStyle: decodeTextStyle(value['counterStyle']),
-        disabledBorder: decodeInputBorder(value['disabledBorder']),
-        enabledBorder: decodeInputBorder(value['enabledBorder']),
-        errorBorder: decodeInputBorder(value['errorBorder']),
+        border: decodeInputBorder(
+          value['border'],
+          validate: false,
+        ),
+        contentPadding: decodeEdgeInsetsGeometry(
+          value['contentPadding'],
+          validate: false,
+        ),
+        counterStyle: decodeTextStyle(
+          value['counterStyle'],
+          validate: false,
+        ),
+        disabledBorder: decodeInputBorder(
+          value['disabledBorder'],
+          validate: false,
+        ),
+        enabledBorder: decodeInputBorder(
+          value['enabledBorder'],
+          validate: false,
+        ),
+        errorBorder: decodeInputBorder(
+          value['errorBorder'],
+          validate: false,
+        ),
         errorMaxLines: JsonClass.parseInt(value['errorMaxLines']),
-        errorStyle: decodeTextStyle(value['errorStyle']),
-        fillColor: decodeColor(value['fillColor']),
+        errorStyle: decodeTextStyle(
+          value['errorStyle'],
+          validate: false,
+        ),
+        fillColor: decodeColor(
+          value['fillColor'],
+          validate: false,
+        ),
         filled: JsonClass.parseBool(value['filled']),
         floatingLabelBehavior: decodeFloatingLabelBehavior(
               value['floatingLabelBehavior'],
+              validate: false,
             ) ??
             FloatingLabelBehavior.auto,
-        focusColor: decodeColor(value['focusColor']),
-        focusedBorder: decodeInputBorder(value['focusedBorder']),
-        focusedErrorBorder: decodeInputBorder(value['focusedErrorBorder']),
+        focusColor: decodeColor(
+          value['focusColor'],
+          validate: false,
+        ),
+        focusedBorder: decodeInputBorder(
+          value['focusedBorder'],
+          validate: false,
+        ),
+        focusedErrorBorder: decodeInputBorder(
+          value['focusedErrorBorder'],
+          validate: false,
+        ),
         helperMaxLines: JsonClass.parseInt(value['helperMaxLines']),
-        helperStyle: decodeTextStyle(value['helperStyle']),
-        hintStyle: decodeTextStyle(value['hintStyle']),
-        hoverColor: decodeColor(value['hoverColor']),
+        helperStyle: decodeTextStyle(
+          value['helperStyle'],
+          validate: false,
+        ),
+        hintStyle: decodeTextStyle(
+          value['hintStyle'],
+          validate: false,
+        ),
+        hoverColor: decodeColor(
+          value['hoverColor'],
+          validate: false,
+        ),
         isCollapsed: JsonClass.parseBool(value['isCollapsed']),
         isDense: JsonClass.parseBool(value['isDense']),
-        labelStyle: decodeTextStyle(value['labelStyle']),
-        prefixStyle: decodeTextStyle(value['prefixStyle']),
-        suffixStyle: decodeTextStyle(value['suffixStyle']),
+        labelStyle: decodeTextStyle(
+          value['labelStyle'],
+          validate: false,
+        ),
+        prefixStyle: decodeTextStyle(
+          value['prefixStyle'],
+          validate: false,
+        ),
+        suffixStyle: decodeTextStyle(
+          value['suffixStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -2281,8 +3168,9 @@ class ThemeDecoder {
   ///  * `splash`
   ///  * `ripple`
   static InteractiveInkFeatureFactory decodeInteractiveInkFeatureFactory(
-    String value,
-  ) {
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'InteractiveInkFeatureFactory',
       [
@@ -2294,6 +3182,11 @@ class ThemeDecoder {
     InteractiveInkFeatureFactory result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'interactive_ink_feature_factory',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'splash':
           result = InkSplash.splashFactory;
@@ -2317,10 +3210,18 @@ class ThemeDecoder {
   ///   "languageCode": <String>
   /// }
   /// ```
-  static Locale decodeLocale(dynamic value) {
+  static Locale decodeLocale(
+    dynamic value, {
+    bool validate = true,
+  }) {
     Locale result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'locale',
+        value: value,
+        validate: validate,
+      ));
       result = Locale(
         value['languageCode'],
         value['countryCode'],
@@ -2337,7 +3238,10 @@ class ThemeDecoder {
   ///  * `spaceBetween`
   ///  * `spaceEvenly`
   ///  * `start`
-  static MainAxisAlignment decodeMainAxisAlignment(String value) {
+  static MainAxisAlignment decodeMainAxisAlignment(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'MainAxisAlignment',
       [
@@ -2354,6 +3258,11 @@ class ThemeDecoder {
     MainAxisAlignment result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'main_axis_alignment',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'center':
           result = MainAxisAlignment.center;
@@ -2382,7 +3291,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [MainAxisSize].  Supported values are:
   ///  * `max`
   ///  * `min`
-  static MainAxisSize decodeMainAxisSize(String value) {
+  static MainAxisSize decodeMainAxisSize(
+    String value, {
+    bool validate = true,
+  }) {
     MainAxisSize result;
     _checkSupported(
       'MainAxisSize',
@@ -2393,6 +3305,11 @@ class ThemeDecoder {
       value,
     );
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'main_axis_size',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'max':
           result = MainAxisSize.max;
@@ -2422,15 +3339,35 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeTextStyle]
-  static MaterialBannerThemeData decodeMaterialBannerThemeData(dynamic value) {
+  static MaterialBannerThemeData decodeMaterialBannerThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     MaterialBannerThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'material_banner_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = MaterialBannerThemeData(
-        backgroundColor: decodeColor(value['backgroundColor']),
-        contentTextStyle: decodeTextStyle(value['contentTextStyle']),
-        leadingPadding: decodeEdgeInsetsGeometry(value['leadingPadding']),
-        padding: decodeEdgeInsetsGeometry(value['padding']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        contentTextStyle: decodeTextStyle(
+          value['contentTextStyle'],
+          validate: false,
+        ),
+        leadingPadding: decodeEdgeInsetsGeometry(
+          value['leadingPadding'],
+          validate: false,
+        ),
+        padding: decodeEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
       );
     }
 
@@ -2449,10 +3386,18 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static MaterialColor decodeMaterialColor(dynamic value) {
+  static MaterialColor decodeMaterialColor(
+    dynamic value, {
+    bool validate = true,
+  }) {
     MaterialColor result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'material_color',
+        value: value,
+        validate: validate,
+      ));
       var swatches = <int, Color>{};
 
       var swatchesIn = value['swatches'];
@@ -2472,7 +3417,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [MaterialTargetTapSize].  Supported values are:
   ///  * `padded`
   ///  * `shrinkWrap`
-  static MaterialTapTargetSize decodeMaterialTapTargetSize(String value) {
+  static MaterialTapTargetSize decodeMaterialTapTargetSize(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'MaterialTapTargetSize',
       [
@@ -2484,6 +3432,11 @@ class ThemeDecoder {
     MaterialTapTargetSize result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'material_tap_target_size',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'padded':
           result = MaterialTapTargetSize.padded;
@@ -2503,7 +3456,10 @@ class ThemeDecoder {
   ///  * `card`
   ///  * `circle`
   ///  * `transparency`
-  static MaterialType decodeMaterialType(String value) {
+  static MaterialType decodeMaterialType(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'MaterialType',
       [
@@ -2518,6 +3474,11 @@ class ThemeDecoder {
     MaterialType result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'material_type',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'button':
           result = MaterialType.button;
@@ -2564,10 +3525,18 @@ class ThemeDecoder {
   ///   w3
   /// ]
   /// ```
-  static Matrix4 decodeMatrix4(Iterable<double> value) {
+  static Matrix4 decodeMatrix4(
+    Iterable<double> value, {
+    bool validate = true,
+  }) {
     Matrix4 result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'matrix4',
+        value: value,
+        validate: validate,
+      ));
       var list = value.toList();
       result = Matrix4(
         JsonClass.parseDouble(list[0]),
@@ -2596,7 +3565,10 @@ class ThemeDecoder {
   ///  * `all`
   ///  * `none`
   ///  * `selected`
-  static NavigationRailLabelType decodeNavigationRailLabelType(String value) {
+  static NavigationRailLabelType decodeNavigationRailLabelType(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'NavigationRailLabelType',
       [
@@ -2609,6 +3581,11 @@ class ThemeDecoder {
     NavigationRailLabelType result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'navigation_rail_label_type',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'all':
           result = NavigationRailLabelType.all;
@@ -2648,21 +3625,44 @@ class ThemeDecoder {
   ///  * [decodeIconThemeData]
   ///  * [decodeNavigationRailLabelType]
   ///  * [decodeTextStyle]
-  static NavigationRailThemeData decodeNavigationRailThemeData(dynamic value) {
+  static NavigationRailThemeData decodeNavigationRailThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     NavigationRailThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'navigation_rail_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = NavigationRailThemeData(
-        backgroundColor: decodeColor(value['backgroundColor']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
         groupAlignment: JsonClass.parseDouble(value['groupAlignment']),
-        labelType: decodeNavigationRailLabelType(value['labelType']),
-        selectedIconTheme: decodeIconThemeData(value['selectedIconTheme']),
-        selectedLabelTextStyle:
-            decodeTextStyle(value['selectedLabelTextStyle']),
-        unselectedIconTheme: decodeIconThemeData(value['unselectedIconTheme']),
+        labelType: decodeNavigationRailLabelType(
+          value['labelType'],
+          validate: false,
+        ),
+        selectedIconTheme: decodeIconThemeData(
+          value['selectedIconTheme'],
+          validate: false,
+        ),
+        selectedLabelTextStyle: decodeTextStyle(
+          value['selectedLabelTextStyle'],
+          validate: false,
+        ),
+        unselectedIconTheme: decodeIconThemeData(
+          value['unselectedIconTheme'],
+          validate: false,
+        ),
         unselectedLabelTextStyle: decodeTextStyle(
           value['unselectedLabelTextStyle'],
+          validate: false,
         ),
       );
     }
@@ -2672,7 +3672,10 @@ class ThemeDecoder {
 
   /// Decodes the [value] to a [NotchedShape].  Supported values are:
   ///  * `circular`
-  static NotchedShape decodeNotchedShape(String value) {
+  static NotchedShape decodeNotchedShape(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'NotchedShape',
       [
@@ -2683,6 +3686,11 @@ class ThemeDecoder {
     NotchedShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'notched_shape',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'circular':
           result = CircularNotchedRectangle();
@@ -2702,10 +3710,18 @@ class ThemeDecoder {
   ///   "dy": <double>
   /// }
   /// ```
-  static Offset decodeOffset(dynamic value) {
+  static Offset decodeOffset(
+    dynamic value, {
+    bool validate = true,
+  }) {
     Offset result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'offset',
+        value: value,
+        validate: validate,
+      ));
       result = Offset(
         JsonClass.parseDouble(value['dx'], 0),
         JsonClass.parseDouble(value['dy'], 0),
@@ -2718,7 +3734,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [Overflow].  Supported values are:
   ///  * `clip`
   ///  * `visible`
-  static Overflow decodeOverflow(String value) {
+  static Overflow decodeOverflow(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'Overflow',
       [
@@ -2730,6 +3749,11 @@ class ThemeDecoder {
     Overflow result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'overflow',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'clip':
           result = Overflow.clip;
@@ -2760,15 +3784,32 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static PopupMenuThemeData decodePopupMenuThemeData(dynamic value) {
+  static PopupMenuThemeData decodePopupMenuThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     PopupMenuThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'popup_menu_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = PopupMenuThemeData(
-        color: decodeColor(value['color']),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        shape: decodeShapeBorder(value['shape']),
-        textStyle: decodeTextStyle(value['textStyle']),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        textStyle: decodeTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -2811,7 +3852,10 @@ class ThemeDecoder {
   ///   "type": "zero"
   /// }
   /// ```
-  static Radius decodeRadius(dynamic value) {
+  static Radius decodeRadius(
+    dynamic value, {
+    bool validate = true,
+  }) {
     Radius result;
     var radius = JsonClass.parseDouble(value);
 
@@ -2830,6 +3874,11 @@ class ThemeDecoder {
       );
 
       if (value != null) {
+        assert(SchemaValidator.validate(
+          schema: 'radius',
+          value: value,
+          validate: validate,
+        ));
         String type = value['type'];
 
         switch (type) {
@@ -2868,7 +3917,10 @@ class ThemeDecoder {
   ///   "type": "round"
   /// }
   /// ```
-  static RangeSliderThumbShape decodeRangeSliderThumbShape(dynamic value) {
+  static RangeSliderThumbShape decodeRangeSliderThumbShape(
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'RangeSliderThumbShape.type',
@@ -2880,8 +3932,13 @@ class ThemeDecoder {
     RangeSliderThumbShape result;
 
     if (value != null) {
-      String type = value['type'];
+      assert(SchemaValidator.validate(
+        schema: 'range_slider_thumb_shape',
+        value: value,
+        validate: validate,
+      ));
 
+      String type = value['type'];
       switch (type) {
         case 'round':
           result = RoundRangeSliderThumbShape(
@@ -2916,7 +3973,9 @@ class ThemeDecoder {
   /// }
   /// ```
   static RangeSliderTickMarkShape decodeRangeSliderTickMarkShape(
-      dynamic value) {
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'RangeSliderTickMarkShape.type',
@@ -2928,6 +3987,11 @@ class ThemeDecoder {
     RangeSliderTickMarkShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'range_slider_tick_mark_shape',
+        value: value,
+        validate: validate,
+      ));
       String type = value['type'];
 
       switch (type) {
@@ -2945,7 +4009,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [RangeSliderTrackShape].  Supported values are:
   ///  * `rectangular`
   ///  * `rounded`
-  static RangeSliderTrackShape decodeRangeSliderTrackShape(String value) {
+  static RangeSliderTrackShape decodeRangeSliderTrackShape(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'RangeSliderTrackShape',
       [
@@ -2957,6 +4024,11 @@ class ThemeDecoder {
     RangeSliderTrackShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'range_slider_track_shape',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'rectangular':
           result = RectangularRangeSliderTrackShape();
@@ -2975,8 +4047,9 @@ class ThemeDecoder {
   /// values are:
   ///  * `paddle`
   static RangeSliderValueIndicatorShape decodeRangeSliderValueIndicatorShape(
-    String value,
-  ) {
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'RangeSliderValueIndicatorShape.type',
       [
@@ -2988,6 +4061,11 @@ class ThemeDecoder {
     RangeSliderValueIndicatorShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'range_slider_value_indicator_shape',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'paddle':
           result = PaddleRangeSliderValueIndicatorShape();
@@ -3060,8 +4138,8 @@ class ThemeDecoder {
   /// Type: `ltwh`
   /// ```json
   /// {
-  ///   "left": <double>,
   ///   "height": <double>,
+  ///   "left": <double>,
   ///   "top": <double>,
   ///   "type": "ltwh",
   ///   "width": <double>
@@ -3079,6 +4157,7 @@ class ThemeDecoder {
   ///     "dx": <double>,
   ///     "dy": <double>
   ///   }
+  ///   "type": "points"
   /// }
   /// ```
   ///
@@ -3091,7 +4170,10 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeOffset]
-  static Rect decodeRect(dynamic value) {
+  static Rect decodeRect(
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'Rect.type',
@@ -3109,11 +4191,19 @@ class ThemeDecoder {
     Rect result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'rect',
+        value: value,
+        validate: validate,
+      ));
       String type = value['type'];
       switch (type) {
         case 'center':
           result = Rect.fromCenter(
-            center: decodeOffset(value['center']),
+            center: decodeOffset(
+              value['center'],
+              validate: false,
+            ),
             height: JsonClass.parseDouble(value['height']),
             width: JsonClass.parseDouble(value['width']),
           );
@@ -3121,7 +4211,10 @@ class ThemeDecoder {
 
         case 'circle':
           result = Rect.fromCircle(
-            center: decodeOffset(value['center']),
+            center: decodeOffset(
+              value['center'],
+              validate: false,
+            ),
             radius: JsonClass.parseDouble(value['radius']),
           );
           break;
@@ -3150,8 +4243,14 @@ class ThemeDecoder {
 
         case 'points':
           result = Rect.fromPoints(
-            decodeOffset(value['a']),
-            decodeOffset(value['b']),
+            decodeOffset(
+              value['a'],
+              validate: false,
+            ),
+            decodeOffset(
+              value['b'],
+              validate: false,
+            ),
           );
           break;
 
@@ -3180,7 +4279,10 @@ class ThemeDecoder {
   ///   "type": <String>
   /// }
   /// ```
-  static ScrollPhysics decodeScrollPhysics(dynamic value) {
+  static ScrollPhysics decodeScrollPhysics(
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'ScrollPhysics.type',
@@ -3197,42 +4299,65 @@ class ThemeDecoder {
     ScrollPhysics result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'scroll_physics',
+        value: value,
+        validate: validate,
+      ));
       var type = value['type'];
 
       switch (type) {
         case 'always':
           result = AlwaysScrollableScrollPhysics(
-            parent: decodeScrollPhysics(value['parent']),
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
           );
           break;
 
         case 'bouncing':
           result = BouncingScrollPhysics(
-            parent: decodeScrollPhysics(value['parent']),
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
           );
           break;
 
         case 'clamping':
           result = ClampingScrollPhysics(
-            parent: decodeScrollPhysics(value['parent']),
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
           );
           break;
 
         case 'fixedExtent':
           result = FixedExtentScrollPhysics(
-            parent: decodeScrollPhysics(value['parent']),
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
           );
           break;
 
         case 'never':
           result = NeverScrollableScrollPhysics(
-            parent: decodeScrollPhysics(value['parent']),
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
           );
           break;
 
         case 'page':
           result = PageScrollPhysics(
-            parent: decodeScrollPhysics(value['parent']),
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
           );
           break;
       }
@@ -3255,14 +4380,28 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeOffset]
-  static Shadow decodeShadow(dynamic value) {
+  static Shadow decodeShadow(
+    dynamic value, {
+    bool validate = true,
+  }) {
     Shadow result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'shadow',
+        value: value,
+        validate: validate,
+      ));
       result = Shadow(
         blurRadius: JsonClass.parseDouble(value['blurRadius'], 0.0),
-        color: decodeColor(value['color']),
-        offset: decodeOffset(value['offset']),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
+        offset: decodeOffset(
+          value['offset'],
+          validate: false,
+        ),
       );
     }
 
@@ -3307,7 +4446,10 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
-  static ShapeBorder decodeShapeBorder(dynamic value) {
+  static ShapeBorder decodeShapeBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'ShapeBorder.type',
@@ -3321,12 +4463,21 @@ class ThemeDecoder {
     ShapeBorder result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'shape_border',
+        value: value,
+        validate: validate,
+      ));
       String type = value['type'];
 
       switch (type) {
         case 'circle':
           result = CircleBorder(
-            side: decodeBorderSide(value['side'] ?? BorderSide.none),
+            side: decodeBorderSide(
+                  value['side'],
+                  validate: false,
+                ) ??
+                BorderSide.none,
           );
           break;
 
@@ -3336,7 +4487,11 @@ class ThemeDecoder {
                   value['borderRadius'],
                 ) ??
                 BorderRadius.zero,
-            side: decodeBorderSide(value['side']) ?? BorderSide.none,
+            side: decodeBorderSide(
+                  value['side'],
+                  validate: false,
+                ) ??
+                BorderSide.none,
           );
           break;
 
@@ -3344,9 +4499,14 @@ class ThemeDecoder {
           result = RoundedRectangleBorder(
             borderRadius: decodeBorderRadius(
                   value['borderRadius'],
+                  validate: false,
                 ) ??
                 BorderRadius.zero,
-            side: decodeBorderSide(value['side']) ?? BorderSide.none,
+            side: decodeBorderSide(
+                  value['side'],
+                  validate: false,
+                ) ??
+                BorderSide.none,
           );
           break;
       }
@@ -3360,7 +4520,10 @@ class ThemeDecoder {
   ///  * `never`
   ///  * `onlyForContinuous`
   ///  * `onlyForDiscrete`
-  static ShowValueIndicator decodeShowValueIndicator(String value) {
+  static ShowValueIndicator decodeShowValueIndicator(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'ShowValueIndicator',
       [
@@ -3374,6 +4537,11 @@ class ThemeDecoder {
     ShowValueIndicator result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'show_value_indicator',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'always':
           result = ShowValueIndicator.always;
@@ -3399,7 +4567,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
   ///  * `noOverlay`
   ///  * `noThumb`
-  static SliderComponentShape decodeSliderComponentShape(String value) {
+  static SliderComponentShape decodeSliderComponentShape(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'SliderComponentShape',
       [
@@ -3411,6 +4582,11 @@ class ThemeDecoder {
     SliderComponentShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'slider_component_shape',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'noOverlay':
           result = SliderComponentShape.noOverlay;
@@ -3466,54 +4642,114 @@ class ThemeDecoder {
   ///  * [decodeRangeSliderTickMarkShape]
   ///  * [decodeRangeSliderTrackShape]
   ///  * [decodeRangeSliderValueIndicatorShape]
-  static SliderThemeData decodeSliderThemeData(dynamic value) {
+  static SliderThemeData decodeSliderThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     SliderThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'slider_theme_data',
+        value: value,
+        validate: validate,
+      ));
       assert(value['tickMarkShape'] == null,
           'SliderThemeData.tickMarkShape is not supported');
       result = SliderThemeData(
-        activeTickMarkColor: decodeColor(value['activeTickMarkColor']),
-        activeTrackColor: decodeColor(value['activeTrackColor']),
+        activeTickMarkColor: decodeColor(
+          value['activeTickMarkColor'],
+          validate: false,
+        ),
+        activeTrackColor: decodeColor(
+          value['activeTrackColor'],
+          validate: false,
+        ),
         disabledActiveTickMarkColor: decodeColor(
           value['disabledActiveTickMarkColor'],
+          validate: false,
         ),
-        disabledActiveTrackColor:
-            decodeColor(value['disabledActiveTrackColor']),
+        disabledActiveTrackColor: decodeColor(
+          value['disabledActiveTrackColor'],
+          validate: false,
+        ),
         disabledInactiveTickMarkColor: decodeColor(
           value['disabledInactiveTickMarkColor'],
+          validate: false,
         ),
-        disabledInactiveTrackColor:
-            decodeColor(value['disabledInactiveTrackColor']),
-        disabledThumbColor: decodeColor(value['disabledThumbColor']),
-        inactiveTickMarkColor: decodeColor(value['inactiveTickMarkColor']),
-        inactiveTrackColor: decodeColor(value['inactiveTrackColor']),
+        disabledInactiveTrackColor: decodeColor(
+          value['disabledInactiveTrackColor'],
+          validate: false,
+        ),
+        disabledThumbColor: decodeColor(
+          value['disabledThumbColor'],
+          validate: false,
+        ),
+        inactiveTickMarkColor: decodeColor(
+          value['inactiveTickMarkColor'],
+          validate: false,
+        ),
+        inactiveTrackColor: decodeColor(
+          value['inactiveTrackColor'],
+          validate: false,
+        ),
         minThumbSeparation: JsonClass.parseDouble(value['minThumbSeparation']),
         overlappingShapeStrokeColor: decodeColor(
           value['overlappingShapeStrokeColor'],
+          validate: false,
         ),
-        overlayColor: decodeColor(value['overlayColor']),
-        overlayShape: decodeSliderComponentShape(value['overlayShape']),
-        rangeThumbShape: decodeRangeSliderThumbShape(value['rangeThumbShape']),
+        overlayColor: decodeColor(
+          value['overlayColor'],
+          validate: false,
+        ),
+        overlayShape: decodeSliderComponentShape(
+          value['overlayShape'],
+          validate: false,
+        ),
+        rangeThumbShape: decodeRangeSliderThumbShape(
+          value['rangeThumbShape'],
+          validate: false,
+        ),
         rangeTickMarkShape: decodeRangeSliderTickMarkShape(
           value['rangeTickMarkShape'],
+          validate: false,
         ),
-        rangeTrackShape: decodeRangeSliderTrackShape(value['rangeTrackShape']),
+        rangeTrackShape: decodeRangeSliderTrackShape(
+          value['rangeTrackShape'],
+          validate: false,
+        ),
         rangeValueIndicatorShape: decodeRangeSliderValueIndicatorShape(
           value['rangeValueIndicatorShape'],
+          validate: false,
         ),
-        showValueIndicator:
-            decodeShowValueIndicator(value['showValueIndicator']),
-        thumbColor: decodeColor(value['thumbColor']),
-        thumbShape: decodeSliderComponentShape(value['thumbShape']),
+        showValueIndicator: decodeShowValueIndicator(
+          value['showValueIndicator'],
+          validate: false,
+        ),
+        thumbColor: decodeColor(
+          value['thumbColor'],
+          validate: false,
+        ),
+        thumbShape: decodeSliderComponentShape(
+          value['thumbShape'],
+          validate: false,
+        ),
         trackHeight: JsonClass.parseDouble(value['trackHeight']),
-        trackShape: decodeSliderTrackShape(value['trackShape']),
-        valueIndicatorColor: decodeColor(value['valueIndicatorColor']),
+        trackShape: decodeSliderTrackShape(
+          value['trackShape'],
+          validate: false,
+        ),
+        valueIndicatorColor: decodeColor(
+          value['valueIndicatorColor'],
+          validate: false,
+        ),
         valueIndicatorShape: decodeSliderComponentShape(
           value['valueIndicatorShape'],
+          validate: false,
         ),
         valueIndicatorTextStyle: decodeTextStyle(
           value['valueIndicatorTextStyle'],
+          validate: false,
         ),
       );
     }
@@ -3537,10 +4773,10 @@ class ThemeDecoder {
   /// }
   /// ```
   ///
-  /// Type: `round`
+  /// Type: `rounded`
   /// ```json
   /// {
-  ///   "type": "round"
+  ///   "type": "rounded"
   /// }
   /// ```
   ///
@@ -3552,7 +4788,10 @@ class ThemeDecoder {
   ///  * [decodeRangeSliderTickMarkShape]
   ///  * [decodeRangeSliderTrackShape]
   ///  * [decodeRangeSliderValueIndicatorShape]
-  static SliderTrackShape decodeSliderTrackShape(dynamic value) {
+  static SliderTrackShape decodeSliderTrackShape(
+    dynamic value, {
+    bool validate = true,
+  }) {
     assert(value == null || value['type'] is String);
     _checkSupported(
       'type',
@@ -3565,6 +4804,11 @@ class ThemeDecoder {
     SliderTrackShape result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'slider_track_shape',
+        value: value,
+        validate: validate,
+      ));
       String type = value['type'];
       switch (type) {
         case 'rectangular':
@@ -3588,7 +4832,10 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SmartDashesType].  Supported values are:
   ///  * `disabled`
   ///  * `enabled`
-  static SmartDashesType decodeSmartDashesType(String value) {
+  static SmartDashesType decodeSmartDashesType(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'SmartDashesType',
       [
@@ -3600,6 +4847,11 @@ class ThemeDecoder {
     SmartDashesType result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'smart_dashes_type',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'disabled':
           result = SmartDashesType.disabled;
@@ -3616,7 +4868,10 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SmartQuotesType].  Supported values are:
   ///  * `disabled`
   ///  * `enabled`
-  static SmartQuotesType decodeSmartQuotesType(String value) {
+  static SmartQuotesType decodeSmartQuotesType(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'SmartQuotesType',
       [
@@ -3628,6 +4883,11 @@ class ThemeDecoder {
     SmartQuotesType result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'smart_quotes_type',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'disabled':
           result = SmartQuotesType.disabled;
@@ -3644,7 +4904,10 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SnackBarBehavior].  Supported values are:
   ///  * `fixed`
   ///  * `floating`
-  static SnackBarBehavior decodeSnackBarBehavior(String value) {
+  static SnackBarBehavior decodeSnackBarBehavior(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'SnackBarBehavior',
       [
@@ -3656,6 +4919,11 @@ class ThemeDecoder {
     SnackBarBehavior result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'snack_bar_behavior',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'fixed':
           result = SnackBarBehavior.fixed;
@@ -3690,18 +4958,44 @@ class ThemeDecoder {
   ///  * [decodeSnackBarBehavior]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static SnackBarThemeData decodeSnackBarThemeData(dynamic value) {
+  static SnackBarThemeData decodeSnackBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     SnackBarThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'snack_bar_theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = SnackBarThemeData(
-        actionTextColor: decodeColor(value['actionTextColor']),
-        backgroundColor: decodeColor(value['backgroundColor']),
-        behavior: decodeSnackBarBehavior(value['behavior']),
-        contentTextStyle: decodeTextStyle(value['contentTextStyle']),
-        disabledActionTextColor: decodeColor(value['disabledActionTextColor']),
+        actionTextColor: decodeColor(
+          value['actionTextColor'],
+          validate: false,
+        ),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        behavior: decodeSnackBarBehavior(
+          value['behavior'],
+          validate: false,
+        ),
+        contentTextStyle: decodeTextStyle(
+          value['contentTextStyle'],
+          validate: false,
+        ),
+        disabledActionTextColor: decodeColor(
+          value['disabledActionTextColor'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
-        shape: decodeShapeBorder(value['shape']),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
       );
     }
 
@@ -3712,10 +5006,18 @@ class ThemeDecoder {
   ///  * `expand`
   ///  * `loose`
   ///  * `passthrough`
-  static StackFit decodeStackFit(String value) {
+  static StackFit decodeStackFit(
+    String value, {
+    bool validate = true,
+  }) {
     StackFit result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'stack_fit',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'expand':
           result = StackFit.expand;
@@ -3755,10 +5057,18 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeFontStyle]
   ///  * [decodeFontWeight]
-  static StrutStyle decodeStrutStyle(dynamic value) {
+  static StrutStyle decodeStrutStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
     StrutStyle result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'strut_style',
+        value: value,
+        validate: validate,
+      ));
       result = StrutStyle(
         fontFamily: value['fontFamily'],
         fontFamilyFallback: _decodeStringList(
@@ -3766,8 +5076,14 @@ class ThemeDecoder {
           (value) => value,
         ),
         fontSize: JsonClass.parseDouble(value['fontSize']),
-        fontStyle: decodeFontStyle(value['fontStyle']),
-        fontWeight: decodeFontWeight(value['fontWeight']),
+        fontStyle: decodeFontStyle(
+          value['fontStyle'],
+          validate: false,
+        ),
+        fontWeight: decodeFontWeight(
+          value['fontWeight'],
+          validate: false,
+        ),
         forceStrutHeight: value['forceStrutHeight'] == null
             ? null
             : JsonClass.parseBool(value['forceStrutHeight']),
@@ -3783,7 +5099,10 @@ class ThemeDecoder {
   /// Decodes a [value] to a [TabBarIndicatorSize].  Supported values are:
   ///  * `label`
   ///  * `tab`
-  static TabBarIndicatorSize decodeTabBarIndicatorSize(String value) {
+  static TabBarIndicatorSize decodeTabBarIndicatorSize(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TabBarIndicatorSize',
       [
@@ -3795,6 +5114,11 @@ class ThemeDecoder {
     TabBarIndicatorSize result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'tab_bar_indicator_size',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'label':
           result = TabBarIndicatorSize.label;
@@ -3828,21 +5152,47 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeTabBarIndicatorSize]
   ///  * [decodeTextStyle]
-  static TabBarTheme decodeTabBarTheme(dynamic value) {
+  static TabBarTheme decodeTabBarTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     TabBarTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'tab_bar_theme',
+        value: value,
+        validate: validate,
+      ));
       assert(
         value['indicator'] == null,
         'TabBarTheme.indicator is not supported',
       );
       result = TabBarTheme(
-        indicatorSize: decodeTabBarIndicatorSize(value['indicatorSize']),
-        labelPadding: decodeEdgeInsetsGeometry(value['labelPadding']),
-        labelColor: decodeColor(value['labelColor']),
-        labelStyle: decodeTextStyle(value['labelStyle']),
-        unselectedLabelColor: decodeColor(value['unselectedLabelColor']),
-        unselectedLabelStyle: decodeTextStyle(value['unselectedLabelStyle']),
+        indicatorSize: decodeTabBarIndicatorSize(
+          value['indicatorSize'],
+          validate: false,
+        ),
+        labelPadding: decodeEdgeInsetsGeometry(
+          value['labelPadding'],
+          validate: false,
+        ),
+        labelColor: decodeColor(
+          value['labelColor'],
+          validate: false,
+        ),
+        labelStyle: decodeTextStyle(
+          value['labelStyle'],
+          validate: false,
+        ),
+        unselectedLabelColor: decodeColor(
+          value['unselectedLabelColor'],
+          validate: false,
+        ),
+        unselectedLabelStyle: decodeTextStyle(
+          value['unselectedLabelStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -3856,7 +5206,10 @@ class ThemeDecoder {
   ///  * `linux`
   ///  * `macOS`
   ///  * `windows`
-  static TargetPlatform decodeTargetPlatform(String value) {
+  static TargetPlatform decodeTargetPlatform(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TargetPlatform',
       [
@@ -3872,6 +5225,11 @@ class ThemeDecoder {
     TargetPlatform result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'target_platform',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'android':
           result = TargetPlatform.android;
@@ -3909,10 +5267,30 @@ class ThemeDecoder {
   ///  * `left`
   ///  * `right`
   ///  * `start`
-  static TextAlign decodeTextAlign(String value) {
+  static TextAlign decodeTextAlign(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'TextAlign',
+      [
+        'center',
+        'end',
+        'justify',
+        'left',
+        'right',
+        'start',
+      ],
+      value,
+    );
     TextAlign result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_align',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'center':
           result = TextAlign.center;
@@ -3942,10 +5320,18 @@ class ThemeDecoder {
   ///  * `bottom`
   ///  * `center`
   ///  * `top`
-  static TextAlignVertical decodeTextAlignVertical(String value) {
+  static TextAlignVertical decodeTextAlignVertical(
+    String value, {
+    bool validate = true,
+  }) {
     TextAlignVertical result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_align_vertical',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'bottom':
           result = TextAlignVertical.bottom;
@@ -3965,7 +5351,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextBaseline].  Supported values are:
   ///  * `alphabetic`
   ///  * `ideographic`
-  static TextBaseline decodeTextBaseline(String value) {
+  static TextBaseline decodeTextBaseline(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextBaseline',
       [
@@ -3977,6 +5366,11 @@ class ThemeDecoder {
     TextBaseline result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_baseline',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'alphabetic':
           result = TextBaseline.alphabetic;
@@ -3996,7 +5390,10 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `sentences`
   ///  * `words`
-  static TextCapitalization decodeTextCapitalization(String value) {
+  static TextCapitalization decodeTextCapitalization(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextCapitalization',
       [
@@ -4010,6 +5407,11 @@ class ThemeDecoder {
     TextCapitalization result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_capitalization',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'characters':
           result = TextCapitalization.characters;
@@ -4037,7 +5439,10 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `overline`
   ///  * `underline`
-  static TextDecoration decodeTextDecoration(String value) {
+  static TextDecoration decodeTextDecoration(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextDecoration',
       [
@@ -4051,6 +5456,11 @@ class ThemeDecoder {
     TextDecoration result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_decoration',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'lineThrough':
           result = TextDecoration.lineThrough;
@@ -4079,7 +5489,10 @@ class ThemeDecoder {
   ///  * `double`
   ///  * `solid`
   ///  * `wavy`
-  static TextDecorationStyle decodeTextDecorationStyle(String value) {
+  static TextDecorationStyle decodeTextDecorationStyle(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextDecorationStyle',
       [
@@ -4094,6 +5507,11 @@ class ThemeDecoder {
     TextDecorationStyle result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_decoration_style',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'dashed':
           result = TextDecorationStyle.dashed;
@@ -4123,7 +5541,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextDirection].  Supported values are:
   ///  * `ltr`
   ///  * `rtl`
-  static TextDirection decodeTextDirection(String value) {
+  static TextDirection decodeTextDirection(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextDirection',
       [
@@ -4135,6 +5556,11 @@ class ThemeDecoder {
     TextDirection result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_direction',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'ltr':
           result = TextDirection.ltr;
@@ -4159,10 +5585,18 @@ class ThemeDecoder {
   ///   "applyHeightToLastDescent": <bool>
   /// }
   /// ```
-  static TextHeightBehavior decodeTextHeightBehavior(dynamic value) {
+  static TextHeightBehavior decodeTextHeightBehavior(
+    dynamic value, {
+    bool validate = true,
+  }) {
     TextHeightBehavior result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_height_behavior',
+        value: value,
+        validate: validate,
+      ));
       result = TextHeightBehavior(
         applyHeightToFirstAscent: value['applyHeightToFirstAscent'] == null
             ? true
@@ -4190,7 +5624,10 @@ class ThemeDecoder {
   ///  * `search`
   ///  * `send`
   ///  * `unspecified`
-  static TextInputAction decodeTextInputAction(String value) {
+  static TextInputAction decodeTextInputAction(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextInputAction',
       [
@@ -4213,6 +5650,12 @@ class ThemeDecoder {
     TextInputAction result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_input_action',
+        value: value,
+        validate: validate,
+      ));
+
       switch (value) {
         case 'continueAction':
           result = TextInputAction.continueAction;
@@ -4280,7 +5723,10 @@ class ThemeDecoder {
   ///  * `text`
   ///  * `url`
   ///  * `visiblePassword`
-  static TextInputType decodeTextInputType(dynamic value) {
+  static TextInputType decodeTextInputType(
+    dynamic value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextInputType',
       [
@@ -4298,6 +5744,11 @@ class ThemeDecoder {
     TextInputType result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_input_type',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'datetime':
           result = TextInputType.datetime;
@@ -4341,7 +5792,10 @@ class ThemeDecoder {
   ///  * `ellipsis`
   ///  * `fade`
   ///  * `visible`
-  static TextOverflow decodeTextOverflow(String value) {
+  static TextOverflow decodeTextOverflow(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextOverflow',
       [
@@ -4355,6 +5809,11 @@ class ThemeDecoder {
     TextOverflow result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_overflow',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'clip':
           result = TextOverflow.clip;
@@ -4378,18 +5837,19 @@ class ThemeDecoder {
   /// given [value] to have the following structure:
   ///
   /// ```json
+  /// {
   ///   "backgroundColor": <Color>,
   ///   "color": <Color>,
   ///   "decoration": <TextDecoration>,
   ///   "decorationColor": <Color>,
   ///   "decorationStyle": <TextDecorationStyle>,
   ///   "decorationThickness": <double>,
-  ///   "fontFamily": value['fontFamily'],
+  ///   "fontFamily": <FontFamily>,
   ///   "fontFamilyFallback": <String[]>,
   ///   "fontFeatures": <FontFeature[]>,
-  ///   "fontWeight": <FontWeight>,
   ///   "fontSize": <double>,
   ///   "fontStyle": <FontStyle>,
+  ///   "fontWeight": <FontWeight>,
   ///   "height": <double>,
   ///   "inherit": <bool>,
   ///   "letterSpacing": <double>,
@@ -4398,6 +5858,7 @@ class ThemeDecoder {
   ///   "shadows": <Shadow[]>,
   ///   "textBaseline": <TextBaseline>,
   ///   "wordSpacing": <double>
+  /// }
   /// ```
   ///
   /// See also:
@@ -4410,16 +5871,39 @@ class ThemeDecoder {
   ///  * [decodeTextbaseline]
   ///  * [decodeTextDecoration]
   ///  * [decodeTextDecorationStyle]
-  static TextStyle decodeTextStyle(dynamic value) {
+  static TextStyle decodeTextStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
     TextStyle result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_style',
+        value: value,
+        validate: validate,
+      ));
       result = TextStyle(
-        backgroundColor: decodeColor(value['backgroundColor']),
-        color: decodeColor(value['color']),
-        decoration: decodeTextDecoration(value['decoration']),
-        decorationColor: decodeColor(value['decorationColor']),
-        decorationStyle: decodeTextDecorationStyle(value['decorationStyle']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
+        decoration: decodeTextDecoration(
+          value['decoration'],
+          validate: false,
+        ),
+        decorationColor: decodeColor(
+          value['decorationColor'],
+          validate: false,
+        ),
+        decorationStyle: decodeTextDecorationStyle(
+          value['decorationStyle'],
+          validate: false,
+        ),
         decorationThickness:
             JsonClass.parseDouble(value['decorationThickness']),
         fontFamily: value['fontFamily'],
@@ -4430,12 +5914,21 @@ class ThemeDecoder {
             ? null
             : List<FontFeature>.from(
                 value['fontFeatures'].map(
-                  (value) => decodeFontFeature(value),
+                  (value) => decodeFontFeature(
+                    value,
+                    validate: false,
+                  ),
                 ),
               ),
-        fontWeight: decodeFontWeight(value['fontWeight']),
+        fontWeight: decodeFontWeight(
+          value['fontWeight'],
+          validate: false,
+        ),
         fontSize: JsonClass.parseDouble(value['fontSize']),
-        fontStyle: decodeFontStyle(value['fontStyle']),
+        fontStyle: decodeFontStyle(
+          value['fontStyle'],
+          validate: false,
+        ),
         height: JsonClass.parseDouble(value['height']),
         inherit: value['inherit'] == null
             ? true
@@ -4443,7 +5936,10 @@ class ThemeDecoder {
                 value['inherit'],
               ),
         letterSpacing: JsonClass.parseDouble(value['letterSpacing']),
-        locale: decodeLocale(value['locale']),
+        locale: decodeLocale(
+          value['locale'],
+          validate: false,
+        ),
         package: value['package'],
         shadows: value['shadows'] == null
             ? null
@@ -4452,7 +5948,10 @@ class ThemeDecoder {
                   (value) => decodeShadow(value),
                 ),
               ),
-        textBaseline: decodeTextBaseline(value['textBaseline']),
+        textBaseline: decodeTextBaseline(
+          value['textBaseline'],
+          validate: false,
+        ),
         wordSpacing: JsonClass.parseDouble(value['wordSpacing']),
       );
     }
@@ -4483,24 +5982,71 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeTextStyle]
-  static TextTheme decodeTextTheme(dynamic value) {
+  static TextTheme decodeTextTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
     TextTheme result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_theme',
+        value: value,
+        validate: validate,
+      ));
       result = TextTheme(
-        bodyText1: decodeTextStyle(value['bodyText1']),
-        bodyText2: decodeTextStyle(value['bodyText2']),
-        button: decodeTextStyle(value['button']),
-        caption: decodeTextStyle(value['caption']),
-        headline1: decodeTextStyle(value['headline1']),
-        headline2: decodeTextStyle(value['headline2']),
-        headline3: decodeTextStyle(value['headline3']),
-        headline4: decodeTextStyle(value['headline4']),
-        headline5: decodeTextStyle(value['headline5']),
-        headline6: decodeTextStyle(value['headline6']),
-        overline: decodeTextStyle(value['overline']),
-        subtitle1: decodeTextStyle(value['subtitle1']),
-        subtitle2: decodeTextStyle(value['subtitle2']),
+        bodyText1: decodeTextStyle(
+          value['bodyText1'],
+          validate: false,
+        ),
+        bodyText2: decodeTextStyle(
+          value['bodyText2'],
+          validate: false,
+        ),
+        button: decodeTextStyle(
+          value['button'],
+          validate: false,
+        ),
+        caption: decodeTextStyle(
+          value['caption'],
+          validate: false,
+        ),
+        headline1: decodeTextStyle(
+          value['headline1'],
+          validate: false,
+        ),
+        headline2: decodeTextStyle(
+          value['headline2'],
+          validate: false,
+        ),
+        headline3: decodeTextStyle(
+          value['headline3'],
+          validate: false,
+        ),
+        headline4: decodeTextStyle(
+          value['headline4'],
+          validate: false,
+        ),
+        headline5: decodeTextStyle(
+          value['headline5'],
+          validate: false,
+        ),
+        headline6: decodeTextStyle(
+          value['headline6'],
+          validate: false,
+        ),
+        overline: decodeTextStyle(
+          value['overline'],
+          validate: false,
+        ),
+        subtitle1: decodeTextStyle(
+          value['subtitle1'],
+          validate: false,
+        ),
+        subtitle2: decodeTextStyle(
+          value['subtitle2'],
+          validate: false,
+        ),
       );
     }
 
@@ -4510,7 +6056,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextWidthBasis].  Supported values are:
   ///  * `longestLine`
   ///  * `parent`
-  static TextWidthBasis decodeTextWidthBasis(String value) {
+  static TextWidthBasis decodeTextWidthBasis(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TextWidthBasis',
       [
@@ -4522,6 +6071,11 @@ class ThemeDecoder {
     TextWidthBasis result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'text_width_basis',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'longestLine':
           result = TextWidthBasis.longestLine;
@@ -4552,8 +6106,8 @@ class ThemeDecoder {
   ///   "bottomAppBarTheme": <BottomAppBarTheme>,
   ///   "brightness": <Brightness>,
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
-  ///   "buttonColor": <Color>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
+  ///   "buttonColor": <Color>,
   ///   "buttonTheme": <ButtonThemeData>,
   ///   "canvasColor": <Color>,
   ///   "cardColor": <Color>,
@@ -4592,7 +6146,7 @@ class ThemeDecoder {
   ///   "secondaryHeaderColor": <Color>,
   ///   "selectedRowColor": <Color>,
   ///   "sliderTheme": <SliderThemeData>,
-  ///   "snackBarTheme": SnackBarThemeData>,
+  ///   "snackBarTheme": <SnackBarThemeData>,
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
@@ -4637,99 +6191,281 @@ class ThemeDecoder {
   ///  * [decodeToggleButtonsThemeData]
   ///  * [decodeTypography]
   ///  * [decodeVisualDensity]
-  static ThemeData decodeThemeData(dynamic value) {
+  static ThemeData decodeThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     ThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'theme_data',
+        value: value,
+        validate: validate,
+      ));
       result = ThemeData(
-        accentColor: decodeColor(value['accentColor']),
-        accentColorBrightness: decodeBrightness(value['accentColorBrightness']),
-        accentIconTheme: decodeIconThemeData(value['accentIconTheme']),
-        accentTextTheme: decodeTextTheme(value['accentTextTheme']),
-        appBarTheme: decodeAppBarTheme(value['appBarTheme']),
+        accentColor: decodeColor(
+          value['accentColor'],
+          validate: false,
+        ),
+        accentColorBrightness: decodeBrightness(
+          value['accentColorBrightness'],
+          validate: false,
+        ),
+        accentIconTheme: decodeIconThemeData(
+          value['accentIconTheme'],
+          validate: false,
+        ),
+        accentTextTheme: decodeTextTheme(
+          value['accentTextTheme'],
+          validate: false,
+        ),
+        appBarTheme: decodeAppBarTheme(
+          value['appBarTheme'],
+          validate: false,
+        ),
         applyElevationOverlayColor: value['applyElevationOverlayColor'] == null
             ? null
             : JsonClass.parseBool(value['applyElevationOverlayColor']),
-        bannerTheme: decodeMaterialBannerThemeData(value['bannerTheme']),
-        backgroundColor: decodeColor(value['backgroundColor']),
-        bottomAppBarColor: decodeColor(value['bottomAppBarColor']),
-        bottomAppBarTheme: decodeBottomAppBarTheme(value['bottomAppBarTheme']),
+        bannerTheme: decodeMaterialBannerThemeData(
+          value['bannerTheme'],
+          validate: false,
+        ),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        bottomAppBarColor: decodeColor(
+          value['bottomAppBarColor'],
+          validate: false,
+        ),
+        bottomAppBarTheme: decodeBottomAppBarTheme(
+          value['bottomAppBarTheme'],
+          validate: false,
+        ),
         // bottomNavigationBarTheme: decodeBottomNavigationBarThemeData(
-        //   value['bottomNavigationBarTheme'],
+        //   value['bottomNavigationBarTheme'], validate: false,
         // ),
-        brightness: decodeBrightness(value['brightness']),
-        bottomSheetTheme: decodeBottomSheetThemeData(value['bottomSheetTheme']),
-        buttonColor: decodeColor(value['buttonColor']),
-        buttonBarTheme: decodeButtonBarThemeData(value['buttonBarTheme']),
-        buttonTheme: decodeButtonThemeData(value['buttonTheme']),
-        canvasColor: decodeColor(value['canvasColor']),
-        cardColor: decodeColor(value['cardColor']),
-        cardTheme: decodeCardTheme(value['cardTheme']),
-        chipTheme: decodeChipThemeData(value['chipTheme']),
-        colorScheme: decodeColorScheme(value['colorScheme']),
+        brightness: decodeBrightness(
+          value['brightness'],
+          validate: false,
+        ),
+        bottomSheetTheme: decodeBottomSheetThemeData(
+          value['bottomSheetTheme'],
+          validate: false,
+        ),
+        buttonColor: decodeColor(
+          value['buttonColor'],
+          validate: false,
+        ),
+        buttonBarTheme: decodeButtonBarThemeData(
+          value['buttonBarTheme'],
+          validate: false,
+        ),
+        buttonTheme: decodeButtonThemeData(
+          value['buttonTheme'],
+          validate: false,
+        ),
+        canvasColor: decodeColor(
+          value['canvasColor'],
+          validate: false,
+        ),
+        cardColor: decodeColor(
+          value['cardColor'],
+          validate: false,
+        ),
+        cardTheme: decodeCardTheme(
+          value['cardTheme'],
+          validate: false,
+        ),
+        chipTheme: decodeChipThemeData(
+          value['chipTheme'],
+          validate: false,
+        ),
+        colorScheme: decodeColorScheme(
+          value['colorScheme'],
+          validate: false,
+        ),
         cupertinoOverrideTheme: decodeCupertinoThemeData(
           value['cupertinoOverrideTheme'],
+          validate: false,
         ),
-        cursorColor: decodeColor(value['cursorColor']),
-        dialogBackgroundColor: decodeColor(value['dialogBackgroundColor']),
-        dialogTheme: decodeDialogTheme(value['dialogTheme']),
-        disabledColor: decodeColor(value['disabledColor']),
-        dividerColor: decodeColor(value['dividerColor']),
-        dividerTheme: decodeDividerThemeData(value['dividerTheme']),
-        errorColor: decodeColor(value['errorColor']),
+        cursorColor: decodeColor(
+          value['cursorColor'],
+          validate: false,
+        ),
+        dialogBackgroundColor: decodeColor(
+          value['dialogBackgroundColor'],
+          validate: false,
+        ),
+        dialogTheme: decodeDialogTheme(
+          value['dialogTheme'],
+          validate: false,
+        ),
+        disabledColor: decodeColor(
+          value['disabledColor'],
+          validate: false,
+        ),
+        dividerColor: decodeColor(
+          value['dividerColor'],
+          validate: false,
+        ),
+        dividerTheme: decodeDividerThemeData(
+          value['dividerTheme'],
+          validate: false,
+        ),
+        errorColor: decodeColor(
+          value['errorColor'],
+          validate: false,
+        ),
         // fixTextFieldOutlineLabel: value['fixTextFieldOutlineLabel'] == null
         //     ? null
         //     : JsonClass.parseBool(value['fixTextFieldOutlineLabel']),
         floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
           value['floatingActionButtonTheme'],
+          validate: false,
         ),
-        focusColor: decodeColor(value['focusColor']),
+        focusColor: decodeColor(
+          value['focusColor'],
+          validate: false,
+        ),
         fontFamily: value['fontFamily'],
-        highlightColor: decodeColor(value['highlightColor']),
-        hintColor: decodeColor(value['hintColor']),
-        hoverColor: decodeColor(value['hoverColor']),
-        iconTheme: decodeIconThemeData(value['iconTheme']),
-        indicatorColor: decodeColor(value['indicatorColor']),
+        highlightColor: decodeColor(
+          value['highlightColor'],
+          validate: false,
+        ),
+        hintColor: decodeColor(
+          value['hintColor'],
+          validate: false,
+        ),
+        hoverColor: decodeColor(
+          value['hoverColor'],
+          validate: false,
+        ),
+        iconTheme: decodeIconThemeData(
+          value['iconTheme'],
+          validate: false,
+        ),
+        indicatorColor: decodeColor(
+          value['indicatorColor'],
+          validate: false,
+        ),
         inputDecorationTheme: decodeInputDecorationTheme(
           value['inputDecorationTheme'],
+          validate: false,
         ),
         materialTapTargetSize: decodeMaterialTapTargetSize(
           value['materialTapTargetSize'],
+          validate: false,
         ),
         navigationRailTheme: decodeNavigationRailThemeData(
           value['navigationRailTheme'],
+          validate: false,
         ),
-        platform: decodeTargetPlatform(value['platform']),
-        popupMenuTheme: decodePopupMenuThemeData(value['popupMenuTheme']),
-        primaryColor: decodeColor(value['primaryColor']),
-        primaryColorBrightness:
-            decodeBrightness(value['primaryColorBrightness']),
-        primaryColorDark: decodeColor(value['primaryColorDark']),
-        primaryColorLight: decodeColor(value['primaryColorLight']),
-        primaryIconTheme: decodeIconThemeData(value['primaryIconTheme']),
-        primarySwatch: decodeMaterialColor(value['primarySwatch']),
-        primaryTextTheme: decodeTextTheme(value['primaryTextTheme']),
-        scaffoldBackgroundColor: decodeColor(value['scaffoldBackgroundColor']),
-        secondaryHeaderColor: decodeColor(value['secondaryHeaderColor']),
-        selectedRowColor: decodeColor(value['selectedRowColor']),
-        sliderTheme: decodeSliderThemeData(value['sliderTheme']),
-        snackBarTheme: decodeSnackBarThemeData(value['snackBarTheme']),
-        splashColor: decodeColor(value['splashColor']),
-        splashFactory:
-            decodeInteractiveInkFeatureFactory(value['splashFactory']),
-        tabBarTheme: decodeTabBarTheme(value['tabBarTheme']),
-        textSelectionColor: decodeColor(value['textSelectionColor']),
-        textSelectionHandleColor:
-            decodeColor(value['textSelectionHandleColor']),
-        textTheme: decodeTextTheme(value['textTheme']),
+        platform: decodeTargetPlatform(
+          value['platform'],
+          validate: false,
+        ),
+        popupMenuTheme: decodePopupMenuThemeData(
+          value['popupMenuTheme'],
+          validate: false,
+        ),
+        primaryColor: decodeColor(
+          value['primaryColor'],
+          validate: false,
+        ),
+        primaryColorBrightness: decodeBrightness(
+          value['primaryColorBrightness'],
+          validate: false,
+        ),
+        primaryColorDark: decodeColor(
+          value['primaryColorDark'],
+          validate: false,
+        ),
+        primaryColorLight: decodeColor(
+          value['primaryColorLight'],
+          validate: false,
+        ),
+        primaryIconTheme: decodeIconThemeData(
+          value['primaryIconTheme'],
+          validate: false,
+        ),
+        primarySwatch: decodeMaterialColor(
+          value['primarySwatch'],
+          validate: false,
+        ),
+        primaryTextTheme: decodeTextTheme(
+          value['primaryTextTheme'],
+          validate: false,
+        ),
+        scaffoldBackgroundColor: decodeColor(
+          value['scaffoldBackgroundColor'],
+          validate: false,
+        ),
+        secondaryHeaderColor: decodeColor(
+          value['secondaryHeaderColor'],
+          validate: false,
+        ),
+        selectedRowColor: decodeColor(
+          value['selectedRowColor'],
+          validate: false,
+        ),
+        sliderTheme: decodeSliderThemeData(
+          value['sliderTheme'],
+          validate: false,
+        ),
+        snackBarTheme: decodeSnackBarThemeData(
+          value['snackBarTheme'],
+          validate: false,
+        ),
+        splashColor: decodeColor(
+          value['splashColor'],
+          validate: false,
+        ),
+        splashFactory: decodeInteractiveInkFeatureFactory(
+          value['splashFactory'],
+          validate: false,
+        ),
+        tabBarTheme: decodeTabBarTheme(
+          value['tabBarTheme'],
+          validate: false,
+        ),
+        textSelectionColor: decodeColor(
+          value['textSelectionColor'],
+          validate: false,
+        ),
+        textSelectionHandleColor: decodeColor(
+          value['textSelectionHandleColor'],
+          validate: false,
+        ),
+        textTheme: decodeTextTheme(
+          value['textTheme'],
+          validate: false,
+        ),
         toggleButtonsTheme: decodeToggleButtonsThemeData(
           value['toggleButtonsTheme'],
+          validate: false,
         ),
-        toggleableActiveColor: decodeColor(value['toggleableActiveColor']),
-        tooltipTheme: decodeTooltipThemeData(value['tooltipTheme']),
-        typography: decodeTypography(value['typography']),
-        unselectedWidgetColor: decodeColor(value['unselectedWidgetColor']),
-        visualDensity: decodeVisualDensity(value['visualDensity']),
+        toggleableActiveColor: decodeColor(
+          value['toggleableActiveColor'],
+          validate: false,
+        ),
+        tooltipTheme: decodeTooltipThemeData(
+          value['tooltipTheme'],
+          validate: false,
+        ),
+        typography: decodeTypography(
+          value['typography'],
+          validate: false,
+        ),
+        unselectedWidgetColor: decodeColor(
+          value['unselectedWidgetColor'],
+          validate: false,
+        ),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
+          validate: false,
+        ),
       );
     }
 
@@ -4740,7 +6476,10 @@ class ThemeDecoder {
   ///  * `clamp`
   ///  * `mirror`
   ///  * `repeated`
-  static TileMode decodeTileMode(String value) {
+  static TileMode decodeTileMode(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'TileMode',
       [
@@ -4753,6 +6492,11 @@ class ThemeDecoder {
     TileMode result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'tile_mode',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'clamp':
           result = TileMode.clamp;
@@ -4799,26 +6543,77 @@ class ThemeDecoder {
   ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
   ///  * [decodeTextStyle]
-  static ToggleButtonsThemeData decodeToggleButtonsThemeData(dynamic value) {
+  static ToggleButtonsThemeData decodeToggleButtonsThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     ToggleButtonsThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'toggle_buttons_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
       result = ToggleButtonsThemeData(
-        borderColor: decodeColor(value['borderColor']),
-        borderRadius: decodeBorderRadius(value['borderRadius']),
+        borderColor: decodeColor(
+          value['borderColor'],
+          validate: false,
+        ),
+        borderRadius: decodeBorderRadius(
+          value['borderRadius'],
+          validate: false,
+        ),
         borderWidth: JsonClass.parseDouble(value['borderWidth']),
-        color: decodeColor(value['color']),
-        constraints: decodeBoxConstraints(value['constraints']),
-        disabledBorderColor: decodeColor(value['disabledBorderColor']),
-        disabledColor: decodeColor(value['disabledColor']),
-        fillColor: decodeColor(value['fillColor']),
-        focusColor: decodeColor(value['focusColor']),
-        highlightColor: decodeColor(value['highlightColor']),
-        hoverColor: decodeColor(value['hoverColor']),
-        selectedBorderColor: decodeColor(value['selectedBorderColor']),
-        selectedColor: decodeColor(value['selectedColor']),
-        splashColor: decodeColor(value['splashColor']),
-        textStyle: decodeTextStyle(value['textStyle']),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
+        constraints: decodeBoxConstraints(
+          value['constraints'],
+          validate: false,
+        ),
+        disabledBorderColor: decodeColor(
+          value['disabledBorderColor'],
+          validate: false,
+        ),
+        disabledColor: decodeColor(
+          value['disabledColor'],
+          validate: false,
+        ),
+        fillColor: decodeColor(
+          value['fillColor'],
+          validate: false,
+        ),
+        focusColor: decodeColor(
+          value['focusColor'],
+          validate: false,
+        ),
+        highlightColor: decodeColor(
+          value['highlightColor'],
+          validate: false,
+        ),
+        hoverColor: decodeColor(
+          value['hoverColor'],
+          validate: false,
+        ),
+        selectedBorderColor: decodeColor(
+          value['selectedBorderColor'],
+          validate: false,
+        ),
+        selectedColor: decodeColor(
+          value['selectedColor'],
+          validate: false,
+        ),
+        splashColor: decodeColor(
+          value['splashColor'],
+          validate: false,
+        ),
+        textStyle: decodeTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -4836,9 +6631,17 @@ class ThemeDecoder {
   ///   "selectAll": <bool>
   /// }
   /// ```
-  static ToolbarOptions decodeToolbarOptions(Map<String, dynamic> value) {
+  static ToolbarOptions decodeToolbarOptions(
+    Map<String, dynamic> value, {
+    bool validate = true,
+  }) {
     ToolbarOptions result;
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'toolbar_options',
+        value: value,
+        validate: validate,
+      ));
       result = ToolbarOptions(
         copy: JsonClass.parseBool(value['copy']),
         cut: JsonClass.parseBool(value['cut']),
@@ -4870,10 +6673,18 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeTextStyle]
-  static TooltipThemeData decodeTooltipThemeData(dynamic value) {
+  static TooltipThemeData decodeTooltipThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
     TooltipThemeData result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'tooltip_theme_data',
+        value: value,
+        validate: validate,
+      ));
       assert(
         value['decoration'] == null,
         'TooltipThemeData.decoration is not supported',
@@ -4883,13 +6694,22 @@ class ThemeDecoder {
             ? null
             : JsonClass.parseBool(value['excludeFromSemantics']),
         height: JsonClass.parseDouble(value['height']),
-        margin: decodeEdgeInsetsGeometry(value['margin']),
-        padding: decodeEdgeInsetsGeometry(value['padding']),
+        margin: decodeEdgeInsetsGeometry(
+          value['margin'],
+          validate: false,
+        ),
+        padding: decodeEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
         preferBelow: value['preferBelow'] == null
             ? null
             : JsonClass.parseBool(value['preferBelow']),
         showDuration: JsonClass.parseDurationFromMillis(value['showDuration']),
-        textStyle: decodeTextStyle(value['textStyle']),
+        textStyle: decodeTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
         verticalOffset: JsonClass.parseDouble(value['verticalOffset']),
         waitDuration: JsonClass.parseDurationFromMillis(value['waitDuration']),
       );
@@ -4915,17 +6735,43 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeTargetPlatform]
   ///  * [decodeTextTheme]
-  static Typography decodeTypography(dynamic value) {
+  static Typography decodeTypography(
+    dynamic value, {
+    bool validate = true,
+  }) {
     Typography result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'typography',
+        value: value,
+        validate: validate,
+      ));
       result = Typography.material2018(
-        black: decodeTextTheme(value['black']),
-        dense: decodeTextTheme(value['dense']),
-        englishLike: decodeTextTheme(value['englishLike']),
-        platform: decodeTargetPlatform(value['platform']),
-        tall: decodeTextTheme(value['tall']),
-        white: decodeTextTheme(value['white']),
+        black: decodeTextTheme(
+          value['black'],
+          validate: false,
+        ),
+        dense: decodeTextTheme(
+          value['dense'],
+          validate: false,
+        ),
+        englishLike: decodeTextTheme(
+          value['englishLike'],
+          validate: false,
+        ),
+        platform: decodeTargetPlatform(
+          value['platform'],
+          validate: false,
+        ),
+        tall: decodeTextTheme(
+          value['tall'],
+          validate: false,
+        ),
+        white: decodeTextTheme(
+          value['white'],
+          validate: false,
+        ),
       );
     }
 
@@ -4935,7 +6781,10 @@ class ThemeDecoder {
   /// Decodes the [value] to a [VerticalDirection].  Supported values are:
   ///  * `down`
   ///  * `up`
-  static VerticalDirection decodeVerticalDirection(String value) {
+  static VerticalDirection decodeVerticalDirection(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'VerticalDirection',
       [
@@ -4965,7 +6814,10 @@ class ThemeDecoder {
   ///  * `comfortable`
   ///  * `compact`
   ///  * `standard`
-  static VisualDensity decodeVisualDensity(String value) {
+  static VisualDensity decodeVisualDensity(
+    String value, {
+    bool validate = true,
+  }) {
     _checkSupported(
       'VisualDensity',
       [
@@ -4979,6 +6831,11 @@ class ThemeDecoder {
     VisualDensity result;
 
     if (value != null) {
+      assert(SchemaValidator.validate(
+        schema: 'visual_density',
+        value: value,
+        validate: validate,
+      ));
       switch (value) {
         case 'adaptivePlatformDensity':
           result = VisualDensity.adaptivePlatformDensity;
@@ -5015,7 +6872,10 @@ class ThemeDecoder {
 
   static List<T> _decodeDynamicList<T>(
     Iterable<dynamic> list,
-    T Function(dynamic value) decoder,
+    T Function(
+      dynamic value,
+    )
+        decoder,
   ) {
     List<T> result;
 

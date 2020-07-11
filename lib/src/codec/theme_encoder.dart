@@ -700,6 +700,29 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `constrained`
+  ///  * `padded`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeButtonBarLayoutBehavior(ButtonBarLayoutBehavior value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case ButtonBarLayoutBehavior.constrained:
+          result = 'constrained';
+          break;
+        case ButtonBarLayoutBehavior.padded:
+          result = 'padded';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] into a JSON representation.
   ///
   /// ```json
@@ -710,16 +733,16 @@ class ThemeEncoder {
   ///   "buttonMinWidth": <double>,
   ///   "buttonPadding": <EdgeInsetsGeometry>,
   ///   "buttonTextTheme": <ButtonTextTheme>,
-  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
   ///   "mainAxisSize": <MainAxisSize>,
   ///   "overflowDirection": <VerticalDirection>,
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [encodeButtonBarLayoutBehavior]
   ///  * [encodeButtonTextTheme]
   ///  * [encodeEdgeInsetsGeometry]
-  ///  * [encodeButtonLayoutBehavior]
   ///  * [encodeMainAxisAlignment]
   ///  * [encodeMainAxisSize]
   ///  * [encodeVerticalDirection]
@@ -736,36 +759,13 @@ class ThemeEncoder {
         'buttonMinWidth': value.buttonMinWidth,
         'buttonPadding': encodeEdgeInsetsGeometry(value.buttonPadding),
         'buttonTextTheme': encodeButtonTextTheme(value.buttonTextTheme),
-        'layoutBehavior': encodeButtonLayoutBehavior(value.layoutBehavior),
+        'layoutBehavior': encodeButtonBarLayoutBehavior(value.layoutBehavior),
         'mainAxisSize': encodeMainAxisSize(value.mainAxisSize),
         'overflowDirection': encodeVerticalDirection(value.overflowDirection),
       };
     }
 
     return _stripNull(result);
-  }
-
-  /// Encodes the given [value] to the String representation.  Supported values
-  /// are:
-  ///  * `constrained`
-  ///  * `padded`
-  ///
-  /// All other values, including [null], will result in [null].
-  static String encodeButtonLayoutBehavior(ButtonBarLayoutBehavior value) {
-    String result;
-
-    if (value != null) {
-      switch (value) {
-        case ButtonBarLayoutBehavior.constrained:
-          result = 'constrained';
-          break;
-        case ButtonBarLayoutBehavior.padded:
-          result = 'padded';
-          break;
-      }
-    }
-
-    return result;
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -807,7 +807,7 @@ class ThemeEncoder {
   ///   "height": <double>,
   ///   "highlightColor": <Color>,
   ///   "hoverColor": <Color>,
-  ///   "layoutBehavior": <ButtonLayoutBehavior>,
+  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "minWidth": <double>,
   ///   "padding": <EdgeInsetsGeometry>,
@@ -818,7 +818,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
-  ///  * [encodeButtonLayoutBehavior]
+  ///  * [encodeButtonBarLayoutBehavior]
   ///  * [encodeButtonTextTheme]
   ///  * [encodeColor]
   ///  * [encodeColorScheme]
@@ -833,7 +833,7 @@ class ThemeEncoder {
         'alignedDropdown': value.alignedDropdown,
         'colorScheme': encodeColorScheme(value.colorScheme),
         'height': value.height,
-        'layoutBehavior': encodeButtonLayoutBehavior(value.layoutBehavior),
+        'layoutBehavior': encodeButtonBarLayoutBehavior(value.layoutBehavior),
         'minWidth': value.minWidth,
         'padding': encodeEdgeInsetsGeometry(value.padding),
         'shape': encodeShapeBorder(value.shape),
@@ -3606,9 +3606,11 @@ class ThemeEncoder {
         'locale': encodeLocale(value.locale),
         'shadows': value.shadows == null
             ? null
-            : value.shadows.map(
-                (value) => encodeShadow(value),
-              ),
+            : value.shadows
+                .map(
+                  (value) => encodeShadow(value),
+                )
+                .toList(),
         'textBaseline': encodeTextBaseline(value.textBaseline),
         'wordSpacing': value.wordSpacing,
       };

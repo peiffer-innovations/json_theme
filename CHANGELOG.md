@@ -1,3 +1,8 @@
+## [1.1.1] - July 13th, 2020
+
+* Exported the JSON Schemas for other tools to also be able to perform validation.
+
+
 ## [1.1.0] - July 11th, 2020
 
 * Added JSON Schema validators for all objects

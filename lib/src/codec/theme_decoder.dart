@@ -19,6 +19,9 @@ import '../schema/schema_validator.dart';
 class ThemeDecoder {
   ThemeDecoder._();
 
+  static const _baseSchemaUrl =
+      'https://peifferinnovations.com/json_theme/schemas';
+
   /// Decodes the given [value] to an [Alignment].  Supported values are:
   ///  * `bottomCenter`
   ///  * `bottomLeft`
@@ -52,7 +55,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'alignment',
+        schemaId: '$_baseSchemaUrl/alignment',
         value: value,
         validate: validate,
       ));
@@ -116,7 +119,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'app_bar_theme',
+        schemaId: '$_baseSchemaUrl/app_bar_theme',
         value: value,
         validate: validate,
       ));
@@ -167,7 +170,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'axis',
+        schemaId: '$_baseSchemaUrl/axis',
         value: value,
         validate: validate,
       ));
@@ -258,7 +261,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'blend_mode',
+        schemaId: '$_baseSchemaUrl/blend_mode',
         value: value,
         validate: validate,
       ));
@@ -472,7 +475,7 @@ class ThemeDecoder {
 
       if (value != null) {
         assert(SchemaValidator.validate(
-          schema: 'border_radius',
+          schemaId: '$_baseSchemaUrl/border_radius',
           value: value,
           validate: validate,
         ));
@@ -569,7 +572,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'border_side',
+        schemaId: '$_baseSchemaUrl/border_side',
         value: value,
         validate: validate,
       ));
@@ -610,7 +613,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'border_style',
+        schemaId: '$_baseSchemaUrl/border_style',
         value: value,
         validate: validate,
       ));
@@ -650,7 +653,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'bottom_app_bar_theme',
+        schemaId: '$_baseSchemaUrl/bottom_app_bar_theme',
         value: value,
         validate: validate,
       ));
@@ -713,7 +716,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'bottom_navigation_bar_type',
+        schemaId: '$_baseSchemaUrl/bottom_navigation_bar_type',
         value: value,
         validate: validate,
       ));
@@ -756,7 +759,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'bottom_sheet_theme_data',
+        schemaId: '$_baseSchemaUrl/bottom_sheet_theme_data',
         value: value,
         validate: validate,
       ));
@@ -824,7 +827,7 @@ class ThemeDecoder {
         );
       } else {
         assert(SchemaValidator.validate(
-          schema: 'box_border',
+          schemaId: '$_baseSchemaUrl/box_border',
           value: value,
           validate: validate,
         ));
@@ -876,7 +879,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'box_constraints',
+        schemaId: '$_baseSchemaUrl/box_constraints',
         value: value,
         validate: validate,
       ));
@@ -923,7 +926,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'box_decoration',
+        schemaId: '$_baseSchemaUrl/box_decoration',
         value: value,
         validate: validate,
       ));
@@ -976,7 +979,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'box_fit',
+        schemaId: '$_baseSchemaUrl/box_fit',
         value: value,
         validate: validate,
       ));
@@ -1032,7 +1035,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'box_shadow',
+        schemaId: '$_baseSchemaUrl/box_shadow',
         value: value,
         validate: validate,
       ));
@@ -1066,7 +1069,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'box_shape',
+        schemaId: '$_baseSchemaUrl/box_shape',
         value: value,
         validate: validate,
       ));
@@ -1095,7 +1098,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'brightness',
+        schemaId: '$_baseSchemaUrl/brightness',
         value: value,
         validate: validate,
       ));
@@ -1126,7 +1129,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'button_bar_layout_behavior',
+        schemaId: '$_baseSchemaUrl/button_bar_layout_behavior',
         value: value,
         validate: validate,
       ));
@@ -1175,7 +1178,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'button_bar_theme_data',
+        schemaId: '$_baseSchemaUrl/button_bar_theme_data',
         value: value,
         validate: validate,
       ));
@@ -1236,7 +1239,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'button_text_theme',
+        schemaId: '$_baseSchemaUrl/button_text_theme',
         value: value,
         validate: validate,
       ));
@@ -1295,7 +1298,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'button_theme_data',
+        schemaId: '$_baseSchemaUrl/button_theme_data',
         value: value,
         validate: validate,
       ));
@@ -1385,7 +1388,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'card_theme',
+        schemaId: '$_baseSchemaUrl/card_theme',
         value: value,
         validate: validate,
       ));
@@ -1456,7 +1459,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'chip_theme_data',
+        schemaId: '$_baseSchemaUrl/chip_theme_data',
         value: value,
         validate: validate,
       ));
@@ -1551,7 +1554,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'clip',
+        schemaId: '$_baseSchemaUrl/clip',
         value: value,
         validate: validate,
       ));
@@ -1592,7 +1595,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'color',
+        schemaId: '$_baseSchemaUrl/color',
         value: value,
         validate: validate,
       ));
@@ -1657,7 +1660,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'color_scheme',
+        schemaId: '$_baseSchemaUrl/color_scheme',
         value: value,
         validate: validate,
       ));
@@ -1746,7 +1749,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'cross_axis_alignment',
+        schemaId: '$_baseSchemaUrl/cross_axis_alignment',
         value: value,
         validate: validate,
       ));
@@ -1800,7 +1803,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'cupertino_text_theme_data',
+        schemaId: '$_baseSchemaUrl/cupertino_text_theme_data',
         value: value,
         validate: validate,
       ));
@@ -1873,7 +1876,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'cupertino_theme_data',
+        schemaId: '$_baseSchemaUrl/cupertino_theme_data',
         value: value,
         validate: validate,
       ));
@@ -1933,7 +1936,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'dialog_theme',
+        schemaId: '$_baseSchemaUrl/dialog_theme',
         value: value,
         validate: validate,
       ));
@@ -1984,7 +1987,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'divider_theme_data',
+        schemaId: '$_baseSchemaUrl/divider_theme_data',
         value: value,
         validate: validate,
       ));
@@ -2022,7 +2025,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'drag_start_behavior',
+        schemaId: '$_baseSchemaUrl/drag_start_behavior',
         value: value,
         validate: validate,
       ));
@@ -2086,7 +2089,7 @@ class ThemeDecoder {
         }
       } else {
         assert(SchemaValidator.validate(
-          schema: 'edge_insets_geometry',
+          schemaId: '$_baseSchemaUrl/edge_insets_geometry',
           value: value,
           validate: validate,
         ));
@@ -2124,7 +2127,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'filter_quality',
+        schemaId: '$_baseSchemaUrl/filter_quality',
         value: value,
         validate: validate,
       ));
@@ -2173,7 +2176,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'flex_fit',
+        schemaId: '$_baseSchemaUrl/flex_fit',
         value: value,
         validate: validate,
       ));
@@ -2208,7 +2211,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'floating_action_button_animator',
+        schemaId: '$_baseSchemaUrl/floating_action_button_animator',
         value: value,
         validate: validate,
       ));
@@ -2252,7 +2255,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'floating_action_button_location',
+        schemaId: '$_baseSchemaUrl/floating_action_button_location',
         value: value,
         validate: validate,
       ));
@@ -2320,7 +2323,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'floating_action_button_theme_data',
+        schemaId: '$_baseSchemaUrl/floating_action_button_theme_data',
         value: value,
         validate: validate,
       ));
@@ -2381,7 +2384,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'floating_label_behavior',
+        schemaId: '$_baseSchemaUrl/floating_label_behavior',
         value: value,
         validate: validate,
       ));
@@ -2420,7 +2423,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'font_feature',
+        schemaId: '$_baseSchemaUrl/font_feature',
         value: value,
         validate: validate,
       ));
@@ -2452,7 +2455,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'font_style',
+        schemaId: '$_baseSchemaUrl/font_style',
         value: value,
         validate: validate,
       ));
@@ -2507,7 +2510,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'font_weight',
+        schemaId: '$_baseSchemaUrl/font_weight',
         value: value,
         validate: validate,
       ));
@@ -2637,7 +2640,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'gradient',
+        schemaId: '$_baseSchemaUrl/gradient',
         value: value,
         validate: validate,
       ));
@@ -2766,7 +2769,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'gradient_transform',
+        schemaId: '$_baseSchemaUrl/gradient_transform',
         value: value,
         validate: validate,
       ));
@@ -2799,7 +2802,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'hit_test_behavior',
+        schemaId: '$_baseSchemaUrl/hit_test_behavior',
         value: value,
         validate: validate,
       ));
@@ -2840,7 +2843,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'icon_data',
+        schemaId: '$_baseSchemaUrl/icon_data',
         value: value,
         validate: validate,
       ));
@@ -2876,7 +2879,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'icon_theme_data',
+        schemaId: '$_baseSchemaUrl/icon_theme_data',
         value: value,
         validate: validate,
       ));
@@ -2916,7 +2919,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'image_repeat',
+        schemaId: '$_baseSchemaUrl/image_repeat',
         value: value,
         validate: validate,
       ));
@@ -2982,7 +2985,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'input_border',
+        schemaId: '$_baseSchemaUrl/input_border',
         value: value,
         validate: validate,
       ));
@@ -3073,7 +3076,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'input_decoration_theme',
+        schemaId: '$_baseSchemaUrl/input_decoration_theme',
         value: value,
         validate: validate,
       ));
@@ -3183,7 +3186,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'interactive_ink_feature_factory',
+        schemaId: '$_baseSchemaUrl/interactive_ink_feature_factory',
         value: value,
         validate: validate,
       ));
@@ -3218,7 +3221,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'locale',
+        schemaId: '$_baseSchemaUrl/locale',
         value: value,
         validate: validate,
       ));
@@ -3259,7 +3262,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'main_axis_alignment',
+        schemaId: '$_baseSchemaUrl/main_axis_alignment',
         value: value,
         validate: validate,
       ));
@@ -3306,7 +3309,7 @@ class ThemeDecoder {
     );
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'main_axis_size',
+        schemaId: '$_baseSchemaUrl/main_axis_size',
         value: value,
         validate: validate,
       ));
@@ -3347,7 +3350,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'material_banner_theme_data',
+        schemaId: '$_baseSchemaUrl/material_banner_theme_data',
         value: value,
         validate: validate,
       ));
@@ -3394,7 +3397,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'material_color',
+        schemaId: '$_baseSchemaUrl/material_color',
         value: value,
         validate: validate,
       ));
@@ -3433,7 +3436,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'material_tap_target_size',
+        schemaId: '$_baseSchemaUrl/material_tap_target_size',
         value: value,
         validate: validate,
       ));
@@ -3475,7 +3478,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'material_type',
+        schemaId: '$_baseSchemaUrl/material_type',
         value: value,
         validate: validate,
       ));
@@ -3533,7 +3536,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'matrix4',
+        schemaId: '$_baseSchemaUrl/matrix4',
         value: value,
         validate: validate,
       ));
@@ -3582,7 +3585,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'navigation_rail_label_type',
+        schemaId: '$_baseSchemaUrl/navigation_rail_label_type',
         value: value,
         validate: validate,
       ));
@@ -3633,7 +3636,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'navigation_rail_theme_data',
+        schemaId: '$_baseSchemaUrl/navigation_rail_theme_data',
         value: value,
         validate: validate,
       ));
@@ -3687,7 +3690,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'notched_shape',
+        schemaId: '$_baseSchemaUrl/notched_shape',
         value: value,
         validate: validate,
       ));
@@ -3718,7 +3721,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'offset',
+        schemaId: '$_baseSchemaUrl/offset',
         value: value,
         validate: validate,
       ));
@@ -3750,7 +3753,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'overflow',
+        schemaId: '$_baseSchemaUrl/overflow',
         value: value,
         validate: validate,
       ));
@@ -3792,7 +3795,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'popup_menu_theme_data',
+        schemaId: '$_baseSchemaUrl/popup_menu_theme_data',
         value: value,
         validate: validate,
       ));
@@ -3875,7 +3878,7 @@ class ThemeDecoder {
 
       if (value != null) {
         assert(SchemaValidator.validate(
-          schema: 'radius',
+          schemaId: '$_baseSchemaUrl/radius',
           value: value,
           validate: validate,
         ));
@@ -3933,7 +3936,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'range_slider_thumb_shape',
+        schemaId: '$_baseSchemaUrl/range_slider_thumb_shape',
         value: value,
         validate: validate,
       ));
@@ -3988,7 +3991,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'range_slider_tick_mark_shape',
+        schemaId: '$_baseSchemaUrl/range_slider_tick_mark_shape',
         value: value,
         validate: validate,
       ));
@@ -4025,7 +4028,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'range_slider_track_shape',
+        schemaId: '$_baseSchemaUrl/range_slider_track_shape',
         value: value,
         validate: validate,
       ));
@@ -4062,7 +4065,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'range_slider_value_indicator_shape',
+        schemaId: '$_baseSchemaUrl/range_slider_value_indicator_shape',
         value: value,
         validate: validate,
       ));
@@ -4192,7 +4195,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'rect',
+        schemaId: '$_baseSchemaUrl/rect',
         value: value,
         validate: validate,
       ));
@@ -4300,7 +4303,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'scroll_physics',
+        schemaId: '$_baseSchemaUrl/scroll_physics',
         value: value,
         validate: validate,
       ));
@@ -4388,7 +4391,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'shadow',
+        schemaId: '$_baseSchemaUrl/shadow',
         value: value,
         validate: validate,
       ));
@@ -4464,7 +4467,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'shape_border',
+        schemaId: '$_baseSchemaUrl/shape_border',
         value: value,
         validate: validate,
       ));
@@ -4538,7 +4541,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'show_value_indicator',
+        schemaId: '$_baseSchemaUrl/show_value_indicator',
         value: value,
         validate: validate,
       ));
@@ -4583,7 +4586,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'slider_component_shape',
+        schemaId: '$_baseSchemaUrl/slider_component_shape',
         value: value,
         validate: validate,
       ));
@@ -4650,7 +4653,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'slider_theme_data',
+        schemaId: '$_baseSchemaUrl/slider_theme_data',
         value: value,
         validate: validate,
       ));
@@ -4805,7 +4808,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'slider_track_shape',
+        schemaId: '$_baseSchemaUrl/slider_track_shape',
         value: value,
         validate: validate,
       ));
@@ -4848,7 +4851,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'smart_dashes_type',
+        schemaId: '$_baseSchemaUrl/smart_dashes_type',
         value: value,
         validate: validate,
       ));
@@ -4884,7 +4887,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'smart_quotes_type',
+        schemaId: '$_baseSchemaUrl/smart_quotes_type',
         value: value,
         validate: validate,
       ));
@@ -4920,7 +4923,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'snack_bar_behavior',
+        schemaId: '$_baseSchemaUrl/snack_bar_behavior',
         value: value,
         validate: validate,
       ));
@@ -4966,7 +4969,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'snack_bar_theme_data',
+        schemaId: '$_baseSchemaUrl/snack_bar_theme_data',
         value: value,
         validate: validate,
       ));
@@ -5014,7 +5017,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'stack_fit',
+        schemaId: '$_baseSchemaUrl/stack_fit',
         value: value,
         validate: validate,
       ));
@@ -5065,7 +5068,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'strut_style',
+        schemaId: '$_baseSchemaUrl/strut_style',
         value: value,
         validate: validate,
       ));
@@ -5115,7 +5118,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'tab_bar_indicator_size',
+        schemaId: '$_baseSchemaUrl/tab_bar_indicator_size',
         value: value,
         validate: validate,
       ));
@@ -5160,7 +5163,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'tab_bar_theme',
+        schemaId: '$_baseSchemaUrl/tab_bar_theme',
         value: value,
         validate: validate,
       ));
@@ -5226,7 +5229,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'target_platform',
+        schemaId: '$_baseSchemaUrl/target_platform',
         value: value,
         validate: validate,
       ));
@@ -5287,7 +5290,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_align',
+        schemaId: '$_baseSchemaUrl/text_align',
         value: value,
         validate: validate,
       ));
@@ -5328,7 +5331,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_align_vertical',
+        schemaId: '$_baseSchemaUrl/text_align_vertical',
         value: value,
         validate: validate,
       ));
@@ -5367,7 +5370,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_baseline',
+        schemaId: '$_baseSchemaUrl/text_baseline',
         value: value,
         validate: validate,
       ));
@@ -5408,7 +5411,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_capitalization',
+        schemaId: '$_baseSchemaUrl/text_capitalization',
         value: value,
         validate: validate,
       ));
@@ -5457,7 +5460,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_decoration',
+        schemaId: '$_baseSchemaUrl/text_decoration',
         value: value,
         validate: validate,
       ));
@@ -5508,7 +5511,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_decoration_style',
+        schemaId: '$_baseSchemaUrl/text_decoration_style',
         value: value,
         validate: validate,
       ));
@@ -5557,7 +5560,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_direction',
+        schemaId: '$_baseSchemaUrl/text_direction',
         value: value,
         validate: validate,
       ));
@@ -5593,7 +5596,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_height_behavior',
+        schemaId: '$_baseSchemaUrl/text_height_behavior',
         value: value,
         validate: validate,
       ));
@@ -5651,7 +5654,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_input_action',
+        schemaId: '$_baseSchemaUrl/text_input_action',
         value: value,
         validate: validate,
       ));
@@ -5745,7 +5748,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_input_type',
+        schemaId: '$_baseSchemaUrl/text_input_type',
         value: value,
         validate: validate,
       ));
@@ -5810,7 +5813,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_overflow',
+        schemaId: '$_baseSchemaUrl/text_overflow',
         value: value,
         validate: validate,
       ));
@@ -5879,7 +5882,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_style',
+        schemaId: '$_baseSchemaUrl/text_style',
         value: value,
         validate: validate,
       ));
@@ -5990,7 +5993,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_theme',
+        schemaId: '$_baseSchemaUrl/text_theme',
         value: value,
         validate: validate,
       ));
@@ -6072,7 +6075,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'text_width_basis',
+        schemaId: '$_baseSchemaUrl/text_width_basis',
         value: value,
         validate: validate,
       ));
@@ -6199,7 +6202,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'theme_data',
+        schemaId: '$_baseSchemaUrl/theme_data',
         value: value,
         validate: validate,
       ));
@@ -6493,7 +6496,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'tile_mode',
+        schemaId: '$_baseSchemaUrl/tile_mode',
         value: value,
         validate: validate,
       ));
@@ -6551,7 +6554,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'toggle_buttons_theme_data',
+        schemaId: '$_baseSchemaUrl/toggle_buttons_theme_data',
         value: value,
         validate: validate,
       ));
@@ -6638,7 +6641,7 @@ class ThemeDecoder {
     ToolbarOptions result;
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'toolbar_options',
+        schemaId: '$_baseSchemaUrl/toolbar_options',
         value: value,
         validate: validate,
       ));
@@ -6681,7 +6684,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'tooltip_theme_data',
+        schemaId: '$_baseSchemaUrl/tooltip_theme_data',
         value: value,
         validate: validate,
       ));
@@ -6743,7 +6746,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'typography',
+        schemaId: '$_baseSchemaUrl/typography',
         value: value,
         validate: validate,
       ));
@@ -6832,7 +6835,7 @@ class ThemeDecoder {
 
     if (value != null) {
       assert(SchemaValidator.validate(
-        schema: 'visual_density',
+        schemaId: '$_baseSchemaUrl/visual_density',
         value: value,
         validate: validate,
       ));

@@ -1,3 +1,8 @@
+## [1.1.2] - July 14th, 2020
+
+* Fixed a recursive bug in `SchemaCache.addSchema`
+
+
 ## [1.1.1] - July 13th, 2020
 
 * Exported the JSON Schemas for other tools to also be able to perform validation.

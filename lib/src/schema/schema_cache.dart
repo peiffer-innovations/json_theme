@@ -5,11 +5,11 @@ class SchemaCache {
   SchemaCache._internal();
   static final SchemaCache _instance = SchemaCache._internal();
 
-  final _schemas = {};
+  final Map<String, dynamic> _schemas = {};
 
   /// Adds a [schema] to the internal schema cache using the given [id] (or URL).
   void addSchema(String id, Map<String, dynamic> schema) =>
-      _schemas[id] = _schemas;
+      _schemas[id] = schema;
 
   /// Adds multiple [schemas] to the internal schema cache.  The key to the
   /// [schemas] must be the URL / id and the value is the actual schema itself.

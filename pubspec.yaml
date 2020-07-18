@@ -2,7 +2,7 @@ name: json_theme
 description: A library to dynamically generate a ThemeData object from a JSON file or dynamic map object
 homepage: https://github.com/peiffer-innovations/json_theme
 
-version: 1.1.2
+version: 1.1.2+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

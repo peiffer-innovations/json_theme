@@ -1,3 +1,8 @@
+## [1.1.2+1] - July 18h, 2020
+
+* Fixed HTTP link to GitHub to be a secure HTTPS link
+
+
 ## [1.1.2] - July 14th, 2020
 
 * Fixed a recursive bug in `SchemaCache.addSchema`
@@ -68,7 +73,7 @@
 
 ## [1.0.0] - June 13th, 2020
 
-* Added [example](http://github.com/peiffer-innovations/json_theme/example)
+* Added [example](https://github.com/peiffer-innovations/json_theme/example)
 * Added documentation
 * Added Unit Tests
 

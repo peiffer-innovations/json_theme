@@ -1,3 +1,8 @@
+## [1.2.0] - Auguest 5h, 2020
+
+* Updated with new theme elements from Flutter `1.20.0`
+
+
 ## [1.1.2+1] - July 18h, 2020
 
 * Fixed HTTP link to GitHub to be a secure HTTPS link

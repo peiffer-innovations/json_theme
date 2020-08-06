@@ -10,10 +10,21 @@ class FloatingActionButtonLocationSchema {
     'enum': [
       'centerDocked',
       'centerFloat',
+      'centerTop',
       'endDocked',
       'endFloat',
       'endTop',
+      'miniCenterDocked',
+      'miniCenterFloat',
+      'miniCenterTop',
+      'miniEndDocked',
+      'miniEndFloat',
+      'miniEndTop',
+      'miniStartDocked',
+      'miniStartFloat',
       'miniStartTop',
+      'startDocked',
+      'startFloat',
       'startTop',
     ]
   };

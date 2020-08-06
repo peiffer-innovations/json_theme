@@ -9,6 +9,7 @@ class RangeSliderValueIndicatorShapeSchema {
     'type': 'string',
     'enum': [
       'paddle',
+      'rectangular',
     ],
   };
 }

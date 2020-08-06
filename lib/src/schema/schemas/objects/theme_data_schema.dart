@@ -23,6 +23,8 @@ class ThemeDataSchema {
       'bottomAppBarTheme':
           SchemaHelper.objectSchema(BottomAppBarThemeScheme.id),
       'brightness': SchemaHelper.objectSchema(BrightnessSchema.id),
+      'bottomNavigationBarTheme':
+          SchemaHelper.objectSchema(BottomNavigationBarThemeDataSchema.id),
       'bottomSheetTheme':
           SchemaHelper.objectSchema(BottomSheetThemeDataSchema.id),
       'buttonBarTheme': SchemaHelper.objectSchema(ButtonBarThemeDataSchema.id),
@@ -42,6 +44,7 @@ class ThemeDataSchema {
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
       'errorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'fixTextFieldOutlineLabel': SchemaHelper.boolSchema,
       'floatingActionButtonTheme':
           SchemaHelper.objectSchema(FloatingActionButtonThemeDataSchema.id),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -78,6 +81,8 @@ class ThemeDataSchema {
       'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
+      'timePickerTheme':
+          SchemaHelper.objectSchema(TimePickerThemeDataSchema.id),
       'toggleButtonsTheme':
           SchemaHelper.objectSchema(ToggleButtonsThemeDataSchema.id),
       'toggleableActiveColor': SchemaHelper.objectSchema(ColorSchema.id),

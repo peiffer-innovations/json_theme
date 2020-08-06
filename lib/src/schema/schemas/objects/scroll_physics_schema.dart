@@ -20,6 +20,7 @@ class ScrollPhysicsSchema {
           'fixedExtent',
           'never',
           'page',
+          'rangeMaintaining',
         ],
       },
     },

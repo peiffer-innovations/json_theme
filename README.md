@@ -173,10 +173,21 @@ Plain string that must be one of:
 Plain string that must be one of:
 * `centerDocked` ==> `FloatingActionButtonLocation.centerDocked`
 * `centerFloat` ==> `FloatingActionButtonLocation.centerFloat`
+* `centerTop` ==> `FloatingActionButtonLocation.centerTop`
 * `endDocked` ==> `FloatingActionButtonLocation.endDocked`
 * `endFloat` ==> `FloatingActionButtonLocation.endFloat`
 * `endTop` ==> `FloatingActionButtonLocation.endTop`
+* `miniCenterDocked` ==> `FloatingActionButtonLocation.miniCenterDocked`
+* `miniCenterFloat` ==> `FloatingActionButtonLocation.miniCenterFloat`
+* `miniCenterTop` ==> `FloatingActionButtonLocation.miniCenterTop`
+* `miniEndDocked` ==> `FloatingActionButtonLocation.miniEndDocked`
+* `miniEndFloat` ==> `FloatingActionButtonLocation.miniEndFloat`
+* `miniEndTop` ==> `FloatingActionButtonLocation.miniEndTop`
+* `miniStartDocked` ==> `FloatingActionButtonLocation.miniStartDocked`
+* `miniStartFloat` ==> `FloatingActionButtonLocation.miniStartFloat`
 * `miniStartTop` ==> `FloatingActionButtonLocation.miniStartTop`
+* `startDocked` ==> `FloatingActionButtonLocation.startDocked`
+* `startFloat` ==> `FloatingActionButtonLocation.startFloat`
 * `startTop` ==> `FloatingActionButtonLocation.startTop`
 
 
@@ -225,6 +236,14 @@ Plain string that must be one of:
 * `deferToChild` ==> `HitTestBehavior.deferToChild`
 * `opaque` ==> `HitTestBehavior.opaque`
 * `translucent` ==> `HitTestBehavior.translucent`
+
+
+**ImageProvider**
+
+Requires a `type` value that must be one of:
+* `asset` ==> `AssetImage`
+* `memory` ==> `MemoryImage`
+* `network` ==> `NetworkImage`
 
 
 **ImageRepeat**
@@ -338,6 +357,7 @@ Plain string that must be one of:
 
 Requires a `type` value that must be one of:
 * `paddle` ==> `PaddleRangeSliderValueIndicatorShape`
+* `rectangular` ==> `RectangularRangeSliderValueIndicatorShape`
 
 
 **Rect**
@@ -362,6 +382,7 @@ Requires a `type` value that must be one of:
 * `fixedExtent` ==> `FixedExtentScrollPhysics`
 * `never` ==> `NeverScrollableScrollPhysics`
 * `page` ==> `PageScrollPhysics`
+* `rangeMaintaining` ==> `RangeMaintainingScrollPhysics`
 
 
 **ShapeBorder**
@@ -386,6 +407,12 @@ Plain string that must be one of:
 Plain string that must be one of:
 * `noOverlay` ==> `SliderComponentShape.noOverlay`
 * `noOverlay` ==> `SliderComponentShape.noOverlay`
+
+
+**SliderTickMarkShape**
+
+Plain string that must be one of:
+* `noTickMark` ==> `SliderTickMarkShape.noTickMark`
 
 
 **SliderTrackShape**
@@ -527,8 +554,10 @@ Plain string that must be one of:
 * `datetime` ==> `TextInputType.datetime`
 * `emailAddress` ==> `TextInputType.emailAddress`
 * `multiline` ==> `TextInputType.multiline`
+* `name` ==> `TextInputType.name`
 * `number` ==> `TextInputType.number`
 * `phone` ==> `TextInputType.phone`
+* `streetAddress` ==> `TextInputType.streetAddress`
 * `text` ==> `TextInputType.text`
 * `url` ==> `TextInputType.url`
 * `visiblePassword` ==> `TextInputType.visiblePassword`

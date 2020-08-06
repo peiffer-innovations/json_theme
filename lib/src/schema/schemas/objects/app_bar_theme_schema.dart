@@ -13,9 +13,11 @@ class AppBarThemeSchema {
     'properties': {
       'actionsIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'brightness': SchemaHelper.objectSchema(BrightnessSchema.id),
+      'centerTitle': SchemaHelper.boolSchema,
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
     },
   };

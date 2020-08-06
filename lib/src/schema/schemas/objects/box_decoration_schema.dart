@@ -16,7 +16,9 @@ class BoxDecorationSchema {
       'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
       'boxShadow': SchemaHelper.arraySchema(BoxShadowSchema.id),
       'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'decorationImage': SchemaHelper.objectSchema(DecorationImageSchema.id),
       'gradient': SchemaHelper.objectSchema(GradientSchema.id),
+      'image': SchemaHelper.objectSchema(DecorationImageSchema.id),
       'shape': SchemaHelper.objectSchema(BoxShapeSchema.id),
     },
   };

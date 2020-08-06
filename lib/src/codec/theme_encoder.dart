@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
@@ -77,9 +78,11 @@ class ThemeEncoder {
   /// {
   ///   "actionsIconTheme": <IconThemeData>,
   ///   "brightness": <Brightness>,
+  ///   "centerTitle": <bool>,
   ///   "color": <Color>,
   ///   "elevation": <double>,
   ///   "iconTheme": <IconThemeData>,
+  ///   "shadowColor": <Color>,
   ///   "textTheme": <TextTheme>
   /// }
   /// ```
@@ -95,9 +98,11 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'actionsIconTheme': encodeIconThemeData(value.actionsIconTheme),
         'brightness': encodeBrightness(value.brightness),
+        'centerTitle': value.centerTitle,
         'color': encodeColor(value.color),
         'elevation': value.elevation,
         'iconTheme': encodeIconThemeData(value.iconTheme),
+        'shadowColor': encodeColor(value.shadowColor),
         'textTheme': encodeTextTheme(value.textTheme),
       };
     }
@@ -393,26 +398,52 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
-  // static Map<String, dynamic> encodeBottomNavigationBarThemeData(
-  //   BottomNavigationBarThemeData value,
-  // ) {
-  //   Map<String, dynamic> result;
+  /// Encodes the given [BottomNavigationBarThemeData] to a JSON compatible map.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "selectedIconTheme": <IconThemeData>,
+  ///   "selectedIconColor": <Color>,
+  ///   "selectedLabelStyle": <TextStyle>,
+  ///   "showSelectedLabels": <bool>,
+  ///   "showUnselectedLabels": <bool>,
+  ///   "type": <BottomNavigationBarType>,
+  ///   "unselectedIconTheme": <IconThemeData>,
+  ///   "unselectedItemColor": <Color>,
+  ///   "unselectedLabelStyle": <TextStyle>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBottomNavigationBarType]
+  ///  * [encodeColor]
+  ///  * [encodeIconThemeData]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic> encodeBottomNavigationBarThemeData(
+    BottomNavigationBarThemeData value,
+  ) {
+    Map<String, dynamic> result;
 
-  //   if (value != null) {
-  //     result = <String, dynamic>{
-  //       'backgroundColor': encodeColor(value.backgroundColor),
-  //       'elevation': value.elevation,
-  //       'selectedIconTheme': encodeIconThemeData(value.selectedIconTheme),
-  //       'selectedItemColor': encodeColor(value.selectedItemColor),
-  //       'selectedLabelStyle': encodeTextStyle(value.selectedLabelStyle),
-  //       'showSelectedLabels': value.showSelectedLabels,
-  //       'showUnselectedLabels': value.showUnselectedLabels,
-  //       'type': encodeBottomNavigationBarType(value.type),
-  //     };
-  //   }
+    if (value != null) {
+      result = <String, dynamic>{
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'elevation': value.elevation,
+        'selectedIconTheme': encodeIconThemeData(value.selectedIconTheme),
+        'selectedItemColor': encodeColor(value.selectedItemColor),
+        'selectedLabelStyle': encodeTextStyle(value.selectedLabelStyle),
+        'showSelectedLabels': value.showSelectedLabels,
+        'showUnselectedLabels': value.showUnselectedLabels,
+        'type': encodeBottomNavigationBarType(value.type),
+        'unselectedIconTheme': encodeIconThemeData(value.unselectedIconTheme),
+        'unselectedItemColor': encodeColor(value.unselectedItemColor),
+        'unselectedLabelStyle': encodeTextStyle(value.unselectedLabelStyle),
+      };
+    }
 
-  //   return _stripNull(result);
-  // }
+    return _stripNull(result);
+  }
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
@@ -542,6 +573,7 @@ class ThemeEncoder {
   ///   "borderRadius": <BorderRadius>,
   ///   "boxShadow": <BoxShadow[]>
   ///   "color": <Color>,
+  ///   "image": <DecorationImage>,
   ///   "gradient": <Gradient>,
   ///   "shape": <BoxShape>
   /// }
@@ -556,6 +588,7 @@ class ThemeEncoder {
   ///  * [encodeBoxShadow]
   ///  * [encodeBoxShape]
   ///  * [encodeColor]
+  ///  * [encodeDecorationImage]
   ///  * [encodeGradient]
   static Map<String, dynamic> encodeBoxDecoration(BoxDecoration value) {
     Map<String, dynamic> result;
@@ -570,6 +603,7 @@ class ThemeEncoder {
           (value) => encodeBoxShadow(value),
         ),
         'color': encodeColor(value.color),
+        'image': encodeDecorationImage(value.image),
         'gradient': encodeGradient(value.gradient),
         'shape': encodeBoxShape(value.shape),
       };
@@ -1147,6 +1181,44 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "alignment": <Alignment>,
+  ///   "centerSlice": <Rect>,
+  ///   "fit": <BoxFit>,
+  ///   "image": <ImageProvider>,
+  ///   "matchTextDirection": <bool>,
+  ///   "repeat": <ImageRepeat>,
+  ///   "scale": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeAlignment]
+  ///  * [encodeBoxFit]
+  ///  * [encodeImageProvider]
+  ///  * [encodeImageRepeat]
+  ///  * [encodeRect]
+  static Map<String, dynamic> encodeDecorationImage(DecorationImage value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'alignment': encodeAlignment(value.alignment),
+        'centerSlice': encodeRect(value.centerSlice),
+        'fit': encodeBoxFit(value.fit),
+        'image': encodeImageProvider(value.image),
+        'matchTextDirection': value.matchTextDirection,
+        'repeat': encodeImageRepeat(value.repeat),
+        'scale': value.scale,
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
   ///   "backgroundColor": <Color>,
   ///   "contentTextStyle": <TextStyle>,
   ///   "elevation": <double>,
@@ -1329,10 +1401,21 @@ class ThemeEncoder {
   /// are:
   ///  * `centerDocked`
   ///  * `centerFloat`
+  ///  * `centerTop`
   ///  * `endDocked`
   ///  * `endFloat`
   ///  * `endTop`
+  ///  * `miniCenterDocked`
+  ///  * `miniCenterFloat`
+  ///  * `miniCenterTop`
+  ///  * `miniEndDocked`
+  ///  * `miniEndFloat`
+  ///  * `miniEndTop`
+  ///  * `miniStartDocked`
+  ///  * `miniStartFloat`
   ///  * `miniStartTop`
+  ///  * `startDocked`
+  ///  * `startFloat`
   ///  * `startTop`
   static String encodeFloatingActionButtonLocation(
     FloatingActionButtonLocation value,
@@ -1344,14 +1427,36 @@ class ThemeEncoder {
         result = 'centerDocked';
       } else if (value == FloatingActionButtonLocation.centerFloat) {
         result = 'centerFloat';
+      } else if (value == FloatingActionButtonLocation.centerTop) {
+        result = 'centerTop';
       } else if (value == FloatingActionButtonLocation.endDocked) {
         result = 'endDocked';
       } else if (value == FloatingActionButtonLocation.endFloat) {
         result = 'endFloat';
       } else if (value == FloatingActionButtonLocation.endTop) {
         result = 'endTop';
+      } else if (value == FloatingActionButtonLocation.miniCenterDocked) {
+        result = 'miniCenterDocked';
+      } else if (value == FloatingActionButtonLocation.miniCenterFloat) {
+        result = 'miniCenterFloat';
+      } else if (value == FloatingActionButtonLocation.miniCenterTop) {
+        result = 'miniCenterTop';
+      } else if (value == FloatingActionButtonLocation.miniEndDocked) {
+        result = 'miniEndDocked';
+      } else if (value == FloatingActionButtonLocation.miniEndFloat) {
+        result = 'miniEndFloat';
+      } else if (value == FloatingActionButtonLocation.miniEndTop) {
+        result = 'miniEndTop';
+      } else if (value == FloatingActionButtonLocation.miniStartDocked) {
+        result = 'miniStartDocked';
+      } else if (value == FloatingActionButtonLocation.miniStartFloat) {
+        result = 'miniStartFloat';
       } else if (value == FloatingActionButtonLocation.miniStartTop) {
         result = 'miniStartTop';
+      } else if (value == FloatingActionButtonLocation.startDocked) {
+        result = 'startDocked';
+      } else if (value == FloatingActionButtonLocation.startFloat) {
+        result = 'startFloat';
       } else if (value == FloatingActionButtonLocation.startTop) {
         result = 'startTop';
       }
@@ -1759,6 +1864,75 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to an JSON value.  This expects a specific
+  /// "type" attribute to be one of:
+  ///  * `asset`
+  ///  * `memory`
+  ///  * `network`
+  ///
+  /// The expected structure depends on the exact "type" value passed in.
+  ///
+  /// Type: `asset`
+  /// ```json
+  /// {
+  ///   "assetName": <String>,
+  ///   "type": "asset",
+  ///   "package": <String>
+  /// }
+  /// ```
+  ///
+  /// Type: `memory`
+  /// ```json
+  /// {
+  ///   "bytes": <String>,
+  ///   "type": "memory",
+  ///   "scale": <double>
+  /// }
+  /// ```
+  ///
+  /// Type: `network`
+  /// ```json
+  /// {
+  ///   "headers": <Map<String, String>>,
+  ///   "type": "network"
+  ///   "scale": <double>,
+  ///   "url": <String>
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeImageProvider(
+    ImageProvider value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      assert(
+          value is AssetImage || value is MemoryImage || value is NetworkImage);
+      if (value is AssetImage) {
+        result = <String, dynamic>{
+          'assetName': value.assetName,
+          'package': value.package,
+          'type': 'asset',
+        };
+      } else if (value is MemoryImage) {
+        result = <String, dynamic>{
+          'bytes': base64Encode(value.bytes),
+          'scale': value.scale,
+          'type': 'memory',
+        };
+      } else if (value is NetworkImage) {
+        result = <String, dynamic>{
+          'headers': value.headers,
+          'scale': value.scale,
+          'type': 'network',
+          'url': value.url,
+        };
+      }
+    }
+
+    return result;
   }
 
   /// Encodes the given [value] into a String representation.  Supported values
@@ -2405,7 +2579,9 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "disabledThumbRadius": <double>,
+  ///   "elevation": <double>,
   ///   "enabledThumbRadius": <double>,
+  ///   "pressedElevation": <double>,
   ///   "type": "round"
   /// }
   /// ```
@@ -2418,9 +2594,9 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'disabledThumbRadius': value.disabledThumbRadius,
-        // 'elevation': value.elevation,
+        'elevation': value.elevation,
         'enabledThumbRadius': value.enabledThumbRadius,
-        // 'pressedElevation': value.pressedElevation,
+        'pressedElevation': value.pressedElevation,
         'type': 'round',
       };
     }
@@ -2484,22 +2660,22 @@ class ThemeEncoder {
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `paddle`
+  ///  * `rectangular`
   ///
   /// All other values, including [null], will result in [null].
   static String encodeRangeSliderValueIndicatorShape(
     RangeSliderValueIndicatorShape value,
   ) {
-    assert(value == null || value is PaddleRangeSliderValueIndicatorShape
-        // ||
-        // value is RectangularRangeSliderValueIndicatorShape
-        );
+    assert(value == null ||
+        value is PaddleRangeSliderValueIndicatorShape ||
+        value is RectangularRangeSliderValueIndicatorShape);
     String result;
 
     if (value != null) {
       if (value is PaddleRangeSliderValueIndicatorShape) {
         result = 'paddle';
-        // } else if (value is RectangularRangeSliderValueIndicatorShape) {
-        //   result = 'rectangular';
+      } else if (value is RectangularRangeSliderValueIndicatorShape) {
+        result = 'rectangular';
       }
     }
 
@@ -2551,6 +2727,7 @@ class ThemeEncoder {
   ///  * `fixedExtent`
   ///  * `never`
   ///  * `page`
+  ///  * `rangeMaintaining`
   static Map<String, dynamic> encodeScrollPhysics(ScrollPhysics value) {
     assert(value == null ||
         value is AlwaysScrollableScrollPhysics ||
@@ -2558,7 +2735,8 @@ class ThemeEncoder {
         value is ClampingScrollPhysics ||
         value is FixedExtentScrollPhysics ||
         value is NeverScrollableScrollPhysics ||
-        value is PageScrollPhysics);
+        value is PageScrollPhysics ||
+        value is RangeMaintainingScrollPhysics);
     Map<String, dynamic> result;
 
     if (value != null) {
@@ -2576,6 +2754,8 @@ class ThemeEncoder {
         type = 'never';
       } else if (value is PageScrollPhysics) {
         type = 'page';
+      } else if (value is RangeMaintainingScrollPhysics) {
+        type = 'rangeMaintaining';
       }
 
       if (type == null) {
@@ -2762,6 +2942,7 @@ class ThemeEncoder {
   ///   "showValueIndicator": <ShowValueIndicator>,
   ///   "thumbColor": <Color>,
   ///   "thumbShape": <SliderComponentShape>,
+  ///   "tickMarkShape": <SliderTickMarkShape>,
   ///   "trackHeight": <double>,
   ///   "trackShape": <SliderTrackShape>,
   ///   "valueIndicatorColor": <Color>,
@@ -2774,6 +2955,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeShowValueIndicator]
   ///  * [encodeSliderComponentShape]
+  ///  * [encodeSliderTickMarkShape]
   ///  * [encodeRangeSliderThumbShape]
   ///  * [encodeRangeSliderTickMarkShape]
   ///  * [encodeRangeSliderTrackShape]
@@ -2816,6 +2998,7 @@ class ThemeEncoder {
         ),
         'thumbColor': encodeColor(value.thumbColor),
         'thumbShape': encodeSliderComponentShape(value.thumbShape),
+        'tickMarkShape': encodeSliderTickMarkShape(value.tickMarkShape),
         'trackHeight': value.trackHeight,
         'trackShape': encodeSliderTrackShape(value.trackShape),
         'valueIndicatorColor': encodeColor(value.valueIndicatorColor),
@@ -2829,6 +3012,21 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the [SliderTickMarkShape] to a [String].  Supported values are:
+  ///  * `noTickMark`
+  static String encodeSliderTickMarkShape(
+    SliderTickMarkShape value, {
+    bool validate = true,
+  }) {
+    String result;
+
+    if (value == SliderTickMarkShape.noTickMark) {
+      result = 'noTickMark';
+    }
+
+    return result;
   }
 
   /// Encodes the given [value] to a JSON representation.  This only supports
@@ -2992,30 +3190,6 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
-  ///  * `label`
-  ///  * `tab`
-  ///
-  /// All other values, including [null], will result in [null].
-  static String encodeTabBarIndicatorSize(TabBarIndicatorSize value) {
-    String result;
-
-    if (value != null) {
-      switch (value) {
-        case TabBarIndicatorSize.label:
-          result = 'label';
-          break;
-
-        case TabBarIndicatorSize.tab:
-          result = 'tab';
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Encodes the given [value] to the String representation.  Supported values
-  /// are:
   ///  * `expand`
   ///  * `loose`
   ///  * `passthrough`
@@ -3074,6 +3248,30 @@ class ThemeEncoder {
         'height': value.height,
         'leading': value.leading,
       };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `label`
+  ///  * `tab`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeTabBarIndicatorSize(TabBarIndicatorSize value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case TabBarIndicatorSize.label:
+          result = 'label';
+          break;
+
+        case TabBarIndicatorSize.tab:
+          result = 'tab';
+          break;
+      }
     }
 
     return result;
@@ -3451,9 +3649,11 @@ class ThemeEncoder {
   /// Encodes the [value] into a String representation.  Supported values are:
   ///  * `datetime`
   ///  * `emailAddress`
+  ///  * `name`
   ///  * `multiline`
   ///  * `number`
   ///  * `phone`
+  ///  * `streetAddress`
   ///  * `text`
   ///  * `url`
   ///  * `visiblePassword`
@@ -3469,10 +3669,14 @@ class ThemeEncoder {
         result = 'emailAddress';
       } else if (value.index == TextInputType.multiline.index) {
         result = 'multiline';
+      } else if (value.index == TextInputType.name.index) {
+        result = 'name';
       } else if (value.index == TextInputType.number.index) {
         result = 'number';
       } else if (value.index == TextInputType.phone.index) {
         result = 'phone';
+      } else if (value.index == TextInputType.streetAddress.index) {
+        result = 'streetAddress';
       } else if (value.index == TextInputType.text.index) {
         result = 'text';
       } else if (value.index == TextInputType.url.index) {
@@ -3904,6 +4108,68 @@ class ThemeEncoder {
           result = 'repeated';
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// encodes the given [value] to a [TimePickerThemeData].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "dayPeriodBorderSide": <BorderSide>,
+  ///   "dayPeriodColor": <Color>,
+  ///   "dayPeriodShape": <ShapeBorder>,
+  ///   "dayPeriodTextColor": <Color>,
+  ///   "dayPeriodTextStyle": <TextStyle>,
+  ///   "dialBackgroundColor": <Color>,
+  ///   "dialHandColor": <Color>,
+  ///   "dialTextColor": <Color>,
+  ///   "entryModeIconColor": <Color>,
+  ///   "helpTextStyle": <TextStyle>,
+  ///   "hourMinuteColor": <Color>,
+  ///   "hourMinuteShape": <ShapeBorder>,
+  ///   "hourMinuteTextColor": <Color>,
+  ///   "hourMinuteTextStyle": <TextStyle>,
+  ///   "inputDecorationTheme": <InputDecorationTheme>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderSide]
+  ///  * [encodeColor]
+  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic> encodeTimePickerThemeData(
+    TimePickerThemeData value,
+  ) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'dayPeriodBorderSide': encodeBorderSide(value.dayPeriodBorderSide),
+        'dayPeriodColor': encodeColor(value.dayPeriodColor),
+        'dayPeriodShape': encodeShapeBorder(value.dayPeriodShape),
+        'dayPeriodTextColor': encodeColor(value.dayPeriodTextColor),
+        'dayPeriodTextStyle': encodeTextStyle(value.dayPeriodTextStyle),
+        'dialBackgroundColor': encodeColor(value.dialBackgroundColor),
+        'dialHandColor': encodeColor(value.dialHandColor),
+        'dialTextColor': encodeColor(value.dialTextColor),
+        'entryModeIconColor': encodeColor(value.entryModeIconColor),
+        'helpTextStyle': encodeTextStyle(value.helpTextStyle),
+        'hourMinuteColor': encodeColor(value.hourMinuteColor),
+        'hourMinuteShape': encodeShapeBorder(value.hourMinuteShape),
+        'hourMinuteTextColor': encodeColor(value.hourMinuteTextColor),
+        'hourMinuteTextStyle': encodeTextStyle(value.hourMinuteTextStyle),
+        'inputDecorationTheme':
+            encodeInputDecorationTheme(value.inputDecorationTheme),
+        'shape': encodeShapeBorder(value.shape),
+      };
     }
 
     return result;

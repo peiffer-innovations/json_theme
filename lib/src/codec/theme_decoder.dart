@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math' as math;
 import 'dart:ui';
 
@@ -100,9 +101,11 @@ class ThemeDecoder {
   /// {
   ///   "actionsIconTheme": <IconThemeData>,
   ///   "brightness": <Brightness>,
+  ///   "centerTitle": <bool>,
   ///   "color": <Color>,
   ///   "elevation": <double>,
   ///   "iconTheme": <IconThemeData>,
+  ///   "shadowColor": <Color>,
   ///   "textTheme": <TextTheme>
   /// }
   /// ```
@@ -132,6 +135,9 @@ class ThemeDecoder {
           value['brightness'],
           validate: false,
         ),
+        centerTitle: value['centerTitle'] == null
+            ? null
+            : JsonClass.parseBool(value['centerTitle']),
         color: decodeColor(
           value['color'],
           validate: false,
@@ -139,6 +145,10 @@ class ThemeDecoder {
         elevation: JsonClass.parseDouble(value['elevation']),
         iconTheme: decodeIconThemeData(
           value['iconTheme'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
           validate: false,
         ),
         textTheme: decodeTextTheme(
@@ -673,29 +683,82 @@ class ThemeDecoder {
     return result;
   }
 
-  // static BottomNavigationBarThemeData decodeBottomNavigationBarThemeData(
-  //     dynamic value, {bool validate = true,}) {
-  //   BottomNavigationBarThemeData result;
+  /// Decodes the given [value] to an [BottomNavigationBarThemeData].  This
+  /// expects the given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "selectedIconTheme": <IconThemeData>,
+  ///   "selectedIconColor": <Color>,
+  ///   "selectedLabelStyle": <TextStyle>,
+  ///   "showSelectedLabels": <bool>,
+  ///   "showUnselectedLabels": <bool>,
+  ///   "type": <BottomNavigationBarType>,
+  ///   "unselectedIconTheme": <IconThemeData>,
+  ///   "unselectedItemColor": <Color>,
+  ///   "unselectedLabelStyle": <TextStyle>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBottomNavigationBarType]
+  ///  * [decodeColor]
+  ///  * [decodeIconThemeData]
+  ///  * [decodeTextStyle]
+  static BottomNavigationBarThemeData decodeBottomNavigationBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    BottomNavigationBarThemeData result;
 
-  //   if (value != null) {
-  //     result = BottomNavigationBarThemeData(
-  //       backgroundColor: decodeColor(value['backgroundColor'], validate: false,),
-  //       elevation: JsonClass.parseDouble(value['elevation']),
-  //       selectedIconTheme: decodeIconThemeData(value['selectedIconTheme'], validate: false,),
-  //       selectedItemColor: decodeColor(value['selectedItemColor'], validate: false,),
-  //       selectedLabelStyle: decodeTextStyle(value['selectedLabelStyle'], validate: false,),
-  //       showSelectedLabels: value['showSelectedLabels'] == null
-  //           ? null
-  //           : JsonClass.parseBool(value['showSelectedLabels']),
-  //       showUnselectedLabels: value['showUnselectedLabels'] == null
-  //           ? null
-  //           : JsonClass.parseBool(value['showUnselectedLabels']),
-  //       type: decodeBottomNavigationBarType(value['type'], validate: false,),
-  //     );
-  //   }
+    if (value != null) {
+      result = BottomNavigationBarThemeData(
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        elevation: JsonClass.parseDouble(value['elevation']),
+        selectedIconTheme: decodeIconThemeData(
+          value['selectedIconTheme'],
+          validate: false,
+        ),
+        selectedItemColor: decodeColor(
+          value['selectedItemColor'],
+          validate: false,
+        ),
+        selectedLabelStyle: decodeTextStyle(
+          value['selectedLabelStyle'],
+          validate: false,
+        ),
+        showSelectedLabels: value['showSelectedLabels'] == null
+            ? null
+            : JsonClass.parseBool(value['showSelectedLabels']),
+        showUnselectedLabels: value['showUnselectedLabels'] == null
+            ? null
+            : JsonClass.parseBool(value['showUnselectedLabels']),
+        type: decodeBottomNavigationBarType(
+          value['type'],
+          validate: false,
+        ),
+        unselectedIconTheme: decodeIconThemeData(
+          value['unselectedIconTheme'],
+          validate: false,
+        ),
+        unselectedItemColor: decodeColor(
+          value['unselectedItemColor'],
+          validate: false,
+        ),
+        unselectedLabelStyle: decodeTextStyle(
+          value['unselectedLabelStyle'],
+          validate: false,
+        ),
+      );
+    }
 
-  //   return result;
-  // }
+    return result;
+  }
 
   /// Decodes the [value] to a [BottomNavigationBarType].  Supported values are:
   ///  * `fixed`
@@ -905,6 +968,7 @@ class ThemeDecoder {
   ///   "borderRadius": <BorderRadius>,
   ///   "boxShadow": <BoxShadow[]>
   ///   "color": <Color>,
+  ///   "image": <DecorationImage>,
   ///   "gradient": <Gradient>,
   ///   "shape": <BoxShape>
   /// }
@@ -917,6 +981,7 @@ class ThemeDecoder {
   ///  * [decodeBoxShadow]
   ///  * [decodeBoxShape]
   ///  * [decodeColor]
+  ///  * [decodeDecorationImage]
   ///  * [decodeGradient]
   static BoxDecoration decodeBoxDecoration(
     dynamic value, {
@@ -950,6 +1015,10 @@ class ThemeDecoder {
         ),
         gradient: decodeGradient(
           value['gradient'],
+          validate: false,
+        ),
+        image: decodeDecorationImage(
+          value['image'],
           validate: false,
         ),
         shape: decodeBoxShape(
@@ -1911,6 +1980,53 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [DecorationImage].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": <Alignment>,
+  ///   "centerSlice": <Rect>,
+  ///   "fit": <BoxFit>,
+  ///   "image": <ImageProvider>,
+  ///   "matchTextDirection": <bool>,
+  ///   "repeat": <ImageRepeat>,
+  ///   "scale": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeAlignment]
+  ///  * [decodeBoxFit]
+  ///  * [decodeImageProvider]
+  ///  * [decodeImageRepeat]
+  ///  * [decodeRect]
+  static DecorationImage decodeDecorationImage(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DecorationImage result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/decoration_image',
+        value: value,
+        validate: validate,
+      ));
+      result = DecorationImage(
+        alignment: decodeAlignment(value['alignment']) ?? Alignment.center,
+        centerSlice: decodeRect(value['centerSlice']),
+        fit: decodeBoxFit(value['fit']),
+        image: decodeImageProvider(value['image']),
+        matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
+        repeat: decodeImageRepeat(value['repeat']) ?? ImageRepeat.noRepeat,
+        scale: JsonClass.parseDouble(value['scale'], 1.0),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [DialogTheme].  This expects the given
   /// [value] to follow the structure below:
   ///
@@ -2229,10 +2345,21 @@ class ThemeDecoder {
   /// are:
   ///  * `centerDocked`
   ///  * `centerFloat`
+  ///  * `centerTop`
   ///  * `endDocked`
   ///  * `endFloat`
   ///  * `endTop`
+  ///  * `miniCenterDocked`
+  ///  * `miniCenterFloat`
+  ///  * `miniCenterTop`
+  ///  * `miniEndDocked`
+  ///  * `miniEndFloat`
+  ///  * `miniEndTop`
+  ///  * `miniStartDocked`
+  ///  * `miniStartFloat`
   ///  * `miniStartTop`
+  ///  * `startDocked`
+  ///  * `startFloat`
   ///  * `startTop`
   static FloatingActionButtonLocation decodeFloatingActionButtonLocation(
     String value, {
@@ -2243,10 +2370,21 @@ class ThemeDecoder {
       [
         'centerDocked',
         'centerFloat',
+        'centerTop',
         'endDocked',
         'endFloat',
         'endTop',
+        'miniCenterDocked',
+        'miniCenterFloat',
+        'miniCenterTop',
+        'miniEndDocked',
+        'miniEndFloat',
+        'miniEndTop',
+        'miniStartDocked',
+        'miniStartFloat',
         'miniStartTop',
+        'startDocked',
+        'startFloat',
         'startTop',
       ],
       value,
@@ -2268,6 +2406,10 @@ class ThemeDecoder {
           result = FloatingActionButtonLocation.centerFloat;
           break;
 
+        case 'centerTop':
+          result = FloatingActionButtonLocation.centerTop;
+          break;
+
         case 'endDocked':
           result = FloatingActionButtonLocation.endDocked;
           break;
@@ -2280,8 +2422,48 @@ class ThemeDecoder {
           result = FloatingActionButtonLocation.endTop;
           break;
 
+        case 'miniCenterDocked':
+          result = FloatingActionButtonLocation.miniCenterDocked;
+          break;
+
+        case 'miniCenterFloat':
+          result = FloatingActionButtonLocation.miniCenterFloat;
+          break;
+
+        case 'miniCenterTop':
+          result = FloatingActionButtonLocation.miniCenterTop;
+          break;
+
+        case 'miniEndDocked':
+          result = FloatingActionButtonLocation.miniEndDocked;
+          break;
+
+        case 'miniEndFloat':
+          result = FloatingActionButtonLocation.miniEndFloat;
+          break;
+
+        case 'miniEndTop':
+          result = FloatingActionButtonLocation.miniEndTop;
+          break;
+
+        case 'miniStartDocked':
+          result = FloatingActionButtonLocation.miniStartDocked;
+          break;
+
+        case 'miniStartFloat':
+          result = FloatingActionButtonLocation.miniStartFloat;
+          break;
+
         case 'miniStartTop':
           result = FloatingActionButtonLocation.miniStartTop;
+          break;
+
+        case 'startDocked':
+          result = FloatingActionButtonLocation.startDocked;
+          break;
+
+        case 'startFloat':
+          result = FloatingActionButtonLocation.startFloat;
           break;
 
         case 'startTop':
@@ -2891,6 +3073,88 @@ class ThemeDecoder {
         opacity: JsonClass.parseDouble(value['opacity']),
         size: JsonClass.parseDouble(value['size']),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [ImageProvider].  This expects a specific
+  /// "type" attribute to be one of:
+  ///  * `asset`
+  ///  * `memory`
+  ///  * `network`
+  ///
+  /// The expected structure depends on the exact "type" value passed in.
+  ///
+  /// Type: `asset`
+  /// ```json
+  /// {
+  ///   "assetName": <String>,
+  ///   "package": <String>,
+  ///   "type": "asset"
+  /// }
+  /// ```
+  ///
+  /// Type: `memory`
+  /// ```json
+  /// {
+  ///   "bytes": <String>,
+  ///   "scale": <double>,
+  ///   "type": "memory"
+  /// }
+  /// ```
+  ///
+  /// Type: `network`
+  /// ```json
+  /// {
+  ///   "headers": <Map<String, String>>,
+  ///   "type": "network",
+  ///   "scale": <double>,
+  ///   "url": <String>
+  /// }
+  /// ```
+  static ImageProvider decodeImageProvider(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'ImageProvider.type',
+      [
+        'asset',
+        'network',
+        'memory',
+      ],
+      value == null ? null : value['type'],
+    );
+    ImageProvider result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/image_provider',
+        value: value,
+        validate: validate,
+      ));
+      switch (value['type']) {
+        case 'asset':
+          result = AssetImage(
+            value['assetName'],
+            package: value['package'],
+          );
+          break;
+        case 'memory':
+          result = MemoryImage(
+            base64Decode(value['bytes']),
+            scale: JsonClass.parseDouble(value['scale'], 1.0),
+          );
+          break;
+        case 'network':
+          result = NetworkImage(
+            value['url'],
+            headers: value['headers'],
+            scale: JsonClass.parseDouble(value['scale'], 1.0),
+          );
+          break;
+      }
     }
 
     return result;
@@ -3761,7 +4025,6 @@ class ThemeDecoder {
         case 'clip':
           result = Overflow.clip;
           break;
-        case '':
         case 'visible':
           result = Overflow.visible;
           break;
@@ -3917,6 +4180,8 @@ class ThemeDecoder {
   /// {
   ///   "disabledThumbRadius": <double>,
   ///   "enabledThumbRadius": <double>,
+  ///   "elevation": <double>,
+  ///   "pressedElevation": <double>,
   ///   "type": "round"
   /// }
   /// ```
@@ -3948,12 +4213,15 @@ class ThemeDecoder {
             disabledThumbRadius: JsonClass.parseDouble(
               value['disabledThumbRadius'],
             ),
-            // elevation: JsonClass.parseDouble(value['elevation'], 1.0),
+            elevation: JsonClass.parseDouble(value['elevation'], 1.0),
             enabledThumbRadius: JsonClass.parseDouble(
               value['enabledThumbRadius'],
               10.0,
             ),
-            // pressedElevation: JsonClass.parseDouble(value['pressedElevation'], 6.0,),
+            pressedElevation: JsonClass.parseDouble(
+              value['pressedElevation'],
+              6.0,
+            ),
           );
           break;
       }
@@ -4049,6 +4317,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [RangeSliderValueIndicatorShape].  Supported
   /// values are:
   ///  * `paddle`
+  ///  * `rectangular`
   static RangeSliderValueIndicatorShape decodeRangeSliderValueIndicatorShape(
     String value, {
     bool validate = true,
@@ -4057,7 +4326,7 @@ class ThemeDecoder {
       'RangeSliderValueIndicatorShape.type',
       [
         'paddle',
-        // 'rectangular',
+        'rectangular',
       ],
       value,
     );
@@ -4074,9 +4343,9 @@ class ThemeDecoder {
           result = PaddleRangeSliderValueIndicatorShape();
           break;
 
-        // case 'rectangular':
-        //   result = RectangularRangeSliderValueIndicatorShape();
-        //   break;
+        case 'rectangular':
+          result = RectangularRangeSliderValueIndicatorShape();
+          break;
       }
     }
 
@@ -4274,6 +4543,7 @@ class ThemeDecoder {
   ///  * `fixedExtent`
   ///  * `never`
   ///  * `page`
+  ///  * `rangeMaintaining`
   ///
   /// This expects the JSON representation to follow the structure:
   /// ```json
@@ -4296,6 +4566,7 @@ class ThemeDecoder {
         'fixedExtent',
         'never',
         'page',
+        'rangeMaintaining',
       ],
       value == null ? null : value['type'],
     );
@@ -4357,6 +4628,15 @@ class ThemeDecoder {
 
         case 'page':
           result = PageScrollPhysics(
+            parent: decodeScrollPhysics(
+              value['parent'],
+              validate: false,
+            ),
+          );
+          break;
+
+        case 'rangeMaintaining':
+          result = RangeMaintainingScrollPhysics(
             parent: decodeScrollPhysics(
               value['parent'],
               validate: false,
@@ -4629,6 +4909,7 @@ class ThemeDecoder {
   ///   "showValueIndicator": <ShowValueIndicator>,
   ///   "thumbColor": <Color>,
   ///   "thumbShape": <SliderComponentShape>,
+  ///   "tickMarkShape": <SliderTickMarkShape>,
   ///   "trackHeight": <double>,
   ///   "trackShape": <SliderTrackShape>,
   ///   "valueIndicatorColor": <Color>,
@@ -4641,6 +4922,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeShowValueIndicator]
   ///  * [decodeSliderComponentShape]
+  ///  * [decodeSliderTickMarkShape]
   ///  * [decodeRangeSliderThumbShape]
   ///  * [decodeRangeSliderTickMarkShape]
   ///  * [decodeRangeSliderTrackShape]
@@ -4657,8 +4939,6 @@ class ThemeDecoder {
         value: value,
         validate: validate,
       ));
-      assert(value['tickMarkShape'] == null,
-          'SliderThemeData.tickMarkShape is not supported');
       result = SliderThemeData(
         activeTickMarkColor: decodeColor(
           value['activeTickMarkColor'],
@@ -4737,6 +5017,10 @@ class ThemeDecoder {
           value['thumbShape'],
           validate: false,
         ),
+        tickMarkShape: decodeSliderTickMarkShape(
+          value['tickMarkShape'],
+          validate: false,
+        ),
         trackHeight: JsonClass.parseDouble(value['trackHeight']),
         trackShape: decodeSliderTrackShape(
           value['trackShape'],
@@ -4757,6 +5041,36 @@ class ThemeDecoder {
       );
     }
 
+    return result;
+  }
+
+  /// Decodes the [value] to a [SliderTickMarkShape].  Supported values are:
+  ///  * `noTickMark`
+  static SliderTickMarkShape decodeSliderTickMarkShape(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'SliderTickMarkShape',
+      [
+        'noTickMark',
+      ],
+      value,
+    );
+
+    SliderTickMarkShape result;
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/slider_tick_mark_shape',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'noTickMark':
+          result = SliderTickMarkShape.noTickMark;
+          break;
+      }
+    }
     return result;
   }
 
@@ -5721,8 +6035,10 @@ class ThemeDecoder {
   ///  * `datetime`
   ///  * `emailAddress`
   ///  * `multiline`
+  ///  * `name`
   ///  * `number`
   ///  * `phone`
+  ///  * `streetAddress`
   ///  * `text`
   ///  * `url`
   ///  * `visiblePassword`
@@ -5736,8 +6052,10 @@ class ThemeDecoder {
         'datetime',
         'emailAddress',
         'multiline',
+        'name',
         'number',
         'phone',
+        'streetAddress',
         'text',
         'url',
         'visiblePassword',
@@ -5765,12 +6083,20 @@ class ThemeDecoder {
           result = TextInputType.multiline;
           break;
 
+        case 'name':
+          result = TextInputType.name;
+          break;
+
         case 'number':
           result = TextInputType.number;
           break;
 
         case 'phone':
           result = TextInputType.phone;
+          break;
+
+        case 'streetAddress':
+          result = TextInputType.streetAddress;
           break;
 
         case 'text':
@@ -6107,6 +6433,7 @@ class ThemeDecoder {
   ///   "backgroundColor": <Color>,
   ///   "bottomAppBarColor": <Color>,
   ///   "bottomAppBarTheme": <BottomAppBarTheme>,
+  ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
   ///   "brightness": <Brightness>,
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
@@ -6125,6 +6452,7 @@ class ThemeDecoder {
   ///   "dividerColor": <Color>,
   ///   "dividerTheme": <DividerThemeData>,
   ///   "errorColor": <Color>,
+  ///   "fixTextFieldOutlineLabel": <bool>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
   ///   "focusColor": <Color>,
   ///   "fontFamily": <String>,
@@ -6156,6 +6484,7 @@ class ThemeDecoder {
   ///   "textSelectionColor": <Color>,
   ///   "textSelectionHandleColor": <Color>,
   ///   "textTheme": <TextTheme>,
+  ///   "timePickerTheme": <TimePickerThemeData>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
   ///   "toggleableActiveColor": <Color>,
   ///   "tooltipTheme": <TooltipThemeData>,
@@ -6167,9 +6496,10 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeAppBarTheme]
-  ///  * [decodeBrightness]
   ///  * [decodeBottomAppBarTheme]
+  ///  * [decodeBottomNavigationBarThemeData]
   ///  * [decodeBottomSheetThemeData]
+  ///  * [decodeBrightness]
   ///  * [decodeButtonBarThemeData]
   ///  * [decodeButtonThemeData]
   ///  * [decodeCardTheme]
@@ -6190,6 +6520,7 @@ class ThemeDecoder {
   ///  * [decodeSnackBarThemeData]
   ///  * [decodeTabBarTheme]
   ///  * [decodeTargetPlatform]
+  ///  * [decodeTimePickerThemeData]
   ///  * [decodeTextStyle]
   ///  * [decodeToggleButtonsThemeData]
   ///  * [decodeTypography]
@@ -6246,9 +6577,10 @@ class ThemeDecoder {
           value['bottomAppBarTheme'],
           validate: false,
         ),
-        // bottomNavigationBarTheme: decodeBottomNavigationBarThemeData(
-        //   value['bottomNavigationBarTheme'], validate: false,
-        // ),
+        bottomNavigationBarTheme: decodeBottomNavigationBarThemeData(
+          value['bottomNavigationBarTheme'],
+          validate: false,
+        ),
         brightness: decodeBrightness(
           value['brightness'],
           validate: false,
@@ -6321,9 +6653,9 @@ class ThemeDecoder {
           value['errorColor'],
           validate: false,
         ),
-        // fixTextFieldOutlineLabel: value['fixTextFieldOutlineLabel'] == null
-        //     ? null
-        //     : JsonClass.parseBool(value['fixTextFieldOutlineLabel']),
+        fixTextFieldOutlineLabel: value['fixTextFieldOutlineLabel'] == null
+            ? null
+            : JsonClass.parseBool(value['fixTextFieldOutlineLabel']),
         floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
           value['floatingActionButtonTheme'],
           validate: false,
@@ -6445,6 +6777,10 @@ class ThemeDecoder {
           value['textTheme'],
           validate: false,
         ),
+        timePickerTheme: decodeTimePickerThemeData(
+          value['timePickerThemeData'],
+          validate: false,
+        ),
         toggleButtonsTheme: decodeToggleButtonsThemeData(
           value['toggleButtonsTheme'],
           validate: false,
@@ -6513,6 +6849,77 @@ class ThemeDecoder {
           result = TileMode.repeated;
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [TimePickerThemeData].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "dayPeriodBorderSide": <BorderSide>,
+  ///   "dayPeriodColor": <Color>,
+  ///   "dayPeriodShape": <ShapeBorder>,
+  ///   "dayPeriodTextColor": <Color>,
+  ///   "dayPeriodTextStyle": <TextStyle>,
+  ///   "dialBackgroundColor": <Color>,
+  ///   "dialHandColor": <Color>,
+  ///   "dialTextColor": <Color>,
+  ///   "entryModeIconColor": <Color>,
+  ///   "helpTextStyle": <TextStyle>,
+  ///   "hourMinuteColor": <Color>,
+  ///   "hourMinuteShape": <ShapeBorder>,
+  ///   "hourMinuteTextColor": <Color>,
+  ///   "hourMinuteTextStyle": <TextStyle>,
+  ///   "inputDecorationTheme": <InputDecorationTheme>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderSide]
+  ///  * [decodeColor]
+  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
+  static TimePickerThemeData decodeTimePickerThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TimePickerThemeData result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/time_picker_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = TimePickerThemeData(
+        backgroundColor: decodeColor(value['backgroundColor']),
+        dayPeriodBorderSide: decodeBorderSide(value['dayPeriodBorderSide']),
+        dayPeriodColor: decodeColor(value['dayPeriodColor']),
+        dayPeriodShape: value['dayPeriodShape'] == null
+            ? null
+            : decodeShapeBorder(value['dayPeriodShape']) as OutlinedBorder,
+        dayPeriodTextColor: decodeColor(value['dayPeriodTextColor']),
+        dayPeriodTextStyle: decodeTextStyle(value['dayPeriodTextStyle']),
+        dialBackgroundColor: decodeColor(value['dialBackgroundColor']),
+        dialHandColor: decodeColor(value['dialHandColor']),
+        dialTextColor: decodeColor(value['dialTextColor']),
+        entryModeIconColor: decodeColor(value['entryModeIconColor']),
+        helpTextStyle: decodeTextStyle(value['helpTextStyle']),
+        hourMinuteColor: decodeColor(value['hourMinuteColor']),
+        hourMinuteShape: decodeShapeBorder(value['hourMinuteShape']),
+        hourMinuteTextColor: decodeColor(value['hourMinuteTextColor']),
+        hourMinuteTextStyle: decodeTextStyle(value['hourMinuteTextStyle']),
+        inputDecorationTheme:
+            decodeInputDecorationTheme(value['inputDecorationTheme']),
+        shape: decodeShapeBorder(value['shape']),
+      );
     }
 
     return result;

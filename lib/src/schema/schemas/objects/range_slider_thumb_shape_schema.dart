@@ -11,7 +11,9 @@ class RangeSliderThumbShapeSchema {
     'type': 'object',
     'properties': {
       'disabledThumbRadius': SchemaHelper.numberSchema,
+      'elevation': SchemaHelper.numberSchema,
       'enabledThumbRadius': SchemaHelper.numberSchema,
+      'pressedElevation': SchemaHelper.numberSchema,
       'type': {
         'type': 'string',
         'enum': [

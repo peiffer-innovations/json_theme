@@ -8,6 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
 
+import 'base64_image.dart';
+
 const _kColor = Color(0x00123456);
 const _kColorStr = '#00123456';
 const _kTextStyle = TextStyle(color: _kColor);
@@ -105,10 +107,11 @@ void main() {
     expect(ThemeEncoder.encodeAppBarTheme(null), null);
 
     var entry = AppBarTheme(
-      brightness: Brightness.dark,
-      color: _kColor,
-      elevation: 6.0,
-    );
+        brightness: Brightness.dark,
+        color: _kColor,
+        centerTitle: true,
+        elevation: 6.0,
+        shadowColor: _kColor);
 
     var encoded = ThemeEncoder.encodeAppBarTheme(entry);
     var decoded = ThemeDecoder.decodeAppBarTheme(encoded);
@@ -118,8 +121,10 @@ void main() {
       json.encode(
         {
           'brightness': 'dark',
+          'centerTitle': true,
           'color': _kColorStr,
           'elevation': 6.0,
+          'shadowColor': _kColorStr,
         },
       ),
     );
@@ -314,6 +319,57 @@ void main() {
     );
   });
 
+  test('BottomNavigationBarThemeData', () {
+    expect(ThemeDecoder.decodeBottomNavigationBarThemeData(null), null);
+    expect(ThemeEncoder.encodeBottomNavigationBarThemeData(null), null);
+
+    var entry = BottomNavigationBarThemeData(
+      backgroundColor: Color(0xff111111),
+      elevation: 1.0,
+      selectedIconTheme: IconThemeData(opacity: 0.2),
+      selectedItemColor: Color(0xff222222),
+      selectedLabelStyle: TextStyle(fontSize: 3.0),
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
+      unselectedIconTheme: IconThemeData(opacity: 0.4),
+      unselectedItemColor: Color(0xff333333),
+      unselectedLabelStyle: TextStyle(fontSize: 5.0),
+    );
+
+    var encoded = ThemeEncoder.encodeBottomNavigationBarThemeData(entry);
+    var decoded = ThemeDecoder.decodeBottomNavigationBarThemeData(encoded);
+
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'elevation': 1.0,
+      'selectedIconTheme': {
+        'opacity': 0.2,
+      },
+      'selectedItemColor': '#ff222222',
+      'selectedLabelStyle': {
+        'fontSize': 3.0,
+        'inherit': true,
+      },
+      'showSelectedLabels': true,
+      'showUnselectedLabels': true,
+      'type': 'fixed',
+      'unselectedIconTheme': {
+        'opacity': 0.4,
+      },
+      'unselectedItemColor': '#ff333333',
+      'unselectedLabelStyle': {
+        'fontSize': 5.0,
+        'inherit': true,
+      },
+    });
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('BottomNavigationBarType', () {
     expect(ThemeDecoder.decodeBottomNavigationBarType(null), null);
     expect(ThemeEncoder.encodeBottomNavigationBarType(null), null);
@@ -504,6 +560,9 @@ void main() {
           Color(0xff555555),
         ],
       ),
+      image: DecorationImage(
+        image: MemoryImage(base64Decode(base64Image)),
+      ),
       shape: BoxShape.circle,
     );
 
@@ -593,6 +652,19 @@ void main() {
           'tileMode': 'clamp',
           'transform': null,
           'type': 'radial'
+        },
+        'image': {
+          'alignment': 'center',
+          'centerSlice': null,
+          'fit': null,
+          'image': {
+            'bytes': base64Image,
+            'scale': 1.0,
+            'type': 'memory',
+          },
+          'matchTextDirection': false,
+          'repeat': 'noRepeat',
+          'scale': 1.0,
         },
         'shape': 'circle',
       },
@@ -1431,6 +1503,67 @@ void main() {
     );
   });
 
+  test('DecorationImage', () {
+    expect(ThemeDecoder.decodeDecorationImage(null), null);
+    expect(ThemeEncoder.encodeDecorationImage(null), null);
+
+    var entry = DecorationImage(
+      alignment: Alignment.bottomCenter,
+      centerSlice: Rect.zero,
+      fit: BoxFit.contain,
+      image: MemoryImage(base64Decode(base64Image)),
+      matchTextDirection: true,
+      repeat: ImageRepeat.repeat,
+      scale: 2.0,
+    );
+
+    var encoded = ThemeEncoder.encodeDecorationImage(entry);
+    var decoded = ThemeDecoder.decodeDecorationImage(encoded);
+
+    expect(encoded, {
+      'alignment': 'bottomCenter',
+      'centerSlice': {
+        'bottom': 0.0,
+        'left': 0.0,
+        'right': 0.0,
+        'top': 0.0,
+        'type': 'ltrb',
+      },
+      'fit': 'contain',
+      'image': {
+        'bytes': base64Image,
+        'scale': 1.0,
+        'type': 'memory',
+      },
+      'matchTextDirection': true,
+      'repeat': 'repeat',
+      'scale': 2.0,
+    });
+
+    expect(
+      ThemeEncoder.encodeDecorationImage(decoded),
+      {
+        'alignment': 'bottomCenter',
+        'centerSlice': {
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 0.0,
+          'type': 'ltrb',
+        },
+        'fit': 'contain',
+        'image': {
+          'bytes': base64Image,
+          'scale': 1.0,
+          'type': 'memory',
+        },
+        'matchTextDirection': true,
+        'repeat': 'repeat',
+        'scale': 2.0,
+      },
+    );
+  });
+
   test('DialogTheme', () {
     expect(ThemeDecoder.decodeDialogTheme(null), null);
     expect(ThemeEncoder.encodeDialogTheme(null), null);
@@ -1638,10 +1771,21 @@ void main() {
     var values = <String, FloatingActionButtonLocation>{
       'centerDocked': FloatingActionButtonLocation.centerDocked,
       'centerFloat': FloatingActionButtonLocation.centerFloat,
+      'centerTop': FloatingActionButtonLocation.centerTop,
       'endDocked': FloatingActionButtonLocation.endDocked,
       'endFloat': FloatingActionButtonLocation.endFloat,
       'endTop': FloatingActionButtonLocation.endTop,
+      'miniCenterDocked': FloatingActionButtonLocation.miniCenterDocked,
+      'miniCenterFloat': FloatingActionButtonLocation.miniCenterFloat,
+      'miniCenterTop': FloatingActionButtonLocation.miniCenterTop,
+      'miniEndDocked': FloatingActionButtonLocation.miniEndDocked,
+      'miniEndFloat': FloatingActionButtonLocation.miniEndFloat,
+      'miniEndTop': FloatingActionButtonLocation.miniEndTop,
+      'miniStartDocked': FloatingActionButtonLocation.miniStartDocked,
+      'miniStartFloat': FloatingActionButtonLocation.miniStartFloat,
       'miniStartTop': FloatingActionButtonLocation.miniStartTop,
+      'startDocked': FloatingActionButtonLocation.startDocked,
+      'startFloat': FloatingActionButtonLocation.startFloat,
       'startTop': FloatingActionButtonLocation.startTop,
     };
 
@@ -2035,6 +2179,35 @@ void main() {
       decoded,
       entry,
     );
+  });
+
+  test('ImageProvider', () {
+    expect(ThemeDecoder.decodeImageProvider(null), null);
+    expect(ThemeEncoder.encodeImageProvider(null), null);
+
+    var images = [
+      {
+        'assetName': 'asset',
+        'package': 'package',
+        'type': 'asset',
+      },
+      {
+        'bytes': base64Image,
+        'scale': 2.0,
+        'type': 'memory',
+      },
+      {
+        'headers': {'foo': 'bar'},
+        'scale': 3.0,
+        'type': 'network',
+        'url': 'network',
+      },
+    ];
+
+    for (var image in images) {
+      var decoded = ThemeDecoder.decodeImageProvider(image);
+      expect(ThemeEncoder.encodeImageProvider(decoded), image);
+    }
   });
 
   test('ImageRepeat', () {
@@ -2991,7 +3164,9 @@ void main() {
 
     var entry = RoundRangeSliderThumbShape(
       disabledThumbRadius: 1.0,
+      elevation: 3.0,
       enabledThumbRadius: 2.0,
+      pressedElevation: 4.0,
     );
 
     var encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
@@ -3002,7 +3177,9 @@ void main() {
       encoded,
       {
         'disabledThumbRadius': 1.0,
+        'elevation': 3.0,
         'enabledThumbRadius': 2.0,
+        'pressedElevation': 4.0,
         'type': 'round',
       },
     );
@@ -3090,6 +3267,21 @@ void main() {
     expect(
       decoded.runtimeType,
       entry.runtimeType,
+    );
+
+    var entry2 = RectangularRangeSliderValueIndicatorShape();
+
+    var encoded2 = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry2);
+    var decoded2 = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded2);
+
+    expect(
+      encoded2,
+      'rectangular',
+    );
+
+    expect(
+      decoded2.runtimeType,
+      entry2.runtimeType,
     );
   });
 
@@ -3241,6 +3433,11 @@ void main() {
       ThemeDecoder.decodeScrollPhysics({'type': 'page'}).runtimeType,
       PageScrollPhysics().runtimeType,
     );
+    expect(
+      ThemeDecoder.decodeScrollPhysics({'type': 'rangeMaintaining'})
+          .runtimeType,
+      RangeMaintainingScrollPhysics().runtimeType,
+    );
 
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -3281,6 +3478,13 @@ void main() {
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'page',
+      }).parent.runtimeType,
+      AlwaysScrollableScrollPhysics().runtimeType,
+    );
+    expect(
+      ThemeDecoder.decodeScrollPhysics({
+        'parent': {'type': 'always'},
+        'type': 'rangeMaintaining',
       }).parent.runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
@@ -3333,6 +3537,14 @@ void main() {
       ),
       {
         'type': 'page',
+      },
+    );
+    expect(
+      JsonClass.removeNull(
+        ThemeEncoder.encodeScrollPhysics(RangeMaintainingScrollPhysics()),
+      ),
+      {
+        'type': 'rangeMaintaining',
       },
     );
 
@@ -3412,6 +3624,19 @@ void main() {
       {
         'parent': {'type': 'always'},
         'type': 'page',
+      },
+    );
+    expect(
+      JsonClass.removeNull(
+        ThemeEncoder.encodeScrollPhysics(
+          RangeMaintainingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
+        ),
+      ),
+      {
+        'parent': {'type': 'always'},
+        'type': 'rangeMaintaining',
       },
     );
   });
@@ -3634,6 +3859,21 @@ void main() {
     );
   });
 
+  test('SliderTickMarkShape', () {
+    expect(ThemeDecoder.decodeSliderTickMarkShape(null), null);
+    expect(ThemeEncoder.encodeSliderTickMarkShape(null), null);
+
+    expect(
+      ThemeDecoder.decodeSliderTickMarkShape('noTickMark'),
+      SliderTickMarkShape.noTickMark,
+    );
+
+    expect(
+      ThemeEncoder.encodeSliderTickMarkShape(SliderTickMarkShape.noTickMark),
+      'noTickMark',
+    );
+  });
+
   test('SliderThemeData', () {
     expect(ThemeDecoder.decodeSliderThemeData(null), null);
     expect(ThemeEncoder.encodeSliderThemeData(null), null);
@@ -3685,7 +3925,9 @@ void main() {
         'overlayColor': '#ffaaaaaa',
         'overlayShape': 'noOverlay',
         'rangeThumbShape': {
+          'elevation': 1.0,
           'enabledThumbRadius': 10.0,
+          'pressedElevation': 6.0,
           'type': 'round',
         },
         'rangeTrackShape': 'rectangular',
@@ -4445,12 +4687,20 @@ void main() {
       TextInputType.multiline,
     );
     expect(
+      ThemeDecoder.decodeTextInputType('name'),
+      TextInputType.name,
+    );
+    expect(
       ThemeDecoder.decodeTextInputType('number'),
       TextInputType.number,
     );
     expect(
       ThemeDecoder.decodeTextInputType('phone'),
       TextInputType.phone,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('streetAddress'),
+      TextInputType.streetAddress,
     );
     expect(
       ThemeDecoder.decodeTextInputType('text'),
@@ -4478,12 +4728,20 @@ void main() {
       'multiline',
     );
     expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.name),
+      'name',
+    );
+    expect(
       ThemeEncoder.encodeTextInputType(TextInputType.number),
       'number',
     );
     expect(
       ThemeEncoder.encodeTextInputType(TextInputType.phone),
       'phone',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.streetAddress),
+      'streetAddress',
     );
     expect(
       ThemeEncoder.encodeTextInputType(TextInputType.text),
@@ -4737,9 +4995,9 @@ void main() {
         color: Color(0xff888888),
         shape: CircularNotchedRectangle(),
       ),
-      // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      //   backgroundColor: Color(0xff999999),
-      // ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Color(0xff999999),
+      ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: Color(0xff000000),
       ),
@@ -4783,7 +5041,7 @@ void main() {
       dividerColor: Color(0xeeaaaaaa),
       dividerTheme: DividerThemeData(color: Color(0xeebbbbbb)),
       errorColor: Color(0xeecccccc),
-      // fixTextFieldOutlineLabel: true,
+      fixTextFieldOutlineLabel: true,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: Color(0xeedddddd),
       ),
@@ -4841,6 +5099,7 @@ void main() {
           color: Color(0xee555555),
         ),
       ),
+      timePickerTheme: TimePickerThemeData(backgroundColor: Color(0x11111111)),
       toggleButtonsTheme: ToggleButtonsThemeData(color: Color(0xbb222222)),
       toggleableActiveColor: Color(0xbb333333),
       tooltipTheme: TooltipThemeData(height: 19.0),
@@ -4865,113 +5124,149 @@ void main() {
           'color': '#ff333333',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodyText2': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'button': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'caption': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline1': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline2': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline3': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline4': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline5': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline6': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'overline': {
           'color': '#ff000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'subtitle1': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'subtitle2': {
           'color': '#ff000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         }
       },
-      'appBarTheme': {'color': '#ff444444'},
+      'appBarTheme': {
+        'color': '#ff444444',
+      },
       'applyElevationOverlayColor': true,
       'bannerTheme': {'backgroundColor': '#ff666666'},
       'backgroundColor': '#ff555555',
       'bottomAppBarColor': '#ff777777',
-      'bottomAppBarTheme': {'color': '#ff888888', 'shape': 'circular'},
-      'brightness': 'light',
-      'bottomSheetTheme': {'backgroundColor': '#ff000000'},
+      'bottomAppBarTheme': {
+        'color': '#ff888888',
+        'shape': 'circular',
+      },
+      'brightness': 'dark',
+      'bottomSheetTheme': {
+        'backgroundColor': '#ff000000',
+      },
       'buttonColor': '#ffaaaaaa',
-      'buttonBarTheme': {'buttonHeight': 3.0},
+      'buttonBarTheme': {
+        'buttonHeight': 3.0,
+      },
       'buttonTheme': {
         'alignedDropdown': false,
         'height': 36.0,
         'layoutBehavior': 'padded',
         'minWidth': 88.0,
-        'padding': {'bottom': 0.0, 'left': 16.0, 'right': 16.0, 'top': 0.0},
+        'padding': {
+          'bottom': 0.0,
+          'left': 16.0,
+          'right': 16.0,
+          'top': 0.0,
+        },
         'shape': {
           'borderRadius': {
-            'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-            'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-            'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-            'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-            'type': 'only'
+            'bottomLeft': {
+              'type': 'elliptical',
+              'x': 2.0,
+              'y': 2.0,
+            },
+            'bottomRight': {
+              'type': 'elliptical',
+              'x': 2.0,
+              'y': 2.0,
+            },
+            'topLeft': {
+              'type': 'elliptical',
+              'x': 2.0,
+              'y': 2.0,
+            },
+            'topRight': {
+              'type': 'elliptical',
+              'x': 2.0,
+              'y': 2.0,
+            },
+            'type': 'only',
           },
-          'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
-          'type': 'rounded'
+          'side': {
+            'color': '#ff000000',
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'rounded',
         },
-        'textTheme': 'normal'
+        'textTheme': 'normal',
       },
       'canvasColor': '#ffcccccc',
       'cardColor': '#ffdddddd',
-      'cardTheme': {'color': '#ffeeeeee'},
+      'cardTheme': {
+        'color': '#ffeeeeee',
+      },
       'chipTheme': {
         'backgroundColor': '#ff111111',
         'brightness': 'light',
@@ -4979,27 +5274,63 @@ void main() {
         'deleteIconColor': '#ff333333',
         'disabledColor': '#ff444444',
         'elevation': 2.0,
-        'labelPadding': {'bottom': 4.0, 'left': 4.0, 'right': 4.0, 'top': 4.0},
-        'labelStyle': {'color': '#ff555555', 'inherit': true},
-        'padding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
+        'labelPadding': {
+          'bottom': 4.0,
+          'left': 4.0,
+          'right': 4.0,
+          'top': 4.0,
+        },
+        'labelStyle': {
+          'color': '#ff555555',
+          'inherit': true,
+        },
+        'padding': {
+          'bottom': 8.0,
+          'left': 8.0,
+          'right': 8.0,
+          'top': 8.0,
+        },
         'pressElevation': 1.0,
-        'secondaryLabelStyle': {'color': '#00123456', 'inherit': true},
+        'secondaryLabelStyle': {
+          'color': '#00123456',
+          'inherit': true,
+        },
         'secondarySelectedColor': '#ff666666',
         'selectedColor': '#00123456',
         'shape': {
           'borderRadius': {
-            'bottomLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
-            'bottomRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
-            'topLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
-            'topRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
-            'type': 'only'
+            'bottomLeft': {
+              'type': 'elliptical',
+              'x': 10.0,
+              'y': 10.0,
+            },
+            'bottomRight': {
+              'type': 'elliptical',
+              'x': 10.0,
+              'y': 10.0,
+            },
+            'topLeft': {
+              'type': 'elliptical',
+              'x': 10.0,
+              'y': 10.0,
+            },
+            'topRight': {
+              'type': 'elliptical',
+              'x': 10.0,
+              'y': 10.0,
+            },
+            'type': 'only',
           },
-          'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
-          'type': 'rounded'
+          'side': {
+            'color': '#ff000000',
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'rounded',
         },
         'selectedShadowColor': '#ff777777',
         'shadowColor': '#ff888888',
-        'showCheckmark': true
+        'showCheckmark': true,
       },
       'colorScheme': {
         'background': '#ff121212',
@@ -5014,22 +5345,32 @@ void main() {
         'primaryVariant': '#ff3700b3',
         'secondary': '#ff03dac6',
         'secondaryVariant': '#ff03dac6',
-        'surface': '#ff121212'
+        'surface': '#ff121212',
       },
-      'cupertinoOverrideTheme': {'barBackgroundColor': '#ee111111'},
+      'cupertinoOverrideTheme': {
+        'barBackgroundColor': '#ee111111',
+      },
       'cursorColor': '#ee777777',
       'dialogBackgroundColor': '#ee888888',
-      'dialogTheme': {'backgroundColor': '#ee999999'},
+      'dialogTheme': {
+        'backgroundColor': '#ee999999',
+      },
       'disabledColor': '#ee000000',
       'dividerColor': '#eeaaaaaa',
-      'dividerTheme': {'color': '#eebbbbbb'},
+      'dividerTheme': {
+        'color': '#eebbbbbb',
+      },
       'errorColor': '#eecccccc',
-      'floatingActionButtonTheme': {'backgroundColor': '#eedddddd'},
+      'floatingActionButtonTheme': {
+        'backgroundColor': '#eedddddd',
+      },
       'focusColor': '#ee333333',
       'highlightColor': '#dd111111',
       'hintColor': '#dd222222',
       'hoverColor': '#ee222222',
-      'iconTheme': {'color': '#dd333333'},
+      'iconTheme': {
+        'color': '#dd333333',
+      },
       'indicatorColor': '#dd444444',
       'inputDecorationTheme': {
         'alignLabelWithHint': false,
@@ -5037,105 +5378,117 @@ void main() {
         'floatingLabelBehavior': 'auto',
         'focusColor': '#dd555555',
         'isCollapsed': false,
-        'isDense': false
+        'isDense': false,
       },
       'materialTapTargetSize': 'padded',
-      'navigationRailTheme': {'backgroundColor': '#dd666666'},
+      'navigationRailTheme': {
+        'backgroundColor': '#dd666666',
+      },
       'platform': 'android',
-      'popupMenuTheme': {'color': '#dd777777'},
+      'popupMenuTheme': {
+        'color': '#dd777777',
+      },
       'primaryColor': '#dd888888',
       'primaryColorBrightness': 'light',
       'primaryColorDark': '#dd999999',
       'primaryColorLight': '#dd000000',
-      'primaryIconTheme': {'color': '#ddaaaaaa'},
+      'primaryIconTheme': {
+        'color': '#ddaaaaaa',
+      },
       'primaryTextTheme': {
         'bodyText1': {
           'color': '#ccaaaaaa',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodyText2': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'button': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'caption': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline1': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline2': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline3': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline4': {
           'color': '#8a000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline5': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline6': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'overline': {
           'color': '#ff000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'subtitle1': {
           'color': '#dd000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'subtitle2': {
           'color': '#ff000000',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
-        }
+          'inherit': true,
+        },
       },
       'scaffoldBackgroundColor': '#ee666666',
       'secondaryHeaderColor': '#ccbbbbbb',
       'selectedRowColor': '#cccccccc',
-      'sliderTheme': {'activeTickMarkColor': '#ccdddddd'},
-      'snackBarTheme': {'actionTextColor': '#cceeeeee'},
+      'sliderTheme': {
+        'activeTickMarkColor': '#ccdddddd',
+      },
+      'snackBarTheme': {
+        'actionTextColor': '#cceeeeee',
+      },
       'splashColor': '#ee444444',
       'splashFactory': 'splash',
-      'tabBarTheme': {'labelColor': '#ccffffff'},
+      'tabBarTheme': {
+        'labelColor': '#ccffffff',
+      },
       'textSelectionColor': '#bb000000',
       'textSelectionHandleColor': '#bb111111',
       'textTheme': {
@@ -5143,244 +5496,248 @@ void main() {
           'color': '#ee555555',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodyText2': {
-          'color': '#dd000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'button': {
-          'color': '#dd000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'caption': {
-          'color': '#8a000000',
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline1': {
-          'color': '#8a000000',
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline2': {
-          'color': '#8a000000',
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline3': {
-          'color': '#8a000000',
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline4': {
-          'color': '#8a000000',
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline5': {
-          'color': '#dd000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headline6': {
-          'color': '#dd000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'overline': {
-          'color': '#ff000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'subtitle1': {
-          'color': '#dd000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'subtitle2': {
-          'color': '#ff000000',
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
-        }
+          'inherit': true,
+        },
       },
-      'toggleButtonsTheme': {'color': '#bb222222'},
+      'toggleButtonsTheme': {
+        'color': '#bb222222',
+      },
       'toggleableActiveColor': '#bb333333',
-      'tooltipTheme': {'height': 19.0},
+      'tooltipTheme': {
+        'height': 19.0,
+      },
       'typography': {
         'black': {
           'bodyText1': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'bodyText2': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'button': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'caption': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline1': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline2': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline3': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline4': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline5': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline6': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'overline': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'subtitle1': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'subtitle2': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
-          }
+            'inherit': true,
+          },
         },
         'dense': {
           'bodyText1': {
             'fontWeight': 'w400',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'bodyText2': {
             'fontWeight': 'w400',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'button': {
             'fontWeight': 'w500',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'caption': {
             'fontWeight': 'w400',
             'fontSize': 13.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headline1': {
             'fontWeight': 'w100',
             'fontSize': 96.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headline2': {
             'fontWeight': 'w100',
             'fontSize': 60.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headline3': {
             'fontWeight': 'w400',
             'fontSize': 48.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headline4': {
             'fontWeight': 'w400',
             'fontSize': 34.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headline5': {
             'fontWeight': 'w400',
             'fontSize': 24.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headline6': {
             'fontWeight': 'w500',
             'fontSize': 21.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'overline': {
             'fontWeight': 'w400',
             'fontSize': 11.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'subtitle1': {
             'fontWeight': 'w400',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'subtitle2': {
             'fontWeight': 'w500',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'ideographic'
-          }
+            'textBaseline': 'ideographic',
+          },
         },
         'englishLike': {
           'bodyText1': {
@@ -5388,256 +5745,256 @@ void main() {
             'fontSize': 16.0,
             'inherit': true,
             'letterSpacing': 0.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'bodyText2': {
             'fontWeight': 'w400',
             'fontSize': 14.0,
             'inherit': true,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'button': {
             'fontWeight': 'w500',
             'fontSize': 14.0,
             'inherit': true,
-            'letterSpacing': 0.75,
-            'textBaseline': 'alphabetic'
+            'letterSpacing': 1.25,
+            'textBaseline': 'alphabetic',
           },
           'caption': {
             'fontWeight': 'w400',
             'fontSize': 12.0,
             'inherit': true,
             'letterSpacing': 0.4,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline1': {
             'fontWeight': 'w300',
             'fontSize': 96.0,
             'inherit': true,
             'letterSpacing': -1.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline2': {
             'fontWeight': 'w300',
             'fontSize': 60.0,
             'inherit': true,
             'letterSpacing': -0.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline3': {
             'fontWeight': 'w400',
             'fontSize': 48.0,
             'inherit': true,
             'letterSpacing': 0.0,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline4': {
             'fontWeight': 'w400',
             'fontSize': 34.0,
             'inherit': true,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline5': {
             'fontWeight': 'w400',
             'fontSize': 24.0,
             'inherit': true,
             'letterSpacing': 0.0,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline6': {
             'fontWeight': 'w500',
             'fontSize': 20.0,
             'inherit': true,
             'letterSpacing': 0.15,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'overline': {
             'fontWeight': 'w400',
             'fontSize': 10.0,
             'inherit': true,
             'letterSpacing': 1.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'subtitle1': {
             'fontWeight': 'w400',
             'fontSize': 16.0,
             'inherit': true,
             'letterSpacing': 0.15,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'subtitle2': {
             'fontWeight': 'w500',
             'fontSize': 14.0,
             'inherit': true,
             'letterSpacing': 0.1,
-            'textBaseline': 'alphabetic'
-          }
+            'textBaseline': 'alphabetic',
+          },
         },
         'tall': {
           'bodyText1': {
             'fontWeight': 'w700',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'bodyText2': {
             'fontWeight': 'w400',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'button': {
             'fontWeight': 'w700',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'caption': {
             'fontWeight': 'w400',
             'fontSize': 13.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline1': {
             'fontWeight': 'w400',
             'fontSize': 96.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline2': {
             'fontWeight': 'w400',
             'fontSize': 60.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline3': {
             'fontWeight': 'w400',
             'fontSize': 48.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline4': {
             'fontWeight': 'w400',
             'fontSize': 34.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline5': {
             'fontWeight': 'w400',
             'fontSize': 24.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headline6': {
             'fontWeight': 'w700',
             'fontSize': 21.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'overline': {
             'fontWeight': 'w400',
             'fontSize': 11.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'subtitle1': {
             'fontWeight': 'w400',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'subtitle2': {
             'fontWeight': 'w500',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'alphabetic'
-          }
+            'textBaseline': 'alphabetic',
+          },
         },
         'white': {
           'bodyText1': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'bodyText2': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'button': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'caption': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline1': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline2': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline3': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline4': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline5': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headline6': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'overline': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'subtitle1': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'subtitle2': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
-          }
-        }
+            'inherit': true,
+          },
+        },
       },
       'unselectedWidgetColor': '#bb444444',
-      'visualDensity': 'comfortable'
+      'visualDensity': 'comfortable',
     };
 
     expect(encoded, jsonMap);
@@ -5660,6 +6017,117 @@ void main() {
     expect(ThemeEncoder.encodeTileMode(TileMode.clamp), 'clamp');
     expect(ThemeEncoder.encodeTileMode(TileMode.mirror), 'mirror');
     expect(ThemeEncoder.encodeTileMode(TileMode.repeated), 'repeated');
+  });
+
+  test('TimePickerThemeData', () {
+    expect(ThemeDecoder.decodeTimePickerThemeData(null), null);
+    expect(ThemeEncoder.encodeTimePickerThemeData(null), null);
+
+    var entry = TimePickerThemeData(
+      backgroundColor: Color(0xff000001),
+      dayPeriodBorderSide: BorderSide(
+        color: Color(0xff000002),
+        style: BorderStyle.solid,
+        width: 1.0,
+      ),
+      dayPeriodColor: Color(0xff000003),
+      dayPeriodShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      dayPeriodTextColor: Color(0xff000004),
+      dayPeriodTextStyle: TextStyle(fontSize: 1.0),
+      dialBackgroundColor: Color(0xff000005),
+      dialHandColor: Color(0xff000006),
+      dialTextColor: Color(0xff000007),
+      entryModeIconColor: Color(0xff000008),
+      helpTextStyle: TextStyle(fontSize: 2.0),
+      hourMinuteColor: Color(0xff000009),
+      hourMinuteShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      hourMinuteTextColor: Color(0xff000010),
+      hourMinuteTextStyle: TextStyle(fontSize: 3.0),
+      inputDecorationTheme: InputDecorationTheme(fillColor: Color(0xff000011)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+    );
+
+    var encoded = ThemeEncoder.encodeTimePickerThemeData(entry);
+    var decoded = ThemeDecoder.decodeTimePickerThemeData(encoded);
+
+    expect(encoded, {
+      'backgroundColor': '#ff000001',
+      'dayPeriodBorderSide': {
+        'color': '#ff000002',
+        'style': 'solid',
+        'width': 1.0,
+      },
+      'dayPeriodColor': '#ff000003',
+      'dayPeriodShape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'bottomRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'type': 'only'
+        },
+        'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+        'type': 'rounded',
+      },
+      'dayPeriodTextColor': '#ff000004',
+      'dayPeriodTextStyle': {
+        'fontSize': 1.0,
+        'inherit': true,
+      },
+      'dialBackgroundColor': '#ff000005',
+      'dialHandColor': '#ff000006',
+      'dialTextColor': '#ff000007',
+      'entryModeIconColor': '#ff000008',
+      'helpTextStyle': {
+        'fontSize': 2.0,
+        'inherit': true,
+      },
+      'hourMinuteColor': '#ff000009',
+      'hourMinuteShape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
+          'bottomRight': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
+          'topLeft': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
+          'topRight': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
+          'type': 'only'
+        },
+        'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+        'type': 'rounded',
+      },
+      'hourMinuteTextColor': '#ff000010',
+      'hourMinuteTextStyle': {
+        'fontSize': 3.0,
+        'inherit': true,
+      },
+      'inputDecorationTheme': {
+        'alignLabelWithHint': false,
+        'fillColor': '#ff000011',
+        'filled': false,
+        'floatingLabelBehavior': 'auto',
+        'isCollapsed': false,
+        'isDense': false,
+      },
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
+          'bottomRight': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
+          'topLeft': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
+          'topRight': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
+          'type': 'only'
+        },
+        'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+        'type': 'rounded',
+      },
+    });
+
+    expect(
+      decoded,
+      entry,
+    );
   });
 
   test('ToggleButtonsThemeData', () {

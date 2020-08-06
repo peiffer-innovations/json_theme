@@ -1,4 +1,10 @@
-## [1.2.0] - Auguest 5h, 2020
+## [1.2.1] - Auguest 6th, 2020
+
+* Added `MouseCursor` support
+* Minor other bug fixes and enhancements
+
+
+## [1.2.0] - Auguest 5th, 2020
 
 * Updated with new theme elements from Flutter `1.20.0`
 

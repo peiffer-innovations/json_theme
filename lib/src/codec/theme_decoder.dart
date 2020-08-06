@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:json_class/json_class.dart';
@@ -3117,6 +3118,7 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'ImageProvider.type',
       [
@@ -3237,6 +3239,7 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
+    assert(value == null || value['type'] is String);
     _checkSupported(
       'InputBorder.type',
       [
@@ -3823,6 +3826,139 @@ class ThemeDecoder {
         JsonClass.parseDouble(list[14]),
         JsonClass.parseDouble(list[15]),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [MouseCursor].  There must be a "type"
+  /// attribute that is one of:
+  ///  * `defer`
+  ///  * `material`
+  ///  * `system`
+  ///  * `uncontrolled`
+  ///
+  /// When the `type` is `material`, this expects a `cursor` that is one of:
+  ///  * `clickable`
+  ///  * `textable`
+  ///
+  /// When the `type` is `system`, this expects a `cursor` that is one of:
+  ///  * `basic`
+  ///  * `click`
+  ///  * `forbidden`
+  ///  * `grab`
+  ///  * `grabbing`
+  ///  * `horizontalDoubleArrow`
+  ///  * `none`
+  ///  * `text`
+  ///  * `verticalDoubleArrow`
+  static MouseCursor decodeMouseCursor(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    assert(value == null || value['type'] is String);
+    _checkSupported(
+      'MouseCursor.type',
+      [
+        'defer',
+        'material',
+        'system',
+        'uncontrolled',
+      ],
+      value == null ? null : value['type'],
+    );
+    MouseCursor result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/mouse_cursor',
+        value: value,
+        validate: validate,
+      ));
+      switch (value['type']) {
+        case 'defer':
+          result = MouseCursor.defer;
+          break;
+        case 'material':
+          assert(value['cursor'] is String);
+          _checkSupported(
+            'MouseCursor.cursor',
+            [
+              'clickable',
+              'textable',
+            ],
+            value['cursor'],
+          );
+          switch (value['cursor']) {
+            case 'clickable':
+              result = MaterialStateMouseCursor.clickable;
+              break;
+
+            case 'textable':
+              result = MaterialStateMouseCursor.textable;
+              break;
+          }
+          break;
+        case 'system':
+          assert(value['cursor'] is String);
+          _checkSupported(
+            'MouseCursor.cursor',
+            [
+              'basic',
+              'click',
+              'forbidden',
+              'grab',
+              'grabbing',
+              'horizontalDoubleArrow',
+              'none',
+              'text',
+              'verticalDoubleArrow',
+            ],
+            value['cursor'],
+          );
+
+          switch (value['cursor']) {
+            case 'basic':
+              result = SystemMouseCursors.basic;
+              break;
+
+            case 'click':
+              result = SystemMouseCursors.click;
+              break;
+
+            case 'forbidden':
+              result = SystemMouseCursors.forbidden;
+              break;
+
+            case 'grab':
+              result = SystemMouseCursors.grab;
+              break;
+
+            case 'grabbing':
+              result = SystemMouseCursors.grabbing;
+              break;
+
+            case 'horizontalDoubleArrow':
+              result = SystemMouseCursors.horizontalDoubleArrow;
+              break;
+
+            case 'none':
+              result = SystemMouseCursors.none;
+              break;
+
+            case 'text':
+              result = SystemMouseCursors.text;
+              break;
+
+            case 'verticalDoubleArrow':
+              result = SystemMouseCursors.verticalDoubleArrow;
+              break;
+          }
+          break;
+        case 'uncontrolled':
+          result = MouseCursor.uncontrolled;
+          break;
+      }
     }
 
     return result;
@@ -4642,6 +4778,32 @@ class ThemeDecoder {
               validate: false,
             ),
           );
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [ScrollViewKeyboardDismissBehavior].  Supported
+  /// values are:
+  ///  * `manual`
+  ///  * `onDrag`
+  static ScrollViewKeyboardDismissBehavior
+      decodeScrollViewKeyboardDismissBehavior(
+    String value, {
+    bool validate = true,
+  }) {
+    ScrollViewKeyboardDismissBehavior result;
+
+    if (value != null) {
+      switch (value) {
+        case 'manual':
+          result = ScrollViewKeyboardDismissBehavior.manual;
+          break;
+
+        case 'onDrag':
+          result = ScrollViewKeyboardDismissBehavior.onDrag;
           break;
       }
     }

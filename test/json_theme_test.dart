@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
@@ -2903,6 +2904,209 @@ void main() {
     );
   });
 
+  test('MouseCursor', () {
+    expect(ThemeDecoder.decodeMouseCursor(null), null);
+    expect(ThemeEncoder.encodeMouseCursor(null), null);
+
+    expect(
+      ThemeDecoder.decodeMouseCursor({'type': 'defer'}),
+      MouseCursor.defer,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'clickable',
+        'type': 'material',
+      }),
+      MaterialStateMouseCursor.clickable,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'textable',
+        'type': 'material',
+      }),
+      MaterialStateMouseCursor.textable,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'basic',
+        'type': 'system',
+      }),
+      SystemMouseCursors.basic,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'click',
+        'type': 'system',
+      }),
+      SystemMouseCursors.click,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'forbidden',
+        'type': 'system',
+      }),
+      SystemMouseCursors.forbidden,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'grab',
+        'type': 'system',
+      }),
+      SystemMouseCursors.grab,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'grabbing',
+        'type': 'system',
+      }),
+      SystemMouseCursors.grabbing,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'horizontalDoubleArrow',
+        'type': 'system',
+      }),
+      SystemMouseCursors.horizontalDoubleArrow,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'none',
+        'type': 'system',
+      }),
+      SystemMouseCursors.none,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'text',
+        'type': 'system',
+      }),
+      SystemMouseCursors.text,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'verticalDoubleArrow',
+        'type': 'system',
+      }),
+      SystemMouseCursors.verticalDoubleArrow,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({'type': 'uncontrolled'}),
+      MouseCursor.uncontrolled,
+    );
+
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        MouseCursor.defer,
+      ),
+      {'type': 'defer'},
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        MaterialStateMouseCursor.clickable,
+      ),
+      {
+        'cursor': 'clickable',
+        'type': 'material',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        MaterialStateMouseCursor.textable,
+      ),
+      {
+        'cursor': 'textable',
+        'type': 'material',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.basic,
+      ),
+      {
+        'cursor': 'basic',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.click,
+      ),
+      {
+        'cursor': 'click',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.forbidden,
+      ),
+      {
+        'cursor': 'forbidden',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.grab,
+      ),
+      {
+        'cursor': 'grab',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.grabbing,
+      ),
+      {
+        'cursor': 'grabbing',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.horizontalDoubleArrow,
+      ),
+      {
+        'cursor': 'horizontalDoubleArrow',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.none,
+      ),
+      {
+        'cursor': 'none',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.text,
+      ),
+      {
+        'cursor': 'text',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.verticalDoubleArrow,
+      ),
+      {
+        'cursor': 'verticalDoubleArrow',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        MouseCursor.uncontrolled,
+      ),
+      {'type': 'uncontrolled'},
+    );
+  });
+
   test('NavigationRailLabelType', () {
     expect(ThemeDecoder.decodeNavigationRailLabelType(null), null);
     expect(ThemeEncoder.encodeNavigationRailLabelType(null), null);
@@ -3638,6 +3842,37 @@ void main() {
         'parent': {'type': 'always'},
         'type': 'rangeMaintaining',
       },
+    );
+  });
+
+  test('ScrollViewKeyboardDismissBehavior', () {
+    expect(ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(null), null);
+    expect(ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(null), null);
+
+    expect(
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+        'manual',
+      ),
+      ScrollViewKeyboardDismissBehavior.manual,
+    );
+    expect(
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+        'onDrag',
+      ),
+      ScrollViewKeyboardDismissBehavior.onDrag,
+    );
+
+    expect(
+      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
+        ScrollViewKeyboardDismissBehavior.manual,
+      ),
+      'manual',
+    );
+    expect(
+      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
+        ScrollViewKeyboardDismissBehavior.onDrag,
+      ),
+      'onDrag',
     );
   });
 

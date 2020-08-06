@@ -304,6 +304,15 @@ Plain string that must be one of:
 * `transparency` ==> `MaterialType.transparency`
 
 
+**MouseCursor**
+
+Requires a `type` value that must be one of:
+* `defer` ==> `MouseCursor.defer`
+* `material` ==> `MouseCursor.material`
+* `system` ==> `MouseCursor.system`
+* `uncontrolled` ==> `MouseCursor.uncontrolled`
+
+
 **NavigationRailLabelType**
 
 Plain string that must be one of:
@@ -383,6 +392,13 @@ Requires a `type` value that must be one of:
 * `never` ==> `NeverScrollableScrollPhysics`
 * `page` ==> `PageScrollPhysics`
 * `rangeMaintaining` ==> `RangeMaintainingScrollPhysics`
+
+
+**ScrollViewKeyboardDismissBehavior**
+
+Plain string that must be one of:
+* `manual` ==> `ScrollViewKeyboardDismissBehavior.manual`
+* `onDrag` ==> `ScrollViewKeyboardDismissBehavior.onDrag`
 
 
 **ShapeBorder**

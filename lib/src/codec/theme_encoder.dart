@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:meta/meta.dart';
 
 /// Encoder capable of converting Flutter Theme related classes and enums into
@@ -2380,6 +2381,100 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON representation.  There will be a
+  /// "type" attribute that is one of:
+  ///  * `defer`
+  ///  * `system`
+  ///  * `uncontrolled`
+  ///
+  /// When the `type` is `system`, this will create a `cursor` that is one of:
+  ///  * `basic`
+  ///  * `click`
+  ///  * `forbidden`
+  ///  * `grab`
+  ///  * `grabbing`
+  ///  * `horizontalDoubleArrow`
+  ///  * `none`
+  ///  * `text`
+  ///  * `verticalDoubleArrow`
+  static Map<String, dynamic> encodeMouseCursor(MouseCursor value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      if (value == MouseCursor.defer) {
+        result = {
+          'type': 'defer',
+        };
+      } else if (value == MouseCursor.uncontrolled) {
+        result = {
+          'type': 'uncontrolled',
+        };
+      } else if (MaterialStateMouseCursor.clickable == value) {
+        result = {
+          'cursor': 'clickable',
+          'type': 'material',
+        };
+      } else if (MaterialStateMouseCursor.textable == value) {
+        result = {
+          'cursor': 'textable',
+          'type': 'material',
+        };
+      } else if (SystemMouseCursors.basic == value) {
+        result = {
+          'cursor': 'basic',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.basic == value) {
+        result = {
+          'cursor': 'basic',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.click == value) {
+        result = {
+          'cursor': 'click',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.forbidden == value) {
+        result = {
+          'cursor': 'forbidden',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.grab == value) {
+        result = {
+          'cursor': 'grab',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.grabbing == value) {
+        result = {
+          'cursor': 'grabbing',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.horizontalDoubleArrow == value) {
+        result = {
+          'cursor': 'horizontalDoubleArrow',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.none == value) {
+        result = {
+          'cursor': 'none',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.text == value) {
+        result = {
+          'cursor': 'text',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.verticalDoubleArrow == value) {
+        result = {
+          'cursor': 'verticalDoubleArrow',
+          'type': 'system',
+        };
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `all`
@@ -2766,6 +2861,28 @@ class ThemeEncoder {
         'parent': encodeScrollPhysics(value.parent),
         'type': type,
       };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] to a String.  Supported values are:
+  ///  * `manual`
+  ///  * `onDrag`
+  static String encodeScrollViewKeyboardDismissBehavior(
+      ScrollViewKeyboardDismissBehavior value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case ScrollViewKeyboardDismissBehavior.manual:
+          result = 'manual';
+          break;
+
+        case ScrollViewKeyboardDismissBehavior.onDrag:
+          result = 'onDrag';
+          break;
+      }
     }
 
     return result;

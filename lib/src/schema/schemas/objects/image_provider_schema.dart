@@ -5,41 +5,68 @@ class ImageProviderSchema {
       'https://peifferinnovations.com/json_theme/schemas/image_provider';
 
   static final schemas = {
-    '$id#circular': {
+    '$id#asset': {
       r'$schema': 'http://json-schema.org/draft-06/schema#',
-      r'$id': '$id#circular',
-      'title': 'InputBorder',
+      r'$id': '$id#asset',
+      'title': 'ImageProvider',
       'type': 'object',
+      'additionalProperties': false,
       'required': [
-        'radius',
+        'assetName',
         'type',
       ],
       'properties': {
-        'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
-        'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
-        'gapPadding': SchemaHelper.numberSchema,
+        'assetName': SchemaHelper.stringSchema,
+        'package': SchemaHelper.stringSchema,
         'type': {
           'type': 'string',
           'enum': [
-            'outline',
+            'asset',
           ],
         },
       },
     },
-    '$id#elliptical': {
+    '$id#memory': {
       r'$schema': 'http://json-schema.org/draft-06/schema#',
-      r'$id': '$id#elliptical',
-      'title': 'InputBorder',
+      r'$id': '$id#memory',
+      'title': 'ImageProvider',
       'type': 'object',
+      'additionalProperties': false,
+      'required': [
+        'bytes',
+        'type',
+      ],
       'properties': {
-        'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
-        'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
+        'bytes': SchemaHelper.stringSchema,
+        'scale': SchemaHelper.numberSchema,
         'type': {
           'type': 'string',
           'enum': [
-            'underline',
+            'memory',
           ],
         },
+      },
+    },
+    '$id#network': {
+      r'$schema': 'http://json-schema.org/draft-06/schema#',
+      r'$id': '$id#network',
+      'title': 'ImageProvider',
+      'type': 'object',
+      'additionalProperties': false,
+      'required': [
+        'type',
+        'url',
+      ],
+      'properties': {
+        'headers': SchemaHelper.anySchema,
+        'scale': SchemaHelper.numberSchema,
+        'type': {
+          'type': 'string',
+          'enum': [
+            'memory',
+          ],
+        },
+        'url': SchemaHelper.stringSchema,
       },
     },
   };

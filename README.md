@@ -140,6 +140,13 @@ Plain string that must be one of:
 * `stretch` ==> `CrossAxisAlignment.stretch`
 
 
+**DecorationPosition**
+
+Plain string that must be one of:
+* `background` ==> `DecorationPosition.background`
+* `foreground` ==> `DecorationPosition.foreground`
+
+
 **DragStartBehavior**
 
 Plain string that must be one of:

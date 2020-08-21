@@ -2028,6 +2028,42 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [DecorationPosition].  Supported values are:
+  ///  * `background`
+  ///  * `foreground`
+  static DecorationPosition decodeDecorationPosition(
+    String value, {
+    bool validate = true,
+  }) {
+    _checkSupported(
+      'DecorationPosition',
+      [
+        'background',
+        'foreground',
+      ],
+      value,
+    );
+    DecorationPosition result;
+
+    if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/decoration_position',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'background':
+          result = DecorationPosition.background;
+          break;
+        case 'foreground':
+          result = DecorationPosition.foreground;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [DialogTheme].  This expects the given
   /// [value] to follow the structure below:
   ///

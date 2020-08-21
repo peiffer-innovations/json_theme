@@ -10,6 +10,7 @@ export 'schemas/enums/button_bar_layout_behavior_schema.dart';
 export 'schemas/enums/button_text_theme_schema.dart';
 export 'schemas/enums/clip_schema.dart';
 export 'schemas/enums/cross_axis_alignment_schema.dart';
+export 'schemas/enums/decoration_position_schema.dart';
 export 'schemas/enums/drag_start_behavior_schema.dart';
 export 'schemas/enums/filter_quality_schema.dart';
 export 'schemas/enums/flex_fit_schema.dart';

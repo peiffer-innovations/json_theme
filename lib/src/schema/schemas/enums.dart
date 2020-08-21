@@ -14,6 +14,7 @@ class Enums {
     ButtonTextThemeSchema.id,
     ClipSchema.id,
     CrossAxisAlignmentSchema.id,
+    DecorationPositionSchema.id,
     DragStartBehaviorSchema.id,
     FilterQualitySchema.id,
     FlexFitSchema.id,

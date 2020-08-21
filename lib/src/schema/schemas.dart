@@ -33,6 +33,7 @@ class Schemas {
     CrossAxisAlignmentSchema.id: CrossAxisAlignmentSchema.schema,
     CupertinoTextThemeDataSchema.id: CupertinoTextThemeDataSchema.schema,
     CupertinoThemeDataSchema.id: CupertinoThemeDataSchema.schema,
+    DecorationPositionSchema.id: DecorationPositionSchema.schema,
     DecorationImageSchema.id: DecorationImageSchema.schema,
     DialogThemeSchema.id: DialogThemeSchema.schema,
     DividerThemeDataSchema.id: DividerThemeDataSchema.schema,

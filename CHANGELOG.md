@@ -1,3 +1,8 @@
+## [1.2.2] - Auguest 22nd, 2020
+
+* Dependency updates
+
+
 ## [1.2.1] - Auguest 6th, 2020
 
 * Added `MouseCursor` support

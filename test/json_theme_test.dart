@@ -1566,18 +1566,28 @@ void main() {
   });
 
   test('DecorationPosition', () {
-    expect(ThemeDecoder.decodeDecorationPosition(null), null);
-    expect(ThemeEncoder.encodeDecorationPosition(null), null);
+    expect(
+      ThemeDecoder.decodeDecorationPosition(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.encodeDecorationPosition(null),
+      null,
+    );
 
-    expect(ThemeDecoder.decodeDecorationPosition('background'),
-        DecorationPosition.background);
+    expect(
+      ThemeDecoder.decodeDecorationPosition('background'),
+      DecorationPosition.background,
+    );
     expect(
       ThemeDecoder.decodeDecorationPosition('foreground'),
       DecorationPosition.foreground,
     );
 
-    expect(ThemeEncoder.encodeDecorationPosition(DecorationPosition.background),
-        'background');
+    expect(
+      ThemeEncoder.encodeDecorationPosition(DecorationPosition.background),
+      'background',
+    );
     expect(
       ThemeEncoder.encodeDecorationPosition(DecorationPosition.foreground),
       'foreground',

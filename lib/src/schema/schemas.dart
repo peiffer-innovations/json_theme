@@ -34,6 +34,7 @@ class Schemas {
     CupertinoTextThemeDataSchema.id: CupertinoTextThemeDataSchema.schema,
     CupertinoThemeDataSchema.id: CupertinoThemeDataSchema.schema,
     DecorationImageSchema.id: DecorationImageSchema.schema,
+    DecorationPositionSchema.id: DecorationPositionSchema.schema,
     DialogThemeSchema.id: DialogThemeSchema.schema,
     DividerThemeDataSchema.id: DividerThemeDataSchema.schema,
     DragStartBehaviorSchema.id: DragStartBehaviorSchema.schema,

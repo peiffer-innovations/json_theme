@@ -1216,6 +1216,29 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `background`
+  ///  * `foreground`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeDecorationPosition(DecorationPosition value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case DecorationPosition.background:
+          result = 'background';
+          break;
+        case DecorationPosition.foreground:
+          result = 'foreground';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to a JSON representation.
   ///
   /// ```json

@@ -1,3 +1,7 @@
+## [1.2.3] - Auguest 22nd, 2020
+
+* Added `DecorationPosition` support
+
 ## [1.2.2] - Auguest 22nd, 2020
 
 * Dependency updates

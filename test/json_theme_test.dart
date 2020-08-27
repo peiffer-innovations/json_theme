@@ -25,6 +25,11 @@ void main() {
     expect(ThemeEncoder.encodeAlignment(null), null);
 
     expect(
+      ThemeDecoder.decodeAlignment(Alignment.bottomCenter),
+      Alignment.bottomCenter,
+    );
+
+    expect(
       ThemeDecoder.decodeAlignment('bottomCenter'),
       Alignment.bottomCenter,
     );

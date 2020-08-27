@@ -6938,15 +6938,16 @@ class ThemeDecoder {
     if (value is TextWidthBasis) {
       result = value;
     } else {
+      _checkSupported(
+        'TextWidthBasis',
+        [
+          'longestLine',
+          'parent',
+        ],
+        value,
+      );
+
       if (value != null) {
-        _checkSupported(
-          'TextWidthBasis',
-          [
-            'longestLine',
-            'parent',
-          ],
-          value,
-        );
         assert(SchemaValidator.validate(
           schemaId: '$_baseSchemaUrl/text_width_basis',
           value: value,

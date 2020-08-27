@@ -2471,27 +2471,30 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FloatingActionButtonAnimator',
-      [
-        'scaling',
-      ],
-      value,
-    );
     FloatingActionButtonAnimator result;
 
     if (value is FloatingActionButtonAnimator) {
       result = value;
-    } else if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/floating_action_button_animator',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'scaling':
-          result = FloatingActionButtonAnimator.scaling;
-          break;
+    } else {
+      _checkSupported(
+        'FloatingActionButtonAnimator',
+        [
+          'scaling',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/floating_action_button_animator',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'scaling':
+            result = FloatingActionButtonAnimator.scaling;
+            break;
+        }
       }
     }
 
@@ -6931,19 +6934,19 @@ class ThemeDecoder {
     bool validate = true,
   }) {
     TextWidthBasis result;
-    _checkSupported(
-      'TextWidthBasis',
-      [
-        'longestLine',
-        'parent',
-      ],
-      value,
-    );
 
     if (value is TextWidthBasis) {
       result = value;
     } else {
       if (value != null) {
+        _checkSupported(
+          'TextWidthBasis',
+          [
+            'longestLine',
+            'parent',
+          ],
+          value,
+        );
         assert(SchemaValidator.validate(
           schemaId: '$_baseSchemaUrl/text_width_basis',
           value: value,

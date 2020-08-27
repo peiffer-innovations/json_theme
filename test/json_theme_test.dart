@@ -4939,7 +4939,7 @@ void main() {
     );
   });
 
-  test('TextInnputType', () {
+  test('TextInputType', () {
     expect(ThemeDecoder.decodeTextInputType(null), null);
     expect(ThemeEncoder.encodeTextInputType(null), null);
 

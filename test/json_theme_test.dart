@@ -25,7 +25,9 @@ void main() {
     expect(ThemeEncoder.encodeAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeAlignment(Alignment.bottomCenter),
+      ThemeDecoder.decodeAlignment(
+        Alignment.bottomCenter,
+      ),
       Alignment.bottomCenter,
     );
 
@@ -119,6 +121,8 @@ void main() {
         elevation: 6.0,
         shadowColor: _kColor);
 
+    expect(ThemeDecoder.decodeAppBarTheme(entry), entry);
+
     var encoded = ThemeEncoder.encodeAppBarTheme(entry);
     var decoded = ThemeDecoder.decodeAppBarTheme(encoded);
 
@@ -145,6 +149,13 @@ void main() {
     expect(ThemeDecoder.decodeAxis(null), null);
     expect(ThemeEncoder.encodeAxis(null), null);
 
+    expect(
+      ThemeDecoder.decodeAxis(
+        Axis.horizontal,
+      ),
+      Axis.horizontal,
+    );
+
     expect(ThemeDecoder.decodeAxis('horizontal'), Axis.horizontal);
     expect(ThemeDecoder.decodeAxis('vertical'), Axis.vertical);
 
@@ -155,6 +166,13 @@ void main() {
   test('BlendMode', () {
     expect(ThemeDecoder.decodeBlendMode(null), null);
     expect(ThemeEncoder.encodeBlendMode(null), null);
+
+    expect(
+      ThemeDecoder.decodeBlendMode(
+        BlendMode.clear,
+      ),
+      BlendMode.clear,
+    );
 
     expect(ThemeDecoder.decodeBlendMode('clear'), BlendMode.clear);
     expect(ThemeDecoder.decodeBlendMode('color'), BlendMode.color);
@@ -223,6 +241,8 @@ void main() {
 
     var entry = BorderRadius.circular(16.0);
 
+    expect(ThemeDecoder.decodeBorderRadius(entry), entry);
+
     var encoded = ThemeEncoder.encodeBorderRadius(entry);
     var decoded = ThemeDecoder.decodeBorderRadius(encoded);
 
@@ -261,6 +281,8 @@ void main() {
       width: 5.0,
     );
 
+    expect(ThemeDecoder.decodeBorderSide(entry), entry);
+
     var encoded = ThemeEncoder.encodeBorderSide(entry);
     var decoded = ThemeDecoder.decodeBorderSide(encoded);
 
@@ -283,6 +305,13 @@ void main() {
     expect(ThemeDecoder.decodeBorderStyle(null), null);
     expect(ThemeEncoder.encodeBorderStyle(null), null);
 
+    expect(
+      ThemeDecoder.decodeBorderStyle(
+        BorderStyle.none,
+      ),
+      BorderStyle.none,
+    );
+
     expect(ThemeDecoder.decodeBorderStyle('none'), BorderStyle.none);
     expect(ThemeDecoder.decodeBorderStyle('solid'), BorderStyle.solid);
 
@@ -299,6 +328,8 @@ void main() {
       elevation: 8.0,
       shape: CircularNotchedRectangle(),
     );
+
+    expect(ThemeDecoder.decodeBottomAppBarTheme(entry), entry);
 
     var encoded = ThemeEncoder.encodeBottomAppBarTheme(entry);
     var decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded);
@@ -343,6 +374,8 @@ void main() {
       unselectedLabelStyle: TextStyle(fontSize: 5.0),
     );
 
+    expect(ThemeDecoder.decodeBottomNavigationBarThemeData(entry), entry);
+
     var encoded = ThemeEncoder.encodeBottomNavigationBarThemeData(entry);
     var decoded = ThemeDecoder.decodeBottomNavigationBarThemeData(encoded);
 
@@ -381,6 +414,13 @@ void main() {
     expect(ThemeEncoder.encodeBottomNavigationBarType(null), null);
 
     expect(
+      ThemeDecoder.decodeBottomNavigationBarType(
+        BottomNavigationBarType.fixed,
+      ),
+      BottomNavigationBarType.fixed,
+    );
+
+    expect(
       ThemeDecoder.decodeBottomNavigationBarType('fixed'),
       BottomNavigationBarType.fixed,
     );
@@ -417,6 +457,8 @@ void main() {
         borderRadius: BorderRadius.all(Radius.circular(16.0)),
       ),
     );
+
+    expect(ThemeDecoder.decodeBottomSheetThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeBottomSheetThemeData(entry);
     var decoded = ThemeDecoder.decodeBottomSheetThemeData(encoded);
@@ -459,6 +501,8 @@ void main() {
       right: BorderSide(color: Color(0xff333333)),
       top: BorderSide(color: Color(0xff444444)),
     );
+
+    expect(ThemeDecoder.decodeBoxBorder(entry), entry);
 
     var encoded = ThemeEncoder.encodeBoxBorder(entry);
     var decoded = ThemeDecoder.decodeBoxBorder(encoded);
@@ -516,6 +560,8 @@ void main() {
       minWidth: 101.0,
     );
 
+    expect(ThemeDecoder.decodeBoxConstraints(entry), entry);
+
     var encoded = ThemeEncoder.encodeBoxConstraints(entry);
     var decoded = ThemeDecoder.decodeBoxConstraints(encoded);
 
@@ -571,6 +617,8 @@ void main() {
       ),
       shape: BoxShape.circle,
     );
+
+    expect(ThemeDecoder.decodeBoxDecoration(entry), entry);
 
     var encoded = ThemeEncoder.encodeBoxDecoration(entry);
     var decoded = ThemeDecoder.decodeBoxDecoration(encoded);
@@ -686,6 +734,13 @@ void main() {
     expect(ThemeDecoder.decodeBoxFit(null), null);
     expect(ThemeEncoder.encodeBoxFit(null), null);
 
+    expect(
+      ThemeDecoder.decodeBoxFit(
+        BoxFit.contain,
+      ),
+      BoxFit.contain,
+    );
+
     expect(ThemeDecoder.decodeBoxFit('contain'), BoxFit.contain);
     expect(ThemeDecoder.decodeBoxFit('cover'), BoxFit.cover);
     expect(ThemeDecoder.decodeBoxFit('fill'), BoxFit.fill);
@@ -714,6 +769,8 @@ void main() {
       spreadRadius: 4.0,
     );
 
+    expect(ThemeDecoder.decodeBoxShadow(entry), entry);
+
     var encoded = ThemeEncoder.encodeBoxShadow(entry);
     var decoded = ThemeDecoder.decodeBoxShadow(encoded);
 
@@ -740,6 +797,13 @@ void main() {
     expect(ThemeDecoder.decodeBoxShape(null), null);
     expect(ThemeEncoder.encodeBoxShape(null), null);
 
+    expect(
+      ThemeDecoder.decodeBoxShape(
+        BoxShape.circle,
+      ),
+      BoxShape.circle,
+    );
+
     expect(ThemeDecoder.decodeBoxShape('circle'), BoxShape.circle);
     expect(ThemeDecoder.decodeBoxShape('rectangle'), BoxShape.rectangle);
 
@@ -750,6 +814,13 @@ void main() {
   test('Brightness', () {
     expect(ThemeDecoder.decodeBrightness(null), null);
     expect(ThemeEncoder.encodeBrightness(null), null);
+
+    expect(
+      ThemeDecoder.decodeBrightness(
+        Brightness.dark,
+      ),
+      Brightness.dark,
+    );
 
     expect(ThemeEncoder.encodeBrightness(Brightness.dark), 'dark');
     expect(ThemeEncoder.encodeBrightness(Brightness.light), 'light');
@@ -773,6 +844,8 @@ void main() {
       mainAxisSize: MainAxisSize.min,
       overflowDirection: VerticalDirection.down,
     );
+
+    expect(ThemeDecoder.decodeButtonBarThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeButtonBarThemeData(entry);
     var decoded = ThemeDecoder.decodeButtonBarThemeData(encoded);
@@ -808,6 +881,13 @@ void main() {
     expect(ThemeEncoder.encodeButtonBarLayoutBehavior(null), null);
 
     expect(
+      ThemeDecoder.decodeButtonBarLayoutBehavior(
+        ButtonBarLayoutBehavior.constrained,
+      ),
+      ButtonBarLayoutBehavior.constrained,
+    );
+
+    expect(
       ThemeDecoder.decodeButtonBarLayoutBehavior('constrained'),
       ButtonBarLayoutBehavior.constrained,
     );
@@ -832,6 +912,13 @@ void main() {
   test('ButtonTextTheme', () {
     expect(ThemeDecoder.decodeButtonTextTheme(null), null);
     expect(ThemeEncoder.encodeButtonTextTheme(null), null);
+
+    expect(
+      ThemeDecoder.decodeButtonTextTheme(
+        ButtonTextTheme.accent,
+      ),
+      ButtonTextTheme.accent,
+    );
 
     expect(
       ThemeDecoder.decodeButtonTextTheme('accent'),
@@ -888,6 +975,8 @@ void main() {
       splashColor: Color(0xff777777),
       textTheme: ButtonTextTheme.accent,
     );
+
+    expect(ThemeDecoder.decodeButtonThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeButtonThemeData(entry);
     var decoded = ThemeDecoder.decodeButtonThemeData({
@@ -1023,6 +1112,8 @@ void main() {
       ),
     );
 
+    expect(ThemeDecoder.decodeCardTheme(entry), entry);
+
     const corner = {
       'type': 'elliptical',
       'x': 12.0,
@@ -1092,6 +1183,8 @@ void main() {
       shadowColor: Color(0xff888888),
       showCheckmark: true,
     );
+
+    expect(ThemeDecoder.decodeChipThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeChipThemeData(entry);
     var decoded = ThemeDecoder.decodeChipThemeData(encoded);
@@ -1172,6 +1265,13 @@ void main() {
     expect(ThemeDecoder.decodeClip(null), null);
     expect(ThemeEncoder.encodeClip(null), null);
 
+    expect(
+      ThemeDecoder.decodeClip(
+        Clip.antiAlias,
+      ),
+      Clip.antiAlias,
+    );
+
     expect(ThemeDecoder.decodeClip('antiAlias'), Clip.antiAlias);
     expect(
       ThemeDecoder.decodeClip('antiAliasWithSaveLayer'),
@@ -1194,6 +1294,8 @@ void main() {
     expect(ThemeEncoder.encodeColor(null), null);
 
     var entry = _kColor;
+
+    expect(ThemeDecoder.decodeColor(entry), entry);
 
     var encoded = ThemeEncoder.encodeColor(entry);
     var decoded = ThemeDecoder.decodeColor(encoded);
@@ -1227,6 +1329,8 @@ void main() {
 
     var entry = ColorScheme.dark();
 
+    expect(ThemeDecoder.decodeColorScheme(entry), entry);
+
     var encoded = ThemeEncoder.encodeColorScheme(entry);
     var decoded = ThemeDecoder.decodeColorScheme(encoded);
 
@@ -1257,6 +1361,13 @@ void main() {
   test('CrossAxisAlignment', () {
     expect(ThemeDecoder.decodeCrossAxisAlignment(null), null);
     expect(ThemeEncoder.encodeCrossAxisAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeCrossAxisAlignment(
+        CrossAxisAlignment.baseline,
+      ),
+      CrossAxisAlignment.baseline,
+    );
 
     expect(
       ThemeDecoder.decodeCrossAxisAlignment('baseline'),
@@ -1316,6 +1427,8 @@ void main() {
       tabLabelTextStyle: _kTextStyle,
       textStyle: _kTextStyle,
     );
+
+    expect(ThemeDecoder.decodeCupertinoTextThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeCupertinoTextThemeData(entry);
     var decoded = ThemeDecoder.decodeCupertinoTextThemeData(
@@ -1403,6 +1516,8 @@ void main() {
         textStyle: TextStyle(color: Color(0x88888888)),
       ),
     );
+
+    expect(ThemeDecoder.decodeCupertinoThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeCupertinoThemeData(entry);
     var decoded = ThemeDecoder.decodeCupertinoThemeData(encoded);
@@ -1523,6 +1638,8 @@ void main() {
       scale: 2.0,
     );
 
+    expect(ThemeDecoder.decodeDecorationImage(entry), entry);
+
     var encoded = ThemeEncoder.encodeDecorationImage(entry);
     var decoded = ThemeDecoder.decodeDecorationImage(encoded);
 
@@ -1581,6 +1698,13 @@ void main() {
     );
 
     expect(
+      ThemeDecoder.decodeDecorationPosition(
+        DecorationPosition.background,
+      ),
+      DecorationPosition.background,
+    );
+
+    expect(
       ThemeDecoder.decodeDecorationPosition('background'),
       DecorationPosition.background,
     );
@@ -1609,6 +1733,8 @@ void main() {
       elevation: 1.0,
       shape: RoundedRectangleBorder(),
     );
+
+    expect(ThemeDecoder.decodeDialogTheme(entry), entry);
 
     var encoded = ThemeEncoder.encodeDialogTheme(entry);
     var decoded = ThemeDecoder.decodeDialogTheme(encoded);
@@ -1671,6 +1797,8 @@ void main() {
       thickness: 4.0,
     );
 
+    expect(ThemeDecoder.decodeDividerThemeData(entry), entry);
+
     var encoded = ThemeEncoder.encodeDividerThemeData(entry);
     var decoded = ThemeDecoder.decodeDividerThemeData(encoded);
 
@@ -1694,6 +1822,13 @@ void main() {
   test('DragStartBehavior', () {
     expect(ThemeDecoder.decodeDragStartBehavior(null), null);
     expect(ThemeEncoder.encodeDragStartBehavior(null), null);
+
+    expect(
+      ThemeDecoder.decodeDragStartBehavior(
+        DragStartBehavior.down,
+      ),
+      DragStartBehavior.down,
+    );
 
     expect(
       ThemeDecoder.decodeDragStartBehavior('down'),
@@ -1724,6 +1859,8 @@ void main() {
       3.0,
       4.0,
     );
+
+    expect(ThemeDecoder.decodeEdgeInsetsGeometry(entry), entry);
 
     var encoded = ThemeEncoder.encodeEdgeInsetsGeometry(entry);
     var decoded = ThemeDecoder.decodeEdgeInsetsGeometry(encoded);
@@ -1762,6 +1899,13 @@ void main() {
     expect(ThemeDecoder.decodeFilterQuality(null), null);
     expect(ThemeEncoder.encodeFilterQuality(null), null);
 
+    expect(
+      ThemeDecoder.decodeFilterQuality(
+        FilterQuality.high,
+      ),
+      FilterQuality.high,
+    );
+
     expect(ThemeDecoder.decodeFilterQuality('high'), FilterQuality.high);
     expect(ThemeDecoder.decodeFilterQuality('low'), FilterQuality.low);
     expect(ThemeDecoder.decodeFilterQuality('medium'), FilterQuality.medium);
@@ -1777,6 +1921,13 @@ void main() {
     expect(ThemeDecoder.decodeFlexFit(null), null);
     expect(ThemeEncoder.encodeFlexFit(null), null);
 
+    expect(
+      ThemeDecoder.decodeFlexFit(
+        FlexFit.loose,
+      ),
+      FlexFit.loose,
+    );
+
     expect(ThemeDecoder.decodeFlexFit('loose'), FlexFit.loose);
     expect(ThemeDecoder.decodeFlexFit('tight'), FlexFit.tight);
 
@@ -1787,6 +1938,13 @@ void main() {
   test('FloatingActionButtonAnimator', () {
     expect(ThemeDecoder.decodeFloatingActionButtonAnimator(null), null);
     expect(ThemeEncoder.encodeFloatingActionButtonAnimator(null), null);
+
+    expect(
+      ThemeDecoder.decodeFloatingActionButtonAnimator(
+        FloatingActionButtonAnimator.scaling,
+      ),
+      FloatingActionButtonAnimator.scaling,
+    );
 
     expect(
       ThemeDecoder.decodeFloatingActionButtonAnimator('scaling'),
@@ -1825,6 +1983,8 @@ void main() {
     };
 
     values.forEach((key, value) {
+      expect(ThemeDecoder.decodeFloatingActionButtonLocation(value), value);
+
       expect(ThemeDecoder.decodeFloatingActionButtonLocation(key), value);
 
       expect(ThemeEncoder.encodeFloatingActionButtonLocation(value), key);
@@ -1848,6 +2008,8 @@ void main() {
       shape: RoundedRectangleBorder(),
       splashColor: Color(0xff555555),
     );
+
+    expect(ThemeDecoder.decodeFloatingActionButtonThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeFloatingActionButtonThemeData(entry);
     var decoded = ThemeDecoder.decodeFloatingActionButtonThemeData(encoded);
@@ -1910,6 +2072,13 @@ void main() {
     expect(ThemeEncoder.encodeFloatingLabelBehavior(null), null);
 
     expect(
+      ThemeDecoder.decodeFloatingLabelBehavior(
+        FloatingLabelBehavior.always,
+      ),
+      FloatingLabelBehavior.always,
+    );
+
+    expect(
       ThemeDecoder.decodeFloatingLabelBehavior('always'),
       FloatingLabelBehavior.always,
     );
@@ -1941,6 +2110,8 @@ void main() {
     expect(ThemeEncoder.encodeFontFeature(null), null);
 
     var entry = FontFeature('fooo', 2);
+
+    expect(ThemeDecoder.decodeFontFeature(entry), entry);
 
     var encoded = ThemeEncoder.encodeFontFeature(entry);
     var decoded = ThemeDecoder.decodeFontFeature(encoded);
@@ -1978,6 +2149,8 @@ void main() {
     };
 
     weights.forEach((key, value) {
+      expect(ThemeDecoder.decodeFontWeight(value), value);
+
       expect(ThemeDecoder.decodeFontWeight(key), value);
 
       // 'bold' and 'normal' are convenience keys that map to a w* value.  They
@@ -1991,6 +2164,13 @@ void main() {
   test('FontStyle', () {
     expect(ThemeDecoder.decodeFontStyle(null), null);
     expect(ThemeEncoder.encodeFontStyle(null), null);
+
+    expect(
+      ThemeDecoder.decodeFontStyle(
+        FontStyle.italic,
+      ),
+      FontStyle.italic,
+    );
 
     expect(ThemeDecoder.decodeFontStyle('italic'), FontStyle.italic);
     expect(ThemeDecoder.decodeFontStyle('normal'), FontStyle.normal);
@@ -2011,6 +2191,8 @@ void main() {
       tileMode: TileMode.clamp,
       transform: GradientRotation(4.0),
     );
+
+    expect(ThemeDecoder.decodeGradient(entry), entry);
 
     var encoded = ThemeEncoder.encodeGradient(entry);
     var decoded = ThemeDecoder.decodeGradient(encoded);
@@ -2106,6 +2288,8 @@ void main() {
 
     var entry = GradientRotation(10.0);
 
+    expect(ThemeDecoder.decodeGradientTransform(entry), entry);
+
     var encoded = ThemeEncoder.encodeGradientTransform(entry);
     var decoded = ThemeDecoder.decodeGradientTransform(encoded);
 
@@ -2130,6 +2314,13 @@ void main() {
   test('HitTestBehavior', () {
     expect(ThemeDecoder.decodeHitTestBehavior(null), null);
     expect(ThemeEncoder.encodeHitTestBehavior(null), null);
+
+    expect(
+      ThemeDecoder.decodeHitTestBehavior(
+        HitTestBehavior.deferToChild,
+      ),
+      HitTestBehavior.deferToChild,
+    );
 
     expect(
       ThemeDecoder.decodeHitTestBehavior('deferToChild'),
@@ -2169,6 +2360,8 @@ void main() {
       matchTextDirection: true,
     );
 
+    expect(ThemeDecoder.decodeIconData(entry), entry);
+
     var encoded = ThemeEncoder.encodeIconData(entry);
     var decoded = ThemeDecoder.decodeIconData(encoded);
 
@@ -2197,6 +2390,8 @@ void main() {
       opacity: 1.0,
       size: 10.0,
     );
+
+    expect(ThemeDecoder.decodeIconThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeIconThemeData(entry);
     var decoded = ThemeDecoder.decodeIconThemeData(encoded);
@@ -2241,6 +2436,7 @@ void main() {
 
     for (var image in images) {
       var decoded = ThemeDecoder.decodeImageProvider(image);
+      expect(ThemeDecoder.decodeImageProvider(decoded), decoded);
       expect(ThemeEncoder.encodeImageProvider(decoded), image);
     }
   });
@@ -2248,6 +2444,13 @@ void main() {
   test('ImageRepeat', () {
     expect(ThemeDecoder.decodeImageRepeat(null), null);
     expect(ThemeEncoder.encodeImageRepeat(null), null);
+
+    expect(
+      ThemeDecoder.decodeImageRepeat(
+        ImageRepeat.noRepeat,
+      ),
+      ImageRepeat.noRepeat,
+    );
 
     expect(ThemeDecoder.decodeImageRepeat('noRepeat'), ImageRepeat.noRepeat);
     expect(ThemeDecoder.decodeImageRepeat('repeat'), ImageRepeat.repeat);
@@ -2272,6 +2475,8 @@ void main() {
       ),
       gapPadding: 1.0,
     );
+
+    expect(ThemeDecoder.decodeInputBorder(entry), entry);
 
     var encoded = ThemeEncoder.encodeInputBorder(entry);
     var decoded = ThemeDecoder.decodeInputBorder(encoded);
@@ -2408,6 +2613,8 @@ void main() {
       prefixStyle: TextStyle(color: Color(0xff999999)),
       suffixStyle: TextStyle(color: Color(0xff000000)),
     );
+
+    expect(ThemeDecoder.decodeInputDecorationTheme(entry), entry);
 
     var encoded = ThemeEncoder.encodeInputDecorationTheme(entry);
     var decoded = ThemeDecoder.decodeInputDecorationTheme(encoded);
@@ -2665,6 +2872,13 @@ void main() {
     expect(ThemeEncoder.encodeInteractiveInkFeatureFactory(null), null);
 
     expect(
+      ThemeDecoder.decodeInteractiveInkFeatureFactory(
+        InkSplash.splashFactory,
+      ),
+      InkSplash.splashFactory,
+    );
+
+    expect(
       ThemeDecoder.decodeInteractiveInkFeatureFactory('splash'),
       InkSplash.splashFactory,
     );
@@ -2689,6 +2903,8 @@ void main() {
 
     var entry = Locale('en', 'US');
 
+    expect(ThemeDecoder.decodeLocale(entry), entry);
+
     var encoded = ThemeEncoder.encodeLocale(entry);
     var decoded = ThemeDecoder.decodeLocale(encoded);
 
@@ -2709,6 +2925,13 @@ void main() {
   test('MainAxisAlignment', () {
     expect(ThemeDecoder.decodeMainAxisAlignment(null), null);
     expect(ThemeEncoder.encodeMainAxisAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeMainAxisAlignment(
+        MainAxisAlignment.center,
+      ),
+      MainAxisAlignment.center,
+    );
 
     expect(
       ThemeDecoder.decodeMainAxisAlignment('center'),
@@ -2765,6 +2988,13 @@ void main() {
     expect(ThemeDecoder.decodeMainAxisSize(null), null);
     expect(ThemeEncoder.encodeMainAxisSize(null), null);
 
+    expect(
+      ThemeDecoder.decodeMainAxisSize(
+        MainAxisSize.max,
+      ),
+      MainAxisSize.max,
+    );
+
     expect(ThemeDecoder.decodeMainAxisSize('max'), MainAxisSize.max);
     expect(ThemeDecoder.decodeMainAxisSize('min'), MainAxisSize.min);
 
@@ -2782,6 +3012,8 @@ void main() {
       leadingPadding: EdgeInsets.all(1.0),
       padding: EdgeInsets.all(2.0),
     );
+
+    expect(ThemeDecoder.decodeMaterialBannerThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeMaterialBannerThemeData(entry);
     var decoded = ThemeDecoder.decodeMaterialBannerThemeData(encoded);
@@ -2820,6 +3052,8 @@ void main() {
       50: _kColor,
     });
 
+    expect(ThemeDecoder.decodeMaterialColor(entry), entry);
+
     var encoded = ThemeEncoder.encodeMaterialColor(entry);
     var decoded = ThemeDecoder.decodeMaterialColor(encoded);
 
@@ -2839,6 +3073,13 @@ void main() {
   test('MaterialTapTargetSize', () {
     expect(ThemeDecoder.decodeMaterialTapTargetSize(null), null);
     expect(ThemeEncoder.encodeMaterialTapTargetSize(null), null);
+
+    expect(
+      ThemeDecoder.decodeMaterialTapTargetSize(
+        MaterialTapTargetSize.padded,
+      ),
+      MaterialTapTargetSize.padded,
+    );
 
     expect(
       ThemeDecoder.decodeMaterialTapTargetSize('padded'),
@@ -2864,6 +3105,13 @@ void main() {
   test('MaterialType', () {
     expect(ThemeDecoder.decodeMaterialType(null), null);
     expect(ThemeEncoder.encodeMaterialType(null), null);
+
+    expect(
+      ThemeDecoder.decodeMaterialType(
+        MaterialType.button,
+      ),
+      MaterialType.button,
+    );
 
     expect(ThemeDecoder.decodeMaterialType('button'), MaterialType.button);
     expect(ThemeDecoder.decodeMaterialType('canvas'), MaterialType.canvas);
@@ -2907,6 +3155,8 @@ void main() {
       16.0,
     );
 
+    expect(ThemeDecoder.decodeMatrix4(entry), entry);
+
     var encoded = ThemeEncoder.encodeMatrix4(entry);
     var decoded = ThemeDecoder.decodeMatrix4(encoded);
 
@@ -2941,6 +3191,13 @@ void main() {
   test('MouseCursor', () {
     expect(ThemeDecoder.decodeMouseCursor(null), null);
     expect(ThemeEncoder.encodeMouseCursor(null), null);
+
+    expect(
+      ThemeDecoder.decodeMouseCursor(
+        MouseCursor.defer,
+      ),
+      MouseCursor.defer,
+    );
 
     expect(
       ThemeDecoder.decodeMouseCursor({'type': 'defer'}),
@@ -3146,6 +3403,13 @@ void main() {
     expect(ThemeEncoder.encodeNavigationRailLabelType(null), null);
 
     expect(
+      ThemeDecoder.decodeNavigationRailLabelType(
+        NavigationRailLabelType.all,
+      ),
+      NavigationRailLabelType.all,
+    );
+
+    expect(
       ThemeDecoder.decodeNavigationRailLabelType('all'),
       NavigationRailLabelType.all,
     );
@@ -3197,6 +3461,8 @@ void main() {
       unselectedLabelTextStyle: TextStyle(color: Color(0xff555555)),
     );
 
+    expect(ThemeDecoder.decodeNavigationRailThemeData(entry), entry);
+
     var encoded = ThemeEncoder.encodeNavigationRailThemeData(entry);
     var decoded = ThemeDecoder.decodeNavigationRailThemeData(encoded);
 
@@ -3238,6 +3504,11 @@ void main() {
     expect(ThemeDecoder.decodeNotchedShape(null), null);
     expect(ThemeEncoder.encodeNotchedShape(null), null);
 
+    var entry = CircularNotchedRectangle();
+    expect(
+      ThemeDecoder.decodeNotchedShape(entry),
+      entry,
+    );
     expect(
       ThemeDecoder.decodeNotchedShape('circular')?.runtimeType,
       CircularNotchedRectangle()?.runtimeType,
@@ -3256,6 +3527,8 @@ void main() {
       1.0,
       2.0,
     );
+
+    expect(ThemeDecoder.decodeOffset(entry), entry);
 
     var encoded = ThemeEncoder.encodeOffset(entry);
     var decoded = ThemeDecoder.decodeOffset(encoded);
@@ -3278,6 +3551,13 @@ void main() {
     expect(ThemeDecoder.decodeOverflow(null), null);
     expect(ThemeEncoder.encodeOverflow(null), null);
 
+    expect(
+      ThemeDecoder.decodeOverflow(
+        Overflow.clip,
+      ),
+      Overflow.clip,
+    );
+
     expect(ThemeDecoder.decodeOverflow('clip'), Overflow.clip);
     expect(ThemeDecoder.decodeOverflow('visible'), Overflow.visible);
 
@@ -3295,6 +3575,8 @@ void main() {
       shape: RoundedRectangleBorder(),
       textStyle: _kTextStyle,
     );
+
+    expect(ThemeDecoder.decodePopupMenuThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodePopupMenuThemeData(entry);
     var decoded = ThemeDecoder.decodePopupMenuThemeData(encoded);
@@ -3354,6 +3636,8 @@ void main() {
 
     var entry = Radius.circular(1.0);
 
+    expect(ThemeDecoder.decodeRadius(entry), entry);
+
     var encoded = ThemeEncoder.encodeRadius(entry);
     var decoded = ThemeDecoder.decodeRadius(encoded);
 
@@ -3407,6 +3691,8 @@ void main() {
       pressedElevation: 4.0,
     );
 
+    expect(ThemeDecoder.decodeRangeSliderThumbShape(entry), entry);
+
     var encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
     RoundRangeSliderThumbShape decoded =
         ThemeDecoder.decodeRangeSliderThumbShape(encoded);
@@ -3441,6 +3727,8 @@ void main() {
       tickMarkRadius: 1.0,
     );
 
+    expect(ThemeDecoder.decodeRangeSliderTickMarkShape(entry), entry);
+
     var encoded = ThemeEncoder.encodeRangeSliderTickMarkShape(entry);
     RoundRangeSliderTickMarkShape decoded =
         ThemeDecoder.decodeRangeSliderTickMarkShape(encoded);
@@ -3464,6 +3752,8 @@ void main() {
     expect(ThemeEncoder.encodeRangeSliderTrackShape(null), null);
 
     var entry = RectangularRangeSliderTrackShape();
+
+    expect(ThemeDecoder.decodeRangeSliderTrackShape(entry), entry);
 
     var encoded = ThemeEncoder.encodeRangeSliderTrackShape(entry);
     var decoded = ThemeDecoder.decodeRangeSliderTrackShape(encoded);
@@ -3493,6 +3783,8 @@ void main() {
     expect(ThemeEncoder.encodeRangeSliderValueIndicatorShape(null), null);
 
     var entry = PaddleRangeSliderValueIndicatorShape();
+
+    expect(ThemeDecoder.decodeRangeSliderValueIndicatorShape(entry), entry);
 
     var encoded = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry);
     var decoded = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded);
@@ -3528,6 +3820,8 @@ void main() {
     expect(ThemeEncoder.encodeRect(null), null);
 
     var entry = Rect.fromLTRB(1.0, 2.0, 3.0, 4.0);
+
+    expect(ThemeDecoder.decodeRect(entry), entry);
 
     var encoded = ThemeEncoder.encodeRect(entry);
     var decoded = ThemeDecoder.decodeRect(encoded);
@@ -3647,6 +3941,11 @@ void main() {
     expect(ThemeDecoder.decodeScrollPhysics(null), null);
     expect(ThemeEncoder.encodeScrollPhysics(null), null);
 
+    var entry = AlwaysScrollableScrollPhysics();
+    expect(
+      ThemeDecoder.decodeScrollPhysics(entry),
+      entry,
+    );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'always'}).runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
@@ -3885,6 +4184,13 @@ void main() {
 
     expect(
       ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+        ScrollViewKeyboardDismissBehavior.manual,
+      ),
+      ScrollViewKeyboardDismissBehavior.manual,
+    );
+
+    expect(
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
         'manual',
       ),
       ScrollViewKeyboardDismissBehavior.manual,
@@ -3923,6 +4229,8 @@ void main() {
       ),
     );
 
+    expect(ThemeDecoder.decodeShadow(entry), entry);
+
     var encoded = ThemeEncoder.encodeShadow(entry);
     var decoded = ThemeDecoder.decodeShadow(encoded);
 
@@ -3955,6 +4263,8 @@ void main() {
         style: BorderStyle.solid,
       ),
     );
+
+    expect(ThemeDecoder.decodeShapeBorder(entry), entry);
 
     var encoded = ThemeEncoder.encodeShapeBorder(entry);
     var decoded = ThemeDecoder.decodeShapeBorder(encoded);
@@ -4069,6 +4379,13 @@ void main() {
     expect(ThemeEncoder.encodeShowValueIndicator(null), null);
 
     expect(
+      ThemeDecoder.decodeShowValueIndicator(
+        ShowValueIndicator.always,
+      ),
+      ShowValueIndicator.always,
+    );
+
+    expect(
       ThemeDecoder.decodeShowValueIndicator('always'),
       ShowValueIndicator.always,
     );
@@ -4110,6 +4427,13 @@ void main() {
     expect(ThemeEncoder.encodeSliderComponentShape(null), null);
 
     expect(
+      ThemeDecoder.decodeSliderComponentShape(
+        SliderComponentShape.noOverlay,
+      ),
+      SliderComponentShape.noOverlay,
+    );
+
+    expect(
       ThemeDecoder.decodeSliderComponentShape('noOverlay'),
       SliderComponentShape.noOverlay,
     );
@@ -4131,6 +4455,13 @@ void main() {
   test('SliderTickMarkShape', () {
     expect(ThemeDecoder.decodeSliderTickMarkShape(null), null);
     expect(ThemeEncoder.encodeSliderTickMarkShape(null), null);
+
+    expect(
+      ThemeDecoder.decodeSliderTickMarkShape(
+        SliderTickMarkShape.noTickMark,
+      ),
+      SliderTickMarkShape.noTickMark,
+    );
 
     expect(
       ThemeDecoder.decodeSliderTickMarkShape('noTickMark'),
@@ -4173,6 +4504,8 @@ void main() {
       valueIndicatorShape: SliderComponentShape.noOverlay,
       valueIndicatorTextStyle: _kTextStyle,
     );
+
+    expect(ThemeDecoder.decodeSliderThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeSliderThemeData(entry);
     var decoded = ThemeDecoder.decodeSliderThemeData(encoded);
@@ -4232,6 +4565,8 @@ void main() {
       disabledThumbGapWidth: 1.0,
     );
 
+    expect(ThemeDecoder.decodeSliderTrackShape(entry), entry);
+
     var encoded = ThemeEncoder.encodeSliderTrackShape(entry);
     var decoded = ThemeDecoder.decodeSliderTrackShape(encoded);
 
@@ -4271,6 +4606,13 @@ void main() {
     expect(ThemeEncoder.encodeSnackBarBehavior(null), null);
 
     expect(
+      ThemeDecoder.decodeSnackBarBehavior(
+        SnackBarBehavior.fixed,
+      ),
+      SnackBarBehavior.fixed,
+    );
+
+    expect(
       ThemeDecoder.decodeSnackBarBehavior('fixed'),
       SnackBarBehavior.fixed,
     );
@@ -4302,6 +4644,8 @@ void main() {
       elevation: 1.0,
       shape: RoundedRectangleBorder(),
     );
+
+    expect(ThemeDecoder.decodeSnackBarThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeSnackBarThemeData(entry);
     var decoded = ThemeDecoder.decodeSnackBarThemeData(encoded);
@@ -4363,6 +4707,13 @@ void main() {
     expect(ThemeEncoder.encodeSmartDashesType(null), null);
 
     expect(
+      ThemeDecoder.decodeSmartDashesType(
+        SmartDashesType.disabled,
+      ),
+      SmartDashesType.disabled,
+    );
+
+    expect(
       ThemeDecoder.decodeSmartDashesType('disabled'),
       SmartDashesType.disabled,
     );
@@ -4384,6 +4735,13 @@ void main() {
     expect(ThemeEncoder.encodeSmartQuotesType(null), null);
 
     expect(
+      ThemeDecoder.decodeSmartQuotesType(
+        SmartQuotesType.disabled,
+      ),
+      SmartQuotesType.disabled,
+    );
+
+    expect(
       ThemeDecoder.decodeSmartQuotesType('disabled'),
       SmartQuotesType.disabled,
     );
@@ -4402,6 +4760,13 @@ void main() {
   test('StackFit', () {
     expect(ThemeDecoder.decodeStackFit(null), null);
     expect(ThemeEncoder.encodeStackFit(null), null);
+
+    expect(
+      ThemeDecoder.decodeStackFit(
+        StackFit.expand,
+      ),
+      StackFit.expand,
+    );
 
     expect(ThemeDecoder.decodeStackFit('expand'), StackFit.expand);
     expect(ThemeDecoder.decodeStackFit('loose'), StackFit.loose);
@@ -4426,6 +4791,8 @@ void main() {
         height: 2.0,
         leading: 3.0,
         package: 'bar');
+
+    expect(ThemeDecoder.decodeStrutStyle(entry), entry);
 
     var encoded = ThemeEncoder.encodeStrutStyle(entry);
     var decoded = ThemeDecoder.decodeStrutStyle(encoded);
@@ -4457,6 +4824,13 @@ void main() {
   test('TabBarIndicatorSize', () {
     expect(ThemeDecoder.decodeTabBarIndicatorSize(null), null);
     expect(ThemeEncoder.encodeTabBarIndicatorSize(null), null);
+
+    expect(
+      ThemeDecoder.decodeTabBarIndicatorSize(
+        TabBarIndicatorSize.label,
+      ),
+      TabBarIndicatorSize.label,
+    );
 
     expect(
       ThemeDecoder.decodeTabBarIndicatorSize('label'),
@@ -4497,6 +4871,8 @@ void main() {
       unselectedLabelStyle: TextStyle(color: Color(0xff333333)),
     );
 
+    expect(ThemeDecoder.decodeTabBarTheme(entry), entry);
+
     var encoded = ThemeEncoder.encodeTabBarTheme(entry);
     var decoded = ThemeDecoder.decodeTabBarTheme(encoded);
 
@@ -4529,6 +4905,13 @@ void main() {
   test('TargetPlatform', () {
     expect(ThemeDecoder.decodeTargetPlatform(null), null);
     expect(ThemeEncoder.encodeTargetPlatform(null), null);
+
+    expect(
+      ThemeDecoder.decodeTargetPlatform(
+        TargetPlatform.android,
+      ),
+      TargetPlatform.android,
+    );
 
     expect(
       ThemeDecoder.decodeTargetPlatform('android'),
@@ -4585,6 +4968,13 @@ void main() {
     expect(ThemeDecoder.decodeTextAlign(null), null);
     expect(ThemeEncoder.encodeTextAlign(null), null);
 
+    expect(
+      ThemeDecoder.decodeTextAlign(
+        TextAlign.center,
+      ),
+      TextAlign.center,
+    );
+
     expect(ThemeDecoder.decodeTextAlign('center'), TextAlign.center);
     expect(ThemeDecoder.decodeTextAlign('end'), TextAlign.end);
     expect(ThemeDecoder.decodeTextAlign('justify'), TextAlign.justify);
@@ -4603,6 +4993,13 @@ void main() {
   test('TextAlignVertical', () {
     expect(ThemeDecoder.decodeTextAlignVertical(null), null);
     expect(ThemeEncoder.encodeTextAlignVertical(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextAlignVertical(
+        TextAlignVertical.bottom,
+      ),
+      TextAlignVertical.bottom,
+    );
 
     expect(
       ThemeDecoder.decodeTextAlignVertical('bottom'),
@@ -4636,6 +5033,13 @@ void main() {
     expect(ThemeEncoder.encodeTextBaseline(null), null);
 
     expect(
+      ThemeDecoder.decodeTextBaseline(
+        TextBaseline.alphabetic,
+      ),
+      TextBaseline.alphabetic,
+    );
+
+    expect(
       ThemeDecoder.decodeTextBaseline('alphabetic'),
       TextBaseline.alphabetic,
     );
@@ -4657,6 +5061,13 @@ void main() {
   test('TextCapitalization', () {
     expect(ThemeDecoder.decodeTextCapitalization(null), null);
     expect(ThemeEncoder.encodeTextCapitalization(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextCapitalization(
+        TextCapitalization.characters,
+      ),
+      TextCapitalization.characters,
+    );
 
     expect(
       ThemeDecoder.decodeTextCapitalization('characters'),
@@ -4698,6 +5109,13 @@ void main() {
     expect(ThemeEncoder.encodeTextDecoration(null), null);
 
     expect(
+      ThemeDecoder.decodeTextDecoration(
+        TextDecoration.lineThrough,
+      ),
+      TextDecoration.lineThrough,
+    );
+
+    expect(
       ThemeDecoder.decodeTextDecoration('lineThrough'),
       TextDecoration.lineThrough,
     );
@@ -4735,6 +5153,13 @@ void main() {
   test('TextDecorationStyle', () {
     expect(ThemeDecoder.decodeTextDecorationStyle(null), null);
     expect(ThemeEncoder.encodeTextDecorationStyle(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextDecorationStyle(
+        TextDecorationStyle.dashed,
+      ),
+      TextDecorationStyle.dashed,
+    );
 
     expect(
       ThemeDecoder.decodeTextDecorationStyle('dashed'),
@@ -4784,6 +5209,13 @@ void main() {
     expect(ThemeEncoder.encodeTextDirection(null), null);
 
     expect(
+      ThemeDecoder.decodeTextDirection(
+        TextDirection.ltr,
+      ),
+      TextDirection.ltr,
+    );
+
+    expect(
       ThemeDecoder.decodeTextDirection('ltr'),
       TextDirection.ltr,
     );
@@ -4811,6 +5243,8 @@ void main() {
       applyHeightToLastDescent: true,
     );
 
+    expect(ThemeDecoder.decodeTextHeightBehavior(entry), entry);
+
     var encoded = ThemeEncoder.encodeTextHeightBehavior(entry);
     var decoded = ThemeDecoder.decodeTextHeightBehavior(encoded);
 
@@ -4831,6 +5265,13 @@ void main() {
   test('TextInputAction', () {
     expect(ThemeDecoder.decodeTextInputAction(null), null);
     expect(ThemeEncoder.encodeTextInputAction(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextInputAction(
+        TextInputAction.continueAction,
+      ),
+      TextInputAction.continueAction,
+    );
 
     expect(
       ThemeDecoder.decodeTextInputAction('continueAction'),
@@ -4939,9 +5380,16 @@ void main() {
     );
   });
 
-  test('TextInnputType', () {
+  test('TextInputType', () {
     expect(ThemeDecoder.decodeTextInputType(null), null);
     expect(ThemeEncoder.encodeTextInputType(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextInputType(
+        TextInputType.datetime,
+      ),
+      TextInputType.datetime,
+    );
 
     expect(
       ThemeDecoder.decodeTextInputType('datetime'),
@@ -5030,6 +5478,13 @@ void main() {
     expect(ThemeDecoder.decodeTextOverflow(null), null);
     expect(ThemeEncoder.encodeTextOverflow(null), null);
 
+    expect(
+      ThemeDecoder.decodeTextOverflow(
+        TextOverflow.clip,
+      ),
+      TextOverflow.clip,
+    );
+
     expect(ThemeDecoder.decodeTextOverflow('clip'), TextOverflow.clip);
     expect(ThemeDecoder.decodeTextOverflow('ellipsis'), TextOverflow.ellipsis);
     expect(ThemeDecoder.decodeTextOverflow('fade'), TextOverflow.fade);
@@ -5076,6 +5531,8 @@ void main() {
       textBaseline: TextBaseline.alphabetic,
       wordSpacing: 8.0,
     );
+
+    expect(ThemeDecoder.decodeTextStyle(entry), entry);
 
     var encoded = ThemeEncoder.encodeTextStyle(entry);
     var decoded = ThemeDecoder.decodeTextStyle(encoded);
@@ -5148,6 +5605,8 @@ void main() {
       subtitle2: TextStyle(color: Color(0xffcccccc)),
     );
 
+    expect(ThemeDecoder.decodeTextTheme(entry), entry);
+
     var encoded = ThemeEncoder.encodeTextTheme(entry);
     var decoded = ThemeDecoder.decodeTextTheme(encoded);
 
@@ -5218,6 +5677,13 @@ void main() {
   test('TextWidthBasis', () {
     expect(ThemeDecoder.decodeTextWidthBasis(null), null);
     expect(ThemeEncoder.encodeTextWidthBasis(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextWidthBasis(
+        TextWidthBasis.longestLine,
+      ),
+      TextWidthBasis.longestLine,
+    );
 
     expect(
       ThemeDecoder.decodeTextWidthBasis('longestLine'),
@@ -5376,6 +5842,8 @@ void main() {
       unselectedWidgetColor: Color(0xbb444444),
       visualDensity: VisualDensity.comfortable,
     );
+
+    expect(ThemeDecoder.decodeThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeThemeData(entry);
     var decoded = ThemeDecoder.decodeThemeData(encoded);
@@ -6279,6 +6747,13 @@ void main() {
     expect(ThemeDecoder.decodeTileMode(null), null);
     expect(ThemeEncoder.encodeTileMode(null), null);
 
+    expect(
+      ThemeDecoder.decodeTileMode(
+        TileMode.clamp,
+      ),
+      TileMode.clamp,
+    );
+
     expect(ThemeDecoder.decodeTileMode('clamp'), TileMode.clamp);
     expect(ThemeDecoder.decodeTileMode('mirror'), TileMode.mirror);
     expect(ThemeDecoder.decodeTileMode('repeated'), TileMode.repeated);
@@ -6319,6 +6794,8 @@ void main() {
       inputDecorationTheme: InputDecorationTheme(fillColor: Color(0xff000011)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
     );
+
+    expect(ThemeDecoder.decodeTimePickerThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeTimePickerThemeData(entry);
     var decoded = ThemeDecoder.decodeTimePickerThemeData(encoded);
@@ -6426,6 +6903,8 @@ void main() {
       textStyle: TextStyle(color: Color(0xffbbbbbb)),
     );
 
+    expect(ThemeDecoder.decodeToggleButtonsThemeData(entry), entry);
+
     var encoded = ThemeEncoder.encodeToggleButtonsThemeData(entry);
     var decoded = ThemeDecoder.decodeToggleButtonsThemeData(encoded);
 
@@ -6478,6 +6957,8 @@ void main() {
       selectAll: true,
     );
 
+    expect(ThemeDecoder.decodeToolbarOptions(entry), entry);
+
     var encoded = ThemeEncoder.encodeToolbarOptions(entry);
     var decoded = ThemeDecoder.decodeToolbarOptions(encoded);
 
@@ -6521,6 +7002,8 @@ void main() {
       verticalOffset: 5.0,
       waitDuration: Duration(milliseconds: 6),
     );
+
+    expect(ThemeDecoder.decodeTooltipThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeTooltipThemeData(entry);
     var decoded = ThemeDecoder.decodeTooltipThemeData(encoded);
@@ -6567,6 +7050,8 @@ void main() {
       tall: TextTheme(bodyText1: TextStyle(color: Color(0xff444444))),
       white: TextTheme(bodyText1: TextStyle(color: Color(0xff555555))),
     );
+
+    expect(ThemeDecoder.decodeTypography(entry), entry);
 
     var encoded = ThemeEncoder.encodeTypography(entry);
     var decoded = ThemeDecoder.decodeTypography(encoded);
@@ -6617,6 +7102,13 @@ void main() {
     expect(ThemeEncoder.encodeVerticalDirection(null), null);
 
     expect(
+      ThemeDecoder.decodeVerticalDirection(
+        VerticalDirection.down,
+      ),
+      VerticalDirection.down,
+    );
+
+    expect(
       ThemeDecoder.decodeVerticalDirection('down'),
       VerticalDirection.down,
     );
@@ -6638,6 +7130,13 @@ void main() {
   test('VisualDensity', () {
     expect(ThemeDecoder.decodeVisualDensity(null), null);
     expect(ThemeEncoder.encodeVisualDensity(null), null);
+
+    expect(
+      ThemeDecoder.decodeVisualDensity(
+        VisualDensity.adaptivePlatformDensity,
+      ),
+      VisualDensity.adaptivePlatformDensity,
+    );
 
     expect(
       ThemeDecoder.decodeVisualDensity('adaptivePlatformDensity'),

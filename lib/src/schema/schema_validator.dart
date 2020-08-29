@@ -86,9 +86,15 @@ class SchemaValidator {
       refProvider: refProvider,
     );
 
-    var errors = jsonSchema.validateWithErrors(value is Map
+    var removed = value is Map
         ? JsonClass.removeNull(Map<String, dynamic>.from(value))
-        : value);
+        : value;
+
+    if (removed == null && value is Map) {
+      removed = {};
+    }
+
+    var errors = jsonSchema.validateWithErrors(removed);
     if (errors?.isNotEmpty == true) {
       result = false;
       var errorStr =

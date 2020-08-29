@@ -15,6 +15,11 @@ import '../schema/schema_validator.dart';
 /// Decoder capable of converting JSON compatible values into Flutter Theme
 /// related classes and enums.
 ///
+/// All decoder functions, in addition the the type that can be decoded, will
+/// accept a value of the returned type and return it unmodified.  However, when
+/// mixing JSON compatible values and concrete values, you must disable the JSON
+/// Schema validator as it will not be able to validate concrete instances.
+///
 /// Unless otherwise stated, each function will return [null] when given an
 /// input of [null].
 @immutable
@@ -35,60 +40,65 @@ class ThemeDecoder {
   ///  * `topLeft`
   ///  * `topRight`
   static Alignment decodeAlignment(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'Alignment',
-      [
-        'bottomCenter',
-        'bottomLeft',
-        'bottomRight',
-        'center',
-        'centerLeft',
-        'centerRight',
-        'topCenter',
-        'topLeft',
-        'topRight',
-      ],
-      value,
-    );
     Alignment result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/alignment',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'bottomCenter':
-          result = Alignment.bottomCenter;
-          break;
-        case 'bottomLeft':
-          result = Alignment.bottomLeft;
-          break;
-        case 'bottomRight':
-          result = Alignment.bottomRight;
-          break;
-        case 'center':
-          result = Alignment.center;
-          break;
-        case 'centerLeft':
-          result = Alignment.centerLeft;
-          break;
-        case 'centerRight':
-          result = Alignment.centerRight;
-          break;
-        case 'topCenter':
-          result = Alignment.topCenter;
-          break;
-        case 'topLeft':
-          result = Alignment.topLeft;
-          break;
-        case 'topRight':
-          result = Alignment.topRight;
-          break;
+    if (value is Alignment) {
+      result = value;
+    } else {
+      _checkSupported(
+        'Alignment',
+        [
+          'bottomCenter',
+          'bottomLeft',
+          'bottomRight',
+          'center',
+          'centerLeft',
+          'centerRight',
+          'topCenter',
+          'topLeft',
+          'topRight',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/alignment',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'bottomCenter':
+            result = Alignment.bottomCenter;
+            break;
+          case 'bottomLeft':
+            result = Alignment.bottomLeft;
+            break;
+          case 'bottomRight':
+            result = Alignment.bottomRight;
+            break;
+          case 'center':
+            result = Alignment.center;
+            break;
+          case 'centerLeft':
+            result = Alignment.centerLeft;
+            break;
+          case 'centerRight':
+            result = Alignment.centerRight;
+            break;
+          case 'topCenter':
+            result = Alignment.topCenter;
+            break;
+          case 'topLeft':
+            result = Alignment.topLeft;
+            break;
+          case 'topRight':
+            result = Alignment.topRight;
+            break;
+        }
       }
     }
 
@@ -121,7 +131,9 @@ class ThemeDecoder {
   }) {
     AppBarTheme result;
 
-    if (value != null) {
+    if (value is AppBarTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/app_bar_theme',
         value: value,
@@ -166,32 +178,36 @@ class ThemeDecoder {
   ///  * `horizontal`
   ///  * `vertical`
   static Axis decodeAxis(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'Axis',
-      [
-        'horizontal',
-        'vertical',
-      ],
-      value,
-    );
     Axis result;
+    if (value is Axis) {
+      result = value;
+    } else {
+      _checkSupported(
+        'Axis',
+        [
+          'horizontal',
+          'vertical',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/axis',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'horizontal':
-          result = Axis.horizontal;
-          break;
-        case 'vertical':
-          result = Axis.vertical;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/axis',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'horizontal':
+            result = Axis.horizontal;
+            break;
+          case 'vertical':
+            result = Axis.vertical;
+            break;
+        }
       }
     }
 
@@ -229,169 +245,173 @@ class ThemeDecoder {
   /// * `srcOver`
   /// * `xor`
   static BlendMode decodeBlendMode(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'BlendMode',
-      [
-        'clear',
-        'color',
-        'colorBurn',
-        'colorDodge',
-        'darken',
-        'difference',
-        'dst',
-        'dstATop',
-        'dstIn',
-        'dstOut',
-        'dstOver',
-        'exclusion',
-        'hardLight',
-        'hue',
-        'lighten',
-        'luminosity',
-        'modulate',
-        'multiply',
-        'overlay',
-        'plus',
-        'saturation',
-        'screen',
-        'softLight',
-        'src',
-        'srcATop',
-        'srcIn',
-        'srcOut',
-        'srcOver',
-        'xor',
-      ],
-      value,
-    );
-
     BlendMode result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/blend_mode',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'clear':
-          result = BlendMode.clear;
-          break;
+    if (value is BlendMode) {
+      result = value;
+    } else {
+      _checkSupported(
+        'BlendMode',
+        [
+          'clear',
+          'color',
+          'colorBurn',
+          'colorDodge',
+          'darken',
+          'difference',
+          'dst',
+          'dstATop',
+          'dstIn',
+          'dstOut',
+          'dstOver',
+          'exclusion',
+          'hardLight',
+          'hue',
+          'lighten',
+          'luminosity',
+          'modulate',
+          'multiply',
+          'overlay',
+          'plus',
+          'saturation',
+          'screen',
+          'softLight',
+          'src',
+          'srcATop',
+          'srcIn',
+          'srcOut',
+          'srcOver',
+          'xor',
+        ],
+        value,
+      );
 
-        case 'color':
-          result = BlendMode.color;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/blend_mode',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'clear':
+            result = BlendMode.clear;
+            break;
 
-        case 'colorBurn':
-          result = BlendMode.colorBurn;
-          break;
+          case 'color':
+            result = BlendMode.color;
+            break;
 
-        case 'colorDodge':
-          result = BlendMode.colorDodge;
-          break;
+          case 'colorBurn':
+            result = BlendMode.colorBurn;
+            break;
 
-        case 'darken':
-          result = BlendMode.darken;
-          break;
+          case 'colorDodge':
+            result = BlendMode.colorDodge;
+            break;
 
-        case 'difference':
-          result = BlendMode.difference;
-          break;
+          case 'darken':
+            result = BlendMode.darken;
+            break;
 
-        case 'dst':
-          result = BlendMode.dst;
-          break;
+          case 'difference':
+            result = BlendMode.difference;
+            break;
 
-        case 'dstATop':
-          result = BlendMode.dstATop;
-          break;
+          case 'dst':
+            result = BlendMode.dst;
+            break;
 
-        case 'dstIn':
-          result = BlendMode.dstIn;
-          break;
+          case 'dstATop':
+            result = BlendMode.dstATop;
+            break;
 
-        case 'dstOut':
-          result = BlendMode.dstOut;
-          break;
+          case 'dstIn':
+            result = BlendMode.dstIn;
+            break;
 
-        case 'dstOver':
-          result = BlendMode.dstOver;
-          break;
+          case 'dstOut':
+            result = BlendMode.dstOut;
+            break;
 
-        case 'exclusion':
-          result = BlendMode.exclusion;
-          break;
+          case 'dstOver':
+            result = BlendMode.dstOver;
+            break;
 
-        case 'hardLight':
-          result = BlendMode.hardLight;
-          break;
+          case 'exclusion':
+            result = BlendMode.exclusion;
+            break;
 
-        case 'hue':
-          result = BlendMode.hue;
-          break;
+          case 'hardLight':
+            result = BlendMode.hardLight;
+            break;
 
-        case 'lighten':
-          result = BlendMode.lighten;
-          break;
+          case 'hue':
+            result = BlendMode.hue;
+            break;
 
-        case 'luminosity':
-          result = BlendMode.luminosity;
-          break;
+          case 'lighten':
+            result = BlendMode.lighten;
+            break;
 
-        case 'modulate':
-          result = BlendMode.modulate;
-          break;
+          case 'luminosity':
+            result = BlendMode.luminosity;
+            break;
 
-        case 'multiply':
-          result = BlendMode.multiply;
-          break;
+          case 'modulate':
+            result = BlendMode.modulate;
+            break;
 
-        case 'overlay':
-          result = BlendMode.overlay;
-          break;
+          case 'multiply':
+            result = BlendMode.multiply;
+            break;
 
-        case 'plus':
-          result = BlendMode.plus;
-          break;
+          case 'overlay':
+            result = BlendMode.overlay;
+            break;
 
-        case 'saturation':
-          result = BlendMode.saturation;
-          break;
+          case 'plus':
+            result = BlendMode.plus;
+            break;
 
-        case 'screen':
-          result = BlendMode.screen;
-          break;
+          case 'saturation':
+            result = BlendMode.saturation;
+            break;
 
-        case 'softLight':
-          result = BlendMode.softLight;
-          break;
+          case 'screen':
+            result = BlendMode.screen;
+            break;
 
-        case 'src':
-          result = BlendMode.src;
-          break;
+          case 'softLight':
+            result = BlendMode.softLight;
+            break;
 
-        case 'srcATop':
-          result = BlendMode.srcATop;
-          break;
+          case 'src':
+            result = BlendMode.src;
+            break;
 
-        case 'srcIn':
-          result = BlendMode.srcIn;
-          break;
+          case 'srcATop':
+            result = BlendMode.srcATop;
+            break;
 
-        case 'srcOut':
-          result = BlendMode.srcOut;
-          break;
+          case 'srcIn':
+            result = BlendMode.srcIn;
+            break;
 
-        case 'srcOver':
-          result = BlendMode.srcOver;
-          break;
+          case 'srcOut':
+            result = BlendMode.srcOut;
+            break;
 
-        case 'xor':
-          result = BlendMode.xor;
-          break;
+          case 'srcOver':
+            result = BlendMode.srcOver;
+            break;
+
+          case 'xor':
+            result = BlendMode.xor;
+            break;
+        }
       }
     }
 
@@ -467,93 +487,97 @@ class ThemeDecoder {
   }) {
     BorderRadius result;
 
-    var radius = JsonClass.parseDouble(value);
-    if (radius != null) {
-      result = BorderRadius.circular(radius);
+    if (value is BorderRadius) {
+      result = value;
     } else {
-      assert(value == null || value['type'] is String);
-      _checkSupported(
-        'BorderRadius',
-        [
-          'all',
-          'circular',
-          'horizontal',
-          'only',
-          'vertical',
-        ],
-        value == null ? null : value['type'],
-      );
+      var radius = JsonClass.parseDouble(value);
+      if (radius != null) {
+        result = BorderRadius.circular(radius);
+      } else {
+        assert(value == null || value['type'] is String);
+        _checkSupported(
+          'BorderRadius',
+          [
+            'all',
+            'circular',
+            'horizontal',
+            'only',
+            'vertical',
+          ],
+          value == null ? null : value['type'],
+        );
 
-      if (value != null) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/border_radius',
-          value: value,
-          validate: validate,
-        ));
-        String type = value['type'];
+        if (value != null) {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/border_radius',
+            value: value,
+            validate: validate,
+          ));
+          String type = value['type'];
 
-        switch (type) {
-          case 'all':
-            result =
-                BorderRadius.all(decodeRadius(value['radius']) ?? Radius.zero);
-            break;
-          case 'circular':
-            result = BorderRadius.circular(
-              JsonClass.parseDouble(value['radius']),
-            );
-            break;
-          case 'horizontal':
-            result = BorderRadius.horizontal(
-              left: decodeRadius(
-                    value['left'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-              right: decodeRadius(
-                    value['right'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-            );
-            break;
-          case 'only':
-            result = BorderRadius.only(
-              bottomLeft: decodeRadius(
-                    value['bottomLeft'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-              bottomRight: decodeRadius(
-                    value['bottomRight'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-              topLeft: decodeRadius(
-                    value['topLeft'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-              topRight: decodeRadius(
-                    value['topRight'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-            );
-            break;
-          case 'vertical':
-            result = BorderRadius.vertical(
-              bottom: decodeRadius(
-                    value['bottom'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-              top: decodeRadius(
-                    value['top'],
-                    validate: false,
-                  ) ??
-                  Radius.zero,
-            );
-            break;
+          switch (type) {
+            case 'all':
+              result = BorderRadius.all(
+                  decodeRadius(value['radius']) ?? Radius.zero);
+              break;
+            case 'circular':
+              result = BorderRadius.circular(
+                JsonClass.parseDouble(value['radius']),
+              );
+              break;
+            case 'horizontal':
+              result = BorderRadius.horizontal(
+                left: decodeRadius(
+                      value['left'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+                right: decodeRadius(
+                      value['right'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+              );
+              break;
+            case 'only':
+              result = BorderRadius.only(
+                bottomLeft: decodeRadius(
+                      value['bottomLeft'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+                bottomRight: decodeRadius(
+                      value['bottomRight'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+                topLeft: decodeRadius(
+                      value['topLeft'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+                topRight: decodeRadius(
+                      value['topRight'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+              );
+              break;
+            case 'vertical':
+              result = BorderRadius.vertical(
+                bottom: decodeRadius(
+                      value['bottom'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+                top: decodeRadius(
+                      value['top'],
+                      validate: false,
+                    ) ??
+                    Radius.zero,
+              );
+              break;
+          }
         }
       }
     }
@@ -581,7 +605,9 @@ class ThemeDecoder {
   }) {
     BorderSide result;
 
-    if (value != null) {
+    if (value is BorderSide) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/border_side',
         value: value,
@@ -609,33 +635,38 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `solid`
   static BorderStyle decodeBorderStyle(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'BorderStyle',
-      [
-        'none',
-        'solid',
-      ],
-      value,
-    );
     BorderStyle result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/border_style',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'none':
-          result = BorderStyle.none;
-          break;
+    if (value is BorderStyle) {
+      result = value;
+    } else {
+      _checkSupported(
+        'BorderStyle',
+        [
+          'none',
+          'solid',
+        ],
+        value,
+      );
 
-        case 'solid':
-          result = BorderStyle.solid;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/border_style',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'none':
+            result = BorderStyle.none;
+            break;
+
+          case 'solid':
+            result = BorderStyle.solid;
+            break;
+        }
       }
     }
 
@@ -662,7 +693,9 @@ class ThemeDecoder {
   }) {
     BottomAppBarTheme result;
 
-    if (value != null) {
+    if (value is BottomAppBarTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/bottom_app_bar_theme',
         value: value,
@@ -714,7 +747,9 @@ class ThemeDecoder {
   }) {
     BottomNavigationBarThemeData result;
 
-    if (value != null) {
+    if (value is BottomNavigationBarThemeData) {
+      result = value;
+    } else if (value != null) {
       result = BottomNavigationBarThemeData(
         backgroundColor: decodeColor(
           value['backgroundColor'],
@@ -765,32 +800,37 @@ class ThemeDecoder {
   ///  * `fixed`
   ///  * `shifting`
   static BottomNavigationBarType decodeBottomNavigationBarType(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'BottomNavigationBarType',
-      [
-        'fixed',
-        'shifting',
-      ],
-      value,
-    );
     BottomNavigationBarType result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/bottom_navigation_bar_type',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'fixed':
-          result = BottomNavigationBarType.fixed;
-          break;
-        case 'shifting':
-          result = BottomNavigationBarType.shifting;
-          break;
+    if (value is BottomNavigationBarType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'BottomNavigationBarType',
+        [
+          'fixed',
+          'shifting',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/bottom_navigation_bar_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'fixed':
+            result = BottomNavigationBarType.fixed;
+            break;
+          case 'shifting':
+            result = BottomNavigationBarType.shifting;
+            break;
+        }
       }
     }
 
@@ -821,7 +861,9 @@ class ThemeDecoder {
   }) {
     BottomSheetThemeData result;
 
-    if (value != null) {
+    if (value is BottomSheetThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/bottom_sheet_theme_data',
         value: value,
@@ -879,7 +921,9 @@ class ThemeDecoder {
   }) {
     BoxBorder result;
 
-    if (value != null) {
+    if (value is BoxBorder) {
+      result = value;
+    } else if (value != null) {
       if (value['color'] != null ||
           value['style'] != null ||
           value['width'] != null) {
@@ -941,7 +985,9 @@ class ThemeDecoder {
   }) {
     BoxConstraints result;
 
-    if (value != null) {
+    if (value is BoxConstraints) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/box_constraints',
         value: value,
@@ -990,7 +1036,9 @@ class ThemeDecoder {
   }) {
     BoxDecoration result;
 
-    if (value != null) {
+    if (value is BoxDecoration) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/box_decoration',
         value: value,
@@ -1042,12 +1090,14 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `scaleDown`
   static BoxFit decodeBoxFit(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     BoxFit result;
 
-    if (value != null) {
+    if (value is BoxFit) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/box_fit',
         value: value,
@@ -1103,7 +1153,9 @@ class ThemeDecoder {
   }) {
     BoxShadow result;
 
-    if (value != null) {
+    if (value is BoxShadow) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/box_shadow',
         value: value,
@@ -1132,12 +1184,14 @@ class ThemeDecoder {
   ///  * `circle`
   ///  * `rectangle`
   static BoxShape decodeBoxShape(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     BoxShape result;
 
-    if (value != null) {
+    if (value is BoxShape) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/box_shape',
         value: value,
@@ -1161,12 +1215,14 @@ class ThemeDecoder {
   ///  * `light`
   ///  * `dark`
   static Brightness decodeBrightness(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     Brightness result;
 
-    if (value != null) {
+    if (value is Brightness) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/brightness',
         value: value,
@@ -1184,32 +1240,37 @@ class ThemeDecoder {
   ///  * `constrained`
   ///  * `padded`
   static ButtonBarLayoutBehavior decodeButtonBarLayoutBehavior(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'ButtonBarLayoutBehavior',
-      [
-        'constrained',
-        'padded',
-      ],
-      value,
-    );
     ButtonBarLayoutBehavior result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/button_bar_layout_behavior',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'constrained':
-          result = ButtonBarLayoutBehavior.constrained;
-          break;
-        case 'padded':
-          result = ButtonBarLayoutBehavior.padded;
-          break;
+    if (value is ButtonBarLayoutBehavior) {
+      result = value;
+    } else {
+      _checkSupported(
+        'ButtonBarLayoutBehavior',
+        [
+          'constrained',
+          'padded',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/button_bar_layout_behavior',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'constrained':
+            result = ButtonBarLayoutBehavior.constrained;
+            break;
+          case 'padded':
+            result = ButtonBarLayoutBehavior.padded;
+            break;
+        }
       }
     }
 
@@ -1246,7 +1307,9 @@ class ThemeDecoder {
   }) {
     ButtonBarThemeData result;
 
-    if (value != null) {
+    if (value is ButtonBarThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/button_bar_theme_data',
         value: value,
@@ -1293,36 +1356,41 @@ class ThemeDecoder {
   ///  * `normal`
   ///  * `primary`
   static ButtonTextTheme decodeButtonTextTheme(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'ButtonTextTheme',
-      [
-        'accent',
-        'normal',
-        'primary',
-      ],
-      value,
-    );
     ButtonTextTheme result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/button_text_theme',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'accent':
-          result = ButtonTextTheme.accent;
-          break;
-        case 'normal':
-          result = ButtonTextTheme.normal;
-          break;
-        case 'primary':
-          result = ButtonTextTheme.primary;
-          break;
+    if (value is ButtonTextTheme) {
+      result = value;
+    } else {
+      _checkSupported(
+        'ButtonTextTheme',
+        [
+          'accent',
+          'normal',
+          'primary',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/button_text_theme',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'accent':
+            result = ButtonTextTheme.accent;
+            break;
+          case 'normal':
+            result = ButtonTextTheme.normal;
+            break;
+          case 'primary':
+            result = ButtonTextTheme.primary;
+            break;
+        }
       }
     }
 
@@ -1366,7 +1434,9 @@ class ThemeDecoder {
   }) {
     ButtonThemeData result;
 
-    if (value != null) {
+    if (value is ButtonThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/button_theme_data',
         value: value,
@@ -1456,7 +1526,9 @@ class ThemeDecoder {
   }) {
     CardTheme result;
 
-    if (value != null) {
+    if (value is CardTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/card_theme',
         value: value,
@@ -1527,7 +1599,9 @@ class ThemeDecoder {
   }) {
     ChipThemeData result;
 
-    if (value != null) {
+    if (value is ChipThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/chip_theme_data',
         value: value,
@@ -1607,40 +1681,45 @@ class ThemeDecoder {
   ///  * `hardEdge`
   ///  * `none`
   static Clip decodeClip(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'Clip',
-      [
-        'antiAlias',
-        'antiAliasWithSaveLayer',
-        'hardEdge',
-        'none',
-      ],
-      value,
-    );
     Clip result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/clip',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'antiAlias':
-          result = Clip.antiAlias;
-          break;
-        case 'antiAliasWithSaveLayer':
-          result = Clip.antiAliasWithSaveLayer;
-          break;
-        case 'hardEdge':
-          result = Clip.hardEdge;
-          break;
-        case 'none':
-          result = Clip.none;
-          break;
+    if (value is Clip) {
+      result = value;
+    } else {
+      _checkSupported(
+        'Clip',
+        [
+          'antiAlias',
+          'antiAliasWithSaveLayer',
+          'hardEdge',
+          'none',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/clip',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'antiAlias':
+            result = Clip.antiAlias;
+            break;
+          case 'antiAliasWithSaveLayer':
+            result = Clip.antiAliasWithSaveLayer;
+            break;
+          case 'hardEdge':
+            result = Clip.hardEdge;
+            break;
+          case 'none':
+            result = Clip.none;
+            break;
+        }
       }
     }
 
@@ -1658,12 +1737,14 @@ class ThemeDecoder {
   ///  * `#rrggbb`
   ///  * `#aarrggbb`
   static Color decodeColor(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     Color result;
 
-    if (value != null) {
+    if (value is Color) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/color',
         value: value,
@@ -1728,7 +1809,9 @@ class ThemeDecoder {
   }) {
     ColorScheme result;
 
-    if (value != null) {
+    if (value is ColorScheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/color_scheme',
         value: value,
@@ -1800,45 +1883,49 @@ class ThemeDecoder {
   ///  * `start`
   ///  * `stretch`
   static CrossAxisAlignment decodeCrossAxisAlignment(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'CrossAxisAlignment',
-      [
-        'baseline',
-        'center',
-        'end',
-        'start',
-        'stretch',
-      ],
-      value,
-    );
-
     CrossAxisAlignment result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/cross_axis_alignment',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'baseline':
-          result = CrossAxisAlignment.baseline;
-          break;
-        case 'center':
-          result = CrossAxisAlignment.center;
-          break;
-        case 'end':
-          result = CrossAxisAlignment.end;
-          break;
-        case 'start':
-          result = CrossAxisAlignment.start;
-          break;
-        case 'stretch':
-          result = CrossAxisAlignment.stretch;
-          break;
+    if (value is CrossAxisAlignment) {
+      result = value;
+    } else {
+      _checkSupported(
+        'CrossAxisAlignment',
+        [
+          'baseline',
+          'center',
+          'end',
+          'start',
+          'stretch',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/cross_axis_alignment',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'baseline':
+            result = CrossAxisAlignment.baseline;
+            break;
+          case 'center':
+            result = CrossAxisAlignment.center;
+            break;
+          case 'end':
+            result = CrossAxisAlignment.end;
+            break;
+          case 'start':
+            result = CrossAxisAlignment.start;
+            break;
+          case 'stretch':
+            result = CrossAxisAlignment.stretch;
+            break;
+        }
       }
     }
 
@@ -1871,7 +1958,9 @@ class ThemeDecoder {
   }) {
     CupertinoTextThemeData result;
 
-    if (value != null) {
+    if (value is CupertinoTextThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/cupertino_text_theme_data',
         value: value,
@@ -1944,7 +2033,9 @@ class ThemeDecoder {
   }) {
     CupertinoThemeData result;
 
-    if (value != null) {
+    if (value is CupertinoThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/cupertino_theme_data',
         value: value,
@@ -2008,7 +2099,9 @@ class ThemeDecoder {
   }) {
     DecorationImage result;
 
-    if (value != null) {
+    if (value is DecorationImage) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/decoration_image',
         value: value,
@@ -2032,32 +2125,37 @@ class ThemeDecoder {
   ///  * `background`
   ///  * `foreground`
   static DecorationPosition decodeDecorationPosition(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'DecorationPosition',
-      [
-        'background',
-        'foreground',
-      ],
-      value,
-    );
     DecorationPosition result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/decoration_position',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'background':
-          result = DecorationPosition.background;
-          break;
-        case 'foreground':
-          result = DecorationPosition.foreground;
-          break;
+    if (value is DecorationPosition) {
+      result = value;
+    } else {
+      _checkSupported(
+        'DecorationPosition',
+        [
+          'background',
+          'foreground',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/decoration_position',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'background':
+            result = DecorationPosition.background;
+            break;
+          case 'foreground':
+            result = DecorationPosition.foreground;
+            break;
+        }
       }
     }
 
@@ -2087,7 +2185,9 @@ class ThemeDecoder {
   }) {
     DialogTheme result;
 
-    if (value != null) {
+    if (value is DialogTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/dialog_theme',
         value: value,
@@ -2138,7 +2238,9 @@ class ThemeDecoder {
   }) {
     DividerThemeData result;
 
-    if (value != null) {
+    if (value is DividerThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/divider_theme_data',
         value: value,
@@ -2163,32 +2265,37 @@ class ThemeDecoder {
   ///  * `horizontal`
   ///  * `start`
   static DragStartBehavior decodeDragStartBehavior(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'DragStartBehavior',
-      [
-        'down',
-        'start',
-      ],
-      value,
-    );
     DragStartBehavior result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/drag_start_behavior',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'down':
-          result = DragStartBehavior.down;
-          break;
-        case 'start':
-          result = DragStartBehavior.start;
-          break;
+    if (value is DragStartBehavior) {
+      result = value;
+    } else {
+      _checkSupported(
+        'DragStartBehavior',
+        [
+          'down',
+          'start',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/drag_start_behavior',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'down':
+            result = DragStartBehavior.down;
+            break;
+          case 'start':
+            result = DragStartBehavior.start;
+            break;
+        }
       }
     }
 
@@ -2222,7 +2329,9 @@ class ThemeDecoder {
   }) {
     EdgeInsetsGeometry result;
 
-    if (value != null) {
+    if (value is EdgeInsetsGeometry) {
+      result = value;
+    } else if (value != null) {
       if (value is String || value is double || value is int) {
         result = EdgeInsets.all(JsonClass.parseDouble(value));
       } else if (value is List) {
@@ -2264,42 +2373,47 @@ class ThemeDecoder {
   ///  * `medium`
   ///  * `none`
   static FilterQuality decodeFilterQuality(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-        'FilterQuality',
-        [
-          'high',
-          'low',
-          'medium',
-          'none',
-        ],
-        value);
     FilterQuality result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/filter_quality',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'high':
-          result = FilterQuality.high;
-          break;
+    if (value is FilterQuality) {
+      result = value;
+    } else {
+      _checkSupported(
+          'FilterQuality',
+          [
+            'high',
+            'low',
+            'medium',
+            'none',
+          ],
+          value);
 
-        case 'low':
-          result = FilterQuality.low;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/filter_quality',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'high':
+            result = FilterQuality.high;
+            break;
 
-        case 'medium':
-          result = FilterQuality.medium;
-          break;
+          case 'low':
+            result = FilterQuality.low;
+            break;
 
-        case 'none':
-          result = FilterQuality.none;
-          break;
+          case 'medium':
+            result = FilterQuality.medium;
+            break;
+
+          case 'none':
+            result = FilterQuality.none;
+            break;
+        }
       }
     }
 
@@ -2313,33 +2427,37 @@ class ThemeDecoder {
   ///  * `start`
   ///  * `stretch`
   static FlexFit decodeFlexFit(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FlexFit',
-      [
-        'loose',
-        'tight',
-      ],
-      value,
-    );
-
     FlexFit result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/flex_fit',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'loose':
-          result = FlexFit.loose;
-          break;
-        case 'tight':
-          result = FlexFit.tight;
-          break;
+    if (value is FlexFit) {
+      result = value;
+    } else {
+      _checkSupported(
+        'FlexFit',
+        [
+          'loose',
+          'tight',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/flex_fit',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'loose':
+            result = FlexFit.loose;
+            break;
+          case 'tight':
+            result = FlexFit.tight;
+            break;
+        }
       }
     }
 
@@ -2353,25 +2471,30 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FloatingActionButtonAnimator',
-      [
-        'scaling',
-      ],
-      value,
-    );
     FloatingActionButtonAnimator result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/floating_action_button_animator',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'scaling':
-          result = FloatingActionButtonAnimator.scaling;
-          break;
+    if (value is FloatingActionButtonAnimator) {
+      result = value;
+    } else {
+      _checkSupported(
+        'FloatingActionButtonAnimator',
+        [
+          'scaling',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/floating_action_button_animator',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'scaling':
+            result = FloatingActionButtonAnimator.scaling;
+            break;
+        }
       }
     }
 
@@ -2399,113 +2522,118 @@ class ThemeDecoder {
   ///  * `startFloat`
   ///  * `startTop`
   static FloatingActionButtonLocation decodeFloatingActionButtonLocation(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FloatingActionButtonLocation',
-      [
-        'centerDocked',
-        'centerFloat',
-        'centerTop',
-        'endDocked',
-        'endFloat',
-        'endTop',
-        'miniCenterDocked',
-        'miniCenterFloat',
-        'miniCenterTop',
-        'miniEndDocked',
-        'miniEndFloat',
-        'miniEndTop',
-        'miniStartDocked',
-        'miniStartFloat',
-        'miniStartTop',
-        'startDocked',
-        'startFloat',
-        'startTop',
-      ],
-      value,
-    );
     FloatingActionButtonLocation result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/floating_action_button_location',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'centerDocked':
-          result = FloatingActionButtonLocation.centerDocked;
-          break;
+    if (value is FloatingActionButtonLocation) {
+      result = value;
+    } else {
+      _checkSupported(
+        'FloatingActionButtonLocation',
+        [
+          'centerDocked',
+          'centerFloat',
+          'centerTop',
+          'endDocked',
+          'endFloat',
+          'endTop',
+          'miniCenterDocked',
+          'miniCenterFloat',
+          'miniCenterTop',
+          'miniEndDocked',
+          'miniEndFloat',
+          'miniEndTop',
+          'miniStartDocked',
+          'miniStartFloat',
+          'miniStartTop',
+          'startDocked',
+          'startFloat',
+          'startTop',
+        ],
+        value,
+      );
 
-        case 'centerFloat':
-          result = FloatingActionButtonLocation.centerFloat;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/floating_action_button_location',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'centerDocked':
+            result = FloatingActionButtonLocation.centerDocked;
+            break;
 
-        case 'centerTop':
-          result = FloatingActionButtonLocation.centerTop;
-          break;
+          case 'centerFloat':
+            result = FloatingActionButtonLocation.centerFloat;
+            break;
 
-        case 'endDocked':
-          result = FloatingActionButtonLocation.endDocked;
-          break;
+          case 'centerTop':
+            result = FloatingActionButtonLocation.centerTop;
+            break;
 
-        case 'endFloat':
-          result = FloatingActionButtonLocation.endFloat;
-          break;
+          case 'endDocked':
+            result = FloatingActionButtonLocation.endDocked;
+            break;
 
-        case 'endTop':
-          result = FloatingActionButtonLocation.endTop;
-          break;
+          case 'endFloat':
+            result = FloatingActionButtonLocation.endFloat;
+            break;
 
-        case 'miniCenterDocked':
-          result = FloatingActionButtonLocation.miniCenterDocked;
-          break;
+          case 'endTop':
+            result = FloatingActionButtonLocation.endTop;
+            break;
 
-        case 'miniCenterFloat':
-          result = FloatingActionButtonLocation.miniCenterFloat;
-          break;
+          case 'miniCenterDocked':
+            result = FloatingActionButtonLocation.miniCenterDocked;
+            break;
 
-        case 'miniCenterTop':
-          result = FloatingActionButtonLocation.miniCenterTop;
-          break;
+          case 'miniCenterFloat':
+            result = FloatingActionButtonLocation.miniCenterFloat;
+            break;
 
-        case 'miniEndDocked':
-          result = FloatingActionButtonLocation.miniEndDocked;
-          break;
+          case 'miniCenterTop':
+            result = FloatingActionButtonLocation.miniCenterTop;
+            break;
 
-        case 'miniEndFloat':
-          result = FloatingActionButtonLocation.miniEndFloat;
-          break;
+          case 'miniEndDocked':
+            result = FloatingActionButtonLocation.miniEndDocked;
+            break;
 
-        case 'miniEndTop':
-          result = FloatingActionButtonLocation.miniEndTop;
-          break;
+          case 'miniEndFloat':
+            result = FloatingActionButtonLocation.miniEndFloat;
+            break;
 
-        case 'miniStartDocked':
-          result = FloatingActionButtonLocation.miniStartDocked;
-          break;
+          case 'miniEndTop':
+            result = FloatingActionButtonLocation.miniEndTop;
+            break;
 
-        case 'miniStartFloat':
-          result = FloatingActionButtonLocation.miniStartFloat;
-          break;
+          case 'miniStartDocked':
+            result = FloatingActionButtonLocation.miniStartDocked;
+            break;
 
-        case 'miniStartTop':
-          result = FloatingActionButtonLocation.miniStartTop;
-          break;
+          case 'miniStartFloat':
+            result = FloatingActionButtonLocation.miniStartFloat;
+            break;
 
-        case 'startDocked':
-          result = FloatingActionButtonLocation.startDocked;
-          break;
+          case 'miniStartTop':
+            result = FloatingActionButtonLocation.miniStartTop;
+            break;
 
-        case 'startFloat':
-          result = FloatingActionButtonLocation.startFloat;
-          break;
+          case 'startDocked':
+            result = FloatingActionButtonLocation.startDocked;
+            break;
 
-        case 'startTop':
-          result = FloatingActionButtonLocation.startTop;
-          break;
+          case 'startFloat':
+            result = FloatingActionButtonLocation.startFloat;
+            break;
+
+          case 'startTop':
+            result = FloatingActionButtonLocation.startTop;
+            break;
+        }
       }
     }
 
@@ -2540,7 +2668,9 @@ class ThemeDecoder {
   }) {
     FloatingActionButtonThemeData result;
 
-    if (value != null) {
+    if (value is FloatingActionButtonThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/floating_action_button_theme_data',
         value: value,
@@ -2587,38 +2717,43 @@ class ThemeDecoder {
   ///  * `auto`
   ///  * `never`
   static FloatingLabelBehavior decodeFloatingLabelBehavior(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FloatingLabelBehavior',
-      [
-        'always',
-        'auto',
-        'never',
-      ],
-      value,
-    );
     FloatingLabelBehavior result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/floating_label_behavior',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'always':
-          result = FloatingLabelBehavior.always;
-          break;
+    if (value is FloatingLabelBehavior) {
+      result = value;
+    } else {
+      _checkSupported(
+        'FloatingLabelBehavior',
+        [
+          'always',
+          'auto',
+          'never',
+        ],
+        value,
+      );
 
-        case 'auto':
-          result = FloatingLabelBehavior.auto;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/floating_label_behavior',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'always':
+            result = FloatingLabelBehavior.always;
+            break;
 
-        case 'never':
-          result = FloatingLabelBehavior.never;
-          break;
+          case 'auto':
+            result = FloatingLabelBehavior.auto;
+            break;
+
+          case 'never':
+            result = FloatingLabelBehavior.never;
+            break;
+        }
       }
     }
 
@@ -2640,7 +2775,9 @@ class ThemeDecoder {
   }) {
     FontFeature result;
 
-    if (value != null) {
+    if (value is FontFeature) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/font_feature',
         value: value,
@@ -2659,33 +2796,38 @@ class ThemeDecoder {
   ///  * `italic`
   ///  * `normal`
   static FontStyle decodeFontStyle(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FontStyle',
-      [
-        'italic',
-        'normal',
-      ],
-      value,
-    );
     FontStyle result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/font_style',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'italic':
-          result = FontStyle.italic;
-          break;
+    if (value is FontStyle) {
+      result = value;
+    } else {
+      _checkSupported(
+        'FontStyle',
+        [
+          'italic',
+          'normal',
+        ],
+        value,
+      );
 
-        case 'normal':
-          result = FontStyle.normal;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/font_style',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'italic':
+            result = FontStyle.italic;
+            break;
+
+          case 'normal':
+            result = FontStyle.normal;
+            break;
+        }
       }
     }
 
@@ -2705,78 +2847,83 @@ class ThemeDecoder {
   ///  * `w800`
   ///  * `w900`
   static FontWeight decodeFontWeight(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'FontWeight',
-      [
-        'bold',
-        'normal',
-        'w100',
-        'w200',
-        'w300',
-        'w400',
-        'w500',
-        'w600',
-        'w700',
-        'w800',
-        'w900',
-      ],
-      value,
-    );
     FontWeight result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/font_weight',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'bold':
-          result = FontWeight.bold;
-          break;
+    if (value is FontWeight) {
+      result = value;
+    } else {
+      _checkSupported(
+        'FontWeight',
+        [
+          'bold',
+          'normal',
+          'w100',
+          'w200',
+          'w300',
+          'w400',
+          'w500',
+          'w600',
+          'w700',
+          'w800',
+          'w900',
+        ],
+        value,
+      );
 
-        case 'normal':
-          result = FontWeight.normal;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/font_weight',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'bold':
+            result = FontWeight.bold;
+            break;
 
-        case 'w100':
-          result = FontWeight.w100;
-          break;
+          case 'normal':
+            result = FontWeight.normal;
+            break;
 
-        case 'w200':
-          result = FontWeight.w200;
-          break;
+          case 'w100':
+            result = FontWeight.w100;
+            break;
 
-        case 'w300':
-          result = FontWeight.w300;
-          break;
+          case 'w200':
+            result = FontWeight.w200;
+            break;
 
-        case 'w400':
-          result = FontWeight.w400;
-          break;
+          case 'w300':
+            result = FontWeight.w300;
+            break;
 
-        case 'w500':
-          result = FontWeight.w500;
-          break;
+          case 'w400':
+            result = FontWeight.w400;
+            break;
 
-        case 'w600':
-          result = FontWeight.w600;
-          break;
+          case 'w500':
+            result = FontWeight.w500;
+            break;
 
-        case 'w700':
-          result = FontWeight.w700;
-          break;
+          case 'w600':
+            result = FontWeight.w600;
+            break;
 
-        case 'w800':
-          result = FontWeight.w800;
-          break;
+          case 'w700':
+            result = FontWeight.w700;
+            break;
 
-        case 'w900':
-          result = FontWeight.w900;
-          break;
+          case 'w800':
+            result = FontWeight.w800;
+            break;
+
+          case 'w900':
+            result = FontWeight.w900;
+            break;
+        }
       }
     }
 
@@ -2845,124 +2992,128 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'Gradient',
-      [
-        'linear',
-        'radial',
-        'sweep',
-      ],
-      value == null ? null : value['type'],
-    );
     Gradient result;
+    if (value is Gradient) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'Gradient',
+        [
+          'linear',
+          'radial',
+          'sweep',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/gradient',
-        value: value,
-        validate: validate,
-      ));
-      var type = value['type'];
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/gradient',
+          value: value,
+          validate: validate,
+        ));
+        var type = value['type'];
 
-      switch (type) {
-        case 'linear':
-          result = LinearGradient(
-            begin: decodeAlignment(
-                  value['begin'],
-                  validate: false,
-                ) ??
-                Alignment.centerLeft,
-            colors: _decodeStringList<Color>(
-              value['colors'],
-              decodeColor,
-            ),
-            end: decodeAlignment(
-                  value['end'],
-                  validate: false,
-                ) ??
-                Alignment.centerRight,
-            stops: _decodeDynamicList<double>(
-              value['stops'],
-              (value) => JsonClass.parseDouble(value),
-            ),
-            tileMode: decodeTileMode(
-                  value['tileMode'],
-                  validate: false,
-                ) ??
-                TileMode.clamp,
-            transform: decodeGradientTransform(
-              value['transform'],
-              validate: false,
-            ),
-          );
-          break;
-        case 'radial':
-          result = RadialGradient(
-            center: decodeAlignment(
-                  value['center'],
-                  validate: false,
-                ) ??
-                Alignment.center,
-            colors: _decodeStringList<Color>(
-              value['colors'],
-              decodeColor,
-            ),
-            focal: decodeAlignment(
-              value['focal'],
-              validate: false,
-            ),
-            focalRadius: JsonClass.parseDouble(value['focalRadius'], 0.0),
-            radius: JsonClass.parseDouble(value['radius'], 0.5),
-            stops: _decodeDynamicList<double>(
-              value['stops'],
-              (value) => JsonClass.parseDouble(value),
-            ),
-            tileMode: decodeTileMode(
-                  value['tileMode'],
-                  validate: false,
-                ) ??
-                TileMode.clamp,
-            transform: decodeGradientTransform(
-              value['transform'],
-              validate: false,
-            ),
-          );
-          break;
-        case 'sweep':
-          result = SweepGradient(
-            center: decodeAlignment(
-                  value['center'],
-                  validate: false,
-                ) ??
-                Alignment.center,
-            colors: _decodeStringList<Color>(
-              value['colors'],
-              decodeColor,
-            ),
-            endAngle: JsonClass.parseDouble(
-              value['endAngle'],
-              math.pi * 2,
-            ),
-            startAngle: JsonClass.parseDouble(
-              value['startAngle'],
-              0.0,
-            ),
-            stops: _decodeDynamicList<double>(
-              value['stops'],
-              (value) => JsonClass.parseDouble(value),
-            ),
-            tileMode: decodeTileMode(
-                  value['tileMode'],
-                  validate: false,
-                ) ??
-                TileMode.clamp,
-            transform: decodeGradientTransform(
-              value['transform'],
-              validate: false,
-            ),
-          );
-          break;
+        switch (type) {
+          case 'linear':
+            result = LinearGradient(
+              begin: decodeAlignment(
+                    value['begin'],
+                    validate: false,
+                  ) ??
+                  Alignment.centerLeft,
+              colors: _decodeStringList<Color>(
+                value['colors'],
+                decodeColor,
+              ),
+              end: decodeAlignment(
+                    value['end'],
+                    validate: false,
+                  ) ??
+                  Alignment.centerRight,
+              stops: _decodeDynamicList<double>(
+                value['stops'],
+                (value) => JsonClass.parseDouble(value),
+              ),
+              tileMode: decodeTileMode(
+                    value['tileMode'],
+                    validate: false,
+                  ) ??
+                  TileMode.clamp,
+              transform: decodeGradientTransform(
+                value['transform'],
+                validate: false,
+              ),
+            );
+            break;
+          case 'radial':
+            result = RadialGradient(
+              center: decodeAlignment(
+                    value['center'],
+                    validate: false,
+                  ) ??
+                  Alignment.center,
+              colors: _decodeStringList<Color>(
+                value['colors'],
+                decodeColor,
+              ),
+              focal: decodeAlignment(
+                value['focal'],
+                validate: false,
+              ),
+              focalRadius: JsonClass.parseDouble(value['focalRadius'], 0.0),
+              radius: JsonClass.parseDouble(value['radius'], 0.5),
+              stops: _decodeDynamicList<double>(
+                value['stops'],
+                (value) => JsonClass.parseDouble(value),
+              ),
+              tileMode: decodeTileMode(
+                    value['tileMode'],
+                    validate: false,
+                  ) ??
+                  TileMode.clamp,
+              transform: decodeGradientTransform(
+                value['transform'],
+                validate: false,
+              ),
+            );
+            break;
+          case 'sweep':
+            result = SweepGradient(
+              center: decodeAlignment(
+                    value['center'],
+                    validate: false,
+                  ) ??
+                  Alignment.center,
+              colors: _decodeStringList<Color>(
+                value['colors'],
+                decodeColor,
+              ),
+              endAngle: JsonClass.parseDouble(
+                value['endAngle'],
+                math.pi * 2,
+              ),
+              startAngle: JsonClass.parseDouble(
+                value['startAngle'],
+                0.0,
+              ),
+              stops: _decodeDynamicList<double>(
+                value['stops'],
+                (value) => JsonClass.parseDouble(value),
+              ),
+              tileMode: decodeTileMode(
+                    value['tileMode'],
+                    validate: false,
+                  ) ??
+                  TileMode.clamp,
+              transform: decodeGradientTransform(
+                value['transform'],
+                validate: false,
+              ),
+            );
+            break;
+        }
       }
     }
 
@@ -2986,7 +3137,9 @@ class ThemeDecoder {
   }) {
     GradientTransform result;
 
-    if (value != null) {
+    if (value is GradientTransform) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/gradient_transform',
         value: value,
@@ -3005,38 +3158,42 @@ class ThemeDecoder {
   /// * `opaque`
   /// * `translucent`
   static HitTestBehavior decodeHitTestBehavior(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'HitTestBehavior',
-      [
-        'deferToChild',
-        'opaque',
-        'translucent',
-      ],
-      value,
-    );
     HitTestBehavior result;
+    if (value is HitTestBehavior) {
+      result = value;
+    } else {
+      _checkSupported(
+        'HitTestBehavior',
+        [
+          'deferToChild',
+          'opaque',
+          'translucent',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/hit_test_behavior',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'deferToChild':
-          result = HitTestBehavior.deferToChild;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/hit_test_behavior',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'deferToChild':
+            result = HitTestBehavior.deferToChild;
+            break;
 
-        case 'opaque':
-          result = HitTestBehavior.opaque;
-          break;
+          case 'opaque':
+            result = HitTestBehavior.opaque;
+            break;
 
-        case 'translucent':
-          result = HitTestBehavior.translucent;
-          break;
+          case 'translucent':
+            result = HitTestBehavior.translucent;
+            break;
+        }
       }
     }
 
@@ -3060,7 +3217,9 @@ class ThemeDecoder {
   }) {
     IconData result;
 
-    if (value != null) {
+    if (value is IconData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/icon_data',
         value: value,
@@ -3096,7 +3255,9 @@ class ThemeDecoder {
   }) {
     IconThemeData result;
 
-    if (value != null) {
+    if (value is IconThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/icon_theme_data',
         value: value,
@@ -3154,44 +3315,48 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'ImageProvider.type',
-      [
-        'asset',
-        'network',
-        'memory',
-      ],
-      value == null ? null : value['type'],
-    );
     ImageProvider result;
+    if (value is ImageProvider) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'ImageProvider.type',
+        [
+          'asset',
+          'network',
+          'memory',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/image_provider',
-        value: value,
-        validate: validate,
-      ));
-      switch (value['type']) {
-        case 'asset':
-          result = AssetImage(
-            value['assetName'],
-            package: value['package'],
-          );
-          break;
-        case 'memory':
-          result = MemoryImage(
-            base64Decode(value['bytes']),
-            scale: JsonClass.parseDouble(value['scale'], 1.0),
-          );
-          break;
-        case 'network':
-          result = NetworkImage(
-            value['url'],
-            headers: value['headers'],
-            scale: JsonClass.parseDouble(value['scale'], 1.0),
-          );
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/image_provider',
+          value: value,
+          validate: validate,
+        ));
+        switch (value['type']) {
+          case 'asset':
+            result = AssetImage(
+              value['assetName'],
+              package: value['package'],
+            );
+            break;
+          case 'memory':
+            result = MemoryImage(
+              base64Decode(value['bytes']),
+              scale: JsonClass.parseDouble(value['scale'], 1.0),
+            );
+            break;
+          case 'network':
+            result = NetworkImage(
+              value['url'],
+              headers: value['headers'],
+              scale: JsonClass.parseDouble(value['scale'], 1.0),
+            );
+            break;
+        }
       }
     }
 
@@ -3204,40 +3369,44 @@ class ThemeDecoder {
   /// * `repeatX`
   /// * `repeatY`
   static ImageRepeat decodeImageRepeat(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'ImageRepeat',
-      [
-        'noRepeat',
-        'repeat',
-        'repeatX',
-        'repeatY',
-      ],
-      value,
-    );
     ImageRepeat result;
+    if (value is ImageRepeat) {
+      result = value;
+    } else {
+      _checkSupported(
+        'ImageRepeat',
+        [
+          'noRepeat',
+          'repeat',
+          'repeatX',
+          'repeatY',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/image_repeat',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'noRepeat':
-          result = ImageRepeat.noRepeat;
-          break;
-        case 'repeat':
-          result = ImageRepeat.repeat;
-          break;
-        case 'repeatX':
-          result = ImageRepeat.repeatX;
-          break;
-        case 'repeatY':
-          result = ImageRepeat.repeatY;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/image_repeat',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'noRepeat':
+            result = ImageRepeat.noRepeat;
+            break;
+          case 'repeat':
+            result = ImageRepeat.repeat;
+            break;
+          case 'repeatX':
+            result = ImageRepeat.repeatX;
+            break;
+          case 'repeatY':
+            result = ImageRepeat.repeatY;
+            break;
+        }
       }
     }
 
@@ -3275,58 +3444,62 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'InputBorder.type',
-      [
-        'outline',
-        'underline',
-      ],
-      value == null ? null : value['type'],
-    );
     InputBorder result;
+    if (value is InputBorder) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'InputBorder.type',
+        [
+          'outline',
+          'underline',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/input_border',
-        value: value,
-        validate: validate,
-      ));
-      String type = value['type'];
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/input_border',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
 
-      switch (type) {
-        case 'outline':
-          result = OutlineInputBorder(
-            borderRadius: decodeBorderRadius(
-                  value['borderRadius'],
-                  validate: false,
-                ) ??
-                BorderRadius.all(Radius.circular(4.0)),
-            borderSide: decodeBorderSide(
-                  value['borderSide'],
-                  validate: false,
-                ) ??
-                BorderSide(),
-            gapPadding: JsonClass.parseDouble(value['gapPadding'], 4.0),
-          );
-          break;
-
-        case 'underline':
-          result = UnderlineInputBorder(
-                  borderRadius: decodeBorderRadius(
-                        value['borderRadius'],
-                        validate: false,
-                      ) ??
-                      BorderRadius.only(
-                        topLeft: Radius.circular(4.0),
-                        topRight: Radius.circular(4.0),
-                      ),
-                  borderSide: decodeBorderSide(
+        switch (type) {
+          case 'outline':
+            result = OutlineInputBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.all(Radius.circular(4.0)),
+              borderSide: decodeBorderSide(
                     value['borderSide'],
                     validate: false,
-                  )) ??
-              BorderSide();
-          break;
+                  ) ??
+                  BorderSide(),
+              gapPadding: JsonClass.parseDouble(value['gapPadding'], 4.0),
+            );
+            break;
+
+          case 'underline':
+            result = UnderlineInputBorder(
+                    borderRadius: decodeBorderRadius(
+                          value['borderRadius'],
+                          validate: false,
+                        ) ??
+                        BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
+                        ),
+                    borderSide: decodeBorderSide(
+                      value['borderSide'],
+                      validate: false,
+                    )) ??
+                BorderSide();
+            break;
+        }
       }
     }
 
@@ -3377,7 +3550,9 @@ class ThemeDecoder {
   }) {
     InputDecorationTheme result;
 
-    if (value != null) {
+    if (value is InputDecorationTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/input_decoration_theme',
         value: value,
@@ -3474,33 +3649,37 @@ class ThemeDecoder {
   ///  * `splash`
   ///  * `ripple`
   static InteractiveInkFeatureFactory decodeInteractiveInkFeatureFactory(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'InteractiveInkFeatureFactory',
-      [
-        'splash',
-        'ripple',
-      ],
-      value,
-    );
     InteractiveInkFeatureFactory result;
+    if (value is InteractiveInkFeatureFactory) {
+      result = value;
+    } else {
+      _checkSupported(
+        'InteractiveInkFeatureFactory',
+        [
+          'splash',
+          'ripple',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/interactive_ink_feature_factory',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'splash':
-          result = InkSplash.splashFactory;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/interactive_ink_feature_factory',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'splash':
+            result = InkSplash.splashFactory;
+            break;
 
-        case 'ripple':
-          result = InkRipple.splashFactory;
-          break;
+          case 'ripple':
+            result = InkRipple.splashFactory;
+            break;
+        }
       }
     }
 
@@ -3522,7 +3701,9 @@ class ThemeDecoder {
   }) {
     Locale result;
 
-    if (value != null) {
+    if (value is Locale) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/locale',
         value: value,
@@ -3545,49 +3726,52 @@ class ThemeDecoder {
   ///  * `spaceEvenly`
   ///  * `start`
   static MainAxisAlignment decodeMainAxisAlignment(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'MainAxisAlignment',
-      [
-        'center',
-        'end',
-        'spaceAround',
-        'spaceBetween',
-        'spaceEvenly',
-        'start',
-      ],
-      value,
-    );
-
     MainAxisAlignment result;
+    if (value is MainAxisAlignment) {
+      result = value;
+    } else {
+      _checkSupported(
+        'MainAxisAlignment',
+        [
+          'center',
+          'end',
+          'spaceAround',
+          'spaceBetween',
+          'spaceEvenly',
+          'start',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/main_axis_alignment',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'center':
-          result = MainAxisAlignment.center;
-          break;
-        case 'end':
-          result = MainAxisAlignment.end;
-          break;
-        case 'spaceAround':
-          result = MainAxisAlignment.spaceAround;
-          break;
-        case 'spaceBetween':
-          result = MainAxisAlignment.spaceBetween;
-          break;
-        case 'spaceEvenly':
-          result = MainAxisAlignment.spaceEvenly;
-          break;
-        case 'start':
-          result = MainAxisAlignment.start;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/main_axis_alignment',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'center':
+            result = MainAxisAlignment.center;
+            break;
+          case 'end':
+            result = MainAxisAlignment.end;
+            break;
+          case 'spaceAround':
+            result = MainAxisAlignment.spaceAround;
+            break;
+          case 'spaceBetween':
+            result = MainAxisAlignment.spaceBetween;
+            break;
+          case 'spaceEvenly':
+            result = MainAxisAlignment.spaceEvenly;
+            break;
+          case 'start':
+            result = MainAxisAlignment.start;
+            break;
+        }
       }
     }
 
@@ -3598,31 +3782,35 @@ class ThemeDecoder {
   ///  * `max`
   ///  * `min`
   static MainAxisSize decodeMainAxisSize(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     MainAxisSize result;
-    _checkSupported(
-      'MainAxisSize',
-      [
-        'max',
-        'min',
-      ],
-      value,
-    );
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/main_axis_size',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'max':
-          result = MainAxisSize.max;
-          break;
-        case 'min':
-          result = MainAxisSize.min;
-          break;
+    if (value is MainAxisSize) {
+      result = value;
+    } else {
+      _checkSupported(
+        'MainAxisSize',
+        [
+          'max',
+          'min',
+        ],
+        value,
+      );
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/main_axis_size',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'max':
+            result = MainAxisSize.max;
+            break;
+          case 'min':
+            result = MainAxisSize.min;
+            break;
+        }
       }
     }
 
@@ -3651,7 +3839,9 @@ class ThemeDecoder {
   }) {
     MaterialBannerThemeData result;
 
-    if (value != null) {
+    if (value is MaterialBannerThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/material_banner_theme_data',
         value: value,
@@ -3698,7 +3888,9 @@ class ThemeDecoder {
   }) {
     MaterialColor result;
 
-    if (value != null) {
+    if (value is MaterialColor) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/material_color',
         value: value,
@@ -3724,35 +3916,38 @@ class ThemeDecoder {
   ///  * `padded`
   ///  * `shrinkWrap`
   static MaterialTapTargetSize decodeMaterialTapTargetSize(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'MaterialTapTargetSize',
-      [
-        'padded',
-        'shrinkWrap',
-      ],
-      value,
-    );
     MaterialTapTargetSize result;
+    if (value is MaterialTapTargetSize) {
+      result = value;
+    } else {
+      _checkSupported(
+        'MaterialTapTargetSize',
+        [
+          'padded',
+          'shrinkWrap',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/material_tap_target_size',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'padded':
-          result = MaterialTapTargetSize.padded;
-          break;
-        case 'shrinkWrap':
-          result = MaterialTapTargetSize.shrinkWrap;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/material_tap_target_size',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'padded':
+            result = MaterialTapTargetSize.padded;
+            break;
+          case 'shrinkWrap':
+            result = MaterialTapTargetSize.shrinkWrap;
+            break;
+        }
       }
     }
-
     return result;
   }
 
@@ -3763,44 +3958,48 @@ class ThemeDecoder {
   ///  * `circle`
   ///  * `transparency`
   static MaterialType decodeMaterialType(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'MaterialType',
-      [
-        'button',
-        'canvas',
-        'card',
-        'circle',
-        'transparency',
-      ],
-      value,
-    );
     MaterialType result;
+    if (value is MaterialType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'MaterialType',
+        [
+          'button',
+          'canvas',
+          'card',
+          'circle',
+          'transparency',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/material_type',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'button':
-          result = MaterialType.button;
-          break;
-        case 'canvas':
-          result = MaterialType.canvas;
-          break;
-        case 'card':
-          result = MaterialType.card;
-          break;
-        case 'circle':
-          result = MaterialType.circle;
-          break;
-        case 'transparency':
-          result = MaterialType.transparency;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/material_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'button':
+            result = MaterialType.button;
+            break;
+          case 'canvas':
+            result = MaterialType.canvas;
+            break;
+          case 'card':
+            result = MaterialType.card;
+            break;
+          case 'circle':
+            result = MaterialType.circle;
+            break;
+          case 'transparency':
+            result = MaterialType.transparency;
+            break;
+        }
       }
     }
 
@@ -3832,36 +4031,40 @@ class ThemeDecoder {
   /// ]
   /// ```
   static Matrix4 decodeMatrix4(
-    Iterable<double> value, {
+    dynamic value, {
     bool validate = true,
   }) {
     Matrix4 result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/matrix4',
-        value: value,
-        validate: validate,
-      ));
-      var list = value.toList();
-      result = Matrix4(
-        JsonClass.parseDouble(list[0]),
-        JsonClass.parseDouble(list[1]),
-        JsonClass.parseDouble(list[2]),
-        JsonClass.parseDouble(list[3]),
-        JsonClass.parseDouble(list[4]),
-        JsonClass.parseDouble(list[5]),
-        JsonClass.parseDouble(list[6]),
-        JsonClass.parseDouble(list[7]),
-        JsonClass.parseDouble(list[8]),
-        JsonClass.parseDouble(list[9]),
-        JsonClass.parseDouble(list[10]),
-        JsonClass.parseDouble(list[11]),
-        JsonClass.parseDouble(list[12]),
-        JsonClass.parseDouble(list[13]),
-        JsonClass.parseDouble(list[14]),
-        JsonClass.parseDouble(list[15]),
-      );
+    if (value is Matrix4) {
+      result = value;
+    } else {
+      if (value is Iterable) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/matrix4',
+          value: value,
+          validate: validate,
+        ));
+        var list = value.toList();
+        result = Matrix4(
+          JsonClass.parseDouble(list[0]),
+          JsonClass.parseDouble(list[1]),
+          JsonClass.parseDouble(list[2]),
+          JsonClass.parseDouble(list[3]),
+          JsonClass.parseDouble(list[4]),
+          JsonClass.parseDouble(list[5]),
+          JsonClass.parseDouble(list[6]),
+          JsonClass.parseDouble(list[7]),
+          JsonClass.parseDouble(list[8]),
+          JsonClass.parseDouble(list[9]),
+          JsonClass.parseDouble(list[10]),
+          JsonClass.parseDouble(list[11]),
+          JsonClass.parseDouble(list[12]),
+          JsonClass.parseDouble(list[13]),
+          JsonClass.parseDouble(list[14]),
+          JsonClass.parseDouble(list[15]),
+        );
+      }
     }
 
     return result;
@@ -3892,111 +4095,114 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'MouseCursor.type',
-      [
-        'defer',
-        'material',
-        'system',
-        'uncontrolled',
-      ],
-      value == null ? null : value['type'],
-    );
     MouseCursor result;
+    if (value is MouseCursor) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'MouseCursor.type',
+        [
+          'defer',
+          'material',
+          'system',
+          'uncontrolled',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/mouse_cursor',
-        value: value,
-        validate: validate,
-      ));
-      switch (value['type']) {
-        case 'defer':
-          result = MouseCursor.defer;
-          break;
-        case 'material':
-          assert(value['cursor'] is String);
-          _checkSupported(
-            'MouseCursor.cursor',
-            [
-              'clickable',
-              'textable',
-            ],
-            value['cursor'],
-          );
-          switch (value['cursor']) {
-            case 'clickable':
-              result = MaterialStateMouseCursor.clickable;
-              break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/mouse_cursor',
+          value: value,
+          validate: validate,
+        ));
+        switch (value['type']) {
+          case 'defer':
+            result = MouseCursor.defer;
+            break;
+          case 'material':
+            assert(value['cursor'] is String);
+            _checkSupported(
+              'MouseCursor.cursor',
+              [
+                'clickable',
+                'textable',
+              ],
+              value['cursor'],
+            );
+            switch (value['cursor']) {
+              case 'clickable':
+                result = MaterialStateMouseCursor.clickable;
+                break;
 
-            case 'textable':
-              result = MaterialStateMouseCursor.textable;
-              break;
-          }
-          break;
-        case 'system':
-          assert(value['cursor'] is String);
-          _checkSupported(
-            'MouseCursor.cursor',
-            [
-              'basic',
-              'click',
-              'forbidden',
-              'grab',
-              'grabbing',
-              'horizontalDoubleArrow',
-              'none',
-              'text',
-              'verticalDoubleArrow',
-            ],
-            value['cursor'],
-          );
+              case 'textable':
+                result = MaterialStateMouseCursor.textable;
+                break;
+            }
+            break;
+          case 'system':
+            assert(value['cursor'] is String);
+            _checkSupported(
+              'MouseCursor.cursor',
+              [
+                'basic',
+                'click',
+                'forbidden',
+                'grab',
+                'grabbing',
+                'horizontalDoubleArrow',
+                'none',
+                'text',
+                'verticalDoubleArrow',
+              ],
+              value['cursor'],
+            );
 
-          switch (value['cursor']) {
-            case 'basic':
-              result = SystemMouseCursors.basic;
-              break;
+            switch (value['cursor']) {
+              case 'basic':
+                result = SystemMouseCursors.basic;
+                break;
 
-            case 'click':
-              result = SystemMouseCursors.click;
-              break;
+              case 'click':
+                result = SystemMouseCursors.click;
+                break;
 
-            case 'forbidden':
-              result = SystemMouseCursors.forbidden;
-              break;
+              case 'forbidden':
+                result = SystemMouseCursors.forbidden;
+                break;
 
-            case 'grab':
-              result = SystemMouseCursors.grab;
-              break;
+              case 'grab':
+                result = SystemMouseCursors.grab;
+                break;
 
-            case 'grabbing':
-              result = SystemMouseCursors.grabbing;
-              break;
+              case 'grabbing':
+                result = SystemMouseCursors.grabbing;
+                break;
 
-            case 'horizontalDoubleArrow':
-              result = SystemMouseCursors.horizontalDoubleArrow;
-              break;
+              case 'horizontalDoubleArrow':
+                result = SystemMouseCursors.horizontalDoubleArrow;
+                break;
 
-            case 'none':
-              result = SystemMouseCursors.none;
-              break;
+              case 'none':
+                result = SystemMouseCursors.none;
+                break;
 
-            case 'text':
-              result = SystemMouseCursors.text;
-              break;
+              case 'text':
+                result = SystemMouseCursors.text;
+                break;
 
-            case 'verticalDoubleArrow':
-              result = SystemMouseCursors.verticalDoubleArrow;
-              break;
-          }
-          break;
-        case 'uncontrolled':
-          result = MouseCursor.uncontrolled;
-          break;
+              case 'verticalDoubleArrow':
+                result = SystemMouseCursors.verticalDoubleArrow;
+                break;
+            }
+            break;
+          case 'uncontrolled':
+            result = MouseCursor.uncontrolled;
+            break;
+        }
       }
     }
-
     return result;
   }
 
@@ -4005,38 +4211,42 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `selected`
   static NavigationRailLabelType decodeNavigationRailLabelType(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'NavigationRailLabelType',
-      [
-        'all',
-        'none',
-        'selected',
-      ],
-      value,
-    );
     NavigationRailLabelType result;
+    if (value is NavigationRailLabelType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'NavigationRailLabelType',
+        [
+          'all',
+          'none',
+          'selected',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/navigation_rail_label_type',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'all':
-          result = NavigationRailLabelType.all;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/navigation_rail_label_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'all':
+            result = NavigationRailLabelType.all;
+            break;
 
-        case 'none':
-          result = NavigationRailLabelType.none;
-          break;
+          case 'none':
+            result = NavigationRailLabelType.none;
+            break;
 
-        case 'selected':
-          result = NavigationRailLabelType.selected;
-          break;
+          case 'selected':
+            result = NavigationRailLabelType.selected;
+            break;
+        }
       }
     }
 
@@ -4070,7 +4280,9 @@ class ThemeDecoder {
   }) {
     NavigationRailThemeData result;
 
-    if (value != null) {
+    if (value is NavigationRailThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/navigation_rail_theme_data',
         value: value,
@@ -4112,31 +4324,34 @@ class ThemeDecoder {
   /// Decodes the [value] to a [NotchedShape].  Supported values are:
   ///  * `circular`
   static NotchedShape decodeNotchedShape(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'NotchedShape',
-      [
-        'circular',
-      ],
-      value,
-    );
     NotchedShape result;
+    if (value is NotchedShape) {
+      result = value;
+    } else {
+      _checkSupported(
+        'NotchedShape',
+        [
+          'circular',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/notched_shape',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'circular':
-          result = CircularNotchedRectangle();
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/notched_shape',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'circular':
+            result = CircularNotchedRectangle();
+            break;
+        }
       }
     }
-
     return result;
   }
 
@@ -4155,7 +4370,9 @@ class ThemeDecoder {
   }) {
     Offset result;
 
-    if (value != null) {
+    if (value is Offset) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/offset',
         value: value,
@@ -4174,32 +4391,36 @@ class ThemeDecoder {
   ///  * `clip`
   ///  * `visible`
   static Overflow decodeOverflow(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'Overflow',
-      [
-        'clip',
-        'visible',
-      ],
-      value,
-    );
     Overflow result;
+    if (value is Overflow) {
+      result = value;
+    } else {
+      _checkSupported(
+        'Overflow',
+        [
+          'clip',
+          'visible',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/overflow',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'clip':
-          result = Overflow.clip;
-          break;
-        case 'visible':
-          result = Overflow.visible;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/overflow',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'clip':
+            result = Overflow.clip;
+            break;
+          case 'visible':
+            result = Overflow.visible;
+            break;
+        }
       }
     }
 
@@ -4228,7 +4449,9 @@ class ThemeDecoder {
   }) {
     PopupMenuThemeData result;
 
-    if (value != null) {
+    if (value is PopupMenuThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/popup_menu_theme_data',
         value: value,
@@ -4295,45 +4518,49 @@ class ThemeDecoder {
     bool validate = true,
   }) {
     Radius result;
-    var radius = JsonClass.parseDouble(value);
-
-    if (radius != null) {
-      result = Radius.circular(radius);
+    if (value is Radius) {
+      result = value;
     } else {
-      assert(value == null || value['type'] is String);
-      _checkSupported(
-        'Radius.type',
-        [
-          'circular',
-          'elliptical',
-          'zero',
-        ],
-        value == null ? null : value['type'],
-      );
+      var radius = JsonClass.parseDouble(value);
 
-      if (value != null) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/radius',
-          value: value,
-          validate: validate,
-        ));
-        String type = value['type'];
+      if (radius != null) {
+        result = Radius.circular(radius);
+      } else {
+        assert(value == null || value['type'] is String);
+        _checkSupported(
+          'Radius.type',
+          [
+            'circular',
+            'elliptical',
+            'zero',
+          ],
+          value == null ? null : value['type'],
+        );
 
-        switch (type) {
-          case 'circular':
-            result = Radius.circular(JsonClass.parseDouble(value['radius']));
-            break;
+        if (value != null) {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/radius',
+            value: value,
+            validate: validate,
+          ));
+          String type = value['type'];
 
-          case 'elliptical':
-            result = Radius.elliptical(
-              JsonClass.parseDouble(value['x'], 0),
-              JsonClass.parseDouble(value['y'], 0),
-            );
-            break;
+          switch (type) {
+            case 'circular':
+              result = Radius.circular(JsonClass.parseDouble(value['radius']));
+              break;
 
-          case 'zero':
-            result = Radius.zero;
-            break;
+            case 'elliptical':
+              result = Radius.elliptical(
+                JsonClass.parseDouble(value['x'], 0),
+                JsonClass.parseDouble(value['y'], 0),
+              );
+              break;
+
+            case 'zero':
+              result = Radius.zero;
+              break;
+          }
         }
       }
     }
@@ -4361,41 +4588,45 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'RangeSliderThumbShape.type',
-      [
-        'round',
-      ],
-      value == null ? null : value['type'],
-    );
     RangeSliderThumbShape result;
+    if (value is RangeSliderThumbShape) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'RangeSliderThumbShape.type',
+        [
+          'round',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/range_slider_thumb_shape',
-        value: value,
-        validate: validate,
-      ));
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/range_slider_thumb_shape',
+          value: value,
+          validate: validate,
+        ));
 
-      String type = value['type'];
-      switch (type) {
-        case 'round':
-          result = RoundRangeSliderThumbShape(
-            disabledThumbRadius: JsonClass.parseDouble(
-              value['disabledThumbRadius'],
-            ),
-            elevation: JsonClass.parseDouble(value['elevation'], 1.0),
-            enabledThumbRadius: JsonClass.parseDouble(
-              value['enabledThumbRadius'],
-              10.0,
-            ),
-            pressedElevation: JsonClass.parseDouble(
-              value['pressedElevation'],
-              6.0,
-            ),
-          );
-          break;
+        String type = value['type'];
+        switch (type) {
+          case 'round':
+            result = RoundRangeSliderThumbShape(
+              disabledThumbRadius: JsonClass.parseDouble(
+                value['disabledThumbRadius'],
+              ),
+              elevation: JsonClass.parseDouble(value['elevation'], 1.0),
+              enabledThumbRadius: JsonClass.parseDouble(
+                value['enabledThumbRadius'],
+                10.0,
+              ),
+              pressedElevation: JsonClass.parseDouble(
+                value['pressedElevation'],
+                6.0,
+              ),
+            );
+            break;
+        }
       }
     }
 
@@ -4419,30 +4650,34 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'RangeSliderTickMarkShape.type',
-      [
-        'round',
-      ],
-      value == null ? null : value['type'],
-    );
     RangeSliderTickMarkShape result;
+    if (value is RangeSliderTickMarkShape) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'RangeSliderTickMarkShape.type',
+        [
+          'round',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/range_slider_tick_mark_shape',
-        value: value,
-        validate: validate,
-      ));
-      String type = value['type'];
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/range_slider_tick_mark_shape',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
 
-      switch (type) {
-        case 'round':
-          result = RoundRangeSliderTickMarkShape(
-            tickMarkRadius: JsonClass.parseDouble(value['tickMarkRadius']),
-          );
-          break;
+        switch (type) {
+          case 'round':
+            result = RoundRangeSliderTickMarkShape(
+              tickMarkRadius: JsonClass.parseDouble(value['tickMarkRadius']),
+            );
+            break;
+        }
       }
     }
 
@@ -4453,36 +4688,39 @@ class ThemeDecoder {
   ///  * `rectangular`
   ///  * `rounded`
   static RangeSliderTrackShape decodeRangeSliderTrackShape(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'RangeSliderTrackShape',
-      [
-        'rectangular',
-        'rounded',
-      ],
-      value,
-    );
     RangeSliderTrackShape result;
+    if (value is RangeSliderTrackShape) {
+      result = value;
+    } else {
+      _checkSupported(
+        'RangeSliderTrackShape',
+        [
+          'rectangular',
+          'rounded',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/range_slider_track_shape',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'rectangular':
-          result = RectangularRangeSliderTrackShape();
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/range_slider_track_shape',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'rectangular':
+            result = RectangularRangeSliderTrackShape();
+            break;
 
-        case 'rounded':
-          result = RoundedRectRangeSliderTrackShape();
-          break;
+          case 'rounded':
+            result = RoundedRectRangeSliderTrackShape();
+            break;
+        }
       }
     }
-
     return result;
   }
 
@@ -4491,33 +4729,37 @@ class ThemeDecoder {
   ///  * `paddle`
   ///  * `rectangular`
   static RangeSliderValueIndicatorShape decodeRangeSliderValueIndicatorShape(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'RangeSliderValueIndicatorShape.type',
-      [
-        'paddle',
-        'rectangular',
-      ],
-      value,
-    );
     RangeSliderValueIndicatorShape result;
+    if (value is RangeSliderValueIndicatorShape) {
+      result = value;
+    } else {
+      _checkSupported(
+        'RangeSliderValueIndicatorShape.type',
+        [
+          'paddle',
+          'rectangular',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/range_slider_value_indicator_shape',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'paddle':
-          result = PaddleRangeSliderValueIndicatorShape();
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/range_slider_value_indicator_shape',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'paddle':
+            result = PaddleRangeSliderValueIndicatorShape();
+            break;
 
-        case 'rectangular':
-          result = RectangularRangeSliderValueIndicatorShape();
-          break;
+          case 'rectangular':
+            result = RectangularRangeSliderValueIndicatorShape();
+            break;
+        }
       }
     }
 
@@ -4618,89 +4860,93 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'Rect.type',
-      [
-        'center',
-        'circle',
-        'largest',
-        'ltrb',
-        'ltwh',
-        'points',
-        'zero',
-      ],
-      value == null ? null : value['type'],
-    );
     Rect result;
+    if (value is Rect) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'Rect.type',
+        [
+          'center',
+          'circle',
+          'largest',
+          'ltrb',
+          'ltwh',
+          'points',
+          'zero',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/rect',
-        value: value,
-        validate: validate,
-      ));
-      String type = value['type'];
-      switch (type) {
-        case 'center':
-          result = Rect.fromCenter(
-            center: decodeOffset(
-              value['center'],
-              validate: false,
-            ),
-            height: JsonClass.parseDouble(value['height']),
-            width: JsonClass.parseDouble(value['width']),
-          );
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/rect',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
+        switch (type) {
+          case 'center':
+            result = Rect.fromCenter(
+              center: decodeOffset(
+                value['center'],
+                validate: false,
+              ),
+              height: JsonClass.parseDouble(value['height']),
+              width: JsonClass.parseDouble(value['width']),
+            );
+            break;
 
-        case 'circle':
-          result = Rect.fromCircle(
-            center: decodeOffset(
-              value['center'],
-              validate: false,
-            ),
-            radius: JsonClass.parseDouble(value['radius']),
-          );
-          break;
+          case 'circle':
+            result = Rect.fromCircle(
+              center: decodeOffset(
+                value['center'],
+                validate: false,
+              ),
+              radius: JsonClass.parseDouble(value['radius']),
+            );
+            break;
 
-        case 'largest':
-          result = Rect.largest;
-          break;
+          case 'largest':
+            result = Rect.largest;
+            break;
 
-        case 'ltrb':
-          result = Rect.fromLTRB(
-            JsonClass.parseDouble(value['left']),
-            JsonClass.parseDouble(value['top']),
-            JsonClass.parseDouble(value['right']),
-            JsonClass.parseDouble(value['bottom']),
-          );
-          break;
+          case 'ltrb':
+            result = Rect.fromLTRB(
+              JsonClass.parseDouble(value['left']),
+              JsonClass.parseDouble(value['top']),
+              JsonClass.parseDouble(value['right']),
+              JsonClass.parseDouble(value['bottom']),
+            );
+            break;
 
-        case 'ltwh':
-          result = Rect.fromLTWH(
-            JsonClass.parseDouble(value['left']),
-            JsonClass.parseDouble(value['top']),
-            JsonClass.parseDouble(value['width']),
-            JsonClass.parseDouble(value['height']),
-          );
-          break;
+          case 'ltwh':
+            result = Rect.fromLTWH(
+              JsonClass.parseDouble(value['left']),
+              JsonClass.parseDouble(value['top']),
+              JsonClass.parseDouble(value['width']),
+              JsonClass.parseDouble(value['height']),
+            );
+            break;
 
-        case 'points':
-          result = Rect.fromPoints(
-            decodeOffset(
-              value['a'],
-              validate: false,
-            ),
-            decodeOffset(
-              value['b'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'points':
+            result = Rect.fromPoints(
+              decodeOffset(
+                value['a'],
+                validate: false,
+              ),
+              decodeOffset(
+                value['b'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'zero':
-          result = Rect.zero;
-          break;
+          case 'zero':
+            result = Rect.zero;
+            break;
+        }
       }
     }
 
@@ -4728,93 +4974,97 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'ScrollPhysics.type',
-      [
-        'always',
-        'bouncing',
-        'clamping',
-        'fixedExtent',
-        'never',
-        'page',
-        'rangeMaintaining',
-      ],
-      value == null ? null : value['type'],
-    );
     ScrollPhysics result;
+    if (value is ScrollPhysics) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'ScrollPhysics.type',
+        [
+          'always',
+          'bouncing',
+          'clamping',
+          'fixedExtent',
+          'never',
+          'page',
+          'rangeMaintaining',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/scroll_physics',
-        value: value,
-        validate: validate,
-      ));
-      var type = value['type'];
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/scroll_physics',
+          value: value,
+          validate: validate,
+        ));
+        var type = value['type'];
 
-      switch (type) {
-        case 'always':
-          result = AlwaysScrollableScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+        switch (type) {
+          case 'always':
+            result = AlwaysScrollableScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'bouncing':
-          result = BouncingScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'bouncing':
+            result = BouncingScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'clamping':
-          result = ClampingScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'clamping':
+            result = ClampingScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'fixedExtent':
-          result = FixedExtentScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'fixedExtent':
+            result = FixedExtentScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'never':
-          result = NeverScrollableScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'never':
+            result = NeverScrollableScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'page':
-          result = PageScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'page':
+            result = PageScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
 
-        case 'rangeMaintaining':
-          result = RangeMaintainingScrollPhysics(
-            parent: decodeScrollPhysics(
-              value['parent'],
-              validate: false,
-            ),
-          );
-          break;
+          case 'rangeMaintaining':
+            result = RangeMaintainingScrollPhysics(
+              parent: decodeScrollPhysics(
+                value['parent'],
+                validate: false,
+              ),
+            );
+            break;
+        }
       }
     }
 
@@ -4827,12 +5077,14 @@ class ThemeDecoder {
   ///  * `onDrag`
   static ScrollViewKeyboardDismissBehavior
       decodeScrollViewKeyboardDismissBehavior(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     ScrollViewKeyboardDismissBehavior result;
 
-    if (value != null) {
+    if (value is ScrollViewKeyboardDismissBehavior) {
+      result = value;
+    } else if (value != null) {
       switch (value) {
         case 'manual':
           result = ScrollViewKeyboardDismissBehavior.manual;
@@ -4867,7 +5119,9 @@ class ThemeDecoder {
   }) {
     Shadow result;
 
-    if (value != null) {
+    if (value is Shadow) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/shadow',
         value: value,
@@ -4931,65 +5185,69 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'ShapeBorder.type',
-      [
-        'circle',
-        'rectangle',
-        'rounded',
-      ],
-      value == null ? null : value['type'],
-    );
     ShapeBorder result;
+    if (value is ShapeBorder) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'ShapeBorder.type',
+        [
+          'circle',
+          'rectangle',
+          'rounded',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/shape_border',
-        value: value,
-        validate: validate,
-      ));
-      String type = value['type'];
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/shape_border',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
 
-      switch (type) {
-        case 'circle':
-          result = CircleBorder(
-            side: decodeBorderSide(
-                  value['side'],
-                  validate: false,
-                ) ??
-                BorderSide.none,
-          );
-          break;
+        switch (type) {
+          case 'circle':
+            result = CircleBorder(
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
 
-        case 'rectangle':
-          result = ContinuousRectangleBorder(
-            borderRadius: decodeBorderRadius(
-                  value['borderRadius'],
-                ) ??
-                BorderRadius.zero,
-            side: decodeBorderSide(
-                  value['side'],
-                  validate: false,
-                ) ??
-                BorderSide.none,
-          );
-          break;
+          case 'rectangle':
+            result = ContinuousRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
 
-        case 'rounded':
-          result = RoundedRectangleBorder(
-            borderRadius: decodeBorderRadius(
-                  value['borderRadius'],
-                  validate: false,
-                ) ??
-                BorderRadius.zero,
-            side: decodeBorderSide(
-                  value['side'],
-                  validate: false,
-                ) ??
-                BorderSide.none,
-          );
-          break;
+          case 'rounded':
+            result = RoundedRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+        }
       }
     }
 
@@ -5002,46 +5260,49 @@ class ThemeDecoder {
   ///  * `onlyForContinuous`
   ///  * `onlyForDiscrete`
   static ShowValueIndicator decodeShowValueIndicator(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'ShowValueIndicator',
-      [
-        'always',
-        'never',
-        'onlyForContinuous',
-        'onlyForDiscrete',
-      ],
-      value,
-    );
     ShowValueIndicator result;
+    if (value is ShowValueIndicator) {
+      result = value;
+    } else {
+      _checkSupported(
+        'ShowValueIndicator',
+        [
+          'always',
+          'never',
+          'onlyForContinuous',
+          'onlyForDiscrete',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/show_value_indicator',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'always':
-          result = ShowValueIndicator.always;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/show_value_indicator',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'always':
+            result = ShowValueIndicator.always;
+            break;
 
-        case 'never':
-          result = ShowValueIndicator.never;
-          break;
+          case 'never':
+            result = ShowValueIndicator.never;
+            break;
 
-        case 'onlyForContinuous':
-          result = ShowValueIndicator.onlyForContinuous;
-          break;
+          case 'onlyForContinuous':
+            result = ShowValueIndicator.onlyForContinuous;
+            break;
 
-        case 'onlyForDiscrete':
-          result = ShowValueIndicator.onlyForDiscrete;
-          break;
+          case 'onlyForDiscrete':
+            result = ShowValueIndicator.onlyForDiscrete;
+            break;
+        }
       }
     }
-
     return result;
   }
 
@@ -5049,33 +5310,37 @@ class ThemeDecoder {
   ///  * `noOverlay`
   ///  * `noThumb`
   static SliderComponentShape decodeSliderComponentShape(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'SliderComponentShape',
-      [
-        'noOverlay',
-        'noThumb',
-      ],
-      value,
-    );
     SliderComponentShape result;
+    if (value is SliderComponentShape) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SliderComponentShape',
+        [
+          'noOverlay',
+          'noThumb',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/slider_component_shape',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'noOverlay':
-          result = SliderComponentShape.noOverlay;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/slider_component_shape',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'noOverlay':
+            result = SliderComponentShape.noOverlay;
+            break;
 
-        case 'noThumb':
-          result = SliderComponentShape.noThumb;
-          break;
+          case 'noThumb':
+            result = SliderComponentShape.noThumb;
+            break;
+        }
       }
     }
 
@@ -5131,7 +5396,9 @@ class ThemeDecoder {
   }) {
     SliderThemeData result;
 
-    if (value != null) {
+    if (value is SliderThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/slider_theme_data',
         value: value,
@@ -5248,25 +5515,29 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'SliderTickMarkShape',
-      [
-        'noTickMark',
-      ],
-      value,
-    );
-
     SliderTickMarkShape result;
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/slider_tick_mark_shape',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'noTickMark':
-          result = SliderTickMarkShape.noTickMark;
-          break;
+    if (value is SliderTickMarkShape) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SliderTickMarkShape',
+        [
+          'noTickMark',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/slider_tick_mark_shape',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'noTickMark':
+            result = SliderTickMarkShape.noTickMark;
+            break;
+        }
       }
     }
     return result;
@@ -5307,37 +5578,41 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    assert(value == null || value['type'] is String);
-    _checkSupported(
-      'type',
-      [
-        'rectangular',
-        'rounded',
-      ],
-      value == null ? null : value['type'],
-    );
     SliderTrackShape result;
+    if (value is SliderTrackShape) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'type',
+        [
+          'rectangular',
+          'rounded',
+        ],
+        value == null ? null : value['type'],
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/slider_track_shape',
-        value: value,
-        validate: validate,
-      ));
-      String type = value['type'];
-      switch (type) {
-        case 'rectangular':
-          result = RectangularSliderTrackShape(
-            disabledThumbGapWidth: JsonClass.parseDouble(
-              value['disabledThumbGapWidth'],
-              2.0,
-            ),
-          );
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/slider_track_shape',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
+        switch (type) {
+          case 'rectangular':
+            result = RectangularSliderTrackShape(
+              disabledThumbGapWidth: JsonClass.parseDouble(
+                value['disabledThumbGapWidth'],
+                2.0,
+              ),
+            );
+            break;
 
-        case 'rounded':
-          result = RoundedRectSliderTrackShape();
-          break;
+          case 'rounded':
+            result = RoundedRectSliderTrackShape();
+            break;
+        }
       }
     }
 
@@ -5348,32 +5623,36 @@ class ThemeDecoder {
   ///  * `disabled`
   ///  * `enabled`
   static SmartDashesType decodeSmartDashesType(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'SmartDashesType',
-      [
-        'disabled',
-        'enabled',
-      ],
-      value,
-    );
     SmartDashesType result;
+    if (value is SmartDashesType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SmartDashesType',
+        [
+          'disabled',
+          'enabled',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/smart_dashes_type',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'disabled':
-          result = SmartDashesType.disabled;
-          break;
-        case 'enabled':
-          result = SmartDashesType.enabled;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/smart_dashes_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'disabled':
+            result = SmartDashesType.disabled;
+            break;
+          case 'enabled':
+            result = SmartDashesType.enabled;
+            break;
+        }
       }
     }
 
@@ -5384,32 +5663,36 @@ class ThemeDecoder {
   ///  * `disabled`
   ///  * `enabled`
   static SmartQuotesType decodeSmartQuotesType(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'SmartQuotesType',
-      [
-        'disabled',
-        'enabled',
-      ],
-      value,
-    );
     SmartQuotesType result;
+    if (value is SmartQuotesType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SmartQuotesType',
+        [
+          'disabled',
+          'enabled',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/smart_quotes_type',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'disabled':
-          result = SmartQuotesType.disabled;
-          break;
-        case 'enabled':
-          result = SmartQuotesType.enabled;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/smart_quotes_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'disabled':
+            result = SmartQuotesType.disabled;
+            break;
+          case 'enabled':
+            result = SmartQuotesType.enabled;
+            break;
+        }
       }
     }
 
@@ -5420,33 +5703,37 @@ class ThemeDecoder {
   ///  * `fixed`
   ///  * `floating`
   static SnackBarBehavior decodeSnackBarBehavior(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'SnackBarBehavior',
-      [
-        'fixed',
-        'floating',
-      ],
-      value,
-    );
     SnackBarBehavior result;
+    if (value is SnackBarBehavior) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SnackBarBehavior',
+        [
+          'fixed',
+          'floating',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/snack_bar_behavior',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'fixed':
-          result = SnackBarBehavior.fixed;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/snack_bar_behavior',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'fixed':
+            result = SnackBarBehavior.fixed;
+            break;
 
-        case 'floating':
-          result = SnackBarBehavior.floating;
-          break;
+          case 'floating':
+            result = SnackBarBehavior.floating;
+            break;
+        }
       }
     }
 
@@ -5479,7 +5766,9 @@ class ThemeDecoder {
   }) {
     SnackBarThemeData result;
 
-    if (value != null) {
+    if (value is SnackBarThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/snack_bar_theme_data',
         value: value,
@@ -5522,12 +5811,14 @@ class ThemeDecoder {
   ///  * `loose`
   ///  * `passthrough`
   static StackFit decodeStackFit(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     StackFit result;
 
-    if (value != null) {
+    if (value is StackFit) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/stack_fit',
         value: value,
@@ -5578,7 +5869,9 @@ class ThemeDecoder {
   }) {
     StrutStyle result;
 
-    if (value != null) {
+    if (value is StrutStyle) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/strut_style',
         value: value,
@@ -5615,33 +5908,37 @@ class ThemeDecoder {
   ///  * `label`
   ///  * `tab`
   static TabBarIndicatorSize decodeTabBarIndicatorSize(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TabBarIndicatorSize',
-      [
-        'label',
-        'tab',
-      ],
-      value,
-    );
     TabBarIndicatorSize result;
+    if (value is TabBarIndicatorSize) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TabBarIndicatorSize',
+        [
+          'label',
+          'tab',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/tab_bar_indicator_size',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'label':
-          result = TabBarIndicatorSize.label;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/tab_bar_indicator_size',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'label':
+            result = TabBarIndicatorSize.label;
+            break;
 
-        case 'tab':
-          result = TabBarIndicatorSize.tab;
-          break;
+          case 'tab':
+            result = TabBarIndicatorSize.tab;
+            break;
+        }
       }
     }
 
@@ -5673,7 +5970,9 @@ class ThemeDecoder {
   }) {
     TabBarTheme result;
 
-    if (value != null) {
+    if (value is TabBarTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/tab_bar_theme',
         value: value,
@@ -5722,53 +6021,57 @@ class ThemeDecoder {
   ///  * `macOS`
   ///  * `windows`
   static TargetPlatform decodeTargetPlatform(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TargetPlatform',
-      [
-        'android',
-        'fuchsia',
-        'iOS',
-        'linux',
-        'macOS',
-        'windows',
-      ],
-      value,
-    );
     TargetPlatform result;
+    if (value is TargetPlatform) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TargetPlatform',
+        [
+          'android',
+          'fuchsia',
+          'iOS',
+          'linux',
+          'macOS',
+          'windows',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/target_platform',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'android':
-          result = TargetPlatform.android;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/target_platform',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'android':
+            result = TargetPlatform.android;
+            break;
 
-        case 'fuchsia':
-          result = TargetPlatform.fuchsia;
-          break;
+          case 'fuchsia':
+            result = TargetPlatform.fuchsia;
+            break;
 
-        case 'iOS':
-          result = TargetPlatform.iOS;
-          break;
+          case 'iOS':
+            result = TargetPlatform.iOS;
+            break;
 
-        case 'linux':
-          result = TargetPlatform.linux;
-          break;
+          case 'linux':
+            result = TargetPlatform.linux;
+            break;
 
-        case 'macOS':
-          result = TargetPlatform.macOS;
-          break;
+          case 'macOS':
+            result = TargetPlatform.macOS;
+            break;
 
-        case 'windows':
-          result = TargetPlatform.windows;
-          break;
+          case 'windows':
+            result = TargetPlatform.windows;
+            break;
+        }
       }
     }
 
@@ -5783,48 +6086,52 @@ class ThemeDecoder {
   ///  * `right`
   ///  * `start`
   static TextAlign decodeTextAlign(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextAlign',
-      [
-        'center',
-        'end',
-        'justify',
-        'left',
-        'right',
-        'start',
-      ],
-      value,
-    );
     TextAlign result;
+    if (value is TextAlign) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextAlign',
+        [
+          'center',
+          'end',
+          'justify',
+          'left',
+          'right',
+          'start',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_align',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'center':
-          result = TextAlign.center;
-          break;
-        case 'end':
-          result = TextAlign.end;
-          break;
-        case 'justify':
-          result = TextAlign.justify;
-          break;
-        case 'left':
-          result = TextAlign.left;
-          break;
-        case 'right':
-          result = TextAlign.right;
-          break;
-        case 'start':
-          result = TextAlign.start;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_align',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'center':
+            result = TextAlign.center;
+            break;
+          case 'end':
+            result = TextAlign.end;
+            break;
+          case 'justify':
+            result = TextAlign.justify;
+            break;
+          case 'left':
+            result = TextAlign.left;
+            break;
+          case 'right':
+            result = TextAlign.right;
+            break;
+          case 'start':
+            result = TextAlign.start;
+            break;
+        }
       }
     }
 
@@ -5836,12 +6143,14 @@ class ThemeDecoder {
   ///  * `center`
   ///  * `top`
   static TextAlignVertical decodeTextAlignVertical(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
     TextAlignVertical result;
 
-    if (value != null) {
+    if (value is TextAlignVertical) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/text_align_vertical',
         value: value,
@@ -5867,33 +6176,37 @@ class ThemeDecoder {
   ///  * `alphabetic`
   ///  * `ideographic`
   static TextBaseline decodeTextBaseline(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextBaseline',
-      [
-        'alphabetic',
-        'ideographic',
-      ],
-      value,
-    );
     TextBaseline result;
+    if (value is TextBaseline) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextBaseline',
+        [
+          'alphabetic',
+          'ideographic',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_baseline',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'alphabetic':
-          result = TextBaseline.alphabetic;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_baseline',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'alphabetic':
+            result = TextBaseline.alphabetic;
+            break;
 
-        case 'ideographic':
-          result = TextBaseline.ideographic;
-          break;
+          case 'ideographic':
+            result = TextBaseline.ideographic;
+            break;
+        }
       }
     }
 
@@ -5906,43 +6219,47 @@ class ThemeDecoder {
   ///  * `sentences`
   ///  * `words`
   static TextCapitalization decodeTextCapitalization(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextCapitalization',
-      [
-        'characters',
-        'none',
-        'sentences',
-        'words',
-      ],
-      value,
-    );
     TextCapitalization result;
+    if (value is TextCapitalization) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextCapitalization',
+        [
+          'characters',
+          'none',
+          'sentences',
+          'words',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_capitalization',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'characters':
-          result = TextCapitalization.characters;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_capitalization',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'characters':
+            result = TextCapitalization.characters;
+            break;
 
-        case 'none':
-          result = TextCapitalization.none;
-          break;
+          case 'none':
+            result = TextCapitalization.none;
+            break;
 
-        case 'sentences':
-          result = TextCapitalization.sentences;
-          break;
+          case 'sentences':
+            result = TextCapitalization.sentences;
+            break;
 
-        case 'words':
-          result = TextCapitalization.words;
-          break;
+          case 'words':
+            result = TextCapitalization.words;
+            break;
+        }
       }
     }
 
@@ -5955,43 +6272,47 @@ class ThemeDecoder {
   ///  * `overline`
   ///  * `underline`
   static TextDecoration decodeTextDecoration(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextDecoration',
-      [
-        'lineThrough',
-        'none',
-        'overline',
-        'underline',
-      ],
-      value,
-    );
     TextDecoration result;
+    if (value is TextDecoration) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextDecoration',
+        [
+          'lineThrough',
+          'none',
+          'overline',
+          'underline',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_decoration',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'lineThrough':
-          result = TextDecoration.lineThrough;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_decoration',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'lineThrough':
+            result = TextDecoration.lineThrough;
+            break;
 
-        case 'none':
-          result = TextDecoration.none;
-          break;
+          case 'none':
+            result = TextDecoration.none;
+            break;
 
-        case 'overline':
-          result = TextDecoration.overline;
-          break;
+          case 'overline':
+            result = TextDecoration.overline;
+            break;
 
-        case 'underline':
-          result = TextDecoration.underline;
-          break;
+          case 'underline':
+            result = TextDecoration.underline;
+            break;
+        }
       }
     }
 
@@ -6005,48 +6326,52 @@ class ThemeDecoder {
   ///  * `solid`
   ///  * `wavy`
   static TextDecorationStyle decodeTextDecorationStyle(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextDecorationStyle',
-      [
-        'dashed',
-        'dotted',
-        'double',
-        'solid',
-        'wavy',
-      ],
-      value,
-    );
     TextDecorationStyle result;
+    if (value is TextDecorationStyle) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextDecorationStyle',
+        [
+          'dashed',
+          'dotted',
+          'double',
+          'solid',
+          'wavy',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_decoration_style',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'dashed':
-          result = TextDecorationStyle.dashed;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_decoration_style',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'dashed':
+            result = TextDecorationStyle.dashed;
+            break;
 
-        case 'dotted':
-          result = TextDecorationStyle.dotted;
-          break;
+          case 'dotted':
+            result = TextDecorationStyle.dotted;
+            break;
 
-        case 'double':
-          result = TextDecorationStyle.double;
-          break;
+          case 'double':
+            result = TextDecorationStyle.double;
+            break;
 
-        case 'solid':
-          result = TextDecorationStyle.solid;
-          break;
+          case 'solid':
+            result = TextDecorationStyle.solid;
+            break;
 
-        case 'wavy':
-          result = TextDecorationStyle.wavy;
-          break;
+          case 'wavy':
+            result = TextDecorationStyle.wavy;
+            break;
+        }
       }
     }
 
@@ -6057,33 +6382,37 @@ class ThemeDecoder {
   ///  * `ltr`
   ///  * `rtl`
   static TextDirection decodeTextDirection(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextDirection',
-      [
-        'ltr',
-        'rtl',
-      ],
-      value,
-    );
     TextDirection result;
+    if (value is TextDirection) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextDirection',
+        [
+          'ltr',
+          'rtl',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_direction',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'ltr':
-          result = TextDirection.ltr;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_direction',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'ltr':
+            result = TextDirection.ltr;
+            break;
 
-        case 'rtl':
-          result = TextDirection.rtl;
-          break;
+          case 'rtl':
+            result = TextDirection.rtl;
+            break;
+        }
       }
     }
 
@@ -6106,7 +6435,9 @@ class ThemeDecoder {
   }) {
     TextHeightBehavior result;
 
-    if (value != null) {
+    if (value is TextHeightBehavior) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/text_height_behavior',
         value: value,
@@ -6140,89 +6471,93 @@ class ThemeDecoder {
   ///  * `send`
   ///  * `unspecified`
   static TextInputAction decodeTextInputAction(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextInputAction',
-      [
-        'continueAction',
-        'done',
-        'emergencyCall',
-        'go',
-        'join',
-        'newline',
-        'next',
-        'none',
-        'previous',
-        'route',
-        'search',
-        'send',
-        'unspecified',
-      ],
-      value,
-    );
     TextInputAction result;
+    if (value is TextInputAction) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextInputAction',
+        [
+          'continueAction',
+          'done',
+          'emergencyCall',
+          'go',
+          'join',
+          'newline',
+          'next',
+          'none',
+          'previous',
+          'route',
+          'search',
+          'send',
+          'unspecified',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_input_action',
-        value: value,
-        validate: validate,
-      ));
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_input_action',
+          value: value,
+          validate: validate,
+        ));
 
-      switch (value) {
-        case 'continueAction':
-          result = TextInputAction.continueAction;
-          break;
+        switch (value) {
+          case 'continueAction':
+            result = TextInputAction.continueAction;
+            break;
 
-        case 'done':
-          result = TextInputAction.done;
-          break;
+          case 'done':
+            result = TextInputAction.done;
+            break;
 
-        case 'emergencyCall':
-          result = TextInputAction.emergencyCall;
-          break;
+          case 'emergencyCall':
+            result = TextInputAction.emergencyCall;
+            break;
 
-        case 'go':
-          result = TextInputAction.go;
-          break;
+          case 'go':
+            result = TextInputAction.go;
+            break;
 
-        case 'join':
-          result = TextInputAction.join;
-          break;
+          case 'join':
+            result = TextInputAction.join;
+            break;
 
-        case 'newline':
-          result = TextInputAction.newline;
-          break;
+          case 'newline':
+            result = TextInputAction.newline;
+            break;
 
-        case 'next':
-          result = TextInputAction.next;
-          break;
+          case 'next':
+            result = TextInputAction.next;
+            break;
 
-        case 'none':
-          result = TextInputAction.none;
-          break;
+          case 'none':
+            result = TextInputAction.none;
+            break;
 
-        case 'previous':
-          result = TextInputAction.previous;
-          break;
+          case 'previous':
+            result = TextInputAction.previous;
+            break;
 
-        case 'route':
-          result = TextInputAction.route;
-          break;
+          case 'route':
+            result = TextInputAction.route;
+            break;
 
-        case 'search':
-          result = TextInputAction.search;
-          break;
+          case 'search':
+            result = TextInputAction.search;
+            break;
 
-        case 'send':
-          result = TextInputAction.send;
-          break;
+          case 'send':
+            result = TextInputAction.send;
+            break;
 
-        case 'unspecified':
-          result = TextInputAction.unspecified;
-          break;
+          case 'unspecified':
+            result = TextInputAction.unspecified;
+            break;
+        }
       }
     }
 
@@ -6244,73 +6579,76 @@ class ThemeDecoder {
     dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextInputType',
-      [
-        'datetime',
-        'emailAddress',
-        'multiline',
-        'name',
-        'number',
-        'phone',
-        'streetAddress',
-        'text',
-        'url',
-        'visiblePassword',
-      ],
-      value,
-    );
     TextInputType result;
+    if (value is TextInputType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextInputType',
+        [
+          'datetime',
+          'emailAddress',
+          'multiline',
+          'name',
+          'number',
+          'phone',
+          'streetAddress',
+          'text',
+          'url',
+          'visiblePassword',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_input_type',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'datetime':
-          result = TextInputType.datetime;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_input_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'datetime':
+            result = TextInputType.datetime;
+            break;
 
-        case 'emailAddress':
-          result = TextInputType.emailAddress;
-          break;
+          case 'emailAddress':
+            result = TextInputType.emailAddress;
+            break;
 
-        case 'multiline':
-          result = TextInputType.multiline;
-          break;
+          case 'multiline':
+            result = TextInputType.multiline;
+            break;
 
-        case 'name':
-          result = TextInputType.name;
-          break;
+          case 'name':
+            result = TextInputType.name;
+            break;
 
-        case 'number':
-          result = TextInputType.number;
-          break;
+          case 'number':
+            result = TextInputType.number;
+            break;
 
-        case 'phone':
-          result = TextInputType.phone;
-          break;
+          case 'phone':
+            result = TextInputType.phone;
+            break;
 
-        case 'streetAddress':
-          result = TextInputType.streetAddress;
-          break;
+          case 'streetAddress':
+            result = TextInputType.streetAddress;
+            break;
 
-        case 'text':
-          result = TextInputType.text;
-          break;
+          case 'text':
+            result = TextInputType.text;
+            break;
 
-        case 'url':
-          result = TextInputType.url;
-          break;
+          case 'url':
+            result = TextInputType.url;
+            break;
 
-        case 'visiblePassword':
-          result = TextInputType.visiblePassword;
-          break;
+          case 'visiblePassword':
+            result = TextInputType.visiblePassword;
+            break;
+        }
       }
     }
-
     return result;
   }
 
@@ -6320,40 +6658,44 @@ class ThemeDecoder {
   ///  * `fade`
   ///  * `visible`
   static TextOverflow decodeTextOverflow(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextOverflow',
-      [
-        'clip',
-        'ellipsis',
-        'fade',
-        'visible',
-      ],
-      value,
-    );
     TextOverflow result;
+    if (value is TextOverflow) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextOverflow',
+        [
+          'clip',
+          'ellipsis',
+          'fade',
+          'visible',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_overflow',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'clip':
-          result = TextOverflow.clip;
-          break;
-        case 'ellipsis':
-          result = TextOverflow.ellipsis;
-          break;
-        case 'fade':
-          result = TextOverflow.fade;
-          break;
-        case 'visible':
-          result = TextOverflow.visible;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_overflow',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'clip':
+            result = TextOverflow.clip;
+            break;
+          case 'ellipsis':
+            result = TextOverflow.ellipsis;
+            break;
+          case 'fade':
+            result = TextOverflow.fade;
+            break;
+          case 'visible':
+            result = TextOverflow.visible;
+            break;
+        }
       }
     }
 
@@ -6404,7 +6746,9 @@ class ThemeDecoder {
   }) {
     TextStyle result;
 
-    if (value != null) {
+    if (value is TextStyle) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/text_style',
         value: value,
@@ -6515,7 +6859,9 @@ class ThemeDecoder {
   }) {
     TextTheme result;
 
-    if (value != null) {
+    if (value is TextTheme) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/text_theme',
         value: value,
@@ -6584,32 +6930,37 @@ class ThemeDecoder {
   ///  * `longestLine`
   ///  * `parent`
   static TextWidthBasis decodeTextWidthBasis(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TextWidthBasis',
-      [
-        'longestLine',
-        'parent',
-      ],
-      value,
-    );
     TextWidthBasis result;
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/text_width_basis',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'longestLine':
-          result = TextWidthBasis.longestLine;
-          break;
-        case 'parent':
-          result = TextWidthBasis.parent;
-          break;
+    if (value is TextWidthBasis) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextWidthBasis',
+        [
+          'longestLine',
+          'parent',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_width_basis',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'longestLine':
+            result = TextWidthBasis.longestLine;
+            break;
+          case 'parent':
+            result = TextWidthBasis.parent;
+            break;
+        }
       }
     }
 
@@ -6729,7 +7080,9 @@ class ThemeDecoder {
   }) {
     ThemeData result;
 
-    if (value != null) {
+    if (value is ThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/theme_data',
         value: value,
@@ -7014,38 +7367,42 @@ class ThemeDecoder {
   ///  * `mirror`
   ///  * `repeated`
   static TileMode decodeTileMode(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'TileMode',
-      [
-        'clamp',
-        'mirror',
-        'repeated',
-      ],
-      value,
-    );
     TileMode result;
+    if (value is TileMode) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TileMode',
+        [
+          'clamp',
+          'mirror',
+          'repeated',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/tile_mode',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'clamp':
-          result = TileMode.clamp;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/tile_mode',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'clamp':
+            result = TileMode.clamp;
+            break;
 
-        case 'mirror':
-          result = TileMode.mirror;
-          break;
+          case 'mirror':
+            result = TileMode.mirror;
+            break;
 
-        case 'repeated':
-          result = TileMode.repeated;
-          break;
+          case 'repeated':
+            result = TileMode.repeated;
+            break;
+        }
       }
     }
 
@@ -7089,7 +7446,9 @@ class ThemeDecoder {
   }) {
     TimePickerThemeData result;
 
-    if (value != null) {
+    if (value is TimePickerThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/time_picker_theme_data',
         value: value,
@@ -7157,7 +7516,9 @@ class ThemeDecoder {
   }) {
     ToggleButtonsThemeData result;
 
-    if (value != null) {
+    if (value is ToggleButtonsThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/toggle_buttons_theme_data',
         value: value,
@@ -7240,11 +7601,13 @@ class ThemeDecoder {
   /// }
   /// ```
   static ToolbarOptions decodeToolbarOptions(
-    Map<String, dynamic> value, {
+    dynamic value, {
     bool validate = true,
   }) {
     ToolbarOptions result;
-    if (value != null) {
+    if (value is ToolbarOptions) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/toolbar_options',
         value: value,
@@ -7287,7 +7650,9 @@ class ThemeDecoder {
   }) {
     TooltipThemeData result;
 
-    if (value != null) {
+    if (value is TooltipThemeData) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/tooltip_theme_data',
         value: value,
@@ -7349,7 +7714,9 @@ class ThemeDecoder {
   }) {
     Typography result;
 
-    if (value != null) {
+    if (value is Typography) {
+      result = value;
+    } else if (value != null) {
       assert(SchemaValidator.validate(
         schemaId: '$_baseSchemaUrl/typography',
         value: value,
@@ -7390,27 +7757,31 @@ class ThemeDecoder {
   ///  * `down`
   ///  * `up`
   static VerticalDirection decodeVerticalDirection(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'VerticalDirection',
-      [
-        'down',
-        'up',
-      ],
-      value,
-    );
     VerticalDirection result;
+    if (value is VerticalDirection) {
+      result = value;
+    } else {
+      _checkSupported(
+        'VerticalDirection',
+        [
+          'down',
+          'up',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      switch (value) {
-        case 'down':
-          result = VerticalDirection.down;
-          break;
-        case 'up':
-          result = VerticalDirection.up;
-          break;
+      if (value != null) {
+        switch (value) {
+          case 'down':
+            result = VerticalDirection.down;
+            break;
+          case 'up':
+            result = VerticalDirection.up;
+            break;
+        }
       }
     }
 
@@ -7423,43 +7794,47 @@ class ThemeDecoder {
   ///  * `compact`
   ///  * `standard`
   static VisualDensity decodeVisualDensity(
-    String value, {
+    dynamic value, {
     bool validate = true,
   }) {
-    _checkSupported(
-      'VisualDensity',
-      [
-        'adaptivePlatformDensity',
-        'comfortable',
-        'compact',
-        'standard',
-      ],
-      value,
-    );
     VisualDensity result;
+    if (value is VisualDensity) {
+      result = value;
+    } else {
+      _checkSupported(
+        'VisualDensity',
+        [
+          'adaptivePlatformDensity',
+          'comfortable',
+          'compact',
+          'standard',
+        ],
+        value,
+      );
 
-    if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/visual_density',
-        value: value,
-        validate: validate,
-      ));
-      switch (value) {
-        case 'adaptivePlatformDensity':
-          result = VisualDensity.adaptivePlatformDensity;
-          break;
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/visual_density',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'adaptivePlatformDensity':
+            result = VisualDensity.adaptivePlatformDensity;
+            break;
 
-        case 'comfortable':
-          result = VisualDensity.comfortable;
-          break;
+          case 'comfortable':
+            result = VisualDensity.comfortable;
+            break;
 
-        case 'compact':
-          result = VisualDensity.compact;
-          break;
+          case 'compact':
+            result = VisualDensity.compact;
+            break;
 
-        case 'standard':
-          result = VisualDensity.standard;
-          break;
+          case 'standard':
+            result = VisualDensity.standard;
+            break;
+        }
       }
     }
 

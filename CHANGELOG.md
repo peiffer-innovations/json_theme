@@ -1,6 +1,13 @@
+## [1.3.0] - Auguest 29th, 2020
+
+* Updated to support the built-in actual widgets as part of the decode functions in addition to the JSON-like models.
+* Minor validation fix for empty objects
+
+
 ## [1.2.3] - Auguest 22nd, 2020
 
 * Added `DecorationPosition` support
+
 
 ## [1.2.2] - Auguest 22nd, 2020
 

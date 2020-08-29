@@ -10,6 +10,40 @@ This provides two main classes.
 
 The decodes utilize a JSON Schema validator to ensure the JSON is well formed.  This validation is enabled by default in debug mode and disabled in release mode for performance reasons.  Even in development mode, you can disable the validation by setting the optional `validate` parameter to `false`.
 
+
+# Decoding
+
+The framework accepts both JSON-compatible objects as well as actual concrete instances being passed to the `decode` functions.  For example, the following will properly decode:
+
+```dart
+var appBarTheme = ThemeDecoder.decodeAppBarTheme({
+    'brightness': Brightness.dark,
+    'color': '#ffdddddd'
+  }, 
+  validate: false,
+);
+```
+
+
+# Schema Validation
+
+The framework comes with a built-in JSON Schema validator.  This validator is set to be enabled by default in debug mode but disabled in release and profile mode.
+
+The JSON Schema validator can only validate pure JSON based objects.  It cannot validate mixed JSON and concrete objects.  If your application uses mixed JSON and concrete objects in the implementation you will either need to disable validation in the decode calls where mixed objects can be used (as is done in the example above) or disable validation globally for the entire application via:
+
+```dart
+import 'package:json_theme/json_theme_schemas.dart';
+
+void main() {
+  SchemaValidator.enabled = false;
+
+  /// rest of app initialization goes here
+}
+
+```
+
+
+
 # Class Selection
 
 As close as possible, the names used in the Dart APIs are replicated.  However, there are instances where the class is different for things like `Shape` objects, or there's an enum like `VerticalDirection`.  Those are all documented in this section.

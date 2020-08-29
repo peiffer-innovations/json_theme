@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_schema/json_schema.dart';
@@ -10,6 +11,14 @@ import 'package:meta/meta.dart';
 /// able to be extended to also perform validation against schemas that include
 /// JSON Theme objects.
 class SchemaValidator {
+  /// Sets whether or not the validator is enabled globally or not.  Set to
+  /// [false] to disable validation across the entire application.  This cannot
+  /// be used to globally enable validation.  Rather it can be used only to
+  /// globally disable validation.  A value of [true] can still be overridden
+  /// by values passed to [validate].  But a value of [false] will ensure that
+  /// [validate] always skips the validation.
+  static bool enabled = true;
+
   /// Validates the given [schemaId] against the given [value].  If the
   /// optional [validate] parameter is not [true] then this will no-op and
   /// immediately return with [true].
@@ -18,6 +27,10 @@ class SchemaValidator {
   /// operation.  For that reason, this defaults to performing the validation
   /// when in the debug build and skipping validation for release builds.  This
   /// optimization can be overridden by setting [debugOnly] to [false].
+  ///
+  /// As a note, if the [enabled] value is [false] then both the [debugOnly] and
+  /// the [validate] values will be ignored and validation will always be
+  /// skipped.
   static bool validate({
     bool debugOnly = true,
     @required String schemaId,
@@ -25,21 +38,23 @@ class SchemaValidator {
     bool validate = true,
   }) {
     var result = true;
-    if (validate == true) {
-      if (debugOnly == true) {
-        assert(() {
+    if (enabled == true) {
+      if (validate == true) {
+        if (debugOnly == true) {
+          assert(() {
+            result = _validate(
+              schemaId: schemaId,
+              value: value,
+            );
+
+            return true;
+          }());
+        } else {
           result = _validate(
             schemaId: schemaId,
             value: value,
           );
-
-          return true;
-        }());
-      } else {
-        result = _validate(
-          schemaId: schemaId,
-          value: value,
-        );
+        }
       }
     }
 
@@ -71,9 +86,15 @@ class SchemaValidator {
       refProvider: refProvider,
     );
 
-    var errors = jsonSchema.validateWithErrors(value is Map
+    var removed = value is Map
         ? JsonClass.removeNull(Map<String, dynamic>.from(value))
-        : value);
+        : value;
+
+    if (removed == null && value is Map) {
+      removed = {};
+    }
+
+    var errors = jsonSchema.validateWithErrors(removed);
     if (errors?.isNotEmpty == true) {
       result = false;
       var errorStr =

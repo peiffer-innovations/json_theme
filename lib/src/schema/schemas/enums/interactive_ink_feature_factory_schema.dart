@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class InteractiveInkFeatureFactorySchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/interactive_ink_feature_factory';
@@ -7,9 +9,9 @@ class InteractiveInkFeatureFactorySchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'InteractiveInkFeatureFactory',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'splash',
       'ripple',
-    ],
+    ]),
   };
 }

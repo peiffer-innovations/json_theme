@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class MainAxisAlignmentSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/main_axis_alignment';
@@ -7,13 +9,13 @@ class MainAxisAlignmentSchema {
     r'$id': '$id',
     'title': 'MainAxisAlignment',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'center',
       'end',
       'spaceAround',
       'spaceBetween',
       'spaceEvenly',
       'start',
-    ],
+    ]),
   };
 }

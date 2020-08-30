@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TextAlignSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/text_align';
@@ -7,13 +9,13 @@ class TextAlignSchema {
     r'$id': '$id',
     'title': 'TextAlign',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'center',
       'end',
       'justify',
       'left',
       'right',
       'start',
-    ],
+    ]),
   };
 }

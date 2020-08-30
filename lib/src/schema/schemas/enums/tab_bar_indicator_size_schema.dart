@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TabBarIndicatorSizeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/tab_bar_indicator_size';
@@ -7,9 +9,9 @@ class TabBarIndicatorSizeSchema {
     r'$id': '$id',
     'title': 'TabBarIndicatorSize',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'label',
       'tab',
-    ],
+    ]),
   };
 }

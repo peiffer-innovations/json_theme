@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class SmartQuotesTypeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/smart_quotes_type';
@@ -7,9 +9,9 @@ class SmartQuotesTypeSchema {
     r'$id': '$id',
     'title': 'SmartQuotesType',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'disabled',
       'enabled',
-    ],
+    ]),
   };
 }

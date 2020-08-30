@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class BrightnessSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/brightness';
@@ -7,9 +9,9 @@ class BrightnessSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'Brightness',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'dark',
       'light',
-    ]
+    ]),
   };
 }

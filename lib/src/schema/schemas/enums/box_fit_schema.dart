@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class BoxFitSchema {
   static const id = 'https://peifferinnovations.com/json_theme/schemas/box_fit';
 
@@ -6,7 +8,7 @@ class BoxFitSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'BoxFit',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'contain',
       'cover',
       'fill',
@@ -14,6 +16,6 @@ class BoxFitSchema {
       'fitWidth',
       'none',
       'scaleDown',
-    ]
+    ]),
   };
 }

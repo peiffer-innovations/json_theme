@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TextDecorationSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/text_decoration';
@@ -7,11 +9,11 @@ class TextDecorationSchema {
     r'$id': '$id',
     'title': 'TextDecoration',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'lineThrough',
       'none',
       'overline',
       'underline',
-    ],
+    ]),
   };
 }

@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class ButtonTextThemeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/button_text_theme';
@@ -7,10 +9,10 @@ class ButtonTextThemeSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'ButtonTextTheme',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'accent',
       'normal',
       'primary',
-    ]
+    ]),
   };
 }

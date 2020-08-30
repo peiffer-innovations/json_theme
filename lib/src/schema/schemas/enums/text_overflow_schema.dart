@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TextOverflowSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/text_overflow';
@@ -7,11 +9,11 @@ class TextOverflowSchema {
     r'$id': '$id',
     'title': 'TextOverflow',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'clip',
       'ellipsis',
       'fade',
       'visible',
-    ],
+    ]),
   };
 }

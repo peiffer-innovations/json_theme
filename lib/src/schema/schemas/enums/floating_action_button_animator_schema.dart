@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class FloatingActionButtonAnimatorSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/floating_action_button_animator';
@@ -7,8 +9,8 @@ class FloatingActionButtonAnimatorSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'FloatingActionButtonAnimator',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'scaling',
-    ]
+    ]),
   };
 }

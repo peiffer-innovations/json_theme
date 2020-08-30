@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TextCapitalizationSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/text_capitalization';
@@ -7,11 +9,11 @@ class TextCapitalizationSchema {
     r'$id': '$id',
     'title': 'TextCapitalization',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'characters',
       'none',
       'sentences',
       'words',
-    ],
+    ]),
   };
 }

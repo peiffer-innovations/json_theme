@@ -5085,6 +5085,12 @@ class ThemeDecoder {
     if (value is ScrollViewKeyboardDismissBehavior) {
       result = value;
     } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/scroll_view_keyboard_dismiss_behavior',
+        value: value,
+        validate: validate,
+      ));
+
       switch (value) {
         case 'manual':
           result = ScrollViewKeyboardDismissBehavior.manual;

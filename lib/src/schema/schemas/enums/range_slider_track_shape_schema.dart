@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class RangeSliderTrackShapeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/range_slider_track_shape';
@@ -7,9 +9,9 @@ class RangeSliderTrackShapeSchema {
     r'$id': '$id',
     'title': 'RangeSliderTrackShape',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'rectangular',
       'rounded',
-    ],
+    ]),
   };
 }

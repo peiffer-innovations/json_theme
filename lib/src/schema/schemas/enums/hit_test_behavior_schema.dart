@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class HitTestBehaviorSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/hit_test_behavior';
@@ -7,10 +9,10 @@ class HitTestBehaviorSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'HitTestBehavior',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'deferToChild',
       'opaque',
       'translucent',
-    ]
+    ]),
   };
 }

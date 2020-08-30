@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TargetPlatformSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/target_platform';
@@ -7,13 +9,13 @@ class TargetPlatformSchema {
     r'$id': '$id',
     'title': 'TargetPlatform',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'android',
       'fuchsia',
       'iOS',
       'linux',
       'macOS',
       'windows',
-    ],
+    ]),
   };
 }

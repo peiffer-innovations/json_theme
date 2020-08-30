@@ -102,6 +102,18 @@ class SchemaHelper {
     return result;
   }
 
+  static dynamic enumSchema(Iterable<String> values) => [
+        {'type': 'string', 'enum': values},
+        {
+          'type': 'string',
+          'pattern': r'^\{\{.*\}\}$',
+        },
+        {
+          'type': 'string',
+          'pattern': r'##.*##$',
+        },
+      ];
+
   static dynamic objectSchema(String id) {
     dynamic result;
 

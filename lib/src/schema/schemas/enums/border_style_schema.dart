@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class BorderStyleSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/border_style';
@@ -7,9 +9,9 @@ class BorderStyleSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'BorderStyle',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'none',
       'solid',
-    ]
+    ]),
   };
 }

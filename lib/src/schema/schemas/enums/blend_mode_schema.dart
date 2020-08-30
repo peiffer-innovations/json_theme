@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class BlendModeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/blend_mode';
@@ -7,7 +9,7 @@ class BlendModeSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'BlendMode',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'clear',
       'color',
       'colorBurn',
@@ -37,6 +39,6 @@ class BlendModeSchema {
       'srcOut',
       'srcOver',
       'xor',
-    ],
+    ]),
   };
 }

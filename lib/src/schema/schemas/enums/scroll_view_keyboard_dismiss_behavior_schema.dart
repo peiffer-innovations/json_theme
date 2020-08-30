@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class ScrollViewKeyboardDismissBehaviorSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/scroll_view_keyboard_dismiss_behavior';
@@ -7,9 +9,9 @@ class ScrollViewKeyboardDismissBehaviorSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'ScrollViewKeyboardDismissBehavior',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'manual',
       'onDrag',
-    ]
+    ]),
   };
 }

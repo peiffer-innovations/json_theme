@@ -1,3 +1,8 @@
+## [1.3.1] - Auguest 30th, 2020
+
+* Updated to support dynamic expressions for enums using `{{foo}}` and `##foo(bar)##` syntax.
+
+
 ## [1.3.0] - Auguest 29th, 2020
 
 * Updated to support the built-in actual widgets as part of the decode functions in addition to the JSON-like models.

@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class SliderComponentShapeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/slider_component_shape';
@@ -7,9 +9,9 @@ class SliderComponentShapeSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'SliderComponentShape',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'noOverlay',
       'noThumb',
-    ]
+    ]),
   };
 }

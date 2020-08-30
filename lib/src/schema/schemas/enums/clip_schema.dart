@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class ClipSchema {
   static const id = 'https://peifferinnovations.com/json_theme/schemas/clip';
 
@@ -6,11 +8,11 @@ class ClipSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'Clip',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'antiAlias',
       'antiAliasWithSaveLayer',
       'hardEdge',
       'none',
-    ]
+    ]),
   };
 }

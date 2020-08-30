@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class MaterialTypeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/material_type';
@@ -7,12 +9,12 @@ class MaterialTypeSchema {
     r'$id': '$id',
     'title': 'MaterialType',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'button',
       'canvas',
       'card',
       'circle',
       'transparency',
-    ],
+    ]),
   };
 }

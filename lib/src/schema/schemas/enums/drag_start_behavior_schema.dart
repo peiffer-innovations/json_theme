@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class DragStartBehaviorSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/drag_start_behavior';
@@ -7,9 +9,9 @@ class DragStartBehaviorSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'DragStartBehavior',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'down',
       'start',
-    ]
+    ]),
   };
 }

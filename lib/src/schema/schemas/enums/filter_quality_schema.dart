@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class FilterQualitySchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/filter_quality';
@@ -7,11 +9,11 @@ class FilterQualitySchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'FilterQuality',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'high',
       'low',
       'medium',
       'none',
-    ]
+    ]),
   };
 }

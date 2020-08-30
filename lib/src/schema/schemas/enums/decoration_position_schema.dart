@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class DecorationPositionSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/decoration_position';
@@ -7,9 +9,9 @@ class DecorationPositionSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'DecorationPosition',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'background',
       'foreground',
-    ]
+    ]),
   };
 }

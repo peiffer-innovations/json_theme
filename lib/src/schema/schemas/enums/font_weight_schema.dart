@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class FontWeightSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/font_weight';
@@ -7,7 +9,7 @@ class FontWeightSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'FontWeight',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'bold',
       'normal',
       'w100',
@@ -19,6 +21,6 @@ class FontWeightSchema {
       'w700',
       'w800',
       'w900',
-    ]
+    ]),
   };
 }

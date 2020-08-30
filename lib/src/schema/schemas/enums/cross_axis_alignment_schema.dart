@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class CrossAxisAlignmentSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/cross_axis_alignment';
@@ -7,12 +9,12 @@ class CrossAxisAlignmentSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'CrossAxisAlignment',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'baseline',
       'center',
       'end',
       'start',
       'stretch',
-    ]
+    ]),
   };
 }

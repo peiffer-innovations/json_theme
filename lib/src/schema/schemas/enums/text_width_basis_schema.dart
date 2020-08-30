@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class TextWidthBasisSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/text_width_basis';
@@ -7,9 +9,9 @@ class TextWidthBasisSchema {
     r'$id': '$id',
     'title': 'TextWidthBasis',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'longestLine',
       'parent',
-    ],
+    ]),
   };
 }

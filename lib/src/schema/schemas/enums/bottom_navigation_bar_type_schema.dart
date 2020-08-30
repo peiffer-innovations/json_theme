@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class BottomNavigationBarTypeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/bottom_navigation_bar_type';
@@ -7,9 +9,9 @@ class BottomNavigationBarTypeSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'BottomNavigationBarType',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'fixed',
       'shifting',
-    ]
+    ]),
   };
 }

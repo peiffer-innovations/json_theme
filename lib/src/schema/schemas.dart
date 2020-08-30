@@ -85,6 +85,8 @@ class Schemas {
         RangeSliderValueIndicatorShapeSchema.schema,
     RectSchema.id: RectSchema.schema,
     ScrollPhysicsSchema.id: ScrollPhysicsSchema.schema,
+    ScrollViewKeyboardDismissBehaviorSchema.id:
+        ScrollViewKeyboardDismissBehaviorSchema.schema,
     ShadowSchema.id: ShadowSchema.schema,
     ShapeBorderSchema.id: ShapeBorderSchema.schema,
     ShowValueIndicatorSchema.id: ShowValueIndicatorSchema.schema,

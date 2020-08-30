@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class NotchedShapeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/notched_shape';
@@ -7,8 +9,8 @@ class NotchedShapeSchema {
     r'$id': '$id',
     'title': 'NotchedShape',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'circular',
-    ],
+    ]),
   };
 }

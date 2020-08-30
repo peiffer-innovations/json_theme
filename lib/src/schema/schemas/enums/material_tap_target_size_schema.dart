@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class MaterialTapTargetSizeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/material_tap_target_size';
@@ -7,9 +9,9 @@ class MaterialTapTargetSizeSchema {
     r'$id': '$id',
     'title': 'MaterialTapTargetSize',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'padded',
       'shrinkWrap',
-    ],
+    ]),
   };
 }

@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class ImageRepeatSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/image_repeat';
@@ -7,11 +9,11 @@ class ImageRepeatSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'ImageRepeat',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'noRepeat',
       'repeat',
       'repeatX',
       'repeatY',
-    ],
+    ]),
   };
 }

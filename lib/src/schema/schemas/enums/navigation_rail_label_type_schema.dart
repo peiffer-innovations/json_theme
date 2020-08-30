@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class NavigationRailLabelTypeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/navigation_rail_label_type';
@@ -7,10 +9,10 @@ class NavigationRailLabelTypeSchema {
     r'$id': '$id',
     'title': 'NavigationRailLabelType',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'all',
       'none',
       'selected',
-    ],
+    ]),
   };
 }

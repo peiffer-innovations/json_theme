@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class SmartDashesTypeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/smart_dashes_type';
@@ -7,9 +9,9 @@ class SmartDashesTypeSchema {
     r'$id': '$id',
     'title': 'SmartDashesType',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'disabled',
       'enabled',
-    ],
+    ]),
   };
 }

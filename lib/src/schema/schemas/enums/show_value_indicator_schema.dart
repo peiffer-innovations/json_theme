@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class ShowValueIndicatorSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/show_value_indicator';
@@ -7,11 +9,11 @@ class ShowValueIndicatorSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'ShowValueIndicator',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'always',
       'never',
       'onlyForContinuous',
       'onlyForDiscrete',
-    ]
+    ]),
   };
 }

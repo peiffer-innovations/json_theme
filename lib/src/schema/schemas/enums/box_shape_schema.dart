@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class BoxShapeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/box_shape';
@@ -7,9 +9,9 @@ class BoxShapeSchema {
     r'$id': '$id',
     'type': 'string',
     'title': 'BoxShape',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'circle',
       'rectangle',
-    ]
+    ]),
   };
 }

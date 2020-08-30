@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class StackFitSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/stack_fit';
@@ -7,10 +9,10 @@ class StackFitSchema {
     r'$id': '$id',
     'title': 'StackFit',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'expand',
       'loose',
       'passthrough',
-    ],
+    ]),
   };
 }

@@ -1,3 +1,5 @@
+import 'package:json_theme/json_theme_schemas.dart';
+
 class MainAxisSizeSchema {
   static const id =
       'https://peifferinnovations.com/json_theme/schemas/main_axis_size';
@@ -7,9 +9,9 @@ class MainAxisSizeSchema {
     r'$id': '$id',
     'title': 'MainAxisSize',
     'type': 'string',
-    'enum': [
+    'oneOf': SchemaHelper.enumSchema([
       'max',
       'min',
-    ],
+    ]),
   };
 }

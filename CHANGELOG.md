@@ -1,3 +1,8 @@
+## [1.3.3] - September 2nd, 2020
+
+* Added `CrossFadeState` support
+
+
 ## [1.3.2] - September 1st, 2020
 
 * Swapped "oneOf" for "anyOf" because that's really more accurate for the schema validation.

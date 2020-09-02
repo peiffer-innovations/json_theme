@@ -1,3 +1,8 @@
+## [1.3.2] - September 1st, 2020
+
+* Swapped "oneOf" for "anyOf" because that's really more accurate for the schema validation.
+
+
 ## [1.3.1] - Auguest 30th, 2020
 
 * Updated to support dynamic expressions for enums using `{{foo}}` and `##foo(bar)##` syntax.

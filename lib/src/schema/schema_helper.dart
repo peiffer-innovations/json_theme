@@ -2,7 +2,7 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class SchemaHelper {
   static Map<String, List<Map<String, dynamic>>> get anySchema => {
-        'oneOf': [
+        'anyOf': [
           {
             'type': 'string',
           },
@@ -45,7 +45,7 @@ class SchemaHelper {
       };
 
   static Map<String, List<Map<String, dynamic>>> get boolSchema => {
-        'oneOf': [
+        'anyOf': [
           {
             'type': 'string',
           },
@@ -59,7 +59,7 @@ class SchemaHelper {
       };
 
   static Map<String, List<Map<String, dynamic>>> get numberSchema => {
-        'oneOf': [
+        'anyOf': [
           {
             'type': 'string',
           },
@@ -85,7 +85,7 @@ class SchemaHelper {
       };
     } else {
       result = {
-        'oneOf': [
+        'anyOf': [
           {
             'type': 'string',
           },
@@ -123,7 +123,7 @@ class SchemaHelper {
       };
     } else {
       result = {
-        'oneOf': [
+        'anyOf': [
           {
             'type': 'string',
           },

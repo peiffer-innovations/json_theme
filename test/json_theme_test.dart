@@ -1412,6 +1412,36 @@ void main() {
     );
   });
 
+  test('CrossFadeState', () {
+    expect(ThemeDecoder.decodeCrossFadeState(null), null);
+    expect(ThemeEncoder.encodeCrossFadeState(null), null);
+
+    expect(
+      ThemeDecoder.decodeCrossFadeState(
+        CrossFadeState.showFirst,
+      ),
+      CrossFadeState.showFirst,
+    );
+
+    expect(
+      ThemeDecoder.decodeCrossFadeState('showFirst'),
+      CrossFadeState.showFirst,
+    );
+    expect(
+      ThemeDecoder.decodeCrossFadeState('showSecond'),
+      CrossFadeState.showSecond,
+    );
+
+    expect(
+      ThemeEncoder.encodeCrossFadeState(CrossFadeState.showFirst),
+      'showFirst',
+    );
+    expect(
+      ThemeEncoder.encodeCrossFadeState(CrossFadeState.showSecond),
+      'showSecond',
+    );
+  });
+
   test('CupertinoTextThemeData', () {
     expect(ThemeDecoder.decodeCupertinoTextThemeData(null), null);
     expect(ThemeEncoder.encodeCupertinoTextThemeData(null), null);

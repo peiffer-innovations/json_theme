@@ -1932,6 +1932,47 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [CrossFadeState].  Supported values are:
+  ///  * `showFirst`
+  ///  * `showSecond`
+  static CrossFadeState decodeCrossFadeState(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    CrossFadeState result;
+
+    if (value is CrossFadeState) {
+      result = value;
+    } else {
+      _checkSupported(
+        'CrossFadeState',
+        [
+          'showFirst',
+          'showSecond',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/cross_fade_state',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'showFirst':
+            result = CrossFadeState.showFirst;
+            break;
+          case 'showSecond':
+            result = CrossFadeState.showSecond;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [CupertinoTextThemeData].  This expects the
   /// given [value] to follow the structure below:
   ///

@@ -65,10 +65,8 @@ class MouseCursorSchema {
             'forbidden',
             'grab',
             'grabbing',
-            'horizontalDoubleArrow',
             'none',
             'text',
-            'verticalDoubleArrow',
           ],
         },
         'type': {

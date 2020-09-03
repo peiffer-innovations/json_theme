@@ -2416,10 +2416,8 @@ class ThemeEncoder {
   ///  * `forbidden`
   ///  * `grab`
   ///  * `grabbing`
-  ///  * `horizontalDoubleArrow`
   ///  * `none`
   ///  * `text`
-  ///  * `verticalDoubleArrow`
   static Map<String, dynamic> encodeMouseCursor(MouseCursor value) {
     Map<String, dynamic> result;
 
@@ -2447,11 +2445,6 @@ class ThemeEncoder {
           'cursor': 'basic',
           'type': 'system',
         };
-      } else if (SystemMouseCursors.basic == value) {
-        result = {
-          'cursor': 'basic',
-          'type': 'system',
-        };
       } else if (SystemMouseCursors.click == value) {
         result = {
           'cursor': 'click',
@@ -2472,11 +2465,6 @@ class ThemeEncoder {
           'cursor': 'grabbing',
           'type': 'system',
         };
-      } else if (SystemMouseCursors.horizontalDoubleArrow == value) {
-        result = {
-          'cursor': 'horizontalDoubleArrow',
-          'type': 'system',
-        };
       } else if (SystemMouseCursors.none == value) {
         result = {
           'cursor': 'none',
@@ -2485,11 +2473,6 @@ class ThemeEncoder {
       } else if (SystemMouseCursors.text == value) {
         result = {
           'cursor': 'text',
-          'type': 'system',
-        };
-      } else if (SystemMouseCursors.verticalDoubleArrow == value) {
-        result = {
-          'cursor': 'verticalDoubleArrow',
           'type': 'system',
         };
       }

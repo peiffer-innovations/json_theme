@@ -1,3 +1,10 @@
+## [1.3.3] - September 3rd, 2020
+
+* Removed `horizontalDoubleArrow` and `verticalDoubleArrow` support from the Mouse Cursors because those are removed in 1.21 and keeping them will become an upgrade blocker in the not-too-distant future.
+* Added `web` example
+* Added `macos` example
+
+
 ## [1.3.2] - September 1st, 2020
 
 * Swapped "oneOf" for "anyOf" because that's really more accurate for the schema validation.

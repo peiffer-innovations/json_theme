@@ -3284,13 +3284,6 @@ void main() {
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
-        'cursor': 'horizontalDoubleArrow',
-        'type': 'system',
-      }),
-      SystemMouseCursors.horizontalDoubleArrow,
-    );
-    expect(
-      ThemeDecoder.decodeMouseCursor({
         'cursor': 'none',
         'type': 'system',
       }),
@@ -3302,13 +3295,6 @@ void main() {
         'type': 'system',
       }),
       SystemMouseCursors.text,
-    );
-    expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'verticalDoubleArrow',
-        'type': 'system',
-      }),
-      SystemMouseCursors.verticalDoubleArrow,
     );
     expect(
       ThemeDecoder.decodeMouseCursor({'type': 'uncontrolled'}),
@@ -3386,15 +3372,6 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.horizontalDoubleArrow,
-      ),
-      {
-        'cursor': 'horizontalDoubleArrow',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
         SystemMouseCursors.none,
       ),
       {
@@ -3408,15 +3385,6 @@ void main() {
       ),
       {
         'cursor': 'text',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.verticalDoubleArrow,
-      ),
-      {
-        'cursor': 'verticalDoubleArrow',
         'type': 'system',
       },
     );

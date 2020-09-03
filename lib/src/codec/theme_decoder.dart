@@ -4128,10 +4128,8 @@ class ThemeDecoder {
   ///  * `forbidden`
   ///  * `grab`
   ///  * `grabbing`
-  ///  * `horizontalDoubleArrow`
   ///  * `none`
   ///  * `text`
-  ///  * `verticalDoubleArrow`
   static MouseCursor decodeMouseCursor(
     dynamic value, {
     bool validate = true,
@@ -4192,10 +4190,8 @@ class ThemeDecoder {
                 'forbidden',
                 'grab',
                 'grabbing',
-                'horizontalDoubleArrow',
                 'none',
                 'text',
-                'verticalDoubleArrow',
               ],
               value['cursor'],
             );
@@ -4221,20 +4217,12 @@ class ThemeDecoder {
                 result = SystemMouseCursors.grabbing;
                 break;
 
-              case 'horizontalDoubleArrow':
-                result = SystemMouseCursors.horizontalDoubleArrow;
-                break;
-
               case 'none':
                 result = SystemMouseCursors.none;
                 break;
 
               case 'text':
                 result = SystemMouseCursors.text;
-                break;
-
-              case 'verticalDoubleArrow':
-                result = SystemMouseCursors.verticalDoubleArrow;
                 break;
             }
             break;

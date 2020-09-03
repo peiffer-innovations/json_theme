@@ -1100,6 +1100,29 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `showFirst`
+  ///  * `showSecond`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String encodeCrossFadeState(CrossFadeState value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case CrossFadeState.showFirst:
+          result = 'showFirst';
+          break;
+        case CrossFadeState.showSecond:
+          result = 'showSecond';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to a JSON representation.
   ///
   /// ```json

@@ -174,6 +174,13 @@ Plain string that must be one of:
 * `stretch` ==> `CrossAxisAlignment.stretch`
 
 
+**CrossFadeState**
+
+Plain string that must be one of:
+* `showFirst` ==> `CrossFadeState.showFirst`
+* `showSecond` ==> `CrossFadeState.showSecond`
+
+
 **DecorationPosition**
 
 Plain string that must be one of:

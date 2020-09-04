@@ -11,6 +11,11 @@ This provides two main classes.
 The decodes utilize a JSON Schema validator to ensure the JSON is well formed.  This validation is enabled by default in debug mode and disabled in release mode for performance reasons.  Even in development mode, you can disable the validation by setting the optional `validate` parameter to `false`.
 
 
+# Live Example
+
+* [Web](https://peiffer-innovations.github.io/json_theme/web)
+
+
 # Decoding
 
 The framework accepts both JSON-compatible objects as well as actual concrete instances being passed to the `decode` functions.  For example, the following will properly decode:

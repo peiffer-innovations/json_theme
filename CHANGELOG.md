@@ -1,3 +1,8 @@
+## [1.3.3+1] - September 3rd, 2020
+
+* README.md update to point to the live Flutter Web example for the app
+
+
 ## [1.3.3] - September 3rd, 2020
 
 * Added `CrossFadeState` support

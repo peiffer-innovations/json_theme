@@ -1,3 +1,8 @@
+## [1.3.4] - September 3rd, 2020
+
+* Added `linux` example
+
+
 ## [1.3.3+1] - September 3rd, 2020
 
 * README.md update to point to the live Flutter Web example for the app

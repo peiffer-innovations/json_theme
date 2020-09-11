@@ -1,4 +1,4 @@
-## [1.3.4] - September 3rd, 2020
+## [1.3.4] - September 11th, 2020
 
 * Added `linux` example
 

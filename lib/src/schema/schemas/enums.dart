@@ -33,7 +33,6 @@ class Enums {
     MaterialTypeSchema.id,
     NavigationRailLabelTypeSchema.id,
     NotchedShapeSchema.id,
-    OverflowSchema.id,
     RangeSliderTrackShapeSchema.id,
     RangeSliderValueIndicatorShapeSchema.id,
     ScrollViewKeyboardDismissBehaviorSchema.id,

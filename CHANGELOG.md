@@ -1,3 +1,8 @@
+## [1.3.5] - September 22nd, 2020
+
+* Removed `Overflow` because that was straight-up removed in Flutter 1.23, so keeping it breaks future compatibility
+
+
 ## [1.3.4] - September 11th, 2020
 
 * Added `linux` example

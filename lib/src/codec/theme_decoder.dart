@@ -4416,46 +4416,6 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [Overflow].  Supported values are:
-  ///  * `clip`
-  ///  * `visible`
-  static Overflow decodeOverflow(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    Overflow result;
-    if (value is Overflow) {
-      result = value;
-    } else {
-      _checkSupported(
-        'Overflow',
-        [
-          'clip',
-          'visible',
-        ],
-        value,
-      );
-
-      if (value != null) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/overflow',
-          value: value,
-          validate: validate,
-        ));
-        switch (value) {
-          case 'clip':
-            result = Overflow.clip;
-            break;
-          case 'visible':
-            result = Overflow.visible;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
   /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
   /// given [value] to be of the following structure:
   ///

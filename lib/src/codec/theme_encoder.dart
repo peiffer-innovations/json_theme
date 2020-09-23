@@ -2615,29 +2615,6 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
-  /// Encodes the given [value] to the String representation.  Supported values
-  /// are:
-  ///  * `clip`
-  ///  * `visible`
-  ///
-  /// All other values, including [null], will result in [null].
-  static String encodeOverflow(Overflow value) {
-    String result;
-
-    if (value != null) {
-      switch (value) {
-        case Overflow.clip:
-          result = 'clip';
-          break;
-        case Overflow.visible:
-          result = 'visible';
-          break;
-      }
-    }
-
-    return result;
-  }
-
   /// Encodes the [value] to a JSON representation.
   ///
   /// ```json

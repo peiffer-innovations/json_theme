@@ -37,7 +37,6 @@ class ThemeDataSchema {
       'colorScheme': SchemaHelper.objectSchema(ColorSchemeSchema.id),
       'cupertinoOverrideTheme':
           SchemaHelper.objectSchema(CupertinoThemeDataSchema.id),
-      'cursorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeSchema.id),
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -78,8 +77,6 @@ class ThemeDataSchema {
       'splashFactory':
           SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
-      'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
       'timePickerTheme':
           SchemaHelper.objectSchema(TimePickerThemeDataSchema.id),

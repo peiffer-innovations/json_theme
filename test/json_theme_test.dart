@@ -5749,7 +5749,6 @@ void main() {
       cupertinoOverrideTheme: CupertinoThemeData(
         barBackgroundColor: Color(0xee111111),
       ),
-      cursorColor: Color(0xee777777),
       dialogBackgroundColor: Color(0xee888888),
       dialogTheme: DialogTheme(backgroundColor: Color(0xee999999)),
       disabledColor: Color(0xee000000),
@@ -5807,8 +5806,6 @@ void main() {
       splashColor: Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
       tabBarTheme: TabBarTheme(labelColor: Color(0xccffffff)),
-      textSelectionColor: Color(0xbb000000),
-      textSelectionHandleColor: Color(0xbb111111),
       textTheme: TextTheme(
         bodyText1: TextStyle(
           color: Color(0xee555555),
@@ -6067,7 +6064,6 @@ void main() {
       'cupertinoOverrideTheme': {
         'barBackgroundColor': '#ee111111',
       },
-      'cursorColor': '#ee777777',
       'dialogBackgroundColor': '#ee888888',
       'dialogTheme': {
         'backgroundColor': '#ee999999',
@@ -6206,8 +6202,6 @@ void main() {
       'tabBarTheme': {
         'labelColor': '#ccffffff',
       },
-      'textSelectionColor': '#bb000000',
-      'textSelectionHandleColor': '#bb111111',
       'textTheme': {
         'bodyText1': {
           'color': '#ee555555',

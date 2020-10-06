@@ -4041,7 +4041,6 @@ class ThemeEncoder {
   ///   "chipTheme": <ChipThemeData>,
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
-  ///   "cursorColor": <Color>,
   ///   "dialogBackgroundColor": <Color>,
   ///   "dialogTheme": <DialogTheme>,
   ///   "disabledColor": <Color>,
@@ -4076,8 +4075,6 @@ class ThemeEncoder {
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
-  ///   "textSelectionColor": <Color>,
-  ///   "textSelectionHandleColor": <Color>,
   ///   "textTheme": <TextTheme>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
   ///   "toggleableActiveColor": <Color>,
@@ -4132,9 +4129,9 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'bottomAppBarColor': encodeColor(value.bottomAppBarColor),
         'bottomAppBarTheme': encodeBottomAppBarTheme(value.bottomAppBarTheme),
-        // 'bottomNavigationBarTheme': encodeBottomNavigationBarThemeData(
-        //   value.bottomNavigationBarTheme,
-        // ),
+        'bottomNavigationBarTheme': encodeBottomNavigationBarThemeData(
+          value.bottomNavigationBarTheme,
+        ),
         'brightness': encodeBrightness(value.brightness),
         'bottomSheetTheme': encodeBottomSheetThemeData(value.bottomSheetTheme),
         'buttonColor': encodeColor(value.buttonColor),
@@ -4148,14 +4145,13 @@ class ThemeEncoder {
         'cupertinoOverrideTheme': encodeCupertinoThemeData(
           value.cupertinoOverrideTheme,
         ),
-        'cursorColor': encodeColor(value.cursorColor),
         'dialogBackgroundColor': encodeColor(value.dialogBackgroundColor),
         'dialogTheme': encodeDialogTheme(value.dialogTheme),
         'disabledColor': encodeColor(value.disabledColor),
         'dividerColor': encodeColor(value.dividerColor),
         'dividerTheme': encodeDividerThemeData(value.dividerTheme),
         'errorColor': encodeColor(value.errorColor),
-        // 'fixTextFieldOutlineLabel': value.fixTextFieldOutlineLabel,
+        'fixTextFieldOutlineLabel': value.fixTextFieldOutlineLabel,
         'floatingActionButtonTheme': encodeFloatingActionButtonThemeData(
           value.floatingActionButtonTheme,
         ),
@@ -4193,8 +4189,6 @@ class ThemeEncoder {
         'splashFactory':
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
-        'textSelectionColor': encodeColor(value.textSelectionColor),
-        'textSelectionHandleColor': encodeColor(value.textSelectionHandleColor),
         'textTheme': encodeTextTheme(value.textTheme),
         'toggleButtonsTheme': encodeToggleButtonsThemeData(
           value.toggleButtonsTheme,

@@ -1230,7 +1230,9 @@ class ThemeDecoder {
       ));
       result = value == 'light'
           ? Brightness.light
-          : value == 'dark' ? Brightness.dark : null;
+          : value == 'dark'
+              ? Brightness.dark
+              : null;
     }
 
     return result;
@@ -7171,10 +7173,6 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
-        cursorColor: decodeColor(
-          value['cursorColor'],
-          validate: false,
-        ),
         dialogBackgroundColor: decodeColor(
           value['dialogBackgroundColor'],
           validate: false,
@@ -7309,14 +7307,6 @@ class ThemeDecoder {
         ),
         tabBarTheme: decodeTabBarTheme(
           value['tabBarTheme'],
-          validate: false,
-        ),
-        textSelectionColor: decodeColor(
-          value['textSelectionColor'],
-          validate: false,
-        ),
-        textSelectionHandleColor: decodeColor(
-          value['textSelectionHandleColor'],
           validate: false,
         ),
         textTheme: decodeTextTheme(

@@ -23,6 +23,7 @@ class Schemas {
     BrightnessSchema.id: BrightnessSchema.schema,
     ButtonBarLayoutBehaviorSchema.id: ButtonBarLayoutBehaviorSchema.schema,
     ButtonBarThemeDataSchema.id: ButtonBarThemeDataSchema.schema,
+    ButtonStyleSchema.id: ButtonStyleSchema.schema,
     ButtonTextThemeSchema.id: ButtonTextThemeSchema.schema,
     ButtonThemeDataSchema.id: ButtonThemeDataSchema.schema,
     CardThemeSchema.id: CardThemeSchema.schema,

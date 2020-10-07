@@ -1353,6 +1353,43 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [ButtonStyle].
+  static ButtonStyle decodeButtonStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ButtonStyle result;
+
+    if (value is ButtonStyle) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/button_style',
+        value: value,
+        validate: validate,
+      ));
+
+      // TODO: Complete decodification
+      result = ButtonStyle(
+        animationDuration: JsonClass.parseDurationFromMillis(
+          value['animationDuration'],
+        ),
+        backgroundColor: _buildMaterialStateProperty<Color>(
+          decodeColor(value['backgroundColor']),
+        ),
+        elevation: _buildMaterialStateProperty<double>(
+          JsonClass.parseDouble(value['elevation']),
+        ),
+        enableFeedback: JsonClass.parseBool(value['enableFeedback']),
+        foregroundColor: _buildMaterialStateProperty<Color>(
+          decodeColor(value['foregroundColor']),
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [ButtonTextTheme].  Supported values are:
   ///  * `accent`
   ///  * `normal`
@@ -7823,6 +7860,14 @@ class ThemeDecoder {
       }
     }
 
+    return result;
+  }
+
+  static MaterialStateProperty<T> _buildMaterialStateProperty<T>(T value) {
+    MaterialStateProperty<T> result;
+    if (value != null) {
+      result = MaterialStateProperty.all(value);
+    }
     return result;
   }
 

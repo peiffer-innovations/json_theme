@@ -67,6 +67,7 @@ export 'schemas/objects/box_constraints_schema.dart';
 export 'schemas/objects/box_decoration_schema.dart';
 export 'schemas/objects/box_shadow_schema.dart';
 export 'schemas/objects/button_bar_theme_data_schema.dart';
+export 'schemas/objects/button_style_schema.dart';
 export 'schemas/objects/button_theme_data_schema.dart';
 export 'schemas/objects/card_theme_schema.dart';
 export 'schemas/objects/chip_theme_data_schema.dart';

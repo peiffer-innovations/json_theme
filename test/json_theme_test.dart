@@ -4402,6 +4402,31 @@ void main() {
     );
   });
 
+  test('Size', () {
+    expect(ThemeDecoder.decodeSize(null), null);
+    expect(ThemeEncoder.encodeSize(null), null);
+
+    var entry = Size(0.0, 0.0);
+
+    expect(ThemeDecoder.decodeSize(entry), entry);
+
+    var encoded = ThemeEncoder.encodeSize(entry);
+    var decoded = ThemeDecoder.decodeSize(encoded);
+
+    expect(
+      encoded,
+      {
+        'height': 0.0,
+        'width': 0.0,
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('SliderComponentShape', () {
     expect(ThemeDecoder.decodeSliderComponentShape(null), null);
     expect(ThemeEncoder.encodeSliderComponentShape(null), null);

@@ -2615,6 +2615,99 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.  The value structure
+  /// returned the type of the [OutlinedBorder] passed in.
+  ///
+  /// `BeveledRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "beveled"
+  /// }
+  /// ```
+  ///
+  /// `CircleBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "circle"
+  /// }
+  /// ```
+  ///
+  /// `ContinuousRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rectangle"
+  /// }
+  /// ```
+  ///
+  /// `RoundedRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rounded"
+  /// }
+  /// ```
+  ///
+  /// `StadiumBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "stadium"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBorderSide]
+  static Map<String, dynamic> encodeOutlinedBorder(ShapeBorder value) {
+    assert(value == null ||
+        value is BeveledRectangleBorder ||
+        value is CircleBorder ||
+        value is ContinuousRectangleBorder ||
+        value is RoundedRectangleBorder ||
+        value is StadiumBorder);
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      if (value is BeveledRectangleBorder) {
+        result = <String, dynamic>{
+          'borderRadius': encodeBorderRadius(value.borderRadius),
+          'side': encodeBorderSide(value.side),
+          'type': 'beveled',
+        };
+      } else if (value is CircleBorder) {
+        result = <String, dynamic>{
+          'side': encodeBorderSide(value.side),
+          'type': 'circle',
+        };
+      } else if (value is ContinuousRectangleBorder) {
+        result = <String, dynamic>{
+          'borderRadius': encodeBorderRadius(value.borderRadius),
+          'side': encodeBorderSide(value.side),
+          'type': 'rectangle',
+        };
+      } else if (value is RoundedRectangleBorder) {
+        result = <String, dynamic>{
+          'borderRadius': encodeBorderRadius(value.borderRadius),
+          'side': encodeBorderSide(value.side),
+          'type': 'rounded',
+        };
+      } else if (value is StadiumBorder) {
+        result = <String, dynamic>{
+          'side': encodeBorderSide(value.side),
+          'type': 'stadium',
+        };
+      }
+    }
+
+    return _stripNull(result);
+  }
+
   /// Encodes the [value] to a JSON representation.
   ///
   /// ```json

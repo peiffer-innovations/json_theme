@@ -4455,6 +4455,161 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a given Map-like value into a [OutlinedBorder].  The value returned
+  /// depends on the "type" parameter.  The "type" must be one of:
+  ///  * `beveled`
+  ///  * `circle`
+  ///  * `rectangle`
+  ///  * `rounded`
+  ///  * `stadium`
+  ///
+  /// The JSON format of the [value] depends on the "type" and the associated
+  /// class.
+  ///
+  /// `BeveledRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "beveled"
+  /// }
+  /// ```
+  ///
+  /// `CircleBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "circle"
+  /// }
+  /// ```
+  ///
+  /// `ContinuousRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rectangle"
+  /// }
+  /// ```
+  ///
+  /// `RoundedRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rounded"
+  /// }
+  /// ```
+  ///
+  /// `StadiumBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "stadium"
+  /// }
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBorderSide]
+  static OutlinedBorder decodeOutlinedBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    OutlinedBorder result;
+    if (value is OutlinedBorder) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'OutlinedBorder.type',
+        [
+          'beveled',
+          'circle',
+          'rectangle',
+          'rounded',
+          'stadium',
+        ],
+        value == null ? null : value['type'],
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/outlined_border',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
+
+        switch (type) {
+          case 'beveled':
+            result = BeveledRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'circle':
+            result = CircleBorder(
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'rectangle':
+            result = ContinuousRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'rounded':
+            result = RoundedRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'stadium':
+            result = StadiumBorder(
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
   /// given [value] to be of the following structure:
   ///

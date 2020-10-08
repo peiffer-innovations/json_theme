@@ -5949,6 +5949,9 @@ void main() {
         'color': '#ff888888',
         'shape': 'circular',
       },
+      'bottomNavigationBarTheme': {
+        'backgroundColor': '#ff999999',
+      },
       'brightness': 'dark',
       'bottomSheetTheme': {
         'backgroundColor': '#ff000000',
@@ -6099,6 +6102,7 @@ void main() {
         'color': '#eebbbbbb',
       },
       'errorColor': '#eecccccc',
+      'fixTextFieldOutlineLabel': true,
       'floatingActionButtonTheme': {
         'backgroundColor': '#eedddddd',
       },

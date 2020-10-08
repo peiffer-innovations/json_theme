@@ -15,17 +15,12 @@ class ButtonStyleSchema {
       'elevation': SchemaHelper.numberSchema,
       'enableFeedback': SchemaHelper.boolSchema,
       'foregroundColor': SchemaHelper.objectSchema(ColorSchema.id),
-      // TODO: Add SizeSchema
-      /*'minimumSize': {
-        'type': 'array',
-        'items': SchemaHelper.numberSchema,
-      },*/
+      'minimumSize': SchemaHelper.objectSchema(SizeSchema.id),
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'overlayColor': SchemaHelper.objectSchema(ColorSchema.id),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-      // TODO: Add OutlinedBorderSchema
-      //'shape': SchemaHelper.objectSchema(),
+      'shape': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
       'side': SchemaHelper.objectSchema(BorderSideSchema.id),
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,

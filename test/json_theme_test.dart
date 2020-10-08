@@ -3545,6 +3545,193 @@ void main() {
     );
   });
 
+  test('OutlinedBorder', () {
+    expect(ThemeDecoder.decodeOutlinedBorder(null), null);
+    expect(ThemeEncoder.encodeOutlinedBorder(null), null);
+
+    OutlinedBorder entry = BeveledRectangleBorder(
+      borderRadius: BorderRadius.circular(2.0),
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    expect(ThemeDecoder.decodeOutlinedBorder(entry), entry);
+
+    var encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    var decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'type': 'only'
+        },
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'beveled',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = CircleBorder(
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'circle',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = ContinuousRectangleBorder(
+      borderRadius: BorderRadius.circular(2.0),
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'type': 'only'
+        },
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'rectangle',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(2.0),
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'bottomRight': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'topLeft': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'topRight': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'type': 'only'
+        },
+        'side': {
+          'color': '#00123456',
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'rounded'
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = StadiumBorder(
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'stadium',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('PopupMenuThemeData', () {
     expect(ThemeDecoder.decodePopupMenuThemeData(null), null);
     expect(ThemeEncoder.encodePopupMenuThemeData(null), null);

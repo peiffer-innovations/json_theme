@@ -103,6 +103,7 @@ export 'schemas/objects/rect_schema.dart';
 export 'schemas/objects/scroll_physics_schema.dart';
 export 'schemas/objects/shadow_schema.dart';
 export 'schemas/objects/shape_border_schema.dart';
+export 'schemas/objects/size_schema.dart';
 export 'schemas/objects/slider_theme_data_schema.dart';
 export 'schemas/objects/slider_track_shape_schema.dart';
 export 'schemas/objects/snack_bar_theme_data_schema.dart';

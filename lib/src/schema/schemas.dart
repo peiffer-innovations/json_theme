@@ -91,6 +91,7 @@ class Schemas {
     ShadowSchema.id: ShadowSchema.schema,
     ShapeBorderSchema.id: ShapeBorderSchema.schema,
     ShowValueIndicatorSchema.id: ShowValueIndicatorSchema.schema,
+    SizeSchema.id: SizeSchema.schema,
     SliderComponentShapeSchema.id: SliderComponentShapeSchema.schema,
     SliderThemeDataSchema.id: SliderThemeDataSchema.schema,
     SliderTickMarkShapeSchema.id: SliderTickMarkShapeSchema.schema,

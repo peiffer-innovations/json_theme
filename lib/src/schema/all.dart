@@ -95,6 +95,7 @@ export 'schemas/objects/matrix4_schema.dart';
 export 'schemas/objects/mouse_cursor_schema.dart';
 export 'schemas/objects/navigation_rail_theme_data_schema.dart';
 export 'schemas/objects/offset_schema.dart';
+export 'schemas/objects/outlined_border_schema.dart';
 export 'schemas/objects/popup_menu_theme_data_schema.dart';
 export 'schemas/objects/radius_schema.dart';
 export 'schemas/objects/range_slider_thumb_shape_schema.dart';

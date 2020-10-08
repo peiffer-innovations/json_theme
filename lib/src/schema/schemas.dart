@@ -77,6 +77,7 @@ class Schemas {
     NavigationRailThemeDataSchema.id: NavigationRailThemeDataSchema.schema,
     NotchedShapeSchema.id: NotchedShapeSchema.schema,
     OffsetSchema.id: OffsetSchema.schema,
+    OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
     RadiusSchema.id: RadiusSchema.schema,
     RangeSliderThumbShapeSchema.id: RangeSliderThumbShapeSchema.schema,

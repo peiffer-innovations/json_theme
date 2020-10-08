@@ -5340,6 +5340,38 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [Size].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "height: <double>,
+  ///   "width: <double>
+  /// }
+  /// ```
+  static Size decodeSize(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    Size result;
+
+    if (value is Size) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/size',
+        value: value,
+        validate: validate,
+      ));
+      result = Size(
+        JsonClass.parseDouble(value['height']),
+        JsonClass.parseDouble(value['width']),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
   ///  * `noOverlay`
   ///  * `noThumb`

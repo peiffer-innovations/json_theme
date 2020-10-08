@@ -3018,6 +3018,28 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a JSON compatible Map.
+  ///
+  /// This returns the JSON representation to follow the structure:
+  /// ```json
+  /// {
+  ///   "height: <double>,
+  ///   "width: <double>
+  /// }
+  /// ```
+  static Map<String, dynamic> encodeSize(Size value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = {
+        'height': value.height,
+        'width': value.width,
+      };
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `noOverlay`

@@ -8,6 +8,10 @@ class SizeSchema {
     r'id': '$id',
     'title': 'Size',
     'additionalProperties': false,
+    'required': [
+      'height',
+      'width',
+    ],
     'properties': {
       'height': SchemaHelper.numberSchema,
       'width': SchemaHelper.numberSchema,

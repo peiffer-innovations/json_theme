@@ -1354,6 +1354,41 @@ class ThemeDecoder {
   }
 
   /// Decodes the [value] to a [ButtonStyle].
+  ///
+  /// ```json
+  /// {
+  ///   "animationDuration": <double>,
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
+  ///   "foregroundColor": <Color>,
+  ///   "minimumSize": <Size>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "shadowColor": <Color>,
+  ///   "shape": <OutlinedBorder>,
+  ///   "side": <BorderSide>,
+  ///   "tapTargetSize": <MaterialTapTargetSize,
+  ///   "textStyle": <TextStyle>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// This will use the properties passed through JSON to create the
+  /// [MaterialStateProperty] of each corresponding property by using
+  /// the [MaterialStateProperty.all] function with the value passed in.
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeSize]
+  ///  * [decodeMouseCursor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeOutlinedBorder]
+  ///  * [decodeBorderSide]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeTextStyle]
+  ///  * [decodeVisualDensity]
   static ButtonStyle decodeButtonStyle(
     dynamic value, {
     bool validate = true,
@@ -1369,7 +1404,6 @@ class ThemeDecoder {
         validate: validate,
       ));
 
-      // TODO: Complete decodification
       result = ButtonStyle(
         animationDuration: JsonClass.parseDurationFromMillis(
           value['animationDuration'],
@@ -1380,9 +1414,41 @@ class ThemeDecoder {
         elevation: _buildMaterialStateProperty<double>(
           JsonClass.parseDouble(value['elevation']),
         ),
-        enableFeedback: JsonClass.parseBool(value['enableFeedback']),
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
         foregroundColor: _buildMaterialStateProperty<Color>(
           decodeColor(value['foregroundColor']),
+        ),
+        minimumSize: _buildMaterialStateProperty<Size>(
+          decodeSize(value['minimumSize']),
+        ),
+        mouseCursor: _buildMaterialStateProperty<MouseCursor>(
+          decodeMouseCursor(value['mouseCursor']),
+        ),
+        overlayColor: _buildMaterialStateProperty(
+          decodeColor(value['overlayColor']),
+        ),
+        padding: _buildMaterialStateProperty(
+          decodeEdgeInsetsGeometry(value['padding']),
+        ),
+        shadowColor: _buildMaterialStateProperty(
+          decodeColor(value['shadowColor']),
+        ),
+        shape: _buildMaterialStateProperty<OutlinedBorder>(
+          decodeOutlinedBorder(value['shape']),
+        ),
+        side: _buildMaterialStateProperty(
+          decodeBorderSide(value['side']),
+        ),
+        tapTargetSize: decodeMaterialTapTargetSize(
+          value['tapTargetSize'],
+        ),
+        textStyle: _buildMaterialStateProperty<TextStyle>(
+          decodeTextStyle(value['textStyle']),
+        ),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
         ),
       );
     }

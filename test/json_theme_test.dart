@@ -909,6 +909,134 @@ void main() {
     );
   });
 
+  test('ButtonStyle', () {
+    expect(ThemeDecoder.decodeButtonStyle(null), null);
+    expect(ThemeEncoder.encodeButtonStyle(null), null);
+
+    var entry = ButtonStyle(
+      animationDuration: Duration(milliseconds: 1000),
+      backgroundColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      elevation: MaterialStateProperty.all(1.0),
+      enableFeedback: false,
+      foregroundColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      minimumSize: MaterialStateProperty.all(
+        Size(100.0, 100.0),
+      ),
+      mouseCursor: MaterialStateProperty.all(
+        MouseCursor.defer,
+      ),
+      overlayColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      padding: MaterialStateProperty.all(
+        EdgeInsets.zero,
+      ),
+      shadowColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      shape: MaterialStateProperty.all(
+        CircleBorder(),
+      ),
+      side: MaterialStateProperty.all(
+        BorderSide(),
+      ),
+      tapTargetSize: MaterialTapTargetSize.padded,
+      textStyle: MaterialStateProperty.all(
+        TextStyle(),
+      ),
+      visualDensity: VisualDensity.standard,
+    );
+
+    expect(ThemeDecoder.decodeButtonStyle(entry), entry);
+
+    var encoded = ThemeEncoder.encodeButtonStyle(entry);
+    var decoded = ThemeDecoder.decodeButtonStyle(encoded);
+
+    expect(
+      encoded,
+      {
+        'animationDuration': 1000,
+        'backgroundColor': '#ff555555',
+        'elevation': 1.0,
+        'enableFeedback': false,
+        'foregroundColor': '#ff555555',
+        'minimumSize': {
+          'height': 100.0,
+          'width': 100.0,
+        },
+        'mouseCursor': {
+          'type': 'defer',
+        },
+        'overlayColor': '#ff555555',
+        'padding': {
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 0.0,
+        },
+        'shadowColor': '#ff555555',
+        'shape': {
+          'side': {
+            'color': '#ff000000',
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle'
+        },
+        'side': {
+          'color': '#ff000000',
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'tapTargetSize': 'padded',
+        'textStyle': {
+          'inherit': true,
+        },
+        'visualDensity': 'standard',
+      },
+    );
+
+    bool buttonStylesAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! ButtonStyle) {
+        result = false;
+      } else if (first is ButtonStyle && second is ButtonStyle) {
+        result = first.animationDuration == second.animationDuration &&
+            first.backgroundColor?.resolve({}) ==
+                second.backgroundColor?.resolve({}) &&
+            first.elevation?.resolve({}) == second.elevation?.resolve({}) &&
+            first.enableFeedback == second.enableFeedback &&
+            first.foregroundColor?.resolve({}) ==
+                second.foregroundColor?.resolve({}) &&
+            first.minimumSize?.resolve({}) == second.minimumSize?.resolve({}) &&
+            first.mouseCursor?.resolve({}) == second.mouseCursor?.resolve({}) &&
+            first.overlayColor?.resolve({}) ==
+                second.overlayColor?.resolve({}) &&
+            first.padding?.resolve({}) == second.padding?.resolve({}) &&
+            first.shadowColor?.resolve({}) == second.shadowColor?.resolve({}) &&
+            first.shape?.resolve({}) == second.shape?.resolve({}) &&
+            first.side?.resolve({}) == second.side?.resolve({}) &&
+            first.tapTargetSize == second.tapTargetSize &&
+            first.textStyle?.resolve({}) == second.textStyle?.resolve({}) &&
+            first.visualDensity == second.visualDensity;
+      }
+
+      return result;
+    }
+
+    expect(
+      buttonStylesAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('ButtonTextTheme', () {
     expect(ThemeDecoder.decodeButtonTextTheme(null), null);
     expect(ThemeEncoder.encodeButtonTextTheme(null), null);

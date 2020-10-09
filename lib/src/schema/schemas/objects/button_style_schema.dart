@@ -22,7 +22,7 @@ class ButtonStyleSchema {
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
       'side': SchemaHelper.objectSchema(BorderSideSchema.id),
-      'materialTapTargetSize': SchemaHelper.objectSchema(
+      'tapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
       'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),

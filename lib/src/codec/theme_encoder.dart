@@ -803,6 +803,116 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "animationDuration": <double>,
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
+  ///   "foregroundColor": <Color>,
+  ///   "minimumSize": <Size>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "shadowColor": <Color>,
+  ///   "shape": <OutlinedBorder>,
+  ///   "side": <BorderSide>,
+  ///   "tapTargetSize": <MaterialTapTargetSize,
+  ///   "textStyle": <TextStyle>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// This won't maintain the [MaterialStateProperty] of each corresponding
+  /// property, instead will resolve them by using an empty set of states,
+  /// returning and encoding the resolved object.
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeSize]
+  ///  * [encodeMouseCursor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeOutlinedBorder]
+  ///  * [encodeBorderSide]
+  ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeTextStyle]
+  ///  * [encodeVisualDensity]
+  static Map<String, dynamic> encodeButtonStyle(
+    ButtonStyle value,
+  ) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'animationDuration': value.animationDuration?.inMilliseconds,
+        'backgroundColor': encodeColor(
+          _resolveMaterialStateProperty<Color>(
+            value.backgroundColor,
+          ),
+        ),
+        'elevation': _resolveMaterialStateProperty<double>(
+          value.elevation,
+        ),
+        'enableFeedback': value.enableFeedback,
+        'foregroundColor': encodeColor(
+          _resolveMaterialStateProperty<Color>(
+            value.foregroundColor,
+          ),
+        ),
+        'minimumSize': encodeSize(
+          _resolveMaterialStateProperty<Size>(
+            value.minimumSize,
+          ),
+        ),
+        'mouseCursor': encodeMouseCursor(
+          _resolveMaterialStateProperty<MouseCursor>(
+            value.mouseCursor,
+          ),
+        ),
+        'overlayColor': encodeColor(
+          _resolveMaterialStateProperty<Color>(
+            value.overlayColor,
+          ),
+        ),
+        'padding': encodeEdgeInsetsGeometry(
+          _resolveMaterialStateProperty<EdgeInsetsGeometry>(
+            value.padding,
+          ),
+        ),
+        'shadowColor': encodeColor(
+          _resolveMaterialStateProperty<Color>(
+            value.shadowColor,
+          ),
+        ),
+        'shape': encodeOutlinedBorder(
+          _resolveMaterialStateProperty<OutlinedBorder>(
+            value.shape,
+          ),
+        ),
+        'side': encodeBorderSide(
+          _resolveMaterialStateProperty<BorderSide>(
+            value.side,
+          ),
+        ),
+        'tapTargetSize': encodeMaterialTapTargetSize(
+          value.tapTargetSize,
+        ),
+        'textStyle': encodeTextStyle(
+          _resolveMaterialStateProperty<TextStyle>(
+            value.textStyle,
+          ),
+        ),
+        'visualDensity': encodeVisualDensity(
+          value.visualDensity,
+        ),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `accent`
@@ -3116,8 +3226,8 @@ class ThemeEncoder {
   /// This returns the JSON representation to follow the structure:
   /// ```json
   /// {
-  ///   "height: <double>,
-  ///   "width: <double>
+  ///   "height": <double>,
+  ///   "width": <double>
   /// }
   /// ```
   static Map<String, dynamic> encodeSize(Size value) {
@@ -4643,6 +4753,14 @@ class ThemeEncoder {
       }
     }
 
+    return result;
+  }
+
+  static T _resolveMaterialStateProperty<T>(MaterialStateProperty<T> value) {
+    T result;
+    if (value != null) {
+      result = value.resolve({});
+    }
     return result;
   }
 }

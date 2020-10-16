@@ -1315,6 +1315,58 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "columnSpacing": <double,
+  ///   "dataRowColor": <Color>,
+  ///   "dataRowHeight": <double>,
+  ///   "dataTextStyle": <TextStyle,
+  ///   "dividerThickness": <double>,
+  ///   "headingRowColor": <Color>,
+  ///   "headingRowHeight": <double>,
+  ///   "headingTextStyle": <TextStyle>,
+  ///   "horizontalMargin": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic> encodeDataTableThemeData(
+      DataTableThemeData value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'columnSpacing': value.columnSpacing,
+        'dataRowColor': encodeColor(
+          _resolveMaterialStateProperty<Color>(
+            value.dataRowColor,
+          ),
+        ),
+        'dataRowHeight': value.dataRowHeight,
+        'dataTextStyle': encodeTextStyle(
+          value.dataTextStyle,
+        ),
+        'dividerThickness': value.dividerThickness,
+        'headingRowColor': encodeColor(
+          _resolveMaterialStateProperty<Color>(
+            value.headingRowColor,
+          ),
+        ),
+        'headingRowHeight': value.headingRowHeight,
+        'headingTextStyle': encodeTextStyle(
+          value.headingTextStyle,
+        ),
+        'horizontalMargin': value.horizontalMargin,
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
   ///   "alignment": <Alignment>,
   ///   "centerSlice": <Rect>,
   ///   "fit": <BoxFit>,

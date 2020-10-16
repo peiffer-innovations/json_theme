@@ -1230,9 +1230,7 @@ class ThemeDecoder {
       ));
       result = value == 'light'
           ? Brightness.light
-          : value == 'dark'
-              ? Brightness.dark
-              : null;
+          : value == 'dark' ? Brightness.dark : null;
     }
 
     return result;
@@ -2211,6 +2209,74 @@ class ThemeDecoder {
         textTheme: decodeCupertinoTextThemeData(
           value['textTheme'],
           validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [DataTableThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "columnSpacing": <double,
+  ///   "dataRowColor": <Color>,
+  ///   "dataRowHeight": <double>,
+  ///   "dataTextStyle": <TextStyle,
+  ///   "dividerThickness": <double>,
+  ///   "headingRowColor": <Color>,
+  ///   "headingRowHeight": <double>,
+  ///   "headingTextStyle": <TextStyle>,
+  ///   "horizontalMargin": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeTextStyle]
+  static DataTableThemeData decodeDataTableThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DataTableThemeData result;
+
+    if (value is DataTableThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/data_table_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = DataTableThemeData(
+        columnSpacing: JsonClass.parseDouble(
+          value['columnSpacing'],
+        ),
+        dataRowColor: _buildMaterialStateProperty<Color>(
+          decodeColor(value['dataRowColor']),
+        ),
+        dataRowHeight: JsonClass.parseDouble(
+          value['dataRowHeight'],
+        ),
+        dataTextStyle: decodeTextStyle(
+          value['dataTextStyle'],
+        ),
+        dividerThickness: JsonClass.parseDouble(
+          value['dividerThickness'],
+        ),
+        headingRowColor: _buildMaterialStateProperty<Color>(
+          decodeColor(value['headingRowColor']),
+        ),
+        headingRowHeight: JsonClass.parseDouble(
+          value['headingRowHeight'],
+        ),
+        headingTextStyle: decodeTextStyle(
+          value['headingTextStyle'],
+        ),
+        horizontalMargin: JsonClass.parseDouble(
+          value['horizontalMargin'],
         ),
       );
     }
@@ -7399,12 +7465,12 @@ class ThemeDecoder {
         applyElevationOverlayColor: value['applyElevationOverlayColor'] == null
             ? null
             : JsonClass.parseBool(value['applyElevationOverlayColor']),
-        bannerTheme: decodeMaterialBannerThemeData(
-          value['bannerTheme'],
-          validate: false,
-        ),
         backgroundColor: decodeColor(
           value['backgroundColor'],
+          validate: false,
+        ),
+        bannerTheme: decodeMaterialBannerThemeData(
+          value['bannerTheme'],
           validate: false,
         ),
         bottomAppBarColor: decodeColor(
@@ -7419,20 +7485,20 @@ class ThemeDecoder {
           value['bottomNavigationBarTheme'],
           validate: false,
         ),
-        brightness: decodeBrightness(
-          value['brightness'],
-          validate: false,
-        ),
         bottomSheetTheme: decodeBottomSheetThemeData(
           value['bottomSheetTheme'],
           validate: false,
         ),
-        buttonColor: decodeColor(
-          value['buttonColor'],
+        brightness: decodeBrightness(
+          value['brightness'],
           validate: false,
         ),
         buttonBarTheme: decodeButtonBarThemeData(
           value['buttonBarTheme'],
+          validate: false,
+        ),
+        buttonColor: decodeColor(
+          value['buttonColor'],
           validate: false,
         ),
         buttonTheme: decodeButtonThemeData(

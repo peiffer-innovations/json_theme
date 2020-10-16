@@ -1000,39 +1000,8 @@ void main() {
       },
     );
 
-    bool buttonStylesAreEqual(Object first, Object second) {
-      bool result;
-
-      if (first.runtimeType != second.runtimeType) {
-        result = false;
-      } else if (first is! ButtonStyle) {
-        result = false;
-      } else if (first is ButtonStyle && second is ButtonStyle) {
-        result = first.animationDuration == second.animationDuration &&
-            first.backgroundColor?.resolve({}) ==
-                second.backgroundColor?.resolve({}) &&
-            first.elevation?.resolve({}) == second.elevation?.resolve({}) &&
-            first.enableFeedback == second.enableFeedback &&
-            first.foregroundColor?.resolve({}) ==
-                second.foregroundColor?.resolve({}) &&
-            first.minimumSize?.resolve({}) == second.minimumSize?.resolve({}) &&
-            first.mouseCursor?.resolve({}) == second.mouseCursor?.resolve({}) &&
-            first.overlayColor?.resolve({}) ==
-                second.overlayColor?.resolve({}) &&
-            first.padding?.resolve({}) == second.padding?.resolve({}) &&
-            first.shadowColor?.resolve({}) == second.shadowColor?.resolve({}) &&
-            first.shape?.resolve({}) == second.shape?.resolve({}) &&
-            first.side?.resolve({}) == second.side?.resolve({}) &&
-            first.tapTargetSize == second.tapTargetSize &&
-            first.textStyle?.resolve({}) == second.textStyle?.resolve({}) &&
-            first.visualDensity == second.visualDensity;
-      }
-
-      return result;
-    }
-
     expect(
-      buttonStylesAreEqual(decoded, entry),
+      _buttonStylesAreEqual(decoded, entry),
       true,
     );
   });
@@ -2124,6 +2093,53 @@ void main() {
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2, 3.0, '4.0']),
       EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
+    );
+  });
+
+  test('ElevatedButtonThemeData', () {
+    expect(ThemeDecoder.decodeElevatedButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeElevatedButtonThemeData(null), null);
+
+    var entry = ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Color(0xff222222),
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeElevatedButtonThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeElevatedButtonThemeData(entry);
+    var decoded = ThemeDecoder.decodeElevatedButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+    );
+
+    bool elevatedButtonThemeDatasAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! ElevatedButtonThemeData) {
+        result = false;
+      } else if (first is ElevatedButtonThemeData &&
+          second is ElevatedButtonThemeData) {
+        result = _buttonStylesAreEqual(first.style, second.style);
+      }
+
+      return result;
+    }
+
+    expect(
+      elevatedButtonThemeDatasAreEqual(decoded, entry),
+      true,
     );
   });
 
@@ -7590,4 +7606,34 @@ void main() {
       'standard',
     );
   });
+}
+
+bool _buttonStylesAreEqual(Object first, Object second) {
+  bool result;
+
+  if (first.runtimeType != second.runtimeType) {
+    result = false;
+  } else if (first is! ButtonStyle) {
+    result = false;
+  } else if (first is ButtonStyle && second is ButtonStyle) {
+    result = first.animationDuration == second.animationDuration &&
+        first.backgroundColor?.resolve({}) ==
+            second.backgroundColor?.resolve({}) &&
+        first.elevation?.resolve({}) == second.elevation?.resolve({}) &&
+        first.enableFeedback == second.enableFeedback &&
+        first.foregroundColor?.resolve({}) ==
+            second.foregroundColor?.resolve({}) &&
+        first.minimumSize?.resolve({}) == second.minimumSize?.resolve({}) &&
+        first.mouseCursor?.resolve({}) == second.mouseCursor?.resolve({}) &&
+        first.overlayColor?.resolve({}) == second.overlayColor?.resolve({}) &&
+        first.padding?.resolve({}) == second.padding?.resolve({}) &&
+        first.shadowColor?.resolve({}) == second.shadowColor?.resolve({}) &&
+        first.shape?.resolve({}) == second.shape?.resolve({}) &&
+        first.side?.resolve({}) == second.side?.resolve({}) &&
+        first.tapTargetSize == second.tapTargetSize &&
+        first.textStyle?.resolve({}) == second.textStyle?.resolve({}) &&
+        first.visualDensity == second.visualDensity;
+  }
+
+  return result;
 }

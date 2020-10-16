@@ -7055,6 +7055,49 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [TextSelectionThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "cursorColor": <Color>,
+  ///   "selectionColor": <Color>,
+  ///   "selectionHandleColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  static TextSelectionThemeData decodeTextSelectionThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TextSelectionThemeData result;
+
+    if (value is TextSelectionThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/text_selection_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = TextSelectionThemeData(
+        cursorColor: decodeColor(
+          value['cursorColor'],
+        ),
+        selectionColor: decodeColor(
+          value['selectionColor'],
+        ),
+        selectionHandleColor: decodeColor(
+          value['selectionHandleColor'],
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes a given Map-like [value] into a [TextStyle].  This expects the
   /// given [value] to have the following structure:
   ///

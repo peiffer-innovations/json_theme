@@ -4149,6 +4149,38 @@ class ThemeEncoder {
   /// return the following structure:
   ///
   /// ```json
+  ///   "cursorColor": <Color>,
+  ///   "selectionColor": <Color>,
+  ///   "selectionHandleColor": <Color>
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  static Map<String, dynamic> encodeTextSelectionThemeData(
+      TextSelectionThemeData value) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'cursorColor': encodeColor(
+          value.cursorColor,
+        ),
+        'selectionColor': encodeColor(
+          value.selectionColor,
+        ),
+        'selectionHandleColor': encodeColor(
+          value.selectionHandleColor,
+        ),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes a given [value] into a JSON compatible Map structure.  This will
+  /// return the following structure:
+  ///
+  /// ```json
   ///   "backgroundColor": <Color>,
   ///   "color": <Color>,
   ///   "decoration": <TextDecoration>,

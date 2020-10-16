@@ -1407,7 +1407,10 @@ class ThemeDecoder {
           value['animationDuration'],
         ),
         backgroundColor: _buildMaterialStateProperty<Color>(
-          decodeColor(value['backgroundColor']),
+          decodeColor(
+            value['backgroundColor'],
+            validate: false,
+          ),
         ),
         elevation: _buildMaterialStateProperty<double>(
           JsonClass.parseDouble(value['elevation']),
@@ -1416,37 +1419,66 @@ class ThemeDecoder {
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
         foregroundColor: _buildMaterialStateProperty<Color>(
-          decodeColor(value['foregroundColor']),
+          decodeColor(
+            value['foregroundColor'],
+            validate: false,
+          ),
         ),
         minimumSize: _buildMaterialStateProperty<Size>(
-          decodeSize(value['minimumSize']),
+          decodeSize(
+            value['minimumSize'],
+            validate: false,
+          ),
         ),
         mouseCursor: _buildMaterialStateProperty<MouseCursor>(
-          decodeMouseCursor(value['mouseCursor']),
+          decodeMouseCursor(
+            value['mouseCursor'],
+            validate: false,
+          ),
         ),
         overlayColor: _buildMaterialStateProperty(
-          decodeColor(value['overlayColor']),
+          decodeColor(
+            value['overlayColor'],
+            validate: false,
+          ),
         ),
         padding: _buildMaterialStateProperty(
-          decodeEdgeInsetsGeometry(value['padding']),
+          decodeEdgeInsetsGeometry(
+            value['padding'],
+            validate: false,
+          ),
         ),
         shadowColor: _buildMaterialStateProperty(
-          decodeColor(value['shadowColor']),
+          decodeColor(
+            value['shadowColor'],
+            validate: false,
+          ),
         ),
         shape: _buildMaterialStateProperty<OutlinedBorder>(
-          decodeOutlinedBorder(value['shape']),
+          decodeOutlinedBorder(
+            value['shape'],
+            validate: false,
+          ),
         ),
         side: _buildMaterialStateProperty(
-          decodeBorderSide(value['side']),
+          decodeBorderSide(
+            value['side'],
+            validate: false,
+          ),
         ),
         tapTargetSize: decodeMaterialTapTargetSize(
           value['tapTargetSize'],
+          validate: false,
         ),
         textStyle: _buildMaterialStateProperty<TextStyle>(
-          decodeTextStyle(value['textStyle']),
+          decodeTextStyle(
+            value['textStyle'],
+            validate: false,
+          ),
         ),
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
+          validate: false,
         ),
       );
     }
@@ -2255,25 +2287,33 @@ class ThemeDecoder {
           value['columnSpacing'],
         ),
         dataRowColor: _buildMaterialStateProperty<Color>(
-          decodeColor(value['dataRowColor']),
+          decodeColor(
+            value['dataRowColor'],
+            validate: false,
+          ),
         ),
         dataRowHeight: JsonClass.parseDouble(
           value['dataRowHeight'],
         ),
         dataTextStyle: decodeTextStyle(
           value['dataTextStyle'],
+          validate: false,
         ),
         dividerThickness: JsonClass.parseDouble(
           value['dividerThickness'],
         ),
         headingRowColor: _buildMaterialStateProperty<Color>(
-          decodeColor(value['headingRowColor']),
+          decodeColor(
+            value['headingRowColor'],
+            validate: false,
+          ),
         ),
         headingRowHeight: JsonClass.parseDouble(
           value['headingRowHeight'],
         ),
         headingTextStyle: decodeTextStyle(
           value['headingTextStyle'],
+          validate: false,
         ),
         horizontalMargin: JsonClass.parseDouble(
           value['horizontalMargin'],
@@ -2574,6 +2614,42 @@ class ThemeDecoder {
           top: JsonClass.parseDouble(value['top'], 0.0),
         );
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [ElevatedButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static ElevatedButtonThemeData decodeElevatedButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ElevatedButtonThemeData result;
+
+    if (value is ElevatedButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/elevated_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = ElevatedButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
     }
 
     return result;
@@ -7085,12 +7161,15 @@ class ThemeDecoder {
       result = TextSelectionThemeData(
         cursorColor: decodeColor(
           value['cursorColor'],
+          validate: false,
         ),
         selectionColor: decodeColor(
           value['selectionColor'],
+          validate: false,
         ),
         selectionHandleColor: decodeColor(
           value['selectionHandleColor'],
+          validate: false,
         ),
       );
     }

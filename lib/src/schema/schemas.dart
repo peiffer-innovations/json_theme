@@ -35,6 +35,7 @@ class Schemas {
     CrossFadeStateSchema.id: CrossFadeStateSchema.schema,
     CupertinoTextThemeDataSchema.id: CupertinoTextThemeDataSchema.schema,
     CupertinoThemeDataSchema.id: CupertinoThemeDataSchema.schema,
+    DataTableThemeDataSchema.id: DataTableThemeDataSchema.schema,
     DecorationImageSchema.id: DecorationImageSchema.schema,
     DecorationPositionSchema.id: DecorationPositionSchema.schema,
     DialogThemeSchema.id: DialogThemeSchema.schema,

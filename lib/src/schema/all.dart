@@ -75,6 +75,7 @@ export 'schemas/objects/color_schema.dart';
 export 'schemas/objects/color_scheme_schema.dart';
 export 'schemas/objects/cupertino_text_theme_data_schema.dart';
 export 'schemas/objects/cupertino_theme_data_schema.dart';
+export 'schemas/objects/data_table_theme_data_schema.dart';
 export 'schemas/objects/decoration_image_schema.dart';
 export 'schemas/objects/dialog_theme_schema.dart';
 export 'schemas/objects/divider_theme_data_schema.dart';

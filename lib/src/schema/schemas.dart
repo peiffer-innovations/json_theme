@@ -118,6 +118,7 @@ class Schemas {
     TextInputActionSchema.id: TextInputActionSchema.schema,
     TextInputTypeSchema.id: TextInputTypeSchema.schema,
     TextOverflowSchema.id: TextOverflowSchema.schema,
+    TextSelectionThemeDataSchema.id: TextSelectionThemeDataSchema.schema,
     TextStyleSchema.id: TextStyleSchema.schema,
     TextThemeSchema.id: TextThemeSchema.schema,
     TextWidthBasisSchema.id: TextWidthBasisSchema.schema,

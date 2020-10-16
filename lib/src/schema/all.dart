@@ -80,6 +80,7 @@ export 'schemas/objects/decoration_image_schema.dart';
 export 'schemas/objects/dialog_theme_schema.dart';
 export 'schemas/objects/divider_theme_data_schema.dart';
 export 'schemas/objects/edge_insets_geometry_schema.dart';
+export 'schemas/objects/elevated_button_theme_data_schema.dart';
 export 'schemas/objects/floating_action_button_theme_data_schema.dart';
 export 'schemas/objects/font_feature_schema.dart';
 export 'schemas/objects/gradient_schema.dart';

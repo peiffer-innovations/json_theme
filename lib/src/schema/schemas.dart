@@ -42,6 +42,7 @@ class Schemas {
     DividerThemeDataSchema.id: DividerThemeDataSchema.schema,
     DragStartBehaviorSchema.id: DragStartBehaviorSchema.schema,
     EdgeInsetsGeometrySchema.id: EdgeInsetsGeometrySchema.schema,
+    ElevatedButtonThemeDataSchema.id: ElevatedButtonThemeDataSchema.schema,
     FilterQualitySchema.id: FilterQualitySchema.schema,
     FlexFitSchema.id: FlexFitSchema.schema,
     FloatingActionButtonAnimatorSchema.id:

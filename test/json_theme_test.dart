@@ -1782,6 +1782,80 @@ void main() {
     );
   });
 
+  test('DataTableThemeData', () {
+    expect(ThemeDecoder.decodeDataTableThemeData(null), null);
+    expect(ThemeEncoder.encodeDataTableThemeData(null), null);
+
+    var entry = DataTableThemeData(
+      columnSpacing: 1.0,
+      dataRowColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      dataRowHeight: 1.0,
+      dataTextStyle: TextStyle(),
+      dividerThickness: 1.0,
+      headingRowColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      headingRowHeight: 1.0,
+      headingTextStyle: TextStyle(),
+      horizontalMargin: 1.0,
+    );
+
+    expect(ThemeDecoder.decodeDataTableThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeDataTableThemeData(entry);
+    var decoded = ThemeDecoder.decodeDataTableThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'columnSpacing': 1.0,
+        'dataRowColor': '#ff555555',
+        'dataRowHeight': 1.0,
+        'dataTextStyle': {
+          'inherit': true,
+        },
+        'dividerThickness': 1.0,
+        'headingRowColor': '#ff555555',
+        'headingRowHeight': 1.0,
+        'headingTextStyle': {
+          'inherit': true,
+        },
+        'horizontalMargin': 1.0,
+      },
+    );
+
+    bool dataTableThemeDataAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! DataTableThemeData) {
+        result = false;
+      } else if (first is DataTableThemeData && second is DataTableThemeData) {
+        result = first.columnSpacing == second.columnSpacing &&
+            first.dataRowColor?.resolve({}) ==
+                second.dataRowColor?.resolve({}) &&
+            first.dataRowHeight == second.dataRowHeight &&
+            first.dataTextStyle == second.dataTextStyle &&
+            first.dividerThickness == second.dividerThickness &&
+            first.headingRowColor?.resolve({}) ==
+                second.headingRowColor?.resolve({}) &&
+            first.headingRowHeight == second.headingRowHeight &&
+            first.headingTextStyle == second.headingTextStyle &&
+            first.horizontalMargin == second.horizontalMargin;
+      }
+
+      return result;
+    }
+
+    expect(
+      dataTableThemeDataAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('DecorationImage', () {
     expect(ThemeDecoder.decodeDecorationImage(null), null);
     expect(ThemeEncoder.encodeDecorationImage(null), null);

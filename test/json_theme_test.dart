@@ -5890,6 +5890,36 @@ void main() {
     expect(ThemeEncoder.encodeTextOverflow(TextOverflow.visible), 'visible');
   });
 
+  test('TextSelectionThemeData', () {
+    expect(ThemeDecoder.decodeTextSelectionThemeData(null), null);
+    expect(ThemeEncoder.encodeTextSelectionThemeData(null), null);
+
+    var entry = TextSelectionThemeData(
+      cursorColor: Color(0xff222222),
+      selectionColor: Color(0xff222222),
+      selectionHandleColor: Color(0xff222222),
+    );
+
+    expect(ThemeDecoder.decodeTextSelectionThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeTextSelectionThemeData(entry);
+    var decoded = ThemeDecoder.decodeTextSelectionThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'cursorColor': '#ff222222',
+        'selectionColor': '#ff222222',
+        'selectionHandleColor': '#ff222222',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('TextStyle', () {
     expect(ThemeDecoder.decodeTextStyle(null), null);
     expect(ThemeEncoder.encodeTextStyle(null), null);

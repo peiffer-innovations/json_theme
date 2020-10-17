@@ -6678,6 +6678,42 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [TextButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static TextButtonThemeData decodeTextButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TextButtonThemeData result;
+
+    if (value is TextButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/text_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = TextButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [TextCapitalization].  Supported values are:
   ///  * `characters`
   ///  * `none`

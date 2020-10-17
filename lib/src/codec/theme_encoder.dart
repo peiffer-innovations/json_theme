@@ -3894,6 +3894,30 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] into a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonStyle]
+  static Map<String, dynamic> encodeTextButtonThemeData(
+    TextButtonThemeData value,
+  ) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'style': encodeButtonStyle(value.style),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `characters`

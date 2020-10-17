@@ -7542,6 +7542,7 @@ class ThemeDecoder {
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
   ///   "cursorColor": <Color>,
+  ///   "dataTableTheme": <DataTableThemeData>,
   ///   "dialogBackgroundColor": <Color>,
   ///   "dialogTheme": <DialogTheme>,
   ///   "disabledColor": <Color>,
@@ -7603,6 +7604,7 @@ class ThemeDecoder {
   ///  * [decodeChipThemeData]
   ///  * [decodeColor]
   ///  * [decodeColorScheme]
+  ///  * [decodeDataTableThemeData]
   ///  * [decodeDialogTheme]
   ///  * [decodeDividerThemeData]
   ///  * [decodeFloatingActionButtonThemeData]
@@ -7726,6 +7728,10 @@ class ThemeDecoder {
         ),
         cursorColor: decodeColor(
           value['cursorColor'],
+          validate: false,
+        ),
+        dataTableTheme: decodeDataTableThemeData(
+          value['dataTableTheme'],
           validate: false,
         ),
         dialogBackgroundColor: decodeColor(

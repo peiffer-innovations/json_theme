@@ -4423,6 +4423,7 @@ class ThemeEncoder {
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
   ///   "cursorColor": <Color>,
+  ///   "dataTableTheme": <DataTableThemeData>,
   ///   "dialogBackgroundColor": <Color>,
   ///   "dialogTheme": <DialogTheme>,
   ///   "disabledColor": <Color>,
@@ -4480,6 +4481,7 @@ class ThemeEncoder {
   ///  * [encodeChipThemeData]
   ///  * [encodeColor]
   ///  * [encodeColorScheme]
+  ///  * [encodeDataTableThemeData]
   ///  * [encodeDialogTheme]
   ///  * [encodeDividerThemeData]
   ///  * [encodeFloatingActionButtonThemeData]
@@ -4530,6 +4532,7 @@ class ThemeEncoder {
           value.cupertinoOverrideTheme,
         ),
         'cursorColor': encodeColor(value.cursorColor),
+        'dataTableTheme': encodeDataTableThemeData(value.dataTableTheme),
         'dialogBackgroundColor': encodeColor(value.dialogBackgroundColor),
         'dialogTheme': encodeDialogTheme(value.dialogTheme),
         'disabledColor': encodeColor(value.disabledColor),

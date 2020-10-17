@@ -6304,6 +6304,21 @@ void main() {
         barBackgroundColor: Color(0xee111111),
       ),
       cursorColor: Color(0xee888888),
+      dataTableTheme: DataTableThemeData(
+        columnSpacing: 1.0,
+        dataRowColor: MaterialStateProperty.all(
+          Color(0xff555555),
+        ),
+        dataRowHeight: 1.0,
+        dataTextStyle: TextStyle(),
+        dividerThickness: 1.0,
+        headingRowColor: MaterialStateProperty.all(
+          Color(0xff555555),
+        ),
+        headingRowHeight: 1.0,
+        headingTextStyle: TextStyle(),
+        horizontalMargin: 1.0,
+      ),
       dialogBackgroundColor: Color(0xee888888),
       dialogTheme: DialogTheme(backgroundColor: Color(0xee999999)),
       disabledColor: Color(0xee000000),
@@ -6626,6 +6641,21 @@ void main() {
         'barBackgroundColor': '#ee111111',
       },
       'cursorColor': '#ee888888',
+      'dataTableTheme': {
+        'columnSpacing': 1.0,
+        'dataRowColor': '#ff555555',
+        'dataRowHeight': 1.0,
+        'dataTextStyle': {
+          'inherit': true,
+        },
+        'dividerThickness': 1.0,
+        'headingRowColor': '#ff555555',
+        'headingRowHeight': 1.0,
+        'headingTextStyle': {
+          'inherit': true,
+        },
+        'horizontalMargin': 1.0,
+      },
       'dialogBackgroundColor': '#ee888888',
       'dialogTheme': {
         'backgroundColor': '#ee999999',

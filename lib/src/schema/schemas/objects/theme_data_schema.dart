@@ -38,6 +38,7 @@ class ThemeDataSchema {
       'cupertinoOverrideTheme':
           SchemaHelper.objectSchema(CupertinoThemeDataSchema.id),
       'cursorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeSchema.id),
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),

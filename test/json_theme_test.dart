@@ -6324,6 +6324,13 @@ void main() {
       disabledColor: Color(0xee000000),
       dividerColor: Color(0xeeaaaaaa),
       dividerTheme: DividerThemeData(color: Color(0xeebbbbbb)),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Color(0xff222222),
+          ),
+        ),
+      ),
       errorColor: Color(0xeecccccc),
       fixTextFieldOutlineLabel: true,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -6664,6 +6671,11 @@ void main() {
       'dividerColor': '#eeaaaaaa',
       'dividerTheme': {
         'color': '#eebbbbbb',
+      },
+      'elevatedButtonTheme': {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
       },
       'errorColor': '#eecccccc',
       'fixTextFieldOutlineLabel': true,

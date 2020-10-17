@@ -7548,6 +7548,7 @@ class ThemeDecoder {
   ///   "disabledColor": <Color>,
   ///   "dividerColor": <Color>,
   ///   "dividerTheme": <DividerThemeData>,
+  ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
   ///   "fixTextFieldOutlineLabel": <bool>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
@@ -7607,6 +7608,7 @@ class ThemeDecoder {
   ///  * [decodeDataTableThemeData]
   ///  * [decodeDialogTheme]
   ///  * [decodeDividerThemeData]
+  ///  * [decodeElevatedButtonThemeData]
   ///  * [decodeFloatingActionButtonThemeData]
   ///  * [decodeIconThemeData]
   ///  * [decodeInputDecorationTheme]
@@ -7752,6 +7754,10 @@ class ThemeDecoder {
         ),
         dividerTheme: decodeDividerThemeData(
           value['dividerTheme'],
+          validate: false,
+        ),
+        elevatedButtonTheme: decodeElevatedButtonThemeData(
+          value['elevatedButtonTheme'],
           validate: false,
         ),
         errorColor: decodeColor(

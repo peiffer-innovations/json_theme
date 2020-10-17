@@ -44,6 +44,8 @@ class ThemeDataSchema {
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
+      'elevatedButtonTheme':
+          SchemaHelper.objectSchema(ElevatedButtonThemeDataSchema.id),
       'errorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'fixTextFieldOutlineLabel': SchemaHelper.boolSchema,
       'floatingActionButtonTheme':

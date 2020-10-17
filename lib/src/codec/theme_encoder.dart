@@ -4429,6 +4429,7 @@ class ThemeEncoder {
   ///   "disabledColor": <Color>,
   ///   "dividerColor": <Color>,
   ///   "dividerTheme": <DividerThemeData>,
+  ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
   ///   "focusColor": <Color>,
@@ -4484,6 +4485,7 @@ class ThemeEncoder {
   ///  * [encodeDataTableThemeData]
   ///  * [encodeDialogTheme]
   ///  * [encodeDividerThemeData]
+  ///  * [encodeElevatedButtonThemeData]
   ///  * [encodeFloatingActionButtonThemeData]
   ///  * [encodeIconThemeData]
   ///  * [encodeInputDecorationTheme]
@@ -4538,6 +4540,9 @@ class ThemeEncoder {
         'disabledColor': encodeColor(value.disabledColor),
         'dividerColor': encodeColor(value.dividerColor),
         'dividerTheme': encodeDividerThemeData(value.dividerTheme),
+        'elevatedButtonTheme': encodeElevatedButtonThemeData(
+          value.elevatedButtonTheme,
+        ),
         'errorColor': encodeColor(value.errorColor),
         'fixTextFieldOutlineLabel': value.fixTextFieldOutlineLabel,
         'floatingActionButtonTheme': encodeFloatingActionButtonThemeData(

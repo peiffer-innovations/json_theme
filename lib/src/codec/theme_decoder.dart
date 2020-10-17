@@ -4818,6 +4818,42 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [OutlinedButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static OutlinedButtonThemeData decodeOutlinedButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    OutlinedButtonThemeData result;
+
+    if (value is OutlinedButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/outlined_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = OutlinedButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
   /// given [value] to be of the following structure:
   ///

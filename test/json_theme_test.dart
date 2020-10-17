@@ -6355,6 +6355,7 @@ void main() {
       scaffoldBackgroundColor: Color(0xee666666),
       secondaryHeaderColor: Color(0xccbbbbbb),
       selectedRowColor: Color(0xcccccccc),
+      shadowColor: Color(0xcccccccc),
       sliderTheme: SliderThemeData(activeTickMarkColor: Color(0xccdddddd)),
       snackBarTheme: SnackBarThemeData(actionTextColor: Color(0xcceeeeee)),
       splashColor: Color(0xee444444),
@@ -6749,6 +6750,7 @@ void main() {
       'scaffoldBackgroundColor': '#ee666666',
       'secondaryHeaderColor': '#ccbbbbbb',
       'selectedRowColor': '#cccccccc',
+      'shadowColor': '#cccccccc',
       'sliderTheme': {
         'activeTickMarkColor': '#ccdddddd',
       },

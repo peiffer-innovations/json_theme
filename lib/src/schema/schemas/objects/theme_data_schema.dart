@@ -71,6 +71,7 @@ class ThemeDataSchema {
       'scaffoldBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'secondaryHeaderColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedRowColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'sliderTheme': SchemaHelper.objectSchema(SliderThemeDataSchema.id),
       'snackBarTheme': SchemaHelper.objectSchema(SnackBarThemeDataSchema.id),
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),

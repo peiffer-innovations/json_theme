@@ -7572,6 +7572,7 @@ class ThemeDecoder {
   ///   "scaffoldBackgroundColor": <Color>,
   ///   "secondaryHeaderColor": <Color>,
   ///   "selectedRowColor": <Color>,
+  ///   "shadowColor": <Color>,
   ///   "sliderTheme": <SliderThemeData>,
   ///   "snackBarTheme": <SnackBarThemeData>,
   ///   "splashColor": <Color>,
@@ -7837,6 +7838,10 @@ class ThemeDecoder {
         ),
         selectedRowColor: decodeColor(
           value['selectedRowColor'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
           validate: false,
         ),
         sliderTheme: decodeSliderThemeData(

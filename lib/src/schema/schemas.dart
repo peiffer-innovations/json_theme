@@ -80,6 +80,7 @@ class Schemas {
     NotchedShapeSchema.id: NotchedShapeSchema.schema,
     OffsetSchema.id: OffsetSchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
+    OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
     RadiusSchema.id: RadiusSchema.schema,
     RangeSliderThumbShapeSchema.id: RangeSliderThumbShapeSchema.schema,

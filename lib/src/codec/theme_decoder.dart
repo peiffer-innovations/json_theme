@@ -7724,6 +7724,10 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
+        cursorColor: decodeColor(
+          value['cursorColor'],
+          validate: false,
+        ),
         dialogBackgroundColor: decodeColor(
           value['dialogBackgroundColor'],
           validate: false,

@@ -6303,6 +6303,7 @@ void main() {
       cupertinoOverrideTheme: CupertinoThemeData(
         barBackgroundColor: Color(0xee111111),
       ),
+      cursorColor: Color(0xee888888),
       dialogBackgroundColor: Color(0xee888888),
       dialogTheme: DialogTheme(backgroundColor: Color(0xee999999)),
       disabledColor: Color(0xee000000),
@@ -6624,6 +6625,7 @@ void main() {
       'cupertinoOverrideTheme': {
         'barBackgroundColor': '#ee111111',
       },
+      'cursorColor': '#ee888888',
       'dialogBackgroundColor': '#ee888888',
       'dialogTheme': {
         'backgroundColor': '#ee999999',

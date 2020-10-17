@@ -6362,6 +6362,7 @@ void main() {
       splashFactory: InkSplash.splashFactory,
       tabBarTheme: TabBarTheme(labelColor: Color(0xccffffff)),
       textSelectionColor: Color(0xcccccccc),
+      textSelectionHandleColor: Color(0xcccccccc),
       textTheme: TextTheme(
         bodyText1: TextStyle(
           color: Color(0xee555555),
@@ -6764,6 +6765,7 @@ void main() {
         'labelColor': '#ccffffff',
       },
       'textSelectionColor': '#cccccccc',
+      'textSelectionHandleColor': '#cccccccc',
       'textTheme': {
         'bodyText1': {
           'color': '#ee555555',

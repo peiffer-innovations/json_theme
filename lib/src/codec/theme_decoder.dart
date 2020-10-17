@@ -7868,6 +7868,10 @@ class ThemeDecoder {
           value['textSelectionColor'],
           validate: false,
         ),
+        textSelectionHandleColor: decodeColor(
+          value['textSelectionHandleColor'],
+          validate: false,
+        ),
         textTheme: decodeTextTheme(
           value['textTheme'],
           validate: false,

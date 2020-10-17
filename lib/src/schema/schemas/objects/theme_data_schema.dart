@@ -79,6 +79,7 @@ class ThemeDataSchema {
           SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
       'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
       'timePickerTheme':
           SchemaHelper.objectSchema(TimePickerThemeDataSchema.id),

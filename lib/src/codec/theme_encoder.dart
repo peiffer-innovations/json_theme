@@ -4574,6 +4574,7 @@ class ThemeEncoder {
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
         'textSelectionColor': encodeColor(value.textSelectionColor),
+        'textSelectionHandleColor': encodeColor(value.textSelectionHandleColor),
         'textTheme': encodeTextTheme(value.textTheme),
         'toggleButtonsTheme': encodeToggleButtonsThemeData(
           value.toggleButtonsTheme,

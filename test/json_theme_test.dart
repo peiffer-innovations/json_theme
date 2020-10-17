@@ -3950,6 +3950,53 @@ void main() {
     );
   });
 
+  test('OutlinedButtonThemeData', () {
+    expect(ThemeDecoder.decodeOutlinedButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeOutlinedButtonThemeData(null), null);
+
+    var entry = OutlinedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Color(0xff222222),
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeOutlinedButtonThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeOutlinedButtonThemeData(entry);
+    var decoded = ThemeDecoder.decodeOutlinedButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+    );
+
+    bool outlinedButtonThemeDatasAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! OutlinedButtonThemeData) {
+        result = false;
+      } else if (first is OutlinedButtonThemeData &&
+          second is OutlinedButtonThemeData) {
+        result = _buttonStylesAreEqual(first.style, second.style);
+      }
+
+      return result;
+    }
+
+    expect(
+      outlinedButtonThemeDatasAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('PopupMenuThemeData', () {
     expect(ThemeDecoder.decodePopupMenuThemeData(null), null);
     expect(ThemeEncoder.encodePopupMenuThemeData(null), null);

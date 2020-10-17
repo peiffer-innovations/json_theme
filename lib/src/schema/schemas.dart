@@ -112,6 +112,7 @@ class Schemas {
     TextAlignSchema.id: TextAlignSchema.schema,
     TextAlignVerticalSchema.id: TextAlignVerticalSchema.schema,
     TextBaselineSchema.id: TextBaselineSchema.schema,
+    TextButtonThemeDataSchema.id: TextButtonThemeDataSchema.schema,
     TextCapitalizationSchema.id: TextCapitalizationSchema.schema,
     TextDecorationSchema.id: TextDecorationSchema.schema,
     TextDecorationStyleSchema.id: TextDecorationStyleSchema.schema,

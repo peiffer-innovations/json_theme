@@ -5515,6 +5515,53 @@ void main() {
     );
   });
 
+  test('TextButtonThemeData', () {
+    expect(ThemeDecoder.decodeTextButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeTextButtonThemeData(null), null);
+
+    var entry = TextButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Color(0xff222222),
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeTextButtonThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeTextButtonThemeData(entry);
+    var decoded = ThemeDecoder.decodeTextButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+    );
+
+    bool textButtonThemeDatasAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! TextButtonThemeData) {
+        result = false;
+      } else if (first is TextButtonThemeData &&
+          second is TextButtonThemeData) {
+        result = _buttonStylesAreEqual(first.style, second.style);
+      }
+
+      return result;
+    }
+
+    expect(
+      textButtonThemeDatasAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('TextCapitalization', () {
     expect(ThemeDecoder.decodeTextCapitalization(null), null);
     expect(ThemeEncoder.encodeTextCapitalization(null), null);

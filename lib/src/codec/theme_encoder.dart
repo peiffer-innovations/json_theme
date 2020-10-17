@@ -4457,6 +4457,7 @@ class ThemeEncoder {
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
+  ///   "textSelectionColor": <Color>,
   ///   "textTheme": <TextTheme>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
   ///   "toggleableActiveColor": <Color>,
@@ -4572,6 +4573,7 @@ class ThemeEncoder {
         'splashFactory':
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
+        'textSelectionColor': encodeColor(value.textSelectionColor),
         'textTheme': encodeTextTheme(value.textTheme),
         'toggleButtonsTheme': encodeToggleButtonsThemeData(
           value.toggleButtonsTheme,

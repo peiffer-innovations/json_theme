@@ -7864,6 +7864,10 @@ class ThemeDecoder {
           value['tabBarTheme'],
           validate: false,
         ),
+        textSelectionColor: decodeColor(
+          value['textSelectionColor'],
+          validate: false,
+        ),
         textTheme: decodeTextTheme(
           value['textTheme'],
           validate: false,

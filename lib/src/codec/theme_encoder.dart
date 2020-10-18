@@ -4461,6 +4461,7 @@ class ThemeEncoder {
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
+  ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
   ///   "textTheme": <TextTheme>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
@@ -4500,6 +4501,7 @@ class ThemeEncoder {
   ///  * [encodeSnackBarThemeData]
   ///  * [encodeTabBarTheme]
   ///  * [encodeTargetPlatform]
+  ///  * [encodeTextButtonThemeData]
   ///  * [encodeTextStyle]
   ///  * [encodeToggleButtonsThemeData]
   ///  * [encodeTypography]
@@ -4588,6 +4590,7 @@ class ThemeEncoder {
         'splashFactory':
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
+        'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
         'textSelectionColor': encodeColor(value.textSelectionColor),
         'textSelectionHandleColor': encodeColor(value.textSelectionHandleColor),
         'textTheme': encodeTextTheme(value.textTheme),

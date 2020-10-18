@@ -6391,6 +6391,13 @@ void main() {
       splashColor: Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
       tabBarTheme: TabBarTheme(labelColor: Color(0xccffffff)),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Color(0xff222222),
+          ),
+        ),
+      ),
       textSelectionColor: Color(0xcccccccc),
       textSelectionHandleColor: Color(0xcccccccc),
       textTheme: TextTheme(
@@ -6819,6 +6826,11 @@ void main() {
       'splashFactory': 'splash',
       'tabBarTheme': {
         'labelColor': '#ccffffff',
+      },
+      'textButtonTheme': {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
       },
       'textSelectionColor': '#cccccccc',
       'textSelectionHandleColor': '#cccccccc',

@@ -84,6 +84,8 @@ class ThemeDataSchema {
       'splashFactory':
           SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
+      'textButtonTheme':
+          SchemaHelper.objectSchema(TextButtonThemeDataSchema.id),
       'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),

@@ -7581,6 +7581,7 @@ class ThemeDecoder {
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
+  ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
   ///   "textSelectionHandleColor": <Color>,
   ///   "textTheme": <TextTheme>,
@@ -7623,6 +7624,7 @@ class ThemeDecoder {
   ///  * [decodeSnackBarThemeData]
   ///  * [decodeTabBarTheme]
   ///  * [decodeTargetPlatform]
+  ///  * [decodeTextButtonThemeData]
   ///  * [decodeTimePickerThemeData]
   ///  * [decodeTextStyle]
   ///  * [decodeToggleButtonsThemeData]
@@ -7884,6 +7886,10 @@ class ThemeDecoder {
         ),
         tabBarTheme: decodeTabBarTheme(
           value['tabBarTheme'],
+          validate: false,
+        ),
+        textButtonTheme: decodeTextButtonThemeData(
+          value['textButtonTheme'],
           validate: false,
         ),
         textSelectionColor: decodeColor(

@@ -6350,6 +6350,13 @@ void main() {
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: Color(0xdd666666),
       ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Color(0xff222222),
+          ),
+        ),
+      ),
       platform: TargetPlatform.android,
       popupMenuTheme: PopupMenuThemeData(color: Color(0xdd777777)),
       primaryColor: Color(0xdd888888),
@@ -6701,6 +6708,11 @@ void main() {
       'materialTapTargetSize': 'padded',
       'navigationRailTheme': {
         'backgroundColor': '#dd666666',
+      },
+      'outlinedButtonTheme': {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
       },
       'platform': 'android',
       'popupMenuTheme': {

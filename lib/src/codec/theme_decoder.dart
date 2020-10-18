@@ -7562,6 +7562,7 @@ class ThemeDecoder {
   ///   "inputDecorationTheme": <InputDecorationTheme>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "navigationRailTheme": <NavigationRailThemeData>,
+  ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
   ///   "platform": <TargetPlatform>,
   ///   "popupMenuTheme": <PopupMenuThemeData>,
   ///   "primaryColor": <Color>,
@@ -7616,6 +7617,7 @@ class ThemeDecoder {
   ///  * [decodeMaterialBannerThemeData]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeNavigationRailThemeData]
+  ///  * [decodeOutlinedButtonThemeData]
   ///  * [decodePopupMenuThemeData]
   ///  * [decodeSliderThemeData]
   ///  * [decodeSnackBarThemeData]
@@ -7806,6 +7808,10 @@ class ThemeDecoder {
         ),
         navigationRailTheme: decodeNavigationRailThemeData(
           value['navigationRailTheme'],
+          validate: false,
+        ),
+        outlinedButtonTheme: decodeOutlinedButtonThemeData(
+          value['outlinedButtonTheme'],
           validate: false,
         ),
         platform: decodeTargetPlatform(

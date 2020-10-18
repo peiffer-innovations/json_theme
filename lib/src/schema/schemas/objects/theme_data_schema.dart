@@ -63,6 +63,8 @@ class ThemeDataSchema {
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
       'navigationRailTheme':
           SchemaHelper.objectSchema(NavigationRailThemeDataSchema.id),
+      'outlinedButtonTheme':
+          SchemaHelper.objectSchema(OutlinedButtonThemeDataSchema.id),
       'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),
       'popupMenuTheme': SchemaHelper.objectSchema(PopupMenuThemeDataSchema.id),
       'primaryColor': SchemaHelper.objectSchema(ColorSchema.id),

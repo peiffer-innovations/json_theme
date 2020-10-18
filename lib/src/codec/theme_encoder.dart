@@ -4442,6 +4442,7 @@ class ThemeEncoder {
   ///   "inputDecorationTheme": <InputDecorationTheme>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "navigationRailTheme": <NavigationRailThemeData>,
+  ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
   ///   "platform": <TargetPlatform>,
   ///   "popupMenuTheme": <PopupMenuThemeData>,
   ///   "primaryColor": <Color>,
@@ -4493,6 +4494,7 @@ class ThemeEncoder {
   ///  * [encodeMaterialBannerThemeData]
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeNavigationRailThemeData]
+  ///  * [encodeOutlinedButtonThemeData]
   ///  * [encodePopupMenuThemeData]
   ///  * [encodeSliderThemeData]
   ///  * [encodeSnackBarThemeData]
@@ -4562,6 +4564,9 @@ class ThemeEncoder {
         ),
         'navigationRailTheme': encodeNavigationRailThemeData(
           value.navigationRailTheme,
+        ),
+        'outlinedButtonTheme': encodeOutlinedButtonThemeData(
+          value.outlinedButtonTheme,
         ),
         'platform': encodeTargetPlatform(value.platform),
         'popupMenuTheme': encodePopupMenuThemeData(value.popupMenuTheme),

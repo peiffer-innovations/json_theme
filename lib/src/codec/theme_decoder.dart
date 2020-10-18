@@ -1378,13 +1378,13 @@ class ThemeDecoder {
   /// the [MaterialStateProperty.all] function with the value passed in.
   ///
   /// See also:
-  ///  * [decodeColor]
-  ///  * [decodeSize]
-  ///  * [decodeMouseCursor]
-  ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeOutlinedBorder]
   ///  * [decodeBorderSide]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeMouseCursor]
+  ///  * [decodeOutlinedBorder]
+  ///  * [decodeSize]
   ///  * [decodeTextStyle]
   ///  * [decodeVisualDensity]
   static ButtonStyle decodeButtonStyle(
@@ -2264,6 +2264,10 @@ class ThemeDecoder {
   ///   "horizontalMargin": <double>
   /// }
   /// ```
+  ///
+  /// This will use the properties passed through JSON to create the
+  /// [MaterialStateProperty] of each corresponding property by using
+  /// the [MaterialStateProperty.all] function with the value passed in.
   ///
   /// See also:
   ///  * [decodeColor]
@@ -4753,6 +4757,7 @@ class ThemeDecoder {
             result = BeveledRectangleBorder(
               borderRadius: decodeBorderRadius(
                     value['borderRadius'],
+                    validate: false,
                   ) ??
                   BorderRadius.zero,
               side: decodeBorderSide(
@@ -4777,6 +4782,7 @@ class ThemeDecoder {
             result = ContinuousRectangleBorder(
               borderRadius: decodeBorderRadius(
                     value['borderRadius'],
+                    validate: false,
                   ) ??
                   BorderRadius.zero,
               side: decodeBorderSide(
@@ -5744,8 +5750,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "height: <double>,
-  ///   "width: <double>
+  ///   "height": <double>,
+  ///   "width": <double>
   /// }
   /// ```
   static Size decodeSize(
@@ -7525,13 +7531,13 @@ class ThemeDecoder {
   ///   "accentTextTheme": <TextTheme>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
-  ///   "bannerTheme": <MaterialBannerThemeData>,
   ///   "backgroundColor": <Color>,
+  ///   "bannerTheme": <MaterialBannerThemeData>,
   ///   "bottomAppBarColor": <Color>,
   ///   "bottomAppBarTheme": <BottomAppBarTheme>,
   ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
-  ///   "brightness": <Brightness>,
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
+  ///   "brightness": <Brightness>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
   ///   "buttonColor": <Color>,
   ///   "buttonTheme": <ButtonThemeData>,

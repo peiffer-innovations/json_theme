@@ -88,6 +88,8 @@ class ThemeDataSchema {
           SchemaHelper.objectSchema(TextButtonThemeDataSchema.id),
       'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'textSelectionTheme':
+          SchemaHelper.objectSchema(TextSelectionThemeDataSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
       'timePickerTheme':
           SchemaHelper.objectSchema(TimePickerThemeDataSchema.id),

@@ -6400,6 +6400,11 @@ void main() {
       ),
       textSelectionColor: Color(0xcccccccc),
       textSelectionHandleColor: Color(0xcccccccc),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: Color(0xff222222),
+        selectionColor: Color(0xff222222),
+        selectionHandleColor: Color(0xff222222),
+      ),
       textTheme: TextTheme(
         bodyText1: TextStyle(
           color: Color(0xee555555),
@@ -6834,6 +6839,11 @@ void main() {
       },
       'textSelectionColor': '#cccccccc',
       'textSelectionHandleColor': '#cccccccc',
+      'textSelectionTheme': {
+        'cursorColor': '#ff222222',
+        'selectionColor': '#ff222222',
+        'selectionHandleColor': '#ff222222',
+      },
       'textTheme': {
         'bodyText1': {
           'color': '#ee555555',

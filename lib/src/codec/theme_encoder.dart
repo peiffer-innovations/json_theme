@@ -4463,6 +4463,7 @@ class ThemeEncoder {
   ///   "tabBarTheme": <TabBarTheme>,
   ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
+  ///   "textSelectionTheme": <TextSelectionThemeData>,
   ///   "textTheme": <TextTheme>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
   ///   "toggleableActiveColor": <Color>,
@@ -4502,6 +4503,7 @@ class ThemeEncoder {
   ///  * [encodeTabBarTheme]
   ///  * [encodeTargetPlatform]
   ///  * [encodeTextButtonThemeData]
+  ///  * [encodeTextSelectionThemeData]
   ///  * [encodeTextStyle]
   ///  * [encodeToggleButtonsThemeData]
   ///  * [encodeTypography]
@@ -4593,6 +4595,9 @@ class ThemeEncoder {
         'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
         'textSelectionColor': encodeColor(value.textSelectionColor),
         'textSelectionHandleColor': encodeColor(value.textSelectionHandleColor),
+        'textSelectionTheme': encodeTextSelectionThemeData(
+          value.textSelectionTheme,
+        ),
         'textTheme': encodeTextTheme(value.textTheme),
         'toggleButtonsTheme': encodeToggleButtonsThemeData(
           value.toggleButtonsTheme,

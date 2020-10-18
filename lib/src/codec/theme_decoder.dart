@@ -7584,6 +7584,7 @@ class ThemeDecoder {
   ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
   ///   "textSelectionHandleColor": <Color>,
+  ///   "textSelectionTheme": <TextSelectionThemeData>,
   ///   "textTheme": <TextTheme>,
   ///   "timePickerTheme": <TimePickerThemeData>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
@@ -7625,6 +7626,7 @@ class ThemeDecoder {
   ///  * [decodeTabBarTheme]
   ///  * [decodeTargetPlatform]
   ///  * [decodeTextButtonThemeData]
+  ///  * [decodeTextSelectionThemeData]
   ///  * [decodeTimePickerThemeData]
   ///  * [decodeTextStyle]
   ///  * [decodeToggleButtonsThemeData]
@@ -7898,6 +7900,10 @@ class ThemeDecoder {
         ),
         textSelectionHandleColor: decodeColor(
           value['textSelectionHandleColor'],
+          validate: false,
+        ),
+        textSelectionTheme: decodeTextSelectionThemeData(
+          value['textSelectionTheme'],
           validate: false,
         ),
         textTheme: decodeTextTheme(

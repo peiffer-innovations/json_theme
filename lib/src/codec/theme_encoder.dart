@@ -830,13 +830,13 @@ class ThemeEncoder {
   /// returning and encoding the resolved object.
   ///
   /// See also:
-  ///  * [encodeColor]
-  ///  * [encodeSize]
-  ///  * [encodeMouseCursor]
-  ///  * [encodeEdgeInsetsGeometry]
-  ///  * [encodeOutlinedBorder]
   ///  * [encodeBorderSide]
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeMouseCursor]
+  ///  * [encodeOutlinedBorder]
+  ///  * [encodeSize]
   ///  * [encodeTextStyle]
   ///  * [encodeVisualDensity]
   static Map<String, dynamic> encodeButtonStyle(
@@ -1327,6 +1327,10 @@ class ThemeEncoder {
   /// }
   /// ```
   ///
+  /// This won't maintain the [MaterialStateProperty] of each corresponding
+  /// property, instead will resolve them by using an empty set of states,
+  /// returning and encoding the resolved object.
+  ///
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeTextStyle]
@@ -1360,7 +1364,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -3340,7 +3344,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -4411,8 +4415,9 @@ class ThemeEncoder {
   ///   "backgroundColor": <Color>,
   ///   "bottomAppBarColor": <Color>,
   ///   "bottomAppBarTheme": <BottomAppBarTheme>,
-  ///   "brightness": <Brightness>,
+  ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
+  ///   "brightness": <Brightness>,
   ///   "buttonColor": <Color>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
   ///   "buttonTheme": <ButtonThemeData>,
@@ -4463,6 +4468,7 @@ class ThemeEncoder {
   ///   "tabBarTheme": <TabBarTheme>,
   ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
+  ///   "textSelectionHandleColor": <Color>,
   ///   "textSelectionTheme": <TextSelectionThemeData>,
   ///   "textTheme": <TextTheme>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
@@ -4526,8 +4532,8 @@ class ThemeEncoder {
         'bottomNavigationBarTheme': encodeBottomNavigationBarThemeData(
           value.bottomNavigationBarTheme,
         ),
-        'brightness': encodeBrightness(value.brightness),
         'bottomSheetTheme': encodeBottomSheetThemeData(value.bottomSheetTheme),
+        'brightness': encodeBrightness(value.brightness),
         'buttonColor': encodeColor(value.buttonColor),
         'buttonBarTheme': encodeButtonBarThemeData(value.buttonBarTheme),
         'buttonTheme': encodeButtonThemeData(value.buttonTheme),

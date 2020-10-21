@@ -13,9 +13,9 @@ analyzer:
 dependencies:
   flutter:
     sdk: flutter
-  meta: ^1.1.8
   json_class: ^1.0.6
   json_schema: ^2.2.1
+  meta: ^1.1.8
 
 dev_dependencies:
   flutter_test:

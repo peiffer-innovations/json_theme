@@ -145,6 +145,44 @@ void main() {
     );
   });
 
+  test('AutovalidateMode', () {
+    expect(ThemeDecoder.decodeAutovalidateMode(null), null);
+    expect(ThemeEncoder.encodeAutovalidateMode(null), null);
+
+    expect(
+      ThemeDecoder.decodeAutovalidateMode(
+        AutovalidateMode.always,
+      ),
+      AutovalidateMode.always,
+    );
+
+    expect(
+      ThemeDecoder.decodeAutovalidateMode('always'),
+      AutovalidateMode.always,
+    );
+    expect(
+      ThemeDecoder.decodeAutovalidateMode('disabled'),
+      AutovalidateMode.disabled,
+    );
+    expect(
+      ThemeDecoder.decodeAutovalidateMode('onUserInteraction'),
+      AutovalidateMode.onUserInteraction,
+    );
+
+    expect(
+      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.always),
+      'always',
+    );
+    expect(
+      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.disabled),
+      'disabled',
+    );
+    expect(
+      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.onUserInteraction),
+      'onUserInteraction',
+    );
+  });
+
   test('Axis', () {
     expect(ThemeDecoder.decodeAxis(null), null);
     expect(ThemeEncoder.encodeAxis(null), null);
@@ -3298,6 +3336,15 @@ void main() {
 
     var entry = MaterialColor(_kColor.value, {
       50: _kColor,
+      100: _kColor,
+      200: _kColor,
+      300: _kColor,
+      400: _kColor,
+      500: _kColor,
+      600: _kColor,
+      700: _kColor,
+      800: _kColor,
+      900: _kColor,
     });
 
     expect(ThemeDecoder.decodeMaterialColor(entry), entry);
@@ -3311,6 +3358,15 @@ void main() {
         'primary': _kColorStr,
         'swatches': {
           '50': _kColorStr,
+          '100': _kColorStr,
+          '200': _kColorStr,
+          '300': _kColorStr,
+          '400': _kColorStr,
+          '500': _kColorStr,
+          '600': _kColorStr,
+          '700': _kColorStr,
+          '800': _kColorStr,
+          '900': _kColorStr,
         }
       },
     );
@@ -3465,6 +3521,21 @@ void main() {
       }),
       MaterialStateMouseCursor.textable,
     );
+
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'alias',
+        'type': 'system',
+      }),
+      SystemMouseCursors.alias,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'allScroll',
+        'type': 'system',
+      }),
+      SystemMouseCursors.allScroll,
+    );
     expect(
       ThemeDecoder.decodeMouseCursor({
         'cursor': 'basic',
@@ -3474,10 +3545,38 @@ void main() {
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
+        'cursor': 'cell',
+        'type': 'system',
+      }),
+      SystemMouseCursors.cell,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
         'cursor': 'click',
         'type': 'system',
       }),
       SystemMouseCursors.click,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'contextMenu',
+        'type': 'system',
+      }),
+      SystemMouseCursors.contextMenu,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'copy',
+        'type': 'system',
+      }),
+      SystemMouseCursors.copy,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'disappearing',
+        'type': 'system',
+      }),
+      SystemMouseCursors.disappearing,
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
@@ -3502,10 +3601,129 @@ void main() {
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
+        'cursor': 'help',
+        'type': 'system',
+      }),
+      SystemMouseCursors.help,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'move',
+        'type': 'system',
+      }),
+      SystemMouseCursors.move,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
         'cursor': 'none',
         'type': 'system',
       }),
       SystemMouseCursors.none,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'precise',
+        'type': 'system',
+      }),
+      SystemMouseCursors.precise,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'progress',
+        'type': 'system',
+      }),
+      SystemMouseCursors.progress,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeColumn',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeColumn,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeDown',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeDown,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeDownLeft',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeDownLeft,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeDownRight',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeDownRight,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeLeft',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeLeft,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeRight',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeRight,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeRow',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeRow,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeUp',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeUp,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeUpDown',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeUpDown,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeUpLeft',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeUpLeft,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeUpLeftDownRight',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeUpLeftDownRight,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeUpRight',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeUpRight,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'resizeUpRightDownLeft',
+        'type': 'system',
+      }),
+      SystemMouseCursors.resizeUpRightDownLeft,
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
@@ -3514,6 +3732,35 @@ void main() {
       }),
       SystemMouseCursors.text,
     );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'verticalText',
+        'type': 'system',
+      }),
+      SystemMouseCursors.verticalText,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'wait',
+        'type': 'system',
+      }),
+      SystemMouseCursors.wait,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'zoomIn',
+        'type': 'system',
+      }),
+      SystemMouseCursors.zoomIn,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
+        'cursor': 'zoomOut',
+        'type': 'system',
+      }),
+      SystemMouseCursors.zoomOut,
+    );
+
     expect(
       ThemeDecoder.decodeMouseCursor({'type': 'uncontrolled'}),
       MouseCursor.uncontrolled,
@@ -3543,6 +3790,25 @@ void main() {
         'type': 'material',
       },
     );
+
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.alias,
+      ),
+      {
+        'cursor': 'alias',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.allScroll,
+      ),
+      {
+        'cursor': 'allScroll',
+        'type': 'system',
+      },
+    );
     expect(
       ThemeEncoder.encodeMouseCursor(
         SystemMouseCursors.basic,
@@ -3554,10 +3820,46 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.cell,
+      ),
+      {
+        'cursor': 'cell',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
         SystemMouseCursors.click,
       ),
       {
         'cursor': 'click',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.contextMenu,
+      ),
+      {
+        'cursor': 'contextMenu',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.copy,
+      ),
+      {
+        'cursor': 'copy',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.disappearing,
+      ),
+      {
+        'cursor': 'disappearing',
         'type': 'system',
       },
     );
@@ -3590,10 +3892,163 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.help,
+      ),
+      {
+        'cursor': 'help',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.move,
+      ),
+      {
+        'cursor': 'move',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
         SystemMouseCursors.none,
       ),
       {
         'cursor': 'none',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.precise,
+      ),
+      {
+        'cursor': 'precise',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.progress,
+      ),
+      {
+        'cursor': 'progress',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeColumn,
+      ),
+      {
+        'cursor': 'resizeColumn',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeDown,
+      ),
+      {
+        'cursor': 'resizeDown',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeDownLeft,
+      ),
+      {
+        'cursor': 'resizeDownLeft',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeDownRight,
+      ),
+      {
+        'cursor': 'resizeDownRight',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeLeft,
+      ),
+      {
+        'cursor': 'resizeLeft',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeRight,
+      ),
+      {
+        'cursor': 'resizeRight',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeRow,
+      ),
+      {
+        'cursor': 'resizeRow',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeUp,
+      ),
+      {
+        'cursor': 'resizeUp',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeUpDown,
+      ),
+      {
+        'cursor': 'resizeUpDown',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeUpLeft,
+      ),
+      {
+        'cursor': 'resizeUpLeft',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeUpLeftDownRight,
+      ),
+      {
+        'cursor': 'resizeUpLeftDownRight',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeUpRight,
+      ),
+      {
+        'cursor': 'resizeUpRight',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.resizeUpRightDownLeft,
+      ),
+      {
+        'cursor': 'resizeUpRightDownLeft',
         'type': 'system',
       },
     );
@@ -3606,6 +4061,43 @@ void main() {
         'type': 'system',
       },
     );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.verticalText,
+      ),
+      {
+        'cursor': 'verticalText',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.wait,
+      ),
+      {
+        'cursor': 'wait',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.zoomIn,
+      ),
+      {
+        'cursor': 'zoomIn',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.zoomOut,
+      ),
+      {
+        'cursor': 'zoomOut',
+        'type': 'system',
+      },
+    );
+
     expect(
       ThemeEncoder.encodeMouseCursor(
         MouseCursor.uncontrolled,
@@ -3995,6 +4487,89 @@ void main() {
       outlinedButtonThemeDatasAreEqual(decoded, entry),
       true,
     );
+  });
+
+  test('PageTransitionsBuilder', () {
+    expect(ThemeDecoder.decodePageTransitionsBuilder(null), null);
+    expect(ThemeEncoder.encodePageTransitionsBuilder(null), null);
+
+    expect(
+      ThemeDecoder.decodePageTransitionsBuilder('cupertino').runtimeType,
+      CupertinoPageTransitionsBuilder,
+    );
+    expect(
+      ThemeDecoder.decodePageTransitionsBuilder('fadeUpwards').runtimeType,
+      FadeUpwardsPageTransitionsBuilder,
+    );
+    expect(
+      ThemeDecoder.decodePageTransitionsBuilder('openUpwards').runtimeType,
+      OpenUpwardsPageTransitionsBuilder,
+    );
+    expect(
+      ThemeDecoder.decodePageTransitionsBuilder('zoom').runtimeType,
+      ZoomPageTransitionsBuilder,
+    );
+
+    expect(
+      ThemeEncoder.encodePageTransitionsBuilder(
+        CupertinoPageTransitionsBuilder(),
+      ),
+      'cupertino',
+    );
+    expect(
+      ThemeEncoder.encodePageTransitionsBuilder(
+        FadeUpwardsPageTransitionsBuilder(),
+      ),
+      'fadeUpwards',
+    );
+    expect(
+      ThemeEncoder.encodePageTransitionsBuilder(
+        OpenUpwardsPageTransitionsBuilder(),
+      ),
+      'openUpwards',
+    );
+    expect(
+      ThemeEncoder.encodePageTransitionsBuilder(
+        ZoomPageTransitionsBuilder(),
+      ),
+      'zoom',
+    );
+  });
+
+  test('PageTransitionsTheme', () {
+    expect(ThemeDecoder.decodePageTransitionsTheme(null), null);
+    expect(ThemeEncoder.encodePageTransitionsTheme(null), null);
+
+    var builders = {
+      TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+      TargetPlatform.macOS: OpenUpwardsPageTransitionsBuilder(),
+      TargetPlatform.windows: ZoomPageTransitionsBuilder(),
+    };
+
+    var encoded = ThemeEncoder.encodePageTransitionsTheme(
+      PageTransitionsTheme(builders: builders),
+    );
+
+    expect(
+      encoded,
+      {
+        'builders': {
+          'fuchsia': 'cupertino',
+          'linux': 'fadeUpwards',
+          'macOS': 'openUpwards',
+          'windows': 'zoom',
+        },
+      },
+    );
+
+    var decoded = ThemeDecoder.decodePageTransitionsTheme(encoded);
+    for (var entry in builders.entries) {
+      expect(
+        decoded?.builders[entry.key]?.runtimeType,
+        entry.value?.runtimeType,
+      );
+    }
   });
 
   test('PopupMenuThemeData', () {
@@ -6303,7 +6878,6 @@ void main() {
       cupertinoOverrideTheme: CupertinoThemeData(
         barBackgroundColor: Color(0xee111111),
       ),
-      cursorColor: Color(0xee888888),
       dataTableTheme: DataTableThemeData(
         columnSpacing: 1.0,
         dataRowColor: MaterialStateProperty.all(
@@ -6398,8 +6972,6 @@ void main() {
           ),
         ),
       ),
-      textSelectionColor: Color(0xcccccccc),
-      textSelectionHandleColor: Color(0xcccccccc),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: Color(0xff222222),
         selectionColor: Color(0xff222222),
@@ -6666,7 +7238,6 @@ void main() {
       'cupertinoOverrideTheme': {
         'barBackgroundColor': '#ee111111',
       },
-      'cursorColor': '#ee888888',
       'dataTableTheme': {
         'columnSpacing': 1.0,
         'dataRowColor': '#ff555555',
@@ -6837,8 +7408,6 @@ void main() {
           'backgroundColor': '#ff222222',
         },
       },
-      'textSelectionColor': '#cccccccc',
-      'textSelectionHandleColor': '#cccccccc',
       'textSelectionTheme': {
         'cursorColor': '#ff222222',
         'selectionColor': '#ff222222',

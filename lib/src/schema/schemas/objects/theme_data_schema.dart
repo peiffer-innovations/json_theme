@@ -37,7 +37,6 @@ class ThemeDataSchema {
       'colorScheme': SchemaHelper.objectSchema(ColorSchemeSchema.id),
       'cupertinoOverrideTheme':
           SchemaHelper.objectSchema(CupertinoThemeDataSchema.id),
-      'cursorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeSchema.id),
@@ -65,6 +64,8 @@ class ThemeDataSchema {
           SchemaHelper.objectSchema(NavigationRailThemeDataSchema.id),
       'outlinedButtonTheme':
           SchemaHelper.objectSchema(OutlinedButtonThemeDataSchema.id),
+      'pageTransitionsTheme':
+          SchemaHelper.objectSchema(PageTransitionsThemeSchema.id),
       'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),
       'popupMenuTheme': SchemaHelper.objectSchema(PopupMenuThemeDataSchema.id),
       'primaryColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -86,8 +87,6 @@ class ThemeDataSchema {
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
       'textButtonTheme':
           SchemaHelper.objectSchema(TextButtonThemeDataSchema.id),
-      'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textSelectionTheme':
           SchemaHelper.objectSchema(TextSelectionThemeDataSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),

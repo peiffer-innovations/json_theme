@@ -4,6 +4,7 @@ class Schemas {
   static final all = {
     AlignmentSchema.id: AlignmentSchema.schema,
     AppBarThemeSchema.id: AppBarThemeSchema.schema,
+    AutovalidateModeSchema.id: AutovalidateModeSchema.schema,
     AxisSchema.id: AxisSchema.schema,
     BlendModeSchema.id: BlendModeSchema.schema,
     BorderRadiusSchema.id: BorderRadiusSchema.schema,
@@ -81,6 +82,8 @@ class Schemas {
     OffsetSchema.id: OffsetSchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
+    PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
+    PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
     RadiusSchema.id: RadiusSchema.schema,
     RangeSliderThumbShapeSchema.id: RangeSliderThumbShapeSchema.schema,

@@ -68,6 +68,14 @@ Plain string that must be one of:
 * `topRight` ==> `Alignment.topRight`
 
 
+**AutovalidateMode**
+
+Plain string that must be one of:
+* `always` ==> `AutovalidateMode.always`
+* `disabled` ==> `AutovalidateMode.disabled`
+* `onUserInteraction` ==> `AutovalidateMode.onUserInteraction`
+
+
 **Axis**
 
 Plain string that must be one of:
@@ -379,6 +387,7 @@ Plain string that must be one of:
 Plain string that must be one of:
 * `circular` ==> `CircularNotchedRectangle`
 
+
 **OutlinedBorder**
 Requires a `type` value that must be one of:
 * `stadium` ==> `BeveledRectangleBorder`
@@ -387,7 +396,15 @@ Requires a `type` value that must be one of:
 * `rounded` ==> `RoundedRectangleBorder`
 * `stadium` ==> `StadiumBorder`
 
+
 **Overflow**
+
+Plain string that must be one of:
+* `clip` ==> `Overflow.clip`
+* `visible` ==> `Overflow.visible`
+
+
+**PageTransitionsBuilder**
 
 Plain string that must be one of:
 * `clip` ==> `Overflow.clip`

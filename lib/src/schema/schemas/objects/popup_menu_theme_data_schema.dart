@@ -7,7 +7,7 @@ class PopupMenuThemeDataSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
-    'title': 'PopupMenuThemeDataSchema',
+    'title': 'PopupMenuThemeData',
     'type': 'object',
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),

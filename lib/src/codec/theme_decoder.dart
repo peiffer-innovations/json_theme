@@ -174,6 +174,52 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [AutovalidateMode].  Supported values are:
+  /// * `always`
+  /// * `disabled`
+  /// * `onUserInteraction`
+  static AutovalidateMode decodeAutovalidateMode(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    AutovalidateMode result;
+
+    if (value is AutovalidateMode) {
+      result = value;
+    } else {
+      _checkSupported(
+        'AutovalidateMode',
+        [
+          'always',
+          'disabled',
+          'onUserInteraction',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/autovalidate_mode',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'always':
+            result = AutovalidateMode.always;
+            break;
+          case 'disabled':
+            result = AutovalidateMode.disabled;
+            break;
+          case 'onUserInteraction':
+            result = AutovalidateMode.onUserInteraction;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [Axis].  Supported values are:
   ///  * `horizontal`
   ///  * `vertical`
@@ -1230,7 +1276,9 @@ class ThemeDecoder {
       ));
       result = value == 'light'
           ? Brightness.light
-          : value == 'dark' ? Brightness.dark : null;
+          : value == 'dark'
+              ? Brightness.dark
+              : null;
     }
 
     return result;
@@ -2147,6 +2195,8 @@ class ThemeDecoder {
           value['actionTextStyle'],
           validate: false,
         ),
+        // @deprecated
+        // brightness
         dateTimePickerTextStyle: decodeTextStyle(
           value['dateTimePickerTextStyle'],
           validate: false,
@@ -2366,6 +2416,8 @@ class ThemeDecoder {
       result = DecorationImage(
         alignment: decodeAlignment(value['alignment']) ?? Alignment.center,
         centerSlice: decodeRect(value['centerSlice']),
+        // @unencodable
+        // colorFilter
         fit: decodeBoxFit(value['fit']),
         image: decodeImageProvider(value['image']),
         matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
@@ -3903,6 +3955,8 @@ class ThemeDecoder {
           value['focusedErrorBorder'],
           validate: false,
         ),
+        // @deprecated
+        // hasFloatingPlaceholder
         helperMaxLines: JsonClass.parseInt(value['helperMaxLines']),
         helperStyle: decodeTextStyle(
           value['helperStyle'],
@@ -4374,13 +4428,40 @@ class ThemeDecoder {
   ///  * `textable`
   ///
   /// When the `type` is `system`, this expects a `cursor` that is one of:
+  ///  * `alias`
+  ///  * `allScroll`
   ///  * `basic`
+  ///  * `cell`
   ///  * `click`
+  ///  * `contextMenu`
+  ///  * `copy`
+  ///  * `disappearing`
   ///  * `forbidden`
   ///  * `grab`
   ///  * `grabbing`
+  ///  * `help`
+  ///  * `move`
   ///  * `none`
+  ///  * `precise`
+  ///  * `progress`
+  ///  * `resizeColumn`
+  ///  * `resizeDown`
+  ///  * `resizeDownLeft`
+  ///  * `resizeDownRight`
+  ///  * `resizeLeft`
+  ///  * `resizeRight`
+  ///  * `resizeRow`
+  ///  * `resizeUp`
+  ///  * `resizeUpDown`
+  ///  * `resizeUpLeft`
+  ///  * `resizeUpLeftDownRight`
+  ///  * `resizeUpRight`
+  ///  * `resizeUpRightDownLeft`
   ///  * `text`
+  ///  * `verticalText`
+  ///  * `wait`
+  ///  * `zoomIn`
+  ///  * `zoomOut`
   static MouseCursor decodeMouseCursor(
     dynamic value, {
     bool validate = true,
@@ -4436,24 +4517,75 @@ class ThemeDecoder {
             _checkSupported(
               'MouseCursor.cursor',
               [
+                'alias',
+                'allScroll',
                 'basic',
+                'cell',
                 'click',
+                'contextMenu',
+                'copy',
+                'disappearing',
                 'forbidden',
                 'grab',
                 'grabbing',
+                'help',
+                'move',
                 'none',
+                'precise',
+                'progress',
+                'resizeColumn',
+                'resizeDown',
+                'resizeDownLeft',
+                'resizeDownRight',
+                'resizeLeft',
+                'resizeRight',
+                'resizeRow',
+                'resizeUp',
+                'resizeUpDown',
+                'resizeUpLeft',
+                'resizeUpLeftDownRight',
+                'resizeUpRight',
+                'resizeUpRightDownLeft',
                 'text',
+                'verticalText',
+                'wait',
+                'zoomIn',
+                'zoomOut',
               ],
               value['cursor'],
             );
 
             switch (value['cursor']) {
+              case 'alias':
+                result = SystemMouseCursors.alias;
+                break;
+
+              case 'allScroll':
+                result = SystemMouseCursors.allScroll;
+                break;
+
               case 'basic':
                 result = SystemMouseCursors.basic;
                 break;
 
+              case 'cell':
+                result = SystemMouseCursors.cell;
+                break;
+
               case 'click':
                 result = SystemMouseCursors.click;
+                break;
+
+              case 'contextMenu':
+                result = SystemMouseCursors.contextMenu;
+                break;
+
+              case 'copy':
+                result = SystemMouseCursors.copy;
+                break;
+
+              case 'disappearing':
+                result = SystemMouseCursors.disappearing;
                 break;
 
               case 'forbidden':
@@ -4468,12 +4600,96 @@ class ThemeDecoder {
                 result = SystemMouseCursors.grabbing;
                 break;
 
+              case 'help':
+                result = SystemMouseCursors.help;
+                break;
+
+              case 'move':
+                result = SystemMouseCursors.move;
+                break;
+
               case 'none':
                 result = SystemMouseCursors.none;
                 break;
 
+              case 'precise':
+                result = SystemMouseCursors.precise;
+                break;
+
+              case 'progress':
+                result = SystemMouseCursors.progress;
+                break;
+
+              case 'resizeColumn':
+                result = SystemMouseCursors.resizeColumn;
+                break;
+
+              case 'resizeDown':
+                result = SystemMouseCursors.resizeDown;
+                break;
+
+              case 'resizeDownLeft':
+                result = SystemMouseCursors.resizeDownLeft;
+                break;
+
+              case 'resizeDownRight':
+                result = SystemMouseCursors.resizeDownRight;
+                break;
+
+              case 'resizeLeft':
+                result = SystemMouseCursors.resizeLeft;
+                break;
+
+              case 'resizeRight':
+                result = SystemMouseCursors.resizeRight;
+                break;
+
+              case 'resizeRow':
+                result = SystemMouseCursors.resizeRow;
+                break;
+
+              case 'resizeUp':
+                result = SystemMouseCursors.resizeUp;
+                break;
+
+              case 'resizeUpDown':
+                result = SystemMouseCursors.resizeUpDown;
+                break;
+
+              case 'resizeUpLeft':
+                result = SystemMouseCursors.resizeUpLeft;
+                break;
+
+              case 'resizeUpLeftDownRight':
+                result = SystemMouseCursors.resizeUpLeftDownRight;
+                break;
+
+              case 'resizeUpRight':
+                result = SystemMouseCursors.resizeUpRight;
+                break;
+
+              case 'resizeUpRightDownLeft':
+                result = SystemMouseCursors.resizeUpRightDownLeft;
+                break;
+
               case 'text':
                 result = SystemMouseCursors.text;
+                break;
+
+              case 'verticalText':
+                result = SystemMouseCursors.verticalText;
+                break;
+
+              case 'wait':
+                result = SystemMouseCursors.wait;
+                break;
+
+              case 'zoomIn':
+                result = SystemMouseCursors.zoomIn;
+                break;
+
+              case 'zoomOut':
+                result = SystemMouseCursors.zoomOut;
                 break;
             }
             break;
@@ -4854,6 +5070,102 @@ class ThemeDecoder {
           value['style'],
           validate: false,
         ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
+  /// * `cupertino`
+  /// * `fadeUpwards`
+  /// * `openUpwards`
+  /// * `zoom`
+  static PageTransitionsBuilder decodePageTransitionsBuilder(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    PageTransitionsBuilder result;
+
+    if (value is PageTransitionsBuilder) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'PageTransitionsBuilder',
+        [
+          'cupertino',
+          'fadeUpwards',
+          'openUpwards',
+          'zoom',
+        ],
+        value,
+      );
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/page_transitions_builder',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'cupertino':
+          result = CupertinoPageTransitionsBuilder();
+          break;
+
+        case 'fadeUpwards':
+          result = FadeUpwardsPageTransitionsBuilder();
+          break;
+
+        case 'openUpwards':
+          result = OpenUpwardsPageTransitionsBuilder();
+          break;
+
+        case 'zoom':
+          result = ZoomPageTransitionsBuilder();
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "builders": <Map<TargetPlatform, PageTransitionBuilder>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodePageTransitionsBuilder]
+  ///  * [decodeTargetPlatform]
+  static PageTransitionsTheme decodePageTransitionsTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    PageTransitionsTheme result;
+
+    if (value is PageTransitionsTheme) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/page_transitions_theme',
+        value: value,
+        validate: validate,
+      ));
+
+      var builders = <TargetPlatform, PageTransitionsBuilder>{};
+      value['builders']?.forEach(
+        (key, value) =>
+            builders[decodeTargetPlatform(key)] = decodePageTransitionsBuilder(
+          value,
+          validate: false,
+        ),
+      );
+
+      result = PageTransitionsTheme(
+        builders: builders,
       );
     }
 
@@ -5949,6 +6261,8 @@ class ThemeDecoder {
           value['thumbColor'],
           validate: false,
         ),
+        // @unencodable
+        // thumbSelector
         thumbShape: decodeSliderComponentShape(
           value['thumbShape'],
           validate: false,
@@ -6454,6 +6768,8 @@ class ThemeDecoder {
         'TabBarTheme.indicator is not supported',
       );
       result = TabBarTheme(
+        // @unencodable
+        // indicator
         indicatorSize: decodeTabBarIndicatorSize(
           value['indicatorSize'],
           validate: false,
@@ -7308,6 +7624,8 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = TextStyle(
+        // @unencodable
+        // background
         backgroundColor: decodeColor(
           value['backgroundColor'],
           validate: false,
@@ -7353,6 +7671,8 @@ class ThemeDecoder {
           value['fontStyle'],
           validate: false,
         ),
+        // @unencodable
+        // foreground
         height: JsonClass.parseDouble(value['height']),
         inherit: value['inherit'] == null
             ? true
@@ -7421,6 +7741,10 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = TextTheme(
+        // @deprecated
+        // body1
+        // @deprecated
+        // body2
         bodyText1: decodeTextStyle(
           value['bodyText1'],
           validate: false,
@@ -7437,6 +7761,16 @@ class ThemeDecoder {
           value['caption'],
           validate: false,
         ),
+        // @deprecated
+        // display1
+        // @deprecated
+        // display2
+        // @deprecated
+        // display3
+        // @deprecated
+        // display4
+        // @deprecated
+        // headline
         headline1: decodeTextStyle(
           value['headline1'],
           validate: false,
@@ -7465,6 +7799,8 @@ class ThemeDecoder {
           value['overline'],
           validate: false,
         ),
+        // @deprecated
+        // subhead
         subtitle1: decodeTextStyle(
           value['subtitle1'],
           validate: false,
@@ -7473,6 +7809,8 @@ class ThemeDecoder {
           value['subtitle2'],
           validate: false,
         ),
+        // @deprecated
+        // title
       );
     }
 
@@ -7569,6 +7907,7 @@ class ThemeDecoder {
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "navigationRailTheme": <NavigationRailThemeData>,
   ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
+  ///   "pageTransitionsTheme": <PageTransitionsTheme>,
   ///   "platform": <TargetPlatform>,
   ///   "popupMenuTheme": <PopupMenuThemeData>,
   ///   "primaryColor": <Color>,
@@ -7626,6 +7965,7 @@ class ThemeDecoder {
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeNavigationRailThemeData]
   ///  * [decodeOutlinedButtonThemeData]
+  ///  * [decodePageTransitionsTheme]
   ///  * [decodePopupMenuThemeData]
   ///  * [decodeSliderThemeData]
   ///  * [decodeSnackBarThemeData]
@@ -7740,10 +8080,6 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
-        cursorColor: decodeColor(
-          value['cursorColor'],
-          validate: false,
-        ),
         dataTableTheme: decodeDataTableThemeData(
           value['dataTableTheme'],
           validate: false,
@@ -7824,6 +8160,10 @@ class ThemeDecoder {
           value['outlinedButtonTheme'],
           validate: false,
         ),
+        pageTransitionsTheme: decodePageTransitionsTheme(
+          value['pageTransitionsTheme'],
+          validate: false,
+        ),
         platform: decodeTargetPlatform(
           value['platform'],
           validate: false,
@@ -7898,14 +8238,6 @@ class ThemeDecoder {
         ),
         textButtonTheme: decodeTextButtonThemeData(
           value['textButtonTheme'],
-          validate: false,
-        ),
-        textSelectionColor: decodeColor(
-          value['textSelectionColor'],
-          validate: false,
-        ),
-        textSelectionHandleColor: decodeColor(
-          value['textSelectionHandleColor'],
           validate: false,
         ),
         textSelectionTheme: decodeTextSelectionThemeData(
@@ -8251,6 +8583,8 @@ class ThemeDecoder {
         'TooltipThemeData.decoration is not supported',
       );
       result = TooltipThemeData(
+        // @unencodable
+        // decoration
         excludeFromSemantics: value['excludeFromSemantics'] == null
             ? null
             : JsonClass.parseBool(value['excludeFromSemantics']),

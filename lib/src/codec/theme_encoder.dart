@@ -111,6 +111,32 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to a [String].  Supported values are:
+  /// * `always`
+  /// * `disabled`
+  /// * `onUserInteraction`
+  static String encodeAutovalidateMode(AutovalidateMode value) {
+    String result;
+
+    if (value != null) {
+      switch (value) {
+        case AutovalidateMode.always:
+          result = 'always';
+          break;
+
+        case AutovalidateMode.disabled:
+          result = 'disabled';
+          break;
+
+        case AutovalidateMode.onUserInteraction:
+          result = 'onUserInteraction';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `horizontal`
@@ -1293,19 +1319,38 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeCupertinoTextThemeData]
   static Map<String, dynamic> encodeCupertinoThemeData(
-    CupertinoThemeData value,
+    // Set as dynamic rather than CupertinoThemeData to be compatible with 1.22 and 1.24 where the type switches.
+    dynamic value,
+
+    // TODO: 1.24
+    // NoDefaultCupertinoThemeData value,
   ) {
     Map<String, dynamic> result;
 
     if (value != null) {
-      result = <String, dynamic>{
-        'barBackgroundColor': encodeColor(value.barBackgroundColor),
-        'brightness': encodeBrightness(value.brightness),
-        'primaryColor': encodeColor(value.primaryColor),
-        'primaryContrastingColor': encodeColor(value.primaryContrastingColor),
-        'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
-        'textTheme': encodeCupertinoTextThemeData(value.textTheme),
-      };
+      var runtimeTypeStr = value.runtimeType.toString();
+      // In Flutter < 1.24, the type is: CupertinoThemeData or _NoDefaultCupertinoThemeData
+      // In Flutter >= 1.24, the type is: NoDefaultCupertinoThemeData
+      assert(runtimeTypeStr == 'CupertinoThemeData' ||
+          runtimeTypeStr == 'NoDefaultCupertinoThemeData' ||
+          runtimeTypeStr == '_NoDefaultCupertinoThemeData');
+
+      if (runtimeTypeStr == 'CupertinoThemeData' ||
+          runtimeTypeStr == 'NoDefaultCupertinoThemeData' ||
+          runtimeTypeStr == '_NoDefaultCupertinoThemeData') {
+        result = <String, dynamic>{
+          'barBackgroundColor': encodeColor(value.barBackgroundColor),
+          'brightness': encodeBrightness(value.brightness),
+          'primaryColor': encodeColor(value.primaryColor),
+          'primaryContrastingColor': encodeColor(value.primaryContrastingColor),
+          'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
+          'textTheme': encodeCupertinoTextThemeData(value.textTheme),
+        };
+      } else {
+        throw Exception(
+          'Unknown type passed in to [encodeCupertinoThemeData]: [$runtimeTypeStr]',
+        );
+      }
     }
 
     return _stripNull(result);
@@ -2624,13 +2669,40 @@ class ThemeEncoder {
   ///  * `uncontrolled`
   ///
   /// When the `type` is `system`, this will create a `cursor` that is one of:
+  ///  * `alias`
+  ///  * `allScroll`
   ///  * `basic`
+  ///  * `cell`
   ///  * `click`
+  ///  * `contextMenu`
+  ///  * `copy`
+  ///  * `disappearing`
   ///  * `forbidden`
   ///  * `grab`
   ///  * `grabbing`
+  ///  * `help`
+  ///  * `move`
   ///  * `none`
+  ///  * `precise`
+  ///  * `progress`
+  ///  * `resizeColumn`
+  ///  * `resizeDown`
+  ///  * `resizeDownLeft`
+  ///  * `resizeDownRight`
+  ///  * `resizeLeft`
+  ///  * `resizeRight`
+  ///  * `resizeRow`
+  ///  * `resizeUp`
+  ///  * `resizeUpDown`
+  ///  * `resizeUpLeft`
+  ///  * `resizeUpLeftDownRight`
+  ///  * `resizeUpRight`
+  ///  * `resizeUpRightDownLeft`
   ///  * `text`
+  ///  * `verticalText`
+  ///  * `wait`
+  ///  * `zoomIn`
+  ///  * `zoomOut`
   static Map<String, dynamic> encodeMouseCursor(MouseCursor value) {
     Map<String, dynamic> result;
 
@@ -2653,14 +2725,44 @@ class ThemeEncoder {
           'cursor': 'textable',
           'type': 'material',
         };
+      } else if (SystemMouseCursors.alias == value) {
+        result = {
+          'cursor': 'alias',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.allScroll == value) {
+        result = {
+          'cursor': 'allScroll',
+          'type': 'system',
+        };
       } else if (SystemMouseCursors.basic == value) {
         result = {
           'cursor': 'basic',
           'type': 'system',
         };
+      } else if (SystemMouseCursors.cell == value) {
+        result = {
+          'cursor': 'cell',
+          'type': 'system',
+        };
       } else if (SystemMouseCursors.click == value) {
         result = {
           'cursor': 'click',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.contextMenu == value) {
+        result = {
+          'cursor': 'contextMenu',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.copy == value) {
+        result = {
+          'cursor': 'copy',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.disappearing == value) {
+        result = {
+          'cursor': 'disappearing',
           'type': 'system',
         };
       } else if (SystemMouseCursors.forbidden == value) {
@@ -2678,14 +2780,119 @@ class ThemeEncoder {
           'cursor': 'grabbing',
           'type': 'system',
         };
+      } else if (SystemMouseCursors.help == value) {
+        result = {
+          'cursor': 'help',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.move == value) {
+        result = {
+          'cursor': 'move',
+          'type': 'system',
+        };
       } else if (SystemMouseCursors.none == value) {
         result = {
           'cursor': 'none',
           'type': 'system',
         };
+      } else if (SystemMouseCursors.precise == value) {
+        result = {
+          'cursor': 'precise',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.progress == value) {
+        result = {
+          'cursor': 'progress',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeColumn == value) {
+        result = {
+          'cursor': 'resizeColumn',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeDown == value) {
+        result = {
+          'cursor': 'resizeDown',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeDownLeft == value) {
+        result = {
+          'cursor': 'resizeDownLeft',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeDownRight == value) {
+        result = {
+          'cursor': 'resizeDownRight',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeLeft == value) {
+        result = {
+          'cursor': 'resizeLeft',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeRight == value) {
+        result = {
+          'cursor': 'resizeRight',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeRow == value) {
+        result = {
+          'cursor': 'resizeRow',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeUp == value) {
+        result = {
+          'cursor': 'resizeUp',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeUpDown == value) {
+        result = {
+          'cursor': 'resizeUpDown',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeUpLeft == value) {
+        result = {
+          'cursor': 'resizeUpLeft',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeUpLeftDownRight == value) {
+        result = {
+          'cursor': 'resizeUpLeftDownRight',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeUpRight == value) {
+        result = {
+          'cursor': 'resizeUpRight',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.resizeUpRightDownLeft == value) {
+        result = {
+          'cursor': 'resizeUpRightDownLeft',
+          'type': 'system',
+        };
       } else if (SystemMouseCursors.text == value) {
         result = {
           'cursor': 'text',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.verticalText == value) {
+        result = {
+          'cursor': 'verticalText',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.wait == value) {
+        result = {
+          'cursor': 'wait',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.zoomIn == value) {
+        result = {
+          'cursor': 'zoomIn',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.zoomOut == value) {
+        result = {
+          'cursor': 'zoomOut',
           'type': 'system',
         };
       }
@@ -2920,6 +3127,60 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the [value] to a [String].  Supported values are:
+  /// * `cupertino`
+  /// * `fadeUpwards`
+  /// * `openUpwards`
+  /// * `zoom`
+  static String encodePageTransitionsBuilder(PageTransitionsBuilder value) {
+    String result;
+
+    if (value is CupertinoPageTransitionsBuilder) {
+      result = 'cupertino';
+    } else if (value is FadeUpwardsPageTransitionsBuilder) {
+      result = 'fadeUpwards';
+    } else if (value is OpenUpwardsPageTransitionsBuilder) {
+      result = 'openUpwards';
+    } else if (value is ZoomPageTransitionsBuilder) {
+      result = 'zoom';
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a JSON representation
+  ///
+  /// ```json
+  /// {
+  ///   "builders": <Map<TargetPlatform, PageTransitionBuilder>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodePageTransitionsBuilder]
+  ///  * [encodeTargetPlatform]
+  static Map<String, dynamic> encodePageTransitionsTheme(
+    PageTransitionsTheme value,
+  ) {
+    Map<String, dynamic> result;
+
+    if (value != null) {
+      var builders = <String, String>{};
+      value.builders?.forEach(
+        (key, value) =>
+            builders[encodeTargetPlatform(key)] = encodePageTransitionsBuilder(
+          value,
+        ),
+      );
+
+      result = {
+        'builders': builders,
+      };
+    }
+
+    return result;
   }
 
   /// Encodes the [value] to a JSON representation.
@@ -4427,7 +4688,6 @@ class ThemeEncoder {
   ///   "chipTheme": <ChipThemeData>,
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
-  ///   "cursorColor": <Color>,
   ///   "dataTableTheme": <DataTableThemeData>,
   ///   "dialogBackgroundColor": <Color>,
   ///   "dialogTheme": <DialogTheme>,
@@ -4467,8 +4727,6 @@ class ThemeEncoder {
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
   ///   "textButtonTheme": <TextButtonThemeData>,
-  ///   "textSelectionColor": <Color>,
-  ///   "textSelectionHandleColor": <Color>,
   ///   "textSelectionTheme": <TextSelectionThemeData>,
   ///   "textTheme": <TextTheme>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
@@ -4545,7 +4803,6 @@ class ThemeEncoder {
         'cupertinoOverrideTheme': encodeCupertinoThemeData(
           value.cupertinoOverrideTheme,
         ),
-        'cursorColor': encodeColor(value.cursorColor),
         'dataTableTheme': encodeDataTableThemeData(value.dataTableTheme),
         'dialogBackgroundColor': encodeColor(value.dialogBackgroundColor),
         'dialogTheme': encodeDialogTheme(value.dialogTheme),
@@ -4599,8 +4856,6 @@ class ThemeEncoder {
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
         'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
-        'textSelectionColor': encodeColor(value.textSelectionColor),
-        'textSelectionHandleColor': encodeColor(value.textSelectionHandleColor),
         'textSelectionTheme': encodeTextSelectionThemeData(
           value.textSelectionTheme,
         ),

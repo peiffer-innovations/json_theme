@@ -56,7 +56,7 @@ class _ExampleFormState extends State<ExampleForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      autovalidate: true,
+      autovalidateMode: AutovalidateMode.always,
       key: _formKey,
       child: SingleChildScrollView(
         child: Padding(

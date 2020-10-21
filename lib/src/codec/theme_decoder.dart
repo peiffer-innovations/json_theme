@@ -174,6 +174,52 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [AutovalidateMode].  Supported values are:
+  /// * `always`
+  /// * `disabled`
+  /// * `onUserInteraction`
+  static AutovalidateMode decodeAutovalidateMode(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    AutovalidateMode result;
+
+    if (value is AutovalidateMode) {
+      result = value;
+    } else {
+      _checkSupported(
+        'AutovalidateMode',
+        [
+          'always',
+          'disabled',
+          'onUserInteraction',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/autovalidate_mode',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'always':
+            result = AutovalidateMode.always;
+            break;
+          case 'disabled':
+            result = AutovalidateMode.disabled;
+            break;
+          case 'onUserInteraction':
+            result = AutovalidateMode.onUserInteraction;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [Axis].  Supported values are:
   ///  * `horizontal`
   ///  * `vertical`
@@ -1230,7 +1276,9 @@ class ThemeDecoder {
       ));
       result = value == 'light'
           ? Brightness.light
-          : value == 'dark' ? Brightness.dark : null;
+          : value == 'dark'
+              ? Brightness.dark
+              : null;
     }
 
     return result;
@@ -1343,6 +1391,141 @@ class ThemeDecoder {
         ),
         overflowDirection: decodeVerticalDirection(
           value['overflowDirection'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [ButtonStyle].
+  ///
+  /// ```json
+  /// {
+  ///   "animationDuration": <double>,
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
+  ///   "foregroundColor": <Color>,
+  ///   "minimumSize": <Size>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "shadowColor": <Color>,
+  ///   "shape": <OutlinedBorder>,
+  ///   "side": <BorderSide>,
+  ///   "tapTargetSize": <MaterialTapTargetSize,
+  ///   "textStyle": <TextStyle>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// This will use the properties passed through JSON to create the
+  /// [MaterialStateProperty] of each corresponding property by using
+  /// the [MaterialStateProperty.all] function with the value passed in.
+  ///
+  /// See also:
+  ///  * [decodeBorderSide]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeMouseCursor]
+  ///  * [decodeOutlinedBorder]
+  ///  * [decodeSize]
+  ///  * [decodeTextStyle]
+  ///  * [decodeVisualDensity]
+  static ButtonStyle decodeButtonStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ButtonStyle result;
+
+    if (value is ButtonStyle) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/button_style',
+        value: value,
+        validate: validate,
+      ));
+
+      result = ButtonStyle(
+        animationDuration: JsonClass.parseDurationFromMillis(
+          value['animationDuration'],
+        ),
+        backgroundColor: _buildMaterialStateProperty<Color>(
+          decodeColor(
+            value['backgroundColor'],
+            validate: false,
+          ),
+        ),
+        elevation: _buildMaterialStateProperty<double>(
+          JsonClass.parseDouble(value['elevation']),
+        ),
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
+        foregroundColor: _buildMaterialStateProperty<Color>(
+          decodeColor(
+            value['foregroundColor'],
+            validate: false,
+          ),
+        ),
+        minimumSize: _buildMaterialStateProperty<Size>(
+          decodeSize(
+            value['minimumSize'],
+            validate: false,
+          ),
+        ),
+        mouseCursor: _buildMaterialStateProperty<MouseCursor>(
+          decodeMouseCursor(
+            value['mouseCursor'],
+            validate: false,
+          ),
+        ),
+        overlayColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['overlayColor'],
+            validate: false,
+          ),
+        ),
+        padding: _buildMaterialStateProperty(
+          decodeEdgeInsetsGeometry(
+            value['padding'],
+            validate: false,
+          ),
+        ),
+        shadowColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['shadowColor'],
+            validate: false,
+          ),
+        ),
+        shape: _buildMaterialStateProperty<OutlinedBorder>(
+          decodeOutlinedBorder(
+            value['shape'],
+            validate: false,
+          ),
+        ),
+        side: _buildMaterialStateProperty(
+          decodeBorderSide(
+            value['side'],
+            validate: false,
+          ),
+        ),
+        tapTargetSize: decodeMaterialTapTargetSize(
+          value['tapTargetSize'],
+          validate: false,
+        ),
+        textStyle: _buildMaterialStateProperty<TextStyle>(
+          decodeTextStyle(
+            value['textStyle'],
+            validate: false,
+          ),
+        ),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
           validate: false,
         ),
       );
@@ -2012,6 +2195,8 @@ class ThemeDecoder {
           value['actionTextStyle'],
           validate: false,
         ),
+        // @deprecated
+        // brightness
         dateTimePickerTextStyle: decodeTextStyle(
           value['dateTimePickerTextStyle'],
           validate: false,
@@ -2113,6 +2298,86 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [DataTableThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "columnSpacing": <double,
+  ///   "dataRowColor": <Color>,
+  ///   "dataRowHeight": <double>,
+  ///   "dataTextStyle": <TextStyle,
+  ///   "dividerThickness": <double>,
+  ///   "headingRowColor": <Color>,
+  ///   "headingRowHeight": <double>,
+  ///   "headingTextStyle": <TextStyle>,
+  ///   "horizontalMargin": <double>
+  /// }
+  /// ```
+  ///
+  /// This will use the properties passed through JSON to create the
+  /// [MaterialStateProperty] of each corresponding property by using
+  /// the [MaterialStateProperty.all] function with the value passed in.
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeTextStyle]
+  static DataTableThemeData decodeDataTableThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DataTableThemeData result;
+
+    if (value is DataTableThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/data_table_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = DataTableThemeData(
+        columnSpacing: JsonClass.parseDouble(
+          value['columnSpacing'],
+        ),
+        dataRowColor: _buildMaterialStateProperty<Color>(
+          decodeColor(
+            value['dataRowColor'],
+            validate: false,
+          ),
+        ),
+        dataRowHeight: JsonClass.parseDouble(
+          value['dataRowHeight'],
+        ),
+        dataTextStyle: decodeTextStyle(
+          value['dataTextStyle'],
+          validate: false,
+        ),
+        dividerThickness: JsonClass.parseDouble(
+          value['dividerThickness'],
+        ),
+        headingRowColor: _buildMaterialStateProperty<Color>(
+          decodeColor(
+            value['headingRowColor'],
+            validate: false,
+          ),
+        ),
+        headingRowHeight: JsonClass.parseDouble(
+          value['headingRowHeight'],
+        ),
+        headingTextStyle: decodeTextStyle(
+          value['headingTextStyle'],
+          validate: false,
+        ),
+        horizontalMargin: JsonClass.parseDouble(
+          value['horizontalMargin'],
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [DecorationImage].  This expects the given
   /// [value] to follow the structure below:
   ///
@@ -2151,6 +2416,8 @@ class ThemeDecoder {
       result = DecorationImage(
         alignment: decodeAlignment(value['alignment']) ?? Alignment.center,
         centerSlice: decodeRect(value['centerSlice']),
+        // @unencodable
+        // colorFilter
         fit: decodeBoxFit(value['fit']),
         image: decodeImageProvider(value['image']),
         matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
@@ -2403,6 +2670,42 @@ class ThemeDecoder {
           top: JsonClass.parseDouble(value['top'], 0.0),
         );
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [ElevatedButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static ElevatedButtonThemeData decodeElevatedButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ElevatedButtonThemeData result;
+
+    if (value is ElevatedButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/elevated_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = ElevatedButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
     }
 
     return result;
@@ -3652,6 +3955,8 @@ class ThemeDecoder {
           value['focusedErrorBorder'],
           validate: false,
         ),
+        // @deprecated
+        // hasFloatingPlaceholder
         helperMaxLines: JsonClass.parseInt(value['helperMaxLines']),
         helperStyle: decodeTextStyle(
           value['helperStyle'],
@@ -4123,13 +4428,40 @@ class ThemeDecoder {
   ///  * `textable`
   ///
   /// When the `type` is `system`, this expects a `cursor` that is one of:
+  ///  * `alias`
+  ///  * `allScroll`
   ///  * `basic`
+  ///  * `cell`
   ///  * `click`
+  ///  * `contextMenu`
+  ///  * `copy`
+  ///  * `disappearing`
   ///  * `forbidden`
   ///  * `grab`
   ///  * `grabbing`
+  ///  * `help`
+  ///  * `move`
   ///  * `none`
+  ///  * `precise`
+  ///  * `progress`
+  ///  * `resizeColumn`
+  ///  * `resizeDown`
+  ///  * `resizeDownLeft`
+  ///  * `resizeDownRight`
+  ///  * `resizeLeft`
+  ///  * `resizeRight`
+  ///  * `resizeRow`
+  ///  * `resizeUp`
+  ///  * `resizeUpDown`
+  ///  * `resizeUpLeft`
+  ///  * `resizeUpLeftDownRight`
+  ///  * `resizeUpRight`
+  ///  * `resizeUpRightDownLeft`
   ///  * `text`
+  ///  * `verticalText`
+  ///  * `wait`
+  ///  * `zoomIn`
+  ///  * `zoomOut`
   static MouseCursor decodeMouseCursor(
     dynamic value, {
     bool validate = true,
@@ -4185,24 +4517,75 @@ class ThemeDecoder {
             _checkSupported(
               'MouseCursor.cursor',
               [
+                'alias',
+                'allScroll',
                 'basic',
+                'cell',
                 'click',
+                'contextMenu',
+                'copy',
+                'disappearing',
                 'forbidden',
                 'grab',
                 'grabbing',
+                'help',
+                'move',
                 'none',
+                'precise',
+                'progress',
+                'resizeColumn',
+                'resizeDown',
+                'resizeDownLeft',
+                'resizeDownRight',
+                'resizeLeft',
+                'resizeRight',
+                'resizeRow',
+                'resizeUp',
+                'resizeUpDown',
+                'resizeUpLeft',
+                'resizeUpLeftDownRight',
+                'resizeUpRight',
+                'resizeUpRightDownLeft',
                 'text',
+                'verticalText',
+                'wait',
+                'zoomIn',
+                'zoomOut',
               ],
               value['cursor'],
             );
 
             switch (value['cursor']) {
+              case 'alias':
+                result = SystemMouseCursors.alias;
+                break;
+
+              case 'allScroll':
+                result = SystemMouseCursors.allScroll;
+                break;
+
               case 'basic':
                 result = SystemMouseCursors.basic;
                 break;
 
+              case 'cell':
+                result = SystemMouseCursors.cell;
+                break;
+
               case 'click':
                 result = SystemMouseCursors.click;
+                break;
+
+              case 'contextMenu':
+                result = SystemMouseCursors.contextMenu;
+                break;
+
+              case 'copy':
+                result = SystemMouseCursors.copy;
+                break;
+
+              case 'disappearing':
+                result = SystemMouseCursors.disappearing;
                 break;
 
               case 'forbidden':
@@ -4217,12 +4600,96 @@ class ThemeDecoder {
                 result = SystemMouseCursors.grabbing;
                 break;
 
+              case 'help':
+                result = SystemMouseCursors.help;
+                break;
+
+              case 'move':
+                result = SystemMouseCursors.move;
+                break;
+
               case 'none':
                 result = SystemMouseCursors.none;
                 break;
 
+              case 'precise':
+                result = SystemMouseCursors.precise;
+                break;
+
+              case 'progress':
+                result = SystemMouseCursors.progress;
+                break;
+
+              case 'resizeColumn':
+                result = SystemMouseCursors.resizeColumn;
+                break;
+
+              case 'resizeDown':
+                result = SystemMouseCursors.resizeDown;
+                break;
+
+              case 'resizeDownLeft':
+                result = SystemMouseCursors.resizeDownLeft;
+                break;
+
+              case 'resizeDownRight':
+                result = SystemMouseCursors.resizeDownRight;
+                break;
+
+              case 'resizeLeft':
+                result = SystemMouseCursors.resizeLeft;
+                break;
+
+              case 'resizeRight':
+                result = SystemMouseCursors.resizeRight;
+                break;
+
+              case 'resizeRow':
+                result = SystemMouseCursors.resizeRow;
+                break;
+
+              case 'resizeUp':
+                result = SystemMouseCursors.resizeUp;
+                break;
+
+              case 'resizeUpDown':
+                result = SystemMouseCursors.resizeUpDown;
+                break;
+
+              case 'resizeUpLeft':
+                result = SystemMouseCursors.resizeUpLeft;
+                break;
+
+              case 'resizeUpLeftDownRight':
+                result = SystemMouseCursors.resizeUpLeftDownRight;
+                break;
+
+              case 'resizeUpRight':
+                result = SystemMouseCursors.resizeUpRight;
+                break;
+
+              case 'resizeUpRightDownLeft':
+                result = SystemMouseCursors.resizeUpRightDownLeft;
+                break;
+
               case 'text':
                 result = SystemMouseCursors.text;
+                break;
+
+              case 'verticalText':
+                result = SystemMouseCursors.verticalText;
+                break;
+
+              case 'wait':
+                result = SystemMouseCursors.wait;
+                break;
+
+              case 'zoomIn':
+                result = SystemMouseCursors.zoomIn;
+                break;
+
+              case 'zoomOut':
+                result = SystemMouseCursors.zoomOut;
                 break;
             }
             break;
@@ -4410,6 +4877,295 @@ class ThemeDecoder {
       result = Offset(
         JsonClass.parseDouble(value['dx'], 0),
         JsonClass.parseDouble(value['dy'], 0),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes a given Map-like value into a [OutlinedBorder].  The value returned
+  /// depends on the "type" parameter.  The "type" must be one of:
+  ///  * `beveled`
+  ///  * `circle`
+  ///  * `rectangle`
+  ///  * `rounded`
+  ///  * `stadium`
+  ///
+  /// The JSON format of the [value] depends on the "type" and the associated
+  /// class.
+  ///
+  /// `BeveledRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "beveled"
+  /// }
+  /// ```
+  ///
+  /// `CircleBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "circle"
+  /// }
+  /// ```
+  ///
+  /// `ContinuousRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rectangle"
+  /// }
+  /// ```
+  ///
+  /// `RoundedRectangleBorder`
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "side": <BorderSide>,
+  ///   "type": "rounded"
+  /// }
+  /// ```
+  ///
+  /// `StadiumBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "stadium"
+  /// }
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBorderSide]
+  static OutlinedBorder decodeOutlinedBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    OutlinedBorder result;
+    if (value is OutlinedBorder) {
+      result = value;
+    } else {
+      assert(value == null || value['type'] is String);
+      _checkSupported(
+        'OutlinedBorder.type',
+        [
+          'beveled',
+          'circle',
+          'rectangle',
+          'rounded',
+          'stadium',
+        ],
+        value == null ? null : value['type'],
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/outlined_border',
+          value: value,
+          validate: validate,
+        ));
+        String type = value['type'];
+
+        switch (type) {
+          case 'beveled':
+            result = BeveledRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'circle':
+            result = CircleBorder(
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'rectangle':
+            result = ContinuousRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'rounded':
+            result = RoundedRectangleBorder(
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'stadium':
+            result = StadiumBorder(
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [OutlinedButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static OutlinedButtonThemeData decodeOutlinedButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    OutlinedButtonThemeData result;
+
+    if (value is OutlinedButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/outlined_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = OutlinedButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
+  /// * `cupertino`
+  /// * `fadeUpwards`
+  /// * `openUpwards`
+  /// * `zoom`
+  static PageTransitionsBuilder decodePageTransitionsBuilder(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    PageTransitionsBuilder result;
+
+    if (value is PageTransitionsBuilder) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'PageTransitionsBuilder',
+        [
+          'cupertino',
+          'fadeUpwards',
+          'openUpwards',
+          'zoom',
+        ],
+        value,
+      );
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/page_transitions_builder',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'cupertino':
+          result = CupertinoPageTransitionsBuilder();
+          break;
+
+        case 'fadeUpwards':
+          result = FadeUpwardsPageTransitionsBuilder();
+          break;
+
+        case 'openUpwards':
+          result = OpenUpwardsPageTransitionsBuilder();
+          break;
+
+        case 'zoom':
+          result = ZoomPageTransitionsBuilder();
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "builders": <Map<TargetPlatform, PageTransitionBuilder>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodePageTransitionsBuilder]
+  ///  * [decodeTargetPlatform]
+  static PageTransitionsTheme decodePageTransitionsTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    PageTransitionsTheme result;
+
+    if (value is PageTransitionsTheme) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/page_transitions_theme',
+        value: value,
+        validate: validate,
+      ));
+
+      var builders = <TargetPlatform, PageTransitionsBuilder>{};
+      value['builders']?.forEach(
+        (key, value) =>
+            builders[decodeTargetPlatform(key)] = decodePageTransitionsBuilder(
+          value,
+          validate: false,
+        ),
+      );
+
+      result = PageTransitionsTheme(
+        builders: builders,
       );
     }
 
@@ -5301,6 +6057,38 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [Size].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "height": <double>,
+  ///   "width": <double>
+  /// }
+  /// ```
+  static Size decodeSize(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    Size result;
+
+    if (value is Size) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/size',
+        value: value,
+        validate: validate,
+      ));
+      result = Size(
+        JsonClass.parseDouble(value['height']),
+        JsonClass.parseDouble(value['width']),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
   ///  * `noOverlay`
   ///  * `noThumb`
@@ -5473,6 +6261,8 @@ class ThemeDecoder {
           value['thumbColor'],
           validate: false,
         ),
+        // @unencodable
+        // thumbSelector
         thumbShape: decodeSliderComponentShape(
           value['thumbShape'],
           validate: false,
@@ -5978,6 +6768,8 @@ class ThemeDecoder {
         'TabBarTheme.indicator is not supported',
       );
       result = TabBarTheme(
+        // @unencodable
+        // indicator
         indicatorSize: decodeTabBarIndicatorSize(
           value['indicatorSize'],
           validate: false,
@@ -6203,6 +6995,42 @@ class ThemeDecoder {
             break;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [TextButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": <ButtonStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static TextButtonThemeData decodeTextButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TextButtonThemeData result;
+
+    if (value is TextButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/text_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = TextButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
     }
 
     return result;
@@ -6697,6 +7525,52 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [TextSelectionThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "cursorColor": <Color>,
+  ///   "selectionColor": <Color>,
+  ///   "selectionHandleColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  static TextSelectionThemeData decodeTextSelectionThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TextSelectionThemeData result;
+
+    if (value is TextSelectionThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/text_selection_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = TextSelectionThemeData(
+        cursorColor: decodeColor(
+          value['cursorColor'],
+          validate: false,
+        ),
+        selectionColor: decodeColor(
+          value['selectionColor'],
+          validate: false,
+        ),
+        selectionHandleColor: decodeColor(
+          value['selectionHandleColor'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes a given Map-like [value] into a [TextStyle].  This expects the
   /// given [value] to have the following structure:
   ///
@@ -6750,6 +7624,8 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = TextStyle(
+        // @unencodable
+        // background
         backgroundColor: decodeColor(
           value['backgroundColor'],
           validate: false,
@@ -6795,6 +7671,8 @@ class ThemeDecoder {
           value['fontStyle'],
           validate: false,
         ),
+        // @unencodable
+        // foreground
         height: JsonClass.parseDouble(value['height']),
         inherit: value['inherit'] == null
             ? true
@@ -6863,6 +7741,10 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = TextTheme(
+        // @deprecated
+        // body1
+        // @deprecated
+        // body2
         bodyText1: decodeTextStyle(
           value['bodyText1'],
           validate: false,
@@ -6879,6 +7761,16 @@ class ThemeDecoder {
           value['caption'],
           validate: false,
         ),
+        // @deprecated
+        // display1
+        // @deprecated
+        // display2
+        // @deprecated
+        // display3
+        // @deprecated
+        // display4
+        // @deprecated
+        // headline
         headline1: decodeTextStyle(
           value['headline1'],
           validate: false,
@@ -6907,6 +7799,8 @@ class ThemeDecoder {
           value['overline'],
           validate: false,
         ),
+        // @deprecated
+        // subhead
         subtitle1: decodeTextStyle(
           value['subtitle1'],
           validate: false,
@@ -6915,6 +7809,8 @@ class ThemeDecoder {
           value['subtitle2'],
           validate: false,
         ),
+        // @deprecated
+        // title
       );
     }
 
@@ -6973,13 +7869,13 @@ class ThemeDecoder {
   ///   "accentTextTheme": <TextTheme>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
-  ///   "bannerTheme": <MaterialBannerThemeData>,
   ///   "backgroundColor": <Color>,
+  ///   "bannerTheme": <MaterialBannerThemeData>,
   ///   "bottomAppBarColor": <Color>,
   ///   "bottomAppBarTheme": <BottomAppBarTheme>,
   ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
-  ///   "brightness": <Brightness>,
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
+  ///   "brightness": <Brightness>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
   ///   "buttonColor": <Color>,
   ///   "buttonTheme": <ButtonThemeData>,
@@ -6990,11 +7886,13 @@ class ThemeDecoder {
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
   ///   "cursorColor": <Color>,
+  ///   "dataTableTheme": <DataTableThemeData>,
   ///   "dialogBackgroundColor": <Color>,
   ///   "dialogTheme": <DialogTheme>,
   ///   "disabledColor": <Color>,
   ///   "dividerColor": <Color>,
   ///   "dividerTheme": <DividerThemeData>,
+  ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
   ///   "fixTextFieldOutlineLabel": <bool>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
@@ -7008,6 +7906,8 @@ class ThemeDecoder {
   ///   "inputDecorationTheme": <InputDecorationTheme>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "navigationRailTheme": <NavigationRailThemeData>,
+  ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
+  ///   "pageTransitionsTheme": <PageTransitionsTheme>,
   ///   "platform": <TargetPlatform>,
   ///   "popupMenuTheme": <PopupMenuThemeData>,
   ///   "primaryColor": <Color>,
@@ -7020,13 +7920,16 @@ class ThemeDecoder {
   ///   "scaffoldBackgroundColor": <Color>,
   ///   "secondaryHeaderColor": <Color>,
   ///   "selectedRowColor": <Color>,
+  ///   "shadowColor": <Color>,
   ///   "sliderTheme": <SliderThemeData>,
   ///   "snackBarTheme": <SnackBarThemeData>,
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
   ///   "tabBarTheme": <TabBarTheme>,
+  ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
   ///   "textSelectionHandleColor": <Color>,
+  ///   "textSelectionTheme": <TextSelectionThemeData>,
   ///   "textTheme": <TextTheme>,
   ///   "timePickerTheme": <TimePickerThemeData>,
   ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
@@ -7050,8 +7953,10 @@ class ThemeDecoder {
   ///  * [decodeChipThemeData]
   ///  * [decodeColor]
   ///  * [decodeColorScheme]
+  ///  * [decodeDataTableThemeData]
   ///  * [decodeDialogTheme]
   ///  * [decodeDividerThemeData]
+  ///  * [decodeElevatedButtonThemeData]
   ///  * [decodeFloatingActionButtonThemeData]
   ///  * [decodeIconThemeData]
   ///  * [decodeInputDecorationTheme]
@@ -7059,11 +7964,15 @@ class ThemeDecoder {
   ///  * [decodeMaterialBannerThemeData]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeNavigationRailThemeData]
+  ///  * [decodeOutlinedButtonThemeData]
+  ///  * [decodePageTransitionsTheme]
   ///  * [decodePopupMenuThemeData]
   ///  * [decodeSliderThemeData]
   ///  * [decodeSnackBarThemeData]
   ///  * [decodeTabBarTheme]
   ///  * [decodeTargetPlatform]
+  ///  * [decodeTextButtonThemeData]
+  ///  * [decodeTextSelectionThemeData]
   ///  * [decodeTimePickerThemeData]
   ///  * [decodeTextStyle]
   ///  * [decodeToggleButtonsThemeData]
@@ -7107,12 +8016,12 @@ class ThemeDecoder {
         applyElevationOverlayColor: value['applyElevationOverlayColor'] == null
             ? null
             : JsonClass.parseBool(value['applyElevationOverlayColor']),
-        bannerTheme: decodeMaterialBannerThemeData(
-          value['bannerTheme'],
-          validate: false,
-        ),
         backgroundColor: decodeColor(
           value['backgroundColor'],
+          validate: false,
+        ),
+        bannerTheme: decodeMaterialBannerThemeData(
+          value['bannerTheme'],
           validate: false,
         ),
         bottomAppBarColor: decodeColor(
@@ -7127,20 +8036,20 @@ class ThemeDecoder {
           value['bottomNavigationBarTheme'],
           validate: false,
         ),
-        brightness: decodeBrightness(
-          value['brightness'],
-          validate: false,
-        ),
         bottomSheetTheme: decodeBottomSheetThemeData(
           value['bottomSheetTheme'],
           validate: false,
         ),
-        buttonColor: decodeColor(
-          value['buttonColor'],
+        brightness: decodeBrightness(
+          value['brightness'],
           validate: false,
         ),
         buttonBarTheme: decodeButtonBarThemeData(
           value['buttonBarTheme'],
+          validate: false,
+        ),
+        buttonColor: decodeColor(
+          value['buttonColor'],
           validate: false,
         ),
         buttonTheme: decodeButtonThemeData(
@@ -7171,8 +8080,8 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
-        cursorColor: decodeColor(
-          value['cursorColor'],
+        dataTableTheme: decodeDataTableThemeData(
+          value['dataTableTheme'],
           validate: false,
         ),
         dialogBackgroundColor: decodeColor(
@@ -7193,6 +8102,10 @@ class ThemeDecoder {
         ),
         dividerTheme: decodeDividerThemeData(
           value['dividerTheme'],
+          validate: false,
+        ),
+        elevatedButtonTheme: decodeElevatedButtonThemeData(
+          value['elevatedButtonTheme'],
           validate: false,
         ),
         errorColor: decodeColor(
@@ -7243,6 +8156,14 @@ class ThemeDecoder {
           value['navigationRailTheme'],
           validate: false,
         ),
+        outlinedButtonTheme: decodeOutlinedButtonThemeData(
+          value['outlinedButtonTheme'],
+          validate: false,
+        ),
+        pageTransitionsTheme: decodePageTransitionsTheme(
+          value['pageTransitionsTheme'],
+          validate: false,
+        ),
         platform: decodeTargetPlatform(
           value['platform'],
           validate: false,
@@ -7291,6 +8212,10 @@ class ThemeDecoder {
           value['selectedRowColor'],
           validate: false,
         ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
         sliderTheme: decodeSliderThemeData(
           value['sliderTheme'],
           validate: false,
@@ -7311,12 +8236,12 @@ class ThemeDecoder {
           value['tabBarTheme'],
           validate: false,
         ),
-        textSelectionColor: decodeColor(
-          value['textSelectionColor'],
+        textButtonTheme: decodeTextButtonThemeData(
+          value['textButtonTheme'],
           validate: false,
         ),
-        textSelectionHandleColor: decodeColor(
-          value['textSelectionHandleColor'],
+        textSelectionTheme: decodeTextSelectionThemeData(
+          value['textSelectionTheme'],
           validate: false,
         ),
         textTheme: decodeTextTheme(
@@ -7658,6 +8583,8 @@ class ThemeDecoder {
         'TooltipThemeData.decoration is not supported',
       );
       result = TooltipThemeData(
+        // @unencodable
+        // decoration
         excludeFromSemantics: value['excludeFromSemantics'] == null
             ? null
             : JsonClass.parseBool(value['excludeFromSemantics']),
@@ -7833,6 +8760,14 @@ class ThemeDecoder {
       }
     }
 
+    return result;
+  }
+
+  static MaterialStateProperty<T> _buildMaterialStateProperty<T>(T value) {
+    MaterialStateProperty<T> result;
+    if (value != null) {
+      result = MaterialStateProperty.all(value);
+    }
     return result;
   }
 

@@ -1,3 +1,20 @@
+## [1.4.0] - October 20th, 2020
+
+* Added Flutter 1.22 support for:
+  * `AutovalidateMode`
+  * `ButtonStyle`
+  * `DataTableThemeData`
+  * `ElevatedButtonThemeData`
+  * `OutlinedBorder`
+  * `OutlinedButtonThemeData`
+  * `PageTransitionsBuilder`
+  * `PageTransitionsTheme`
+  * `Size`
+  * `TextButtonThemeData`
+  * `TextSelectionThemeData`
+* Added a bunch of new `SystemMouseCursor` options made available in Flutter 1.22.
+
+
 ## [1.3.5] - September 22nd, 2020
 
 * Removed `Overflow` because that was straight-up removed in Flutter 1.23, so keeping it breaks future compatibility

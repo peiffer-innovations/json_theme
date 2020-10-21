@@ -37,12 +37,14 @@ class ThemeDataSchema {
       'colorScheme': SchemaHelper.objectSchema(ColorSchemeSchema.id),
       'cupertinoOverrideTheme':
           SchemaHelper.objectSchema(CupertinoThemeDataSchema.id),
-      'cursorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeSchema.id),
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
+      'elevatedButtonTheme':
+          SchemaHelper.objectSchema(ElevatedButtonThemeDataSchema.id),
       'errorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'fixTextFieldOutlineLabel': SchemaHelper.boolSchema,
       'floatingActionButtonTheme':
@@ -60,6 +62,10 @@ class ThemeDataSchema {
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
       'navigationRailTheme':
           SchemaHelper.objectSchema(NavigationRailThemeDataSchema.id),
+      'outlinedButtonTheme':
+          SchemaHelper.objectSchema(OutlinedButtonThemeDataSchema.id),
+      'pageTransitionsTheme':
+          SchemaHelper.objectSchema(PageTransitionsThemeSchema.id),
       'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),
       'popupMenuTheme': SchemaHelper.objectSchema(PopupMenuThemeDataSchema.id),
       'primaryColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -72,14 +78,17 @@ class ThemeDataSchema {
       'scaffoldBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'secondaryHeaderColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedRowColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'sliderTheme': SchemaHelper.objectSchema(SliderThemeDataSchema.id),
       'snackBarTheme': SchemaHelper.objectSchema(SnackBarThemeDataSchema.id),
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
       'splashFactory':
           SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
-      'textSelectionColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'textSelectionHandleColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'textButtonTheme':
+          SchemaHelper.objectSchema(TextButtonThemeDataSchema.id),
+      'textSelectionTheme':
+          SchemaHelper.objectSchema(TextSelectionThemeDataSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
       'timePickerTheme':
           SchemaHelper.objectSchema(TimePickerThemeDataSchema.id),

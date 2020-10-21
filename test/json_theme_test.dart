@@ -909,6 +909,103 @@ void main() {
     );
   });
 
+  test('ButtonStyle', () {
+    expect(ThemeDecoder.decodeButtonStyle(null), null);
+    expect(ThemeEncoder.encodeButtonStyle(null), null);
+
+    var entry = ButtonStyle(
+      animationDuration: Duration(milliseconds: 1000),
+      backgroundColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      elevation: MaterialStateProperty.all(1.0),
+      enableFeedback: false,
+      foregroundColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      minimumSize: MaterialStateProperty.all(
+        Size(100.0, 100.0),
+      ),
+      mouseCursor: MaterialStateProperty.all(
+        MouseCursor.defer,
+      ),
+      overlayColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      padding: MaterialStateProperty.all(
+        EdgeInsets.zero,
+      ),
+      shadowColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      shape: MaterialStateProperty.all(
+        CircleBorder(),
+      ),
+      side: MaterialStateProperty.all(
+        BorderSide(),
+      ),
+      tapTargetSize: MaterialTapTargetSize.padded,
+      textStyle: MaterialStateProperty.all(
+        TextStyle(),
+      ),
+      visualDensity: VisualDensity.standard,
+    );
+
+    expect(ThemeDecoder.decodeButtonStyle(entry), entry);
+
+    var encoded = ThemeEncoder.encodeButtonStyle(entry);
+    var decoded = ThemeDecoder.decodeButtonStyle(encoded);
+
+    expect(
+      encoded,
+      {
+        'animationDuration': 1000,
+        'backgroundColor': '#ff555555',
+        'elevation': 1.0,
+        'enableFeedback': false,
+        'foregroundColor': '#ff555555',
+        'minimumSize': {
+          'height': 100.0,
+          'width': 100.0,
+        },
+        'mouseCursor': {
+          'type': 'defer',
+        },
+        'overlayColor': '#ff555555',
+        'padding': {
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 0.0,
+        },
+        'shadowColor': '#ff555555',
+        'shape': {
+          'side': {
+            'color': '#ff000000',
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle'
+        },
+        'side': {
+          'color': '#ff000000',
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'tapTargetSize': 'padded',
+        'textStyle': {
+          'inherit': true,
+        },
+        'visualDensity': 'standard',
+      },
+    );
+
+    expect(
+      _buttonStylesAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('ButtonTextTheme', () {
     expect(ThemeDecoder.decodeButtonTextTheme(null), null);
     expect(ThemeEncoder.encodeButtonTextTheme(null), null);
@@ -1654,6 +1751,80 @@ void main() {
     );
   });
 
+  test('DataTableThemeData', () {
+    expect(ThemeDecoder.decodeDataTableThemeData(null), null);
+    expect(ThemeEncoder.encodeDataTableThemeData(null), null);
+
+    var entry = DataTableThemeData(
+      columnSpacing: 1.0,
+      dataRowColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      dataRowHeight: 1.0,
+      dataTextStyle: TextStyle(),
+      dividerThickness: 1.0,
+      headingRowColor: MaterialStateProperty.all(
+        Color(0xff555555),
+      ),
+      headingRowHeight: 1.0,
+      headingTextStyle: TextStyle(),
+      horizontalMargin: 1.0,
+    );
+
+    expect(ThemeDecoder.decodeDataTableThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeDataTableThemeData(entry);
+    var decoded = ThemeDecoder.decodeDataTableThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'columnSpacing': 1.0,
+        'dataRowColor': '#ff555555',
+        'dataRowHeight': 1.0,
+        'dataTextStyle': {
+          'inherit': true,
+        },
+        'dividerThickness': 1.0,
+        'headingRowColor': '#ff555555',
+        'headingRowHeight': 1.0,
+        'headingTextStyle': {
+          'inherit': true,
+        },
+        'horizontalMargin': 1.0,
+      },
+    );
+
+    bool dataTableThemeDataAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! DataTableThemeData) {
+        result = false;
+      } else if (first is DataTableThemeData && second is DataTableThemeData) {
+        result = first.columnSpacing == second.columnSpacing &&
+            first.dataRowColor?.resolve({}) ==
+                second.dataRowColor?.resolve({}) &&
+            first.dataRowHeight == second.dataRowHeight &&
+            first.dataTextStyle == second.dataTextStyle &&
+            first.dividerThickness == second.dividerThickness &&
+            first.headingRowColor?.resolve({}) ==
+                second.headingRowColor?.resolve({}) &&
+            first.headingRowHeight == second.headingRowHeight &&
+            first.headingTextStyle == second.headingTextStyle &&
+            first.horizontalMargin == second.horizontalMargin;
+      }
+
+      return result;
+    }
+
+    expect(
+      dataTableThemeDataAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('DecorationImage', () {
     expect(ThemeDecoder.decodeDecorationImage(null), null);
     expect(ThemeEncoder.encodeDecorationImage(null), null);
@@ -1922,6 +2093,53 @@ void main() {
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2, 3.0, '4.0']),
       EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
+    );
+  });
+
+  test('ElevatedButtonThemeData', () {
+    expect(ThemeDecoder.decodeElevatedButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeElevatedButtonThemeData(null), null);
+
+    var entry = ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Color(0xff222222),
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeElevatedButtonThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeElevatedButtonThemeData(entry);
+    var decoded = ThemeDecoder.decodeElevatedButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+    );
+
+    bool elevatedButtonThemeDatasAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! ElevatedButtonThemeData) {
+        result = false;
+      } else if (first is ElevatedButtonThemeData &&
+          second is ElevatedButtonThemeData) {
+        result = _buttonStylesAreEqual(first.style, second.style);
+      }
+
+      return result;
+    }
+
+    expect(
+      elevatedButtonThemeDatasAreEqual(decoded, entry),
+      true,
     );
   });
 
@@ -3545,6 +3763,240 @@ void main() {
     );
   });
 
+  test('OutlinedBorder', () {
+    expect(ThemeDecoder.decodeOutlinedBorder(null), null);
+    expect(ThemeEncoder.encodeOutlinedBorder(null), null);
+
+    OutlinedBorder entry = BeveledRectangleBorder(
+      borderRadius: BorderRadius.circular(2.0),
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    expect(ThemeDecoder.decodeOutlinedBorder(entry), entry);
+
+    var encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    var decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'type': 'only'
+        },
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'beveled',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = CircleBorder(
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'circle',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = ContinuousRectangleBorder(
+      borderRadius: BorderRadius.circular(2.0),
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'type': 'only'
+        },
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'rectangle',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(2.0),
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'bottomRight': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'topLeft': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'topRight': {
+            'type': 'elliptical',
+            'x': 2.0,
+            'y': 2.0,
+          },
+          'type': 'only'
+        },
+        'side': {
+          'color': '#00123456',
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'rounded'
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = StadiumBorder(
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'side': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'stadium',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
+  test('OutlinedButtonThemeData', () {
+    expect(ThemeDecoder.decodeOutlinedButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeOutlinedButtonThemeData(null), null);
+
+    var entry = OutlinedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Color(0xff222222),
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeOutlinedButtonThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeOutlinedButtonThemeData(entry);
+    var decoded = ThemeDecoder.decodeOutlinedButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+    );
+
+    bool outlinedButtonThemeDatasAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! OutlinedButtonThemeData) {
+        result = false;
+      } else if (first is OutlinedButtonThemeData &&
+          second is OutlinedButtonThemeData) {
+        result = _buttonStylesAreEqual(first.style, second.style);
+      }
+
+      return result;
+    }
+
+    expect(
+      outlinedButtonThemeDatasAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('PopupMenuThemeData', () {
     expect(ThemeDecoder.decodePopupMenuThemeData(null), null);
     expect(ThemeEncoder.encodePopupMenuThemeData(null), null);
@@ -4402,6 +4854,31 @@ void main() {
     );
   });
 
+  test('Size', () {
+    expect(ThemeDecoder.decodeSize(null), null);
+    expect(ThemeEncoder.encodeSize(null), null);
+
+    var entry = Size(0.0, 0.0);
+
+    expect(ThemeDecoder.decodeSize(entry), entry);
+
+    var encoded = ThemeEncoder.encodeSize(entry);
+    var decoded = ThemeDecoder.decodeSize(encoded);
+
+    expect(
+      encoded,
+      {
+        'height': 0.0,
+        'width': 0.0,
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('SliderComponentShape', () {
     expect(ThemeDecoder.decodeSliderComponentShape(null), null);
     expect(ThemeEncoder.encodeSliderComponentShape(null), null);
@@ -5038,6 +5515,53 @@ void main() {
     );
   });
 
+  test('TextButtonThemeData', () {
+    expect(ThemeDecoder.decodeTextButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeTextButtonThemeData(null), null);
+
+    var entry = TextButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Color(0xff222222),
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeTextButtonThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeTextButtonThemeData(entry);
+    var decoded = ThemeDecoder.decodeTextButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+    );
+
+    bool textButtonThemeDatasAreEqual(Object first, Object second) {
+      bool result;
+
+      if (first.runtimeType != second.runtimeType) {
+        result = false;
+      } else if (first is! TextButtonThemeData) {
+        result = false;
+      } else if (first is TextButtonThemeData &&
+          second is TextButtonThemeData) {
+        result = _buttonStylesAreEqual(first.style, second.style);
+      }
+
+      return result;
+    }
+
+    expect(
+      textButtonThemeDatasAreEqual(decoded, entry),
+      true,
+    );
+  });
+
   test('TextCapitalization', () {
     expect(ThemeDecoder.decodeTextCapitalization(null), null);
     expect(ThemeEncoder.encodeTextCapitalization(null), null);
@@ -5476,6 +6000,36 @@ void main() {
     expect(ThemeEncoder.encodeTextOverflow(TextOverflow.visible), 'visible');
   });
 
+  test('TextSelectionThemeData', () {
+    expect(ThemeDecoder.decodeTextSelectionThemeData(null), null);
+    expect(ThemeEncoder.encodeTextSelectionThemeData(null), null);
+
+    var entry = TextSelectionThemeData(
+      cursorColor: Color(0xff222222),
+      selectionColor: Color(0xff222222),
+      selectionHandleColor: Color(0xff222222),
+    );
+
+    expect(ThemeDecoder.decodeTextSelectionThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeTextSelectionThemeData(entry);
+    var decoded = ThemeDecoder.decodeTextSelectionThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'cursorColor': '#ff222222',
+        'selectionColor': '#ff222222',
+        'selectionHandleColor': '#ff222222',
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('TextStyle', () {
     expect(ThemeDecoder.decodeTextStyle(null), null);
     expect(ThemeEncoder.encodeTextStyle(null), null);
@@ -5749,11 +6303,34 @@ void main() {
       cupertinoOverrideTheme: CupertinoThemeData(
         barBackgroundColor: Color(0xee111111),
       ),
+      cursorColor: Color(0xee888888),
+      dataTableTheme: DataTableThemeData(
+        columnSpacing: 1.0,
+        dataRowColor: MaterialStateProperty.all(
+          Color(0xff555555),
+        ),
+        dataRowHeight: 1.0,
+        dataTextStyle: TextStyle(),
+        dividerThickness: 1.0,
+        headingRowColor: MaterialStateProperty.all(
+          Color(0xff555555),
+        ),
+        headingRowHeight: 1.0,
+        headingTextStyle: TextStyle(),
+        horizontalMargin: 1.0,
+      ),
       dialogBackgroundColor: Color(0xee888888),
       dialogTheme: DialogTheme(backgroundColor: Color(0xee999999)),
       disabledColor: Color(0xee000000),
       dividerColor: Color(0xeeaaaaaa),
       dividerTheme: DividerThemeData(color: Color(0xeebbbbbb)),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Color(0xff222222),
+          ),
+        ),
+      ),
       errorColor: Color(0xeecccccc),
       fixTextFieldOutlineLabel: true,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -5772,6 +6349,13 @@ void main() {
       materialTapTargetSize: MaterialTapTargetSize.padded,
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: Color(0xdd666666),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Color(0xff222222),
+          ),
+        ),
       ),
       platform: TargetPlatform.android,
       popupMenuTheme: PopupMenuThemeData(color: Color(0xdd777777)),
@@ -5801,11 +6385,26 @@ void main() {
       scaffoldBackgroundColor: Color(0xee666666),
       secondaryHeaderColor: Color(0xccbbbbbb),
       selectedRowColor: Color(0xcccccccc),
+      shadowColor: Color(0xcccccccc),
       sliderTheme: SliderThemeData(activeTickMarkColor: Color(0xccdddddd)),
       snackBarTheme: SnackBarThemeData(actionTextColor: Color(0xcceeeeee)),
       splashColor: Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
       tabBarTheme: TabBarTheme(labelColor: Color(0xccffffff)),
+      textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            Color(0xff222222),
+          ),
+        ),
+      ),
+      textSelectionColor: Color(0xcccccccc),
+      textSelectionHandleColor: Color(0xcccccccc),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: Color(0xff222222),
+        selectionColor: Color(0xff222222),
+        selectionHandleColor: Color(0xff222222),
+      ),
       textTheme: TextTheme(
         bodyText1: TextStyle(
           color: Color(0xee555555),
@@ -5923,6 +6522,9 @@ void main() {
       'bottomAppBarTheme': {
         'color': '#ff888888',
         'shape': 'circular',
+      },
+      'bottomNavigationBarTheme': {
+        'backgroundColor': '#ff999999',
       },
       'brightness': 'dark',
       'bottomSheetTheme': {
@@ -6064,6 +6666,22 @@ void main() {
       'cupertinoOverrideTheme': {
         'barBackgroundColor': '#ee111111',
       },
+      'cursorColor': '#ee888888',
+      'dataTableTheme': {
+        'columnSpacing': 1.0,
+        'dataRowColor': '#ff555555',
+        'dataRowHeight': 1.0,
+        'dataTextStyle': {
+          'inherit': true,
+        },
+        'dividerThickness': 1.0,
+        'headingRowColor': '#ff555555',
+        'headingRowHeight': 1.0,
+        'headingTextStyle': {
+          'inherit': true,
+        },
+        'horizontalMargin': 1.0,
+      },
       'dialogBackgroundColor': '#ee888888',
       'dialogTheme': {
         'backgroundColor': '#ee999999',
@@ -6073,7 +6691,13 @@ void main() {
       'dividerTheme': {
         'color': '#eebbbbbb',
       },
+      'elevatedButtonTheme': {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
       'errorColor': '#eecccccc',
+      'fixTextFieldOutlineLabel': true,
       'floatingActionButtonTheme': {
         'backgroundColor': '#eedddddd',
       },
@@ -6096,6 +6720,11 @@ void main() {
       'materialTapTargetSize': 'padded',
       'navigationRailTheme': {
         'backgroundColor': '#dd666666',
+      },
+      'outlinedButtonTheme': {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
       },
       'platform': 'android',
       'popupMenuTheme': {
@@ -6191,6 +6820,7 @@ void main() {
       'scaffoldBackgroundColor': '#ee666666',
       'secondaryHeaderColor': '#ccbbbbbb',
       'selectedRowColor': '#cccccccc',
+      'shadowColor': '#cccccccc',
       'sliderTheme': {
         'activeTickMarkColor': '#ccdddddd',
       },
@@ -6201,6 +6831,18 @@ void main() {
       'splashFactory': 'splash',
       'tabBarTheme': {
         'labelColor': '#ccffffff',
+      },
+      'textButtonTheme': {
+        'style': {
+          'backgroundColor': '#ff222222',
+        },
+      },
+      'textSelectionColor': '#cccccccc',
+      'textSelectionHandleColor': '#cccccccc',
+      'textSelectionTheme': {
+        'cursorColor': '#ff222222',
+        'selectionColor': '#ff222222',
+        'selectionHandleColor': '#ff222222',
       },
       'textTheme': {
         'bodyText1': {
@@ -7142,4 +7784,34 @@ void main() {
       'standard',
     );
   });
+}
+
+bool _buttonStylesAreEqual(Object first, Object second) {
+  bool result;
+
+  if (first.runtimeType != second.runtimeType) {
+    result = false;
+  } else if (first is! ButtonStyle) {
+    result = false;
+  } else if (first is ButtonStyle && second is ButtonStyle) {
+    result = first.animationDuration == second.animationDuration &&
+        first.backgroundColor?.resolve({}) ==
+            second.backgroundColor?.resolve({}) &&
+        first.elevation?.resolve({}) == second.elevation?.resolve({}) &&
+        first.enableFeedback == second.enableFeedback &&
+        first.foregroundColor?.resolve({}) ==
+            second.foregroundColor?.resolve({}) &&
+        first.minimumSize?.resolve({}) == second.minimumSize?.resolve({}) &&
+        first.mouseCursor?.resolve({}) == second.mouseCursor?.resolve({}) &&
+        first.overlayColor?.resolve({}) == second.overlayColor?.resolve({}) &&
+        first.padding?.resolve({}) == second.padding?.resolve({}) &&
+        first.shadowColor?.resolve({}) == second.shadowColor?.resolve({}) &&
+        first.shape?.resolve({}) == second.shape?.resolve({}) &&
+        first.side?.resolve({}) == second.side?.resolve({}) &&
+        first.tapTargetSize == second.tapTargetSize &&
+        first.textStyle?.resolve({}) == second.textStyle?.resolve({}) &&
+        first.visualDensity == second.visualDensity;
+  }
+
+  return result;
 }

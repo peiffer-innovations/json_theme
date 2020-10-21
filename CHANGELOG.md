@@ -1,3 +1,15 @@
+## [1.4.0] - October 18th, 2020
+
+* Added Flutter 1.22 support for:
+  * `ButtonStyle`
+  * `DataTableThemeData`
+  * `ElevatedButtonThemeData`
+  * `OutlinedBorder`
+  * `OutlinedButtonThemeData`
+  * `Size`
+  * `TextButtonThemeData`
+  * `TextSelectionThemeData`
+
 ## [1.3.5] - September 22nd, 2020
 
 * Removed `Overflow` because that was straight-up removed in Flutter 1.23, so keeping it breaks future compatibility

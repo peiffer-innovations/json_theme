@@ -1,3 +1,8 @@
+## [1.4.1] - October 20th, 2020
+
+* Added back `Overflow` because so did Flutter.
+
+
 ## [1.4.0] - October 20th, 2020
 
 * Added Flutter 1.22 support for:

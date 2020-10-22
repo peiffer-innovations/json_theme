@@ -4,6 +4,7 @@ class Enums {
   static List<String> all = [
     AlignmentSchema.id,
     AxisSchema.id,
+    AutovalidateModeSchema.id,
     BlendModeSchema.id,
     BorderStyleSchema.id,
     BottomNavigationBarTypeSchema.id,
@@ -33,6 +34,8 @@ class Enums {
     MaterialTypeSchema.id,
     NavigationRailLabelTypeSchema.id,
     NotchedShapeSchema.id,
+    OverflowSchema.id,
+    PageTransitionsBuilderSchema.id,
     RangeSliderTrackShapeSchema.id,
     RangeSliderValueIndicatorShapeSchema.id,
     ScrollViewKeyboardDismissBehaviorSchema.id,

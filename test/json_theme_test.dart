@@ -4489,6 +4489,18 @@ void main() {
     );
   });
 
+  test('Overflow', () {
+    expect(ThemeDecoder.decodeOverflow(null), null);
+    expect(ThemeEncoder.encodeOverflow(null), null);
+
+    expect(ThemeDecoder.decodeOverflow(Overflow.clip), Overflow.clip);
+    expect(ThemeDecoder.decodeOverflow('clip'), Overflow.clip);
+    expect(ThemeDecoder.decodeOverflow('visible'), Overflow.visible);
+
+    expect(ThemeEncoder.encodeOverflow(Overflow.clip), 'clip');
+    expect(ThemeEncoder.encodeOverflow(Overflow.visible), 'visible');
+  });
+
   test('PageTransitionsBuilder', () {
     expect(ThemeDecoder.decodePageTransitionsBuilder(null), null);
     expect(ThemeEncoder.encodePageTransitionsBuilder(null), null);

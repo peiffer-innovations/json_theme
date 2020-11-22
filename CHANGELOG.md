@@ -1,3 +1,8 @@
+## [1.4.2] - November 22nd, 2020
+
+* Fix for [Issue #18](https://github.com/peiffer-innovations/json_theme/issues/18)
+
+
 ## [1.4.1] - October 20th, 2020
 
 * Added back `Overflow` because so did Flutter.

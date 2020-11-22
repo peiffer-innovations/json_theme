@@ -5128,15 +5128,19 @@ class ThemeDecoder {
     return result;
   }
 
+  // ignore: deprecated_member_use
   /// Decodes the [value] to a [Overflow].  Supported values are:
   /// * `clip`
   /// * `visible`
+  // ignore: deprecated_member_use
   static Overflow decodeOverflow(
     dynamic value, {
     bool validate = true,
   }) {
+    // ignore: deprecated_member_use
     Overflow result;
 
+    // ignore: deprecated_member_use
     if (value is Overflow) {
       result = value;
     } else if (value != null) {
@@ -5156,10 +5160,12 @@ class ThemeDecoder {
 
       switch (value) {
         case 'clip':
+          // ignore: deprecated_member_use
           result = Overflow.clip;
           break;
 
         case 'visible':
+          // ignore: deprecated_member_use
           result = Overflow.visible;
           break;
       }
@@ -5969,6 +5975,14 @@ class ThemeDecoder {
   /// }
   /// ```
   ///
+  /// `StadiumBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "stadium"
+  /// }
+  /// ```
+  ///
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
@@ -5987,6 +6001,7 @@ class ThemeDecoder {
           'circle',
           'rectangle',
           'rounded',
+          'stadium',
         ],
         value == null ? null : value['type'],
       );
@@ -6031,6 +6046,16 @@ class ThemeDecoder {
                     validate: false,
                   ) ??
                   BorderRadius.zero,
+              side: decodeBorderSide(
+                    value['side'],
+                    validate: false,
+                  ) ??
+                  BorderSide.none,
+            );
+            break;
+
+          case 'stadium':
+            result = StadiumBorder(
               side: decodeBorderSide(
                     value['side'],
                     validate: false,

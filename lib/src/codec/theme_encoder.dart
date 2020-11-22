@@ -3137,10 +3137,12 @@ class ThemeEncoder {
 
     if (value != null) {
       switch (value) {
+        // ignore: deprecated_member_use
         case Overflow.clip:
           result = 'clip';
           break;
 
+        // ignore: deprecated_member_use
         case Overflow.visible:
           result = 'visible';
           break;
@@ -3539,6 +3541,14 @@ class ThemeEncoder {
   /// }
   /// ```
   ///
+  /// `StadiumBorder`
+  /// ```json
+  /// {
+  ///   "side": <BorderSide>,
+  ///   "type": "stadium"
+  /// }
+  /// ```
+  ///
   /// See also:
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
@@ -3546,7 +3556,8 @@ class ThemeEncoder {
     assert(value == null ||
         value is CircleBorder ||
         value is ContinuousRectangleBorder ||
-        value is RoundedRectangleBorder);
+        value is RoundedRectangleBorder ||
+        value is StadiumBorder);
     Map<String, dynamic> result;
 
     if (value != null) {
@@ -3566,6 +3577,11 @@ class ThemeEncoder {
           'borderRadius': encodeBorderRadius(value.borderRadius),
           'side': encodeBorderSide(value.side),
           'type': 'rounded',
+        };
+      } else if (value is StadiumBorder) {
+        result = <String, dynamic>{
+          'side': encodeBorderSide(value.side),
+          'type': 'stadium',
         };
       }
     }

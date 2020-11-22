@@ -18,6 +18,7 @@ class ShapeBorderSchema {
           'circle',
           'rectangle',
           'rounded',
+          'stadium',
         ],
       },
     },

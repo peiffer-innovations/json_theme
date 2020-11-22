@@ -47,6 +47,7 @@ class _ExampleFormState extends State<ExampleForm> {
 
   void _validate() {
     if (_formKey.currentState.validate() != true) {
+      // ignore: deprecated_member_use
       Scaffold.of(context).showSnackBar(SnackBar(
         content: Text('Please correct form errors'),
       ));

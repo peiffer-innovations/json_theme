@@ -4493,11 +4493,16 @@ void main() {
     expect(ThemeDecoder.decodeOverflow(null), null);
     expect(ThemeEncoder.encodeOverflow(null), null);
 
+    // ignore: deprecated_member_use
     expect(ThemeDecoder.decodeOverflow(Overflow.clip), Overflow.clip);
+    // ignore: deprecated_member_use
     expect(ThemeDecoder.decodeOverflow('clip'), Overflow.clip);
+    // ignore: deprecated_member_use
     expect(ThemeDecoder.decodeOverflow('visible'), Overflow.visible);
 
+    // ignore: deprecated_member_use
     expect(ThemeEncoder.encodeOverflow(Overflow.clip), 'clip');
+    // ignore: deprecated_member_use
     expect(ThemeEncoder.encodeOverflow(Overflow.visible), 'visible');
   });
 
@@ -5340,6 +5345,7 @@ void main() {
       decoded,
       entry,
     );
+
     entry = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
       side: BorderSide(
@@ -5384,6 +5390,34 @@ void main() {
           'width': 1.0,
         },
         'type': 'rounded'
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    entry = StadiumBorder(
+      side: BorderSide(
+        color: _kColor,
+        width: 1.0,
+        style: BorderStyle.solid,
+      ),
+    );
+
+    encoded = ThemeEncoder.encodeShapeBorder(entry);
+    decoded = ThemeDecoder.decodeShapeBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'side': {
+          'color': '#00123456',
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'type': 'stadium'
       },
     );
 

@@ -2,7 +2,7 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class BoxBorderSchema {
   static const id =
-      'https://peifferinnovations.com/json_theme/schemas/box_border';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/box_border.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',

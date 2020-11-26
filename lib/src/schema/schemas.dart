@@ -61,9 +61,9 @@ class Schemas {
     HitTestBehaviorSchema.id: HitTestBehaviorSchema.schema,
     IconDataSchema.id: IconDataSchema.schema,
     IconThemeDataSchema.id: IconThemeDataSchema.schema,
-    ImageProviderSchema.id: ImageProviderSchema.schemas,
+    ImageProviderSchema.id: ImageProviderSchema.schema,
     ImageRepeatSchema.id: ImageRepeatSchema.schema,
-    InputBorderSchema.id: InputBorderSchema.schemas,
+    InputBorderSchema.id: InputBorderSchema.schema,
     InputDecorationThemeSchema.id: InputDecorationThemeSchema.schema,
     InteractiveInkFeatureFactorySchema.id:
         InteractiveInkFeatureFactorySchema.schema,

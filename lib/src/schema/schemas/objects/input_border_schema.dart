@@ -2,44 +2,26 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class InputBorderSchema {
   static const id =
-      'https://peifferinnovations.com/json_theme/schemas/input_border';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/input_border.json';
 
-  static final schemas = {
-    '$id#circular': {
-      r'$schema': 'http://json-schema.org/draft-06/schema#',
-      r'$id': '$id#circular',
-      'title': 'InputBorder',
-      'type': 'object',
-      'required': [
-        'radius',
-        'type',
-      ],
-      'properties': {
-        'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
-        'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
-        'gapPadding': SchemaHelper.numberSchema,
-        'type': {
-          'type': 'string',
-          'enum': [
-            'outline',
-          ],
-        },
-      },
-    },
-    '$id#elliptical': {
-      r'$schema': 'http://json-schema.org/draft-06/schema#',
-      r'$id': '$id#elliptical',
-      'title': 'InputBorder',
-      'type': 'object',
-      'properties': {
-        'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
-        'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
-        'type': {
-          'type': 'string',
-          'enum': [
-            'underline',
-          ],
-        },
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$id': '$id',
+    'title': 'InputBorder',
+    'type': 'object',
+    'required': [
+      'type',
+    ],
+    'properties': {
+      'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
+      'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
+      'gapPadding': SchemaHelper.numberSchema,
+      'type': {
+        'type': 'string',
+        'enum': [
+          'outline',
+          'underline',
+        ],
       },
     },
   };

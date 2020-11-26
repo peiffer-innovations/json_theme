@@ -2,7 +2,7 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class InputDecorationThemeSchema {
   static const id =
-      'https://peifferinnovations.com/json_theme/schemas/input_decoration_theme';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/input_decoration_theme.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',

@@ -19,6 +19,8 @@ class SchemaValidator {
   /// [validate] always skips the validation.
   static bool enabled = true;
 
+  static bool _initialized = false;
+
   /// Validates the given [schemaId] against the given [value].  If the
   /// optional [validate] parameter is not [true] then this will no-op and
   /// immediately return with [true].
@@ -40,6 +42,11 @@ class SchemaValidator {
     var result = true;
     if (enabled == true) {
       if (validate == true) {
+        if (_initialized != true) {
+          _initialized = true;
+          SchemaCache().addSchemas(Schemas.all);
+        }
+
         if (debugOnly == true) {
           assert(() {
             result = _validate(
@@ -65,6 +72,9 @@ class SchemaValidator {
     @required String schemaId,
     @required dynamic value,
   }) {
+    if (schemaId?.endsWith('.json') != true) {
+      schemaId += '.json';
+    }
     var result = true;
     RefProvider refProvider;
     refProvider = (String ref) {

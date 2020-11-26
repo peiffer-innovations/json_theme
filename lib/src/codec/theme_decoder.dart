@@ -27,7 +27,7 @@ class ThemeDecoder {
   ThemeDecoder._();
 
   static const _baseSchemaUrl =
-      'https://peifferinnovations.com/json_theme/schemas';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme';
 
   /// Decodes the given [value] to an [Alignment].  Supported values are:
   ///  * `bottomCenter`

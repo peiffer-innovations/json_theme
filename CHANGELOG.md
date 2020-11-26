@@ -1,3 +1,8 @@
+## [1.4.3] - November 26th, 2020
+
+* Updated all schema URLs to point to a live repo.
+
+
 ## [1.4.2] - November 22nd, 2020
 
 * Fix for [Issue #18](https://github.com/peiffer-innovations/json_theme/issues/18)

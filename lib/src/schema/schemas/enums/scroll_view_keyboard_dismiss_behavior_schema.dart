@@ -2,7 +2,7 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class ScrollViewKeyboardDismissBehaviorSchema {
   static const id =
-      'https://peifferinnovations.com/json_theme/schemas/scroll_view_keyboard_dismiss_behavior';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/scroll_view_keyboard_dismiss_behavior.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',

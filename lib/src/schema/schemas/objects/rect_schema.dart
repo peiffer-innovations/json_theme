@@ -1,7 +1,8 @@
 import 'package:json_theme/json_theme_schemas.dart';
 
 class RectSchema {
-  static const id = 'https://peifferinnovations.com/json_theme/schemas/rect';
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/rect.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',

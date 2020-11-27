@@ -7,6 +7,8 @@ class DividerThemeDataSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/DividerThemeData-class.html',
     'title': 'DividerThemeData',
     'type': 'object',
     'properties': {

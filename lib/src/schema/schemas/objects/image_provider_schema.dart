@@ -7,6 +7,8 @@ class ImageProviderSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/painting/ImageProvider-class.html',
     'title': 'ImageProvider',
     'type': 'object',
     'additionalProperties': false,

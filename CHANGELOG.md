@@ -1,3 +1,8 @@
+## [1.4.3+1] - November 26th, 2020
+
+* Added a `$comment` to all schemas linking to the respective dartdoc page.
+
+
 ## [1.4.3] - November 26th, 2020
 
 * Updated all schema URLs to point to a live repo.

@@ -7,6 +7,8 @@ class BottomNavigationBarTypeSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/BottomNavigationBarType-class.html',
     'type': 'string',
     'title': 'BottomNavigationBarType',
     'oneOf': SchemaHelper.enumSchema([

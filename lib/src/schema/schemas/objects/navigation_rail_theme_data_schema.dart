@@ -7,7 +7,9 @@ class NavigationRailThemeDataSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
-    'title': 'NavigationRailThemeDataSchema',
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/NavigationRailThemeData-class.html',
+    'title': 'NavigationRailThemeData',
     'type': 'object',
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),

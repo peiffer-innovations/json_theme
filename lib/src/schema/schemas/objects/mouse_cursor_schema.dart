@@ -5,6 +5,8 @@ class MouseCursorSchema {
   static final schemas = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/rendering/MouseCursor-class.html',
     'title': 'MouseCursor',
     'type': 'object',
     'required': [

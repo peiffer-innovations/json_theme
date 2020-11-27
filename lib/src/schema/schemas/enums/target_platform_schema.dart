@@ -7,6 +7,8 @@ class TargetPlatformSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/foundation/TargetPlatform-class.html',
     'title': 'TargetPlatform',
     'type': 'string',
     'oneOf': SchemaHelper.enumSchema([

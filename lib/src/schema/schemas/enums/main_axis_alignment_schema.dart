@@ -7,6 +7,8 @@ class MainAxisAlignmentSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/rendering/MainAxisAlignment-class.html',
     'title': 'MainAxisAlignment',
     'type': 'string',
     'oneOf': SchemaHelper.enumSchema([

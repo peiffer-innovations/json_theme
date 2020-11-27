@@ -7,7 +7,9 @@ class SliderTrackShapeSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
-    'title': 'SliderTrackShapeSchema',
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/SliderTrackShape-class.html',
+    'title': 'SliderTrackShape',
     'type': 'object',
     'required': [
       'type',

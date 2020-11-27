@@ -7,6 +7,8 @@ class CrossFadeStateSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/widgets/CrossFadeState-class.html',
     'type': 'string',
     'title': 'CrossFadeState',
     'oneOf': SchemaHelper.enumSchema([

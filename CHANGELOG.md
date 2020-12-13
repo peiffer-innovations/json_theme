@@ -1,3 +1,8 @@
+## [1.4.4] - December 13th, 2020
+
+* Removed deprecated "disabledThumbGapWidth"
+
+
 ## [1.4.3+1] - November 26th, 2020
 
 * Added a `$comment` to all schemas linking to the respective dartdoc page.

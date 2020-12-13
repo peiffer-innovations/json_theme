@@ -3789,7 +3789,6 @@ class ThemeEncoder {
   /// `RectangularSliderTrackShape``
   /// ```json
   /// {
-  ///   "disabledThumbGapWidth": <double>,
   ///   "type": "rectangular"
   /// }
   /// ```
@@ -3818,7 +3817,6 @@ class ThemeEncoder {
     if (value != null) {
       if (value is RectangularSliderTrackShape) {
         result = <String, dynamic>{
-          'disabledThumbGapWidth': value.disabledThumbGapWidth,
           'type': 'rectangular',
         };
       } else if (value is RoundedRectSliderTrackShape) {

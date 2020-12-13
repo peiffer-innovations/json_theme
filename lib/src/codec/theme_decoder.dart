@@ -6404,7 +6404,6 @@ class ThemeDecoder {
   /// Type: `rectangular`
   /// ```json
   /// {
-  ///   "disabledThumbGapWidth": <double>,
   ///   "type": "rectangular"
   /// }
   /// ```
@@ -6451,12 +6450,7 @@ class ThemeDecoder {
         String type = value['type'];
         switch (type) {
           case 'rectangular':
-            result = RectangularSliderTrackShape(
-              disabledThumbGapWidth: JsonClass.parseDouble(
-                value['disabledThumbGapWidth'],
-                2.0,
-              ),
-            );
+            result = RectangularSliderTrackShape();
             break;
 
           case 'rounded':

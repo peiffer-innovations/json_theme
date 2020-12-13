@@ -5617,7 +5617,6 @@ void main() {
         'thumbShape': 'noOverlay',
         'trackHeight': 10.0,
         'trackShape': {
-          'disabledThumbGapWidth': 2.0,
           'type': 'rectangular',
         },
         'valueIndicatorColor': '#ffcccccc',
@@ -5639,9 +5638,7 @@ void main() {
     expect(ThemeDecoder.decodeSliderTrackShape(null), null);
     expect(ThemeEncoder.encodeSliderTrackShape(null), null);
 
-    SliderTrackShape entry = RectangularSliderTrackShape(
-      disabledThumbGapWidth: 1.0,
-    );
+    SliderTrackShape entry = RectangularSliderTrackShape();
 
     expect(ThemeDecoder.decodeSliderTrackShape(entry), entry);
 
@@ -5651,7 +5648,6 @@ void main() {
     expect(
       encoded,
       {
-        'disabledThumbGapWidth': 1.0,
         'type': 'rectangular',
       },
     );

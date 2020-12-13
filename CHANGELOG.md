@@ -1,6 +1,7 @@
-## [1.4.4] - December 13th, 2020
+## [1.5.0] - December 13th, 2020
 
 * Removed deprecated "disabledThumbGapWidth"
+* Swapped out the no longer maintained `json_schema` for the forked `json_schema2`.
 
 
 ## [1.4.3+1] - November 26th, 2020

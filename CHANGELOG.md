@@ -1,3 +1,8 @@
+## [1.5.0+1] - December 13th, 2020
+
+* Updated `meta` dependency
+
+
 ## [1.5.0] - December 13th, 2020
 
 * Removed deprecated "disabledThumbGapWidth"

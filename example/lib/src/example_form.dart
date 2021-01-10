@@ -471,7 +471,7 @@ class _ExampleFormState extends State<ExampleForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Flexible(
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: () {},
                       child: Text('Enabled'),
                     ),
@@ -480,7 +480,7 @@ class _ExampleFormState extends State<ExampleForm> {
                     width: 16.0,
                   ),
                   Flexible(
-                    child: FlatButton(
+                    child: TextButton(
                       onPressed: null,
                       child: Text('Disabled'),
                     ),
@@ -492,7 +492,7 @@ class _ExampleFormState extends State<ExampleForm> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Flexible(
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () {},
                       child: Text('Enabled'),
                     ),
@@ -501,7 +501,7 @@ class _ExampleFormState extends State<ExampleForm> {
                     width: 16.0,
                   ),
                   Flexible(
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: null,
                       child: Text('Disabled'),
                     ),
@@ -509,7 +509,7 @@ class _ExampleFormState extends State<ExampleForm> {
                 ],
               ),
               SizedBox(height: 16.0),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () => _validate(),
                 child: Text('Validate'),
               ),

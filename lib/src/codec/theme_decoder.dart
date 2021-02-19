@@ -6127,8 +6127,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "height": <double>,
-  ///   "width": <double>
+  ///   "width": <double>,
+  ///   "height": <double>
   /// }
   /// ```
   static Size decodeSize(
@@ -6146,8 +6146,8 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = Size(
-        JsonClass.parseDouble(value['height']),
         JsonClass.parseDouble(value['width']),
+        JsonClass.parseDouble(value['height']),
       );
     }
 

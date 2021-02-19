@@ -11,12 +11,12 @@ class SizeSchema {
     'title': 'Size',
     'additionalProperties': false,
     'required': [
-      'height',
       'width',
+      'height',
     ],
     'properties': {
-      'height': SchemaHelper.numberSchema,
       'width': SchemaHelper.numberSchema,
+      'height': SchemaHelper.numberSchema,
     },
   };
 }

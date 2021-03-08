@@ -18,5 +18,5 @@ class SchemaCache {
 
   /// Returns the schema for the given [id] from the internal schema cache.
   /// This will return [null] if no schema exists with the given [id].
-  Map<String, dynamic> getSchema(String id) => Schemas.all[id] ?? _schemas[id];
+  Map<String, dynamic>? getSchema(String id) => Schemas.all[id] ?? _schemas[id];
 }

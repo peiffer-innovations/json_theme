@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 
 class ThemePage extends StatelessWidget {
   ThemePage({
-    Key key,
-    this.theme,
-  }) : super(key: key);
+    Key? key,
+    ThemeData? theme,
+  })  : theme = theme ?? ThemeData(),
+        super(key: key);
 
   final ThemeData theme;
 

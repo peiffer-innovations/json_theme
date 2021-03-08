@@ -13,7 +13,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 
 class RootPage extends StatelessWidget {
   const RootPage({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   static const _themes = [
@@ -39,7 +39,7 @@ class RootPage extends StatelessWidget {
     var themeStr = await rootBundle.loadString('assets/themes/$themeId.json');
     var themeJson = json.decode(themeStr);
 
-    var theme = ThemeDecoder.decodeThemeData(themeJson);
+    var theme = ThemeDecoder.decodeThemeData(themeJson) ?? ThemeData();
 
     await Navigator.of(context).push(
       MaterialPageRoute(

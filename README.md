@@ -676,6 +676,7 @@ Plain string that must be one of:
 
 Plain string that must be one of:
 * `clamp` ==> `TileMode.clamp`
+* `decal` ==> `TileMode.decal`
 * `mirror` ==> `TileMode.mirror`
 * `repeated` ==> `TileMode.repeated`
 

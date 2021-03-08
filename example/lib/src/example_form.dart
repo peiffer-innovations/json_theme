@@ -5,7 +5,7 @@ import 'package:static_translations/static_translations.dart';
 
 class ExampleForm extends StatefulWidget {
   ExampleForm({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -22,9 +22,9 @@ class _ExampleFormState extends State<ExampleForm> {
       TextEditingController();
   final TextEditingController _phoneNumberController = TextEditingController();
 
-  String _countryValue;
-  bool _phoneNumberMobile;
-  String _radioValue;
+  String? _countryValue;
+  bool? _phoneNumberMobile;
+  String? _radioValue;
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _ExampleFormState extends State<ExampleForm> {
   }
 
   void _validate() {
-    if (_formKey.currentState.validate() != true) {
+    if (_formKey.currentState?.validate() != true) {
       // ignore: deprecated_member_use
       Scaffold.of(context).showSnackBar(SnackBar(
         content: Text('Please correct form errors'),
@@ -250,7 +250,7 @@ class _ExampleFormState extends State<ExampleForm> {
                       Radio(
                         groupValue: _radioValue,
                         onChanged: (value) =>
-                            setState(() => _radioValue = value),
+                            setState(() => _radioValue = value?.toString()),
                         value: 'one',
                       ),
                       SizedBox(
@@ -269,7 +269,7 @@ class _ExampleFormState extends State<ExampleForm> {
                       Radio(
                         groupValue: _radioValue,
                         onChanged: (value) =>
-                            setState(() => _radioValue = value),
+                            setState(() => _radioValue = value?.toString()),
                         value: 'two',
                       ),
                       SizedBox(
@@ -288,7 +288,7 @@ class _ExampleFormState extends State<ExampleForm> {
                       Radio(
                         groupValue: _radioValue,
                         onChanged: (value) =>
-                            setState(() => _radioValue = value),
+                            setState(() => _radioValue = value?.toString()),
                         value: 'three',
                       ),
                       SizedBox(
@@ -730,13 +730,13 @@ class _CustomValidator extends ValueValidator {
     this.validator,
   );
 
-  final String Function(String value) validator;
+  final String? Function(String? value) validator;
 
   @override
-  String validate({
-    String label,
-    Translator translator,
-    String value,
+  String? validate({
+    required String label,
+    required Translator translator,
+    String? value,
   }) =>
       validator(value);
 

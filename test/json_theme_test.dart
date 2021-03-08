@@ -370,7 +370,7 @@ void main() {
     expect(ThemeDecoder.decodeBottomAppBarTheme(entry), entry);
 
     var encoded = ThemeEncoder.encodeBottomAppBarTheme(entry);
-    var decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded);
+    var decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded)!;
 
     expect(encoded, {
       'color': _kColorStr,
@@ -1608,7 +1608,7 @@ void main() {
         'tabLabelTextStyle': _kTextStyleJson,
         'textStyle': _kTextStyleJson,
       },
-    );
+    )!;
 
     expect(
       encoded,
@@ -1685,7 +1685,7 @@ void main() {
     expect(ThemeDecoder.decodeCupertinoThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeCupertinoThemeData(entry);
-    var decoded = ThemeDecoder.decodeCupertinoThemeData(encoded);
+    var decoded = ThemeDecoder.decodeCupertinoThemeData(encoded)!;
 
     expect(encoded, {
       'barBackgroundColor': '#ff111111',
@@ -1833,8 +1833,8 @@ void main() {
       },
     );
 
-    bool dataTableThemeDataAreEqual(Object first, Object second) {
-      bool result;
+    bool? dataTableThemeDataAreEqual(Object? first, Object second) {
+      bool? result;
 
       if (first.runtimeType != second.runtimeType) {
         result = false;
@@ -2160,8 +2160,8 @@ void main() {
       },
     );
 
-    bool elevatedButtonThemeDatasAreEqual(Object first, Object second) {
-      bool result;
+    bool? elevatedButtonThemeDatasAreEqual(Object? first, Object second) {
+      bool? result;
 
       if (first.runtimeType != second.runtimeType) {
         result = false;
@@ -2577,7 +2577,7 @@ void main() {
     expect(ThemeDecoder.decodeGradientTransform(entry), entry);
 
     var encoded = ThemeEncoder.encodeGradientTransform(entry);
-    var decoded = ThemeDecoder.decodeGradientTransform(encoded);
+    var decoded = ThemeDecoder.decodeGradientTransform(encoded)!;
 
     expect(
       encoded,
@@ -4219,7 +4219,7 @@ void main() {
     );
     expect(
       ThemeDecoder.decodeNotchedShape('circular')?.runtimeType,
-      CircularNotchedRectangle()?.runtimeType,
+      CircularNotchedRectangle().runtimeType,
     );
     expect(
       ThemeEncoder.encodeNotchedShape(CircularNotchedRectangle()),
@@ -4468,8 +4468,8 @@ void main() {
       },
     );
 
-    bool outlinedButtonThemeDatasAreEqual(Object first, Object second) {
-      bool result;
+    bool? outlinedButtonThemeDatasAreEqual(Object? first, Object second) {
+      bool? result;
 
       if (first.runtimeType != second.runtimeType) {
         result = false;
@@ -4584,7 +4584,7 @@ void main() {
     for (var entry in builders.entries) {
       expect(
         decoded?.builders[entry.key]?.runtimeType,
-        entry.value?.runtimeType,
+        entry.value.runtimeType,
       );
     }
   });
@@ -4718,8 +4718,8 @@ void main() {
     expect(ThemeDecoder.decodeRangeSliderThumbShape(entry), entry);
 
     var encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
-    RoundRangeSliderThumbShape decoded =
-        ThemeDecoder.decodeRangeSliderThumbShape(encoded);
+    var decoded = ThemeDecoder.decodeRangeSliderThumbShape(encoded)
+        as RoundRangeSliderThumbShape;
 
     expect(
       encoded,
@@ -4754,8 +4754,8 @@ void main() {
     expect(ThemeDecoder.decodeRangeSliderTickMarkShape(entry), entry);
 
     var encoded = ThemeEncoder.encodeRangeSliderTickMarkShape(entry);
-    RoundRangeSliderTickMarkShape decoded =
-        ThemeDecoder.decodeRangeSliderTickMarkShape(encoded);
+    var decoded = ThemeDecoder.decodeRangeSliderTickMarkShape(encoded)
+        as RoundRangeSliderTickMarkShape;
 
     expect(
       encoded,
@@ -5004,49 +5004,63 @@ void main() {
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'always'
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'bouncing',
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'clamping',
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'fixedExtent',
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'never',
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'page',
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'rangeMaintaining',
-      }).parent.runtimeType,
+      })!
+          .parent
+          .runtimeType,
       AlwaysScrollableScrollPhysics().runtimeType,
     );
 
@@ -6158,8 +6172,8 @@ void main() {
       },
     );
 
-    bool textButtonThemeDatasAreEqual(Object first, Object second) {
-      bool result;
+    bool? textButtonThemeDatasAreEqual(Object? first, Object second) {
+      bool? result;
 
       if (first.runtimeType != second.runtimeType) {
         result = false;
@@ -7036,7 +7050,7 @@ void main() {
     expect(ThemeDecoder.decodeThemeData(entry), entry);
 
     var encoded = ThemeEncoder.encodeThemeData(entry);
-    var decoded = ThemeDecoder.decodeThemeData(encoded);
+    var decoded = ThemeDecoder.decodeThemeData(encoded)!;
 
     var jsonMap = {
       'accentColor': '#ff111111',
@@ -8187,7 +8201,7 @@ void main() {
     expect(ThemeDecoder.decodeToolbarOptions(entry), entry);
 
     var encoded = ThemeEncoder.encodeToolbarOptions(entry);
-    var decoded = ThemeDecoder.decodeToolbarOptions(encoded);
+    var decoded = ThemeDecoder.decodeToolbarOptions(encoded)!;
 
     expect(encoded, {
       'copy': true,
@@ -8397,8 +8411,8 @@ void main() {
   });
 }
 
-bool _buttonStylesAreEqual(Object first, Object second) {
-  bool result;
+bool? _buttonStylesAreEqual(Object? first, Object? second) {
+  bool? result;
 
   if (first.runtimeType != second.runtimeType) {
     result = false;

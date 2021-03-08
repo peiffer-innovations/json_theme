@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_schema2/json_schema2.dart';
 import 'package:json_theme/json_theme_schemas.dart';
-import 'package:meta/meta.dart';
 
 /// Schema validator that can validate the JSON Theme objects while also being
 /// able to be extended to also perform validation against schemas that include
@@ -35,8 +34,8 @@ class SchemaValidator {
   /// skipped.
   static bool validate({
     bool debugOnly = true,
-    @required String schemaId,
-    @required dynamic value,
+    required String schemaId,
+    required dynamic value,
     bool validate = true,
   }) {
     var result = true;
@@ -69,14 +68,14 @@ class SchemaValidator {
   }
 
   static bool _validate({
-    @required String schemaId,
-    @required dynamic value,
+    required String schemaId,
+    required dynamic value,
   }) {
-    if (schemaId?.endsWith('.json') != true) {
+    if (schemaId.endsWith('.json') != true) {
       schemaId += '.json';
     }
     var result = true;
-    RefProvider refProvider;
+    RefProvider? refProvider;
     refProvider = (String ref) {
       var schema = SchemaCache().getSchema(ref);
       if (schema == null) {
@@ -89,8 +88,7 @@ class SchemaValidator {
       );
     };
 
-    var schemaData = SchemaCache().getSchema(schemaId);
-    assert(schemaData != null, 'Cannot find schema: $schemaId');
+    var schemaData = SchemaCache().getSchema(schemaId)!;
     var jsonSchema = JsonSchema.createSchema(
       schemaData,
       refProvider: refProvider,
@@ -105,7 +103,7 @@ class SchemaValidator {
     }
 
     var errors = jsonSchema.validateWithErrors(removed);
-    if (errors?.isNotEmpty == true) {
+    if (errors.isNotEmpty == true) {
       result = false;
       var errorStr =
           'Value: ${json.encode(value)}\n\nSchema Error: $schemaId\n';

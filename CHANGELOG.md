@@ -1,3 +1,8 @@
+## [2.0.0] - March 8th, 2021
+
+* Null Safety
+
+
 ## [1.5.0+2] - January 10th, 2021
 
 * Swapped deprecated buttons in example

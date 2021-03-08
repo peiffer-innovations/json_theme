@@ -6155,8 +6155,8 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = Size(
-        JsonClass.parseDouble(value['height'])!,
         JsonClass.parseDouble(value['width'])!,
+        JsonClass.parseDouble(value['height'])!,
       );
     }
 

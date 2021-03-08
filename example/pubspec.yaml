@@ -22,10 +22,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  json_schema2:
-    path: ../../json_schema2
-
 flutter:
   uses-material-design: true
   assets:

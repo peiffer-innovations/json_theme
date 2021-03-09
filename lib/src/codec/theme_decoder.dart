@@ -4425,6 +4425,51 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [MaxLengthEnforcement].  Supported values are:
+  ///  * `enforced`
+  ///  * `none`
+  ///  * `truncateAfterCompositionEnds`
+  static MaxLengthEnforcement? decodeMaxLengthEnforcement(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MaxLengthEnforcement? result;
+    if (value is MaxLengthEnforcement) {
+      result = value;
+    } else {
+      _checkSupported(
+        'MaxLengthEnforcement',
+        [
+          'enforced',
+          'none',
+          'truncateAfterCompositionEnds',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/max_length_enforcement',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'enforced':
+            result = MaxLengthEnforcement.enforced;
+            break;
+          case 'none':
+            result = MaxLengthEnforcement.none;
+            break;
+          case 'truncateAfterCompositionEnds':
+            result = MaxLengthEnforcement.truncateAfterCompositionEnds;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to a [MouseCursor].  There must be a "type"
   /// attribute that is one of:
   ///  * `defer`

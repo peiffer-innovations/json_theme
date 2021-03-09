@@ -1,6 +1,8 @@
-## [2.0.0] - March 8th, 2021
+## [2.0.0+1] - March 8th, 2021
 
 * Null Safety
+* Added `MaxLengthEnforcement`
+* Added `TextSelectionControls`
 
 
 ## [1.5.0+2] - January 10th, 2021

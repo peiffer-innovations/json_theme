@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
@@ -3489,6 +3490,37 @@ void main() {
     expect(
       decoded,
       entry,
+    );
+  });
+
+  test('MaxLengthEnforcement', () {
+    expect(ThemeDecoder.decodeMaxLengthEnforcement(null), null);
+    expect(ThemeEncoder.encodeMaxLengthEnforcement(null), null);
+
+    expect(
+      ThemeDecoder.decodeMaxLengthEnforcement('enforced'),
+      MaxLengthEnforcement.enforced,
+    );
+    expect(
+      ThemeDecoder.decodeMaxLengthEnforcement('none'),
+      MaxLengthEnforcement.none,
+    );
+    expect(
+      ThemeDecoder.decodeMaxLengthEnforcement('truncateAfterCompositionEnds'),
+      MaxLengthEnforcement.truncateAfterCompositionEnds,
+    );
+
+    expect(
+        ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.enforced),
+        'enforced');
+    expect(
+      ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.encodeMaxLengthEnforcement(
+          MaxLengthEnforcement.truncateAfterCompositionEnds),
+      'truncateAfterCompositionEnds',
     );
   });
 

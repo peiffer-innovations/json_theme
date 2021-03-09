@@ -28,6 +28,7 @@ export 'schemas/enums/main_axis_alignment_schema.dart';
 export 'schemas/enums/main_axis_size_schema.dart';
 export 'schemas/enums/material_tap_target_size_schema.dart';
 export 'schemas/enums/material_type_schema.dart';
+export 'schemas/enums/max_length_enforcement_schema.dart';
 export 'schemas/enums/navigation_rail_label_type_schema.dart';
 export 'schemas/enums/notched_shape_schema.dart';
 export 'schemas/enums/overflow_schema.dart';

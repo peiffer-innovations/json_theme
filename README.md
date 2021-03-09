@@ -365,6 +365,14 @@ Plain string that must be one of:
 * `transparency` ==> `MaterialType.transparency`
 
 
+**MaxLengthEnforcement**
+
+Plain string that must be one of:
+* `enforced` ==> `MaxLengthEnforcement.enforced`
+* `none` ==> `MaxLengthEnforcement.none`
+* `truncateAfterCompositionEnds` ==> `MaxLengthEnforcement.truncateAfterCompositionEnds`
+
+
 **MouseCursor**
 
 Requires a `type` value that must be one of:

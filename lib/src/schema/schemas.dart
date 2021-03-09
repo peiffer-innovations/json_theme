@@ -75,6 +75,7 @@ class Schemas {
     MaterialTapTargetSizeSchema.id: MaterialTapTargetSizeSchema.schema,
     MaterialTypeSchema.id: MaterialTypeSchema.schema,
     Matrix4Schema.id: Matrix4Schema.schema,
+    MaxLengthEnforcementSchema.id: MaxLengthEnforcementSchema.schema,
     MouseCursorSchema.id: MouseCursorSchema.schemas,
     NavigationRailLabelTypeSchema.id: NavigationRailLabelTypeSchema.schema,
     NavigationRailThemeDataSchema.id: NavigationRailThemeDataSchema.schema,

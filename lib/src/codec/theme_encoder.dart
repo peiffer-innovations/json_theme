@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 
 /// Encoder capable of converting Flutter Theme related classes and enums into
@@ -2663,6 +2664,32 @@ class ThemeEncoder {
         value.row2.w,
         value.row3.w,
       ];
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] to a [MaxLengthEnforcement].  Supported values are:
+  ///  * `enforced`
+  ///  * `none`
+  ///  * `truncateAfterCompositionEnds`
+  static String? encodeMaxLengthEnforcement(
+    MaxLengthEnforcement? value, {
+    bool validate = true,
+  }) {
+    String? result;
+    if (value != null) {
+      switch (value) {
+        case MaxLengthEnforcement.enforced:
+          result = 'enforced';
+          break;
+        case MaxLengthEnforcement.none:
+          result = 'none';
+          break;
+        case MaxLengthEnforcement.truncateAfterCompositionEnds:
+          result = 'truncateAfterCompositionEnds';
+          break;
+      }
     }
 
     return result;

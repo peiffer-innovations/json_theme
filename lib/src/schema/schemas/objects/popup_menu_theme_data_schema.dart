@@ -14,6 +14,7 @@ class PopupMenuThemeDataSchema {
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'enableFeedback': SchemaHelper.boolSchema,
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },

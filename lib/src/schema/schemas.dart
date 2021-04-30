@@ -28,6 +28,7 @@ class Schemas {
     ButtonTextThemeSchema.id: ButtonTextThemeSchema.schema,
     ButtonThemeDataSchema.id: ButtonThemeDataSchema.schema,
     CardThemeSchema.id: CardThemeSchema.schema,
+    CheckboxThemeDataSchema.id: CheckboxThemeDataSchema.schema,
     ChipThemeDataSchema.id: ChipThemeDataSchema.schema,
     ClipSchema.id: ClipSchema.schema,
     ColorSchema.id: ColorSchema.schema,
@@ -87,6 +88,7 @@ class Schemas {
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
+    RadioThemeDataSchema.id: RadioThemeDataSchema.schema,
     RadiusSchema.id: RadiusSchema.schema,
     RangeSliderThumbShapeSchema.id: RangeSliderThumbShapeSchema.schema,
     RangeSliderTickMarkShapeSchema.id: RangeSliderTickMarkShapeSchema.schema,
@@ -94,6 +96,7 @@ class Schemas {
     RangeSliderValueIndicatorShapeSchema.id:
         RangeSliderValueIndicatorShapeSchema.schema,
     RectSchema.id: RectSchema.schema,
+    ScrollbarThemeDataSchema.id: ScrollbarThemeDataSchema.schema,
     ScrollPhysicsSchema.id: ScrollPhysicsSchema.schema,
     ScrollViewKeyboardDismissBehaviorSchema.id:
         ScrollViewKeyboardDismissBehaviorSchema.schema,
@@ -111,6 +114,8 @@ class Schemas {
     SnackBarThemeDataSchema.id: SnackBarThemeDataSchema.schema,
     StackFitSchema.id: StackFitSchema.schema,
     StrutStyleSchema.id: StrutStyleSchema.schema,
+    SwitchThemeDataSchema.id: SwitchThemeDataSchema.schema,
+    SystemUiOverlayStyleSchema.id: SystemUiOverlayStyleSchema.schema,
     TabBarIndicatorSizeSchema.id: TabBarIndicatorSizeSchema.schema,
     TabBarThemeSchema.id: TabBarThemeSchema.schema,
     TargetPlatformSchema.id: TargetPlatformSchema.schema,

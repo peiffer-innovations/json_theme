@@ -14,13 +14,21 @@ class AppBarThemeSchema {
     'additionalProperties': false,
     'properties': {
       'actionsIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'backwardsCompatibility': SchemaHelper.boolSchema,
       'brightness': SchemaHelper.objectSchema(BrightnessSchema.id),
       'centerTitle': SchemaHelper.boolSchema,
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'foregroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'systemOverlayStyle':
+          SchemaHelper.objectSchema(SystemUiOverlayStyleSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
+      'titleSpacing': SchemaHelper.numberSchema,
+      'titleTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'toolbarTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };
 }

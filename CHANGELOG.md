@@ -1,3 +1,8 @@
+## [2.0.1] - April 30th, 2021
+
+* Updated with new attributes and classes from Flutter 2.0
+
+
 ## [2.0.0+1] - March 8th, 2021
 
 * Null Safety

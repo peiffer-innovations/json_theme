@@ -35,6 +35,7 @@ class ThemeDataSchema {
       'canvasColor': SchemaHelper.objectSchema(ColorSchema.id),
       'cardColor': SchemaHelper.objectSchema(ColorSchema.id),
       'cardTheme': SchemaHelper.objectSchema(CardThemeSchema.id),
+      'checkboxTheme': SchemaHelper.objectSchema(CheckboxThemeDataSchema.id),
       'chipTheme': SchemaHelper.objectSchema(ChipThemeDataSchema.id),
       'colorScheme': SchemaHelper.objectSchema(ColorSchemeSchema.id),
       'cupertinoOverrideTheme':
@@ -77,15 +78,19 @@ class ThemeDataSchema {
       'primaryIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'primarySwatch': SchemaHelper.objectSchema(MaterialColorSchema.id),
       'primaryTextTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
+      'radioTheme': SchemaHelper.objectSchema(RadioThemeDataSchema.id),
       'scaffoldBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'scrollbarTheme': SchemaHelper.objectSchema(ScrollbarThemeDataSchema.id),
       'secondaryHeaderColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedRowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'sliderTheme': SchemaHelper.objectSchema(SliderThemeDataSchema.id),
       'snackBarTheme': SchemaHelper.objectSchema(SnackBarThemeDataSchema.id),
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'splashFactory':
-          SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id),
+      'splashFactory': SchemaHelper.objectSchema(
+        InteractiveInkFeatureFactorySchema.id,
+      ),
+      'switchTheme': SchemaHelper.objectSchema(SwitchThemeDataSchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
       'textButtonTheme':
           SchemaHelper.objectSchema(TextButtonThemeDataSchema.id),

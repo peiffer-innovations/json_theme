@@ -46,6 +46,7 @@ class Enums {
     SmartQuotesTypeSchema.id,
     SnackBarBehaviorSchema.id,
     StackFitSchema.id,
+    SystemUiOverlayStyleSchema.id,
     TabBarIndicatorSizeSchema.id,
     TargetPlatformSchema.id,
     TextAlignSchema.id,
@@ -60,6 +61,7 @@ class Enums {
     TextOverflowSchema.id,
     TextWidthBasisSchema.id,
     TileModeSchema.id,
+    SystemUiOverlayStyleSchema.id,
     VerticalDirectionSchema.id,
     VisualDensitySchema.id,
   ];

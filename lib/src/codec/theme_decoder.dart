@@ -111,13 +111,20 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "actionsIconTheme": <IconThemeData>,
+  ///   "backgroundColor": <Color>,
+  ///   "backwardsCompatibility": <bool>,
   ///   "brightness": <Brightness>,
   ///   "centerTitle": <bool>,
   ///   "color": <Color>,
   ///   "elevation": <double>,
+  ///   "foregroundColor": <Color>,
   ///   "iconTheme": <IconThemeData>,
   ///   "shadowColor": <Color>,
-  ///   "textTheme": <TextTheme>
+  ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
+  ///   "textTheme": <TextTheme>,
+  ///   "titleSpacing": <double>,
+  ///   "titleTextStyle": <TextStyle>,
+  ///   "toolbarTextStyle": <TextStyle>
   /// }
   /// ```
   ///
@@ -125,6 +132,8 @@ class ThemeDecoder {
   ///  * [decodeBrightness]
   ///  * [decodeColor]
   ///  * [decodeIconThemeData]
+  ///  * [decodeSystemUiOverlayStyle]
+  ///  * [decodeTextStyle]
   static AppBarTheme? decodeAppBarTheme(
     dynamic value, {
     bool validate = true,
@@ -144,6 +153,15 @@ class ThemeDecoder {
           value['actionsIconTheme'],
           validate: false,
         ),
+        backgroundColor: decodeColor(
+          value['backgroundColor'] ?? value['color'],
+          validate: false,
+        ),
+        backwardsCompatibility: value['backwardsCompatibility'] == null
+            ? null
+            : JsonClass.parseBool(
+                value['backwardsCompatibility'],
+              ),
         brightness: decodeBrightness(
           value['brightness'],
           validate: false,
@@ -151,11 +169,11 @@ class ThemeDecoder {
         centerTitle: value['centerTitle'] == null
             ? null
             : JsonClass.parseBool(value['centerTitle']),
-        color: decodeColor(
-          value['color'],
+        elevation: JsonClass.parseDouble(value['elevation']),
+        foregroundColor: decodeColor(
+          value['foregroundColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
         iconTheme: decodeIconThemeData(
           value['iconTheme'],
           validate: false,
@@ -164,8 +182,21 @@ class ThemeDecoder {
           value['shadowColor'],
           validate: false,
         ),
+        systemOverlayStyle: decodeSystemUiOverlayStyle(
+          value['systemOverlayStyle'],
+          validate: false,
+        ),
         textTheme: decodeTextTheme(
           value['textTheme'],
+          validate: false,
+        ),
+        titleSpacing: JsonClass.parseDouble(value['titleSpacing']),
+        titleTextStyle: decodeTextStyle(
+          value['titleTextStyle'],
+          validate: false,
+        ),
+        toolbarTextStyle: decodeTextStyle(
+          value['toolbarTextStyle'],
           validate: false,
         ),
       );
@@ -1406,6 +1437,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "alignment": <AlignmentGeometry>,
   ///   "animationDuration": <double>,
   ///   "backgroundColor": <Color>,
   ///   "elevation": <double>,
@@ -1454,6 +1486,7 @@ class ThemeDecoder {
       ));
 
       result = ButtonStyle(
+        alignment: decodeAlignment(value['alignment']),
         animationDuration: JsonClass.parseDurationFromMillis(
           value['animationDuration'],
         ),
@@ -1748,6 +1781,80 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [CheckboxThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "checkColor": <Color>,
+  ///   "fillColor": <Color>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "splashRadius": <double>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeMouseCursor]
+  ///  * [decodeVisualDensity]
+  static CheckboxThemeData? decodeCheckboxThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    CheckboxThemeData? result;
+
+    if (value is CheckboxThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/checkbox_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = CheckboxThemeData(
+        checkColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['checkColor'],
+            validate: false,
+          ),
+        ),
+        fillColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['fillColor'],
+            validate: false,
+          ),
+        ),
+        materialTapTargetSize: decodeMaterialTapTargetSize(
+          value['materialTapTargetSize'],
+          validate: false,
+        ),
+        mouseCursor: _buildMaterialStateProperty(
+          decodeMouseCursor(
+            value['mouseCursor'],
+            validate: false,
+          ),
+        ),
+        overlayColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['overlayColor'],
+            validate: false,
+          ),
+        ),
+        splashRadius: JsonClass.parseDouble(value['splashRadius']),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [CardTheme].  This expects the given
   /// [value] to follow the structure below:
   ///
@@ -1767,6 +1874,7 @@ class ThemeDecoder {
   ///   "secondarySelectedColor": <Color>,
   ///   "selectedColor": <Color>,
   ///   "shape": <ShapeBorder>,
+  ///   "side": <BorderSide>,
   ///   "selectedShadowColor": <Color>,
   ///   "shadowColor": <Color>,
   ///   "showCheckmark": <bool>
@@ -1774,6 +1882,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeBorderSide]
   ///  * [decodeBrightness]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
@@ -1844,6 +1953,7 @@ class ThemeDecoder {
           value['shape'],
           validate: false,
         ) as OutlinedBorder?,
+        side: decodeBorderSide(value['side']),
         selectedShadowColor: decodeColor(
           value['selectedShadowColor'],
           validate: false,
@@ -5130,6 +5240,52 @@ class ThemeDecoder {
     return result;
   }
 
+  // ignore: deprecated_member_use
+  /// Decodes the [value] to a [Overflow].  Supported values are:
+  /// * `clip`
+  /// * `visible`
+  // ignore: deprecated_member_use
+  static Overflow? decodeOverflow(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    // ignore: deprecated_member_use
+    Overflow? result;
+
+    // ignore: deprecated_member_use
+    if (value is Overflow) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'Overflow',
+        [
+          'clip',
+          'visible',
+        ],
+        value,
+      );
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/overflow',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'clip':
+          // ignore: deprecated_member_use
+          result = Overflow.clip;
+          break;
+
+        case 'visible':
+          // ignore: deprecated_member_use
+          result = Overflow.visible;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
   /// * `cupertino`
   /// * `fadeUpwards`
@@ -5175,52 +5331,6 @@ class ThemeDecoder {
 
         case 'zoom':
           result = ZoomPageTransitionsBuilder();
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  // ignore: deprecated_member_use
-  /// Decodes the [value] to a [Overflow].  Supported values are:
-  /// * `clip`
-  /// * `visible`
-  // ignore: deprecated_member_use
-  static Overflow? decodeOverflow(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    // ignore: deprecated_member_use
-    Overflow? result;
-
-    // ignore: deprecated_member_use
-    if (value is Overflow) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported(
-        'Overflow',
-        [
-          'clip',
-          'visible',
-        ],
-        value,
-      );
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/overflow',
-        value: value,
-        validate: validate,
-      ));
-
-      switch (value) {
-        case 'clip':
-          // ignore: deprecated_member_use
-          result = Overflow.clip;
-          break;
-
-        case 'visible':
-          // ignore: deprecated_member_use
-          result = Overflow.visible;
           break;
       }
     }
@@ -5279,6 +5389,7 @@ class ThemeDecoder {
   /// {
   ///   "color": <Color>,
   ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
   ///   "shape": <ShapeBorder>,
   ///   "textStyle": <TextStyle>
   /// }
@@ -5308,12 +5419,83 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
         ),
         textStyle: decodeTextStyle(
           value['textStyle'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [RadioThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "fillColor": <Color>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "splashRadius": <double>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeMouseCursor]
+  ///  * [decodeVisualDensity]
+  static RadioThemeData? decodeRadioThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    RadioThemeData? result;
+
+    if (value is RadioThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/radio_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = RadioThemeData(
+        fillColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['fillColor'],
+            validate: false,
+          ),
+        ),
+        materialTapTargetSize: decodeMaterialTapTargetSize(
+          value['materialTapTargetSize'],
+          validate: false,
+        ),
+        mouseCursor: _buildMaterialStateProperty(
+          decodeMouseCursor(
+            value['mouseCursor'],
+            validate: false,
+          ),
+        ),
+        overlayColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['overlayColor'],
+            validate: false,
+          ),
+        ),
+        splashRadius: JsonClass.parseDouble(value['splashRadius']),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
           validate: false,
         ),
       );
@@ -5793,6 +5975,57 @@ class ThemeDecoder {
             break;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [ScrollbarThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "crossAxisMargin": <double>,
+  ///   "isAlwaysShown": <bool>,
+  ///   "mainAxisMargin": <double>,
+  ///   "minThumbLength": <double>,
+  ///   "radius": <Radius>,
+  ///   "showTrackOnHover": <bool>
+  ///   "thickness": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeRadius]
+  static ScrollbarThemeData? decodeScrollbarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ScrollbarThemeData? result;
+
+    if (value is ScrollbarThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/scrollbar_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = ScrollbarThemeData(
+        crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
+        isAlwaysShown: value['isAlwaysShown'] == null
+            ? null
+            : JsonClass.parseBool(value['isAlwaysShown']),
+        mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
+        minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
+        radius: decodeRadius(value['radius']),
+        showTrackOnHover: value['showTrackOnHover'] == null
+            ? null
+            : JsonClass.parseBool(value['showTrackOnHover']),
+        thickness: _buildMaterialStateProperty<double?>(
+          JsonClass.parseDouble(value['thickness']),
+        ),
+      );
     }
 
     return result;
@@ -6797,6 +7030,116 @@ class ThemeDecoder {
         leading: JsonClass.parseDouble(value['leading']),
         package: value['package'],
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [SwitchThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "splashRadius": <double>,
+  ///   "thumbColor": <Color>,
+  ///   "trackColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeMouseCursor]
+  static SwitchThemeData? decodeSwitchThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    SwitchThemeData? result;
+
+    if (value is SwitchThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/switch_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = SwitchThemeData(
+        materialTapTargetSize: decodeMaterialTapTargetSize(
+          value['materialTapTargetSize'],
+          validate: false,
+        ),
+        mouseCursor: _buildMaterialStateProperty(
+          decodeMouseCursor(
+            value['mouseCursor'],
+            validate: false,
+          ),
+        ),
+        overlayColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['overlayColor'],
+            validate: false,
+          ),
+        ),
+        splashRadius: JsonClass.parseDouble(value['splashRadius']),
+        thumbColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['thumbColor'],
+            validate: false,
+          ),
+        ),
+        trackColor: _buildMaterialStateProperty(
+          decodeColor(
+            value['trackColor'],
+            validate: false,
+          ),
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes a [value] to a [SystemUiOverlayStyle].  Supported values are:
+  ///  * `dark`
+  ///  * `light`
+  static SystemUiOverlayStyle? decodeSystemUiOverlayStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    SystemUiOverlayStyle? result;
+    if (value is SystemUiOverlayStyle) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SystemUiOverlayStyle',
+        [
+          'dark',
+          'light',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/system_ui_overlay_style',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'dark':
+            result = SystemUiOverlayStyle.dark;
+            break;
+
+          case 'light':
+            result = SystemUiOverlayStyle.light;
+            break;
+        }
+      }
     }
 
     return result;
@@ -7995,6 +8338,7 @@ class ThemeDecoder {
   ///   "canvasColor": <Color>,
   ///   "cardColor": <Color>,
   ///   "cardTheme": <CardTheme>,
+  ///   "checkboxThemeData": <CheckboxThemeData>,
   ///   "chipTheme": <ChipThemeData>,
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
@@ -8030,7 +8374,9 @@ class ThemeDecoder {
   ///   "primaryIconTheme": <IconThemeData>,
   ///   "primarySwatch": <MaterialColor>,
   ///   "primaryTextTheme": <TextTheme>,
+  ///   "radioTheme": <RadioThemeData>,
   ///   "scaffoldBackgroundColor": <Color>,
+  ///   "scrollbarTheme": <ScrollbarThemeData>,
   ///   "secondaryHeaderColor": <Color>,
   ///   "selectedRowColor": <Color>,
   ///   "shadowColor": <Color>,
@@ -8038,6 +8384,7 @@ class ThemeDecoder {
   ///   "snackBarTheme": <SnackBarThemeData>,
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
+  ///   "switchTheme": <SwitchThemeData>,
   ///   "tabBarTheme": <TabBarTheme>,
   ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionColor": <Color>,
@@ -8063,6 +8410,7 @@ class ThemeDecoder {
   ///  * [decodeButtonBarThemeData]
   ///  * [decodeButtonThemeData]
   ///  * [decodeCardTheme]
+  ///  * [decodeCheckboxThemeData]
   ///  * [decodeChipThemeData]
   ///  * [decodeColor]
   ///  * [decodeColorScheme]
@@ -8080,8 +8428,11 @@ class ThemeDecoder {
   ///  * [decodeOutlinedButtonThemeData]
   ///  * [decodePageTransitionsTheme]
   ///  * [decodePopupMenuThemeData]
+  ///  * [decodeRadioThemeData]
+  ///  * [decodeScrollbarThemeData]
   ///  * [decodeSliderThemeData]
   ///  * [decodeSnackBarThemeData]
+  ///  * [decodeSwitchThemeData]
   ///  * [decodeTabBarTheme]
   ///  * [decodeTargetPlatform]
   ///  * [decodeTextButtonThemeData]
@@ -8181,6 +8532,10 @@ class ThemeDecoder {
           value['cardTheme'],
           validate: false,
         ),
+        checkboxTheme: decodeCheckboxThemeData(
+          value['checkboxTheme'],
+          validate: false,
+        ),
         chipTheme: decodeChipThemeData(
           value['chipTheme'],
           validate: false,
@@ -8193,6 +8548,8 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
+        // @deprecated
+        // cursorColor
         dataTableTheme: decodeDataTableThemeData(
           value['dataTableTheme'],
           validate: false,
@@ -8313,8 +8670,16 @@ class ThemeDecoder {
           value['primaryTextTheme'],
           validate: false,
         ),
+        radioTheme: decodeRadioThemeData(
+          value['radioTheme'],
+          validate: false,
+        ),
         scaffoldBackgroundColor: decodeColor(
           value['scaffoldBackgroundColor'],
+          validate: false,
+        ),
+        scrollbarTheme: decodeScrollbarThemeData(
+          value['scrollbarTheme'],
           validate: false,
         ),
         secondaryHeaderColor: decodeColor(
@@ -8345,6 +8710,10 @@ class ThemeDecoder {
           value['splashFactory'],
           validate: false,
         ),
+        switchTheme: decodeSwitchThemeData(
+          value['switchTheme'],
+          validate: false,
+        ),
         tabBarTheme: decodeTabBarTheme(
           value['tabBarTheme'],
           validate: false,
@@ -8353,6 +8722,11 @@ class ThemeDecoder {
           value['textButtonTheme'],
           validate: false,
         ),
+        // @deprecated
+        // textSelectionColor
+
+        // @deprecated
+        // textSelectionHandleColor
         textSelectionTheme: decodeTextSelectionThemeData(
           value['textSelectionTheme'],
           validate: false,
@@ -8385,6 +8759,8 @@ class ThemeDecoder {
           value['unselectedWidgetColor'],
           validate: false,
         ),
+        // @deprecated
+        // useTextSelectionTheme
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
           validate: false,

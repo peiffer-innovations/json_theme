@@ -12,6 +12,7 @@ class ButtonStyleSchema {
     'title': 'ButtonStyle',
     'additionalProperties': false,
     'properties': {
+      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'animationDuration': SchemaHelper.numberSchema,
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,

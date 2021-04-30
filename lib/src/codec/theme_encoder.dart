@@ -79,13 +79,20 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "actionsIconTheme": <IconThemeData>,
+  ///   "backgroundColor": <Color>,
+  ///   "backwardsCompatibility": <bool>,
   ///   "brightness": <Brightness>,
   ///   "centerTitle": <bool>,
   ///   "color": <Color>,
   ///   "elevation": <double>,
+  ///   "foregroundColor": <Color>,
   ///   "iconTheme": <IconThemeData>,
   ///   "shadowColor": <Color>,
-  ///   "textTheme": <TextTheme>
+  ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
+  ///   "textTheme": <TextTheme>,
+  ///   "titleSpacing": <double>,
+  ///   "titleTextStyle": <TextStyle>,
+  ///   "toolbarTextStyle": <TextStyle>
   /// }
   /// ```
   ///
@@ -93,19 +100,29 @@ class ThemeEncoder {
   ///  * [encodeBrightness]
   ///  * [encodeColor]
   ///  * [encodeIconThemeData]
+  ///  * [encodeSystemUiOverlayStyle]
+  ///  * [encodeToolbarTextStyle]
   static Map<String, dynamic>? encodeAppBarTheme(AppBarTheme? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = <String, dynamic>{
         'actionsIconTheme': encodeIconThemeData(value.actionsIconTheme),
+        'backgroundColor':
+            encodeColor(value.backgroundColor) ?? encodeColor(value.color),
+        'backwardsCompatibility': value.backwardsCompatibility,
         'brightness': encodeBrightness(value.brightness),
         'centerTitle': value.centerTitle,
-        'color': encodeColor(value.color),
         'elevation': value.elevation,
+        'foregroundColor': encodeColor(value.foregroundColor),
         'iconTheme': encodeIconThemeData(value.iconTheme),
         'shadowColor': encodeColor(value.shadowColor),
+        'systemOverlayStyle':
+            encodeSystemUiOverlayStyle(value.systemOverlayStyle),
         'textTheme': encodeTextTheme(value.textTheme),
+        'titleSpacing': value.titleSpacing,
+        'titleTextStyle': encodeTextStyle(value.titleTextStyle),
+        'toolbarTextStyle': encodeTextStyle(value.toolbarTextStyle),
       };
     }
 
@@ -836,6 +853,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "alignment": <AlignmentGeometry>,
   ///   "animationDuration": <double>,
   ///   "backgroundColor": <Color>,
   ///   "elevation": <double>,
@@ -859,6 +877,7 @@ class ThemeEncoder {
   /// returning and encoding the resolved object.
   ///
   /// See also:
+  ///  * [encodeAlignment]
   ///  * [encodeBorderSide]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
@@ -875,6 +894,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'alignment': encodeAlignment(value.alignment as Alignment?),
         'animationDuration': value.animationDuration?.inMilliseconds,
         'backgroundColor': encodeColor(
           _resolveMaterialStateProperty<Color?>(
@@ -1053,11 +1073,70 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [CheckboxThemeData] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "checkColor": <Color>,
+  ///   "fillColor": <Color>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "splashRadius": <double>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeMouseCursor]
+  ///  * [encodeVisualDensity]
+  static Map<String, dynamic>? encodeCheckboxThemeData(
+    CheckboxThemeData? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'checkColor': encodeColor(
+          _resolveMaterialStateProperty<Color?>(
+            value.checkColor,
+          ),
+        ),
+        'fillColor': encodeColor(
+          _resolveMaterialStateProperty<Color?>(
+            value.fillColor,
+          ),
+        ),
+        'materialTapTargetSize': encodeMaterialTapTargetSize(
+          value.materialTapTargetSize,
+        ),
+        'mouseCursor': encodeMouseCursor(
+          _resolveMaterialStateProperty<MouseCursor?>(
+            value.mouseCursor,
+          ),
+        ),
+        'overlayColor': encodeColor(
+          _resolveMaterialStateProperty<Color?>(
+            value.overlayColor,
+          ),
+        ),
+        'splashRadius': value.splashRadius,
+        'visualDensity': encodeVisualDensity(value.visualDensity),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
   /// Encodes the given [value] into a JSON representation.
   ///
   /// ```json
   /// {
   ///   "backgroundColor": <Color>,
+  ///   "borderSide": <BorderSide>,
   ///   "brightness": <Brightness>,
   ///   "checkmarkColor": <Color>,
   ///   "deleteIconColor": <Color>,
@@ -1078,6 +1157,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeBorderSide]
   ///  * [encodeBrightness]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
@@ -1103,6 +1183,7 @@ class ThemeEncoder {
         'secondarySelectedColor': encodeColor(value.secondarySelectedColor),
         'selectedColor': encodeColor(value.selectedColor),
         'shape': encodeShapeBorder(value.shape),
+        'side': encodeBorderSide(value.side),
         'selectedShadowColor': encodeColor(value.selectedShadowColor),
         'shadowColor': encodeColor(value.shadowColor),
         'showCheckmark': value.showCheckmark,
@@ -3248,6 +3329,7 @@ class ThemeEncoder {
   /// {
   ///   "color": <Color>,
   ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
   ///   "shape": <ShapeBorder>,
   ///   "textStyle": <TextStyle>
   /// }
@@ -3266,8 +3348,61 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'color': encodeColor(value.color),
         'elevation': value.elevation,
+        'enableFeedback': value.enableFeedback,
         'shape': encodeShapeBorder(value.shape),
         'textStyle': encodeTextStyle(value.textStyle),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [RadioThemeData] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "fillColor": <Color>,
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "overlayColor": <Color>,
+  ///   "splashRadius": <double>,
+  ///   "visualDensity": <VisualDensity>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeMouseCursor]
+  ///  * [encodeVisualDensity]
+  static Map<String, dynamic>? encodeRadioThemeData(
+    RadioThemeData? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'fillColor': encodeColor(
+          _resolveMaterialStateProperty<Color?>(
+            value.fillColor,
+          ),
+        ),
+        'materialTapTargetSize': encodeMaterialTapTargetSize(
+          value.materialTapTargetSize,
+        ),
+        'mouseCursor': encodeMouseCursor(
+          _resolveMaterialStateProperty<MouseCursor?>(
+            value.mouseCursor,
+          ),
+        ),
+        'overlayColor': encodeColor(
+          _resolveMaterialStateProperty<Color?>(
+            value.overlayColor,
+          ),
+        ),
+        'splashRadius': value.splashRadius,
+        'visualDensity': encodeVisualDensity(value.visualDensity),
       };
     }
 
@@ -3436,6 +3571,45 @@ class ThemeEncoder {
     }
 
     return result;
+  }
+
+  /// Encodes the given [ScrollbarThemeData] to the JSON representation.  This
+  /// produces the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "crossAxisMargin": <double>,
+  ///   "isAlwaysShown": <bool>,
+  ///   "mainAxisMargin": <double>,
+  ///   "minThumbLength": <double>,
+  ///   "radius": <Radius>,
+  ///   "showTrackOnHover": <bool>
+  ///   "thickness": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeRadius]
+  static Map<String, dynamic>? encodeScrollbarThemeData(
+    ScrollbarThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'crossAxisMargin': value.crossAxisMargin,
+        'isAlwaysShown': value.isAlwaysShown,
+        'mainAxisMargin': value.mainAxisMargin,
+        'minThumbLength': value.minThumbLength,
+        'radius': encodeRadius(value.radius),
+        'showTrackOnHover': value.showTrackOnHover,
+        'thickness': _resolveMaterialStateProperty<double?>(
+          value.thickness,
+        ),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -4036,6 +4210,28 @@ class ThemeEncoder {
         'height': value.height,
         'leading': value.leading,
       };
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `dark`
+  ///  * `light`
+  ///
+  /// All other values, including [null], will result in [null].
+  static String? encodeSystemUiOverlayStyle(
+    SystemUiOverlayStyle? value,
+  ) {
+    String? result;
+
+    if (value != null) {
+      if (value == SystemUiOverlayStyle.dark) {
+        result = 'dark';
+      } else if (value == SystemUiOverlayStyle.light) {
+        result = 'light';
+      }
     }
 
     return result;

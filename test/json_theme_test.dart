@@ -116,11 +116,14 @@ void main() {
     expect(ThemeEncoder.encodeAppBarTheme(null), null);
 
     var entry = AppBarTheme(
-        brightness: Brightness.dark,
-        color: _kColor,
-        centerTitle: true,
-        elevation: 6.0,
-        shadowColor: _kColor);
+      backwardsCompatibility: true,
+      brightness: Brightness.dark,
+      color: _kColor,
+      centerTitle: true,
+      elevation: 6.0,
+      foregroundColor: _kColor,
+      shadowColor: _kColor,
+    );
 
     expect(ThemeDecoder.decodeAppBarTheme(entry), entry);
 
@@ -131,10 +134,12 @@ void main() {
       json.encode(encoded),
       json.encode(
         {
+          'backgroundColor': _kColorStr,
+          'backwardsCompatibility': true,
           'brightness': 'dark',
           'centerTitle': true,
-          'color': _kColorStr,
           'elevation': 6.0,
+          'foregroundColor': _kColorStr,
           'shadowColor': _kColorStr,
         },
       ),
@@ -953,6 +958,7 @@ void main() {
     expect(ThemeEncoder.encodeButtonStyle(null), null);
 
     var entry = ButtonStyle(
+      alignment: Alignment.bottomCenter,
       animationDuration: Duration(milliseconds: 1000),
       backgroundColor: MaterialStateProperty.all(
         Color(0xff555555),
@@ -998,6 +1004,7 @@ void main() {
     expect(
       encoded,
       {
+        'alignment': 'bottomCenter',
         'animationDuration': 1000,
         'backgroundColor': '#ff555555',
         'elevation': 1.0,
@@ -1292,6 +1299,54 @@ void main() {
       entry,
     );
   });
+  test('CheckboxThemeData', () {
+    expect(ThemeDecoder.decodeCheckboxThemeData(null), null);
+    expect(ThemeEncoder.encodeCheckboxThemeData(null), null);
+
+    var entry = CheckboxThemeData(
+      checkColor: MaterialStateProperty.all(_kColor),
+      fillColor: MaterialStateProperty.all(_kColor),
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      mouseCursor: MaterialStateProperty.all(MouseCursor.uncontrolled),
+      overlayColor: MaterialStateProperty.all(_kColor),
+      splashRadius: 2.0,
+      visualDensity: VisualDensity.comfortable,
+    );
+
+    expect(ThemeDecoder.decodeCheckboxThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeCheckboxThemeData(entry);
+    var decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
+
+    expect(
+      decoded!.checkColor!.resolve({MaterialState.error}),
+      entry.checkColor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.fillColor!.resolve({MaterialState.error}),
+      entry.fillColor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.materialTapTargetSize,
+      entry.materialTapTargetSize,
+    );
+    expect(
+      decoded.mouseCursor!.resolve({MaterialState.error}),
+      entry.mouseCursor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.overlayColor!.resolve({MaterialState.error}),
+      entry.overlayColor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.splashRadius,
+      entry.splashRadius,
+    );
+    expect(
+      decoded.visualDensity,
+      entry.visualDensity,
+    );
+  });
   test('ChipThemeData', () {
     expect(ThemeDecoder.decodeChipThemeData(null), null);
     expect(ThemeEncoder.encodeChipThemeData(null), null);
@@ -1318,6 +1373,7 @@ void main() {
       selectedShadowColor: Color(0xff777777),
       shadowColor: Color(0xff888888),
       showCheckmark: true,
+      side: BorderSide(width: 2.0),
     );
 
     expect(ThemeDecoder.decodeChipThemeData(entry), entry);
@@ -1387,7 +1443,12 @@ void main() {
         },
         'selectedShadowColor': '#ff777777',
         'shadowColor': '#ff888888',
-        'showCheckmark': true
+        'showCheckmark': true,
+        'side': {
+          'color': '#ff000000',
+          'style': 'solid',
+          'width': 2.0,
+        },
       },
     );
 
@@ -4628,6 +4689,7 @@ void main() {
     var entry = PopupMenuThemeData(
       color: _kColor,
       elevation: 1.0,
+      enableFeedback: true,
       shape: RoundedRectangleBorder(),
       textStyle: _kTextStyle,
     );
@@ -4642,6 +4704,7 @@ void main() {
       {
         'color': '#00123456',
         'elevation': 1.0,
+        'enableFeedback': true,
         'shape': {
           'borderRadius': {
             'bottomLeft': {
@@ -4686,6 +4749,49 @@ void main() {
     );
   });
 
+  test('RadioThemeData', () {
+    expect(ThemeDecoder.decodeRadioThemeData(null), null);
+    expect(ThemeEncoder.encodeRadioThemeData(null), null);
+
+    var entry = RadioThemeData(
+      fillColor: MaterialStateProperty.all(_kColor),
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      mouseCursor: MaterialStateProperty.all(MouseCursor.uncontrolled),
+      overlayColor: MaterialStateProperty.all(_kColor),
+      splashRadius: 2.0,
+      visualDensity: VisualDensity.comfortable,
+    );
+
+    expect(ThemeDecoder.decodeRadioThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeRadioThemeData(entry);
+    var decoded = ThemeDecoder.decodeRadioThemeData(encoded);
+
+    expect(
+      decoded!.fillColor!.resolve({MaterialState.error}),
+      entry.fillColor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.materialTapTargetSize,
+      entry.materialTapTargetSize,
+    );
+    expect(
+      decoded.mouseCursor!.resolve({MaterialState.error}),
+      entry.mouseCursor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.overlayColor!.resolve({MaterialState.error}),
+      entry.overlayColor!.resolve({MaterialState.error}),
+    );
+    expect(
+      decoded.splashRadius,
+      entry.splashRadius,
+    );
+    expect(
+      decoded.visualDensity,
+      entry.visualDensity,
+    );
+  });
   test('Radius', () {
     expect(ThemeDecoder.decodeRadius(null), null);
     expect(ThemeEncoder.encodeRadius(null), null);
@@ -5245,6 +5351,95 @@ void main() {
         'parent': {'type': 'always'},
         'type': 'rangeMaintaining',
       },
+    );
+  });
+
+  test('ScrollbarThemeData', () {
+    expect(ThemeDecoder.decodeScrollbarThemeData(null), null);
+    expect(ThemeEncoder.encodeScrollbarThemeData(null), null);
+
+    var entry = ScrollbarThemeData(
+      crossAxisMargin: 1.0,
+      isAlwaysShown: true,
+      mainAxisMargin: 2.0,
+      minThumbLength: 3.0,
+      radius: Radius.circular(4.0),
+      showTrackOnHover: true,
+      thickness: MaterialStateProperty.all(5.0),
+    );
+
+    expect(ThemeDecoder.decodeScrollbarThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeScrollbarThemeData(entry);
+    expect(
+      encoded!['crossAxisMargin'],
+      entry.crossAxisMargin,
+    );
+
+    expect(
+      encoded['isAlwaysShown'],
+      entry.isAlwaysShown,
+    );
+
+    expect(
+      encoded['mainAxisMargin'],
+      entry.mainAxisMargin,
+    );
+
+    expect(
+      encoded['minThumbLength'],
+      entry.minThumbLength,
+    );
+
+    expect(
+      encoded['radius'],
+      ThemeEncoder.encodeRadius(entry.radius),
+    );
+
+    expect(
+      encoded['showTrackOnHover'],
+      entry.showTrackOnHover,
+    );
+
+    expect(
+      encoded['thickness'],
+      entry.thickness!.resolve({MaterialState.error}),
+    );
+
+    var decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
+    expect(
+      decoded!.crossAxisMargin,
+      entry.crossAxisMargin,
+    );
+
+    expect(
+      decoded.isAlwaysShown,
+      entry.isAlwaysShown,
+    );
+
+    expect(
+      decoded.mainAxisMargin,
+      entry.mainAxisMargin,
+    );
+
+    expect(
+      decoded.minThumbLength,
+      entry.minThumbLength,
+    );
+
+    expect(
+      decoded.radius,
+      entry.radius,
+    );
+
+    expect(
+      decoded.showTrackOnHover,
+      entry.showTrackOnHover,
+    );
+
+    expect(
+      decoded.thickness!.resolve({MaterialState.error}),
+      entry.thickness!.resolve({MaterialState.error}),
     );
   });
 
@@ -5938,6 +6133,36 @@ void main() {
     expect(
       ThemeEncoder.encodeStrutStyle(decoded),
       encoded,
+    );
+  });
+
+  test('SystemUiOverlayStyle', () {
+    expect(ThemeDecoder.decodeSystemUiOverlayStyle(null), null);
+    expect(ThemeEncoder.encodeSystemUiOverlayStyle(null), null);
+
+    expect(
+      ThemeDecoder.decodeSystemUiOverlayStyle(
+        SystemUiOverlayStyle.dark,
+      ),
+      SystemUiOverlayStyle.dark,
+    );
+
+    expect(
+      ThemeDecoder.decodeSystemUiOverlayStyle('dark'),
+      SystemUiOverlayStyle.dark,
+    );
+    expect(
+      ThemeDecoder.decodeSystemUiOverlayStyle('light'),
+      SystemUiOverlayStyle.light,
+    );
+
+    expect(
+      ThemeEncoder.encodeSystemUiOverlayStyle(SystemUiOverlayStyle.dark),
+      'dark',
+    );
+    expect(
+      ThemeEncoder.encodeSystemUiOverlayStyle(SystemUiOverlayStyle.light),
+      'light',
     );
   });
 
@@ -7173,7 +7398,7 @@ void main() {
         }
       },
       'appBarTheme': {
-        'color': '#ff444444',
+        'backgroundColor': '#ff444444',
       },
       'applyElevationOverlayColor': true,
       'bannerTheme': {'backgroundColor': '#ff666666'},
@@ -8451,7 +8676,8 @@ bool? _buttonStylesAreEqual(Object? first, Object? second) {
   } else if (first is! ButtonStyle) {
     result = false;
   } else if (first is ButtonStyle && second is ButtonStyle) {
-    result = first.animationDuration == second.animationDuration &&
+    result = first.alignment == second.alignment &&
+        first.animationDuration == second.animationDuration &&
         first.backgroundColor?.resolve({}) ==
             second.backgroundColor?.resolve({}) &&
         first.elevation?.resolve({}) == second.elevation?.resolve({}) &&

@@ -854,20 +854,20 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "alignment": <AlignmentGeometry>,
-  ///   "animationDuration": <double>,
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
+  ///   "animationDuration": <MaterialStateProperty<double>>,
+  ///   "backgroundColor": <MaterialStateProperty<Color>>,
+  ///   "elevation": <MaterialStateProperty<double>>,
   ///   "enableFeedback": <bool>,
-  ///   "foregroundColor": <Color>,
-  ///   "minimumSize": <Size>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "overlayColor": <Color>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "shadowColor": <Color>,
-  ///   "shape": <OutlinedBorder>,
-  ///   "side": <BorderSide>,
-  ///   "tapTargetSize": <MaterialTapTargetSize,
-  ///   "textStyle": <TextStyle>,
+  ///   "foregroundColor": <MaterialStateProperty<Color>>,
+  ///   "minimumSize": <MaterialStateProperty<Size>>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
+  ///   "overlayColor": <MaterialStateProperty<Color>>,
+  ///   "padding": <MaterialStateProperty<EdgeInsetsGeometry>>,
+  ///   "shadowColor": <MaterialStateProperty<Color>>,
+  ///   "shape": <MaterialStateProperty<OutlinedBorder>>,
+  ///   "side": <MaterialStateProperty<BorderSide>>,
+  ///   "tapTargetSize": <MaterialTapTargetSize>,
+  ///   "textStyle": <MaterialStateProperty<TextStyle>>,
   ///   "visualDensity": <VisualDensity>
   /// }
   /// ```
@@ -877,10 +877,17 @@ class ThemeEncoder {
   /// returning and encoding the resolved object.
   ///
   /// See also:
-  ///  * [encodeAlignment]
   ///  * [encodeBorderSide]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeMaterialStatePropertyBorderSide]
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeMaterialStatePropertyDouble]
+  ///  * [encodeMaterialStatePropertyEdgeInsetsGeometry]
+  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeMaterialStatePropertyOutlinedBorder]
+  ///  * [encodeMaterialStatePropertySize]
+  ///  * [encodeMaterialStatePropertyTextStyle]
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeMouseCursor]
   ///  * [encodeOutlinedBorder]
@@ -896,63 +903,27 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'alignment': encodeAlignment(value.alignment as Alignment?),
         'animationDuration': value.animationDuration?.inMilliseconds,
-        'backgroundColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.backgroundColor,
-          ),
+        'backgroundColor': encodeMaterialStatePropertyColor(
+          value.backgroundColor,
         ),
-        'elevation': _resolveMaterialStateProperty<double?>(
-          value.elevation,
-        ),
+        'elevation': encodeMaterialStatePropertyDouble(value.elevation),
         'enableFeedback': value.enableFeedback,
-        'foregroundColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.foregroundColor,
-          ),
+        'foregroundColor': encodeMaterialStatePropertyColor(
+          value.foregroundColor,
         ),
-        'minimumSize': encodeSize(
-          _resolveMaterialStateProperty<Size?>(
-            value.minimumSize,
-          ),
+        'minimumSize': encodeMaterialStatePropertySize(value.minimumSize),
+        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+          value.mouseCursor,
         ),
-        'mouseCursor': encodeMouseCursor(
-          _resolveMaterialStateProperty<MouseCursor?>(
-            value.mouseCursor,
-          ),
-        ),
-        'overlayColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.overlayColor,
-          ),
-        ),
-        'padding': encodeEdgeInsetsGeometry(
-          _resolveMaterialStateProperty<EdgeInsetsGeometry?>(
-            value.padding,
-          ) as EdgeInsets?,
-        ),
-        'shadowColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.shadowColor,
-          ),
-        ),
-        'shape': encodeOutlinedBorder(
-          _resolveMaterialStateProperty<OutlinedBorder?>(
-            value.shape,
-          ),
-        ),
-        'side': encodeBorderSide(
-          _resolveMaterialStateProperty<BorderSide?>(
-            value.side,
-          ),
-        ),
+        'overlayColor': encodeMaterialStatePropertyColor(value.overlayColor),
+        'padding': encodeMaterialStatePropertyEdgeInsetsGeometry(value.padding),
+        'shadowColor': encodeMaterialStatePropertyColor(value.shadowColor),
+        'shape': encodeMaterialStatePropertyOutlinedBorder(value.shape),
+        'side': encodeMaterialStatePropertyBorderSide(value.side),
         'tapTargetSize': encodeMaterialTapTargetSize(
           value.tapTargetSize,
         ),
-        'textStyle': encodeTextStyle(
-          _resolveMaterialStateProperty<TextStyle?>(
-            value.textStyle,
-          ),
-        ),
+        'textStyle': encodeMaterialStatePropertyTextStyle(value.textStyle),
         'visualDensity': encodeVisualDensity(
           value.visualDensity,
         ),
@@ -1100,28 +1071,20 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'checkColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.checkColor,
-          ),
+        'checkColor': encodeMaterialStatePropertyColor(
+          value.checkColor,
         ),
-        'fillColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.fillColor,
-          ),
+        'fillColor': encodeMaterialStatePropertyColor(
+          value.fillColor,
         ),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeMouseCursor(
-          _resolveMaterialStateProperty<MouseCursor?>(
-            value.mouseCursor,
-          ),
+        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+          value.mouseCursor,
         ),
-        'overlayColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.overlayColor,
-          ),
+        'overlayColor': encodeMaterialStatePropertyColor(
+          value.overlayColor,
         ),
         'splashRadius': value.splashRadius,
         'visualDensity': encodeVisualDensity(value.visualDensity),
@@ -1445,12 +1408,12 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "columnSpacing": <double,
-  ///   "dataRowColor": <Color>,
+  ///   "columnSpacing": <double>,
+  ///   "dataRowColor": <MaterialStateProperty<Color>>,
   ///   "dataRowHeight": <double>,
   ///   "dataTextStyle": <TextStyle,
   ///   "dividerThickness": <double>,
-  ///   "headingRowColor": <Color>,
+  ///   "headingRowColor": <MaterialStateProperty<Color>>,
   ///   "headingRowHeight": <double>,
   ///   "headingTextStyle": <TextStyle>,
   ///   "horizontalMargin": <double>
@@ -1471,20 +1434,16 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'columnSpacing': value.columnSpacing,
-        'dataRowColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.dataRowColor,
-          ),
+        'dataRowColor': encodeMaterialStatePropertyColor(
+          value.dataRowColor,
         ),
         'dataRowHeight': value.dataRowHeight,
         'dataTextStyle': encodeTextStyle(
           value.dataTextStyle,
         ),
         'dividerThickness': value.dividerThickness,
-        'headingRowColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.headingRowColor,
-          ),
+        'headingRowColor': encodeMaterialStatePropertyColor(
+          value.headingRowColor,
         ),
         'headingRowHeight': value.headingRowHeight,
         'headingTextStyle': encodeTextStyle(
@@ -2641,6 +2600,343 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <BorderSide>,
+  ///   "dragged": <BorderSide>,
+  ///   "empty": <BorderSide>,
+  ///   "error": <BorderSide>,
+  ///   "focused": <BorderSide>,
+  ///   "hovered": <BorderSide>,
+  ///   "pressed": <BorderSide>,
+  ///   "selected": <BorderSide>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderSide]
+  static Map<String, dynamic>? encodeMaterialStatePropertyBorderSide(
+    MaterialStateProperty<BorderSide?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeBorderSide(value.resolve({MaterialState.disabled})),
+        'dragged': encodeBorderSide(value.resolve({MaterialState.dragged})),
+        'empty': encodeBorderSide(value.resolve({})),
+        'error': encodeBorderSide(value.resolve({MaterialState.error})),
+        'focused': encodeBorderSide(value.resolve({MaterialState.focused})),
+        'hovered': encodeBorderSide(value.resolve({MaterialState.hovered})),
+        'pressed': encodeBorderSide(value.resolve({MaterialState.pressed})),
+        'selected': encodeBorderSide(value.resolve({MaterialState.selected})),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <Color>,
+  ///   "dragged": <Color>,
+  ///   "empty": <Color>,
+  ///   "error": <Color>,
+  ///   "focused": <Color>,
+  ///   "hovered": <Color>,
+  ///   "pressed": <Color>,
+  ///   "selected": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  static Map<String, dynamic>? encodeMaterialStatePropertyColor(
+    MaterialStateProperty<Color?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeColor(value.resolve({MaterialState.disabled})),
+        'dragged': encodeColor(value.resolve({MaterialState.dragged})),
+        'empty': encodeColor(value.resolve({})),
+        'error': encodeColor(value.resolve({MaterialState.error})),
+        'focused': encodeColor(value.resolve({MaterialState.focused})),
+        'hovered': encodeColor(value.resolve({MaterialState.hovered})),
+        'pressed': encodeColor(value.resolve({MaterialState.pressed})),
+        'selected': encodeColor(value.resolve({MaterialState.selected})),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <double>,
+  ///   "dragged": <double>,
+  ///   "empty": <double>,
+  ///   "error": <double>,
+  ///   "focused": <double>,
+  ///   "hovered": <double>,
+  ///   "pressed": <double>,
+  ///   "selected": <double>
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeMaterialStatePropertyDouble(
+    MaterialStateProperty<double?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': value.resolve({MaterialState.disabled}),
+        'dragged': value.resolve({MaterialState.dragged}),
+        'empty': value.resolve({}),
+        'error': value.resolve({MaterialState.error}),
+        'focused': value.resolve({MaterialState.focused}),
+        'hovered': value.resolve({MaterialState.hovered}),
+        'pressed': value.resolve({MaterialState.pressed}),
+        'selected': value.resolve({MaterialState.selected}),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <EdgeInsetsGeometry>,
+  ///   "dragged": <EdgeInsetsGeometry>,
+  ///   "empty": <EdgeInsetsGeometry>,
+  ///   "error": <EdgeInsetsGeometry>,
+  ///   "focused": <EdgeInsetsGeometry>,
+  ///   "hovered": <EdgeInsetsGeometry>,
+  ///   "pressed": <EdgeInsetsGeometry>,
+  ///   "selected": <EdgeInsetsGeometry>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeEdgeInsetsGeometry]
+  static Map<String, dynamic>? encodeMaterialStatePropertyEdgeInsetsGeometry(
+    MaterialStateProperty<EdgeInsetsGeometry?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.disabled}) as EdgeInsets?,
+        ),
+        'dragged': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.dragged}) as EdgeInsets?,
+        ),
+        'empty': encodeEdgeInsetsGeometry(
+          value.resolve({}) as EdgeInsets?,
+        ),
+        'error': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.error}) as EdgeInsets?,
+        ),
+        'focused': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.focused}) as EdgeInsets?,
+        ),
+        'hovered': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.hovered}) as EdgeInsets?,
+        ),
+        'pressed': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.pressed}) as EdgeInsets?,
+        ),
+        'selected': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.selected}) as EdgeInsets?,
+        ),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <MouseCursor>,
+  ///   "dragged": <MouseCursor>,
+  ///   "empty": <MouseCursor>,
+  ///   "error": <MouseCursor>,
+  ///   "focused": <MouseCursor>,
+  ///   "hovered": <MouseCursor>,
+  ///   "pressed": <MouseCursor>,
+  ///   "selected": <MouseCursor>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeMouseCursor]
+  static Map<String, dynamic>? encodeMaterialStatePropertyMouseCursor(
+    MaterialStateProperty<MouseCursor?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeMouseCursor(value.resolve({MaterialState.disabled})),
+        'dragged': encodeMouseCursor(value.resolve({MaterialState.dragged})),
+        'empty': encodeMouseCursor(value.resolve({})),
+        'error': encodeMouseCursor(value.resolve({MaterialState.error})),
+        'focused': encodeMouseCursor(value.resolve({MaterialState.focused})),
+        'hovered': encodeMouseCursor(value.resolve({MaterialState.hovered})),
+        'pressed': encodeMouseCursor(value.resolve({MaterialState.pressed})),
+        'selected': encodeMouseCursor(value.resolve({MaterialState.selected})),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <OutlinedBorder>,
+  ///   "dragged": <OutlinedBorder>,
+  ///   "empty": <OutlinedBorder>,
+  ///   "error": <OutlinedBorder>,
+  ///   "focused": <OutlinedBorder>,
+  ///   "hovered": <OutlinedBorder>,
+  ///   "pressed": <OutlinedBorder>,
+  ///   "selected": <OutlinedBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeOutlinedBorder]
+  static Map<String, dynamic>? encodeMaterialStatePropertyOutlinedBorder(
+    MaterialStateProperty<OutlinedBorder?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeOutlinedBorder(
+          value.resolve({MaterialState.disabled}),
+        ),
+        'dragged': encodeOutlinedBorder(value.resolve({MaterialState.dragged})),
+        'empty': encodeOutlinedBorder(value.resolve({})),
+        'error': encodeOutlinedBorder(value.resolve({MaterialState.error})),
+        'focused': encodeOutlinedBorder(value.resolve({MaterialState.focused})),
+        'hovered': encodeOutlinedBorder(value.resolve({MaterialState.hovered})),
+        'pressed': encodeOutlinedBorder(value.resolve({MaterialState.pressed})),
+        'selected': encodeOutlinedBorder(
+          value.resolve({MaterialState.selected}),
+        ),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <Size>,
+  ///   "dragged": <Size>,
+  ///   "empty": <Size>,
+  ///   "error": <Size>,
+  ///   "focused": <Size>,
+  ///   "hovered": <Size>,
+  ///   "pressed": <Size>,
+  ///   "selected": <Size>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeSize]
+  static Map<String, dynamic>? encodeMaterialStatePropertySize(
+    MaterialStateProperty<Size?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeSize(value.resolve({MaterialState.disabled})),
+        'dragged': encodeSize(value.resolve({MaterialState.dragged})),
+        'empty': encodeSize(value.resolve({})),
+        'error': encodeSize(value.resolve({MaterialState.error})),
+        'focused': encodeSize(value.resolve({MaterialState.focused})),
+        'hovered': encodeSize(value.resolve({MaterialState.hovered})),
+        'pressed': encodeSize(value.resolve({MaterialState.pressed})),
+        'selected': encodeSize(value.resolve({MaterialState.selected})),
+      };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <TextStyle>,
+  ///   "dragged": <TextStyle>,
+  ///   "empty": <TextStyle>,
+  ///   "error": <TextStyle>,
+  ///   "focused": <TextStyle>,
+  ///   "hovered": <TextStyle>,
+  ///   "pressed": <TextStyle>,
+  ///   "selected": <TextStyle>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeMaterialStatePropertyTextStyle(
+    MaterialStateProperty<TextStyle?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeTextStyle(value.resolve({MaterialState.disabled})),
+        'dragged': encodeTextStyle(value.resolve({MaterialState.dragged})),
+        'empty': encodeTextStyle(value.resolve({})),
+        'error': encodeTextStyle(value.resolve({MaterialState.error})),
+        'focused': encodeTextStyle(value.resolve({MaterialState.focused})),
+        'hovered': encodeTextStyle(value.resolve({MaterialState.hovered})),
+        'pressed': encodeTextStyle(value.resolve({MaterialState.pressed})),
+        'selected': encodeTextStyle(value.resolve({MaterialState.selected})),
+      };
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `padded`
@@ -3383,23 +3679,17 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'fillColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.fillColor,
-          ),
+        'fillColor': encodeMaterialStatePropertyColor(
+          value.fillColor,
         ),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeMouseCursor(
-          _resolveMaterialStateProperty<MouseCursor?>(
-            value.mouseCursor,
-          ),
+        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+          value.mouseCursor,
         ),
-        'overlayColor': encodeColor(
-          _resolveMaterialStateProperty<Color?>(
-            value.overlayColor,
-          ),
+        'overlayColor': encodeMaterialStatePropertyColor(
+          value.overlayColor,
         ),
         'splashRadius': value.splashRadius,
         'visualDensity': encodeVisualDensity(value.visualDensity),
@@ -3603,7 +3893,7 @@ class ThemeEncoder {
         'minThumbLength': value.minThumbLength,
         'radius': encodeRadius(value.radius),
         'showTrackOnHover': value.showTrackOnHover,
-        'thickness': _resolveMaterialStateProperty<double?>(
+        'thickness': encodeMaterialStatePropertyDouble(
           value.thickness,
         ),
       };
@@ -5475,14 +5765,6 @@ class ThemeEncoder {
       }
     }
 
-    return result;
-  }
-
-  static T? _resolveMaterialStateProperty<T>(MaterialStateProperty<T>? value) {
-    T? result;
-    if (value != null) {
-      result = value.resolve({});
-    }
     return result;
   }
 }

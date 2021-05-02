@@ -1,3 +1,8 @@
+## [2.1.0] - May 2nd, 2021
+
+* Updated how the `MaterialStateProperty` is handled to better support using those via JSON
+
+
 ## [2.0.1] - April 30th, 2021
 
 * Updated with new attributes and classes from Flutter 2.0

@@ -12,12 +12,17 @@ class RadioThemeDataSchema {
     'title': 'RadioThemeDataSchema',
     'type': 'object',
     'properties': {
-      'fillColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'fillColor':
+          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
-      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'overlayColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(
+        MaterialStatePropertyMouseCursorSchema.id,
+      ),
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'splashRadius': SchemaHelper.numberSchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },

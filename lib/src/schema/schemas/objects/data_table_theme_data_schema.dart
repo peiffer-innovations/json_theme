@@ -13,11 +13,13 @@ class DataTableThemeDataSchema {
     'additionalProperties': false,
     'properties': {
       'columnSpacing': SchemaHelper.numberSchema,
-      'dataRowColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dataRowColor':
+          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
       'dataRowHeight': SchemaHelper.numberSchema,
       'dataTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'dividerThickness': SchemaHelper.numberSchema,
-      'headingRowColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'headingRowColor':
+          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
       'headingRowHeight': SchemaHelper.numberSchema,
       'headingTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'horizontalMargin': SchemaHelper.numberSchema,

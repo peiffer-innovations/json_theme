@@ -14,21 +14,41 @@ class ButtonStyleSchema {
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'animationDuration': SchemaHelper.numberSchema,
-      'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'elevation': SchemaHelper.numberSchema,
+      'backgroundColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'elevation': SchemaHelper.objectSchema(
+        MaterialStatePropertyDoubleSchema.id,
+      ),
       'enableFeedback': SchemaHelper.boolSchema,
-      'foregroundColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'minimumSize': SchemaHelper.objectSchema(SizeSchema.id),
-      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'overlayColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'shape': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
-      'side': SchemaHelper.objectSchema(BorderSideSchema.id),
+      'foregroundColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'minimumSize':
+          SchemaHelper.objectSchema(MaterialStatePropertySizeSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(
+        MaterialStatePropertyMouseCursorSchema.id,
+      ),
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'padding': SchemaHelper.objectSchema(
+        MaterialStatePropertyEdgeInsetsGeometrySchema.id,
+      ),
+      'shadowColor':
+          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+      'shape': SchemaHelper.objectSchema(
+        MaterialStatePropertyOutlinedBorderSchema.id,
+      ),
+      'side': SchemaHelper.objectSchema(
+        MaterialStatePropertyBorderSideSchema.id,
+      ),
       'tapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
-      'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'textStyle': SchemaHelper.objectSchema(
+        MaterialStatePropertyTextStyleSchema.id,
+      ),
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };

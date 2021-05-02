@@ -73,6 +73,21 @@ class Schemas {
     MainAxisSizeSchema.id: MainAxisSizeSchema.schema,
     MaterialBannerThemeDataSchema.id: MaterialBannerThemeDataSchema.schema,
     MaterialColorSchema.id: MaterialColorSchema.schema,
+    MaterialStatePropertyBorderSideSchema.id:
+        MaterialStatePropertyBorderSideSchema.schema,
+    MaterialStatePropertyColorSchema.id:
+        MaterialStatePropertyColorSchema.schema,
+    MaterialStatePropertyDoubleSchema.id:
+        MaterialStatePropertyDoubleSchema.schema,
+    MaterialStatePropertyEdgeInsetsGeometrySchema.id:
+        MaterialStatePropertyEdgeInsetsGeometrySchema.schema,
+    MaterialStatePropertyMouseCursorSchema.id:
+        MaterialStatePropertyMouseCursorSchema.schema,
+    MaterialStatePropertyOutlinedBorderSchema.id:
+        MaterialStatePropertyOutlinedBorderSchema.schema,
+    MaterialStatePropertySizeSchema.id: MaterialStatePropertySizeSchema.schema,
+    MaterialStatePropertyTextStyleSchema.id:
+        MaterialStatePropertyTextStyleSchema.schema,
     MaterialTapTargetSizeSchema.id: MaterialTapTargetSizeSchema.schema,
     MaterialTypeSchema.id: MaterialTypeSchema.schema,
     Matrix4Schema.id: Matrix4Schema.schema,

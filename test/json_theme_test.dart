@@ -1006,42 +1006,42 @@ void main() {
       {
         'alignment': 'bottomCenter',
         'animationDuration': 1000,
-        'backgroundColor': '#ff555555',
-        'elevation': 1.0,
+        'backgroundColor': _materializeState('#ff555555'),
+        'elevation': _materializeState(1.0),
         'enableFeedback': false,
-        'foregroundColor': '#ff555555',
-        'minimumSize': {
+        'foregroundColor': _materializeState('#ff555555'),
+        'minimumSize': _materializeState({
           'height': 100.0,
           'width': 100.0,
-        },
-        'mouseCursor': {
+        }),
+        'mouseCursor': _materializeState({
           'type': 'defer',
-        },
-        'overlayColor': '#ff555555',
-        'padding': {
+        }),
+        'overlayColor': _materializeState('#ff555555'),
+        'padding': _materializeState({
           'bottom': 0.0,
           'left': 0.0,
           'right': 0.0,
           'top': 0.0,
-        },
-        'shadowColor': '#ff555555',
-        'shape': {
+        }),
+        'shadowColor': _materializeState('#ff555555'),
+        'shape': _materializeState({
           'side': {
             'color': '#ff000000',
             'style': 'none',
             'width': 0.0,
           },
           'type': 'circle'
-        },
-        'side': {
+        }),
+        'side': _materializeState({
           'color': '#ff000000',
           'style': 'solid',
           'width': 1.0,
-        },
+        }),
         'tapTargetSize': 'padded',
-        'textStyle': {
+        'textStyle': _materializeState({
           'inherit': true,
-        },
+        }),
         'visualDensity': 'standard',
       },
     );
@@ -1880,13 +1880,13 @@ void main() {
       encoded,
       {
         'columnSpacing': 1.0,
-        'dataRowColor': '#ff555555',
+        'dataRowColor': _materializeState('#ff555555'),
         'dataRowHeight': 1.0,
         'dataTextStyle': {
           'inherit': true,
         },
         'dividerThickness': 1.0,
-        'headingRowColor': '#ff555555',
+        'headingRowColor': _materializeState('#ff555555'),
         'headingRowHeight': 1.0,
         'headingTextStyle': {
           'inherit': true,
@@ -2217,7 +2217,7 @@ void main() {
       encoded,
       {
         'style': {
-          'backgroundColor': '#ff222222',
+          'backgroundColor': _materializeState('#ff222222'),
         },
       },
     );
@@ -3436,6 +3436,605 @@ void main() {
     expect(ThemeEncoder.encodeMaterialColor(decoded), encoded);
   });
 
+  test('MaterialStatePropertyBorderSide', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyBorderSide(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyBorderSide(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var count = 1.0;
+    var sides = <MaterialState, BorderSide>{};
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: ++count,
+      );
+      sides[state] = side;
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
+
+      expect(encoded![stateKey]['width'], side.width);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(prop);
+    for (var entry in states.entries) {
+      var side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
+
+      expect(encoded![entry.key]['width'], side!.width);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: ++count,
+      );
+      var encodedSide = ThemeEncoder.encodeBorderSide(side);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
+
+      expect(encoded![stateKey]['width'], side.width);
+    }
+  });
+
+  test('MaterialStatePropertyColor', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var colors = {
+      'disabled': '#ff111111',
+      'dragged': '#ff222222',
+      'error': '#ff333333',
+      'focused': '#ff444444',
+      'hovered': '#ff555555',
+      'pressed': '#ff666666',
+      'selected': '#ff777777',
+    };
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var colorStr = colors[stateKey];
+      var color = ThemeDecoder.decodeColor(colorStr);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(color);
+      expect(decoded!.resolve({state}), color);
+
+      decoded = ThemeDecoder.decodeMaterialStatePropertyColor(colorStr);
+      expect(decoded!.resolve({state}), color);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
+      expect(encoded![stateKey], colorStr);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : ThemeDecoder.decodeColor(colors[states.first]);
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(prop);
+    for (var entry in states.entries) {
+      var colorStr = colors[entry.value];
+      var color = ThemeDecoder.decodeColor(colorStr);
+
+      expect(decoded!.resolve({entry.value}), color);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
+
+      expect(encoded![entry.key], colorStr);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var colorStr = colors[stateKey];
+      var color = ThemeDecoder.decodeColor(colorStr);
+      var encodedColor = ThemeEncoder.encodeColor(color);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(
+        encodedColor,
+      );
+
+      expect(decoded!.resolve({state}), color);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
+
+      expect(encoded![stateKey], colorStr);
+    }
+  });
+
+  test('MaterialStatePropertyDouble', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyDouble(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyDouble(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var values = {
+      'disabled': 1.0,
+      'dragged': 2.0,
+      'error': 3.0,
+      'focused': 4.0,
+      'hovered': 5.0,
+      'pressed': 6.0,
+      'selected': 7.0,
+    };
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var value = values[stateKey];
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
+      expect(decoded!.resolve({state}), value);
+
+      decoded =
+          ThemeDecoder.decodeMaterialStatePropertyDouble(value.toString());
+      expect(decoded!.resolve({state}), value);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
+      expect(encoded![stateKey], value);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : values[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(prop);
+    for (var entry in states.entries) {
+      var value = values[entry.value];
+
+      expect(decoded!.resolve({entry.value}), value);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
+
+      expect(encoded![entry.key], value);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var value = values[stateKey];
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
+
+      expect(decoded!.resolve({state}), value);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
+
+      expect(encoded![stateKey], value);
+    }
+  });
+
+  test('MaterialStatePropertyEdgeInsetsGeometry', () {
+    expect(
+        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(null), null);
+    expect(
+        ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var count = 1.0;
+    var sides = <MaterialState, EdgeInsetsGeometry>{};
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = EdgeInsets.all(++count);
+      sides[state] = side;
+
+      var decoded =
+          ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
+
+      expect(encoded![stateKey]['bottom'], side.bottom);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded =
+        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(prop);
+    for (var entry in states.entries) {
+      var side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
+
+      expect(encoded![entry.key]['bottom'], (side as EdgeInsets).bottom);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = EdgeInsets.all(++count);
+      var encodedSide = ThemeEncoder.encodeEdgeInsetsGeometry(side);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
+
+      expect(encoded![stateKey]['bottom'], side.bottom);
+    }
+  });
+
+  test('MaterialStatePropertyMouseCursor', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var cursors = {
+      'disabled': {'type': 'system', 'cursor': 'alias'},
+      'dragged': {'type': 'system', 'cursor': 'allScroll'},
+      'error': {'type': 'system', 'cursor': 'basic'},
+      'focused': {'type': 'system', 'cursor': 'cell'},
+      'hovered': {'type': 'system', 'cursor': 'click'},
+      'pressed': {'type': 'system', 'cursor': 'contextMenu'},
+      'selected': {'type': 'system', 'cursor': 'copy'},
+    };
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var cursorStr = cursors[stateKey];
+      var cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(cursor);
+      expect(decoded!.resolve({state}), cursor);
+
+      decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(cursorStr);
+      expect(decoded!.resolve({state}), cursor);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
+      expect(encoded![stateKey], cursorStr);
+    }
+
+    var func = (Set<MaterialState> states) => states.isEmpty
+        ? null
+        : ThemeDecoder.decodeMouseCursor(cursors[states.first]);
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(prop);
+    for (var entry in states.entries) {
+      var cursorStr = cursors[entry.value];
+      var cursor = ThemeDecoder.decodeColor(cursorStr);
+
+      expect(decoded!.resolve({entry.value}), cursor);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
+
+      expect(encoded![entry.key], cursorStr);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var cursorStr = cursors[stateKey];
+      var cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+      var encodedCursor = ThemeEncoder.encodeMouseCursor(cursor);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(
+        encodedCursor,
+      );
+
+      expect(decoded!.resolve({state}), cursor);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
+
+      expect(encoded![stateKey], cursorStr);
+    }
+  });
+
+  test('MaterialStatePropertyOutlinedBorder', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var count = 1.0;
+    var sides = <MaterialState, OutlinedBorder>{};
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.black,
+          style: BorderStyle.solid,
+          width: ++count,
+        ),
+      );
+      sides[state] = side;
+
+      var decoded =
+          ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
+
+      expect(encoded![stateKey]['side']['width'], side.side.width);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(prop);
+    for (var entry in states.entries) {
+      var side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
+
+      expect(encoded![entry.key]['side']['width'], side!.side.width);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = sides[state];
+      var encodedSide = ThemeEncoder.encodeOutlinedBorder(side);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
+
+      expect(encoded![stateKey]['side']['width'], side!.side.width);
+    }
+  });
+
+  test('MaterialStatePropertySize', () {
+    expect(
+      ThemeDecoder.decodeMaterialStatePropertySize(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.encodeMaterialStatePropertySize(null),
+      null,
+    );
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var count = 1.0;
+    var sides = <MaterialState, Size>{};
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = Size(
+        ++count,
+        ++count,
+      );
+      sides[state] = side;
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertySize(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
+
+      expect(encoded![stateKey]['width'], side.width);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertySize(prop);
+    for (var entry in states.entries) {
+      var side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
+
+      expect(encoded![entry.key]['width'], side!.width);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = sides[state];
+      var encodedSide = ThemeEncoder.encodeSize(side);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertySize(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
+
+      expect(encoded![stateKey]['width'], side!.width);
+    }
+  });
+
+  test('MaterialStatePropertyTextStyle', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyTextStyle(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyTextStyle(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var count = 1.0;
+    var sides = <MaterialState, TextStyle>{};
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = TextStyle(fontSize: ++count);
+      sides[state] = side;
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
+
+      expect(encoded![stateKey]['fontSize'], side.fontSize);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(prop);
+    for (var entry in states.entries) {
+      var side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
+
+      expect(encoded![entry.key]['fontSize'], side!.fontSize);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var side = sides[state];
+      var encodedSide = ThemeEncoder.encodeTextStyle(side);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
+
+      expect(encoded![stateKey]['fontSize'], side!.fontSize);
+    }
+  });
+
   test('MaterialTapTargetSize', () {
     expect(ThemeDecoder.decodeMaterialTapTargetSize(null), null);
     expect(ThemeEncoder.encodeMaterialTapTargetSize(null), null);
@@ -4556,7 +5155,7 @@ void main() {
       encoded,
       {
         'style': {
-          'backgroundColor': '#ff222222',
+          'backgroundColor': _materializeState('#ff222222'),
         },
       },
     );
@@ -5402,7 +6001,7 @@ void main() {
     );
 
     expect(
-      encoded['thickness'],
+      encoded['thickness']['error'],
       entry.thickness!.resolve({MaterialState.error}),
     );
 
@@ -6424,7 +7023,7 @@ void main() {
       encoded,
       {
         'style': {
-          'backgroundColor': '#ff222222',
+          'backgroundColor': _materializeState('#ff222222'),
         },
       },
     );
@@ -7553,13 +8152,13 @@ void main() {
       },
       'dataTableTheme': {
         'columnSpacing': 1.0,
-        'dataRowColor': '#ff555555',
+        'dataRowColor': _materializeState('#ff555555'),
         'dataRowHeight': 1.0,
         'dataTextStyle': {
           'inherit': true,
         },
         'dividerThickness': 1.0,
-        'headingRowColor': '#ff555555',
+        'headingRowColor': _materializeState('#ff555555'),
         'headingRowHeight': 1.0,
         'headingTextStyle': {
           'inherit': true,
@@ -7577,7 +8176,7 @@ void main() {
       },
       'elevatedButtonTheme': {
         'style': {
-          'backgroundColor': '#ff222222',
+          'backgroundColor': _materializeState('#ff222222'),
         },
       },
       'errorColor': '#eecccccc',
@@ -7607,7 +8206,7 @@ void main() {
       },
       'outlinedButtonTheme': {
         'style': {
-          'backgroundColor': '#ff222222',
+          'backgroundColor': _materializeState('#ff222222'),
         },
       },
       'platform': 'android',
@@ -7718,7 +8317,7 @@ void main() {
       },
       'textButtonTheme': {
         'style': {
-          'backgroundColor': '#ff222222',
+          'backgroundColor': _materializeState('#ff222222'),
         },
       },
       'textSelectionTheme': {
@@ -8668,7 +9267,7 @@ void main() {
   });
 }
 
-bool? _buttonStylesAreEqual(Object? first, Object? second) {
+bool? _buttonStylesAreEqual(ButtonStyle? first, ButtonStyle? second) {
   bool? result;
 
   if (first.runtimeType != second.runtimeType) {
@@ -8698,3 +9297,14 @@ bool? _buttonStylesAreEqual(Object? first, Object? second) {
 
   return result;
 }
+
+Map<String, dynamic> _materializeState(value) => {
+      'disabled': value,
+      'dragged': value,
+      'empty': value,
+      'error': value,
+      'focused': value,
+      'hovered': value,
+      'pressed': value,
+      'selected': value,
+    };

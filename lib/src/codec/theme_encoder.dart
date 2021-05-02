@@ -3422,6 +3422,28 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [OrdinalSortKey] to a JSON representation.  This
+  /// produces the given the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "name": <String>,
+  ///   "order": <double>
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeOrdinalSortKey(OrdinalSortKey? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'name': value.name,
+        'order': value.order,
+      };
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to a JSON compatible Map.  The value structure
   /// returned the type of the [OutlinedBorder] passed in.
   ///
@@ -3980,6 +4002,26 @@ class ThemeEncoder {
           result = 'onDrag';
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [SemanticsTag] to a JSON representation.  This
+  /// produces the given the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "name": <String>
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeSemanticsTag(SemanticsTag? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'name': value.name,
+      };
     }
 
     return result;

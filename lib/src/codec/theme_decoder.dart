@@ -5731,6 +5731,39 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [OrdinalSortKey].  This expects the given
+  /// [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "name": <String>,
+  ///   "order": <double>
+  /// }
+  /// ```
+  static OrdinalSortKey? decodeOrdinalSortKey(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    OrdinalSortKey? result;
+
+    if (value is OrdinalSortKey) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/ordinal_sort_key',
+        value: value,
+        validate: validate,
+      ));
+
+      result = OrdinalSortKey(
+        JsonClass.parseDouble(value['order'])!,
+        name: value['name'],
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes a given Map-like value into a [OutlinedBorder].  The value returned
   /// depends on the "type" parameter.  The "type" must be one of:
   ///  * `beveled`
@@ -6863,6 +6896,35 @@ class ThemeDecoder {
           result = ScrollViewKeyboardDismissBehavior.onDrag;
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [SemanticsTag].  This expects the given
+  /// [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "name": <String>
+  /// }
+  /// ```
+  static SemanticsTag? decodeSemanticsTag(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    SemanticsTag? result;
+
+    if (value is SemanticsTag) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/semantics_tag',
+        value: value,
+        validate: validate,
+      ));
+
+      result = SemanticsTag(value['name']);
     }
 
     return result;

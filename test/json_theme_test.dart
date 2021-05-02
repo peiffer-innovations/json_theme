@@ -4919,6 +4919,38 @@ void main() {
     );
   });
 
+  test('OrdinalSortKey', () {
+    expect(ThemeDecoder.decodeOrdinalSortKey(null), null);
+    expect(ThemeEncoder.encodeOrdinalSortKey(null), null);
+
+    var entry = OrdinalSortKey(
+      1.0,
+      name: 'foo',
+    );
+
+    expect(ThemeDecoder.decodeOrdinalSortKey(entry), entry);
+
+    var encoded = ThemeEncoder.encodeOrdinalSortKey(entry);
+    var decoded = ThemeDecoder.decodeOrdinalSortKey(encoded);
+
+    expect(
+      encoded,
+      {
+        'name': 'foo',
+        'order': 1.0,
+      },
+    );
+
+    expect(
+      decoded!.name,
+      entry.name,
+    );
+    expect(
+      decoded.order,
+      entry.order,
+    );
+  });
+
   test('Offset', () {
     expect(ThemeDecoder.decodeOffset(null), null);
     expect(ThemeEncoder.encodeOffset(null), null);
@@ -6077,6 +6109,30 @@ void main() {
         ScrollViewKeyboardDismissBehavior.onDrag,
       ),
       'onDrag',
+    );
+  });
+
+  test('SemanticsTag', () {
+    expect(ThemeDecoder.decodeSemanticsTag(null), null);
+    expect(ThemeEncoder.encodeSemanticsTag(null), null);
+
+    var entry = SemanticsTag('foo');
+
+    expect(ThemeDecoder.decodeSemanticsTag(entry), entry);
+
+    var encoded = ThemeEncoder.encodeSemanticsTag(entry);
+    var decoded = ThemeDecoder.decodeSemanticsTag(encoded);
+
+    expect(
+      encoded,
+      {
+        'name': 'foo',
+      },
+    );
+
+    expect(
+      decoded!.name,
+      entry.name,
     );
   });
 

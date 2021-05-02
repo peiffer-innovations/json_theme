@@ -97,6 +97,7 @@ class Schemas {
     NavigationRailThemeDataSchema.id: NavigationRailThemeDataSchema.schema,
     NotchedShapeSchema.id: NotchedShapeSchema.schema,
     OffsetSchema.id: OffsetSchema.schema,
+    OrdinalSortKeySchema.id: OrdinalSortKeySchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
     OverflowSchema.id: OverflowSchema.schema,
@@ -115,6 +116,7 @@ class Schemas {
     ScrollPhysicsSchema.id: ScrollPhysicsSchema.schema,
     ScrollViewKeyboardDismissBehaviorSchema.id:
         ScrollViewKeyboardDismissBehaviorSchema.schema,
+    SemanticsTagSchema.id: SemanticsTagSchema.schema,
     ShadowSchema.id: ShadowSchema.schema,
     ShapeBorderSchema.id: ShapeBorderSchema.schema,
     ShowValueIndicatorSchema.id: ShowValueIndicatorSchema.schema,

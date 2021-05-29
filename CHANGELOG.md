@@ -1,3 +1,8 @@
+## [2.1.0+2] - May 29th, 2021
+
+* Dependency updates
+
+
 ## [2.1.0+1] - May 2nd, 2021
 
 * Updated how the `MaterialStateProperty` is handled to better support using those via JSON

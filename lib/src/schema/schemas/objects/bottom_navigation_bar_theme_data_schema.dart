@@ -16,7 +16,7 @@ class BottomNavigationBarThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'selectedIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
-      'selectedIconColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'selectedItemColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedLabelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'showSelectedLabels': SchemaHelper.boolSchema,
       'showUnselectedLabels': SchemaHelper.boolSchema,

@@ -1,3 +1,8 @@
+# [2.1.1] - August 20th, 2021
+
+* (CONTRIBUTION) - Fix for incorrect property in schema for BottomAppBar
+
+
 ## [2.1.0+2] - May 29th, 2021
 
 * Dependency updates

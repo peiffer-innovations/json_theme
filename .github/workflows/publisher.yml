@@ -23,7 +23,7 @@ jobs:
         with:
           flutter_package: true
 
-      - name: Schemas
+      - name: Checkout Schemas
       - uses: actions/checkout@v2
         with:
           repository: peiffer-innovations/flutter_json_schemas
@@ -31,6 +31,7 @@ jobs:
           fetch-depth: 0
           ref: gh-pages
           path: schemas
+      - name: Update Schemas
         run: |
           git config --global user.email "noop@github.com"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/

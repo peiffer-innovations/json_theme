@@ -11,6 +11,8 @@ class Schemas {
     BorderSideSchema.id: BorderSideSchema.schema,
     BorderStyleSchema.id: BorderStyleSchema.schema,
     BottomAppBarThemeScheme.id: BottomAppBarThemeScheme.schema,
+    BottomNavigationBarLandscapeLayoutSchema.id:
+        BottomNavigationBarLandscapeLayoutSchema.schema,
     BottomNavigationBarThemeDataSchema.id:
         BottomNavigationBarThemeDataSchema.schema,
     BottomNavigationBarTypeSchema.id: BottomNavigationBarTypeSchema.schema,
@@ -104,6 +106,8 @@ class Schemas {
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
+    ProgressIndicatorThemeDataSchema.id:
+        ProgressIndicatorThemeDataSchema.schema,
     RadioThemeDataSchema.id: RadioThemeDataSchema.schema,
     RadiusSchema.id: RadiusSchema.schema,
     RangeSliderThumbShapeSchema.id: RangeSliderThumbShapeSchema.schema,
@@ -147,6 +151,7 @@ class Schemas {
     TextHeightBehaviorSchema.id: TextHeightBehaviorSchema.schema,
     TextInputActionSchema.id: TextInputActionSchema.schema,
     TextInputTypeSchema.id: TextInputTypeSchema.schema,
+    TextLeadingDistributionSchema.id: TextLeadingDistributionSchema.schema,
     TextOverflowSchema.id: TextOverflowSchema.schema,
     TextSelectionThemeDataSchema.id: TextSelectionThemeDataSchema.schema,
     TextStyleSchema.id: TextStyleSchema.schema,
@@ -158,6 +163,7 @@ class Schemas {
     ToggleButtonsThemeDataSchema.id: ToggleButtonsThemeDataSchema.schema,
     ToolbarOptionsSchema.id: ToolbarOptionsSchema.schema,
     TooltipThemeDataSchema.id: TooltipThemeDataSchema.schema,
+    TooltipTriggerModeSchema.id: TooltipTriggerModeSchema.schema,
     TypographySchema.id: TypographySchema.schema,
     VerticalDirectionSchema.id: VerticalDirectionSchema.schema,
     VisualDensitySchema.id: VisualDensitySchema.schema,

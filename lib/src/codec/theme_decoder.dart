@@ -7,8 +7,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 import 'package:json_class/json_class.dart';
+import 'package:meta/meta.dart';
 
 import '../schema/schema_validator.dart';
 
@@ -20,8 +20,8 @@ import '../schema/schema_validator.dart';
 /// mixing JSON compatible values and concrete values, you must disable the JSON
 /// Schema validator as it will not be able to validate concrete instances.
 ///
-/// Unless otherwise stated, each function will return [null] when given an
-/// input of [null].
+/// Unless otherwise stated, each function will return `null` when given an
+/// input of `null`.
 @immutable
 class ThemeDecoder {
   ThemeDecoder._();
@@ -112,18 +112,15 @@ class ThemeDecoder {
   /// {
   ///   "actionsIconTheme": <IconThemeData>,
   ///   "backgroundColor": <Color>,
-  ///   "backwardsCompatibility": <bool>,
-  ///   "brightness": <Brightness>,
   ///   "centerTitle": <bool>,
-  ///   "color": <Color>,
   ///   "elevation": <double>,
   ///   "foregroundColor": <Color>,
   ///   "iconTheme": <IconThemeData>,
   ///   "shadowColor": <Color>,
   ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
-  ///   "textTheme": <TextTheme>,
   ///   "titleSpacing": <double>,
   ///   "titleTextStyle": <TextStyle>,
+  ///   "toolbarHeight": <double>,
   ///   "toolbarTextStyle": <TextStyle>
   /// }
   /// ```
@@ -157,18 +154,10 @@ class ThemeDecoder {
           value['backgroundColor'] ?? value['color'],
           validate: false,
         ),
-        backwardsCompatibility: value['backwardsCompatibility'] == null
-            ? null
-            : JsonClass.parseBool(
-                value['backwardsCompatibility'],
-              ),
-        brightness: decodeBrightness(
-          value['brightness'],
-          validate: false,
-        ),
         centerTitle: value['centerTitle'] == null
             ? null
             : JsonClass.parseBool(value['centerTitle']),
+        color: ThemeDecoder.decodeColor(value['color']),
         elevation: JsonClass.parseDouble(value['elevation']),
         foregroundColor: decodeColor(
           value['foregroundColor'],
@@ -178,6 +167,7 @@ class ThemeDecoder {
           value['iconTheme'],
           validate: false,
         ),
+        shape: ThemeDecoder.decodeShapeBorder(value['shape']),
         shadowColor: decodeColor(
           value['shadowColor'],
           validate: false,
@@ -186,15 +176,12 @@ class ThemeDecoder {
           value['systemOverlayStyle'],
           validate: false,
         ),
-        textTheme: decodeTextTheme(
-          value['textTheme'],
-          validate: false,
-        ),
         titleSpacing: JsonClass.parseDouble(value['titleSpacing']),
         titleTextStyle: decodeTextStyle(
           value['titleTextStyle'],
           validate: false,
         ),
+        toolbarHeight: JsonClass.parseDouble(value['toolbarHeight']),
         toolbarTextStyle: decodeTextStyle(
           value['toolbarTextStyle'],
           validate: false,
@@ -801,6 +788,8 @@ class ThemeDecoder {
   /// {
   ///   "backgroundColor": <Color>,
   ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
+  ///   "landscapeLayout": <BottomNavigationBarLandscapeLayout>,
   ///   "selectedIconTheme": <IconThemeData>,
   ///   "selectedIconColor": <Color>,
   ///   "selectedLabelStyle": <TextStyle>,
@@ -817,6 +806,7 @@ class ThemeDecoder {
   ///  * [decodeBottomNavigationBarType]
   ///  * [decodeColor]
   ///  * [decodeIconThemeData]
+  ///  * [decodeBottomNavigationBarLandscapeLayout]
   ///  * [decodeTextStyle]
   static BottomNavigationBarThemeData? decodeBottomNavigationBarThemeData(
     dynamic value, {
@@ -833,6 +823,11 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
+        landscapeLayout:
+            decodeBottomNavigationBarLandscapeLayout(value['landscapeLayout']),
         selectedIconTheme: decodeIconThemeData(
           value['selectedIconTheme'],
           validate: false,
@@ -868,6 +863,53 @@ class ThemeDecoder {
           validate: false,
         ),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [BottomNavigationBarLandscapeLayout].  Supported values are:
+  ///  * `centered`
+  ///  * `linear`
+  ///  * `spread`
+  static BottomNavigationBarLandscapeLayout?
+      decodeBottomNavigationBarLandscapeLayout(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    BottomNavigationBarLandscapeLayout? result;
+
+    if (value is BottomNavigationBarLandscapeLayout) {
+      result = value;
+    } else {
+      _checkSupported(
+        'BottomNavigationBarLandscapeLayout',
+        [
+          'centered',
+          'linear',
+          'spread',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/bottom_navigation_bar_landscape_layout',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'centered':
+            result = BottomNavigationBarLandscapeLayout.centered;
+            break;
+          case 'linear':
+            result = BottomNavigationBarLandscapeLayout.linear;
+            break;
+          case 'spread':
+            result = BottomNavigationBarLandscapeLayout.spread;
+            break;
+        }
+      }
     }
 
     return result;
@@ -921,6 +963,7 @@ class ThemeDecoder {
   /// {
   ///   "backgroundColor": <Color>,
   ///   "clipBehavior": <Clip>,
+  ///   "constraints": <BoxConstraints>,
   ///   "elevation": <double>,
   ///   "modalBackgroundColor": <Color>,
   ///   "modalElevation": <double>,
@@ -929,6 +972,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeBoxConstraints]
   ///  * [decodeClip]
   ///  * [decodeColor]
   ///  * [decodeShapeBorder]
@@ -955,6 +999,10 @@ class ThemeDecoder {
           value['clipBehavior'],
           validate: false,
         ),
+        constraints: decodeBoxConstraints(
+          value['constraints'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
         modalBackgroundColor: decodeColor(
           value['modalBackgroundColor'],
@@ -971,8 +1019,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [BoxBorder].  If the value is [null]
-  /// then [null] will be returned.
+  /// Decodes the given [value] into a [BoxBorder].  If the value is `null`
+  /// then `null` will be returned.
   ///
   /// This accepts two separate types of JSON.  If the [value] has any of:
   /// "color", "style", "width", then this will apply the border to all sides
@@ -1044,8 +1092,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [BoxConstraints].  If the value is [null]
-  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// Decodes the given [value] into a [BoxConstraints].  If the value is `null`
+  /// then `null` will be returned.  Otherwise, this expects a Map like value
   /// that in JSON would look like:
   ///
   /// ```json
@@ -1081,8 +1129,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [BoxDecoration].  If the value is [null]
-  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// Decodes the given [value] into a [BoxDecoration].  If the value is `null`
+  /// then `null` will be returned.  Otherwise, this expects a Map like value
   /// that in JSON would look like:
   ///
   /// ```json
@@ -1211,8 +1259,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [BoxDecoration].  If the value is [null]
-  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// Decodes the given [value] into a [BoxDecoration].  If the value is `null`
+  /// then `null` will be returned.  Otherwise, this expects a Map like value
   /// that in JSON would look like:
   ///
   /// ```json
@@ -1442,7 +1490,9 @@ class ThemeDecoder {
   ///   "backgroundColor": <MaterialStateProperty<Color>>,
   ///   "elevation": <MaterialStateProperty<double>>,
   ///   "enableFeedback": <bool>,
+  ///   "fixedSize": <MaterialStateProperty<double>>,
   ///   "foregroundColor": <MaterialStateProperty<Color>>,
+  ///   "maximumSize": <MaterialStateProperty<double>>,
   ///   "minimumSize": <MaterialStateProperty<Size>>,
   ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "overlayColor": <MaterialStateProperty<Color>>,
@@ -1506,8 +1556,16 @@ class ThemeDecoder {
         enableFeedback: value['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
+        fixedSize: decodeMaterialStatePropertySize(
+          value['fixedSize'],
+          validate: false,
+        ),
         foregroundColor: decodeMaterialStatePropertyColor(
           value['foregroundColor'],
+          validate: false,
+        ),
+        maximumSize: decodeMaterialStatePropertySize(
+          value['maximumSize'],
           validate: false,
         ),
         minimumSize: decodeMaterialStatePropertySize(
@@ -1777,17 +1835,21 @@ class ThemeDecoder {
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "overlayColor": <MaterialStateProperty<Color>>,
+  ///   "shape": <OutlinedBorder>,
+  ///   "side": <BorderSide>,
   ///   "splashRadius": <double>,
   ///   "visualDensity": <VisualDensity>
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [decodeBorderSide]
   ///  * [decodeColor]
   ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
+  ///  * [decodeOutlinedBorder]
   ///  * [decodeVisualDensity]
   static CheckboxThemeData? decodeCheckboxThemeData(
     dynamic value, {
@@ -1822,6 +1884,14 @@ class ThemeDecoder {
         ),
         overlayColor: decodeMaterialStatePropertyColor(
           value['overlayColor'],
+          validate: false,
+        ),
+        shape: decodeOutlinedBorder(
+          value['outlinedBorder'],
+          validate: false,
+        ),
+        side: decodeBorderSide(
+          value['borderSide'],
           validate: false,
         ),
         splashRadius: JsonClass.parseDouble(value['splashRadius']),
@@ -2002,8 +2072,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes a given [value] into a color.  A [value] of [null] will result in
-  /// [null] being returned.
+  /// Decodes a given [value] into a color.  A [value] of `null` will result in
+  /// `null` being returned.
   ///
   /// This supports the following formats:
   ///  * `rgb`
@@ -2397,10 +2467,12 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "checkboxHorizontalMargin": <double>,
   ///   "columnSpacing": <double>,
   ///   "dataRowColor": <MaterialStateProperty<Color>>,
   ///   "dataRowHeight": <double>,
   ///   "dataTextStyle": <TextStyle,
+  ///   "decoration": <BoxDecoration>,
   ///   "dividerThickness": <double>,
   ///   "headingRowColor": <MaterialStateProperty<Color>>,
   ///   "headingRowHeight": <double>,
@@ -2414,6 +2486,7 @@ class ThemeDecoder {
   /// the [MaterialStateProperty.all] function with the value passed in.
   ///
   /// See also:
+  ///  * [decodeBoxDecoration]
   ///  * [decodeColor]
   ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeTextStyle]
@@ -2432,6 +2505,9 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = DataTableThemeData(
+        checkboxHorizontalMargin: JsonClass.parseDouble(
+          value['checkboxHorizontalMargin'],
+        ),
         columnSpacing: JsonClass.parseDouble(
           value['columnSpacing'],
         ),
@@ -2444,6 +2520,10 @@ class ThemeDecoder {
         ),
         dataTextStyle: decodeTextStyle(
           value['dataTextStyle'],
+          validate: false,
+        ),
+        decoration: decodeBoxDecoration(
+          value['decoration'],
           validate: false,
         ),
         dividerThickness: JsonClass.parseDouble(
@@ -3083,20 +3163,29 @@ class ThemeDecoder {
   ///   "backgroundColor": <Color>,
   ///   "disabledElevation": <double>,
   ///   "elevation": <double>,
+  ///   "extendedIconLabelSpacing": <double>,
+  ///   "extendedPadding": <EdgeInsetsGeometry>,
+  ///   "extendedSizeConstraints": <BoxConstraints>,
+  ///   "extendedTextStyle": <TextStyle>
   ///   "focusColor": <Color>,
   ///   "focusElevation": <double>,
   ///   "foregroundColor": <Color>,
   ///   "highlightElevation": <double>,
   ///   "hoverColor": <Color>,
   ///   "hoverElevation": <double>,
+  ///   "largeSizeConstraints": <BoxConstraints>,
   ///   "shape": <ShapeBorder>,
+  ///   "sizeConstraints": <BoxConstraints>,
+  ///   "smallSizeConstraints": <BoxConstraints>,
   ///   "splashColor": <Color>
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
   ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
   static FloatingActionButtonThemeData? decodeFloatingActionButtonThemeData(
     dynamic value, {
     bool validate = true,
@@ -3117,7 +3206,18 @@ class ThemeDecoder {
           validate: false,
         ),
         disabledElevation: JsonClass.parseDouble(value['disabledElevation']),
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
         elevation: JsonClass.parseDouble(value['elevation']),
+        extendedIconLabelSpacing: JsonClass.parseDouble(
+          value['extendedIconLabelSpacing'],
+        ),
+        extendedPadding: decodeEdgeInsetsGeometry(value['extendedPadding']),
+        extendedSizeConstraints: decodeBoxConstraints(
+          value['extendedSizeConstraints'],
+        ),
+        extendedTextStyle: decodeTextStyle(value['extendedTextStyle']),
         focusColor: decodeColor(
           value['focusColor'],
           validate: false,
@@ -3133,9 +3233,18 @@ class ThemeDecoder {
           validate: false,
         ),
         hoverElevation: JsonClass.parseDouble(value['hoverElevation']),
+        largeSizeConstraints: decodeBoxConstraints(
+          value['largeSizeConstraints'],
+        ),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
+        ),
+        sizeConstraints: decodeBoxConstraints(
+          value['sizeConstraints'],
+        ),
+        smallSizeConstraints: decodeBoxConstraints(
+          value['smallSizeConstraints'],
         ),
         splashColor: decodeColor(
           value['splashColor'],
@@ -3365,10 +3474,10 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [Gradient].  If the value is [null]
-  /// then [null] will be returned.
+  /// Decodes the given [value] into a [Gradient].  If the value is `null`
+  /// then `null` will be returned.
   ///
-  /// When the [value] is not [null], this expects a type attribute of one of
+  /// When the [value] is not `null`, this expects a type attribute of one of
   /// the following values:
   ///  * `linear`
   ///  * `radial`
@@ -3560,9 +3669,9 @@ class ThemeDecoder {
   }
 
   /// Decodes the given [value] into a [GradientTransform].  If the value is
-  /// [null] then [null] will be returned.
+  /// `null` then `null` will be returned.
   ///
-  /// When the [value] is not [null], this will always return a concrete
+  /// When the [value] is not `null`, this will always return a concrete
   /// implementation of [GradientRotation].
   ///
   /// ```json
@@ -3639,8 +3748,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into an [IconData].  If the value is [null] then
-  /// [null] will be returned.
+  /// Decodes the given [value] into an [IconData].  If the value is `null` then
+  /// `null` will be returned.
   ///
   /// ```json
   /// {
@@ -3675,8 +3784,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into an [IconThemeData].  If the value is [null]
-  /// then [null] will be returned.
+  /// Decodes the given [value] into an [IconThemeData].  If the value is `null`
+  /// then `null` will be returned.
   ///
   /// ```json
   /// {
@@ -3952,6 +4061,7 @@ class ThemeDecoder {
   /// {
   ///   "alignLabelWithHint": <bool>,
   ///   "border": <InputBorder>,
+  ///   "constraints": <BoxConstraints>,
   ///   "contentPadding": <EdgeInsetsGeometry>,
   ///   "counterStyle": <TextStyle>,
   ///   "disabledBorder": <InputBorder>,
@@ -3962,6 +4072,7 @@ class ThemeDecoder {
   ///   "fillColor": <Color>,
   ///   "filled": <bool>,
   ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
+  ///   "floatingLabelStyle": <TextStyle>,
   ///   "focusColor": <Color>,
   ///   "focusedBorder": <InputBorder>,
   ///   "focusedErrorBorder": <InputBorder>,
@@ -3978,6 +4089,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeInputBorder]
@@ -4001,6 +4113,10 @@ class ThemeDecoder {
         alignLabelWithHint: JsonClass.parseBool(value['alignLabelWithHint']),
         border: decodeInputBorder(
           value['border'],
+          validate: false,
+        ),
+        constraints: decodeBoxConstraints(
+          value['constraints'],
           validate: false,
         ),
         contentPadding: decodeEdgeInsetsGeometry(
@@ -4038,6 +4154,7 @@ class ThemeDecoder {
               validate: false,
             ) ??
             FloatingLabelBehavior.auto,
+        floatingLabelStyle: decodeTextStyle(value['floatingLabelStyle']),
         focusColor: decodeColor(
           value['focusColor'],
           validate: false,
@@ -5289,6 +5406,7 @@ class ThemeDecoder {
   ///  * `grabbing`
   ///  * `help`
   ///  * `move`
+  ///  * `noDrop`
   ///  * `none`
   ///  * `precise`
   ///  * `progress`
@@ -5378,6 +5496,7 @@ class ThemeDecoder {
                 'grabbing',
                 'help',
                 'move',
+                'noDrop',
                 'none',
                 'precise',
                 'progress',
@@ -5454,6 +5573,10 @@ class ThemeDecoder {
 
               case 'move':
                 result = SystemMouseCursors.move;
+                break;
+
+              case 'noDrop':
+                result = SystemMouseCursors.noDrop;
                 break;
 
               case 'none':
@@ -6153,6 +6276,48 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [ProgressIndicatorThemeData].  This
+  /// expects the given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "circularTrackColor": <Color>,
+  ///   "color": <Color>,
+  ///   "linearMinHeight": <double>,
+  ///   "linearTrackColor": <Color>,
+  ///   "refreshBackgroundColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  static ProgressIndicatorThemeData? decodeProgressIndicatorThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ProgressIndicatorThemeData? result;
+
+    if (value is ProgressIndicatorThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/progress_indicator_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = ProgressIndicatorThemeData(
+        circularTrackColor: decodeColor(value['circularTrackColor']),
+        color: decodeColor(value['color']),
+        linearMinHeight: JsonClass.parseDouble(value['linearMinHeight']),
+        linearTrackColor: decodeColor(value['linearTrackColor']),
+        refreshBackgroundColor: decodeColor(value['refreshBackgroundColor']),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [RadioThemeData].  This expects the given
   /// [value] to follow the structure below:
   ///
@@ -6506,7 +6671,7 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [Rect].  If [value] is not [null] then
+  /// Decodes the [value] to a [Rect].  If [value] is not `null` then
   /// it must contain a property named "type" with one of the following values:
   ///  * `center`
   ///  * `circle`
@@ -6699,16 +6864,21 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "crossAxisMargin": <double>,
+  ///   "interactive": <bool>,
   ///   "isAlwaysShown": <bool>,
   ///   "mainAxisMargin": <double>,
   ///   "minThumbLength": <double>,
-  ///   "radius": <MaterialStatePropertyDouble<Radius>>,
+  ///   "radius": <Radius>,
   ///   "showTrackOnHover": <bool>
-  ///   "thickness": <double>
+  ///   "thickness": <MaterialStateProperty<double>>,
+  ///   "thumbColor": <MaterialStateProperty<Color>>,
+  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
+  ///   "trackColor": <MaterialStateProperty<Color>>
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeMaterialStatePropertyDouble]
   ///  * [decodeRadius]
   static ScrollbarThemeData? decodeScrollbarThemeData(
@@ -6727,6 +6897,9 @@ class ThemeDecoder {
       ));
       result = ScrollbarThemeData(
         crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
+        interactive: value['interactive'] == null
+            ? null
+            : JsonClass.parseBool(value['interactive']),
         isAlwaysShown: value['isAlwaysShown'] == null
             ? null
             : JsonClass.parseBool(value['isAlwaysShown']),
@@ -6743,13 +6916,18 @@ class ThemeDecoder {
           value['thickness'],
           validate: false,
         ),
+        thumbColor: decodeMaterialStatePropertyColor(value['thumbColor']),
+        trackBorderColor: decodeMaterialStatePropertyColor(
+          value['trackBorderColor'],
+        ),
+        trackColor: decodeMaterialStatePropertyColor(value['trackColor']),
       );
     }
 
     return result;
   }
 
-  /// Decodes the [value] to a [ScrollPhysics].  If [value] is not [null] then
+  /// Decodes the [value] to a [ScrollPhysics].  If [value] is not `null` then
   /// it must contain a property named "type" with one of the following values:
   ///  * `always`
   ///  * `bouncing`
@@ -7720,8 +7898,8 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [StrutStyle].  If the value is [null]
-  /// then [null] will be returned.  Otherwise, this expects a Map like value
+  /// Decodes the given [value] into a [StrutStyle].  If the value is `null`
+  /// then `null` will be returned.  Otherwise, this expects a Map like value
   /// that in JSON would look like:
   ///
   /// ```json
@@ -7734,6 +7912,7 @@ class ThemeDecoder {
   ///   "forceStrutHeight": <bool>,
   ///   "height": <double>,
   ///   "leading": <double>,
+  ///   "leadingDistribution": <TextLeadingDistribution>,
   ///   "package": <String>
   /// }
   /// ```
@@ -7741,6 +7920,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeFontStyle]
   ///  * [decodeFontWeight]
+  ///  * [decodeTextLeadingDistribution]
   static StrutStyle? decodeStrutStyle(
     dynamic value, {
     bool validate = true,
@@ -7775,6 +7955,9 @@ class ThemeDecoder {
             : JsonClass.parseBool(value['forceStrutHeight']),
         height: JsonClass.parseDouble(value['height']),
         leading: JsonClass.parseDouble(value['leading']),
+        leadingDistribution: decodeTextLeadingDistribution(
+          value['leadingDistribution'],
+        ),
         package: value['package'],
       );
     }
@@ -8439,7 +8622,7 @@ class ThemeDecoder {
   }
 
   /// Decodes the given [value] into a [TextHeightBehavior].  If the value is
-  /// [null] then [null] will be returned.  Otherwise, this expects a Map like
+  /// `null` then `null` will be returned.  Otherwise, this expects a Map like
   /// value that in JSON would look like:
   ///
   /// ```json
@@ -8668,6 +8851,47 @@ class ThemeDecoder {
         }
       }
     }
+    return result;
+  }
+
+  /// Decodes the [value] to a [TextLeadingDistribution].  Supported values are:
+  ///  * `even`
+  ///  * `proportional`
+  static TextLeadingDistribution? decodeTextLeadingDistribution(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TextLeadingDistribution? result;
+    if (value is TextLeadingDistribution) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TextLeadingDistribution',
+        [
+          'even',
+          'proportional',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/text_leading_distribution',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'even':
+            result = TextLeadingDistribution.even;
+            break;
+
+          case 'proportional':
+            result = TextLeadingDistribution.proportional;
+            break;
+        }
+      }
+    }
+
     return result;
   }
 
@@ -8957,16 +9181,6 @@ class ThemeDecoder {
           value['caption'],
           validate: false,
         ),
-        // @deprecated
-        // display1
-        // @deprecated
-        // display2
-        // @deprecated
-        // display3
-        // @deprecated
-        // display4
-        // @deprecated
-        // headline
         headline1: decodeTextStyle(
           value['headline1'],
           validate: false,
@@ -8995,8 +9209,6 @@ class ThemeDecoder {
           value['overline'],
           validate: false,
         ),
-        // @deprecated
-        // subhead
         subtitle1: decodeTextStyle(
           value['subtitle1'],
           validate: false,
@@ -9005,8 +9217,6 @@ class ThemeDecoder {
           value['subtitle2'],
           validate: false,
         ),
-        // @deprecated
-        // title
       );
     }
 
@@ -9059,10 +9269,6 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "accentColor": <Color>,
-  ///   "accentColorBrightness": <Brightness>,
-  ///   "accentIconTheme": <IconThemeData>,
-  ///   "accentTextTheme": <TextTheme>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
   ///   "backgroundColor": <Color>,
@@ -9073,7 +9279,6 @@ class ThemeDecoder {
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
   ///   "brightness": <Brightness>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
-  ///   "buttonColor": <Color>,
   ///   "buttonTheme": <ButtonThemeData>,
   ///   "canvasColor": <Color>,
   ///   "cardColor": <Color>,
@@ -9091,7 +9296,6 @@ class ThemeDecoder {
   ///   "dividerTheme": <DividerThemeData>,
   ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
-  ///   "fixTextFieldOutlineLabel": <bool>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
   ///   "focusColor": <Color>,
   ///   "fontFamily": <String>,
@@ -9114,6 +9318,7 @@ class ThemeDecoder {
   ///   "primaryIconTheme": <IconThemeData>,
   ///   "primarySwatch": <MaterialColor>,
   ///   "primaryTextTheme": <TextTheme>,
+  ///   "progressIndicatorTheme": <ProgressIndicatorTheme>,
   ///   "radioTheme": <RadioThemeData>,
   ///   "scaffoldBackgroundColor": <Color>,
   ///   "scrollbarTheme": <ScrollbarThemeData>,
@@ -9168,6 +9373,7 @@ class ThemeDecoder {
   ///  * [decodeOutlinedButtonThemeData]
   ///  * [decodePageTransitionsTheme]
   ///  * [decodePopupMenuThemeData]
+  ///  * [decodeProgressIndicatorTheme]
   ///  * [decodeRadioThemeData]
   ///  * [decodeScrollbarThemeData]
   ///  * [decodeSliderThemeData]
@@ -9197,22 +9403,6 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ThemeData(
-        accentColor: decodeColor(
-          value['accentColor'],
-          validate: false,
-        ),
-        accentColorBrightness: decodeBrightness(
-          value['accentColorBrightness'],
-          validate: false,
-        ),
-        accentIconTheme: decodeIconThemeData(
-          value['accentIconTheme'],
-          validate: false,
-        ),
-        accentTextTheme: decodeTextTheme(
-          value['accentTextTheme'],
-          validate: false,
-        ),
         appBarTheme: decodeAppBarTheme(
           value['appBarTheme'],
           validate: false,
@@ -9252,10 +9442,6 @@ class ThemeDecoder {
           value['buttonBarTheme'],
           validate: false,
         ),
-        buttonColor: decodeColor(
-          value['buttonColor'],
-          validate: false,
-        ),
         buttonTheme: decodeButtonThemeData(
           value['buttonTheme'],
           validate: false,
@@ -9288,8 +9474,6 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
-        // @deprecated
-        // cursorColor
         dataTableTheme: decodeDataTableThemeData(
           value['dataTableTheme'],
           validate: false,
@@ -9322,9 +9506,6 @@ class ThemeDecoder {
           value['errorColor'],
           validate: false,
         ),
-        fixTextFieldOutlineLabel: value['fixTextFieldOutlineLabel'] == null
-            ? null
-            : JsonClass.parseBool(value['fixTextFieldOutlineLabel']),
         floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
           value['floatingActionButtonTheme'],
           validate: false,
@@ -9410,6 +9591,10 @@ class ThemeDecoder {
           value['primaryTextTheme'],
           validate: false,
         ),
+        progressIndicatorTheme: decodeProgressIndicatorThemeData(
+          value['progressIndicatorTheme'],
+          validate: false,
+        ),
         radioTheme: decodeRadioThemeData(
           value['radioTheme'],
           validate: false,
@@ -9462,11 +9647,6 @@ class ThemeDecoder {
           value['textButtonTheme'],
           validate: false,
         ),
-        // @deprecated
-        // textSelectionColor
-
-        // @deprecated
-        // textSelectionHandleColor
         textSelectionTheme: decodeTextSelectionThemeData(
           value['textSelectionTheme'],
           validate: false,
@@ -9499,8 +9679,6 @@ class ThemeDecoder {
           value['unselectedWidgetColor'],
           validate: false,
         ),
-        // @deprecated
-        // useTextSelectionTheme
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
           validate: false,
@@ -9784,6 +9962,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "enableFeedback": <bool>,
   ///   "excludeFromSemantics": <bool>,
   ///   "height": <double>,
   ///   "margin": <EdgeInsetsGeometry>,
@@ -9799,6 +9978,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeTextStyle]
+  ///  * [decodeTooltipTriggerMode]
   static TooltipThemeData? decodeTooltipThemeData(
     dynamic value, {
     bool validate = true,
@@ -9820,6 +10000,9 @@ class ThemeDecoder {
       result = TooltipThemeData(
         // @unencodable
         // decoration
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
         excludeFromSemantics: value['excludeFromSemantics'] == null
             ? null
             : JsonClass.parseBool(value['excludeFromSemantics']),
@@ -9840,9 +10023,54 @@ class ThemeDecoder {
           value['textStyle'],
           validate: false,
         ),
+        triggerMode: decodeTooltipTriggerMode(
+          value['triggerMode'],
+          validate: false,
+        ),
         verticalOffset: JsonClass.parseDouble(value['verticalOffset']),
         waitDuration: JsonClass.parseDurationFromMillis(value['waitDuration']),
       );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [TooltipTriggerMode].  Supported values are:
+  ///  * `longPress`
+  ///  * `manual`
+  ///  * `tap`
+  static TooltipTriggerMode? decodeTooltipTriggerMode(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TooltipTriggerMode? result;
+
+    if (value is TooltipTriggerMode) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'TooltipTriggerMode',
+        [
+          'longPress',
+          'manual',
+          'tap',
+        ],
+        value,
+      );
+
+      switch (value) {
+        case 'longPress':
+          result = TooltipTriggerMode.longPress;
+          break;
+
+        case 'manual':
+          result = TooltipTriggerMode.manual;
+          break;
+
+        case 'tap':
+          result = TooltipTriggerMode.tap;
+          break;
+      }
     }
 
     return result;

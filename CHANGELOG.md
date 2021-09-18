@@ -1,3 +1,8 @@
+# [3.0.0] - September 18th, 2021
+
+* Update to Flutter 2.5 and removed support for deprecated values
+
+
 # [2.1.1] - August 20th, 2021
 
 * (CONTRIBUTION) - Fix for incorrect property in schema for BottomAppBar

@@ -12,17 +12,23 @@ class CheckboxThemeDataSchema {
     'title': 'CheckboxThemeDataSchema',
     'type': 'object',
     'properties': {
-      'checkColor':
-          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
-      'fillColor':
-          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+      'checkColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'fillColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
-      'mouseCursor':
-          SchemaHelper.objectSchema(MaterialStatePropertyMouseCursorSchema.id),
-      'overlayColor':
-          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(
+        MaterialStatePropertyMouseCursorSchema.id,
+      ),
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'shape': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
+      'side': SchemaHelper.objectSchema(BorderSideSchema.id),
       'splashRadius': SchemaHelper.numberSchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },

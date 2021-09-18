@@ -11,8 +11,8 @@ import 'package:meta/meta.dart';
 /// Encoder capable of converting Flutter Theme related classes and enums into
 /// JSON compatible values.
 ///
-/// Unless otherwise stated, each function will return [null] when given an
-/// input of [null].
+/// Unless otherwise stated, each function will return `null` when given an
+/// input of `null`.
 @immutable
 class ThemeEncoder {
   ThemeEncoder._();
@@ -29,7 +29,7 @@ class ThemeEncoder {
   ///  * `topLeft`
   ///  * `topRight`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeAlignment(Alignment? value) {
     String? result;
 
@@ -80,18 +80,15 @@ class ThemeEncoder {
   /// {
   ///   "actionsIconTheme": <IconThemeData>,
   ///   "backgroundColor": <Color>,
-  ///   "backwardsCompatibility": <bool>,
-  ///   "brightness": <Brightness>,
   ///   "centerTitle": <bool>,
-  ///   "color": <Color>,
   ///   "elevation": <double>,
   ///   "foregroundColor": <Color>,
   ///   "iconTheme": <IconThemeData>,
   ///   "shadowColor": <Color>,
   ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
-  ///   "textTheme": <TextTheme>,
   ///   "titleSpacing": <double>,
   ///   "titleTextStyle": <TextStyle>,
+  ///   "toolbarHeight": <double>,
   ///   "toolbarTextStyle": <TextStyle>
   /// }
   /// ```
@@ -108,10 +105,7 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'actionsIconTheme': encodeIconThemeData(value.actionsIconTheme),
-        'backgroundColor':
-            encodeColor(value.backgroundColor) ?? encodeColor(value.color),
-        'backwardsCompatibility': value.backwardsCompatibility,
-        'brightness': encodeBrightness(value.brightness),
+        'backgroundColor': encodeColor(value.backgroundColor),
         'centerTitle': value.centerTitle,
         'elevation': value.elevation,
         'foregroundColor': encodeColor(value.foregroundColor),
@@ -119,9 +113,9 @@ class ThemeEncoder {
         'shadowColor': encodeColor(value.shadowColor),
         'systemOverlayStyle':
             encodeSystemUiOverlayStyle(value.systemOverlayStyle),
-        'textTheme': encodeTextTheme(value.textTheme),
         'titleSpacing': value.titleSpacing,
         'titleTextStyle': encodeTextStyle(value.titleTextStyle),
+        'toolbarHeight': value.toolbarHeight,
         'toolbarTextStyle': encodeTextStyle(value.toolbarTextStyle),
       };
     }
@@ -397,7 +391,7 @@ class ThemeEncoder {
   ///  * `none`
   ///  * `solid`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeBorderStyle(BorderStyle? value) {
     String? result;
 
@@ -450,6 +444,7 @@ class ThemeEncoder {
   /// {
   ///   "backgroundColor": <Color>,
   ///   "elevation": <double>,
+  ///   "landscapeLayout": <BottomNavigationBarLandscapeLayout>,
   ///   "selectedIconTheme": <IconThemeData>,
   ///   "selectedIconColor": <Color>,
   ///   "selectedLabelStyle": <TextStyle>,
@@ -476,6 +471,9 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'backgroundColor': encodeColor(value.backgroundColor),
         'elevation': value.elevation,
+        'landscapeLayout': encodeBottomNavigationBarLandscapeLayout(
+          value.landscapeLayout,
+        ),
         'selectedIconTheme': encodeIconThemeData(value.selectedIconTheme),
         'selectedItemColor': encodeColor(value.selectedItemColor),
         'selectedLabelStyle': encodeTextStyle(value.selectedLabelStyle),
@@ -493,10 +491,41 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `centered`
+  ///  * `linear`
+  ///  * `spread`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeBottomNavigationBarLandscapeLayout(
+    BottomNavigationBarLandscapeLayout? value,
+  ) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case BottomNavigationBarLandscapeLayout.centered:
+          result = 'centered';
+          break;
+
+        case BottomNavigationBarLandscapeLayout.linear:
+          result = 'linear';
+          break;
+
+        case BottomNavigationBarLandscapeLayout.spread:
+          result = 'spread';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `fixed`
   ///  * `shifting`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeBottomNavigationBarType(BottomNavigationBarType? value) {
     String? result;
 
@@ -520,6 +549,7 @@ class ThemeEncoder {
   /// {
   ///   "backgroundColor": <Color>,
   ///   "clipBehavior": <Clip>,
+  ///   "constraints": <BoxConstraints>,
   ///   "elevation": <double>,
   ///   "modalBackgroundColor": <Color>,
   ///   "modalElevation": <double>,
@@ -528,6 +558,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeBoxConstraints]
   ///  * [encodeClip]
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
@@ -540,6 +571,7 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'backgroundColor': encodeColor(value.backgroundColor),
         'clipBehavior': encodeClip(value.clipBehavior),
+        'constraints': encodeBoxConstraints(value.constraints),
         'elevation': value.elevation,
         'modalBackgroundColor': encodeColor(value.modalBackgroundColor),
         'modalElevation': value.modalElevation,
@@ -561,7 +593,7 @@ class ThemeEncoder {
   ///   "top": <BorderSide>
   /// }
   /// ```
-  /// A [value] of [null] will result in [null] being returned.
+  /// A [value] of `null` will result in `null` being returned.
   ///
   /// See also:
   ///  * [encodeBorderSide]
@@ -592,7 +624,7 @@ class ThemeEncoder {
   /// }
   /// ```
   ///
-  /// A [value] of [null] will result in [null] being returned.
+  /// A [value] of `null` will result in `null` being returned.
   static Map<String, dynamic>? encodeBoxConstraints(BoxConstraints? value) {
     Map<String, dynamic>? result;
 
@@ -625,7 +657,7 @@ class ThemeEncoder {
   /// }
   /// ```
   ///
-  /// A [value] of [null] will result in [null] being returned.
+  /// A [value] of `null` will result in `null` being returned.
   ///
   /// See also:
   ///  * [encodeBlendMode]
@@ -761,7 +793,7 @@ class ThemeEncoder {
   ///  * `dark`
   ///  * `light`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeBrightness(Brightness? value) {
     String? result;
 
@@ -785,7 +817,7 @@ class ThemeEncoder {
   ///  * `constrained`
   ///  * `padded`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeButtonBarLayoutBehavior(ButtonBarLayoutBehavior? value) {
     String? result;
 
@@ -858,7 +890,9 @@ class ThemeEncoder {
   ///   "backgroundColor": <MaterialStateProperty<Color>>,
   ///   "elevation": <MaterialStateProperty<double>>,
   ///   "enableFeedback": <bool>,
+  ///   "fixedSize": <MaterialStateProperty<double>>,
   ///   "foregroundColor": <MaterialStateProperty<Color>>,
+  ///   "maximumSize": <MaterialStateProperty<double>>,
   ///   "minimumSize": <MaterialStateProperty<Size>>,
   ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "overlayColor": <MaterialStateProperty<Color>>,
@@ -908,9 +942,11 @@ class ThemeEncoder {
         ),
         'elevation': encodeMaterialStatePropertyDouble(value.elevation),
         'enableFeedback': value.enableFeedback,
+        'fixedSize': encodeMaterialStatePropertySize(value.fixedSize),
         'foregroundColor': encodeMaterialStatePropertyColor(
           value.foregroundColor,
         ),
+        'maximumSize': encodeMaterialStatePropertySize(value.maximumSize),
         'minimumSize': encodeMaterialStatePropertySize(value.minimumSize),
         'mouseCursor': encodeMaterialStatePropertyMouseCursor(
           value.mouseCursor,
@@ -939,7 +975,7 @@ class ThemeEncoder {
   ///  * `normal`
   ///  * `primary`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeButtonTextTheme(ButtonTextTheme? value) {
     String? result;
 
@@ -1049,10 +1085,12 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "checkColor": <Color>,
-  ///   "fillColor": <Color>,
+  ///   "fillColor": <MaterialStateProperty<Color>>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "overlayColor": <Color>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
+  ///   "overlayColor": <MaterialStateProperty<Color>>,
+  ///   "shape": <OutlinedBorder>,
+  ///   "side": <BorderSide>,
   ///   "splashRadius": <double>,
   ///   "visualDensity": <VisualDensity>
   /// }
@@ -1086,6 +1124,8 @@ class ThemeEncoder {
         'overlayColor': encodeMaterialStatePropertyColor(
           value.overlayColor,
         ),
+        'shape': encodeOutlinedBorder(value.shape),
+        'side': encodeBorderSide(value.side),
         'splashRadius': value.splashRadius,
         'visualDensity': encodeVisualDensity(value.visualDensity),
       };
@@ -1163,7 +1203,7 @@ class ThemeEncoder {
   ///  * `hardEdge`
   ///  * `none`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeClip(Clip? value) {
     String? result;
 
@@ -1190,7 +1230,7 @@ class ThemeEncoder {
   /// Encodes the given [value] to the String representation.  This will always
   /// use a hash encoded 8 digit string: "#aarrbbgg" format.
   ///
-  /// This will return [null] if the value is [null].
+  /// This will return `null` if the value is `null`.
   static String? encodeColor(Color? value) {
     String? result;
 
@@ -1257,7 +1297,7 @@ class ThemeEncoder {
   ///  * `start`
   ///  * `stretch`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeCrossAxisAlignment(CrossAxisAlignment? value) {
     String? result;
 
@@ -1289,7 +1329,7 @@ class ThemeEncoder {
   ///  * `showFirst`
   ///  * `showSecond`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeCrossFadeState(CrossFadeState? value) {
     String? result;
 
@@ -1408,10 +1448,12 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "checkboxHorizontalMargin": <double>,
   ///   "columnSpacing": <double>,
   ///   "dataRowColor": <MaterialStateProperty<Color>>,
   ///   "dataRowHeight": <double>,
   ///   "dataTextStyle": <TextStyle,
+  ///   "decoration": <BoxDecoration>,
   ///   "dividerThickness": <double>,
   ///   "headingRowColor": <MaterialStateProperty<Color>>,
   ///   "headingRowHeight": <double>,
@@ -1433,6 +1475,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'checkboxHorizontalMargin': value.checkboxHorizontalMargin,
         'columnSpacing': value.columnSpacing,
         'dataRowColor': encodeMaterialStatePropertyColor(
           value.dataRowColor,
@@ -1440,6 +1483,11 @@ class ThemeEncoder {
         'dataRowHeight': value.dataRowHeight,
         'dataTextStyle': encodeTextStyle(
           value.dataTextStyle,
+        ),
+        'decoration': encodeBoxDecoration(
+          value.decoration is! BoxDecoration
+              ? null
+              : value.decoration as BoxDecoration,
         ),
         'dividerThickness': value.dividerThickness,
         'headingRowColor': encodeMaterialStatePropertyColor(
@@ -1499,7 +1547,7 @@ class ThemeEncoder {
   ///  * `background`
   ///  * `foreground`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeDecorationPosition(DecorationPosition? value) {
     String? result;
 
@@ -1798,20 +1846,29 @@ class ThemeEncoder {
   ///   "backgroundColor": <Color>,
   ///   "disabledElevation": <double>,
   ///   "elevation": <double>,
+  ///   "extendedIconLabelSpacing": <double>,
+  ///   "extendedPadding": <EdgeInsetsGeometry>,
+  ///   "extendedSizeConstraints": <BoxConstraints>,
+  ///   "extendedTextStyle": <TextStyle>
   ///   "focusColor": <Color>,
   ///   "focusElevation": <double>,
   ///   "foregroundColor": <Color>,
   ///   "highlightElevation": <double>,
   ///   "hoverColor": <Color>,
   ///   "hoverElevation": <double>,
+  ///   "largeSizeConstraints": <BoxConstraints>,
   ///   "shape": <ShapeBorder>,
+  ///   "sizeConstraints": <BoxConstraints>,
+  ///   "smallSizeConstraints": <BoxConstraints>,
   ///   "splashColor": <Color>
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [encodeBoxConstraints]
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeFloatingActionButtonThemeData(
     FloatingActionButtonThemeData? value,
   ) {
@@ -1822,13 +1879,29 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'disabledElevation': value.disabledElevation,
         'elevation': value.elevation,
+        'enableFeedback': value.enableFeedback,
+        'extendedIconLabelSpacing': value.extendedIconLabelSpacing,
+        'extendedPadding': encodeEdgeInsetsGeometry(
+          value.extendedPadding as EdgeInsets?,
+        ),
+        'extendedSizeConstraints': encodeBoxConstraints(
+          value.extendedSizeConstraints,
+        ),
+        'extendedTextStyle': encodeTextStyle(value.extendedTextStyle),
         'focusColor': encodeColor(value.focusColor),
         'focusElevation': value.focusElevation,
         'foregroundColor': encodeColor(value.foregroundColor),
         'highlightElevation': value.highlightElevation,
         'hoverColor': encodeColor(value.hoverColor),
         'hoverElevation': value.hoverElevation,
+        'largeSizeConstraints': encodeBoxConstraints(
+          value.largeSizeConstraints,
+        ),
         'shape': encodeShapeBorder(value.shape),
+        'sizeConstraints': encodeBoxConstraints(value.sizeConstraints),
+        'smallSizeConstraints': encodeBoxConstraints(
+          value.smallSizeConstraints,
+        ),
         'splashColor': encodeColor(value.splashColor),
       };
     }
@@ -1842,7 +1915,7 @@ class ThemeEncoder {
   ///  * `auto`
   ///  * `never`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeFloatingLabelBehavior(FloatingLabelBehavior? value) {
     String? result;
 
@@ -1898,7 +1971,7 @@ class ThemeEncoder {
   ///  * `w800`
   ///  * `w900`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeFontWeight(FontWeight? value) {
     String? result;
 
@@ -1958,7 +2031,7 @@ class ThemeEncoder {
   ///  * `italic`
   ///  * `normal`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeFontStyle(FontStyle? value) {
     String? result;
 
@@ -2351,6 +2424,7 @@ class ThemeEncoder {
   /// {
   ///   "alignLabelWithHint": <bool>,
   ///   "border": <InputBorder>,
+  ///   "constraints": <BoxConstraints>,
   ///   "contentPadding": <EdgeInsetsGeometry>,
   ///   "counterStyle": <TextStyle>,
   ///   "disabledBorder": <InputBorder>,
@@ -2361,6 +2435,7 @@ class ThemeEncoder {
   ///   "fillColor": <Color>,
   ///   "filled": <bool>,
   ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
+  ///   "floatingLabelStyle": <TextStyle>,
   ///   "focusColor": <Color>,
   ///   "focusedBorder": <InputBorder>,
   ///   "focusedErrorBorder": <InputBorder>,
@@ -2391,6 +2466,7 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'alignLabelWithHint': value.alignLabelWithHint,
         'border': encodeInputBorder(value.border),
+        'constraints': encodeBoxConstraints(value.constraints),
         'contentPadding':
             encodeEdgeInsetsGeometry(value.contentPadding as EdgeInsets?),
         'counterStyle': encodeTextStyle(value.counterStyle),
@@ -2404,6 +2480,7 @@ class ThemeEncoder {
         'floatingLabelBehavior': encodeFloatingLabelBehavior(
           value.floatingLabelBehavior,
         ),
+        'floatingLabelStyle': encodeTextStyle(value.floatingLabelStyle),
         'focusColor': encodeColor(value.focusColor),
         'focusedBorder': encodeInputBorder(value.focusedBorder),
         'focusedErrorBorder': encodeInputBorder(value.focusedErrorBorder),
@@ -2427,7 +2504,7 @@ class ThemeEncoder {
   ///  * `splash`
   ///  * `ripple`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeInteractiveInkFeatureFactory(
     InteractiveInkFeatureFactory? value,
   ) {
@@ -2480,7 +2557,7 @@ class ThemeEncoder {
   ///  * `spaceEvenly`
   ///  * `start`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeMainAxisAlignment(MainAxisAlignment? value) {
     String? result;
 
@@ -2515,7 +2592,7 @@ class ThemeEncoder {
   ///  * `max`
   ///  * `min`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeMainAxisSize(MainAxisSize? value) {
     String? result;
     if (value != null) {
@@ -2942,7 +3019,7 @@ class ThemeEncoder {
   ///  * `padded`
   ///  * `shrinkWrap`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeMaterialTapTargetSize(MaterialTapTargetSize? value) {
     String? result;
 
@@ -2968,7 +3045,7 @@ class ThemeEncoder {
   ///  * `circle`
   ///  * `transparency`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeMaterialType(MaterialType? value) {
     String? result;
 
@@ -3092,6 +3169,7 @@ class ThemeEncoder {
   ///  * `grabbing`
   ///  * `help`
   ///  * `move`
+  ///  * `noDrop`
   ///  * `none`
   ///  * `precise`
   ///  * `progress`
@@ -3198,6 +3276,11 @@ class ThemeEncoder {
       } else if (SystemMouseCursors.move == value) {
         result = {
           'cursor': 'move',
+          'type': 'system',
+        };
+      } else if (SystemMouseCursors.noDrop == value) {
+        result = {
+          'cursor': 'noDrop',
           'type': 'system',
         };
       } else if (SystemMouseCursors.none == value) {
@@ -3317,7 +3400,7 @@ class ThemeEncoder {
   ///  * `none`
   ///  * `selected`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeNavigationRailLabelType(NavigationRailLabelType? value) {
     String? result;
 
@@ -3389,7 +3472,7 @@ class ThemeEncoder {
   /// are:
   ///  * `circular`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeNotchedShape(NotchedShape? value) {
     assert(value == null || value is CircularNotchedRectangle);
     String? result;
@@ -3675,6 +3758,38 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "circularTrackColor": <Color>,
+  ///   "color": <Color>,
+  ///   "linearMinHeight": <double>,
+  ///   "linearTrackColor": <Color>,
+  ///   "refreshBackgroundColor": <Color>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  static Map<String, dynamic>? encodeProgressIndicatorThemeData(
+    ProgressIndicatorThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'circularTrackColor': encodeColor(value.circularTrackColor),
+        'color': encodeColor(value.color),
+        'linearMinHeight': value.linearMinHeight,
+        'linearTrackColor': encodeColor(value.linearTrackColor),
+        'refreshBackgroundColor': encodeColor(value.refreshBackgroundColor),
+      };
+    }
+
+    return result;
+  }
+
   /// Encodes the given [RadioThemeData] to a JSON representation.
   ///
   /// ```json
@@ -3814,7 +3929,7 @@ class ThemeEncoder {
   ///  * `rectangular`
   ///  * `rounded`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeRangeSliderTrackShape(RangeSliderTrackShape? value) {
     assert(value == null ||
         value is RectangularRangeSliderTrackShape ||
@@ -3837,7 +3952,7 @@ class ThemeEncoder {
   ///  * `paddle`
   ///  * `rectangular`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeRangeSliderValueIndicatorShape(
     RangeSliderValueIndicatorShape? value,
   ) {
@@ -3891,16 +4006,22 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "crossAxisMargin": <double>,
+  ///   "interactive": <bool>,
   ///   "isAlwaysShown": <bool>,
   ///   "mainAxisMargin": <double>,
   ///   "minThumbLength": <double>,
   ///   "radius": <Radius>,
-  ///   "showTrackOnHover": <bool>
-  ///   "thickness": <double>
+  ///   "showTrackOnHover": <bool>,
+  ///   "thickness": <MaterialStateProperty<double>>,
+  ///   "thumbColor": <MaterialStateProperty<Color>>,
+  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
+  ///   "trackColor": <MaterialStateProperty<Color>>
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeMaterialStatePropertyDouble]
   ///  * [encodeRadius]
   static Map<String, dynamic>? encodeScrollbarThemeData(
     ScrollbarThemeData? value,
@@ -3910,6 +4031,7 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'crossAxisMargin': value.crossAxisMargin,
+        'interactive': value.interactive,
         'isAlwaysShown': value.isAlwaysShown,
         'mainAxisMargin': value.mainAxisMargin,
         'minThumbLength': value.minThumbLength,
@@ -3918,6 +4040,11 @@ class ThemeEncoder {
         'thickness': encodeMaterialStatePropertyDouble(
           value.thickness,
         ),
+        'thumbColor': encodeMaterialStatePropertyColor(value.thumbColor),
+        'trackBorderColor': encodeMaterialStatePropertyColor(
+          value.trackBorderColor,
+        ),
+        'trackColor': encodeMaterialStatePropertyColor(value.trackColor),
       };
     }
 
@@ -4140,7 +4267,7 @@ class ThemeEncoder {
   ///  * `onlyForContinuous`
   ///  * `onlyForDiscrete`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeShowValueIndicator(ShowValueIndicator? value) {
     String? result;
 
@@ -4193,7 +4320,7 @@ class ThemeEncoder {
   /// are:
   ///  * `noOverlay`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeSliderComponentShape(
     SliderComponentShape? value,
   ) {
@@ -4379,7 +4506,7 @@ class ThemeEncoder {
   ///  * `disabled`
   ///  * `enabled`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeSmartDashesType(SmartDashesType? value) {
     String? result;
 
@@ -4402,7 +4529,7 @@ class ThemeEncoder {
   ///  * `disabled`
   ///  * `enabled`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeSmartQuotesType(SmartQuotesType? value) {
     String? result;
 
@@ -4425,7 +4552,7 @@ class ThemeEncoder {
   ///  * `fixed`
   ///  * `floating`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeSnackBarBehavior(SnackBarBehavior? value) {
     String? result;
 
@@ -4521,6 +4648,7 @@ class ThemeEncoder {
   ///   "forceStrutHeight": <bool>,
   ///   "height": <double>,
   ///   "leading": <double>,
+  ///   "leadingDistribution": <TextLeadingDistribution>,
   ///   "package": <String>
   /// }
   /// ```
@@ -4528,6 +4656,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeFontStyle]
   ///  * [encodeFontWeight]
+  ///  * [encodeTextLeadingDistribution]
   static Map<String, dynamic>? encodeStrutStyle(StrutStyle? value) {
     Map<String, dynamic>? result;
 
@@ -4541,6 +4670,9 @@ class ThemeEncoder {
         'forceStrutHeight': value.forceStrutHeight,
         'height': value.height,
         'leading': value.leading,
+        'leadingDistribution': encodeTextLeadingDistribution(
+          value.leadingDistribution,
+        ),
       };
     }
 
@@ -4552,7 +4684,7 @@ class ThemeEncoder {
   ///  * `dark`
   ///  * `light`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeSystemUiOverlayStyle(
     SystemUiOverlayStyle? value,
   ) {
@@ -4574,7 +4706,7 @@ class ThemeEncoder {
   ///  * `label`
   ///  * `tab`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTabBarIndicatorSize(TabBarIndicatorSize? value) {
     String? result;
 
@@ -4638,7 +4770,7 @@ class ThemeEncoder {
   ///  * `macOS`
   ///  * `windows`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTargetPlatform(TargetPlatform? value) {
     String? result;
 
@@ -4682,7 +4814,7 @@ class ThemeEncoder {
   ///  * `right`
   ///  * `start`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextAlign(TextAlign? value) {
     String? result;
 
@@ -4718,7 +4850,7 @@ class ThemeEncoder {
   ///  * `center`
   ///  * `top`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextAlignVertical(TextAlignVertical? value) {
     String? result;
 
@@ -4744,7 +4876,7 @@ class ThemeEncoder {
   ///  * `alphabetic`
   ///  * `ideographic`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextBaseline(TextBaseline? value) {
     String? result;
 
@@ -4794,7 +4926,7 @@ class ThemeEncoder {
   ///  * `sentences`
   ///  * `words`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextCapitalization(TextCapitalization? value) {
     String? result;
 
@@ -4828,7 +4960,7 @@ class ThemeEncoder {
   ///  * `overline`
   ///  * `underline`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextDecoration(TextDecoration? value) {
     String? result;
 
@@ -4855,7 +4987,7 @@ class ThemeEncoder {
   ///  * `solid`
   ///  * `wavy`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextDecorationStyle(TextDecorationStyle? value) {
     String? result;
 
@@ -4890,7 +5022,7 @@ class ThemeEncoder {
   ///  * `ltr`
   ///  * `rtl`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextDirection(TextDirection? value) {
     String? result;
 
@@ -4924,7 +5056,7 @@ class ThemeEncoder {
   ///  * `send`
   ///  * `unspecified`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextInputAction(TextInputAction? value) {
     String? result;
 
@@ -4999,7 +5131,7 @@ class ThemeEncoder {
   ///  * `url`
   ///  * `visiblePassword`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextInputType(TextInputType? value) {
     String? result;
 
@@ -5054,12 +5186,35 @@ class ThemeEncoder {
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
+  ///  * `even`
+  ///  * `proportional`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeTextLeadingDistribution(TextLeadingDistribution? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case TextLeadingDistribution.even:
+          result = 'even';
+          break;
+
+        case TextLeadingDistribution.proportional:
+          result = 'proportional';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] into a String representation.  Supported values are:
   ///  * `clip`
   ///  * `ellipsis`
   ///  * `fade`
   ///  * `visible`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextOverflow(TextOverflow? value) {
     String? result;
 
@@ -5247,7 +5402,7 @@ class ThemeEncoder {
   ///  * `longestLine`
   ///  * `parent`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeTextWidthBasis(TextWidthBasis? value) {
     String? result;
 
@@ -5270,10 +5425,6 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "accentColor": <Color>,
-  ///   "accentColorBrightness": <Brightness>,
-  ///   "accentIconTheme": <IconThemeData>,
-  ///   "accentTextTheme": <TextTheme>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
   ///   "bannerTheme": <MaterialBannerThemeData>,
@@ -5283,7 +5434,6 @@ class ThemeEncoder {
   ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
   ///   "bottomSheetTheme": <BottomSheetThemeData>,
   ///   "brightness": <Brightness>,
-  ///   "buttonColor": <Color>,
   ///   "buttonBarTheme": <ButtonBarThemeData>,
   ///   "buttonTheme": <ButtonThemeData>,
   ///   "canvasColor": <Color>,
@@ -5381,10 +5531,6 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'accentColor': encodeColor(value.accentColor),
-        'accentColorBrightness': encodeBrightness(value.accentColorBrightness),
-        'accentIconTheme': encodeIconThemeData(value.accentIconTheme),
-        'accentTextTheme': encodeTextTheme(value.accentTextTheme),
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
         'bannerTheme': encodeMaterialBannerThemeData(value.bannerTheme),
@@ -5396,7 +5542,6 @@ class ThemeEncoder {
         ),
         'bottomSheetTheme': encodeBottomSheetThemeData(value.bottomSheetTheme),
         'brightness': encodeBrightness(value.brightness),
-        'buttonColor': encodeColor(value.buttonColor),
         'buttonBarTheme': encodeButtonBarThemeData(value.buttonBarTheme),
         'buttonTheme': encodeButtonThemeData(value.buttonTheme),
         'canvasColor': encodeColor(value.canvasColor),
@@ -5417,7 +5562,6 @@ class ThemeEncoder {
           value.elevatedButtonTheme,
         ),
         'errorColor': encodeColor(value.errorColor),
-        'fixTextFieldOutlineLabel': value.fixTextFieldOutlineLabel,
         'floatingActionButtonTheme': encodeFloatingActionButtonThemeData(
           value.floatingActionButtonTheme,
         ),
@@ -5657,6 +5801,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "enableFeedback": <bool>,
   ///   "excludeFromSemantics": <bool>,
   ///   "height": <double>,
   ///   "margin": <EdgeInsetsGeometry>,
@@ -5664,6 +5809,7 @@ class ThemeEncoder {
   ///   "preferBelow": <bool>
   ///   "showDuration": <int; millis>,
   ///   "textStyle": <TextStyle>,
+  ///   "triggerMode": <TooltipTriggerMode>,
   ///   "verticalOffset": <double>,
   ///   "waitDuration": <int; millis>,
   /// }
@@ -5672,11 +5818,13 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeTextStyle]
+  ///  * [encodeTooltipTriggerMode]
   static Map<String, dynamic>? encodeTooltipThemeData(TooltipThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = <String, dynamic>{
+        'enableFeedback': value.enableFeedback,
         'excludeFromSemantics': value.excludeFromSemantics,
         'height': value.height,
         'margin': encodeEdgeInsetsGeometry(value.margin as EdgeInsets?),
@@ -5684,12 +5832,36 @@ class ThemeEncoder {
         'preferBelow': value.preferBelow,
         'showDuration': value.showDuration?.inMilliseconds,
         'textStyle': encodeTextStyle(value.textStyle),
+        'triggerMode': encodeTooltipTriggerMode(value.triggerMode),
         'verticalOffset': value.verticalOffset,
         'waitDuration': value.waitDuration?.inMilliseconds,
       };
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `longPress`
+  ///  * `manual`
+  ///  * `tap`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeTooltipTriggerMode(TooltipTriggerMode? value) {
+    String? result;
+
+    if (value != null) {
+      if (value == TooltipTriggerMode.longPress) {
+        result = 'longPress';
+      } else if (value == TooltipTriggerMode.manual) {
+        result = 'manual';
+      } else if (value == TooltipTriggerMode.tap) {
+        result = 'tap';
+      }
+    }
+
+    return result;
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned
@@ -5730,7 +5902,7 @@ class ThemeEncoder {
   ///  * `down`
   ///  * `up`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeVerticalDirection(VerticalDirection? value) {
     String? result;
 
@@ -5754,7 +5926,7 @@ class ThemeEncoder {
   ///  * `compact`
   ///  * `standard`
   ///
-  /// All other values, including [null], will result in [null].
+  /// All other values, including `null`, will result in `null`.
   static String? encodeVisualDensity(VisualDensity? value) {
     String? result;
 

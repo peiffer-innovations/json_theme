@@ -18,6 +18,10 @@ class ButtonBarThemeDataSchema {
       'buttonMinWidth': SchemaHelper.numberSchema,
       'buttonPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'buttonTextTheme': SchemaHelper.objectSchema(ButtonTextThemeSchema.id),
+      'enableFeedback': SchemaHelper.boolSchema,
+      'landscapeLayout': SchemaHelper.objectSchema(
+        BottomNavigationBarLandscapeLayoutSchema.id,
+      ),
       'layoutBehavior':
           SchemaHelper.objectSchema(ButtonBarLayoutBehaviorSchema.id),
       'mainAxisSize': SchemaHelper.objectSchema(MainAxisSizeSchema.id),

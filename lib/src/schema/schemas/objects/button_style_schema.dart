@@ -21,9 +21,14 @@ class ButtonStyleSchema {
         MaterialStatePropertyDoubleSchema.id,
       ),
       'enableFeedback': SchemaHelper.boolSchema,
+      'fixedSize': SchemaHelper.objectSchema(
+        MaterialStatePropertySizeSchema.id,
+      ),
       'foregroundColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
+      'maximumSize':
+          SchemaHelper.objectSchema(MaterialStatePropertySizeSchema.id),
       'minimumSize':
           SchemaHelper.objectSchema(MaterialStatePropertySizeSchema.id),
       'mouseCursor': SchemaHelper.objectSchema(

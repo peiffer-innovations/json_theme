@@ -116,13 +116,13 @@ void main() {
     expect(ThemeEncoder.encodeAppBarTheme(null), null);
 
     var entry = AppBarTheme(
-      backwardsCompatibility: true,
-      brightness: Brightness.dark,
       color: _kColor,
       centerTitle: true,
       elevation: 6.0,
       foregroundColor: _kColor,
       shadowColor: _kColor,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
+      toolbarHeight: 64.0,
     );
 
     expect(ThemeDecoder.decodeAppBarTheme(entry), entry);
@@ -135,12 +135,12 @@ void main() {
       json.encode(
         {
           'backgroundColor': _kColorStr,
-          'backwardsCompatibility': true,
-          'brightness': 'dark',
           'centerTitle': true,
           'elevation': 6.0,
           'foregroundColor': _kColorStr,
           'shadowColor': _kColorStr,
+          'systemOverlayStyle': 'dark',
+          'toolbarHeight': 64.0,
         },
       ),
     );
@@ -400,6 +400,50 @@ void main() {
     );
   });
 
+  test('BottomNavigationBarLandscapeLayout', () {
+    expect(ThemeDecoder.decodeBottomNavigationBarLandscapeLayout(null), null);
+    expect(ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(null), null);
+
+    expect(
+      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout(
+        BottomNavigationBarLandscapeLayout.centered,
+      ),
+      BottomNavigationBarLandscapeLayout.centered,
+    );
+
+    expect(
+      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout('centered'),
+      BottomNavigationBarLandscapeLayout.centered,
+    );
+    expect(
+      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout('linear'),
+      BottomNavigationBarLandscapeLayout.linear,
+    );
+    expect(
+      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout('spread'),
+      BottomNavigationBarLandscapeLayout.spread,
+    );
+
+    expect(
+      ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(
+        BottomNavigationBarLandscapeLayout.centered,
+      ),
+      'centered',
+    );
+    expect(
+      ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(
+        BottomNavigationBarLandscapeLayout.linear,
+      ),
+      'linear',
+    );
+    expect(
+      ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(
+        BottomNavigationBarLandscapeLayout.spread,
+      ),
+      'spread',
+    );
+  });
+
   test('BottomNavigationBarThemeData', () {
     expect(ThemeDecoder.decodeBottomNavigationBarThemeData(null), null);
     expect(ThemeEncoder.encodeBottomNavigationBarThemeData(null), null);
@@ -494,6 +538,7 @@ void main() {
     var entry = BottomSheetThemeData(
       backgroundColor: Color(0xff111111),
       clipBehavior: Clip.antiAlias,
+      constraints: BoxConstraints(maxHeight: 40.0),
       elevation: 12.0,
       modalBackgroundColor: Color(0xff222222),
       modalElevation: 18.0,
@@ -512,6 +557,11 @@ void main() {
       {
         'backgroundColor': '#ff111111',
         'clipBehavior': 'antiAlias',
+        'constraints': {
+          'maxHeight': 40.0,
+          'minHeight': 0.0,
+          'minWidth': 0.0,
+        },
         'elevation': 12.0,
         'modalBackgroundColor': '#ff222222',
         'modalElevation': 18.0,
@@ -965,8 +1015,14 @@ void main() {
       ),
       elevation: MaterialStateProperty.all(1.0),
       enableFeedback: false,
+      fixedSize: MaterialStateProperty.all(
+        Size(50.0, 50.0),
+      ),
       foregroundColor: MaterialStateProperty.all(
         Color(0xff555555),
+      ),
+      maximumSize: MaterialStateProperty.all(
+        Size(10.0, 10.0),
       ),
       minimumSize: MaterialStateProperty.all(
         Size(100.0, 100.0),
@@ -1009,7 +1065,15 @@ void main() {
         'backgroundColor': _materializeState('#ff555555'),
         'elevation': _materializeState(1.0),
         'enableFeedback': false,
+        'fixedSize': _materializeState({
+          'height': 50.0,
+          'width': 50.0,
+        }),
         'foregroundColor': _materializeState('#ff555555'),
+        'maximumSize': _materializeState({
+          'height': 10.0,
+          'width': 10.0,
+        }),
         'minimumSize': _materializeState({
           'height': 100.0,
           'width': 100.0,
@@ -1856,12 +1920,14 @@ void main() {
     expect(ThemeEncoder.encodeDataTableThemeData(null), null);
 
     var entry = DataTableThemeData(
+      checkboxHorizontalMargin: 24.0,
       columnSpacing: 1.0,
       dataRowColor: MaterialStateProperty.all(
         Color(0xff555555),
       ),
       dataRowHeight: 1.0,
       dataTextStyle: TextStyle(),
+      decoration: BoxDecoration(color: _kColor),
       dividerThickness: 1.0,
       headingRowColor: MaterialStateProperty.all(
         Color(0xff555555),
@@ -1879,11 +1945,16 @@ void main() {
     expect(
       encoded,
       {
+        'checkboxHorizontalMargin': 24.0,
         'columnSpacing': 1.0,
         'dataRowColor': _materializeState('#ff555555'),
         'dataRowHeight': 1.0,
         'dataTextStyle': {
           'inherit': true,
+        },
+        'decoration': {
+          'color': _kColorStr,
+          'shape': 'rectangle',
         },
         'dividerThickness': 1.0,
         'headingRowColor': _materializeState('#ff555555'),
@@ -2347,13 +2418,33 @@ void main() {
       backgroundColor: Color(0xff111111),
       disabledElevation: 1.0,
       elevation: 2.0,
+      enableFeedback: true,
+      extendedIconLabelSpacing: 1.0,
+      extendedPadding: EdgeInsets.only(top: 2.0),
+      extendedSizeConstraints: BoxConstraints(
+        minHeight: 3.0,
+        minWidth: 4.0,
+      ),
+      extendedTextStyle: TextStyle(color: _kColor),
       focusColor: Color(0xff222222),
       focusElevation: 3.0,
       foregroundColor: Color(0xff333333),
       highlightElevation: 4.0,
       hoverColor: Color(0xff444444),
       hoverElevation: 5.0,
+      largeSizeConstraints: BoxConstraints(
+        minHeight: 5.0,
+        minWidth: 6.0,
+      ),
       shape: RoundedRectangleBorder(),
+      sizeConstraints: BoxConstraints(
+        minHeight: 7.0,
+        minWidth: 8.0,
+      ),
+      smallSizeConstraints: BoxConstraints(
+        minHeight: 9.0,
+        minWidth: 10.0,
+      ),
       splashColor: Color(0xff555555),
     );
 
@@ -2368,12 +2459,32 @@ void main() {
         'backgroundColor': '#ff111111',
         'disabledElevation': 1.0,
         'elevation': 2.0,
+        'enableFeedback': true,
+        'extendedIconLabelSpacing': 1.0,
+        'extendedPadding': {
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 2.0,
+        },
+        'extendedSizeConstraints': {
+          'minHeight': 3.0,
+          'minWidth': 4.0,
+        },
+        'extendedTextStyle': {
+          'color': _kColorStr,
+          'inherit': true,
+        },
         'focusColor': '#ff222222',
         'focusElevation': 3.0,
         'foregroundColor': '#ff333333',
         'highlightElevation': 4.0,
         'hoverColor': '#ff444444',
         'hoverElevation': 5.0,
+        'largeSizeConstraints': {
+          'minHeight': 5.0,
+          'minWidth': 6.0,
+        },
         'shape': {
           'borderRadius': {
             'bottomLeft': {
@@ -2404,6 +2515,14 @@ void main() {
             'width': 0.0,
           },
           'type': 'rounded'
+        },
+        'sizeConstraints': {
+          'minHeight': 7.0,
+          'minWidth': 8.0,
+        },
+        'smallSizeConstraints': {
+          'minHeight': 9.0,
+          'minWidth': 10.0,
         },
         'splashColor': '#ff555555'
       },
@@ -2929,6 +3048,10 @@ void main() {
     var entry = InputDecorationTheme(
       alignLabelWithHint: true,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0)),
+      constraints: BoxConstraints(
+        minHeight: 2.0,
+        minWidth: 1.0,
+      ),
       contentPadding: EdgeInsets.all(10.0),
       counterStyle: TextStyle(color: Color(0xff111111)),
       disabledBorder:
@@ -2944,6 +3067,7 @@ void main() {
       fillColor: Color(0xff333333),
       filled: true,
       floatingLabelBehavior: FloatingLabelBehavior.always,
+      floatingLabelStyle: TextStyle(color: Color(0x00000000)),
       focusColor: Color(0xff444444),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(3.0),
@@ -3002,6 +3126,10 @@ void main() {
           },
           'gapPadding': 4.0,
           'type': 'outline'
+        },
+        'constraints': {
+          'minHeight': 2.0,
+          'minWidth': 1.0,
         },
         'contentPadding': {
           'bottom': 10.0,
@@ -3117,6 +3245,10 @@ void main() {
         'fillColor': '#ff333333',
         'filled': true,
         'floatingLabelBehavior': 'always',
+        'floatingLabelStyle': {
+          'color': '#00000000',
+          'inherit': true,
+        },
         'focusColor': '#ff444444',
         'focusedBorder': {
           'borderRadius': {
@@ -4307,6 +4439,13 @@ void main() {
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
+        'cursor': 'noDrop',
+        'type': 'system',
+      }),
+      SystemMouseCursors.noDrop,
+    );
+    expect(
+      ThemeDecoder.decodeMouseCursor({
         'cursor': 'none',
         'type': 'system',
       }),
@@ -4597,6 +4736,15 @@ void main() {
       ),
       {
         'cursor': 'move',
+        'type': 'system',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeMouseCursor(
+        SystemMouseCursors.noDrop,
+      ),
+      {
+        'cursor': 'noDrop',
         'type': 'system',
       },
     );
@@ -5380,6 +5528,40 @@ void main() {
     );
   });
 
+  test('ProgressIndicatorThemeData', () {
+    expect(ThemeDecoder.decodeProgressIndicatorThemeData(null), null);
+    expect(ThemeEncoder.encodeProgressIndicatorThemeData(null), null);
+
+    var entry = ProgressIndicatorThemeData(
+      circularTrackColor: _kColor,
+      color: _kColor,
+      linearMinHeight: 16.0,
+      linearTrackColor: _kColor,
+      refreshBackgroundColor: _kColor,
+    );
+
+    expect(ThemeDecoder.decodeProgressIndicatorThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeProgressIndicatorThemeData(entry);
+    var decoded = ThemeDecoder.decodeProgressIndicatorThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'circularTrackColor': _kColorStr,
+        'color': _kColorStr,
+        'linearMinHeight': 16.0,
+        'linearTrackColor': _kColorStr,
+        'refreshBackgroundColor': _kColorStr,
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
   test('RadioThemeData', () {
     expect(ThemeDecoder.decodeRadioThemeData(null), null);
     expect(ThemeEncoder.encodeRadioThemeData(null), null);
@@ -5991,6 +6173,7 @@ void main() {
 
     var entry = ScrollbarThemeData(
       crossAxisMargin: 1.0,
+      interactive: true,
       isAlwaysShown: true,
       mainAxisMargin: 2.0,
       minThumbLength: 3.0,
@@ -6005,6 +6188,11 @@ void main() {
     expect(
       encoded!['crossAxisMargin'],
       entry.crossAxisMargin,
+    );
+
+    expect(
+      encoded['interactive'],
+      entry.interactive,
     );
 
     expect(
@@ -6041,6 +6229,11 @@ void main() {
     expect(
       decoded!.crossAxisMargin,
       entry.crossAxisMargin,
+    );
+
+    expect(
+      decoded.interactive,
+      entry.interactive,
     );
 
     expect(
@@ -6752,15 +6945,17 @@ void main() {
     expect(ThemeEncoder.encodeStrutStyle(null), null);
 
     var entry = StrutStyle(
-        fontFamily: 'foo',
-        fontFamilyFallback: ['a', 'b', 'c'],
-        fontSize: 1.0,
-        fontStyle: FontStyle.italic,
-        fontWeight: FontWeight.w200,
-        forceStrutHeight: true,
-        height: 2.0,
-        leading: 3.0,
-        package: 'bar');
+      fontFamily: 'foo',
+      fontFamilyFallback: ['a', 'b', 'c'],
+      fontSize: 1.0,
+      fontStyle: FontStyle.italic,
+      fontWeight: FontWeight.w200,
+      forceStrutHeight: true,
+      height: 2.0,
+      leading: 3.0,
+      leadingDistribution: TextLeadingDistribution.even,
+      package: 'bar',
+    );
 
     expect(ThemeDecoder.decodeStrutStyle(entry), entry);
 
@@ -6782,6 +6977,7 @@ void main() {
         'forceStrutHeight': true,
         'height': 2.0,
         'leading': 3.0,
+        'leadingDistribution': 'even',
       },
     );
 
@@ -7521,6 +7717,38 @@ void main() {
     );
   });
 
+  test('TextLeadingDistribution', () {
+    expect(ThemeDecoder.decodeTextLeadingDistribution(null), null);
+    expect(ThemeEncoder.encodeTextLeadingDistribution(null), null);
+
+    expect(
+      ThemeDecoder.decodeTextLeadingDistribution(
+        TextLeadingDistribution.even,
+      ),
+      TextLeadingDistribution.even,
+    );
+
+    expect(
+      ThemeDecoder.decodeTextLeadingDistribution('even'),
+      TextLeadingDistribution.even,
+    );
+    expect(
+      ThemeDecoder.decodeTextLeadingDistribution('proportional'),
+      TextLeadingDistribution.proportional,
+    );
+
+    expect(
+      ThemeEncoder.encodeTextLeadingDistribution(TextLeadingDistribution.even),
+      'even',
+    );
+    expect(
+      ThemeEncoder.encodeTextLeadingDistribution(
+        TextLeadingDistribution.proportional,
+      ),
+      'proportional',
+    );
+  });
+
   test('TextOverflow', () {
     expect(ThemeDecoder.decodeTextOverflow(null), null);
     expect(ThemeEncoder.encodeTextOverflow(null), null);
@@ -7786,18 +8014,6 @@ void main() {
     expect(ThemeEncoder.encodeThemeData(null), null);
 
     var entry = ThemeData(
-      accentColor: Color(0xff111111),
-      accentColorBrightness: Brightness.light,
-      accentIconTheme: IconThemeData(
-        color: Color(0xff222222),
-        opacity: 1.0,
-        size: 2.0,
-      ),
-      accentTextTheme: TextTheme(
-        bodyText1: TextStyle(
-          color: Color(0xff333333),
-        ),
-      ),
       appBarTheme: AppBarTheme(color: Color(0xff444444)),
       applyElevationOverlayColor: true,
       backgroundColor: Color(0xff555555),
@@ -7814,7 +8030,6 @@ void main() {
         backgroundColor: Color(0xff000000),
       ),
       buttonBarTheme: ButtonBarThemeData(buttonHeight: 3.0),
-      buttonColor: Color(0xffaaaaaa),
       buttonTheme: ButtonThemeData(buttonColor: Color(0xffbbbbbb)),
       canvasColor: Color(0xffcccccc),
       cardColor: Color(0xffdddddd),
@@ -7874,7 +8089,6 @@ void main() {
         ),
       ),
       errorColor: Color(0xeecccccc),
-      fixTextFieldOutlineLabel: true,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: Color(0xeedddddd),
       ),
@@ -7965,93 +8179,6 @@ void main() {
     var decoded = ThemeDecoder.decodeThemeData(encoded)!;
 
     var jsonMap = {
-      'accentColor': '#ff111111',
-      'accentColorBrightness': 'light',
-      'accentIconTheme': {
-        'color': '#ff222222',
-        'opacity': 1.0,
-        'size': 2.0,
-      },
-      'accentTextTheme': {
-        'bodyText1': {
-          'color': '#ff333333',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'bodyText2': {
-          'color': '#dd000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'button': {
-          'color': '#dd000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'caption': {
-          'color': '#8a000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'headline1': {
-          'color': '#8a000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'headline2': {
-          'color': '#8a000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'headline3': {
-          'color': '#8a000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'headline4': {
-          'color': '#8a000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'headline5': {
-          'color': '#dd000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'headline6': {
-          'color': '#dd000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'overline': {
-          'color': '#ff000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'subtitle1': {
-          'color': '#dd000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'subtitle2': {
-          'color': '#ff000000',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        }
-      },
       'appBarTheme': {
         'backgroundColor': '#ff444444',
       },
@@ -8070,7 +8197,6 @@ void main() {
       'bottomSheetTheme': {
         'backgroundColor': '#ff000000',
       },
-      'buttonColor': '#ffaaaaaa',
       'buttonBarTheme': {
         'buttonHeight': 3.0,
       },
@@ -8236,7 +8362,6 @@ void main() {
         },
       },
       'errorColor': '#eecccccc',
-      'fixTextFieldOutlineLabel': true,
       'floatingActionButtonTheme': {
         'backgroundColor': '#eedddddd',
       },
@@ -8889,11 +9014,6 @@ void main() {
 
     expect(encoded, jsonMap);
     expect(ThemeEncoder.encodeThemeData(decoded), jsonMap);
-
-    expect(
-      decoded.accentColor,
-      entry.accentColor,
-    );
   });
 
   test('TileMode', () {
@@ -9145,6 +9265,7 @@ void main() {
     expect(ThemeEncoder.encodeTooltipThemeData(null), null);
 
     var entry = TooltipThemeData(
+      enableFeedback: true,
       excludeFromSemantics: true,
       height: 1.0,
       margin: EdgeInsets.all(2.0),
@@ -9152,6 +9273,7 @@ void main() {
       preferBelow: true,
       showDuration: Duration(milliseconds: 4),
       textStyle: _kTextStyle,
+      triggerMode: TooltipTriggerMode.longPress,
       verticalOffset: 5.0,
       waitDuration: Duration(milliseconds: 6),
     );
@@ -9164,6 +9286,7 @@ void main() {
     expect(
       encoded,
       {
+        'enableFeedback': true,
         'excludeFromSemantics': true,
         'height': 1.0,
         'margin': {
@@ -9181,6 +9304,7 @@ void main() {
         'preferBelow': true,
         'showDuration': 4,
         'textStyle': {'color': '#00123456', 'inherit': true},
+        'triggerMode': 'longPress',
         'verticalOffset': 5.0,
         'waitDuration': 6
       },
@@ -9189,6 +9313,42 @@ void main() {
     expect(
       decoded,
       entry,
+    );
+  });
+
+  test('TooltipTriggerMode', () {
+    expect(ThemeDecoder.decodeTooltipTriggerMode(null), null);
+    expect(ThemeEncoder.encodeTooltipTriggerMode(null), null);
+
+    expect(
+      ThemeDecoder.decodeTooltipTriggerMode(TooltipTriggerMode.longPress),
+      TooltipTriggerMode.longPress,
+    );
+
+    expect(
+      ThemeDecoder.decodeTooltipTriggerMode('longPress'),
+      TooltipTriggerMode.longPress,
+    );
+    expect(
+      ThemeDecoder.decodeTooltipTriggerMode('manual'),
+      TooltipTriggerMode.manual,
+    );
+    expect(
+      ThemeDecoder.decodeTooltipTriggerMode('tap'),
+      TooltipTriggerMode.tap,
+    );
+
+    expect(
+      ThemeEncoder.encodeTooltipTriggerMode(TooltipTriggerMode.longPress),
+      'longPress',
+    );
+    expect(
+      ThemeEncoder.encodeTooltipTriggerMode(TooltipTriggerMode.manual),
+      'manual',
+    );
+    expect(
+      ThemeEncoder.encodeTooltipTriggerMode(TooltipTriggerMode.tap),
+      'tap',
     );
   });
 

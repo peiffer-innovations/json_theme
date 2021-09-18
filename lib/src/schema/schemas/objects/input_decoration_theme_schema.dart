@@ -14,6 +14,7 @@ class InputDecorationThemeSchema {
     'properties': {
       'alignLabelWithHint': SchemaHelper.boolSchema,
       'border': SchemaHelper.objectSchema(InputBorderSchema.id),
+      'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'contentPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'disabledBorder': SchemaHelper.objectSchema(InputBorderSchema.id),
       'enabledBorder': SchemaHelper.objectSchema(InputBorderSchema.id),
@@ -22,8 +23,10 @@ class InputDecorationThemeSchema {
       'errorStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'fillColor': SchemaHelper.objectSchema(ColorSchema.id),
       'filled': SchemaHelper.boolSchema,
-      'floatingLabelBehavior':
-          SchemaHelper.objectSchema(FloatingLabelBehaviorSchema.id),
+      'floatingLabelBehavior': SchemaHelper.objectSchema(
+        FloatingLabelBehaviorSchema.id,
+      ),
+      'floatingLabelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusedBorder': SchemaHelper.objectSchema(InputBorderSchema.id),
       'focusedErrorBorder': SchemaHelper.objectSchema(InputBorderSchema.id),

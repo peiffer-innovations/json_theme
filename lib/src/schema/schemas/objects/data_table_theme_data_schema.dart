@@ -12,11 +12,13 @@ class DataTableThemeDataSchema {
     'title': 'DataTableThemeData',
     'additionalProperties': false,
     'properties': {
+      'checkboxHorizontalMargin': SchemaHelper.numberSchema,
       'columnSpacing': SchemaHelper.numberSchema,
       'dataRowColor':
           SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
       'dataRowHeight': SchemaHelper.numberSchema,
       'dataTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
       'dividerThickness': SchemaHelper.numberSchema,
       'headingRowColor':
           SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),

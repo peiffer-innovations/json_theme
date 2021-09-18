@@ -30,6 +30,7 @@ class MouseCursorSchema {
           'grabbing',
           'help',
           'move',
+          'noDrop',
           'none',
           'precise',
           'progress',

@@ -15,13 +15,27 @@ class FloatingActionButtonThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'disabledElevation': SchemaHelper.numberSchema,
       'elevation': SchemaHelper.numberSchema,
+      'enableFeedback': SchemaHelper.boolSchema,
+      'extendedIconLabelSpacing': SchemaHelper.numberSchema,
+      'extendedPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      'extendedSizeConstraints': SchemaHelper.objectSchema(
+        BoxConstraintsSchema.id,
+      ),
+      'extendedTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusElevation': SchemaHelper.numberSchema,
       'foregroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'highlightElevation': SchemaHelper.numberSchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hoverElevation': SchemaHelper.numberSchema,
+      'largeSizeConstraints': SchemaHelper.objectSchema(
+        BoxConstraintsSchema.id,
+      ),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'sizeConstraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
+      'smallSizeConstraints': SchemaHelper.objectSchema(
+        BoxConstraintsSchema.id,
+      ),
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };

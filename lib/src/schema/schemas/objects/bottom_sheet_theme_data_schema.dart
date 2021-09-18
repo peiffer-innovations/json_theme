@@ -15,6 +15,7 @@ class BottomSheetThemeDataSchema {
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
+      'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'modalBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'modalElevation': SchemaHelper.numberSchema,

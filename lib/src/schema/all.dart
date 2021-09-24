@@ -1,4 +1,3 @@
-export 'schemas/enums/alignment_schema.dart';
 export 'schemas/enums/autovalidate_mode_schema.dart';
 export 'schemas/enums/axis_schema.dart';
 export 'schemas/enums/blend_mode_schema.dart';
@@ -64,6 +63,7 @@ export 'schemas/enums/tooltip_trigger_mode_schema.dart';
 export 'schemas/enums/vertical_direction_schema.dart';
 export 'schemas/enums/visual_density_schema.dart';
 
+export 'schemas/objects/alignment_schema.dart';
 export 'schemas/objects/app_bar_theme_schema.dart';
 export 'schemas/objects/border_radius_schema.dart';
 export 'schemas/objects/border_side_schema.dart';

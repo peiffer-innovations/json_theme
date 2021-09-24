@@ -29,7 +29,16 @@ class ThemeDecoder {
   static const _baseSchemaUrl =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme';
 
-  /// Decodes the given [value] to an [Alignment].  Supported values are:
+  /// Decodes the given [value] to an [Alignment].  If the given value is a
+  /// `Map` then this expects the following JSON structure:
+  /// ```json
+  /// {
+  ///   "x": <double>,
+  ///   "y": <double>
+  /// }
+  /// ```
+  ///
+  /// If the value is a `String` then supported values are:
   ///  * `bottomCenter`
   ///  * `bottomLeft`
   ///  * `bottomRight`
@@ -47,6 +56,17 @@ class ThemeDecoder {
 
     if (value is Alignment) {
       result = value;
+    } else if (value is Map) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/alignment',
+        value: value,
+        validate: validate,
+      ));
+
+      result = Alignment(
+        JsonClass.parseDouble(value['x']) ?? 0.0,
+        JsonClass.parseDouble(value['y']) ?? 0.0,
+      );
     } else {
       _checkSupported(
         'Alignment',
@@ -157,7 +177,6 @@ class ThemeDecoder {
         centerTitle: value['centerTitle'] == null
             ? null
             : JsonClass.parseBool(value['centerTitle']),
-        color: ThemeDecoder.decodeColor(value['color']),
         elevation: JsonClass.parseDouble(value['elevation']),
         foregroundColor: decodeColor(
           value['foregroundColor'],

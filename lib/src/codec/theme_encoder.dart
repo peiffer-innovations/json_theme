@@ -17,8 +17,17 @@ import 'package:meta/meta.dart';
 class ThemeEncoder {
   ThemeEncoder._();
 
-  /// Encodes the given [value] to an String representation of the [Alignment].
-  /// Supported values are:
+  /// Encodes the given [value] to either a String representation of the
+  /// [Alignment] or a JSON map that follows the structure:
+  ///
+  /// ```json
+  /// {
+  ///   "x": <double>,
+  ///   "y": <double>
+  /// }
+  /// ```
+  ///
+  /// Supported string values are:
   ///  * `bottomCenter`
   ///  * `bottomLeft`
   ///  * `bottomRight`
@@ -30,44 +39,42 @@ class ThemeEncoder {
   ///  * `topRight`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeAlignment(Alignment? value) {
-    String? result;
+  static dynamic encodeAlignment(Alignment? value) {
+    dynamic result;
 
     if (value != null) {
       if (value.x == Alignment.bottomCenter.x &&
           value.y == Alignment.bottomCenter.y) {
         result = 'bottomCenter';
-      }
-      if (value.x == Alignment.bottomLeft.x &&
+      } else if (value.x == Alignment.bottomLeft.x &&
           value.y == Alignment.bottomLeft.y) {
         result = 'bottomLeft';
-      }
-      if (value.x == Alignment.bottomRight.x &&
+      } else if (value.x == Alignment.bottomRight.x &&
           value.y == Alignment.bottomRight.y) {
         result = 'bottomRight';
-      }
-
-      if (value.x == Alignment.center.x && value.y == Alignment.center.y) {
+      } else if (value.x == Alignment.center.x &&
+          value.y == Alignment.center.y) {
         result = 'center';
-      }
-      if (value.x == Alignment.centerLeft.x &&
+      } else if (value.x == Alignment.centerLeft.x &&
           value.y == Alignment.centerLeft.y) {
         result = 'centerLeft';
-      }
-      if (value.x == Alignment.centerRight.x &&
+      } else if (value.x == Alignment.centerRight.x &&
           value.y == Alignment.centerRight.y) {
         result = 'centerRight';
-      }
-
-      if (value.x == Alignment.topCenter.x &&
+      } else if (value.x == Alignment.topCenter.x &&
           value.y == Alignment.topCenter.y) {
         result = 'topCenter';
-      }
-      if (value.x == Alignment.topLeft.x && value.y == Alignment.topLeft.y) {
+      } else if (value.x == Alignment.topLeft.x &&
+          value.y == Alignment.topLeft.y) {
         result = 'topLeft';
-      }
-      if (value.x == Alignment.topRight.x && value.y == Alignment.topRight.y) {
+      } else if (value.x == Alignment.topRight.x &&
+          value.y == Alignment.topRight.y) {
         result = 'topRight';
+      } else {
+        result = {
+          'x': value.x,
+          'y': value.y,
+        };
       }
     }
 

@@ -33,6 +33,25 @@ void main() {
     );
 
     expect(
+      ThemeDecoder.decodeAlignment(
+        {
+          'x': 0.2,
+          'y': 0.4,
+        },
+      ),
+      Alignment(0.2, 0.4),
+    );
+    expect(
+      ThemeEncoder.encodeAlignment(
+        Alignment(0.2, 0.4),
+      ),
+      {
+        'x': 0.2,
+        'y': 0.4,
+      },
+    );
+
+    expect(
       ThemeDecoder.decodeAlignment('bottomCenter'),
       Alignment.bottomCenter,
     );

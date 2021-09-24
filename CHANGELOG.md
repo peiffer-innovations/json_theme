@@ -1,3 +1,9 @@
+# [3.0.1] - September 23rd, 2021
+
+* Fix for [AppBarTheme] when using the legacy `color` attribute
+* Add `x / y` options to `Alignment`
+
+
 # [3.0.0] - September 18th, 2021
 
 * Update to Flutter 2.5 and removed support for deprecated values

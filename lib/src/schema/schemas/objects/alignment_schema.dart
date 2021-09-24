@@ -10,18 +10,21 @@ class AlignmentSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/painting/Alignment-class.html',
     'title': 'Alignment',
-    'oneOf': SchemaHelper.enumSchema(
-      [
-        'bottomCenter',
-        'bottomLeft',
-        'bottomRight',
-        'center',
-        'centerLeft',
-        'centerRight',
-        'topCenter',
-        'topLeft',
-        'topRight',
-      ],
-    ),
+    'oneOf': [
+      {
+        'type': 'string',
+      },
+      {
+        'type': 'object',
+        'required': [
+          'x',
+          'y',
+        ],
+        'properties': {
+          'x': SchemaHelper.numberSchema,
+          'y': SchemaHelper.numberSchema,
+        },
+      }
+    ],
   };
 }

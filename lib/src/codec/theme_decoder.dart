@@ -4758,7 +4758,7 @@ class ThemeDecoder {
     } else if (value != null) {
       if (value is EdgeInsetsGeometry) {
         result = MaterialStateProperty.all(value);
-      } else if (value is String) {
+      } else if (value is String || value is List || value is int) {
         result = MaterialStateProperty.all(decodeEdgeInsetsGeometry(value));
       } else if (value is Map) {
         var testValues = [

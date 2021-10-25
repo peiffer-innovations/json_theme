@@ -10,16 +10,34 @@ class MaterialStatePropertyEdgeInsetsGeometrySchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
     'title': 'MaterialStatePropertyEdgeInsetsGeometrySchema',
-    'type': 'object',
-    'properties': {
-      'disabled': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'dragged': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'empty': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'error': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'focused': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'hovered': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'pressed': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'selected': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-    },
+    'oneOf': [
+      {
+        'type': 'string',
+      },
+      {
+        'type': 'number',
+      },
+      {
+        'type': 'array',
+        'array': [
+          {
+            'type': 'number',
+          },
+        ]
+      },
+      {
+        'type': 'object',
+        'properties': {
+          'disabled': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'dragged': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'empty': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'error': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'focused': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'hovered': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'pressed': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'selected': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+        },
+      }
+    ]
   };
 }

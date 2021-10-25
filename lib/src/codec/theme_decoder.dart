@@ -4725,11 +4725,29 @@ class ThemeDecoder {
   }
 
   /// Decodes a [value] into a [EdgeInsetsGeometry] based
-  /// [MaterialStateProperty].  This accepts a [EdgeInsetsGeometry] or a
-  /// [String] which will be resolved for all states.
+  /// [MaterialStateProperty].
   ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
+  /// If the value is a [String], [double], or [int] then this will parse the
+  /// number and pass it to [EdgeInsets.all] for each state.
+  ///
+  /// If the value is an array with two entities, this calls
+  /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
+  /// the second as the vertical.
+  ///
+  /// If the value is an array with four entities, this calls
+  /// [EdgeInsets.fromLTRB] passing each element in order.
+  ///
+  /// The value may be a [Map] in the following format:
+  /// ```json
+  /// {
+  ///   "bottom": <double>,
+  ///   "left": <double>,
+  ///   "right": <double>,
+  ///   "top": <double>
+  /// }
+  /// ```
+  ///
+  /// Finally, the [value] may be a [Map] in the following format:
   ///
   /// ```json
   /// {

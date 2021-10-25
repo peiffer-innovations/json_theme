@@ -1,3 +1,8 @@
+# [3.1.0] - October 25th, 2021
+
+* Allow int (all), List (horizontal/symmetric or LTRB) and Map for MaterialStatePropertyEdgeInsetsGeometry
+
+
 # [3.0.1] - September 23rd, 2021
 
 * Fix for [AppBarTheme] when using the legacy `color` attribute

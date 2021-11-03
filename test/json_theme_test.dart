@@ -1133,6 +1133,53 @@ void main() {
       _buttonStylesAreEqual(decoded, entry),
       true,
     );
+
+    expect(
+      _buttonStylesAreEqual(
+        ThemeDecoder.decodeButtonStyle({
+          'padding': [1, 2],
+        }),
+        ButtonStyle(
+          padding: MaterialStateProperty.all(
+              EdgeInsets.symmetric(horizontal: 1, vertical: 2)),
+        ),
+      ),
+      true,
+    );
+
+    expect(
+      _buttonStylesAreEqual(
+        ThemeDecoder.decodeButtonStyle({
+          'padding': [1, 2, 3, 4],
+        }),
+        ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(1, 2, 3, 4)),
+        ),
+      ),
+      true,
+    );
+
+    expect(
+      _buttonStylesAreEqual(
+        ThemeDecoder.decodeButtonStyle({'padding': 1}),
+        ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.all(1)),
+        ),
+      ),
+      true,
+    );
+
+    expect(
+      _buttonStylesAreEqual(
+        ThemeDecoder.decodeButtonStyle({
+          'padding': {'left': 1, 'top': 2, 'right': 3, 'bottom': 4},
+        }),
+        ButtonStyle(
+          padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(1, 2, 3, 4)),
+        ),
+      ),
+      true,
+    );
   });
 
   test('ButtonTextTheme', () {
@@ -3882,6 +3929,26 @@ void main() {
           ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![stateKey]['bottom'], side.bottom);
+    }
+
+    final symmetricDecoded =
+        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry([1, 2]);
+    for (var state in states.values) {
+      expect(symmetricDecoded!.resolve({state}),
+          EdgeInsets.symmetric(horizontal: 1, vertical: 2));
+    }
+
+    final ltrbDecoded =
+        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
+            [1, 2, 3, 4]);
+    for (var state in states.values) {
+      expect(ltrbDecoded!.resolve({state}), EdgeInsets.fromLTRB(1, 2, 3, 4));
+    }
+
+    final allDecoded =
+        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(1);
+    for (var state in states.values) {
+      expect(allDecoded!.resolve({state}), EdgeInsets.all(1));
     }
   });
 

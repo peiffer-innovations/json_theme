@@ -36,12 +36,12 @@ jobs:
         run: |
           git config --global user.email "noop@github.com"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/
-          rm -rf schemas/json_theme
-          mkdir schemas/json_theme
-          cp output/* schemas/json_theme
+          rm -rf schemas/schemas/json_theme
+          mkdir schemas/schemas/json_theme
+          cp output/* schemas/schemas/json_theme
           cd schemas
           git add .
-          git commit -m "json_schema: schema update"
+          git commit --allow-empty -m "json_theme: schema update"
           git push origin HEAD:gh-pages
           cd ..
 

@@ -12290,6 +12290,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 --------------------------------------------------------------------------------
 path_provider
+path_provider_android
+path_provider_ios
 path_provider_linux
 path_provider_macos
 path_provider_windows

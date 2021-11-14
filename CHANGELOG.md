@@ -1,3 +1,13 @@
+# [3.1.1+1] - November 14th, 2021
+
+* Using a new GH workflow publisher
+
+
+# [3.1.1] - November 13th, 2021
+
+* Remove `uses-material-design` from `pubspec.yaml`
+
+
 # [3.1.0] - October 25th, 2021
 
 * Allow int (all), List (horizontal/symmetric or LTRB) and Map for MaterialStatePropertyEdgeInsetsGeometry

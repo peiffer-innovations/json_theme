@@ -8,9 +8,9 @@ const RESOURCES = {
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"main.dart.js": "dc9125872b2d6f7904374e9e0de12c1e",
-"index.html": "f19958e192256e44600d781e84eba4d8",
-"/": "f19958e192256e44600d781e84eba4d8",
+"main.dart.js": "c11a73045f20102602a22438c0e5138e",
+"index.html": "8f3780eed2655fa2e66fb3d424b85393",
+"/": "8f3780eed2655fa2e66fb3d424b85393",
 "assets/NOTICES": "1c01131943501e25dd81aa0656cbb43c",
 "assets/AssetManifest.json": "ddc8a9e051399846ede99d3b6451ccc1",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
@@ -20,7 +20,7 @@ const RESOURCES = {
 "assets/assets/fonts/MaterialIcons-Regular.ttf": "a37b0c01c0baf1888ca812cc0508f6e2",
 "assets/assets/themes/calm_blue.json": "19965e6cc98d8e7c49780fd73a3d06e6",
 "assets/assets/themes/default.json": "99914b932bd37a50b983c5e7c90ae93b",
-"assets/assets/themes/big_red.json": "4970703672369c98a1345d920a4e38db"
+"assets/assets/themes/big_red.json": "b5b93012252751b5d5037da33fc73875"
 };
 
 // The application shell files that are downloaded before a service worker can

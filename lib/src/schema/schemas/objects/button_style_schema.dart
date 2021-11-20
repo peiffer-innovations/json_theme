@@ -17,9 +17,19 @@ class ButtonStyleSchema {
       'backgroundColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
-      'elevation': SchemaHelper.objectSchema(
-        MaterialStatePropertyDoubleSchema.id,
-      ),
+      'elevation': {
+        'anyOf': [
+          {
+            'type': 'number',
+          },
+          {
+            'type': 'string',
+          },
+          {
+            r'$ref': MaterialStatePropertyDoubleSchema.id,
+          },
+        ],
+      },
       'enableFeedback': SchemaHelper.boolSchema,
       'fixedSize': SchemaHelper.objectSchema(
         MaterialStatePropertySizeSchema.id,

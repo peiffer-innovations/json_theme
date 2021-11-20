@@ -9693,7 +9693,9 @@ class ThemeDecoder {
           validate: false,
         ),
         timePickerTheme: decodeTimePickerThemeData(
-          value['timePickerThemeData'],
+          value['timePickerTheme'] ??
+              /* This was the original, incorrect, value; kept for backwards compatibility */
+              value['timePickerThemeData'],
           validate: false,
         ),
         toggleButtonsTheme: decodeToggleButtonsThemeData(

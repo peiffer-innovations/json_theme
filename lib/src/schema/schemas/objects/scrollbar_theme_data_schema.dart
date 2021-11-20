@@ -19,9 +19,19 @@ class ScrollbarThemeDataSchema {
       'minThumbLength': SchemaHelper.numberSchema,
       'radius': SchemaHelper.objectSchema(RadiusSchema.id),
       'showTrackOnHover': SchemaHelper.boolSchema,
-      'thickness': SchemaHelper.objectSchema(
-        MaterialStatePropertyDoubleSchema.id,
-      ),
+      'thickness': {
+        'anyOf': [
+          {
+            'type': 'number',
+          },
+          {
+            'type': 'string',
+          },
+          {
+            r'$ref': MaterialStatePropertyDoubleSchema.id,
+          },
+        ],
+      },
       'thumbColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),

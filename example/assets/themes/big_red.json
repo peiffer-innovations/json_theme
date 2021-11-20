@@ -7,6 +7,20 @@
   },
   "canvasColor": "#ffffff",
   "disabledColor": "#f8bbd0",
+  "elevatedButtonTheme": {
+    "style": {
+      "backgroundColor": "#068a9c",
+      "side": {
+        "color": "#068a9c",
+        "width": 2.0
+      },
+      "shape": {
+        "type": "rectangle",
+        "borderRadius": 20.0
+      },
+      "elevation": 20.0
+    }
+  },
   "errorColor": "#880e4f",
   "fontFamily": "metal",
   "iconTheme": {

@@ -1,6 +1,8 @@
-# [3.1.2] - November 20th, 2021
+# [3.1.2+1] - November 20th, 2021
 
 * Added encoders and decoders for `WrapAlignment` and `WrapCrossAlignment`
+* Fix for [Issue #28](https://github.com/peiffer-innovations/json_theme/issues/28)
+* Fix for [Issue #29](https://github.com/peiffer-innovations/json_theme/issues/29)
 
 
 # [3.1.1+1] - November 14th, 2021

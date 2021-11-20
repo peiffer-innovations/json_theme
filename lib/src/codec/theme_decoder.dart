@@ -10263,6 +10263,118 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [WrapAlignment].  Supported values are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `spaceAround`
+  ///  * `spaceBetween`
+  ///  * `spaceEvenly`
+  ///  * `start`
+  static WrapAlignment? decodeWrapAlignment(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WrapAlignment? result;
+    if (value is WrapAlignment) {
+      result = value;
+    } else {
+      _checkSupported(
+        'WrapAlignment',
+        [
+          'center',
+          'end',
+          'spaceAround',
+          'spaceBetween',
+          'spaceEvenly',
+          'start',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/wrap_alignment',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'center':
+            result = WrapAlignment.center;
+            break;
+
+          case 'end':
+            result = WrapAlignment.end;
+            break;
+
+          case 'spaceAround':
+            result = WrapAlignment.spaceAround;
+            break;
+
+          case 'spaceBetween':
+            result = WrapAlignment.spaceBetween;
+            break;
+
+          case 'spaceEvenly':
+            result = WrapAlignment.spaceEvenly;
+            break;
+
+          case 'start':
+            result = WrapAlignment.start;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [WrapCrossAlignment].  Supported values are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `start`
+  static WrapCrossAlignment? decodeWrapCrossAlignment(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WrapCrossAlignment? result;
+    if (value is WrapCrossAlignment) {
+      result = value;
+    } else {
+      _checkSupported(
+        'WrapCrossAlignment',
+        [
+          'center',
+          'end',
+          'start',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/wrap_cross_alignment',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'center':
+            result = WrapCrossAlignment.center;
+            break;
+
+          case 'end':
+            result = WrapCrossAlignment.end;
+            break;
+
+          case 'start':
+            result = WrapCrossAlignment.start;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   static void _checkSupported(
     String type,
     List<String> supported,

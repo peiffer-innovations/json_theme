@@ -167,5 +167,7 @@ class Schemas {
     TypographySchema.id: TypographySchema.schema,
     VerticalDirectionSchema.id: VerticalDirectionSchema.schema,
     VisualDensitySchema.id: VisualDensitySchema.schema,
+    WrapAlignmentSchema.id: WrapAlignmentSchema.schema,
+    WrapCrossAlignmentSchema.id: WrapCrossAlignmentSchema.schema,
   };
 }

@@ -9567,6 +9567,106 @@ void main() {
       'standard',
     );
   });
+
+  test('WrapAlignment', () {
+    expect(ThemeDecoder.decodeWrapAlignment(null), null);
+    expect(ThemeEncoder.encodeWrapAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeWrapAlignment(
+        WrapAlignment.start,
+      ),
+      WrapAlignment.start,
+    );
+
+    expect(
+      ThemeDecoder.decodeWrapAlignment('center'),
+      WrapAlignment.center,
+    );
+    expect(
+      ThemeDecoder.decodeWrapAlignment('end'),
+      WrapAlignment.end,
+    );
+    expect(
+      ThemeDecoder.decodeWrapAlignment('spaceAround'),
+      WrapAlignment.spaceAround,
+    );
+    expect(
+      ThemeDecoder.decodeWrapAlignment('spaceBetween'),
+      WrapAlignment.spaceBetween,
+    );
+    expect(
+      ThemeDecoder.decodeWrapAlignment('spaceEvenly'),
+      WrapAlignment.spaceEvenly,
+    );
+    expect(
+      ThemeDecoder.decodeWrapAlignment('start'),
+      WrapAlignment.start,
+    );
+
+    expect(
+      ThemeEncoder.encodeWrapAlignment(WrapAlignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeWrapAlignment(WrapAlignment.end),
+      'end',
+    );
+    expect(
+      ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceAround),
+      'spaceAround',
+    );
+    expect(
+      ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceBetween),
+      'spaceBetween',
+    );
+    expect(
+      ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceEvenly),
+      'spaceEvenly',
+    );
+    expect(
+      ThemeEncoder.encodeWrapAlignment(WrapAlignment.start),
+      'start',
+    );
+  });
+
+  test('WrapCrossAlignment', () {
+    expect(ThemeDecoder.decodeWrapCrossAlignment(null), null);
+    expect(ThemeEncoder.encodeWrapCrossAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeWrapAlignment(
+        WrapAlignment.start,
+      ),
+      WrapAlignment.start,
+    );
+
+    expect(
+      ThemeDecoder.decodeWrapCrossAlignment('center'),
+      WrapCrossAlignment.center,
+    );
+    expect(
+      ThemeDecoder.decodeWrapCrossAlignment('end'),
+      WrapCrossAlignment.end,
+    );
+    expect(
+      ThemeDecoder.decodeWrapCrossAlignment('start'),
+      WrapCrossAlignment.start,
+    );
+
+    expect(
+      ThemeEncoder.encodeWrapCrossAlignment(WrapCrossAlignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeWrapCrossAlignment(WrapCrossAlignment.end),
+      'end',
+    );
+    expect(
+      ThemeEncoder.encodeWrapCrossAlignment(WrapCrossAlignment.start),
+      'start',
+    );
+  });
 }
 
 bool? _buttonStylesAreEqual(ButtonStyle? first, ButtonStyle? second) {

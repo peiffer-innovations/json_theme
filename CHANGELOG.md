@@ -1,3 +1,8 @@
+# [3.1.2] - November 20th, 2021
+
+* Added encoders and decoders for `WrapAlignment` and `WrapCrossAlignment`
+
+
 # [3.1.1+1] - November 14th, 2021
 
 * Using a new GH workflow publisher

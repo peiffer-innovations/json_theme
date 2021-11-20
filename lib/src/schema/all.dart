@@ -62,6 +62,8 @@ export 'schemas/enums/tile_mode_schema.dart';
 export 'schemas/enums/tooltip_trigger_mode_schema.dart';
 export 'schemas/enums/vertical_direction_schema.dart';
 export 'schemas/enums/visual_density_schema.dart';
+export 'schemas/enums/wrap_alignment_schema.dart';
+export 'schemas/enums/wrap_cross_alignment_schema.dart';
 
 export 'schemas/objects/alignment_schema.dart';
 export 'schemas/objects/app_bar_theme_schema.dart';

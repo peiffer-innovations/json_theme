@@ -66,5 +66,7 @@ class Enums {
     SystemUiOverlayStyleSchema.id,
     VerticalDirectionSchema.id,
     VisualDensitySchema.id,
+    WrapAlignmentSchema.id,
+    WrapCrossAlignmentSchema.id,
   ];
 }

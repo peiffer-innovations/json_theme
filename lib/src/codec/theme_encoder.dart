@@ -5950,6 +5950,72 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `spaceAround`
+  ///  * `spaceBetween`
+  ///  * `spaceEvenly`
+  ///  * `start`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeWrapAlignment(WrapAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case WrapAlignment.center:
+          result = 'center';
+          break;
+        case WrapAlignment.end:
+          result = 'end';
+          break;
+        case WrapAlignment.spaceAround:
+          result = 'spaceAround';
+          break;
+        case WrapAlignment.spaceBetween:
+          result = 'spaceBetween';
+          break;
+        case WrapAlignment.spaceEvenly:
+          result = 'spaceEvenly';
+          break;
+        case WrapAlignment.start:
+          result = 'start';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `center`
+  ///  * `end`
+  ///  * `start`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeWrapCrossAlignment(WrapCrossAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case WrapCrossAlignment.center:
+          result = 'center';
+          break;
+        case WrapCrossAlignment.end:
+          result = 'end';
+          break;
+        case WrapCrossAlignment.start:
+          result = 'start';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   static Map<String, dynamic>? _stripNull(Map<String, dynamic>? input) {
     Map<String, dynamic>? result;
 

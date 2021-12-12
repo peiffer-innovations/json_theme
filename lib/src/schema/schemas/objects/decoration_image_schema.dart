@@ -14,9 +14,13 @@ class DecorationImageSchema {
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'centerSlice': SchemaHelper.objectSchema(RectSchema.id),
+      'filterQuality': SchemaHelper.objectSchema(FilterQualitySchema.id),
       'fit': SchemaHelper.objectSchema(BoxFitSchema.id),
       'image': SchemaHelper.objectSchema(ImageProviderSchema.id),
+      'invertColors': SchemaHelper.boolSchema,
+      'isAntiAlias': SchemaHelper.boolSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
+      'opacity': SchemaHelper.numberSchema,
       'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
       'scale': SchemaHelper.numberSchema,
     },

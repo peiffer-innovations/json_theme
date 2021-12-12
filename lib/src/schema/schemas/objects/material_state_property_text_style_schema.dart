@@ -9,7 +9,7 @@ class MaterialStatePropertyTextStyleSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
-    'title': 'MaterialStatePropertyTextStyleSchema',
+    'title': 'MaterialStatePropertyTextStyle',
     'type': 'object',
     'properties': {
       'disabled': SchemaHelper.objectSchema(TextStyleSchema.id),

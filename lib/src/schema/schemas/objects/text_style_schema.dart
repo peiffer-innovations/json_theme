@@ -30,8 +30,12 @@ class TextStyleSchema {
       'fontWeight': SchemaHelper.objectSchema(FontWeightSchema.id),
       'height': SchemaHelper.numberSchema,
       'inherit': SchemaHelper.boolSchema,
+      'leadingDistribution': SchemaHelper.objectSchema(
+        TextLeadingDistributionSchema.id,
+      ),
       'letterSpacking': SchemaHelper.numberSchema,
       'locale': SchemaHelper.objectSchema(LocaleSchema.id),
+      'overflow': SchemaHelper.objectSchema(TextOverflowSchema.id),
       'package': SchemaHelper.stringSchema,
       'shadows': SchemaHelper.arraySchema(ShadowSchema.id),
       'textBaseline': SchemaHelper.objectSchema(TextBaselineSchema.id),

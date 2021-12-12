@@ -14,6 +14,7 @@ class BoxShadowSchema {
     'additionalProperties': false,
     'properties': {
       'blurRadius': SchemaHelper.numberSchema,
+      'blurStyle': SchemaHelper.objectSchema(BlurStyleSchema.id),
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'offset': SchemaHelper.objectSchema(OffsetSchema.id),
       'spreadRadius': SchemaHelper.numberSchema,

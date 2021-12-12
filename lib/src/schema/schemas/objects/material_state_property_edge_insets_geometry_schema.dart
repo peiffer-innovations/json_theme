@@ -9,7 +9,7 @@ class MaterialStatePropertyEdgeInsetsGeometrySchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
-    'title': 'MaterialStatePropertyEdgeInsetsGeometrySchema',
+    'title': 'MaterialStatePropertyEdgeInsetsGeometry',
     'oneOf': [
       {
         'type': 'string',

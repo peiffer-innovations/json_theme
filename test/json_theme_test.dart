@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
@@ -127,6 +127,38 @@ void main() {
     expect(
       ThemeEncoder.encodeAlignment(Alignment.topRight),
       'topRight',
+    );
+  });
+
+  test('AndroidOverscrollIndicator', () {
+    expect(ThemeDecoder.decodeAndroidOverscrollIndicator(null), null);
+    expect(ThemeEncoder.encodeAndroidOverscrollIndicator(null), null);
+
+    expect(
+      ThemeDecoder.decodeAndroidOverscrollIndicator(
+        AndroidOverscrollIndicator.glow,
+      ),
+      AndroidOverscrollIndicator.glow,
+    );
+
+    expect(
+      ThemeDecoder.decodeAndroidOverscrollIndicator('glow'),
+      AndroidOverscrollIndicator.glow,
+    );
+    expect(
+      ThemeDecoder.decodeAndroidOverscrollIndicator('stretch'),
+      AndroidOverscrollIndicator.stretch,
+    );
+
+    expect(
+      ThemeEncoder.encodeAndroidOverscrollIndicator(
+          AndroidOverscrollIndicator.glow),
+      'glow',
+    );
+    expect(
+      ThemeEncoder.encodeAndroidOverscrollIndicator(
+          AndroidOverscrollIndicator.stretch),
+      'stretch',
     );
   });
 
@@ -296,6 +328,21 @@ void main() {
     expect(ThemeEncoder.encodeBlendMode(BlendMode.srcOut), 'srcOut');
     expect(ThemeEncoder.encodeBlendMode(BlendMode.srcOver), 'srcOver');
     expect(ThemeEncoder.encodeBlendMode(BlendMode.xor), 'xor');
+  });
+
+  test('BlurStyle', () {
+    expect(ThemeDecoder.decodeBlurStyle(null), null);
+    expect(ThemeEncoder.encodeBlurStyle(null), null);
+
+    expect(ThemeDecoder.decodeBlurStyle('inner'), BlurStyle.inner);
+    expect(ThemeDecoder.decodeBlurStyle('normal'), BlurStyle.normal);
+    expect(ThemeDecoder.decodeBlurStyle('inner'), BlurStyle.inner);
+    expect(ThemeDecoder.decodeBlurStyle('outer'), BlurStyle.outer);
+
+    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.inner), 'inner');
+    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.normal), 'normal');
+    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.inner), 'inner');
+    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.outer), 'outer');
   });
 
   test('BorderRadius', () {
@@ -712,9 +759,11 @@ void main() {
       borderRadius: BorderRadius.circular(1.0),
       boxShadow: [
         BoxShadow(
+          blurStyle: BlurStyle.inner,
           color: Color(0xff111111),
         ),
         BoxShadow(
+          blurStyle: BlurStyle.normal,
           color: Color(0xff222222),
         )
       ],
@@ -787,6 +836,7 @@ void main() {
         },
         'boxShadow': [
           {
+            'blurStyle': 'inner',
             'blurRadius': 0.0,
             'color': '#ff111111',
             'offset': {
@@ -796,6 +846,7 @@ void main() {
             'spreadRadius': 0.0,
           },
           {
+            'blurStyle': 'normal',
             'blurRadius': 0.0,
             'color': '#ff222222',
             'offset': {
@@ -812,24 +863,23 @@ void main() {
             '#ff444444',
             '#ff555555',
           ],
-          'focal': null,
           'focalRadius': 0.0,
           'radius': 0.5,
-          'stops': null,
           'tileMode': 'clamp',
-          'transform': null,
           'type': 'radial'
         },
         'image': {
           'alignment': 'center',
-          'centerSlice': null,
-          'fit': null,
+          'filterQuality': 'low',
           'image': {
             'bytes': base64Image,
             'scale': 1.0,
             'type': 'memory',
           },
+          'invertColors': false,
+          'isAntiAlias': false,
           'matchTextDirection': false,
+          'opacity': 1.0,
           'repeat': 'noRepeat',
           'scale': 1.0,
         },
@@ -877,6 +927,7 @@ void main() {
 
     var entry = BoxShadow(
       blurRadius: 1.0,
+      blurStyle: BlurStyle.outer,
       color: _kColor,
       offset: Offset(2.0, 3.0),
       spreadRadius: 4.0,
@@ -891,6 +942,7 @@ void main() {
       encoded,
       {
         'blurRadius': entry.blurRadius,
+        'blurStyle': 'outer',
         'color': _kColorStr,
         'offset': {
           'dx': 2.0,
@@ -2039,7 +2091,7 @@ void main() {
         result = false;
       } else if (first is! DataTableThemeData) {
         result = false;
-      } else if (first is DataTableThemeData && second is DataTableThemeData) {
+      } else if (second is DataTableThemeData) {
         result = first.columnSpacing == second.columnSpacing &&
             first.dataRowColor?.resolve({}) ==
                 second.dataRowColor?.resolve({}) &&
@@ -2069,9 +2121,13 @@ void main() {
     var entry = DecorationImage(
       alignment: Alignment.bottomCenter,
       centerSlice: Rect.zero,
+      filterQuality: FilterQuality.high,
       fit: BoxFit.contain,
       image: MemoryImage(base64Decode(base64Image)),
+      invertColors: true,
+      isAntiAlias: true,
       matchTextDirection: true,
+      opacity: 0.5,
       repeat: ImageRepeat.repeat,
       scale: 2.0,
     );
@@ -2090,13 +2146,17 @@ void main() {
         'top': 0.0,
         'type': 'ltrb',
       },
+      'filterQuality': 'high',
       'fit': 'contain',
       'image': {
         'bytes': base64Image,
         'scale': 1.0,
         'type': 'memory',
       },
+      'invertColors': true,
+      'isAntiAlias': true,
       'matchTextDirection': true,
+      'opacity': 0.5,
       'repeat': 'repeat',
       'scale': 2.0,
     });
@@ -2112,13 +2172,17 @@ void main() {
           'top': 0.0,
           'type': 'ltrb',
         },
+        'filterQuality': 'high',
         'fit': 'contain',
         'image': {
           'bytes': base64Image,
           'scale': 1.0,
           'type': 'memory',
         },
+        'invertColors': true,
         'matchTextDirection': true,
+        'isAntiAlias': true,
+        'opacity': 0.5,
         'repeat': 'repeat',
         'scale': 2.0,
       },
@@ -2166,6 +2230,7 @@ void main() {
     expect(ThemeEncoder.encodeDialogTheme(null), null);
 
     var entry = DialogTheme(
+      alignment: Alignment.bottomLeft,
       backgroundColor: _kColor,
       contentTextStyle: _kTextStyle,
       elevation: 1.0,
@@ -2180,6 +2245,7 @@ void main() {
     expect(
       encoded,
       {
+        'alignment': 'bottomLeft',
         'backgroundColor': _kColorStr,
         'contentTextStyle': _kTextStyleJson,
         'elevation': 1.0,
@@ -2287,6 +2353,43 @@ void main() {
     );
   });
 
+  test('DrawerThemeData', () {
+    expect(ThemeDecoder.decodeDrawerThemeData(null), null);
+    expect(ThemeEncoder.encodeDrawerThemeData(null), null);
+
+    var entry = DrawerThemeData(
+      backgroundColor: Color(0xff111111),
+      elevation: 5,
+      scrimColor: Color(0xff222222),
+      shape: CircleBorder(
+        side: BorderSide.none,
+      ),
+    );
+
+    expect(ThemeDecoder.decodeDrawerThemeData(entry), entry);
+
+    var encoded = ThemeEncoder.encodeDrawerThemeData(entry);
+    var decoded = ThemeDecoder.decodeDrawerThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'backgroundColor': '#ff111111',
+        'elevation': 5.0,
+        'scrimColor': '#ff222222',
+        'shape': {
+          'side': {
+            'color': '#ff000000',
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle'
+        }
+      },
+    );
+    expect(decoded, entry);
+  });
+
   test('EdgeInsetsGeometry', () {
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(null), null);
     expect(ThemeEncoder.encodeEdgeInsetsGeometry(null), null);
@@ -2366,8 +2469,7 @@ void main() {
         result = false;
       } else if (first is! ElevatedButtonThemeData) {
         result = false;
-      } else if (first is ElevatedButtonThemeData &&
-          second is ElevatedButtonThemeData) {
+      } else if (second is ElevatedButtonThemeData) {
         result = _buttonStylesAreEqual(first.style, second.style);
       }
 
@@ -3145,10 +3247,13 @@ void main() {
       helperStyle: TextStyle(color: Color(0xff555555)),
       hintStyle: TextStyle(color: Color(0xff666666)),
       hoverColor: Color(0xff777777),
+      iconColor: Color(0xff223322),
       isCollapsed: true,
       isDense: true,
       labelStyle: TextStyle(color: Color(0xff888888)),
+      prefixIconColor: Color(0xff334433),
       prefixStyle: TextStyle(color: Color(0xff999999)),
+      suffixIconColor: Color(0xff445544),
       suffixStyle: TextStyle(color: Color(0xff000000)),
     );
 
@@ -3390,16 +3495,19 @@ void main() {
           'inherit': true,
         },
         'hoverColor': '#ff777777',
+        'iconColor': '#ff223322',
         'isCollapsed': true,
         'isDense': true,
         'labelStyle': {
           'color': '#ff888888',
           'inherit': true,
         },
+        'prefixIconColor': '#ff334433',
         'prefixStyle': {
           'color': '#ff999999',
           'inherit': true,
         },
+        'suffixIconColor': '#ff445544',
         'suffixStyle': {
           'color': '#ff000000',
           'inherit': true,
@@ -3441,6 +3549,89 @@ void main() {
       ThemeEncoder.encodeInteractiveInkFeatureFactory(InkRipple.splashFactory),
       'ripple',
     );
+  });
+
+  test('ListTileStyle', () {
+    expect(ThemeDecoder.decodeListTileStyle(null), null);
+    expect(ThemeEncoder.encodeListTileStyle(null), null);
+
+    expect(
+      ThemeDecoder.decodeListTileStyle(
+        ListTileStyle.drawer,
+      ),
+      ListTileStyle.drawer,
+    );
+
+    expect(ThemeDecoder.decodeListTileStyle('drawer'), ListTileStyle.drawer);
+    expect(ThemeDecoder.decodeListTileStyle('list'), ListTileStyle.list);
+
+    expect(ThemeEncoder.encodeListTileStyle(ListTileStyle.drawer), 'drawer');
+    expect(ThemeEncoder.encodeListTileStyle(ListTileStyle.list), 'list');
+  });
+
+  test('ListTileThemeData', () {
+    expect(ThemeDecoder.decodeListTileThemeData(null), null);
+    expect(ThemeEncoder.encodeListTileThemeData(null), null);
+
+    var entry = ListTileThemeData(
+      contentPadding: EdgeInsets.fromLTRB(
+        1,
+        2,
+        3,
+        4,
+      ),
+      dense: true,
+      enableFeedback: false,
+      horizontalTitleGap: 5,
+      iconColor: Color(0xff111111),
+      minLeadingWidth: 6,
+      minVerticalPadding: 7,
+      selectedColor: Color(0xff222222),
+      selectedTileColor: Color(0xff333333),
+      shape: ContinuousRectangleBorder(),
+      style: ListTileStyle.drawer,
+      textColor: Color(0xff444444),
+      tileColor: Color(0xff555555),
+    );
+
+    var decoded = ThemeDecoder.decodeListTileThemeData(entry);
+    var encoded = ThemeEncoder.encodeListTileThemeData(decoded);
+
+    expect(
+      encoded,
+      {
+        'contentPadding': {
+          'left': 1,
+          'top': 2,
+          'right': 3,
+          'bottom': 4,
+        },
+        'dense': true,
+        'enableFeedback': false,
+        'horizontalTitleGap': 5,
+        'iconColor': '#ff111111',
+        'minLeadingWidth': 6,
+        'minVerticalPadding': 7,
+        'selectedColor': '#ff222222',
+        'selectedTileColor': '#ff333333',
+        'shape': {
+          'borderRadius': {
+            'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'type': 'only'
+          },
+          'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+          'type': 'rectangle',
+        },
+        'style': 'drawer',
+        'textColor': '#ff444444',
+        'tileColor': '#ff555555',
+      },
+    );
+
+    expect(decoded, entry);
   });
 
   test('Locale', () {
@@ -3555,6 +3746,7 @@ void main() {
     var entry = MaterialBannerThemeData(
       backgroundColor: _kColor,
       contentTextStyle: _kTextStyle,
+      elevation: 5.5,
       leadingPadding: EdgeInsets.all(1.0),
       padding: EdgeInsets.all(2.0),
     );
@@ -3569,6 +3761,7 @@ void main() {
       {
         'backgroundColor': _kColorStr,
         'contentTextStyle': _kTextStyleJson,
+        'elevation': 5.5,
         'leadingPadding': {
           'bottom': 1.0,
           'left': 1.0,
@@ -3763,7 +3956,7 @@ void main() {
 
       var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
 
-      expect(encoded![entry.key], colorStr);
+      expect(encoded?[entry.key], colorStr);
     }
 
     for (var entry in states.entries) {
@@ -3839,7 +4032,7 @@ void main() {
 
       var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
 
-      expect(encoded![entry.key], value);
+      expect(encoded?[entry.key], value);
     }
 
     for (var entry in states.entries) {
@@ -3952,6 +4145,79 @@ void main() {
     }
   });
 
+  test('MaterialStatePropertyIconThemeData', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyIconThemeData(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyIconThemeData(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'selected': MaterialState.selected,
+    };
+
+    var icons = <MaterialState, IconThemeData>{};
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var icon = IconThemeData(
+        color: _kColor,
+        opacity: 0.5,
+        size: 12.0,
+      );
+      icons[state] = icon;
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(icon);
+
+      expect(decoded!.resolve({state}), icon);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
+
+      expect(encoded![stateKey]['color'], _kColorStr);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : icons[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(prop);
+    for (var entry in states.entries) {
+      var icon = icons[entry.value];
+
+      expect(decoded!.resolve({entry.value}), icon);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
+
+      expect(encoded![entry.key]['color'], _kColorStr);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var icon = icons[state];
+      var encodedSide = ThemeEncoder.encodeIconThemeData(icon);
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), icon);
+
+      var encoded =
+          ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
+
+      expect(encoded![stateKey]['color'], _kColorStr);
+    }
+  });
+
   test('MaterialStatePropertyMouseCursor', () {
     expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
@@ -4009,7 +4275,7 @@ void main() {
       var encoded =
           ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
 
-      expect(encoded![entry.key], cursorStr);
+      expect(encoded?[entry.key], cursorStr);
     }
 
     for (var entry in states.entries) {
@@ -5032,6 +5298,55 @@ void main() {
     );
   });
 
+  test('NavigationDestinationLabelBehavior', () {
+    expect(ThemeDecoder.decodeNavigationDestinationLabelBehavior(null), null);
+    expect(ThemeEncoder.encodeNavigationDestinationLabelBehavior(null), null);
+
+    expect(
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
+        NavigationDestinationLabelBehavior.alwaysHide,
+      ),
+      NavigationDestinationLabelBehavior.alwaysHide,
+    );
+
+    expect(
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
+        'alwaysHide',
+      ),
+      NavigationDestinationLabelBehavior.alwaysHide,
+    );
+    expect(
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
+        'alwaysShow',
+      ),
+      NavigationDestinationLabelBehavior.alwaysShow,
+    );
+    expect(
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
+        'onlyShowSelected',
+      ),
+      NavigationDestinationLabelBehavior.onlyShowSelected,
+    );
+
+    expect(
+      ThemeEncoder.encodeNavigationDestinationLabelBehavior(
+        NavigationDestinationLabelBehavior.alwaysHide,
+      ),
+      'alwaysHide',
+    );
+    expect(
+      ThemeEncoder.encodeNavigationDestinationLabelBehavior(
+        NavigationDestinationLabelBehavior.alwaysShow,
+      ),
+      'alwaysShow',
+    );
+    expect(
+      ThemeEncoder.encodeNavigationDestinationLabelBehavior(
+          NavigationDestinationLabelBehavior.onlyShowSelected),
+      'onlyShowSelected',
+    );
+  });
+
   test('NavigationRailLabelType', () {
     expect(ThemeDecoder.decodeNavigationRailLabelType(null), null);
     expect(ThemeEncoder.encodeNavigationRailLabelType(null), null);
@@ -5070,6 +5385,29 @@ void main() {
       ),
       'selected',
     );
+  });
+
+  test('NavigationBarThemeData', () {
+    expect(ThemeDecoder.decodeNavigationBarThemeData(null), null);
+    expect(ThemeEncoder.encodeNavigationBarThemeData(null), null);
+
+    var entry = NavigationBarThemeData(
+      backgroundColor: Color(0xff111111),
+      height: 12.0,
+      indicatorColor: Color(0xff222222),
+      labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+    );
+
+    var encoded = ThemeEncoder.encodeNavigationBarThemeData(entry);
+    var decoded = ThemeDecoder.decodeNavigationBarThemeData(encoded);
+
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'height': 12.0,
+      'indicatorColor': '#ff222222',
+      'labelBehavior': 'onlyShowSelected',
+    });
+    expect(ThemeEncoder.encodeNavigationBarThemeData(decoded), encoded);
   });
 
   test('NavigationRailThemeData', () {
@@ -5433,8 +5771,7 @@ void main() {
         result = false;
       } else if (first is! OutlinedButtonThemeData) {
         result = false;
-      } else if (first is OutlinedButtonThemeData &&
-          second is OutlinedButtonThemeData) {
+      } else if (second is OutlinedButtonThemeData) {
         result = _buttonStylesAreEqual(first.style, second.style);
       }
 
@@ -7373,8 +7710,7 @@ void main() {
         result = false;
       } else if (first is! TextButtonThemeData) {
         result = false;
-      } else if (first is TextButtonThemeData &&
-          second is TextButtonThemeData) {
+      } else if (second is TextButtonThemeData) {
         result = _buttonStylesAreEqual(first.style, second.style);
       }
 
@@ -7906,8 +8242,10 @@ void main() {
       fontWeight: FontWeight.w100,
       height: 4.0,
       inherit: false,
+      leadingDistribution: TextLeadingDistribution.even,
       letterSpacing: 5.0,
       locale: Locale('en', 'US'),
+      overflow: TextOverflow.ellipsis,
       package: 'bar',
       shadows: [
         Shadow(
@@ -7950,11 +8288,13 @@ void main() {
         'fontStyle': 'italic',
         'height': 4.0,
         'inherit': false,
+        'leadingDistribution': 'even',
         'letterSpacing': 5.0,
         'locale': {
           'countryCode': 'US',
           'languageCode': 'en',
         },
+        'overflow': 'ellipsis',
         'shadows': [
           {
             'blurRadius': 6.0,
@@ -7970,10 +8310,7 @@ void main() {
       },
     );
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded!.color, entry.color);
   });
 
   test('TextTheme', () {
@@ -8100,6 +8437,7 @@ void main() {
     expect(ThemeEncoder.encodeThemeData(null), null);
 
     var entry = ThemeData(
+      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
       appBarTheme: AppBarTheme(color: Color(0xff444444)),
       applyElevationOverlayColor: true,
       backgroundColor: Color(0xff555555),
@@ -8167,6 +8505,14 @@ void main() {
       disabledColor: Color(0xee000000),
       dividerColor: Color(0xeeaaaaaa),
       dividerTheme: DividerThemeData(color: Color(0xeebbbbbb)),
+      drawerTheme: DrawerThemeData(
+        backgroundColor: Color(0xff111111),
+        elevation: 5,
+        scrimColor: Color(0xff222222),
+        shape: CircleBorder(
+          side: BorderSide.none,
+        ),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
@@ -8188,7 +8534,33 @@ void main() {
       inputDecorationTheme: InputDecorationTheme(
         focusColor: Color(0xdd555555),
       ),
+      listTileTheme: ListTileThemeData(
+        contentPadding: EdgeInsets.fromLTRB(
+          1,
+          2,
+          3,
+          4,
+        ),
+        dense: true,
+        enableFeedback: false,
+        horizontalTitleGap: 5,
+        iconColor: Color(0xff111111),
+        minLeadingWidth: 6,
+        minVerticalPadding: 7,
+        selectedColor: Color(0xff222222),
+        selectedTileColor: Color(0xff333333),
+        shape: ContinuousRectangleBorder(),
+        style: ListTileStyle.drawer,
+        textColor: Color(0xff444444),
+        tileColor: Color(0xff555555),
+      ),
       materialTapTargetSize: MaterialTapTargetSize.padded,
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: Color(0xff111111),
+        height: 12.0,
+        indicatorColor: Color(0xff222222),
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+      ),
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: Color(0xdd666666),
       ),
@@ -8265,6 +8637,7 @@ void main() {
     var decoded = ThemeDecoder.decodeThemeData(encoded)!;
 
     var jsonMap = {
+      'androidOverscrollIndicator': 'stretch',
       'appBarTheme': {
         'backgroundColor': '#ff444444',
       },
@@ -8442,6 +8815,19 @@ void main() {
       'dividerTheme': {
         'color': '#eebbbbbb',
       },
+      'drawerTheme': {
+        'backgroundColor': '#ff111111',
+        'elevation': 5.0,
+        'scrimColor': '#ff222222',
+        'shape': {
+          'side': {
+            'color': '#ff000000',
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle'
+        }
+      },
       'elevatedButtonTheme': {
         'style': {
           'backgroundColor': _materializeState('#ff222222'),
@@ -8467,7 +8853,43 @@ void main() {
         'isCollapsed': false,
         'isDense': false,
       },
+      'listTileTheme': {
+        'contentPadding': {
+          'left': 1,
+          'top': 2,
+          'right': 3,
+          'bottom': 4,
+        },
+        'dense': true,
+        'enableFeedback': false,
+        'horizontalTitleGap': 5,
+        'iconColor': '#ff111111',
+        'minLeadingWidth': 6,
+        'minVerticalPadding': 7,
+        'selectedColor': '#ff222222',
+        'selectedTileColor': '#ff333333',
+        'shape': {
+          'borderRadius': {
+            'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'type': 'only'
+          },
+          'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+          'type': 'rectangle',
+        },
+        'style': 'drawer',
+        'textColor': '#ff444444',
+        'tileColor': '#ff555555',
+      },
       'materialTapTargetSize': 'padded',
+      'navigationBarTheme': {
+        'backgroundColor': '#ff111111',
+        'height': 12.0,
+        'indicatorColor': '#ff222222',
+        'labelBehavior': 'onlyShowSelected',
+      },
       'navigationRailTheme': {
         'backgroundColor': '#dd666666',
       },
@@ -9676,7 +10098,7 @@ bool? _buttonStylesAreEqual(ButtonStyle? first, ButtonStyle? second) {
     result = false;
   } else if (first is! ButtonStyle) {
     result = false;
-  } else if (first is ButtonStyle && second is ButtonStyle) {
+  } else if (second is ButtonStyle) {
     result = first.alignment == second.alignment &&
         first.animationDuration == second.animationDuration &&
         first.backgroundColor?.resolve({}) ==

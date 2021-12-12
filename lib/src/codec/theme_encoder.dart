@@ -4,9 +4,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 
 /// Encoder capable of converting Flutter Theme related classes and enums into
 /// JSON compatible values.
@@ -75,6 +74,28 @@ class ThemeEncoder {
           'x': value.x,
           'y': value.y,
         };
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a [String].  Supported values are:
+  /// * `glow`
+  /// * `stretch`
+  static String? encodeAndroidOverscrollIndicator(
+      AndroidOverscrollIndicator? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case AndroidOverscrollIndicator.glow:
+          result = 'glow';
+          break;
+
+        case AndroidOverscrollIndicator.stretch:
+          result = 'stretch';
+          break;
       }
     }
 
@@ -329,8 +350,32 @@ class ThemeEncoder {
           result = 'xor';
           break;
       }
+    }
 
-      return result;
+    return result;
+  }
+
+  static String? encodeBlurStyle(BlurStyle? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case BlurStyle.inner:
+          result = 'inner';
+          break;
+
+        case BlurStyle.normal:
+          result = 'normal';
+          break;
+
+        case BlurStyle.outer:
+          result = 'outer';
+          break;
+
+        case BlurStyle.solid:
+          result = 'solid';
+          break;
+      }
     }
 
     return result;
@@ -616,7 +661,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] into a JSON compatible map.  This produces a Map
@@ -694,7 +739,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -750,6 +795,7 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "blurRadius": <double>,
+  ///   "blurStyle": <BlurStyle>,
   ///   "color": <Color>,
   ///   "offset": <Offset>,
   ///   "spreadRadius": <double>
@@ -765,13 +811,14 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'blurRadius': value.blurRadius,
+        'blurStyle': encodeBlurStyle(value.blurStyle),
         'color': encodeColor(value.color),
         'offset': encodeOffset(value.offset),
         'spreadRadius': value.spreadRadius,
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a [BoxShape].  Supported values are:
@@ -1517,9 +1564,13 @@ class ThemeEncoder {
   /// {
   ///   "alignment": <Alignment>,
   ///   "centerSlice": <Rect>,
+  ///   "filterQuality": <FilterQuality>,
   ///   "fit": <BoxFit>,
   ///   "image": <ImageProvider>,
+  ///   "invertColors": <bool>,
+  ///   "isAntiAlias": <bool>,
   ///   "matchTextDirection": <bool>,
+  ///   "opacity": <double>,
   ///   "repeat": <ImageRepeat>,
   ///   "scale": <double>
   /// }
@@ -1528,6 +1579,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeAlignment]
   ///  * [encodeBoxFit]
+  ///  * [encodeFilterQuality]
   ///  * [encodeImageProvider]
   ///  * [encodeImageRepeat]
   ///  * [encodeRect]
@@ -1538,15 +1590,19 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'alignment': encodeAlignment(value.alignment as Alignment?),
         'centerSlice': encodeRect(value.centerSlice),
+        'filterQuality': encodeFilterQuality(value.filterQuality),
         'fit': encodeBoxFit(value.fit),
         'image': encodeImageProvider(value.image),
+        'invertColors': value.invertColors,
+        'isAntiAlias': value.isAntiAlias,
         'matchTextDirection': value.matchTextDirection,
+        'opacity': value.opacity,
         'repeat': encodeImageRepeat(value.repeat),
         'scale': value.scale,
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1576,6 +1632,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "alignment": <Alignment>,
   ///   "backgroundColor": <Color>,
   ///   "contentTextStyle": <TextStyle>,
   ///   "elevation": <double>,
@@ -1585,6 +1642,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeAlignment]
   ///  * [encodeBrightness]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
@@ -1593,6 +1651,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'alignment': encodeAlignment(value.alignment as Alignment?),
         'backgroundColor': encodeColor(value.backgroundColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
         'elevation': value.elevation,
@@ -1654,6 +1713,39 @@ class ThemeEncoder {
     }
 
     return result;
+  }
+
+  /// Encodes the given [value] to a JSON compatible [Map].  The returned result
+  /// will always have the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "scrimColor": <Color>,
+  ///   "shape": <ShapeBorder>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeShapeBorder]
+  static Map<String, dynamic>? encodeDrawerThemeData(
+    DrawerThemeData? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'elevation': value.elevation,
+        'scrimColor': encodeColor(value.scrimColor),
+        'shape': encodeShapeBorder(value.shape),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible [Map].  The returned result
@@ -2165,7 +2257,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  This only
@@ -2192,7 +2284,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2244,7 +2336,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -2339,7 +2431,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] into a String representation.  Supported values
@@ -2450,10 +2542,13 @@ class ThemeEncoder {
   ///   "helperStyle": <TextStyle>,
   ///   "hintStyle": <TextStyle>,
   ///   "hoverColor": <Color>,
+  ///   "iconColor": <Color>,
   ///   "isCollapsed": <bool>,
   ///   "isDense": <bool>,
   ///   "labelStyle": <TextStyle>,
+  ///   "prefixIconColor": <Color>,
   ///   "prefixStyle": <TextStyle>,
+  ///   "suffixIconColor": <Color>,
   ///   "suffixStyle": <TextStyle>
   /// }
   /// ```
@@ -2495,10 +2590,13 @@ class ThemeEncoder {
         'helperStyle': encodeTextStyle(value.helperStyle),
         'hintStyle': encodeTextStyle(value.hintStyle),
         'hoverColor': encodeColor(value.hoverColor),
+        'iconColor': encodeColor(value.iconColor),
         'isCollapsed': value.isCollapsed,
         'isDense': value.isDense,
         'labelStyle': encodeTextStyle(value.labelStyle),
+        'prefixIconColor': encodeColor(value.prefixIconColor),
         'prefixStyle': encodeTextStyle(value.prefixStyle),
+        'suffixIconColor': encodeColor(value.suffixIconColor),
         'suffixStyle': encodeTextStyle(value.suffixStyle),
       };
     }
@@ -2532,6 +2630,75 @@ class ThemeEncoder {
     }
 
     return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `drawer`
+  ///  * `list`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeListTileStyle(ListTileStyle? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case ListTileStyle.drawer:
+          result = 'drawer';
+          break;
+        case ListTileStyle.list:
+          result = 'list';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a  JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "contentPadding": <EdgeInsetsGeometry>,
+  ///   "dense": <bool>,
+  ///   "enableFeedback": <bool>,
+  ///   "horizontalTitleGap": <double>,
+  ///   "iconColor": <Color>,
+  ///   "minLeadingWidth": <double>,
+  ///   "minVerticalPadding": <double>,
+  ///   "selectedColor": <Color>,
+  ///   "selectedTileColor": <Color>,
+  ///   "shape": <ShapeBorder>,
+  ///   "style": <ListTileStyle>,
+  ///   "textColor": <Color>,
+  ///   "tileColor": <Color>
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeListTileThemeData(
+      ListTileThemeData? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'contentPadding': encodeEdgeInsetsGeometry(
+          value.contentPadding as EdgeInsets?,
+        ),
+        'dense': value.dense,
+        'enableFeedback': value.enableFeedback,
+        'horizontalTitleGap': value.horizontalTitleGap,
+        'iconColor': encodeColor(value.iconColor),
+        'minLeadingWidth': value.minLeadingWidth,
+        'minVerticalPadding': value.minVerticalPadding,
+        'selectedColor': encodeColor(value.selectedColor),
+        'selectedTileColor': encodeColor(value.selectedTileColor),
+        'shape': encodeShapeBorder(value.shape),
+        'style': encodeListTileStyle(value.style),
+        'textColor': encodeColor(value.textColor),
+        'tileColor': encodeColor(value.tileColor),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a  JSON representation.
@@ -2622,6 +2789,7 @@ class ThemeEncoder {
   /// {
   ///   "backgroundColor": <Color>,
   ///   "contentTextStyle": <TextStyle>,
+  ///   "elevation": <double>,
   ///   "leadingPadding": <EdgeInsetsGeometry>,
   ///   "padding": <EdgeInsetsGeometry>
   /// }
@@ -2640,6 +2808,7 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'backgroundColor': encodeColor(value.backgroundColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
+        'elevation': value.elevation,
         'leadingPadding':
             encodeEdgeInsetsGeometry(value.leadingPadding as EdgeInsets?),
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
@@ -2721,7 +2890,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -2761,7 +2930,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -2798,7 +2967,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -2854,7 +3023,51 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <IconThemeData>,
+  ///   "dragged": <IconThemeData>,
+  ///   "empty": <IconThemeData>,
+  ///   "error": <IconThemeData>,
+  ///   "focused": <IconThemeData>,
+  ///   "hovered": <IconThemeData>,
+  ///   "pressed": <IconThemeData>,
+  ///   "selected": <IconThemeData>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeIconThemeData]
+  static Map<String, dynamic>? encodeMaterialStatePropertyIconThemeData(
+    MaterialStateProperty<IconThemeData?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeIconThemeData(
+          value.resolve({MaterialState.disabled}),
+        ),
+        'dragged': encodeIconThemeData(value.resolve({MaterialState.dragged})),
+        'empty': encodeIconThemeData(value.resolve({})),
+        'error': encodeIconThemeData(value.resolve({MaterialState.error})),
+        'focused': encodeIconThemeData(value.resolve({MaterialState.focused})),
+        'hovered': encodeIconThemeData(value.resolve({MaterialState.hovered})),
+        'pressed': encodeIconThemeData(value.resolve({MaterialState.pressed})),
+        'selected': encodeIconThemeData(
+          value.resolve({MaterialState.selected}),
+        ),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -2894,7 +3107,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -2938,7 +3151,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -2978,7 +3191,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3018,7 +3231,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3398,7 +3611,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3423,6 +3636,80 @@ class ThemeEncoder {
 
         case NavigationRailLabelType.selected:
           result = 'selected';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "height": <double>,
+  ///   "iconTheme": <MaterialStateProperty<IconThemeData>>,
+  ///   "indicatorColor": <Color>,
+  ///   "labelBehavior": <NavigationDestinationLabelBehavior>,
+  ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeMaterialStatePropertyIconThemeData]
+  ///  * [encodeMaterialStatePropertyTextStyle]
+  ///  * [encodeNavigationDestinationLabelBehavior]
+  static Map<String, dynamic>? encodeNavigationBarThemeData(
+    NavigationBarThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'height': value.height,
+        'iconTheme': encodeMaterialStatePropertyIconThemeData(
+          value.iconTheme,
+        ),
+        'indicatorColor': encodeColor(value.indicatorColor),
+        'labelBehavior':
+            encodeNavigationDestinationLabelBehavior(value.labelBehavior),
+        'labelTextStyle': encodeMaterialStatePropertyTextStyle(
+          value.labelTextStyle,
+        ),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `alwaysHide`
+  ///  * `alwaysShow`
+  ///  * `onlyShowSelected`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeNavigationDestinationLabelBehavior(
+    NavigationDestinationLabelBehavior? value, {
+    bool validate = true,
+  }) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case NavigationDestinationLabelBehavior.alwaysHide:
+          result = 'alwaysHide';
+          break;
+
+        case NavigationDestinationLabelBehavior.alwaysShow:
+          result = 'alwaysShow';
+          break;
+
+        case NavigationDestinationLabelBehavior.onlyShowSelected:
+          result = 'onlyShowSelected';
           break;
       }
     }
@@ -3531,7 +3818,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The value structure
@@ -3794,7 +4081,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [RadioThemeData] to a JSON representation.
@@ -3885,7 +4172,6 @@ class ThemeEncoder {
   static Map<String, dynamic>? encodeRangeSliderThumbShape(
     RoundRangeSliderThumbShape? value,
   ) {
-    assert(value == null || value is RoundRangeSliderThumbShape);
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4004,7 +4290,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [ScrollbarThemeData] to the JSON representation.  This
@@ -4116,7 +4402,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] to a String.  Supported values are:
@@ -4158,7 +4444,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -4683,7 +4969,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5189,7 +5475,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -5298,8 +5584,10 @@ class ThemeEncoder {
   ///   "fontStyle": <FontStyle>,
   ///   "height": <double>,
   ///   "inherit": <bool>,
+  ///   "leadingDistribution": <TextLeadingDistribution>,
   ///   "letterSpacing": <double>,
   ///   "locale": <Locale>,
+  ///   "overflow": <TextOverflow>,
   ///   "package": <String>,
   ///   "shadows": <Shadow[]>,
   ///   "textBaseline": <TextBaseline>,
@@ -5313,9 +5601,11 @@ class ThemeEncoder {
   ///  * [encodeFontWeight]
   ///  * [encodeLocale]
   ///  * [encodeShadow]
-  ///  * [encodeTextbaseline]
+  ///  * [encodeTextBaseline]
   ///  * [encodeTextDecoration]
   ///  * [encodeTextDecorationStyle]
+  ///  * [encodeTextLeadingDistribution]
+  ///  * [encodeTextOverflow]
   static Map<String, dynamic>? encodeTextStyle(TextStyle? value) {
     Map<String, dynamic>? result;
 
@@ -5341,8 +5631,12 @@ class ThemeEncoder {
         'fontStyle': encodeFontStyle(value.fontStyle),
         'height': value.height,
         'inherit': value.inherit,
+        'leadingDistribution': encodeTextLeadingDistribution(
+          value.leadingDistribution,
+        ),
         'letterSpacing': value.letterSpacing,
         'locale': encodeLocale(value.locale),
+        'overflow': encodeTextOverflow(value.overflow),
         'shadows': value.shadows == null
             ? null
             : value.shadows!
@@ -5432,6 +5726,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
   ///   "bannerTheme": <MaterialBannerThemeData>,
@@ -5455,6 +5750,7 @@ class ThemeEncoder {
   ///   "disabledColor": <Color>,
   ///   "dividerColor": <Color>,
   ///   "dividerTheme": <DividerThemeData>,
+  ///   "drawerTheme": <DrawerThemeData>,
   ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
@@ -5466,7 +5762,9 @@ class ThemeEncoder {
   ///   "iconTheme": <IconThemeData>,
   ///   "indicatorColor": <Color>,
   ///   "inputDecorationTheme": <InputDecorationTheme>,
+  ///   "listTileTheme": <ListTileThemeData>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "navigationBarTheme": <NavigationBarThemeData>,
   ///   "navigationRailTheme": <NavigationRailThemeData>,
   ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
   ///   "platform": <TargetPlatform>,
@@ -5500,6 +5798,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeAndroidOverscrollIndicator]
   ///  * [encodeAppBarTheme]
   ///  * [encodeBrightness]
   ///  * [encodeBottomAppBarTheme]
@@ -5513,13 +5812,16 @@ class ThemeEncoder {
   ///  * [encodeDataTableThemeData]
   ///  * [encodeDialogTheme]
   ///  * [encodeDividerThemeData]
+  ///  * [encodeDrawerThemeData]
   ///  * [encodeElevatedButtonThemeData]
   ///  * [encodeFloatingActionButtonThemeData]
   ///  * [encodeIconThemeData]
   ///  * [encodeInputDecorationTheme]
   ///  * [encodeInteractiveInkFeatureFactory]
+  ///  * [encodeListTileThemeData]
   ///  * [encodeMaterialBannerThemeData]
   ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeNavigationBarThemeData]
   ///  * [encodeNavigationRailThemeData]
   ///  * [encodeOutlinedButtonThemeData]
   ///  * [encodePopupMenuThemeData]
@@ -5538,6 +5840,9 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'androidOverscrollIndicator': encodeAndroidOverscrollIndicator(
+          value.androidOverscrollIndicator,
+        ),
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
         'bannerTheme': encodeMaterialBannerThemeData(value.bannerTheme),
@@ -5565,6 +5870,7 @@ class ThemeEncoder {
         'disabledColor': encodeColor(value.disabledColor),
         'dividerColor': encodeColor(value.dividerColor),
         'dividerTheme': encodeDividerThemeData(value.dividerTheme),
+        'drawerTheme': encodeDrawerThemeData(value.drawerTheme),
         'elevatedButtonTheme': encodeElevatedButtonThemeData(
           value.elevatedButtonTheme,
         ),
@@ -5581,8 +5887,12 @@ class ThemeEncoder {
         'inputDecorationTheme': encodeInputDecorationTheme(
           value.inputDecorationTheme,
         ),
+        'listTileTheme': encodeListTileThemeData(value.listTileTheme),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
+        ),
+        'navigationBarTheme': encodeNavigationBarThemeData(
+          value.navigationBarTheme,
         ),
         'navigationRailTheme': encodeNavigationRailThemeData(
           value.navigationRailTheme,
@@ -5719,7 +6029,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned
@@ -5800,7 +6110,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned

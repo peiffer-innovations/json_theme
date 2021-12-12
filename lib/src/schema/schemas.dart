@@ -3,10 +3,13 @@ import 'all.dart';
 class Schemas {
   static final all = {
     AlignmentSchema.id: AlignmentSchema.schema,
+    AndroidOverscrollIndicatorSchema.id:
+        AndroidOverscrollIndicatorSchema.schema,
     AppBarThemeSchema.id: AppBarThemeSchema.schema,
     AutovalidateModeSchema.id: AutovalidateModeSchema.schema,
     AxisSchema.id: AxisSchema.schema,
     BlendModeSchema.id: BlendModeSchema.schema,
+    BlurStyleSchema.id: BlurStyleSchema.schema,
     BorderRadiusSchema.id: BorderRadiusSchema.schema,
     BorderSideSchema.id: BorderSideSchema.schema,
     BorderStyleSchema.id: BorderStyleSchema.schema,
@@ -45,6 +48,7 @@ class Schemas {
     DialogThemeSchema.id: DialogThemeSchema.schema,
     DividerThemeDataSchema.id: DividerThemeDataSchema.schema,
     DragStartBehaviorSchema.id: DragStartBehaviorSchema.schema,
+    DrawerThemeDataSchema.id: DrawerThemeDataSchema.schema,
     EdgeInsetsGeometrySchema.id: EdgeInsetsGeometrySchema.schema,
     ElevatedButtonThemeDataSchema.id: ElevatedButtonThemeDataSchema.schema,
     FilterQualitySchema.id: FilterQualitySchema.schema,
@@ -70,6 +74,8 @@ class Schemas {
     InputDecorationThemeSchema.id: InputDecorationThemeSchema.schema,
     InteractiveInkFeatureFactorySchema.id:
         InteractiveInkFeatureFactorySchema.schema,
+    ListTileStyleSchema.id: ListTileStyleSchema.schema,
+    ListTileThemeDataSchema.id: ListTileThemeDataSchema.schema,
     LocaleSchema.id: LocaleSchema.schema,
     MainAxisAlignmentSchema.id: MainAxisAlignmentSchema.schema,
     MainAxisSizeSchema.id: MainAxisSizeSchema.schema,
@@ -83,6 +89,8 @@ class Schemas {
         MaterialStatePropertyDoubleSchema.schema,
     MaterialStatePropertyEdgeInsetsGeometrySchema.id:
         MaterialStatePropertyEdgeInsetsGeometrySchema.schema,
+    MaterialStatePropertyIconThemeDataSchema.id:
+        MaterialStatePropertyIconThemeDataSchema.schema,
     MaterialStatePropertyMouseCursorSchema.id:
         MaterialStatePropertyMouseCursorSchema.schema,
     MaterialStatePropertyOutlinedBorderSchema.id:
@@ -95,6 +103,9 @@ class Schemas {
     Matrix4Schema.id: Matrix4Schema.schema,
     MaxLengthEnforcementSchema.id: MaxLengthEnforcementSchema.schema,
     MouseCursorSchema.id: MouseCursorSchema.schemas,
+    NavigationBarThemeDataSchema.id: NavigationBarThemeDataSchema.schema,
+    NavigationDestinationLabelBehaviorSchema.id:
+        NavigationDestinationLabelBehaviorSchema.schema,
     NavigationRailLabelTypeSchema.id: NavigationRailLabelTypeSchema.schema,
     NavigationRailThemeDataSchema.id: NavigationRailThemeDataSchema.schema,
     NotchedShapeSchema.id: NotchedShapeSchema.schema,

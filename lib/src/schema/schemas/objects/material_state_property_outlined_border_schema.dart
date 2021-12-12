@@ -9,7 +9,7 @@ class MaterialStatePropertyOutlinedBorderSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
-    'title': 'MaterialStatePropertyOutlinedBorderSchema',
+    'title': 'MaterialStatePropertyOutlinedBorder',
     'type': 'object',
     'properties': {
       'disabled': SchemaHelper.objectSchema(OutlinedBorderSchema.id),

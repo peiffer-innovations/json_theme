@@ -2,9 +2,11 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class Enums {
   static List<String> all = [
+    AndroidOverscrollIndicatorSchema.id,
     AxisSchema.id,
     AutovalidateModeSchema.id,
     BlendModeSchema.id,
+    BlurStyleSchema.id,
     BorderStyleSchema.id,
     BottomNavigationBarLandscapeLayoutSchema.id,
     BottomNavigationBarTypeSchema.id,
@@ -28,11 +30,13 @@ class Enums {
     HitTestBehaviorSchema.id,
     ImageRepeatSchema.id,
     InteractiveInkFeatureFactorySchema.id,
+    ListTileStyleSchema.id,
     MainAxisAlignmentSchema.id,
     MainAxisSizeSchema.id,
     MaterialTapTargetSizeSchema.id,
     MaterialTypeSchema.id,
     NavigationRailLabelTypeSchema.id,
+    NavigationDestinationLabelBehaviorSchema.id,
     NotchedShapeSchema.id,
     OverflowSchema.id,
     PageTransitionsBuilderSchema.id,

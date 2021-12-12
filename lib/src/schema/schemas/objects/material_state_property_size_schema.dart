@@ -9,7 +9,7 @@ class MaterialStatePropertySizeSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
-    'title': 'MaterialStatePropertySizeSchema',
+    'title': 'MaterialStatePropertySize',
     'type': 'object',
     'properties': {
       'disabled': SchemaHelper.objectSchema(SizeSchema.id),

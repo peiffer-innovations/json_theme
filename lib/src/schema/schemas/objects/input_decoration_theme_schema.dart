@@ -34,9 +34,12 @@ class InputDecorationThemeSchema {
       'helperStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'hintStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'iconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'isDense': SchemaHelper.boolSchema,
       'labelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'prefixIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'prefixStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'suffixIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'suffixStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };

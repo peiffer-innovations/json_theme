@@ -9,7 +9,7 @@ class MaterialStatePropertyBorderSideSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
-    'title': 'MaterialStatePropertyBorderSideSchema',
+    'title': 'MaterialStatePropertyBorderSide',
     'type': 'object',
     'properties': {
       'disabled': SchemaHelper.objectSchema(BorderSideSchema.id),

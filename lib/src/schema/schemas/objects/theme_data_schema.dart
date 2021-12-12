@@ -16,6 +16,8 @@ class ThemeDataSchema {
       'accentColorBrightness': SchemaHelper.objectSchema(BrightnessSchema.id),
       'accentIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'accentTextTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
+      'androidOverscrollIndicator':
+          SchemaHelper.objectSchema(AndroidOverscrollIndicatorSchema.id),
       'appBarTheme': SchemaHelper.objectSchema(AppBarThemeSchema.id),
       'applyElevationOverlayColor': SchemaHelper.boolSchema,
       'bannerTheme':
@@ -46,6 +48,7 @@ class ThemeDataSchema {
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
+      'drawerTheme': SchemaHelper.objectSchema(DrawerThemeDataSchema.id),
       'elevatedButtonTheme':
           SchemaHelper.objectSchema(ElevatedButtonThemeDataSchema.id),
       'errorColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -59,14 +62,24 @@ class ThemeDataSchema {
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'inputDecorationTheme':
-          SchemaHelper.objectSchema(InputDecorationThemeSchema.id),
-      'materialTapTargetSize':
-          SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
-      'navigationRailTheme':
-          SchemaHelper.objectSchema(NavigationRailThemeDataSchema.id),
-      'outlinedButtonTheme':
-          SchemaHelper.objectSchema(OutlinedButtonThemeDataSchema.id),
+      'inputDecorationTheme': SchemaHelper.objectSchema(
+        InputDecorationThemeSchema.id,
+      ),
+      'listTileTheme': SchemaHelper.objectSchema(
+        ListTileThemeDataSchema.id,
+      ),
+      'materialTapTargetSize': SchemaHelper.objectSchema(
+        MaterialTapTargetSizeSchema.id,
+      ),
+      'navigationBarTheme': SchemaHelper.objectSchema(
+        NavigationBarThemeDataSchema.id,
+      ),
+      'navigationRailTheme': SchemaHelper.objectSchema(
+        NavigationRailThemeDataSchema.id,
+      ),
+      'outlinedButtonTheme': SchemaHelper.objectSchema(
+        OutlinedButtonThemeDataSchema.id,
+      ),
       'pageTransitionsTheme':
           SchemaHelper.objectSchema(PageTransitionsThemeSchema.id),
       'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),

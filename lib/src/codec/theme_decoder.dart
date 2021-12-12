@@ -5,10 +5,9 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
-import 'package:meta/meta.dart';
 
 import '../schema/schema_validator.dart';
 
@@ -119,6 +118,48 @@ class ThemeDecoder {
             result = Alignment.topRight;
             break;
         }
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [AndroidOverscrollIndicator].  Supported
+  /// values are:
+  /// * `glow`
+  /// * `stretch`
+  static AndroidOverscrollIndicator? decodeAndroidOverscrollIndicator(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    AndroidOverscrollIndicator? result;
+
+    if (value is AndroidOverscrollIndicator) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'AndroidOverscrollIndicator',
+        [
+          'glow',
+          'stretch',
+        ],
+        value,
+      );
+
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/android_overscroll_indicator',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'glow':
+          result = AndroidOverscrollIndicator.glow;
+          break;
+
+        case 'stretch':
+          result = AndroidOverscrollIndicator.stretch;
+          break;
       }
     }
 
@@ -495,6 +536,58 @@ class ThemeDecoder {
             result = BlendMode.xor;
             break;
         }
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [BlurStyle].  Supported values are:
+  /// * `inner`
+  /// * `normal`
+  /// * `outer`
+  /// * `solid`
+  static BlurStyle? decodeBlurStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    BlurStyle? result;
+
+    if (value is BlurStyle) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'BlendMode',
+        [
+          'inner',
+          'normal',
+          'outer',
+          'solid',
+        ],
+        value,
+      );
+
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/blur_style',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'inner':
+          result = BlurStyle.inner;
+          break;
+
+        case 'normal':
+          result = BlurStyle.normal;
+          break;
+
+        case 'outer':
+          result = BlurStyle.outer;
+          break;
+
+        case 'solid':
+          result = BlurStyle.solid;
+          break;
       }
     }
 
@@ -1285,6 +1378,7 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "blurRadius": <double>,
+  ///   "blurStyle": <BlurStyle>,
   ///   "color": <Color>,
   ///   "offset": <Offset>,
   ///   "spreadRadius": <double>
@@ -1292,6 +1386,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeBlurStyle]
   ///  * [decodeColor]
   ///  * [decodeOffset]
   static BoxShadow? decodeBoxShadow(
@@ -1309,6 +1404,11 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = BoxShadow(
+        blurStyle: decodeBlurStyle(
+              value['blurStyle'],
+              validate: false,
+            ) ??
+            BlurStyle.normal,
         blurRadius: JsonClass.parseDouble(value['blurRadius'], 0)!,
         color: decodeColor(
               value['color'],
@@ -2575,9 +2675,13 @@ class ThemeDecoder {
   /// {
   ///   "alignment": <Alignment>,
   ///   "centerSlice": <Rect>,
+  ///   "filterQuality": <FilterQuality>,
   ///   "fit": <BoxFit>,
   ///   "image": <ImageProvider>,
+  ///   "invertColors": <bool>,
+  ///   "isAntiAlias": <bool>,
   ///   "matchTextDirection": <bool>,
+  ///   "opacity": <double>,
   ///   "repeat": <ImageRepeat>,
   ///   "scale": <double>
   /// }
@@ -2586,6 +2690,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeAlignment]
   ///  * [decodeBoxFit]
+  ///  * [decodeFilterQuality]
   ///  * [decodeImageProvider]
   ///  * [decodeImageRepeat]
   ///  * [decodeRect]
@@ -2604,14 +2709,39 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = DecorationImage(
-        alignment: decodeAlignment(value['alignment']) ?? Alignment.center,
-        centerSlice: decodeRect(value['centerSlice']),
+        alignment: decodeAlignment(
+              value['alignment'],
+              validate: false,
+            ) ??
+            Alignment.center,
+        centerSlice: decodeRect(
+          value['centerSlice'],
+          validate: false,
+        ),
         // @unencodable
         // colorFilter
-        fit: decodeBoxFit(value['fit']),
-        image: decodeImageProvider(value['image'])!,
+        fit: decodeBoxFit(
+          value['fit'],
+          validate: false,
+        ),
+        filterQuality: decodeFilterQuality(
+              value['filterQuality'],
+              validate: false,
+            ) ??
+            FilterQuality.low,
+        image: decodeImageProvider(
+          value['image'],
+          validate: false,
+        )!,
+        invertColors: JsonClass.parseBool(value['invertColors']),
+        isAntiAlias: JsonClass.parseBool(value['isAntiAlias']),
         matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
-        repeat: decodeImageRepeat(value['repeat']) ?? ImageRepeat.noRepeat,
+        opacity: JsonClass.parseDouble(value['opacity']) ?? 1.0,
+        repeat: decodeImageRepeat(
+              value['repeat'],
+              validate: false,
+            ) ??
+            ImageRepeat.noRepeat,
         scale: JsonClass.parseDouble(value['scale'], 1.0)!,
       );
     }
@@ -2665,6 +2795,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "alignment": <Alignment>,
   ///   "backgroundColor": <Color>,
   ///   "contentTextStyle": <TextStyle>,
   ///   "elevation": <double>,
@@ -2674,6 +2805,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeAlignment]
   ///  * [decodeBrightness]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
@@ -2692,6 +2824,10 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = DialogTheme(
+        alignment: decodeAlignment(
+          value['alignment'],
+          validate: false,
+        ),
         backgroundColor: decodeColor(
           value['backgroundColor'],
           validate: false,
@@ -2795,6 +2931,56 @@ class ThemeDecoder {
             break;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [DrawerThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
+  ///   "scrimColor": <Color>,
+  ///   "shape": <ShapeBorder>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeShapeBorder]
+  static DrawerThemeData? decodeDrawerThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DrawerThemeData? result;
+
+    if (value is DrawerThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/drawer_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = DrawerThemeData(
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        elevation: JsonClass.parseDouble(value['elevation']),
+        scrimColor: decodeColor(
+          value['scrimColor'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+      );
     }
 
     return result;
@@ -4099,10 +4285,13 @@ class ThemeDecoder {
   ///   "helperStyle": <TextStyle>,
   ///   "hintStyle": <TextStyle>,
   ///   "hoverColor": <Color>,
+  ///   "iconColor": <Color>,
   ///   "isCollapsed": <bool>,
   ///   "isDense": <bool>,
   ///   "labelStyle": <TextStyle>,
+  ///   "prefixIconColor": <Color>,
   ///   "prefixStyle": <TextStyle>,
+  ///   "suffixStyle": <Color>,
   ///   "suffixStyle": <TextStyle>
   /// }
   /// ```
@@ -4186,8 +4375,6 @@ class ThemeDecoder {
           value['focusedErrorBorder'],
           validate: false,
         ),
-        // @deprecated
-        // hasFloatingPlaceholder
         helperMaxLines: JsonClass.parseInt(value['helperMaxLines']),
         helperStyle: decodeTextStyle(
           value['helperStyle'],
@@ -4201,14 +4388,26 @@ class ThemeDecoder {
           value['hoverColor'],
           validate: false,
         ),
+        iconColor: decodeColor(
+          value['iconColor'],
+          validate: false,
+        ),
         isCollapsed: JsonClass.parseBool(value['isCollapsed']),
         isDense: JsonClass.parseBool(value['isDense']),
         labelStyle: decodeTextStyle(
           value['labelStyle'],
           validate: false,
         ),
+        prefixIconColor: decodeColor(
+          value['prefixIconColor'],
+          validate: false,
+        ),
         prefixStyle: decodeTextStyle(
           value['prefixStyle'],
+          validate: false,
+        ),
+        suffixIconColor: decodeColor(
+          value['suffixIconColor'],
           validate: false,
         ),
         suffixStyle: decodeTextStyle(
@@ -4258,6 +4457,105 @@ class ThemeDecoder {
             break;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to an [ListTileStyle].  Supported
+  /// values are:
+  ///  * `drawer`
+  ///  * `list`
+  static ListTileStyle? decodeListTileStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ListTileStyle? result;
+
+    if (value is ListTileStyle) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'ListTileStyle',
+        [
+          'drawer',
+          'list',
+        ],
+        value,
+      );
+
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/list_tile_style',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'drawer':
+          result = ListTileStyle.drawer;
+          break;
+        case 'list':
+          result = ListTileStyle.list;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [Locale].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "contentPadding": <EdgeInsetsGeometry>,
+  ///   "dense": <bool>,
+  ///   "enableFeedback": <bool>,
+  ///   "horizontalTitleGap": <double>,
+  ///   "iconColor": <Color>,
+  ///   "minLeadingWidth": <double>,
+  ///   "minVerticalPadding": <double>,
+  ///   "selectedColor": <Color>,
+  ///   "selectedTileColor": <Color>,
+  ///   "shape": <ShapeBorder>,
+  ///   "style": <ListTileStyle>,
+  ///   "textColor": <Color>,
+  ///   "tileColor": <Color>
+  /// }
+  /// ```
+  static ListTileThemeData? decodeListTileThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ListTileThemeData? result;
+
+    if (value is ListTileThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/list_tile_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = ListTileThemeData(
+        contentPadding: decodeEdgeInsetsGeometry(value['contentPadding']),
+        dense:
+            value['dense'] == null ? null : JsonClass.parseBool(value['dense']),
+        enableFeedback: value['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(value['enableFeedback']),
+        horizontalTitleGap: JsonClass.parseDouble(value['horizontalTitleGap']),
+        iconColor: decodeColor(value['iconColor']),
+        minLeadingWidth: JsonClass.parseDouble(value['minLeadingWidth']),
+        minVerticalPadding: JsonClass.parseDouble(value['minVerticalPadding']),
+        selectedColor: decodeColor(value['selectedColor']),
+        selectedTileColor: decodeColor(value['selectedTileColor']),
+        shape: decodeShapeBorder(value['shape']),
+        style: decodeListTileStyle(value['style']),
+        textColor: decodeColor(value['textColor']),
+        tileColor: decodeColor(value['tileColor']),
+      );
     }
 
     return result;
@@ -4401,6 +4699,7 @@ class ThemeDecoder {
   /// {
   ///   "backgroundColor": <Color>,
   ///   "contentTextStyle": <TextStyle>,
+  ///   "elevation": <double>,
   ///   "leadingPadding": <EdgeInsetsGeometry>,
   ///   "padding": <EdgeInsetsGeometry>
   /// }
@@ -4433,6 +4732,7 @@ class ThemeDecoder {
           value['contentTextStyle'],
           validate: false,
         ),
+        elevation: JsonClass.parseDouble(value['elevation']),
         leadingPadding: decodeEdgeInsetsGeometry(
           value['leadingPadding'],
           validate: false,
@@ -4523,9 +4823,11 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is BorderSide) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<BorderSide?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(decodeBorderSide(value));
+        result = MaterialStateProperty.all<BorderSide?>(
+          decodeBorderSide(value),
+        );
       } else if (value is Map) {
         var testValues = [
           'disabled',
@@ -4547,7 +4849,9 @@ class ThemeDecoder {
         }
 
         if (isMsp != true) {
-          result = MaterialStateProperty.all(decodeBorderSide(value));
+          result = MaterialStateProperty.all<BorderSide?>(
+            decodeBorderSide(value),
+          );
         } else {
           assert(SchemaValidator.validate(
             schemaId: '$_baseSchemaUrl/material_state_property_border_side',
@@ -4579,7 +4883,7 @@ class ThemeDecoder {
           });
         }
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<BorderSide?>(value);
       }
     }
     return result;
@@ -4616,9 +4920,9 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is Color) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<Color?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(decodeColor(value));
+        result = MaterialStateProperty.all<Color?>(decodeColor(value));
       } else if (value is Map) {
         assert(SchemaValidator.validate(
           schemaId: '$_baseSchemaUrl/material_state_property_color',
@@ -4649,7 +4953,7 @@ class ThemeDecoder {
           return result;
         });
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<Color?>(value);
       }
     }
     return result;
@@ -4683,11 +4987,13 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is int) {
-        result = MaterialStateProperty.all(value.toDouble());
+        result = MaterialStateProperty.all<double?>(value.toDouble());
       } else if (value is double) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<double?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(JsonClass.parseDouble(value));
+        result = MaterialStateProperty.all<double?>(
+          JsonClass.parseDouble(value),
+        );
       } else if (value is Map) {
         assert(SchemaValidator.validate(
           schemaId: '$_baseSchemaUrl/material_state_property_double',
@@ -4718,7 +5024,7 @@ class ThemeDecoder {
           return result;
         });
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<double?>(value);
       }
     }
     return result;
@@ -4775,9 +5081,11 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is EdgeInsetsGeometry) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<EdgeInsetsGeometry?>(value);
       } else if (value is String || value is List || value is int) {
-        result = MaterialStateProperty.all(decodeEdgeInsetsGeometry(value));
+        result = MaterialStateProperty.all<EdgeInsetsGeometry?>(
+          decodeEdgeInsetsGeometry(value),
+        );
       } else if (value is Map) {
         var testValues = [
           'disabled',
@@ -4799,7 +5107,9 @@ class ThemeDecoder {
         }
 
         if (isMsp != true) {
-          result = MaterialStateProperty.all(decodeEdgeInsetsGeometry(value));
+          result = MaterialStateProperty.all<EdgeInsetsGeometry?>(
+            decodeEdgeInsetsGeometry(value),
+          );
         } else {
           assert(SchemaValidator.validate(
             schemaId:
@@ -4832,7 +5142,106 @@ class ThemeDecoder {
           });
         }
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<EdgeInsetsGeometry?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [IconThemeData] based [MaterialStateProperty].
+  /// This accepts a [IconThemeData] or a [String] which will be resolved for
+  /// all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": <IconThemeData>,
+  ///   "dragged": <IconThemeData>,
+  ///   "empty": <IconThemeData>,
+  ///   "error": <IconThemeData>,
+  ///   "focused": <IconThemeData>,
+  ///   "hovered": <IconThemeData>,
+  ///   "pressed": <IconThemeData>,
+  ///   "selected": <IconThemeData>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeIconThemeData]
+  static MaterialStateProperty<IconThemeData?>?
+      decodeMaterialStatePropertyIconThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MaterialStateProperty<IconThemeData?>? result;
+
+    if (value is MaterialStateProperty<IconThemeData?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is IconThemeData) {
+        result = MaterialStateProperty.all<IconThemeData?>(value);
+      } else if (value is String) {
+        result = MaterialStateProperty.all<IconThemeData?>(
+          decodeIconThemeData(value),
+        );
+      } else if (value is Map) {
+        var testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = MaterialStateProperty.all<IconThemeData?>(
+            decodeIconThemeData(value),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/material_state_property_icon_theme_data',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MaterialStateProperty.resolveWith((states) {
+            IconThemeData? result;
+            if (states.contains(MaterialState.disabled)) {
+              result = decodeIconThemeData(value['disabled']);
+            } else if (states.contains(MaterialState.dragged)) {
+              result = decodeIconThemeData(value['dragged']);
+            } else if (states.contains(MaterialState.error)) {
+              result = decodeIconThemeData(value['error']);
+            } else if (states.contains(MaterialState.focused)) {
+              result = decodeIconThemeData(value['focused']);
+            } else if (states.contains(MaterialState.hovered)) {
+              result = decodeIconThemeData(value['hovered']);
+            } else if (states.contains(MaterialState.pressed)) {
+              result = decodeIconThemeData(value['pressed']);
+            } else if (states.contains(MaterialState.selected)) {
+              result = decodeIconThemeData(value['selected']);
+            } else {
+              result = decodeIconThemeData(value['empty']);
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = MaterialStateProperty.all<IconThemeData?>(value);
       }
     }
     return result;
@@ -4871,9 +5280,10 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is MouseCursor) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<MouseCursor?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(decodeMouseCursor(value));
+        result =
+            MaterialStateProperty.all<MouseCursor?>(decodeMouseCursor(value));
       } else if (value is Map) {
         var testValues = [
           'disabled',
@@ -4895,7 +5305,9 @@ class ThemeDecoder {
         }
 
         if (isMsp != true) {
-          result = MaterialStateProperty.all(decodeMouseCursor(value));
+          result = MaterialStateProperty.all<MouseCursor?>(
+            decodeMouseCursor(value),
+          );
         } else {
           assert(SchemaValidator.validate(
             schemaId: '$_baseSchemaUrl/material_state_property_mouse_cursor',
@@ -4927,7 +5339,7 @@ class ThemeDecoder {
           });
         }
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<MouseCursor?>(value);
       }
     }
     return result;
@@ -4954,7 +5366,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
-  ///  * [decodeTextStyle]
+  ///  * [decodeOutlinedBorder]
   static MaterialStateProperty<OutlinedBorder?>?
       decodeMaterialStatePropertyOutlinedBorder(
     dynamic value, {
@@ -4966,9 +5378,11 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is OutlinedBorder) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<OutlinedBorder?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(decodeOutlinedBorder(value));
+        result = MaterialStateProperty.all<OutlinedBorder?>(
+          decodeOutlinedBorder(value),
+        );
       } else if (value is Map) {
         var testValues = [
           'disabled',
@@ -4990,7 +5404,9 @@ class ThemeDecoder {
         }
 
         if (isMsp != true) {
-          result = MaterialStateProperty.all(decodeOutlinedBorder(value));
+          result = MaterialStateProperty.all<OutlinedBorder?>(
+            decodeOutlinedBorder(value),
+          );
         } else {
           assert(SchemaValidator.validate(
             schemaId: '$_baseSchemaUrl/material_state_property_outlined_border',
@@ -5022,7 +5438,7 @@ class ThemeDecoder {
           });
         }
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<OutlinedBorder?>(value);
       }
     }
     return result;
@@ -5048,7 +5464,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
-  ///  * [decodeTextStyle]
+  ///  * [decodeSize]
   static MaterialStateProperty<Size?>? decodeMaterialStatePropertySize(
     dynamic value, {
     bool validate = true,
@@ -5059,9 +5475,9 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is Size) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<Size?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(decodeSize(value));
+        result = MaterialStateProperty.all<Size?>(decodeSize(value));
       } else if (value is Map) {
         var testValues = [
           'disabled',
@@ -5083,7 +5499,7 @@ class ThemeDecoder {
         }
 
         if (isMsp != true) {
-          result = MaterialStateProperty.all(decodeSize(value));
+          result = MaterialStateProperty.all<Size?>(decodeSize(value));
         } else {
           assert(SchemaValidator.validate(
             schemaId: '$_baseSchemaUrl/material_state_property_size',
@@ -5115,7 +5531,7 @@ class ThemeDecoder {
           });
         }
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<Size?>(value);
       }
     }
     return result;
@@ -5153,9 +5569,9 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is TextStyle) {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<TextStyle?>(value);
       } else if (value is String) {
-        result = MaterialStateProperty.all(decodeTextStyle(value));
+        result = MaterialStateProperty.all<TextStyle?>(decodeTextStyle(value));
       } else if (value is Map) {
         var testValues = [
           'disabled',
@@ -5177,7 +5593,9 @@ class ThemeDecoder {
         }
 
         if (isMsp != true) {
-          result = MaterialStateProperty.all(decodeTextStyle(value));
+          result = MaterialStateProperty.all<TextStyle?>(
+            decodeTextStyle(value),
+          );
         } else {
           assert(SchemaValidator.validate(
             schemaId: '$_baseSchemaUrl/material_state_property_text_style',
@@ -5209,7 +5627,7 @@ class ThemeDecoder {
           });
         }
       } else {
-        result = MaterialStateProperty.all(value);
+        result = MaterialStateProperty.all<TextStyle?>(value);
       }
     }
     return result;
@@ -5751,6 +6169,110 @@ class ThemeDecoder {
             result = NavigationRailLabelType.selected;
             break;
         }
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [NavigationRailThemeData].  This expects
+  /// the given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "height": <double>,
+  ///   "iconTheme": <MaterialStateProperty<IconThemeData>>,
+  ///   "indicatorColor": <Color>,
+  ///   "labelBehavior": <NavigationDestinationLabelBehavior>,
+  ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyIconThemeData]
+  ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodeNavigationDestinationLabelBehavior]
+  static NavigationBarThemeData? decodeNavigationBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    NavigationBarThemeData? result;
+
+    if (value is NavigationBarThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/navigation_bar_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = NavigationBarThemeData(
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        height: JsonClass.parseDouble(value['height']),
+        iconTheme: decodeMaterialStatePropertyIconThemeData(
+          value['iconTheme'],
+          validate: false,
+        ),
+        indicatorColor: decodeColor(
+          value['indicatorColor'],
+          validate: false,
+        ),
+        labelBehavior: decodeNavigationDestinationLabelBehavior(
+          value['labelBehavior'],
+          validate: false,
+        ),
+        labelTextStyle: decodeMaterialStatePropertyTextStyle(
+          value['labelTextStyle'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [NavigationDestinationLabelBehavior].  Supported
+  /// values are:
+  ///  * `alwaysHide`
+  ///  * `alwaysShow`
+  ///  * `onlyShowSelected`
+  static NavigationDestinationLabelBehavior?
+      decodeNavigationDestinationLabelBehavior(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    NavigationDestinationLabelBehavior? result;
+
+    if (value is NavigationDestinationLabelBehavior) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'NavigationDestinationLabelBehavior',
+        [
+          'alwaysHide',
+          'alwaysShow',
+          'onlyShowSelected',
+        ],
+        value,
+      );
+
+      switch (value) {
+        case 'alwaysHide':
+          result = NavigationDestinationLabelBehavior.alwaysHide;
+          break;
+
+        case 'alwaysShow':
+          result = NavigationDestinationLabelBehavior.alwaysShow;
+          break;
+
+        case 'onlyShowSelected':
+          result = NavigationDestinationLabelBehavior.onlyShowSelected;
+          break;
       }
     }
 
@@ -9047,8 +9569,10 @@ class ThemeDecoder {
   ///   "fontWeight": <FontWeight>,
   ///   "height": <double>,
   ///   "inherit": <bool>,
+  ///   "leadingDistribution": <TextLeadingDistribution>,
   ///   "letterSpacing": <double>,
   ///   "locale": <Locale>,
+  ///   "overflow": <TextOverflow>,
   ///   "package": <String>,
   ///   "shadows": <Shadow[]>,
   ///   "textBaseline": <TextBaseline>,
@@ -9063,9 +9587,11 @@ class ThemeDecoder {
   ///  * [decodeFontWeight]
   ///  * [decodeLocale]
   ///  * [decodeShadow]
-  ///  * [decodeTextbaseline]
+  ///  * [decodeTextBaseline]
   ///  * [decodeTextDecoration]
   ///  * [decodeTextDecorationStyle]
+  ///  * [decodeTextLeadingDistribution]
+  ///  * [decodeTextOverflow]
   static TextStyle? decodeTextStyle(
     dynamic value, {
     bool validate = true,
@@ -9136,11 +9662,16 @@ class ThemeDecoder {
             : JsonClass.parseBool(
                 value['inherit'],
               ),
+        leadingDistribution: decodeTextLeadingDistribution(
+          value['leadingDistribution'],
+          validate: false,
+        ),
         letterSpacing: JsonClass.parseDouble(value['letterSpacing']),
         locale: decodeLocale(
           value['locale'],
           validate: false,
         ),
+        overflow: decodeTextOverflow(value['overflow']),
         package: value['package'],
         shadows: value['shadows'] == null
             ? null
@@ -9306,6 +9837,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
   ///   "backgroundColor": <Color>,
@@ -9331,6 +9863,7 @@ class ThemeDecoder {
   ///   "disabledColor": <Color>,
   ///   "dividerColor": <Color>,
   ///   "dividerTheme": <DividerThemeData>,
+  ///   "drawerTheme": <DrawerThemeData>,
   ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
@@ -9342,7 +9875,9 @@ class ThemeDecoder {
   ///   "iconTheme": <IconThemeData>,
   ///   "indicatorColor": <Color>,
   ///   "inputDecorationTheme": <InputDecorationTheme>,
+  ///   "listTileTheme": <ListTileThemeData>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "navigationBarTheme": <NavigationBarThemeData>,
   ///   "navigationRailTheme": <NavigationRailThemeData>,
   ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
   ///   "pageTransitionsTheme": <PageTransitionsTheme>,
@@ -9384,6 +9919,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeAndroidOverscrollIndicator]
   ///  * [decodeAppBarTheme]
   ///  * [decodeBottomAppBarTheme]
   ///  * [decodeBottomNavigationBarThemeData]
@@ -9399,18 +9935,21 @@ class ThemeDecoder {
   ///  * [decodeDataTableThemeData]
   ///  * [decodeDialogTheme]
   ///  * [decodeDividerThemeData]
+  ///  * [decodeDrawerThemeData]
   ///  * [decodeElevatedButtonThemeData]
   ///  * [decodeFloatingActionButtonThemeData]
   ///  * [decodeIconThemeData]
   ///  * [decodeInputDecorationTheme]
   ///  * [decodeInteractiveInkFeatureFactory]
+  ///  * [decodeListTileThemeData]
   ///  * [decodeMaterialBannerThemeData]
   ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeNavigationBarThemeData]
   ///  * [decodeNavigationRailThemeData]
   ///  * [decodeOutlinedButtonThemeData]
   ///  * [decodePageTransitionsTheme]
   ///  * [decodePopupMenuThemeData]
-  ///  * [decodeProgressIndicatorTheme]
+  ///  * [decodeProgressIndicatorThemeData]
   ///  * [decodeRadioThemeData]
   ///  * [decodeScrollbarThemeData]
   ///  * [decodeSliderThemeData]
@@ -9440,6 +9979,22 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ThemeData(
+        // @deprecated
+        // accentColor: null,
+
+        // @deprecated
+        // accentColorBrightness: null,
+
+        // @deprecated
+        // accentIconTheme: null,
+
+        // @deprecated
+        // accentTextTheme: null,
+
+        androidOverscrollIndicator: decodeAndroidOverscrollIndicator(
+          value['androidOverscrollIndicator'],
+          validate: false,
+        ),
         appBarTheme: decodeAppBarTheme(
           value['appBarTheme'],
           validate: false,
@@ -9479,6 +10034,10 @@ class ThemeDecoder {
           value['buttonBarTheme'],
           validate: false,
         ),
+
+        // @deprecated
+        // buttonColor: null,
+
         buttonTheme: decodeButtonThemeData(
           value['buttonTheme'],
           validate: false,
@@ -9511,6 +10070,10 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
+
+        // @deprecated
+        // cursorColor: null,
+
         dataTableTheme: decodeDataTableThemeData(
           value['dataTableTheme'],
           validate: false,
@@ -9535,6 +10098,10 @@ class ThemeDecoder {
           value['dividerTheme'],
           validate: false,
         ),
+        drawerTheme: decodeDrawerThemeData(
+          value['drawerTheme'],
+          validate: false,
+        ),
         elevatedButtonTheme: decodeElevatedButtonThemeData(
           value['elevatedButtonTheme'],
           validate: false,
@@ -9547,6 +10114,10 @@ class ThemeDecoder {
           value['floatingActionButtonTheme'],
           validate: false,
         ),
+
+        // @deprecated
+        // fixTextFieldOutlineLabel: null,
+
         focusColor: decodeColor(
           value['focusColor'],
           validate: false,
@@ -9576,8 +10147,16 @@ class ThemeDecoder {
           value['inputDecorationTheme'],
           validate: false,
         ),
+        listTileTheme: decodeListTileThemeData(
+          value['listTileTheme'],
+          validate: false,
+        ),
         materialTapTargetSize: decodeMaterialTapTargetSize(
           value['materialTapTargetSize'],
+          validate: false,
+        ),
+        navigationBarTheme: decodeNavigationBarThemeData(
+          value['navigationBarTheme'],
           validate: false,
         ),
         navigationRailTheme: decodeNavigationRailThemeData(
@@ -9684,6 +10263,12 @@ class ThemeDecoder {
           value['textButtonTheme'],
           validate: false,
         ),
+
+        // @deprecated
+        // textSelectionColor: null,
+        // @deprecated
+        // textSelectionHandleColor: null,
+
         textSelectionTheme: decodeTextSelectionThemeData(
           value['textSelectionTheme'],
           validate: false,
@@ -9718,6 +10303,10 @@ class ThemeDecoder {
           value['unselectedWidgetColor'],
           validate: false,
         ),
+
+        // @deprecated
+        // useTextSelectionTheme: null,
+
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
           validate: false,

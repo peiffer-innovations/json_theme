@@ -9,7 +9,7 @@ class ScrollbarThemeDataSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/ScrollbarThemeData-class.html',
-    'title': 'SwitchThemeDataSchema',
+    'title': 'SwitchThemeData',
     'type': 'object',
     'properties': {
       'crossAxisMargin': SchemaHelper.numberSchema,

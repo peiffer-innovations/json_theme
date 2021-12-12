@@ -1,3 +1,8 @@
+# [3.2.0] - December 12th, 2021
+
+* Updated with Flutter 2.8 properties
+
+
 # [3.1.2+1] - November 20th, 2021
 
 * Added encoders and decoders for `WrapAlignment` and `WrapCrossAlignment`

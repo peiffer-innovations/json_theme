@@ -14,6 +14,7 @@ class MaterialBannerThemeDataSchema {
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'contentTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'elevation': SchemaHelper.numberSchema,
       'leadingPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
     },

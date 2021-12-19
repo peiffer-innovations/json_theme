@@ -73,7 +73,10 @@ class SchemaHelper {
         'type': 'string',
       };
 
-  static dynamic arraySchema(String id) {
+  static dynamic arraySchema(
+    String id, {
+    bool includeObject = false,
+  }) {
     dynamic result;
 
     if (Enums.all.contains(id) || ColorSchema.id == id) {
@@ -95,6 +98,10 @@ class SchemaHelper {
               r'$ref': id,
             },
           },
+          if (includeObject)
+            {
+              r'$ref': id,
+            },
         ],
       };
     }

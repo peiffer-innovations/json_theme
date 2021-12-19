@@ -1,3 +1,8 @@
+# [3.2.1] - December 19th, 2021
+
+* Added optional `includeObject` to `SchemaHelper.arraySchema`
+
+
 # [3.2.0] - December 12th, 2021
 
 * Updated with Flutter 2.8 properties

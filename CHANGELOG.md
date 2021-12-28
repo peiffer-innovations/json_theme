@@ -1,3 +1,8 @@
+# [3.2.2] - December 28th, 2021
+
+* Added encoders / decoders for `ScrollBehavior`
+
+
 # [3.2.1] - December 19th, 2021
 
 * Added optional `includeObject` to `SchemaHelper.arraySchema`

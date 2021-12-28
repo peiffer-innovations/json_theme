@@ -127,10 +127,11 @@ class Schemas {
     RangeSliderValueIndicatorShapeSchema.id:
         RangeSliderValueIndicatorShapeSchema.schema,
     RectSchema.id: RectSchema.schema,
-    ScrollbarThemeDataSchema.id: ScrollbarThemeDataSchema.schema,
+    ScrollBehaviorSchema.id: ScrollBehaviorSchema.schema,
     ScrollPhysicsSchema.id: ScrollPhysicsSchema.schema,
     ScrollViewKeyboardDismissBehaviorSchema.id:
         ScrollViewKeyboardDismissBehaviorSchema.schema,
+    ScrollbarThemeDataSchema.id: ScrollbarThemeDataSchema.schema,
     SemanticsTagSchema.id: SemanticsTagSchema.schema,
     ShadowSchema.id: ShadowSchema.schema,
     ShapeBorderSchema.id: ShapeBorderSchema.schema,

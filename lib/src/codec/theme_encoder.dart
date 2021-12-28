@@ -4293,55 +4293,33 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
-  /// Encodes the given [ScrollbarThemeData] to the JSON representation.  This
-  /// produces the following structure:
+  /// Encodes the given [value] to a JSON compatible Map.
+  ///
+  /// This returns the JSON representation to follow the structure:
   ///
   /// ```json
   /// {
-  ///   "crossAxisMargin": <double>,
-  ///   "interactive": <bool>,
-  ///   "isAlwaysShown": <bool>,
-  ///   "mainAxisMargin": <double>,
-  ///   "minThumbLength": <double>,
-  ///   "radius": <Radius>,
-  ///   "showTrackOnHover": <bool>,
-  ///   "thickness": <MaterialStateProperty<double>>,
-  ///   "thumbColor": <MaterialStateProperty<Color>>,
-  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>
+  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>
   /// }
   /// ```
   ///
   /// See also:
-  ///  * [encodeMaterialStatePropertyColor]
-  ///  * [encodeMaterialStatePropertyDouble]
-  ///  * [encodeRadius]
-  static Map<String, dynamic>? encodeScrollbarThemeData(
-    ScrollbarThemeData? value,
-  ) {
+  ///  * [encodeAndroidOverscrollIndicator]
+  static Map<String, dynamic>? encodeScrollBehavior(
+    ScrollBehavior? value, {
+    bool validate = true,
+  }) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = {
-        'crossAxisMargin': value.crossAxisMargin,
-        'interactive': value.interactive,
-        'isAlwaysShown': value.isAlwaysShown,
-        'mainAxisMargin': value.mainAxisMargin,
-        'minThumbLength': value.minThumbLength,
-        'radius': encodeRadius(value.radius),
-        'showTrackOnHover': value.showTrackOnHover,
-        'thickness': encodeMaterialStatePropertyDouble(
-          value.thickness,
+        'androidOverscrollIndicator': encodeAndroidOverscrollIndicator(
+          value.androidOverscrollIndicator,
         ),
-        'thumbColor': encodeMaterialStatePropertyColor(value.thumbColor),
-        'trackBorderColor': encodeMaterialStatePropertyColor(
-          value.trackBorderColor,
-        ),
-        'trackColor': encodeMaterialStatePropertyColor(value.trackColor),
       };
     }
 
-    return _stripNull(result);
+    return result;
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -4425,6 +4403,57 @@ class ThemeEncoder {
     }
 
     return result;
+  }
+
+  /// Encodes the given [ScrollbarThemeData] to the JSON representation.  This
+  /// produces the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "crossAxisMargin": <double>,
+  ///   "interactive": <bool>,
+  ///   "isAlwaysShown": <bool>,
+  ///   "mainAxisMargin": <double>,
+  ///   "minThumbLength": <double>,
+  ///   "radius": <Radius>,
+  ///   "showTrackOnHover": <bool>,
+  ///   "thickness": <MaterialStateProperty<double>>,
+  ///   "thumbColor": <MaterialStateProperty<Color>>,
+  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
+  ///   "trackColor": <MaterialStateProperty<Color>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeMaterialStatePropertyDouble]
+  ///  * [encodeRadius]
+  static Map<String, dynamic>? encodeScrollbarThemeData(
+    ScrollbarThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'crossAxisMargin': value.crossAxisMargin,
+        'interactive': value.interactive,
+        'isAlwaysShown': value.isAlwaysShown,
+        'mainAxisMargin': value.mainAxisMargin,
+        'minThumbLength': value.minThumbLength,
+        'radius': encodeRadius(value.radius),
+        'showTrackOnHover': value.showTrackOnHover,
+        'thickness': encodeMaterialStatePropertyDouble(
+          value.thickness,
+        ),
+        'thumbColor': encodeMaterialStatePropertyColor(value.thumbColor),
+        'trackBorderColor': encodeMaterialStatePropertyColor(
+          value.trackBorderColor,
+        ),
+        'trackColor': encodeMaterialStatePropertyColor(value.trackColor),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the given [SemanticsTag] to a JSON representation.  This

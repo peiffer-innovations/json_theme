@@ -135,6 +135,7 @@ export 'schemas/objects/radius_schema.dart';
 export 'schemas/objects/range_slider_thumb_shape_schema.dart';
 export 'schemas/objects/range_slider_tick_mark_shape_schema.dart';
 export 'schemas/objects/rect_schema.dart';
+export 'schemas/objects/scroll_behavior_schema.dart';
 export 'schemas/objects/scroll_physics_schema.dart';
 export 'schemas/objects/scrollbar_theme_data_schema.dart';
 export 'schemas/objects/semantics_tag_schema.dart';

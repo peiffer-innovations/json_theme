@@ -7417,69 +7417,35 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [ScrollbarThemeData].  This expects the given
+  /// Decodes the given [value] to an [ScrollBehavior].  This expects the given
   /// [value] to follow the structure below:
   ///
   /// ```json
   /// {
-  ///   "crossAxisMargin": <double>,
-  ///   "interactive": <bool>,
-  ///   "isAlwaysShown": <bool>,
-  ///   "mainAxisMargin": <double>,
-  ///   "minThumbLength": <double>,
-  ///   "radius": <Radius>,
-  ///   "showTrackOnHover": <bool>
-  ///   "thickness": <MaterialStateProperty<double>>,
-  ///   "thumbColor": <MaterialStateProperty<Color>>,
-  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>
+  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>
   /// }
   /// ```
   ///
   /// See also:
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyDouble]
-  ///  * [decodeRadius]
-  static ScrollbarThemeData? decodeScrollbarThemeData(
+  ///  * [decodeAndroidOverscrollIndicator]
+  static ScrollBehavior? decodeScrollBehavior(
     dynamic value, {
     bool validate = true,
   }) {
-    ScrollbarThemeData? result;
+    ScrollBehavior? result;
 
-    if (value is ScrollbarThemeData) {
+    if (value is ScrollBehavior) {
       result = value;
     } else if (value != null) {
       assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/scrollbar_theme_data',
+        schemaId: '$_baseSchemaUrl/scroll_behavior',
         value: value,
         validate: validate,
       ));
-      result = ScrollbarThemeData(
-        crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
-        interactive: value['interactive'] == null
-            ? null
-            : JsonClass.parseBool(value['interactive']),
-        isAlwaysShown: value['isAlwaysShown'] == null
-            ? null
-            : JsonClass.parseBool(value['isAlwaysShown']),
-        mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
-        minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
-        radius: decodeRadius(
-          value['radius'],
-          validate: false,
+      result = ScrollBehavior(
+        androidOverscrollIndicator: decodeAndroidOverscrollIndicator(
+          value['androidOverscrollIndicator'],
         ),
-        showTrackOnHover: value['showTrackOnHover'] == null
-            ? null
-            : JsonClass.parseBool(value['showTrackOnHover']),
-        thickness: decodeMaterialStatePropertyDouble(
-          value['thickness'],
-          validate: false,
-        ),
-        thumbColor: decodeMaterialStatePropertyColor(value['thumbColor']),
-        trackBorderColor: decodeMaterialStatePropertyColor(
-          value['trackBorderColor'],
-        ),
-        trackColor: decodeMaterialStatePropertyColor(value['trackColor']),
       );
     }
 
@@ -7633,6 +7599,75 @@ class ThemeDecoder {
           result = ScrollViewKeyboardDismissBehavior.onDrag;
           break;
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [ScrollbarThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "crossAxisMargin": <double>,
+  ///   "interactive": <bool>,
+  ///   "isAlwaysShown": <bool>,
+  ///   "mainAxisMargin": <double>,
+  ///   "minThumbLength": <double>,
+  ///   "radius": <Radius>,
+  ///   "showTrackOnHover": <bool>
+  ///   "thickness": <MaterialStateProperty<double>>,
+  ///   "thumbColor": <MaterialStateProperty<Color>>,
+  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
+  ///   "trackColor": <MaterialStateProperty<Color>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeMaterialStatePropertyDouble]
+  ///  * [decodeRadius]
+  static ScrollbarThemeData? decodeScrollbarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ScrollbarThemeData? result;
+
+    if (value is ScrollbarThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/scrollbar_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = ScrollbarThemeData(
+        crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
+        interactive: value['interactive'] == null
+            ? null
+            : JsonClass.parseBool(value['interactive']),
+        isAlwaysShown: value['isAlwaysShown'] == null
+            ? null
+            : JsonClass.parseBool(value['isAlwaysShown']),
+        mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
+        minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
+        radius: decodeRadius(
+          value['radius'],
+          validate: false,
+        ),
+        showTrackOnHover: value['showTrackOnHover'] == null
+            ? null
+            : JsonClass.parseBool(value['showTrackOnHover']),
+        thickness: decodeMaterialStatePropertyDouble(
+          value['thickness'],
+          validate: false,
+        ),
+        thumbColor: decodeMaterialStatePropertyColor(value['thumbColor']),
+        trackBorderColor: decodeMaterialStatePropertyColor(
+          value['trackBorderColor'],
+        ),
+        trackColor: decodeMaterialStatePropertyColor(value['trackColor']),
+      );
     }
 
     return result;

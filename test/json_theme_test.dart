@@ -6335,6 +6335,25 @@ void main() {
     );
   });
 
+  test('ScrollBehavior', () {
+    expect(ThemeDecoder.decodeScrollBehavior(null), null);
+    expect(ThemeEncoder.encodeScrollBehavior(null), null);
+
+    var entry = ScrollBehavior(
+      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+    );
+
+    expect(ThemeDecoder.decodeScrollBehavior(entry), entry);
+
+    var encoded = ThemeEncoder.encodeScrollBehavior(entry);
+    expect(encoded, {'androidOverscrollIndicator': 'stretch'});
+
+    expect(
+      ThemeDecoder.decodeScrollBehavior(encoded)?.androidOverscrollIndicator,
+      entry.androidOverscrollIndicator,
+    );
+  });
+
   test('ScrollPhysics', () {
     expect(ThemeDecoder.decodeScrollPhysics(null), null);
     expect(ThemeEncoder.encodeScrollPhysics(null), null);
@@ -6590,6 +6609,44 @@ void main() {
     );
   });
 
+  test('ScrollViewKeyboardDismissBehavior', () {
+    expect(ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(null), null);
+    expect(ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(null), null);
+
+    expect(
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+        ScrollViewKeyboardDismissBehavior.manual,
+      ),
+      ScrollViewKeyboardDismissBehavior.manual,
+    );
+
+    expect(
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+        'manual',
+      ),
+      ScrollViewKeyboardDismissBehavior.manual,
+    );
+    expect(
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+        'onDrag',
+      ),
+      ScrollViewKeyboardDismissBehavior.onDrag,
+    );
+
+    expect(
+      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
+        ScrollViewKeyboardDismissBehavior.manual,
+      ),
+      'manual',
+    );
+    expect(
+      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
+        ScrollViewKeyboardDismissBehavior.onDrag,
+      ),
+      'onDrag',
+    );
+  });
+
   test('ScrollbarThemeData', () {
     expect(ThemeDecoder.decodeScrollbarThemeData(null), null);
     expect(ThemeEncoder.encodeScrollbarThemeData(null), null);
@@ -6687,44 +6744,6 @@ void main() {
     expect(
       decoded.thickness!.resolve({MaterialState.error}),
       entry.thickness!.resolve({MaterialState.error}),
-    );
-  });
-
-  test('ScrollViewKeyboardDismissBehavior', () {
-    expect(ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(null), null);
-    expect(ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(null), null);
-
-    expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
-        ScrollViewKeyboardDismissBehavior.manual,
-      ),
-      ScrollViewKeyboardDismissBehavior.manual,
-    );
-
-    expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
-        'manual',
-      ),
-      ScrollViewKeyboardDismissBehavior.manual,
-    );
-    expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
-        'onDrag',
-      ),
-      ScrollViewKeyboardDismissBehavior.onDrag,
-    );
-
-    expect(
-      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
-        ScrollViewKeyboardDismissBehavior.manual,
-      ),
-      'manual',
-    );
-    expect(
-      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
-        ScrollViewKeyboardDismissBehavior.onDrag,
-      ),
-      'onDrag',
     );
   });
 

@@ -22,8 +22,8 @@ const RESOURCES = {
 "assets/assets/themes/calm_blue.json": "19965e6cc98d8e7c49780fd73a3d06e6",
 "assets/assets/themes/big_red.json": "b5b93012252751b5d5037da33fc73875",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"index.html": "7d5b49e10f0e340a92fa6095c2533c40",
-"/": "7d5b49e10f0e340a92fa6095c2533c40",
+"index.html": "f245d1511abe4ea6c5656c350ba4d752",
+"/": "f245d1511abe4ea6c5656c350ba4d752",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 

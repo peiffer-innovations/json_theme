@@ -4405,6 +4405,37 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the [value] to a String.  Supported values are:
+  ///  * `bottom`
+  ///  * `left`
+  ///  * `right`
+  ///  * `top`
+  static String? encodeScrollbarOrientation(ScrollbarOrientation? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case ScrollbarOrientation.bottom:
+          result = 'bottom';
+          break;
+
+        case ScrollbarOrientation.left:
+          result = 'left';
+          break;
+
+        case ScrollbarOrientation.right:
+          result = 'right';
+          break;
+
+        case ScrollbarOrientation.top:
+          result = 'top';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [ScrollbarThemeData] to the JSON representation.  This
   /// produces the following structure:
   ///

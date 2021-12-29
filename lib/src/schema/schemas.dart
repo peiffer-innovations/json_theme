@@ -131,6 +131,7 @@ class Schemas {
     ScrollPhysicsSchema.id: ScrollPhysicsSchema.schema,
     ScrollViewKeyboardDismissBehaviorSchema.id:
         ScrollViewKeyboardDismissBehaviorSchema.schema,
+    ScrollbarOrientationSchema.id: ScrollbarOrientationSchema.schema,
     ScrollbarThemeDataSchema.id: ScrollbarThemeDataSchema.schema,
     SemanticsTagSchema.id: SemanticsTagSchema.schema,
     ShadowSchema.id: ShadowSchema.schema,

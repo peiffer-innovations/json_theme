@@ -7604,6 +7604,47 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [ScrollbarOrientation].  Supported values are:
+  ///  * `bottom`
+  ///  * `left`
+  ///  * `right`
+  ///  * `top`
+  static ScrollbarOrientation? decodeScrollbarOrientation(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ScrollbarOrientation? result;
+
+    if (value is ScrollbarOrientation) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/scrollbar_orientation',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'bottom':
+          result = ScrollbarOrientation.bottom;
+          break;
+
+        case 'left':
+          result = ScrollbarOrientation.left;
+          break;
+
+        case 'right':
+          result = ScrollbarOrientation.right;
+          break;
+
+        case 'top':
+          result = ScrollbarOrientation.top;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [ScrollbarThemeData].  This expects the given
   /// [value] to follow the structure below:
   ///

@@ -6647,6 +6647,50 @@ void main() {
     );
   });
 
+  test('ScrollbarOrientation', () {
+    expect(ThemeDecoder.decodeScrollbarOrientation(null), null);
+    expect(ThemeEncoder.encodeScrollbarOrientation(null), null);
+
+    expect(
+      ThemeDecoder.decodeScrollbarOrientation(ScrollbarOrientation.top),
+      ScrollbarOrientation.top,
+    );
+
+    expect(
+      ThemeDecoder.decodeScrollbarOrientation('bottom'),
+      ScrollbarOrientation.bottom,
+    );
+    expect(
+      ThemeDecoder.decodeScrollbarOrientation('left'),
+      ScrollbarOrientation.left,
+    );
+    expect(
+      ThemeDecoder.decodeScrollbarOrientation('right'),
+      ScrollbarOrientation.right,
+    );
+    expect(
+      ThemeDecoder.decodeScrollbarOrientation('top'),
+      ScrollbarOrientation.top,
+    );
+
+    expect(
+      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.bottom),
+      'bottom',
+    );
+    expect(
+      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.left),
+      'left',
+    );
+    expect(
+      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.right),
+      'right',
+    );
+    expect(
+      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.top),
+      'top',
+    );
+  });
+
   test('ScrollbarThemeData', () {
     expect(ThemeDecoder.decodeScrollbarThemeData(null), null);
     expect(ThemeEncoder.encodeScrollbarThemeData(null), null);

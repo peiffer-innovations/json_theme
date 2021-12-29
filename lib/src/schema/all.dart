@@ -40,6 +40,7 @@ export 'schemas/enums/page_transitions_builder_schema.dart';
 export 'schemas/enums/range_slider_track_shape_schema.dart';
 export 'schemas/enums/range_slider_value_indicator_shape_schema.dart';
 export 'schemas/enums/scroll_view_keyboard_dismiss_behavior_schema.dart';
+export 'schemas/enums/scrollbar_orientation_schema.dart';
 export 'schemas/enums/show_value_indicator_schema.dart';
 export 'schemas/enums/slider_component_shape_schema.dart';
 export 'schemas/enums/slider_tick_mark_shape_schema.dart';

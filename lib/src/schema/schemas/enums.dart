@@ -43,6 +43,7 @@ class Enums {
     RangeSliderTrackShapeSchema.id,
     RangeSliderValueIndicatorShapeSchema.id,
     ScrollViewKeyboardDismissBehaviorSchema.id,
+    ScrollbarOrientationSchema.id,
     ShowValueIndicatorSchema.id,
     SliderComponentShapeSchema.id,
     SliderTickMarkShapeSchema.id,

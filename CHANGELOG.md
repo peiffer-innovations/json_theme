@@ -1,6 +1,7 @@
-# [3.2.3] - December 29th, 2021
+# [3.2.3+1] - December 29th, 2021
 
 * Added encoders / decoders for `ScrollbarOrientation`
+* Fix for [Issue #31](https://github.com/peiffer-innovations/json_theme/issues/31)
 
 
 # [3.2.2] - December 28th, 2021

@@ -16,10 +16,16 @@ class SwitchThemeDataSchema {
         MaterialTapTargetSizeSchema.id,
       ),
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'overlayColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'splashRadius': SchemaHelper.numberSchema,
-      'thumbColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'trackColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'thumbColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'trackColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
     },
   };
 }

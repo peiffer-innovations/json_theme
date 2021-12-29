@@ -7473,6 +7473,86 @@ void main() {
     );
   });
 
+  test('SwitchThemeData', () {
+    expect(ThemeDecoder.decodeSwitchThemeData(null), null);
+    expect(ThemeEncoder.encodeSwitchThemeData(null), null);
+
+    var entry = SwitchThemeData(
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      mouseCursor: MaterialStateProperty.all(MouseCursor.defer),
+      overlayColor: MaterialStateProperty.all(_kColor),
+      splashRadius: 20.0,
+      thumbColor: MaterialStateProperty.all(_kColor),
+      trackColor: MaterialStateProperty.all(_kColor),
+    );
+
+    var encoded = {
+      'materialTapTargetSize': 'shrinkWrap',
+      'mouseCursor': {
+        'disabled': {'type': 'defer'},
+        'dragged': {'type': 'defer'},
+        'empty': {'type': 'defer'},
+        'error': {'type': 'defer'},
+        'focused': {'type': 'defer'},
+        'hovered': {'type': 'defer'},
+        'pressed': {'type': 'defer'},
+        'selected': {'type': 'defer'},
+      },
+      'overlayColor': {
+        'disabled': _kColorStr,
+        'dragged': _kColorStr,
+        'empty': _kColorStr,
+        'error': _kColorStr,
+        'focused': _kColorStr,
+        'hovered': _kColorStr,
+        'pressed': _kColorStr,
+        'selected': _kColorStr,
+      },
+      'splashRadius': 20.0,
+      'thumbColor': {
+        'disabled': _kColorStr,
+        'dragged': _kColorStr,
+        'empty': _kColorStr,
+        'error': _kColorStr,
+        'focused': _kColorStr,
+        'hovered': _kColorStr,
+        'pressed': _kColorStr,
+        'selected': _kColorStr,
+      },
+      'trackColor': {
+        'disabled': _kColorStr,
+        'dragged': _kColorStr,
+        'empty': _kColorStr,
+        'error': _kColorStr,
+        'focused': _kColorStr,
+        'hovered': _kColorStr,
+        'pressed': _kColorStr,
+        'selected': _kColorStr,
+      },
+    };
+
+    expect(ThemeDecoder.decodeSwitchThemeData(entry), entry);
+    expect(ThemeEncoder.encodeSwitchThemeData(entry), encoded);
+
+    final theme = ThemeDecoder.decodeSwitchThemeData({
+      'thumbColor': {
+        'disabled': '#ff9e9e9e',
+        'dragged': '#fff44336',
+        'empty': '#fff44336',
+        'error': '#fff44336',
+        'focused': '#fff44336',
+        'hovered': '#fff44336',
+        'pressed': '#fff44336',
+        'selected': '#ff2196f3'
+      }
+    });
+
+    expect(
+      theme!.thumbColor!.resolve({MaterialState.selected}),
+      Color(0xff2196f3),
+    );
+  });
+
   test('SystemUiOverlayStyle', () {
     expect(ThemeDecoder.decodeSystemUiOverlayStyle(null), null);
     expect(ThemeEncoder.encodeSystemUiOverlayStyle(null), null);

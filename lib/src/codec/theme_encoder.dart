@@ -5032,6 +5032,54 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to it's JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
+  ///   "overlayColor": <MaterialStateProperty<Color>>,
+  ///   "splashRadius": <double>,
+  ///   "thumbColor": <MaterialStateProperty<Color>>,
+  ///   "trackColor": <MaterialStateProperty<Color>>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeMouseCursor]
+  static Map<String, dynamic>? encodeSwitchThemeData(
+    SwitchThemeData? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'materialTapTargetSize': encodeMaterialTapTargetSize(
+          value.materialTapTargetSize,
+        ),
+        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+          value.mouseCursor,
+        ),
+        'overlayColor': encodeMaterialStatePropertyColor(
+          value.overlayColor,
+        ),
+        'splashRadius': value.splashRadius,
+        'thumbColor': encodeMaterialStatePropertyColor(
+          value.thumbColor,
+        ),
+        'trackColor': encodeMaterialStatePropertyColor(
+          value.trackColor,
+        ),
+      };
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `dark`

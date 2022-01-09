@@ -12,7 +12,7 @@ const RESOURCES = {
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"assets/NOTICES": "6159ea2c4354d1349039c56a38c56057",
+"assets/NOTICES": "c8dc963214788e69c601e810f4908be6",
 "assets/AssetManifest.json": "ddc8a9e051399846ede99d3b6451ccc1",
 "assets/FontManifest.json": "731f2bd9f372174a666c49058eb30350",
 "assets/assets/fonts/MaterialIcons-Regular.ttf": "a37b0c01c0baf1888ca812cc0508f6e2",
@@ -22,8 +22,8 @@ const RESOURCES = {
 "assets/assets/themes/calm_blue.json": "19965e6cc98d8e7c49780fd73a3d06e6",
 "assets/assets/themes/big_red.json": "b5b93012252751b5d5037da33fc73875",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"index.html": "8ee84f34e84e2b6a5134a354b984ea9e",
-"/": "8ee84f34e84e2b6a5134a354b984ea9e",
+"index.html": "9d0023a2a127b177666947eab9b8dd8d",
+"/": "9d0023a2a127b177666947eab9b8dd8d",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 

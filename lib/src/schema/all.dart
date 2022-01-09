@@ -149,6 +149,8 @@ export 'schemas/objects/snack_bar_theme_data_schema.dart';
 export 'schemas/objects/strut_style_schema.dart';
 export 'schemas/objects/switch_theme_data_schema.dart';
 export 'schemas/objects/tab_bar_theme_schema.dart';
+export 'schemas/objects/table_border_schema.dart';
+export 'schemas/objects/table_column_width_schema.dart';
 export 'schemas/objects/text_button_theme_data_schema.dart';
 export 'schemas/objects/text_height_behavior_schema.dart';
 export 'schemas/objects/text_selection_theme_data_schema.dart';

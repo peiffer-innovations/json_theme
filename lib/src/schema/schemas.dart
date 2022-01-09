@@ -152,6 +152,8 @@ class Schemas {
     SystemUiOverlayStyleSchema.id: SystemUiOverlayStyleSchema.schema,
     TabBarIndicatorSizeSchema.id: TabBarIndicatorSizeSchema.schema,
     TabBarThemeSchema.id: TabBarThemeSchema.schema,
+    TableBorderSchema.id: TableBorderSchema.schema,
+    TableColumnWidthSchema.id: TableColumnWidthSchema.schema,
     TargetPlatformSchema.id: TargetPlatformSchema.schema,
     TextAlignSchema.id: TextAlignSchema.schema,
     TextAlignVerticalSchema.id: TextAlignVerticalSchema.schema,

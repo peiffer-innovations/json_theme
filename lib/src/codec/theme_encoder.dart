@@ -5162,6 +5162,100 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes the given [value] to the JSON representation.  Supported values
+  /// are:
+  ///
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "bottom": <BorderSide>,
+  ///   "horizontalInside": <BorderSide>,
+  ///   "left": <BorderSide>,
+  ///   "right": <BorderSide>,
+  ///   "top": <BorderSide>,
+  ///   "verticalInside": <BorderSide>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBorderSide]
+  static Map<String, dynamic>? encodeTableBorder(TableBorder? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'borderRadius':
+            encodeBorderRadius(value.borderRadius) ?? BorderRadius.zero,
+        'bottom': encodeBorderSide(value.bottom) ?? BorderSide.none,
+        'horizontalInside':
+            encodeBorderSide(value.horizontalInside) ?? BorderSide.none,
+        'left': encodeBorderSide(value.left) ?? BorderSide.none,
+        'right': encodeBorderSide(value.right) ?? BorderSide.none,
+        'top': encodeBorderSide(value.top) ?? BorderSide.none,
+        'verticalInside':
+            encodeBorderSide(value.verticalInside) ?? BorderSide.none,
+      };
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [TableColumnWidth].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "a": <TableColumnWidth>,
+  ///   "b": <TableColumnWidth>,
+  ///   "type": <"fixed" | "flex" | "fraction" | "intrinsic" | "max" | "min">,
+  ///   "value": <double>
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeTableColumnWidth(TableColumnWidth? value) {
+    Map<String, dynamic>? result;
+
+    if (value is FixedColumnWidth) {
+      result = {
+        'type': 'fixed',
+        'value': value.value,
+      };
+    } else if (value is FlexColumnWidth) {
+      result = {
+        'type': 'flex',
+        'value': value.value,
+      };
+    } else if (value is FractionColumnWidth) {
+      result = {
+        'type': 'fraction',
+        'value': value.value,
+      };
+    } else if (value is IntrinsicColumnWidth) {
+      result = {
+        'type': 'intrinsic',
+        'value': value.flex(const <RenderBox>[]),
+      };
+    } else if (value is MaxColumnWidth) {
+      result = {
+        'a': encodeTableColumnWidth(value.a),
+        'b': encodeTableColumnWidth(value.b),
+        'type': 'max',
+      };
+    } else if (value is MinColumnWidth) {
+      result = {
+        'a': encodeTableColumnWidth(value.a),
+        'b': encodeTableColumnWidth(value.b),
+        'type': 'min',
+      };
+    } else if (value != null) {
+      throw Exception(
+        '[encodeTableColumnWidth]: unknown value type: [${value.runtimeType}]',
+      );
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `android`

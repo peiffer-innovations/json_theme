@@ -7664,6 +7664,269 @@ void main() {
     );
   });
 
+  test('TableBorder', () {
+    expect(ThemeDecoder.decodeTableBorder(null), null);
+    expect(ThemeEncoder.encodeTableBorder(null), null);
+
+    var entry = TableBorder(
+      borderRadius: BorderRadius.circular(1.0),
+      bottom: BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: 2.0,
+      ),
+      horizontalInside: BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: 3.0,
+      ),
+      left: BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: 4.0,
+      ),
+      right: BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: 5.0,
+      ),
+      top: BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: 6.0,
+      ),
+      verticalInside: BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: 7.0,
+      ),
+    );
+
+    expect(ThemeDecoder.decodeTableBorder(entry), entry);
+
+    var encoded = ThemeEncoder.encodeTableBorder(entry);
+    var decoded = ThemeDecoder.decodeTableBorder(encoded);
+
+    expect(
+      encoded,
+      {
+        'borderRadius': {
+          'bottomLeft': {
+            'type': 'elliptical',
+            'x': 1.0,
+            'y': 1.0,
+          },
+          'bottomRight': {
+            'type': 'elliptical',
+            'x': 1.0,
+            'y': 1.0,
+          },
+          'topLeft': {
+            'type': 'elliptical',
+            'x': 1.0,
+            'y': 1.0,
+          },
+          'topRight': {
+            'type': 'elliptical',
+            'x': 1.0,
+            'y': 1.0,
+          },
+          'type': 'only',
+        },
+        'bottom': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 2.0,
+        },
+        'horizontalInside': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 3.0,
+        },
+        'left': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 4.0,
+        },
+        'right': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 5.0,
+        },
+        'top': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 6.0,
+        },
+        'verticalInside': {
+          'color': _kColorStr,
+          'style': 'solid',
+          'width': 7.0,
+        },
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
+  test('TableColumnWidth', () {
+    expect(ThemeDecoder.decodeTableColumnWidth(null), null);
+    expect(ThemeEncoder.encodeTableColumnWidth(null), null);
+
+    var entry = FlexColumnWidth();
+
+    expect(ThemeDecoder.decodeTableColumnWidth(entry), entry);
+
+    expect(
+      ThemeDecoder.decodeTableColumnWidth({
+        'type': 'fixed',
+        'value': 1.0,
+      }).toString(),
+      FixedColumnWidth(
+        1.0,
+      ).toString(),
+    );
+    expect(
+      ThemeDecoder.decodeTableColumnWidth({
+        'type': 'flex',
+        'value': 2.0,
+      }).toString(),
+      FlexColumnWidth(
+        2.0,
+      ).toString(),
+    );
+    expect(
+      ThemeDecoder.decodeTableColumnWidth({
+        'type': 'fraction',
+        'value': 3.0,
+      }).toString(),
+      FractionColumnWidth(
+        3.0,
+      ).toString(),
+    );
+    expect(
+      ThemeDecoder.decodeTableColumnWidth({
+        'type': 'intrinsic',
+        'value': 4.0,
+      }).toString(),
+      IntrinsicColumnWidth(
+        flex: 4.0,
+      ).toString(),
+    );
+    expect(
+      ThemeDecoder.decodeTableColumnWidth({
+        'a': {
+          'type': 'fixed',
+          'value': 5.0,
+        },
+        'b': {
+          'type': 'fixed',
+          'value': 6.0,
+        },
+        'type': 'max',
+      }).toString(),
+      MaxColumnWidth(
+        FixedColumnWidth(5.0),
+        FixedColumnWidth(6.0),
+      ).toString(),
+    );
+    expect(
+      ThemeDecoder.decodeTableColumnWidth({
+        'a': {
+          'type': 'fixed',
+          'value': 5.0,
+        },
+        'b': {
+          'type': 'fixed',
+          'value': 6.0,
+        },
+        'type': 'min',
+      }).toString(),
+      MinColumnWidth(
+        FixedColumnWidth(5.0),
+        FixedColumnWidth(6.0),
+      ).toString(),
+    );
+
+    expect(
+      ThemeEncoder.encodeTableColumnWidth(
+        FixedColumnWidth(1.0),
+      ),
+      {
+        'type': 'fixed',
+        'value': 1.0,
+      },
+    );
+    expect(
+      ThemeEncoder.encodeTableColumnWidth(
+        FlexColumnWidth(2.0),
+      ),
+      {
+        'type': 'flex',
+        'value': 2.0,
+      },
+    );
+    expect(
+      ThemeEncoder.encodeTableColumnWidth(
+        FractionColumnWidth(3.0),
+      ),
+      {
+        'type': 'fraction',
+        'value': 3.0,
+      },
+    );
+    expect(
+      ThemeEncoder.encodeTableColumnWidth(
+        IntrinsicColumnWidth(flex: 4.0),
+      ),
+      {
+        'type': 'intrinsic',
+        'value': 4.0,
+      },
+    );
+    expect(
+      ThemeEncoder.encodeTableColumnWidth(
+        MaxColumnWidth(
+          FixedColumnWidth(5.0),
+          FixedColumnWidth(6.0),
+        ),
+      ),
+      {
+        'a': {
+          'type': 'fixed',
+          'value': 5.0,
+        },
+        'b': {
+          'type': 'fixed',
+          'value': 6.0,
+        },
+        'type': 'max',
+      },
+    );
+    expect(
+      ThemeEncoder.encodeTableColumnWidth(
+        MinColumnWidth(
+          FixedColumnWidth(5.0),
+          FixedColumnWidth(6.0),
+        ),
+      ),
+      {
+        'a': {
+          'type': 'fixed',
+          'value': 5.0,
+        },
+        'b': {
+          'type': 'fixed',
+          'value': 6.0,
+        },
+        'type': 'min',
+      },
+    );
+  });
+
   test('TargetPlatform', () {
     expect(ThemeDecoder.decodeTargetPlatform(null), null);
     expect(ThemeEncoder.encodeTargetPlatform(null), null);

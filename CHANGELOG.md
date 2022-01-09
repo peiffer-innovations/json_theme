@@ -1,3 +1,8 @@
+# [3.2.4] - January 9th, 2022
+
+* Added encoders / decoders for `TableBorder`, `TableColumnWidth`
+
+
 # [3.2.3+1] - December 29th, 2021
 
 * Added encoders / decoders for `ScrollbarOrientation`

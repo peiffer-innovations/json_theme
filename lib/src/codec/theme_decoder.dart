@@ -8814,6 +8814,154 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to a [TableBorder].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "bottom": <BorderSide>,
+  ///   "horizontalInside": <BorderSide>,
+  ///   "left": <BorderSide>,
+  ///   "right": <BorderSide>,
+  ///   "top": <BorderSide>,
+  ///   "verticalInside": <BorderSide>,
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  ///  * [decodeBorderSide]
+  static TableBorder? decodeTableBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TableBorder? result;
+
+    if (value is TableBorder) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/table_border',
+        value: value,
+        validate: validate,
+      ));
+      result = TableBorder(
+        borderRadius: decodeBorderRadius(
+              value['borderRadius'],
+              validate: false,
+            ) ??
+            BorderRadius.zero,
+        bottom: decodeBorderSide(
+              value['bottom'],
+              validate: false,
+            ) ??
+            BorderSide.none,
+        horizontalInside: decodeBorderSide(
+              value['horizontalInside'],
+              validate: false,
+            ) ??
+            BorderSide.none,
+        left: decodeBorderSide(
+              value['left'],
+              validate: false,
+            ) ??
+            BorderSide.none,
+        right: decodeBorderSide(
+              value['right'],
+              validate: false,
+            ) ??
+            BorderSide.none,
+        top: decodeBorderSide(
+              value['top'],
+              validate: false,
+            ) ??
+            BorderSide.none,
+        verticalInside: decodeBorderSide(
+              value['verticalInside'],
+              validate: false,
+            ) ??
+            BorderSide.none,
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [TableColumnWidth].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "a": <TableColumnWidth>,
+  ///   "b": <TableColumnWidth>,
+  ///   "type": <"fixed" | "flex" | "fraction" | "intrinsic" | "max" | "min">,
+  ///   "value": <double>
+  /// }
+  /// ```
+  static TableColumnWidth? decodeTableColumnWidth(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TableColumnWidth? result;
+
+    if (value is TableColumnWidth) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/table_column_width',
+        value: value,
+        validate: validate,
+      ));
+      var type = value['type'];
+
+      switch (type) {
+        case 'fixed':
+          result = FixedColumnWidth(JsonClass.parseDouble(value['value'])!);
+          break;
+
+        case 'flex':
+          result = FlexColumnWidth(
+            JsonClass.parseDouble(value['value']) ?? 1.0,
+          );
+          break;
+
+        case 'fraction':
+          result = FractionColumnWidth(
+            JsonClass.parseDouble(value['value'])!,
+          );
+          break;
+
+        case 'intrinsic':
+          result = IntrinsicColumnWidth(
+            flex: JsonClass.parseDouble(value['value']),
+          );
+          break;
+
+        case 'max':
+          result = MaxColumnWidth(
+            decodeTableColumnWidth(value['a'], validate: false)!,
+            decodeTableColumnWidth(value['b'], validate: false)!,
+          );
+          break;
+
+        case 'min':
+          result = MinColumnWidth(
+            decodeTableColumnWidth(value['a'], validate: false)!,
+            decodeTableColumnWidth(value['b'], validate: false)!,
+          );
+          break;
+
+        default:
+          throw Exception(
+            '[decodeTableColumnWidth]: unknown type encountered: [$type]',
+          );
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes a [value] to a [TargetPlatform].  Supported values are:
   ///  * `android`
   ///  * `fuchsia`

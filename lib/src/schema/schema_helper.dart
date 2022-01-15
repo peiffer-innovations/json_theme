@@ -119,6 +119,10 @@ class SchemaHelper {
           'type': 'string',
           'pattern': r'##.*##$',
         },
+        {
+          'type': 'string',
+          'pattern': r'\$\{.*\}$',
+        },
       ];
 
   static dynamic objectSchema(String id) {

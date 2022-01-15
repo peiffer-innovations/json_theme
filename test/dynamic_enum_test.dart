@@ -18,6 +18,20 @@ void main() {
         ),
         true,
       );
+      expect(
+        SchemaValidator.validate(
+          schemaId: id,
+          value: '\${foo}',
+        ),
+        true,
+      );
+      expect(
+        SchemaValidator.validate(
+          schemaId: id,
+          value: "\${foo('bar')}",
+        ),
+        true,
+      );
     });
   }
 }

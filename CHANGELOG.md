@@ -1,3 +1,7 @@
+# [3.2.5] - January 15th, 2022
+
+* Added support for the `${.*}` syntax in the enums
+
 # [3.2.4] - January 9th, 2022
 
 * Added encoders / decoders for `TableBorder`, `TableColumnWidth`

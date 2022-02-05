@@ -8864,6 +8864,9 @@ void main() {
       canvasColor: Color(0xffcccccc),
       cardColor: Color(0xffdddddd),
       cardTheme: CardTheme(color: Color(0xffeeeeee)),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.all(Color(0xff123456)),
+      ),
       chipTheme: ChipThemeData(
         backgroundColor: Color(0xff111111),
         brightness: Brightness.light,
@@ -9002,6 +9005,9 @@ void main() {
       primaryTextTheme: TextTheme(
         bodyText1: TextStyle(color: Color(0xccaaaaaa)),
       ),
+      radioTheme: RadioThemeData(
+        fillColor: MaterialStateProperty.all(Color(0xff123456)),
+      ),
       scaffoldBackgroundColor: Color(0xee666666),
       secondaryHeaderColor: Color(0xccbbbbbb),
       selectedRowColor: Color(0xcccccccc),
@@ -9010,6 +9016,9 @@ void main() {
       snackBarTheme: SnackBarThemeData(actionTextColor: Color(0xcceeeeee)),
       splashColor: Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateProperty.all(Color(0xff123456)),
+      ),
       tabBarTheme: TabBarTheme(labelColor: Color(0xccffffff)),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
@@ -9114,6 +9123,7 @@ void main() {
       'cardTheme': {
         'color': '#ffeeeeee',
       },
+      'checkboxTheme': {'fillColor': _materializeState('#ff123456')},
       'chipTheme': {
         'backgroundColor': '#ff111111',
         'brightness': 'light',
@@ -9395,6 +9405,7 @@ void main() {
           'inherit': true,
         },
       },
+      'radioTheme': {'fillColor': _materializeState('#ff123456')},
       'scaffoldBackgroundColor': '#ee666666',
       'secondaryHeaderColor': '#ccbbbbbb',
       'selectedRowColor': '#cccccccc',
@@ -9407,6 +9418,7 @@ void main() {
       },
       'splashColor': '#ee444444',
       'splashFactory': 'splash',
+      'switchTheme': {'thumbColor': _materializeState('#ff123456')},
       'tabBarTheme': {
         'labelColor': '#ccffffff',
       },

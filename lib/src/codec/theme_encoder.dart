@@ -5943,6 +5943,7 @@ class ThemeEncoder {
   ///   "canvasColor": <Color>,
   ///   "cardColor": <Color>,
   ///   "cardTheme": <CardTheme>,
+  ///   "checkboxTheme": <CheckboxThemeData>,
   ///   "chipTheme": <ChipThemeData>,
   ///   "colorScheme": <ColorScheme>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
@@ -5978,6 +5979,7 @@ class ThemeEncoder {
   ///   "primaryIconTheme": <IconThemeData>,
   ///   "primarySwatch": <MaterialColor>,
   ///   "primaryTextTheme": <TextTheme>,
+  ///   "radioTheme": <RadioThemeData>,
   ///   "scaffoldBackgroundColor": <Color>,
   ///   "secondaryHeaderColor": <Color>,
   ///   "selectedRowColor": <Color>,
@@ -5986,6 +5988,7 @@ class ThemeEncoder {
   ///   "snackBarTheme": SnackBarThemeData>,
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>,
+  ///   "switchTheme": <SwitchThemeData>,
   ///   "tabBarTheme": <TabBarTheme>,
   ///   "textButtonTheme": <TextButtonThemeData>,
   ///   "textSelectionTheme": <TextSelectionThemeData>,
@@ -6008,6 +6011,7 @@ class ThemeEncoder {
   ///  * [encodeButtonBarThemeData]
   ///  * [encodeButtonThemeData]
   ///  * [encodeCardTheme]
+  ///  * [encodeCheckboxThemeData]
   ///  * [encodeChipThemeData]
   ///  * [encodeColor]
   ///  * [encodeColorScheme]
@@ -6027,8 +6031,10 @@ class ThemeEncoder {
   ///  * [encodeNavigationRailThemeData]
   ///  * [encodeOutlinedButtonThemeData]
   ///  * [encodePopupMenuThemeData]
+  ///  * [encodeRadioThemeData]
   ///  * [encodeSliderThemeData]
   ///  * [encodeSnackBarThemeData]
+  ///  * [encodeSwitchThemeData]
   ///  * [encodeTabBarTheme]
   ///  * [encodeTargetPlatform]
   ///  * [encodeTextButtonThemeData]
@@ -6061,6 +6067,7 @@ class ThemeEncoder {
         'canvasColor': encodeColor(value.canvasColor),
         'cardColor': encodeColor(value.cardColor),
         'cardTheme': encodeCardTheme(value.cardTheme),
+        'checkboxTheme': encodeCheckboxThemeData(value.checkboxTheme),
         'chipTheme': encodeChipThemeData(value.chipTheme),
         'colorScheme': encodeColorScheme(value.colorScheme),
         'cupertinoOverrideTheme': encodeCupertinoThemeData(
@@ -6112,6 +6119,7 @@ class ThemeEncoder {
         'primaryColorLight': encodeColor(value.primaryColorLight),
         'primaryIconTheme': encodeIconThemeData(value.primaryIconTheme),
         'primaryTextTheme': encodeTextTheme(value.primaryTextTheme),
+        'radioTheme': encodeRadioThemeData(value.radioTheme),
         'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
         'secondaryHeaderColor': encodeColor(value.secondaryHeaderColor),
         'selectedRowColor': encodeColor(value.selectedRowColor),
@@ -6121,6 +6129,7 @@ class ThemeEncoder {
         'splashColor': encodeColor(value.splashColor),
         'splashFactory':
             encodeInteractiveInkFeatureFactory(value.splashFactory),
+        'switchTheme': encodeSwitchThemeData(value.switchTheme),
         'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
         'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
         'textSelectionTheme': encodeTextSelectionThemeData(

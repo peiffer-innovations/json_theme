@@ -1,3 +1,8 @@
+# [3.2.6] - February 5th, 2022
+
+* Updated `encodeThemeData` to encode `CheckboxThemeData`, `RadioThemeData` and `SwitchThemeData`
+* Fix for [Issue #32](https://github.com/peiffer-innovations/json_theme/issues/32)
+
 # [3.2.5] - January 15th, 2022
 
 * Added support for the `${.*}` syntax in the enums

@@ -1,3 +1,9 @@
+# [3.3.1] - February 6th, 2022
+
+* Updated `encodeThemeData` to encode `CheckboxThemeData`, `RadioThemeData` and `SwitchThemeData`
+* Fix for [Issue #32](https://github.com/peiffer-innovations/json_theme/issues/32)
+
+
 # [3.3.0] - February 6th, 2022
 
 * Flutter 2.10 properties

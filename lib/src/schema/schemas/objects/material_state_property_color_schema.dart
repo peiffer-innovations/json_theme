@@ -19,6 +19,7 @@ class MaterialStatePropertyColorSchema {
       'focused': SchemaHelper.objectSchema(ColorSchema.id),
       'hovered': SchemaHelper.objectSchema(ColorSchema.id),
       'pressed': SchemaHelper.objectSchema(ColorSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(ColorSchema.id),
       'selected': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };

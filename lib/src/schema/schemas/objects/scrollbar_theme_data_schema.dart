@@ -41,6 +41,9 @@ class ScrollbarThemeDataSchema {
       'trackColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
+      'trackVisibility': SchemaHelper.objectSchema(
+        MaterialStatePropertyBoolSchema.id,
+      ),
     },
   };
 }

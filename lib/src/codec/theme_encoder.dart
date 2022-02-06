@@ -1303,16 +1303,30 @@ class ThemeEncoder {
   ///   "background": <Color>,
   ///   "brightness": <Brightness>,
   ///   "error": <Color>,
+  ///   "errorContainer": <Color>,
+  ///   "inversePrimary": <Color>,
+  ///   "inverseSurface": <Color>,
   ///   "onBackground": <Color>,
   ///   "onError": <Color>,
+  ///   "onErrorContainer": <Color>,
+  ///   "onInverseSurface": <Color>,
   ///   "onPrimary": <Color>,
+  ///   "onPrimaryContainer": <Color>,
   ///   "onSecondary": <Color>,
+  ///   "onSecondaryContainer": <Color>,
   ///   "onSurface": <Color>,
+  ///   "onSurfaceVariant": <Color>,
+  ///   "onTertiary": <Color>,
+  ///   "onTertiaryContainer": <Color>,
+  ///   "outline": <Color>,
   ///   "primary": <Color>,
-  ///   "primaryVariant": <Color>,
+  ///   "primaryContainer": <Color>,
   ///   "secondary": <Color>,
-  ///   "secondaryVariant": <Color>,
-  ///   "surface": <Color>
+  ///   "secondaryContainer": <Color>,
+  ///   "shadow": <Color>,
+  ///   "surface": <Color>,
+  ///   "tertiary": <Color>,
+  ///   "tertiaryContainer": <Color>
   /// }
   /// ```
   ///
@@ -1327,16 +1341,30 @@ class ThemeEncoder {
         'background': encodeColor(value.background),
         'brightness': encodeBrightness(value.brightness),
         'error': encodeColor(value.error),
+        'errorContainer': encodeColor(value.errorContainer),
+        'inversePrimary': encodeColor(value.inversePrimary),
+        'inverseSurface': encodeColor(value.inverseSurface),
         'onBackground': encodeColor(value.onBackground),
         'onError': encodeColor(value.onError),
+        'onErrorContainer': encodeColor(value.onErrorContainer),
+        'onInverseSurface': encodeColor(value.onInverseSurface),
         'onPrimary': encodeColor(value.onPrimary),
+        'onPrimaryContainer': encodeColor(value.onPrimaryContainer),
         'onSecondary': encodeColor(value.onSecondary),
+        'onSecondaryContainer': encodeColor(value.onSecondaryContainer),
         'onSurface': encodeColor(value.onSurface),
+        'onSurfaceVariant': encodeColor(value.onSurfaceVariant),
+        'onTertiary': encodeColor(value.onTertiary),
+        'onTertiaryContainer': encodeColor(value.onTertiaryContainer),
+        'outline': encodeColor(value.outline),
         'primary': encodeColor(value.primary),
-        'primaryVariant': encodeColor(value.primaryVariant),
+        'primaryContainer': encodeColor(value.primaryContainer),
         'secondary': encodeColor(value.secondary),
-        'secondaryVariant': encodeColor(value.secondaryVariant),
+        'secondaryContainer': encodeColor(value.secondaryContainer),
+        'shadow': encodeColor(value.shadow),
         'surface': encodeColor(value.surface),
+        'tertiary': encodeColor(value.tertiary),
+        'tertiaryContainer': encodeColor(value.tertiaryContainer),
       };
     }
 
@@ -2010,6 +2038,26 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `center`
+  ///  * `start`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeFloatingLabelAlignment(FloatingLabelAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      if (value == FloatingLabelAlignment.center) {
+        result = 'center';
+      } else if (value == FloatingLabelAlignment.start) {
+        result = 'start';
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `always`
   ///  * `auto`
   ///  * `never`
@@ -2533,6 +2581,7 @@ class ThemeEncoder {
   ///   "errorStyle": <TextStyle>,
   ///   "fillColor": <Color>,
   ///   "filled": <bool>,
+  ///   "floatingLabelAlignment": <FloatingLabelAlignment>,
   ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
   ///   "floatingLabelStyle": <TextStyle>,
   ///   "focusColor": <Color>,
@@ -2579,6 +2628,9 @@ class ThemeEncoder {
         'errorStyle': encodeTextStyle(value.errorStyle),
         'fillColor': encodeColor(value.fillColor),
         'filled': value.filled,
+        'floatingLabelAlignment': encodeFloatingLabelAlignment(
+          value.floatingLabelAlignment,
+        ),
         'floatingLabelBehavior': encodeFloatingLabelBehavior(
           value.floatingLabelBehavior,
         ),
@@ -2858,6 +2910,45 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "disabled": <bool>,
+  ///   "dragged": <bool>,
+  ///   "empty": <bool>,
+  ///   "error": <bool>,
+  ///   "focused": <bool>,
+  ///   "hovered": <bool>,
+  ///   "pressed": <bool>,
+  ///   "scrolledUnder": <bool>,
+  ///   "selected": <bool>
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeMaterialStatePropertyBool(
+    MaterialStateProperty<bool?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': value.resolve({MaterialState.disabled}),
+        'dragged': value.resolve({MaterialState.dragged}),
+        'empty': value.resolve({}),
+        'error': value.resolve({MaterialState.error}),
+        'focused': value.resolve({MaterialState.focused}),
+        'hovered': value.resolve({MaterialState.hovered}),
+        'pressed': value.resolve({MaterialState.pressed}),
+        'scrolledUnder': value.resolve({MaterialState.scrolledUnder}),
+        'selected': value.resolve({MaterialState.selected}),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
   ///   "disabled": <BorderSide>,
   ///   "dragged": <BorderSide>,
   ///   "empty": <BorderSide>,
@@ -2865,6 +2956,7 @@ class ThemeEncoder {
   ///   "focused": <BorderSide>,
   ///   "hovered": <BorderSide>,
   ///   "pressed": <BorderSide>,
+  ///   "scrolledUnder": <BorderSide>,
   ///   "selected": <BorderSide>
   /// }
   /// ```
@@ -2886,6 +2978,9 @@ class ThemeEncoder {
         'focused': encodeBorderSide(value.resolve({MaterialState.focused})),
         'hovered': encodeBorderSide(value.resolve({MaterialState.hovered})),
         'pressed': encodeBorderSide(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeBorderSide(value.resolve(
+          {MaterialState.scrolledUnder},
+        )),
         'selected': encodeBorderSide(value.resolve({MaterialState.selected})),
       };
     }
@@ -2905,6 +3000,7 @@ class ThemeEncoder {
   ///   "focused": <Color>,
   ///   "hovered": <Color>,
   ///   "pressed": <Color>,
+  ///   "scrolledUnder": <Color>,
   ///   "selected": <Color>
   /// }
   /// ```
@@ -2926,6 +3022,9 @@ class ThemeEncoder {
         'focused': encodeColor(value.resolve({MaterialState.focused})),
         'hovered': encodeColor(value.resolve({MaterialState.hovered})),
         'pressed': encodeColor(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeColor(value.resolve(
+          {MaterialState.scrolledUnder},
+        )),
         'selected': encodeColor(value.resolve({MaterialState.selected})),
       };
     }
@@ -2945,6 +3044,7 @@ class ThemeEncoder {
   ///   "focused": <double>,
   ///   "hovered": <double>,
   ///   "pressed": <double>,
+  ///   "scrolledUnder": <double>,
   ///   "selected": <double>
   /// }
   /// ```
@@ -2963,6 +3063,7 @@ class ThemeEncoder {
         'focused': value.resolve({MaterialState.focused}),
         'hovered': value.resolve({MaterialState.hovered}),
         'pressed': value.resolve({MaterialState.pressed}),
+        'scrolledUnder': value.resolve({MaterialState.scrolledUnder}),
         'selected': value.resolve({MaterialState.selected}),
       };
     }
@@ -2982,6 +3083,7 @@ class ThemeEncoder {
   ///   "focused": <EdgeInsetsGeometry>,
   ///   "hovered": <EdgeInsetsGeometry>,
   ///   "pressed": <EdgeInsetsGeometry>,
+  ///   "scrolledUnder": <EdgeInsetsGeometry>,
   ///   "selected": <EdgeInsetsGeometry>
   /// }
   /// ```
@@ -3017,6 +3119,9 @@ class ThemeEncoder {
         'pressed': encodeEdgeInsetsGeometry(
           value.resolve({MaterialState.pressed}) as EdgeInsets?,
         ),
+        'scrolledUnder': encodeEdgeInsetsGeometry(
+          value.resolve({MaterialState.scrolledUnder}) as EdgeInsets?,
+        ),
         'selected': encodeEdgeInsetsGeometry(
           value.resolve({MaterialState.selected}) as EdgeInsets?,
         ),
@@ -3038,6 +3143,7 @@ class ThemeEncoder {
   ///   "focused": <IconThemeData>,
   ///   "hovered": <IconThemeData>,
   ///   "pressed": <IconThemeData>,
+  ///   "scrolledUnder": <IconThemeData>,
   ///   "selected": <IconThemeData>
   /// }
   /// ```
@@ -3061,6 +3167,9 @@ class ThemeEncoder {
         'focused': encodeIconThemeData(value.resolve({MaterialState.focused})),
         'hovered': encodeIconThemeData(value.resolve({MaterialState.hovered})),
         'pressed': encodeIconThemeData(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeIconThemeData(
+          value.resolve({MaterialState.selected}),
+        ),
         'selected': encodeIconThemeData(
           value.resolve({MaterialState.selected}),
         ),
@@ -3082,6 +3191,7 @@ class ThemeEncoder {
   ///   "focused": <MouseCursor>,
   ///   "hovered": <MouseCursor>,
   ///   "pressed": <MouseCursor>,
+  ///   "scrolledUnder": <MouseCursor>,
   ///   "selected": <MouseCursor>
   /// }
   /// ```
@@ -3103,6 +3213,9 @@ class ThemeEncoder {
         'focused': encodeMouseCursor(value.resolve({MaterialState.focused})),
         'hovered': encodeMouseCursor(value.resolve({MaterialState.hovered})),
         'pressed': encodeMouseCursor(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeMouseCursor(value.resolve(
+          {MaterialState.scrolledUnder},
+        )),
         'selected': encodeMouseCursor(value.resolve({MaterialState.selected})),
       };
     }
@@ -3122,6 +3235,7 @@ class ThemeEncoder {
   ///   "focused": <OutlinedBorder>,
   ///   "hovered": <OutlinedBorder>,
   ///   "pressed": <OutlinedBorder>,
+  ///   "scrolledUnder": <OutlinedBorder>,
   ///   "selected": <OutlinedBorder>
   /// }
   /// ```
@@ -3145,6 +3259,9 @@ class ThemeEncoder {
         'focused': encodeOutlinedBorder(value.resolve({MaterialState.focused})),
         'hovered': encodeOutlinedBorder(value.resolve({MaterialState.hovered})),
         'pressed': encodeOutlinedBorder(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeOutlinedBorder(
+          value.resolve({MaterialState.scrolledUnder}),
+        ),
         'selected': encodeOutlinedBorder(
           value.resolve({MaterialState.selected}),
         ),
@@ -3166,6 +3283,7 @@ class ThemeEncoder {
   ///   "focused": <Size>,
   ///   "hovered": <Size>,
   ///   "pressed": <Size>,
+  ///   "scrolledUnder": <Size>,
   ///   "selected": <Size>
   /// }
   /// ```
@@ -3187,6 +3305,8 @@ class ThemeEncoder {
         'focused': encodeSize(value.resolve({MaterialState.focused})),
         'hovered': encodeSize(value.resolve({MaterialState.hovered})),
         'pressed': encodeSize(value.resolve({MaterialState.pressed})),
+        'scrolledUnder':
+            encodeSize(value.resolve({MaterialState.scrolledUnder})),
         'selected': encodeSize(value.resolve({MaterialState.selected})),
       };
     }
@@ -3206,7 +3326,8 @@ class ThemeEncoder {
   ///   "focused": <TextStyle>,
   ///   "hovered": <TextStyle>,
   ///   "pressed": <TextStyle>,
-  ///   "selected": <TextStyle>
+  ///   "scrolledUnder": <TextStyle>,
+  ///   "selected": <TextStyle>,
   /// }
   /// ```
   ///
@@ -3227,6 +3348,9 @@ class ThemeEncoder {
         'focused': encodeTextStyle(value.resolve({MaterialState.focused})),
         'hovered': encodeTextStyle(value.resolve({MaterialState.hovered})),
         'pressed': encodeTextStyle(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeTextStyle(value.resolve(
+          {MaterialState.scrolledUnder},
+        )),
         'selected': encodeTextStyle(value.resolve({MaterialState.selected})),
       };
     }
@@ -3652,7 +3776,8 @@ class ThemeEncoder {
   ///   "iconTheme": <MaterialStateProperty<IconThemeData>>,
   ///   "indicatorColor": <Color>,
   ///   "labelBehavior": <NavigationDestinationLabelBehavior>,
-  ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>
+  ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>,
+  ///   "useIndicator": <bool>
   /// }
   /// ```
   ///
@@ -3724,11 +3849,13 @@ class ThemeEncoder {
   ///   "backgroundColor": <Color>,
   ///   "elevation": <double>,
   ///   "groupAlignment": <double>,
+  ///   "indicatorColor": <Color>,
   ///   "labelType": <NavigationRailLabelType>,
   ///   "selectedIconTheme": <IconThemeData>,
   ///   "selectedLabelTextStyle": <TextStyle>,
   ///   "unselectedIconTheme": <IconThemeData>,
-  ///   "unselectedLabelTextStyle": <TextStyle>
+  ///   "unselectedLabelTextStyle": <TextStyle>,
+  ///   "useIndicator": <bool>
   /// }
   /// ```
   ///
@@ -3747,6 +3874,7 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'elevation': value.elevation,
         'groupAlignment': value.groupAlignment,
+        'indicatorColor': encodeColor(value.indicatorColor),
         'labelType': encodeNavigationRailLabelType(value.labelType),
         'selectedIconTheme': encodeIconThemeData(value.selectedIconTheme),
         'selectedLabelTextStyle': encodeTextStyle(
@@ -3756,6 +3884,7 @@ class ThemeEncoder {
         'unselectedLabelTextStyle': encodeTextStyle(
           value.unselectedLabelTextStyle,
         ),
+        'useIndicator': value.useIndicator,
       };
     }
 
@@ -4451,11 +4580,13 @@ class ThemeEncoder {
   ///   "thickness": <MaterialStateProperty<double>>,
   ///   "thumbColor": <MaterialStateProperty<Color>>,
   ///   "trackBorderColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>
+  ///   "trackColor": <MaterialStateProperty<Color>>,
+  ///   "trackVisibility": <MaterialStateProperty<bool>>
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [encodeMaterialStatePropertyBool]
   ///  * [encodeMaterialStatePropertyColor]
   ///  * [encodeMaterialStatePropertyDouble]
   ///  * [encodeRadius]
@@ -4481,6 +4612,9 @@ class ThemeEncoder {
           value.trackBorderColor,
         ),
         'trackColor': encodeMaterialStatePropertyColor(value.trackColor),
+        'trackVisibility': encodeMaterialStatePropertyBool(
+          value.trackVisibility,
+        ),
       };
     }
 
@@ -5662,7 +5796,8 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "applyHeightToFirstAscent": <bool>,
-  ///   "applyHeightToLastDescent": <bool>
+  ///   "applyHeightToLastDescent": <bool>,
+  ///   "leadingDistribution": <TextLeadingDistribution>
   /// }
   /// ```
   static Map<String, dynamic>? encodeTextHeightBehavior(
@@ -5674,6 +5809,9 @@ class ThemeEncoder {
       result = {
         'applyHeightToFirstAscent': value.applyHeightToFirstAscent,
         'applyHeightToLastDescent': value.applyHeightToLastDescent,
+        'leadingDistribution': encodeTextLeadingDistribution(
+          value.leadingDistribution,
+        ),
       };
     }
 
@@ -5859,19 +5997,21 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "bodyText1": <TextStyle>,
-  ///   "bodyText2": <TextStyle>,
-  ///   "button": <TextStyle>,
-  ///   "caption": <TextStyle>,
-  ///   "headline1": <TextStyle>,
-  ///   "headline2": <TextStyle>,
-  ///   "headline3": <TextStyle>,
-  ///   "headline4": <TextStyle>,
-  ///   "headline5": <TextStyle>,
-  ///   "headline6": <TextStyle>,
-  ///   "overline": <TextStyle>,
-  ///   "subtitle1": <TextStyle>,
-  ///   "subtitle2": <TextStyle>
+  ///   "bodyLarge": <TextStyle>,
+  ///   "bodyMedium": <TextStyle>,
+  ///   "bodySmall": <TextStyle>,
+  ///   "displayLarge": <TextStyle>,
+  ///   "displayMedium": <TextStyle>,
+  ///   "displaySmall": <TextStyle>,
+  ///   "headlineLarge": <TextStyle>,
+  ///   "headlineMedium": <TextStyle>,
+  ///   "headlineSmall": <TextStyle>,
+  ///   "labelLarge": <TextStyle>,
+  ///   "labelMedium": <TextStyle>,
+  ///   "labelSmall": <TextStyle>,
+  ///   "titleLarge": <TextStyle>,
+  ///   "titleMedium": <TextStyle>,
+  ///   "titleSmall": <TextStyle>
   /// }
   /// ```
   ///
@@ -5882,19 +6022,21 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'bodyText1': encodeTextStyle(value.bodyText1),
-        'bodyText2': encodeTextStyle(value.bodyText2),
-        'button': encodeTextStyle(value.button),
-        'caption': encodeTextStyle(value.caption),
-        'headline1': encodeTextStyle(value.headline1),
-        'headline2': encodeTextStyle(value.headline2),
-        'headline3': encodeTextStyle(value.headline3),
-        'headline4': encodeTextStyle(value.headline4),
-        'headline5': encodeTextStyle(value.headline5),
-        'headline6': encodeTextStyle(value.headline6),
-        'overline': encodeTextStyle(value.overline),
-        'subtitle1': encodeTextStyle(value.subtitle1),
-        'subtitle2': encodeTextStyle(value.subtitle2),
+        'bodyLarge': encodeTextStyle(value.bodyLarge),
+        'bodyMedium': encodeTextStyle(value.bodyMedium),
+        'bodySmall': encodeTextStyle(value.bodySmall),
+        'displayLarge': encodeTextStyle(value.displayLarge),
+        'displayMedium': encodeTextStyle(value.displayMedium),
+        'displaySmall': encodeTextStyle(value.displaySmall),
+        'headlineLarge': encodeTextStyle(value.headlineLarge),
+        'headlineMedium': encodeTextStyle(value.headlineMedium),
+        'headlineSmall': encodeTextStyle(value.headlineSmall),
+        'labelLarge': encodeTextStyle(value.labelLarge),
+        'labelMedium': encodeTextStyle(value.labelMedium),
+        'labelSmall': encodeTextStyle(value.labelSmall),
+        'titleLarge': encodeTextStyle(value.titleLarge),
+        'titleMedium': encodeTextStyle(value.titleMedium),
+        'titleSmall': encodeTextStyle(value.titleSmall),
       };
     }
 
@@ -5973,7 +6115,6 @@ class ThemeEncoder {
   ///   "platform": <TargetPlatform>,
   ///   "popupMenuTheme": <PopupMenuThemeData>,
   ///   "primaryColor": <Color>,
-  ///   "primaryColorBrightness": <Brightness>,
   ///   "primaryColorDark": <Color>,
   ///   "primaryColorLight": <Color>,
   ///   "primaryIconTheme": <IconThemeData>,
@@ -5998,6 +6139,7 @@ class ThemeEncoder {
   ///   "tooltipTheme": <TooltipThemeData>,
   ///   "typography": <Typography>,
   ///   "unselectedWidgetColor": <Color>,
+  ///   "useMaterial3": <bool>,
   ///   "visualDensity": <VisualDensity>
   /// }
   /// ```
@@ -6112,9 +6254,6 @@ class ThemeEncoder {
         'platform': encodeTargetPlatform(value.platform),
         'popupMenuTheme': encodePopupMenuThemeData(value.popupMenuTheme),
         'primaryColor': encodeColor(value.primaryColor),
-        'primaryColorBrightness': encodeBrightness(
-          value.primaryColorBrightness,
-        ),
         'primaryColorDark': encodeColor(value.primaryColorDark),
         'primaryColorLight': encodeColor(value.primaryColorLight),
         'primaryIconTheme': encodeIconThemeData(value.primaryIconTheme),
@@ -6143,6 +6282,7 @@ class ThemeEncoder {
         'tooltipTheme': encodeTooltipThemeData(value.tooltipTheme),
         'typography': encodeTypography(value.typography),
         'unselectedWidgetColor': encodeColor(value.unselectedWidgetColor),
+        'useMaterial3': value.useMaterial3,
         'visualDensity': encodeVisualDensity(value.visualDensity),
       };
     }

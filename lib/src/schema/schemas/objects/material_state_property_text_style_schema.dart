@@ -19,6 +19,7 @@ class MaterialStatePropertyTextStyleSchema {
       'focused': SchemaHelper.objectSchema(TextStyleSchema.id),
       'hovered': SchemaHelper.objectSchema(TextStyleSchema.id),
       'pressed': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(TextStyleSchema.id),
       'selected': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };

@@ -19,6 +19,7 @@ class MaterialStatePropertySizeSchema {
       'focused': SchemaHelper.objectSchema(SizeSchema.id),
       'hovered': SchemaHelper.objectSchema(SizeSchema.id),
       'pressed': SchemaHelper.objectSchema(SizeSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(SizeSchema.id),
       'selected': SchemaHelper.objectSchema(SizeSchema.id),
     },
   };

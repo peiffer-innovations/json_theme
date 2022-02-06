@@ -24,6 +24,7 @@ class Enums {
     FlexFitSchema.id,
     FloatingActionButtonAnimatorSchema.id,
     FloatingActionButtonLocationSchema.id,
+    FloatingLabelAlignmentSchema.id,
     FloatingLabelBehaviorSchema.id,
     FontStyleSchema.id,
     FontWeightSchema.id,

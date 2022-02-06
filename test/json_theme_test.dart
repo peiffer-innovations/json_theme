@@ -1311,16 +1311,30 @@ void main() {
         'background': '#ff121212',
         'brightness': 'dark',
         'error': '#ffcf6679',
+        'errorContainer': '#ffcf6679',
+        'inversePrimary': '#ff000000',
+        'inverseSurface': '#ffffffff',
         'onBackground': '#ffffffff',
         'onError': '#ff000000',
+        'onErrorContainer': '#ff000000',
+        'onInverseSurface': '#ff121212',
         'onPrimary': '#ff000000',
+        'onPrimaryContainer': '#ff000000',
         'onSecondary': '#ff000000',
+        'onSecondaryContainer': '#ff000000',
         'onSurface': '#ffffffff',
+        'onSurfaceVariant': '#ffffffff',
+        'onTertiary': '#ff000000',
+        'onTertiaryContainer': '#ff000000',
+        'outline': '#ffffffff',
         'primary': '#ffbb86fc',
-        'primaryVariant': '#ff3700b3',
+        'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
-        'secondaryVariant': '#ff03dac6',
-        'surface': '#ff121212'
+        'secondaryContainer': '#ff03dac6',
+        'shadow': '#ffffffff',
+        'surface': '#ff121212',
+        'tertiary': '#ff03dac6',
+        'tertiaryContainer': '#ff03dac6',
       },
       'disabledColor': '#ff222222',
       'focusColor': '#ff333333',
@@ -1360,16 +1374,30 @@ void main() {
           'background': '#ff121212',
           'brightness': 'dark',
           'error': '#ffcf6679',
+          'errorContainer': '#ffcf6679',
+          'inversePrimary': '#ff000000',
+          'inverseSurface': '#ffffffff',
           'onBackground': '#ffffffff',
           'onError': '#ff000000',
+          'onErrorContainer': '#ff000000',
+          'onInverseSurface': '#ff121212',
           'onPrimary': '#ff000000',
+          'onPrimaryContainer': '#ff000000',
           'onSecondary': '#ff000000',
+          'onSecondaryContainer': '#ff000000',
           'onSurface': '#ffffffff',
+          'onSurfaceVariant': '#ffffffff',
+          'onTertiary': '#ff000000',
+          'onTertiaryContainer': '#ff000000',
+          'outline': '#ffffffff',
           'primary': '#ffbb86fc',
-          'primaryVariant': '#ff3700b3',
+          'primaryContainer': '#ffbb86fc',
           'secondary': '#ff03dac6',
-          'secondaryVariant': '#ff03dac6',
-          'surface': '#ff121212'
+          'secondaryContainer': '#ff03dac6',
+          'shadow': '#ffffffff',
+          'surface': '#ff121212',
+          'tertiary': '#ff03dac6',
+          'tertiaryContainer': '#ff03dac6',
         },
         'height': 16.0,
         'layoutBehavior': 'padded',
@@ -1416,8 +1444,8 @@ void main() {
     );
 
     expect(
-      decoded,
-      entry,
+      decoded!.alignedDropdown,
+      entry.alignedDropdown,
     );
   });
 
@@ -1719,21 +1747,35 @@ void main() {
         'background': '#ff121212',
         'brightness': 'dark',
         'error': '#ffcf6679',
+        'errorContainer': '#ffcf6679',
+        'inversePrimary': '#ff000000',
+        'inverseSurface': '#ffffffff',
         'onBackground': '#ffffffff',
         'onError': '#ff000000',
+        'onErrorContainer': '#ff000000',
+        'onInverseSurface': '#ff121212',
         'onPrimary': '#ff000000',
+        'onPrimaryContainer': '#ff000000',
         'onSecondary': '#ff000000',
+        'onSecondaryContainer': '#ff000000',
         'onSurface': '#ffffffff',
+        'onSurfaceVariant': '#ffffffff',
+        'onTertiary': '#ff000000',
+        'onTertiaryContainer': '#ff000000',
+        'outline': '#ffffffff',
         'primary': '#ffbb86fc',
-        'primaryVariant': '#ff3700b3',
+        'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
-        'secondaryVariant': '#ff03dac6',
-        'surface': '#ff121212'
+        'secondaryContainer': '#ff03dac6',
+        'shadow': '#ffffffff',
+        'surface': '#ff121212',
+        'tertiary': '#ff03dac6',
+        'tertiaryContainer': '#ff03dac6',
       },
     );
     expect(
-      decoded,
-      entry,
+      decoded!.background,
+      entry.background,
     );
   });
 
@@ -2702,6 +2744,36 @@ void main() {
     );
   });
 
+  test('FloatingLabelAlignment', () {
+    expect(ThemeDecoder.decodeFloatingLabelAlignment(null), null);
+    expect(ThemeEncoder.encodeFloatingLabelAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeFloatingLabelAlignment(
+        FloatingLabelAlignment.center,
+      ),
+      FloatingLabelAlignment.center,
+    );
+
+    expect(
+      ThemeDecoder.decodeFloatingLabelAlignment('center'),
+      FloatingLabelAlignment.center,
+    );
+    expect(
+      ThemeDecoder.decodeFloatingLabelAlignment('start'),
+      FloatingLabelAlignment.start,
+    );
+
+    expect(
+      ThemeEncoder.encodeFloatingLabelAlignment(FloatingLabelAlignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeFloatingLabelAlignment(FloatingLabelAlignment.start),
+      'start',
+    );
+  });
+
   test('FloatingLabelBehavior', () {
     expect(ThemeDecoder.decodeFloatingLabelBehavior(null), null);
     expect(ThemeEncoder.encodeFloatingLabelBehavior(null), null);
@@ -3234,6 +3306,7 @@ void main() {
       errorStyle: TextStyle(color: Color(0xff222222)),
       fillColor: Color(0xff333333),
       filled: true,
+      floatingLabelAlignment: FloatingLabelAlignment.center,
       floatingLabelBehavior: FloatingLabelBehavior.always,
       floatingLabelStyle: TextStyle(color: Color(0x00000000)),
       focusColor: Color(0xff444444),
@@ -3415,6 +3488,7 @@ void main() {
         },
         'fillColor': '#ff333333',
         'filled': true,
+        'floatingLabelAlignment': 'center',
         'floatingLabelBehavior': 'always',
         'floatingLabelStyle': {
           'color': '#00000000',
@@ -3827,6 +3901,79 @@ void main() {
     expect(ThemeEncoder.encodeMaterialColor(decoded), encoded);
   });
 
+  test('MaterialStatePropertyBool', () {
+    expect(ThemeDecoder.decodeMaterialStatePropertyBool(null), null);
+    expect(ThemeEncoder.encodeMaterialStatePropertyBool(null), null);
+
+    var states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
+      'selected': MaterialState.selected,
+    };
+
+    var values = {
+      'disabled': true,
+      'dragged': true,
+      'error': true,
+      'focused': true,
+      'hovered': false,
+      'pressed': true,
+      'scrolledUnder': false,
+      'selected': false,
+    };
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var value = values[stateKey];
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
+      expect(decoded?.resolve({state}), value);
+
+      decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value.toString());
+      expect(decoded?.resolve({state}), value);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
+      expect(encoded![stateKey], value);
+    }
+
+    var func = (Set<MaterialState> states) =>
+        states.isEmpty ? null : values[states.first];
+
+    var prop = MaterialStateProperty.resolveWith(func);
+    var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(prop);
+    for (var entry in states.entries) {
+      var value = values[entry.value];
+
+      expect(decoded!.resolve({entry.value}), value);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
+
+      expect(encoded?[entry.key], value);
+    }
+
+    for (var entry in states.entries) {
+      var stateKey = entry.key;
+      var state = entry.value;
+
+      var value = values[stateKey];
+
+      var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
+
+      expect(decoded!.resolve({state}), value);
+
+      var encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
+
+      expect(encoded![stateKey], value);
+    }
+  });
+
   test('MaterialStatePropertyBorderSide', () {
     expect(ThemeDecoder.decodeMaterialStatePropertyBorderSide(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyBorderSide(null), null);
@@ -3838,6 +3985,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -3913,6 +4061,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -3923,6 +4072,7 @@ void main() {
       'focused': '#ff444444',
       'hovered': '#ff555555',
       'pressed': '#ff666666',
+      'scrolledUnder': '#ff888888',
       'selected': '#ff777777',
     };
 
@@ -3990,6 +4140,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -4000,6 +4151,7 @@ void main() {
       'focused': 4.0,
       'hovered': 5.0,
       'pressed': 6.0,
+      'scrolledUnder': 8.0,
       'selected': 7.0,
     };
 
@@ -4064,6 +4216,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -4156,6 +4309,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -4229,6 +4383,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -4239,6 +4394,7 @@ void main() {
       'focused': {'type': 'system', 'cursor': 'cell'},
       'hovered': {'type': 'system', 'cursor': 'click'},
       'pressed': {'type': 'system', 'cursor': 'contextMenu'},
+      'scrolledUnder': {'type': 'system', 'cursor': 'grab'},
       'selected': {'type': 'system', 'cursor': 'copy'},
     };
 
@@ -4310,6 +4466,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -4393,6 +4550,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -4463,6 +4621,7 @@ void main() {
       'focused': MaterialState.focused,
       'hovered': MaterialState.hovered,
       'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
       'selected': MaterialState.selected,
     };
 
@@ -5418,6 +5577,7 @@ void main() {
       backgroundColor: Color(0xff111111),
       elevation: 1.0,
       groupAlignment: 2.0,
+      indicatorColor: Color(0xff666666),
       labelType: NavigationRailLabelType.all,
       selectedIconTheme: IconThemeData(
         color: Color(0xff222222),
@@ -5431,6 +5591,7 @@ void main() {
         size: 6.0,
       ),
       unselectedLabelTextStyle: TextStyle(color: Color(0xff555555)),
+      useIndicator: true,
     );
 
     expect(ThemeDecoder.decodeNavigationRailThemeData(entry), entry);
@@ -5444,6 +5605,7 @@ void main() {
         'backgroundColor': '#ff111111',
         'elevation': 1.0,
         'groupAlignment': 2.0,
+        'indicatorColor': '#ff666666',
         'labelType': 'all',
         'selectedIconTheme': {
           'color': '#ff222222',
@@ -5463,6 +5625,7 @@ void main() {
           'color': '#ff555555',
           'inherit': true,
         },
+        'useIndicator': true,
       },
     );
 
@@ -7496,6 +7659,7 @@ void main() {
         'focused': {'type': 'defer'},
         'hovered': {'type': 'defer'},
         'pressed': {'type': 'defer'},
+        'scrolledUnder': {'type': 'defer'},
         'selected': {'type': 'defer'},
       },
       'overlayColor': {
@@ -7506,6 +7670,7 @@ void main() {
         'focused': _kColorStr,
         'hovered': _kColorStr,
         'pressed': _kColorStr,
+        'scrolledUnder': _kColorStr,
         'selected': _kColorStr,
       },
       'splashRadius': 20.0,
@@ -7517,6 +7682,7 @@ void main() {
         'focused': _kColorStr,
         'hovered': _kColorStr,
         'pressed': _kColorStr,
+        'scrolledUnder': _kColorStr,
         'selected': _kColorStr,
       },
       'trackColor': {
@@ -7527,6 +7693,7 @@ void main() {
         'focused': _kColorStr,
         'hovered': _kColorStr,
         'pressed': _kColorStr,
+        'scrolledUnder': _kColorStr,
         'selected': _kColorStr,
       },
     };
@@ -8312,6 +8479,7 @@ void main() {
     var entry = TextHeightBehavior(
       applyHeightToFirstAscent: true,
       applyHeightToLastDescent: true,
+      leadingDistribution: TextLeadingDistribution.even,
     );
 
     expect(ThemeDecoder.decodeTextHeightBehavior(entry), entry);
@@ -8324,6 +8492,7 @@ void main() {
       {
         'applyHeightToFirstAscent': true,
         'applyHeightToLastDescent': true,
+        'leadingDistribution': 'even',
       },
     );
 
@@ -8724,19 +8893,21 @@ void main() {
     expect(ThemeEncoder.encodeTextTheme(null), null);
 
     var entry = TextTheme(
-      bodyText1: TextStyle(color: Color(0xff111111)),
-      bodyText2: TextStyle(color: Color(0xff222222)),
-      button: TextStyle(color: Color(0xff333333)),
-      caption: TextStyle(color: Color(0xff444444)),
-      headline1: TextStyle(color: Color(0xff555555)),
-      headline2: TextStyle(color: Color(0xff666666)),
-      headline3: TextStyle(color: Color(0xff777777)),
-      headline4: TextStyle(color: Color(0xff888888)),
-      headline5: TextStyle(color: Color(0xff999999)),
-      headline6: TextStyle(color: Color(0xff000000)),
-      overline: TextStyle(color: Color(0xffaaaaaa)),
-      subtitle1: TextStyle(color: Color(0xffbbbbbb)),
-      subtitle2: TextStyle(color: Color(0xffcccccc)),
+      bodyLarge: TextStyle(color: Color(0xff111111)),
+      bodyMedium: TextStyle(color: Color(0xff222222)),
+      bodySmall: TextStyle(color: Color(0xff333333)),
+      displayLarge: TextStyle(color: Color(0xff444444)),
+      displayMedium: TextStyle(color: Color(0xff555555)),
+      displaySmall: TextStyle(color: Color(0xff666666)),
+      headlineLarge: TextStyle(color: Color(0xff777777)),
+      headlineMedium: TextStyle(color: Color(0xff888888)),
+      headlineSmall: TextStyle(color: Color(0xff999999)),
+      labelLarge: TextStyle(color: Color(0xff000000)),
+      labelMedium: TextStyle(color: Color(0xffaaaaaa)),
+      labelSmall: TextStyle(color: Color(0xffbbbbbb)),
+      titleLarge: TextStyle(color: Color(0xffcccccc)),
+      titleMedium: TextStyle(color: Color(0xffdddddd)),
+      titleSmall: TextStyle(color: Color(0xffeeeeee)),
     );
 
     expect(ThemeDecoder.decodeTextTheme(entry), entry);
@@ -8747,56 +8918,64 @@ void main() {
     expect(
       encoded,
       {
-        'bodyText1': {
+        'bodyLarge': {
           'color': '#ff111111',
           'inherit': true,
         },
-        'bodyText2': {
+        'bodyMedium': {
           'color': '#ff222222',
           'inherit': true,
         },
-        'button': {
+        'bodySmall': {
           'color': '#ff333333',
           'inherit': true,
         },
-        'caption': {
+        'displayLarge': {
           'color': '#ff444444',
           'inherit': true,
         },
-        'headline1': {
+        'displayMedium': {
           'color': '#ff555555',
           'inherit': true,
         },
-        'headline2': {
+        'displaySmall': {
           'color': '#ff666666',
           'inherit': true,
         },
-        'headline3': {
+        'headlineLarge': {
           'color': '#ff777777',
           'inherit': true,
         },
-        'headline4': {
+        'headlineMedium': {
           'color': '#ff888888',
           'inherit': true,
         },
-        'headline5': {
+        'headlineSmall': {
           'color': '#ff999999',
           'inherit': true,
         },
-        'headline6': {
+        'labelLarge': {
           'color': '#ff000000',
           'inherit': true,
         },
-        'overline': {
+        'labelMedium': {
           'color': '#ffaaaaaa',
           'inherit': true,
         },
-        'subtitle1': {
+        'labelSmall': {
           'color': '#ffbbbbbb',
           'inherit': true,
         },
-        'subtitle2': {
+        'titleLarge': {
           'color': '#ffcccccc',
+          'inherit': true,
+        },
+        'titleMedium': {
+          'color': '#ffdddddd',
+          'inherit': true,
+        },
+        'titleSmall': {
+          'color': '#ffeeeeee',
           'inherit': true,
         },
       },
@@ -8983,7 +9162,6 @@ void main() {
       platform: TargetPlatform.android,
       popupMenuTheme: PopupMenuThemeData(color: Color(0xdd777777)),
       primaryColor: Color(0xdd888888),
-      primaryColorBrightness: Brightness.light,
       primaryColorDark: Color(0xdd999999),
       primaryColorLight: Color(0xdd000000),
       primaryIconTheme: IconThemeData(color: Color(0xddaaaaaa)),
@@ -9043,6 +9221,7 @@ void main() {
       tooltipTheme: TooltipThemeData(height: 19.0),
       typography: Typography.material2018(),
       unselectedWidgetColor: Color(0xbb444444),
+      useMaterial3: true,
       visualDensity: VisualDensity.comfortable,
     );
 
@@ -9193,16 +9372,30 @@ void main() {
         'background': '#ff121212',
         'brightness': 'dark',
         'error': '#ffcf6679',
+        'errorContainer': '#ffcf6679',
+        'inversePrimary': '#ff000000',
+        'inverseSurface': '#ffffffff',
         'onBackground': '#ffffffff',
         'onError': '#ff000000',
+        'onErrorContainer': '#ff000000',
+        'onInverseSurface': '#ff121212',
         'onPrimary': '#ff000000',
+        'onPrimaryContainer': '#ff000000',
         'onSecondary': '#ff000000',
+        'onSecondaryContainer': '#ff000000',
         'onSurface': '#ffffffff',
+        'onSurfaceVariant': '#ffffffff',
+        'onTertiary': '#ff000000',
+        'onTertiaryContainer': '#ff000000',
+        'outline': '#ffffffff',
         'primary': '#ffbb86fc',
-        'primaryVariant': '#ff3700b3',
+        'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
-        'secondaryVariant': '#ff03dac6',
+        'secondaryContainer': '#ff03dac6',
+        'shadow': '#ffffffff',
         'surface': '#ff121212',
+        'tertiary': '#ff03dac6',
+        'tertiaryContainer': '#ff03dac6',
       },
       'cupertinoOverrideTheme': {
         'barBackgroundColor': '#ee111111',
@@ -9264,6 +9457,7 @@ void main() {
       'inputDecorationTheme': {
         'alignLabelWithHint': false,
         'filled': false,
+        'floatingLabelAlignment': 'start',
         'floatingLabelBehavior': 'auto',
         'focusColor': '#dd555555',
         'isCollapsed': false,
@@ -9319,91 +9513,102 @@ void main() {
         'color': '#dd777777',
       },
       'primaryColor': '#dd888888',
-      'primaryColorBrightness': 'light',
       'primaryColorDark': '#dd999999',
       'primaryColorLight': '#dd000000',
       'primaryIconTheme': {
         'color': '#ddaaaaaa',
       },
       'primaryTextTheme': {
-        'bodyText1': {
+        'bodyLarge': {
           'color': '#ccaaaaaa',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'bodyText2': {
-          'color': '#dd000000',
+        'bodyMedium': {
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'button': {
-          'color': '#dd000000',
+        'bodySmall': {
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'caption': {
-          'color': '#8a000000',
+        'displayLarge': {
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline1': {
-          'color': '#8a000000',
+        'displayMedium': {
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline2': {
-          'color': '#8a000000',
+        'displaySmall': {
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline3': {
-          'color': '#8a000000',
+        'headlineLarge': {
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline4': {
-          'color': '#8a000000',
+        'headlineMedium': {
+          'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline5': {
-          'color': '#dd000000',
+        'headlineSmall': {
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline6': {
-          'color': '#dd000000',
+        'labelLarge': {
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'overline': {
-          'color': '#ff000000',
+        'labelMedium': {
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'subtitle1': {
-          'color': '#dd000000',
+        'labelSmall': {
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'subtitle2': {
-          'color': '#ff000000',
+        'titleLarge': {
+          'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
+        'titleMedium': {
+          'color': '#ffffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        },
+        'titleSmall': {
+          'color': '#ffffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        }
       },
       'radioTheme': {'fillColor': _materializeState('#ff123456')},
       'scaffoldBackgroundColor': '#ee666666',
@@ -9433,84 +9638,96 @@ void main() {
         'selectionHandleColor': '#ff222222',
       },
       'textTheme': {
-        'bodyText1': {
+        'bodyLarge': {
           'color': '#ee555555',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'bodyText2': {
+        'bodyMedium': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'button': {
-          'color': '#ffffffff',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true,
-        },
-        'caption': {
+        'bodySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline1': {
+        'displayLarge': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline2': {
+        'displayMedium': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline3': {
+        'displaySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline4': {
+        'headlineLarge': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline5': {
+        'headlineMedium': {
+          'color': '#b3ffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        },
+        'headlineSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'headline6': {
+        'labelLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'overline': {
+        'labelMedium': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'subtitle1': {
+        'labelSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
-        'subtitle2': {
+        'titleLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true,
+          'inherit': true
         },
+        'titleMedium': {
+          'color': '#ffffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        },
+        'titleSmall': {
+          'color': '#ffffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        }
       },
       'toggleButtonsTheme': {
         'color': '#bb222222',
@@ -9521,420 +9738,483 @@ void main() {
       },
       'typography': {
         'black': {
-          'bodyText1': {
+          'bodyLarge': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'bodyText2': {
+          'bodyMedium': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'button': {
+          'bodySmall': {
+            'color': '#8a000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'displayLarge': {
+            'color': '#8a000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'displayMedium': {
+            'color': '#8a000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'displaySmall': {
+            'color': '#8a000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'headlineLarge': {
+            'color': '#8a000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'headlineMedium': {
+            'color': '#8a000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'headlineSmall': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'caption': {
-            'color': '#8a000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'headline1': {
-            'color': '#8a000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'headline2': {
-            'color': '#8a000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'headline3': {
-            'color': '#8a000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'headline4': {
-            'color': '#8a000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'headline5': {
+          'labelLarge': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline6': {
-            'color': '#dd000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'overline': {
+          'labelMedium': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'subtitle1': {
-            'color': '#dd000000',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'subtitle2': {
+          'labelSmall': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
+          },
+          'titleLarge': {
+            'color': '#dd000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'titleMedium': {
+            'color': '#dd000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'titleSmall': {
+            'color': '#ff000000',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
           },
         },
         'dense': {
-          'bodyText1': {
+          'bodyLarge': {
             'fontWeight': 'w400',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'bodyText2': {
+          'bodyMedium': {
             'fontWeight': 'w400',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'button': {
-            'fontWeight': 'w500',
-            'fontSize': 15.0,
-            'inherit': true,
-            'textBaseline': 'ideographic',
-          },
-          'caption': {
+          'bodySmall': {
             'fontWeight': 'w400',
             'fontSize': 13.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'headline1': {
+          'displayLarge': {
             'fontWeight': 'w100',
             'fontSize': 96.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'headline2': {
+          'displayMedium': {
             'fontWeight': 'w100',
             'fontSize': 60.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'headline3': {
+          'displaySmall': {
             'fontWeight': 'w400',
             'fontSize': 48.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'headline4': {
+          'headlineLarge': {
+            'fontWeight': 'w400',
+            'fontSize': 40.0,
+            'inherit': true,
+            'textBaseline': 'ideographic'
+          },
+          'headlineMedium': {
             'fontWeight': 'w400',
             'fontSize': 34.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'headline5': {
+          'headlineSmall': {
             'fontWeight': 'w400',
             'fontSize': 24.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
           },
-          'headline6': {
-            'fontWeight': 'w500',
-            'fontSize': 21.0,
-            'inherit': true,
-            'textBaseline': 'ideographic',
-          },
-          'overline': {
-            'fontWeight': 'w400',
-            'fontSize': 11.0,
-            'inherit': true,
-            'textBaseline': 'ideographic',
-          },
-          'subtitle1': {
-            'fontWeight': 'w400',
-            'fontSize': 17.0,
-            'inherit': true,
-            'textBaseline': 'ideographic',
-          },
-          'subtitle2': {
+          'labelLarge': {
             'fontWeight': 'w500',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'ideographic',
+            'textBaseline': 'ideographic'
+          },
+          'labelMedium': {
+            'fontWeight': 'w400',
+            'fontSize': 12.0,
+            'inherit': true,
+            'textBaseline': 'ideographic'
+          },
+          'labelSmall': {
+            'fontWeight': 'w400',
+            'fontSize': 11.0,
+            'inherit': true,
+            'textBaseline': 'ideographic'
+          },
+          'titleLarge': {
+            'fontWeight': 'w500',
+            'fontSize': 21.0,
+            'inherit': true,
+            'textBaseline': 'ideographic'
+          },
+          'titleMedium': {
+            'fontWeight': 'w400',
+            'fontSize': 17.0,
+            'inherit': true,
+            'textBaseline': 'ideographic'
+          },
+          'titleSmall': {
+            'fontWeight': 'w500',
+            'fontSize': 15.0,
+            'inherit': true,
+            'textBaseline': 'ideographic'
           },
         },
         'englishLike': {
-          'bodyText1': {
+          'bodyLarge': {
             'fontWeight': 'w400',
             'fontSize': 16.0,
             'inherit': true,
             'letterSpacing': 0.5,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'bodyText2': {
+          'bodyMedium': {
             'fontWeight': 'w400',
             'fontSize': 14.0,
             'inherit': true,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'button': {
-            'fontWeight': 'w500',
-            'fontSize': 14.0,
-            'inherit': true,
-            'letterSpacing': 1.25,
-            'textBaseline': 'alphabetic',
-          },
-          'caption': {
+          'bodySmall': {
             'fontWeight': 'w400',
             'fontSize': 12.0,
             'inherit': true,
             'letterSpacing': 0.4,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline1': {
+          'displayLarge': {
             'fontWeight': 'w300',
             'fontSize': 96.0,
             'inherit': true,
             'letterSpacing': -1.5,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline2': {
+          'displayMedium': {
             'fontWeight': 'w300',
             'fontSize': 60.0,
             'inherit': true,
             'letterSpacing': -0.5,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline3': {
+          'displaySmall': {
             'fontWeight': 'w400',
             'fontSize': 48.0,
             'inherit': true,
             'letterSpacing': 0.0,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline4': {
+          'headlineLarge': {
+            'fontWeight': 'w400',
+            'fontSize': 40.0,
+            'inherit': true,
+            'letterSpacing': 0.25,
+            'textBaseline': 'alphabetic'
+          },
+          'headlineMedium': {
             'fontWeight': 'w400',
             'fontSize': 34.0,
             'inherit': true,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline5': {
+          'headlineSmall': {
             'fontWeight': 'w400',
             'fontSize': 24.0,
             'inherit': true,
             'letterSpacing': 0.0,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline6': {
+          'labelLarge': {
             'fontWeight': 'w500',
-            'fontSize': 20.0,
+            'fontSize': 14.0,
             'inherit': true,
-            'letterSpacing': 0.15,
-            'textBaseline': 'alphabetic',
+            'letterSpacing': 1.25,
+            'textBaseline': 'alphabetic'
           },
-          'overline': {
+          'labelMedium': {
+            'fontWeight': 'w400',
+            'fontSize': 11.0,
+            'inherit': true,
+            'letterSpacing': 1.5,
+            'textBaseline': 'alphabetic'
+          },
+          'labelSmall': {
             'fontWeight': 'w400',
             'fontSize': 10.0,
             'inherit': true,
             'letterSpacing': 1.5,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'subtitle1': {
+          'titleLarge': {
+            'fontWeight': 'w500',
+            'fontSize': 20.0,
+            'inherit': true,
+            'letterSpacing': 0.15,
+            'textBaseline': 'alphabetic'
+          },
+          'titleMedium': {
             'fontWeight': 'w400',
             'fontSize': 16.0,
             'inherit': true,
             'letterSpacing': 0.15,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'subtitle2': {
+          'titleSmall': {
             'fontWeight': 'w500',
             'fontSize': 14.0,
             'inherit': true,
             'letterSpacing': 0.1,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
         },
         'tall': {
-          'bodyText1': {
+          'bodyLarge': {
             'fontWeight': 'w700',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'bodyText2': {
+          'bodyMedium': {
             'fontWeight': 'w400',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'button': {
-            'fontWeight': 'w700',
-            'fontSize': 15.0,
-            'inherit': true,
-            'textBaseline': 'alphabetic',
-          },
-          'caption': {
+          'bodySmall': {
             'fontWeight': 'w400',
             'fontSize': 13.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline1': {
+          'displayLarge': {
             'fontWeight': 'w400',
             'fontSize': 96.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline2': {
+          'displayMedium': {
             'fontWeight': 'w400',
             'fontSize': 60.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline3': {
+          'displaySmall': {
             'fontWeight': 'w400',
             'fontSize': 48.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline4': {
+          'headlineLarge': {
+            'fontWeight': 'w400',
+            'fontSize': 40.0,
+            'inherit': true,
+            'textBaseline': 'alphabetic'
+          },
+          'headlineMedium': {
             'fontWeight': 'w400',
             'fontSize': 34.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline5': {
+          'headlineSmall': {
             'fontWeight': 'w400',
             'fontSize': 24.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'headline6': {
+          'labelLarge': {
             'fontWeight': 'w700',
-            'fontSize': 21.0,
+            'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'overline': {
+          'labelMedium': {
+            'fontWeight': 'w400',
+            'fontSize': 12.0,
+            'inherit': true,
+            'textBaseline': 'alphabetic'
+          },
+          'labelSmall': {
             'fontWeight': 'w400',
             'fontSize': 11.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'subtitle1': {
+          'titleLarge': {
+            'fontWeight': 'w700',
+            'fontSize': 21.0,
+            'inherit': true,
+            'textBaseline': 'alphabetic'
+          },
+          'titleMedium': {
             'fontWeight': 'w400',
             'fontSize': 17.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
-          'subtitle2': {
+          'titleSmall': {
             'fontWeight': 'w500',
             'fontSize': 15.0,
             'inherit': true,
-            'textBaseline': 'alphabetic',
+            'textBaseline': 'alphabetic'
           },
         },
         'white': {
-          'bodyText1': {
+          'bodyLarge': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'bodyText2': {
+          'bodyMedium': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'button': {
-            'color': '#ffffffff',
-            'decoration': 'none',
-            'fontFamily': 'Roboto',
-            'inherit': true,
-          },
-          'caption': {
+          'bodySmall': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline1': {
+          'displayLarge': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline2': {
+          'displayMedium': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline3': {
+          'displaySmall': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline4': {
+          'headlineLarge': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline5': {
+          'headlineMedium': {
+            'color': '#b3ffffff',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'headlineSmall': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'headline6': {
+          'labelLarge': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'overline': {
+          'labelMedium': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'subtitle1': {
+          'labelSmall': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
           },
-          'subtitle2': {
+          'titleLarge': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true,
+            'inherit': true
+          },
+          'titleMedium': {
+            'color': '#ffffffff',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
+          },
+          'titleSmall': {
+            'color': '#ffffffff',
+            'decoration': 'none',
+            'fontFamily': 'Roboto',
+            'inherit': true
           },
         },
       },
       'unselectedWidgetColor': '#bb444444',
+      'useMaterial3': true,
       'visualDensity': 'comfortable',
     };
 
@@ -10052,6 +10332,7 @@ void main() {
         'alignLabelWithHint': false,
         'fillColor': '#ff000011',
         'filled': false,
+        'floatingLabelAlignment': 'start',
         'floatingLabelBehavior': 'auto',
         'isCollapsed': false,
         'isDense': false,
@@ -10299,34 +10580,19 @@ void main() {
       encoded,
       {
         'black': {
-          'bodyText1': {
-            'color': '#ff111111',
-            'inherit': true,
-          }
+          'bodyLarge': {'color': '#ff111111', 'inherit': true}
         },
         'dense': {
-          'bodyText1': {
-            'color': '#ff222222',
-            'inherit': true,
-          }
+          'bodyLarge': {'color': '#ff222222', 'inherit': true}
         },
         'englishLike': {
-          'bodyText1': {
-            'color': '#ff333333',
-            'inherit': true,
-          }
+          'bodyLarge': {'color': '#ff333333', 'inherit': true}
         },
         'tall': {
-          'bodyText1': {
-            'color': '#ff444444',
-            'inherit': true,
-          }
+          'bodyLarge': {'color': '#ff444444', 'inherit': true}
         },
         'white': {
-          'bodyText1': {
-            'color': '#ff555555',
-            'inherit': true,
-          }
+          'bodyLarge': {'color': '#ff555555', 'inherit': true}
         }
       },
     );
@@ -10548,5 +10814,6 @@ Map<String, dynamic> _materializeState(value) => {
       'focused': value,
       'hovered': value,
       'pressed': value,
+      'scrolledUnder': value,
       'selected': value,
     };

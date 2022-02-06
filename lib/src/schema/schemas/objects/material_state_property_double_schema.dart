@@ -19,6 +19,7 @@ class MaterialStatePropertyDoubleSchema {
       'focused': SchemaHelper.numberSchema,
       'hovered': SchemaHelper.numberSchema,
       'pressed': SchemaHelper.numberSchema,
+      'scrolledUnder': SchemaHelper.numberSchema,
       'selected': SchemaHelper.numberSchema,
     },
   };

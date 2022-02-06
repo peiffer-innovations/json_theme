@@ -19,6 +19,7 @@ class MaterialStatePropertyMouseCursorSchema {
       'focused': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'hovered': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'pressed': SchemaHelper.objectSchema(MouseCursorSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'selected': SchemaHelper.objectSchema(MouseCursorSchema.id),
     },
   };

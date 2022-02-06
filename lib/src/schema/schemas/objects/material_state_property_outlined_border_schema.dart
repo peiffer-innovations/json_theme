@@ -19,6 +19,7 @@ class MaterialStatePropertyOutlinedBorderSchema {
       'focused': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
       'hovered': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
       'pressed': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
       'selected': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
     },
   };

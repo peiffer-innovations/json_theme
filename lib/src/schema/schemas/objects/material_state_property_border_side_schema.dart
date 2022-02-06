@@ -19,6 +19,7 @@ class MaterialStatePropertyBorderSideSchema {
       'focused': SchemaHelper.objectSchema(BorderSideSchema.id),
       'hovered': SchemaHelper.objectSchema(BorderSideSchema.id),
       'pressed': SchemaHelper.objectSchema(BorderSideSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(BorderSideSchema.id),
       'selected': SchemaHelper.objectSchema(BorderSideSchema.id),
     },
   };

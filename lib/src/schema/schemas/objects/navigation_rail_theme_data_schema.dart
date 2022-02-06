@@ -15,11 +15,13 @@ class NavigationRailThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'groupAlignment': SchemaHelper.numberSchema,
+      'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'labelType': SchemaHelper.objectSchema(NavigationRailLabelTypeSchema.id),
       'selectedIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'selectedLabelTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'unselectedIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'unselectedLabelTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'useIndicator': SchemaHelper.boolSchema,
     },
   };
 }

@@ -14,6 +14,9 @@ class TextHeightBehaviorSchema {
     'properties': {
       'applyHeightToFirstAscent': SchemaHelper.boolSchema,
       'applyHeightToLastDescent': SchemaHelper.boolSchema,
+      'leadingDistribution': SchemaHelper.objectSchema(
+        TextLeadingDistributionSchema.id,
+      ),
     },
   };
 }

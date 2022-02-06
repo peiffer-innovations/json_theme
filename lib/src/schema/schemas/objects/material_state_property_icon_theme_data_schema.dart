@@ -19,6 +19,7 @@ class MaterialStatePropertyIconThemeDataSchema {
       'focused': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'hovered': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'pressed': SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      'scrolledUnder': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'selected': SchemaHelper.objectSchema(IconThemeDataSchema.id),
     },
   };

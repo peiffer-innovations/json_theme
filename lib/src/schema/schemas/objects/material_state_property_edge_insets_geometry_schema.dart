@@ -35,6 +35,8 @@ class MaterialStatePropertyEdgeInsetsGeometrySchema {
           'focused': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'hovered': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'pressed': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'scrolledUnder':
+              SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'selected': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
         },
       }

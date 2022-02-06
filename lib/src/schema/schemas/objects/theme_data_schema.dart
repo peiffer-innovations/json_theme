@@ -85,7 +85,6 @@ class ThemeDataSchema {
       'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),
       'popupMenuTheme': SchemaHelper.objectSchema(PopupMenuThemeDataSchema.id),
       'primaryColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'primaryColorBrightness': SchemaHelper.objectSchema(BrightnessSchema.id),
       'primaryColorDark': SchemaHelper.objectSchema(ColorSchema.id),
       'primaryColorLight': SchemaHelper.objectSchema(ColorSchema.id),
       'primaryIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
@@ -118,6 +117,7 @@ class ThemeDataSchema {
       'tooltipTheme': SchemaHelper.objectSchema(TooltipThemeDataSchema.id),
       'typography': SchemaHelper.objectSchema(TypographySchema.id),
       'unselectedWidgetColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'useMaterial3': SchemaHelper.boolSchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };

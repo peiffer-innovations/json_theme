@@ -1,6 +1,12 @@
+# [3.3.0] - February 6th, 2022
+
+* Flutter 2.10 properties
+
+
 # [3.2.5] - January 15th, 2022
 
 * Added support for the `${.*}` syntax in the enums
+
 
 # [3.2.4] - January 9th, 2022
 

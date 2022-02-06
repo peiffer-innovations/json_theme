@@ -23,6 +23,9 @@ class InputDecorationThemeSchema {
       'errorStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'fillColor': SchemaHelper.objectSchema(ColorSchema.id),
       'filled': SchemaHelper.boolSchema,
+      'floatingLabelAlignment': SchemaHelper.objectSchema(
+        FloatingLabelAlignmentSchema.id,
+      ),
       'floatingLabelBehavior': SchemaHelper.objectSchema(
         FloatingLabelBehaviorSchema.id,
       ),

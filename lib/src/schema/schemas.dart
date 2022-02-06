@@ -59,6 +59,7 @@ class Schemas {
         FloatingActionButtonLocationSchema.schema,
     FloatingActionButtonThemeDataSchema.id:
         FloatingActionButtonThemeDataSchema.schema,
+    FloatingLabelAlignmentSchema.id: FloatingLabelAlignmentSchema.schema,
     FloatingLabelBehaviorSchema.id: FloatingLabelBehaviorSchema.schema,
     FontFeatureSchema.id: FontFeatureSchema.schema,
     FontStyleSchema.id: FontStyleSchema.schema,
@@ -81,6 +82,7 @@ class Schemas {
     MainAxisSizeSchema.id: MainAxisSizeSchema.schema,
     MaterialBannerThemeDataSchema.id: MaterialBannerThemeDataSchema.schema,
     MaterialColorSchema.id: MaterialColorSchema.schema,
+    MaterialStatePropertyBoolSchema.id: MaterialStatePropertyBoolSchema.schema,
     MaterialStatePropertyBorderSideSchema.id:
         MaterialStatePropertyBorderSideSchema.schema,
     MaterialStatePropertyColorSchema.id:

@@ -5,7 +5,7 @@ homepage: https://github.com/peiffer-innovations/json_theme
 version: 3.3.1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 analyzer:
   exclude: [lib/generated/**]

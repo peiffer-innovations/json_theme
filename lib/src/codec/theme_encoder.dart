@@ -4420,6 +4420,7 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'androidOverscrollIndicator': encodeAndroidOverscrollIndicator(
+          // ignore: deprecated_member_use
           value.androidOverscrollIndicator,
         ),
       };
@@ -4576,10 +4577,12 @@ class ThemeEncoder {
       result = {
         'crossAxisMargin': value.crossAxisMargin,
         'interactive': value.interactive,
+        // ignore: deprecated_member_use
         'isAlwaysShown': value.isAlwaysShown,
         'mainAxisMargin': value.mainAxisMargin,
         'minThumbLength': value.minThumbLength,
         'radius': encodeRadius(value.radius),
+        // ignore: deprecated_member_use
         'showTrackOnHover': value.showTrackOnHover,
         'thickness': encodeMaterialStatePropertyDouble(
           value.thickness,
@@ -6168,6 +6171,7 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'androidOverscrollIndicator': encodeAndroidOverscrollIndicator(
+          // ignore: deprecated_member_use
           value.androidOverscrollIndicator,
         ),
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),

@@ -7647,6 +7647,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ScrollBehavior(
+        // ignore: deprecated_member_use
         androidOverscrollIndicator: decodeAndroidOverscrollIndicator(
           value['androidOverscrollIndicator'],
         ),
@@ -7893,6 +7894,7 @@ class ThemeDecoder {
           interactive: value['interactive'] == null
               ? null
               : JsonClass.parseBool(value['interactive']),
+          // ignore: deprecated_member_use
           isAlwaysShown: value['isAlwaysShown'] == null
               ? null
               : JsonClass.parseBool(value['isAlwaysShown']),
@@ -7902,6 +7904,7 @@ class ThemeDecoder {
             value['radius'],
             validate: false,
           ),
+          // ignore: deprecated_member_use
           showTrackOnHover: value['showTrackOnHover'] == null
               ? null
               : JsonClass.parseBool(value['showTrackOnHover']),
@@ -10519,6 +10522,7 @@ class ThemeDecoder {
         // @deprecated
         // accentTextTheme: null,
 
+        // ignore: deprecated_member_use
         androidOverscrollIndicator: decodeAndroidOverscrollIndicator(
           value['androidOverscrollIndicator'],
           validate: false,

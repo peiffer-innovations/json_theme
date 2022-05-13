@@ -5947,23 +5947,6 @@ void main() {
     );
   });
 
-  test('Overflow', () {
-    expect(ThemeDecoder.decodeOverflow(null), null);
-    expect(ThemeEncoder.encodeOverflow(null), null);
-
-    // ignore: deprecated_member_use
-    expect(ThemeDecoder.decodeOverflow(Overflow.clip), Overflow.clip);
-    // ignore: deprecated_member_use
-    expect(ThemeDecoder.decodeOverflow('clip'), Overflow.clip);
-    // ignore: deprecated_member_use
-    expect(ThemeDecoder.decodeOverflow('visible'), Overflow.visible);
-
-    // ignore: deprecated_member_use
-    expect(ThemeEncoder.encodeOverflow(Overflow.clip), 'clip');
-    // ignore: deprecated_member_use
-    expect(ThemeEncoder.encodeOverflow(Overflow.visible), 'visible');
-  });
-
   test('PageTransitionsBuilder', () {
     expect(ThemeDecoder.decodePageTransitionsBuilder(null), null);
     expect(ThemeEncoder.encodePageTransitionsBuilder(null), null);

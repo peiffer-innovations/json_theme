@@ -6889,52 +6889,6 @@ class ThemeDecoder {
     return result;
   }
 
-  // ignore: deprecated_member_use
-  /// Decodes the [value] to a [Overflow].  Supported values are:
-  /// * `clip`
-  /// * `visible`
-  // ignore: deprecated_member_use
-  static Overflow? decodeOverflow(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    // ignore: deprecated_member_use
-    Overflow? result;
-
-    // ignore: deprecated_member_use
-    if (value is Overflow) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported(
-        'Overflow',
-        [
-          'clip',
-          'visible',
-        ],
-        value,
-      );
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/overflow',
-        value: value,
-        validate: validate,
-      ));
-
-      switch (value) {
-        case 'clip':
-          // ignore: deprecated_member_use
-          result = Overflow.clip;
-          break;
-
-        case 'visible':
-          // ignore: deprecated_member_use
-          result = Overflow.visible;
-          break;
-      }
-    }
-
-    return result;
-  }
-
   /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
   /// * `cupertino`
   /// * `fadeUpwards`

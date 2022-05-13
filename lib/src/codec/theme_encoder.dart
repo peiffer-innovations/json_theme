@@ -4071,29 +4071,6 @@ class ThemeEncoder {
   }
 
   /// Encodes the [value] to a [String].  Supported values are:
-  /// * `clip`
-  /// * `visible`
-  static String? encodeOverflow(dynamic value) {
-    String? result;
-
-    if (value != null) {
-      switch (value) {
-        // ignore: deprecated_member_use
-        case Overflow.clip:
-          result = 'clip';
-          break;
-
-        // ignore: deprecated_member_use
-        case Overflow.visible:
-          result = 'visible';
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Encodes the [value] to a [String].  Supported values are:
   /// * `cupertino`
   /// * `fadeUpwards`
   /// * `openUpwards`

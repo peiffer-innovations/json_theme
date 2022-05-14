@@ -18,6 +18,7 @@ class DrawerThemeDataSchema {
       'elevation': SchemaHelper.numberSchema,
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'titleTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'width': SchemaHelper.numberSchema,
     },
   };
 }

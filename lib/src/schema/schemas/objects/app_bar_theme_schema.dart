@@ -20,6 +20,7 @@ class AppBarThemeSchema {
       'elevation': SchemaHelper.numberSchema,
       'foregroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      'scrolledUnderElevation': SchemaHelper.numberSchema,
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'systemOverlayStyle':
           SchemaHelper.objectSchema(SystemUiOverlayStyleSchema.id),

@@ -14,6 +14,7 @@ class IconThemeDataSchema {
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'opacity': SchemaHelper.numberSchema,
+      'shadows': SchemaHelper.arraySchema(ShadowSchema.id),
       'size': SchemaHelper.numberSchema,
     },
   };

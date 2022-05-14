@@ -405,13 +405,6 @@ Requires a `type` value that must be one of:
 * `stadium` ==> `StadiumBorder`
 
 
-**Overflow**
-
-Plain string that must be one of:
-* `clip` ==> `Overflow.clip`
-* `visible` ==> `Overflow.visible`
-
-
 **PageTransitionsBuilder**
 
 Plain string that must be one of:

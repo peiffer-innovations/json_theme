@@ -1333,6 +1333,8 @@ void main() {
         'secondaryContainer': '#ff03dac6',
         'shadow': '#ffffffff',
         'surface': '#ff121212',
+        'surfaceTint': '#ffbb86fc',
+        'surfaceVariant': '#ff121212',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
       },
@@ -1394,8 +1396,10 @@ void main() {
           'primaryContainer': '#ffbb86fc',
           'secondary': '#ff03dac6',
           'secondaryContainer': '#ff03dac6',
-          'shadow': '#ffffffff',
+          'shadow': '#ff000000',
           'surface': '#ff121212',
+          'surfaceTint': '#ffbb86fc',
+          'surfaceVariant': '#ff121212',
           'tertiary': '#ff03dac6',
           'tertiaryContainer': '#ff03dac6',
         },
@@ -1767,8 +1771,10 @@ void main() {
         'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
         'secondaryContainer': '#ff03dac6',
-        'shadow': '#ffffffff',
+        'shadow': '#ff000000',
         'surface': '#ff121212',
+        'surfaceTint': '#ffbb86fc',
+        'surfaceVariant': '#ff121212',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
       },
@@ -2522,6 +2528,11 @@ void main() {
       elevatedButtonThemeDatasAreEqual(decoded, entry),
       true,
     );
+  });
+
+  test('ExpansionTileThemeData', () {
+    expect(ThemeDecoder.decodeExpansionTileThemeData(null), null);
+    expect(ThemeEncoder.encodeExpansionTileThemeData(null), null);
   });
 
   test('FilterQuality', () {
@@ -5947,23 +5958,6 @@ void main() {
     );
   });
 
-  test('Overflow', () {
-    expect(ThemeDecoder.decodeOverflow(null), null);
-    expect(ThemeEncoder.encodeOverflow(null), null);
-
-    // ignore: deprecated_member_use
-    expect(ThemeDecoder.decodeOverflow(Overflow.clip), Overflow.clip);
-    // ignore: deprecated_member_use
-    expect(ThemeDecoder.decodeOverflow('clip'), Overflow.clip);
-    // ignore: deprecated_member_use
-    expect(ThemeDecoder.decodeOverflow('visible'), Overflow.visible);
-
-    // ignore: deprecated_member_use
-    expect(ThemeEncoder.encodeOverflow(Overflow.clip), 'clip');
-    // ignore: deprecated_member_use
-    expect(ThemeEncoder.encodeOverflow(Overflow.visible), 'visible');
-  });
-
   test('PageTransitionsBuilder', () {
     expect(ThemeDecoder.decodePageTransitionsBuilder(null), null);
     expect(ThemeEncoder.encodePageTransitionsBuilder(null), null);
@@ -6045,6 +6039,33 @@ void main() {
         entry.value.runtimeType,
       );
     }
+  });
+
+  test('PopupMenuPosition', () {
+    expect(ThemeDecoder.decodePopupMenuPosition(null), null);
+    expect(ThemeEncoder.encodePopupMenuPosition(null), null);
+
+    expect(
+      ThemeDecoder.decodePopupMenuPosition(PopupMenuPosition.over),
+      PopupMenuPosition.over,
+    );
+    expect(
+      ThemeDecoder.decodePopupMenuPosition('over'),
+      PopupMenuPosition.over,
+    );
+    expect(
+      ThemeDecoder.decodePopupMenuPosition('under'),
+      PopupMenuPosition.under,
+    );
+
+    expect(
+      ThemeEncoder.encodePopupMenuPosition(PopupMenuPosition.over),
+      'over',
+    );
+    expect(
+      ThemeEncoder.encodePopupMenuPosition(PopupMenuPosition.under),
+      'under',
+    );
   });
 
   test('PopupMenuThemeData', () {
@@ -6502,19 +6523,11 @@ void main() {
     expect(ThemeDecoder.decodeScrollBehavior(null), null);
     expect(ThemeEncoder.encodeScrollBehavior(null), null);
 
-    var entry = ScrollBehavior(
-      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
-    );
+    var entry = ScrollBehavior();
 
     expect(ThemeDecoder.decodeScrollBehavior(entry), entry);
 
-    var encoded = ThemeEncoder.encodeScrollBehavior(entry);
-    expect(encoded, {'androidOverscrollIndicator': 'stretch'});
-
-    expect(
-      ThemeDecoder.decodeScrollBehavior(encoded)?.androidOverscrollIndicator,
-      entry.androidOverscrollIndicator,
-    );
+    ThemeEncoder.encodeScrollBehavior(entry);
   });
 
   test('ScrollPhysics', () {
@@ -6861,12 +6874,11 @@ void main() {
     var entry = ScrollbarThemeData(
       crossAxisMargin: 1.0,
       interactive: true,
-      isAlwaysShown: true,
       mainAxisMargin: 2.0,
       minThumbLength: 3.0,
       radius: Radius.circular(4.0),
-      showTrackOnHover: true,
       thickness: MaterialStateProperty.all(5.0),
+      thumbVisibility: MaterialStateProperty.all(true),
     );
 
     expect(ThemeDecoder.decodeScrollbarThemeData(entry), entry);
@@ -6880,11 +6892,6 @@ void main() {
     expect(
       encoded['interactive'],
       entry.interactive,
-    );
-
-    expect(
-      encoded['isAlwaysShown'],
-      entry.isAlwaysShown,
     );
 
     expect(
@@ -6903,13 +6910,13 @@ void main() {
     );
 
     expect(
-      encoded['showTrackOnHover'],
-      entry.showTrackOnHover,
+      encoded['thickness']['error'],
+      entry.thickness!.resolve({MaterialState.error}),
     );
 
     expect(
-      encoded['thickness']['error'],
-      entry.thickness!.resolve({MaterialState.error}),
+      encoded['thumbVisibility']['error'],
+      entry.thumbVisibility!.resolve({MaterialState.error}),
     );
 
     var decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
@@ -6921,11 +6928,6 @@ void main() {
     expect(
       decoded.interactive,
       entry.interactive,
-    );
-
-    expect(
-      decoded.isAlwaysShown,
-      entry.isAlwaysShown,
     );
 
     expect(
@@ -6944,13 +6946,13 @@ void main() {
     );
 
     expect(
-      decoded.showTrackOnHover,
-      entry.showTrackOnHover,
+      decoded.thickness!.resolve({MaterialState.error}),
+      entry.thickness!.resolve({MaterialState.error}),
     );
 
     expect(
-      decoded.thickness!.resolve({MaterialState.error}),
-      entry.thickness!.resolve({MaterialState.error}),
+      decoded.thumbVisibility!.resolve({MaterialState.error}),
+      entry.thumbVisibility!.resolve({MaterialState.error}),
     );
   });
 
@@ -9022,7 +9024,6 @@ void main() {
     expect(ThemeEncoder.encodeThemeData(null), null);
 
     var entry = ThemeData(
-      androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
       appBarTheme: AppBarTheme(color: Color(0xff444444)),
       applyElevationOverlayColor: true,
       backgroundColor: Color(0xff555555),
@@ -9231,7 +9232,6 @@ void main() {
     var decoded = ThemeDecoder.decodeThemeData(encoded)!;
 
     var jsonMap = {
-      'androidOverscrollIndicator': 'stretch',
       'appBarTheme': {
         'backgroundColor': '#ff444444',
       },
@@ -9392,8 +9392,10 @@ void main() {
         'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
         'secondaryContainer': '#ff03dac6',
-        'shadow': '#ffffffff',
+        'shadow': '#ff000000',
         'surface': '#ff121212',
+        'surfaceTint': '#ffbb86fc',
+        'surfaceVariant': '#ff121212',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
       },

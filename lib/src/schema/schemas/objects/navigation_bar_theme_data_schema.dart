@@ -13,10 +13,12 @@ class NavigationBarThemeDataSchema {
     'type': 'object',
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'elevation': SchemaHelper.numberSchema,
       'height': SchemaHelper.numberSchema,
       'iconTheme': SchemaHelper.objectSchema(
           MaterialStatePropertyIconThemeDataSchema.id),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'indicatorShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'labelBehavior': SchemaHelper.objectSchema(
           NavigationDestinationLabelBehaviorSchema.id),
       'labelTextStyle':

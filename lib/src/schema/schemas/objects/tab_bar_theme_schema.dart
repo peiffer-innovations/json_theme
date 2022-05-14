@@ -16,6 +16,15 @@ class TabBarThemeSchema {
       'labelPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'labelColor': SchemaHelper.objectSchema(ColorSchema.id),
       'labelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(
+        MaterialStatePropertyMouseCursorSchema.id,
+      ),
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'splashFactory': SchemaHelper.objectSchema(
+        InteractiveInkFeatureFactorySchema.id,
+      ),
       'unselectedLabelColor': SchemaHelper.objectSchema(ColorSchema.id),
       'unselectedLabelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },

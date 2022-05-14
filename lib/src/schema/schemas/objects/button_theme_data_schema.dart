@@ -27,6 +27,12 @@ class ButtonThemeDataSchema {
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'splashFactory': SchemaHelper.objectSchema(
+        InteractiveInkFeatureFactorySchema.id,
+      ),
+      'surfaceTintColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'textTheme': SchemaHelper.objectSchema(ButtonTextThemeSchema.id),
     },
   };

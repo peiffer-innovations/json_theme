@@ -120,7 +120,6 @@ class ThemeDecoder {
         }
       }
     }
-
     return result;
   }
 
@@ -177,7 +176,9 @@ class ThemeDecoder {
   ///   "elevation": <double>,
   ///   "foregroundColor": <Color>,
   ///   "iconTheme": <IconThemeData>,
+  ///   "scrolledUnderElevation": <double>,
   ///   "shadowColor": <Color>,
+  ///   "surfaceTintColor": <Color>,
   ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
   ///   "titleSpacing": <double>,
   ///   "titleTextStyle": <TextStyle>,
@@ -227,6 +228,9 @@ class ThemeDecoder {
           value['iconTheme'],
           validate: false,
         ),
+        scrolledUnderElevation: JsonClass.parseDouble(
+          value['scrolledUnderElevation'],
+        ),
         shape: ThemeDecoder.decodeShapeBorder(value['shape']),
         shadowColor: decodeColor(
           value['shadowColor'],
@@ -234,6 +238,10 @@ class ThemeDecoder {
         ),
         systemOverlayStyle: decodeSystemUiOverlayStyle(
           value['systemOverlayStyle'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
         titleSpacing: JsonClass.parseDouble(value['titleSpacing']),
@@ -902,6 +910,7 @@ class ThemeDecoder {
   ///   "elevation": <double>,
   ///   "enableFeedback": <bool>,
   ///   "landscapeLayout": <BottomNavigationBarLandscapeLayout>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "selectedIconTheme": <IconThemeData>,
   ///   "selectedIconColor": <Color>,
   ///   "selectedLabelStyle": <TextStyle>,
@@ -915,10 +924,11 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeBottomNavigationBarLandscapeLayout]
   ///  * [decodeBottomNavigationBarType]
   ///  * [decodeColor]
   ///  * [decodeIconThemeData]
-  ///  * [decodeBottomNavigationBarLandscapeLayout]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeTextStyle]
   static BottomNavigationBarThemeData? decodeBottomNavigationBarThemeData(
     dynamic value, {
@@ -938,8 +948,14 @@ class ThemeDecoder {
         enableFeedback: value['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
-        landscapeLayout:
-            decodeBottomNavigationBarLandscapeLayout(value['landscapeLayout']),
+        landscapeLayout: decodeBottomNavigationBarLandscapeLayout(
+          value['landscapeLayout'],
+          validate: false,
+        ),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
+        ),
         selectedIconTheme: decodeIconThemeData(
           value['selectedIconTheme'],
           validate: false,
@@ -1619,6 +1635,8 @@ class ThemeDecoder {
   ///   "shadowColor": <MaterialStateProperty<Color>>,
   ///   "shape": <MaterialStateProperty<OutlinedBorder>>,
   ///   "side": <MaterialStateProperty<BorderSide>>,
+  ///   "splashFactory": <InteractiveInkSplashFactory>,
+  ///   "surfaceTintColor": <MaterialStateProperty<Color>>,
   ///   "tapTargetSize": <MaterialTapTargetSize>,
   ///   "textStyle": <MaterialStateProperty<TextStyle>>,
   ///   "visualDensity": <VisualDensity>
@@ -1633,6 +1651,7 @@ class ThemeDecoder {
   ///  * [decodeBorderSide]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeInteractiveInkFeatureFactory]
   ///  * [decodeMaterialStatePropertyBorderSide]
   ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeMaterialStatePropertyDouble]
@@ -1714,6 +1733,12 @@ class ThemeDecoder {
         side: decodeMaterialStatePropertyBorderSide(
           value['side'],
           validate: false,
+        ),
+        splashFactory: decodeInteractiveInkFeatureFactory(
+          value['splashFactory'],
+        ),
+        surfaceTintColor: decodeMaterialStatePropertyColor(
+          value['surfaceTintColor'],
         ),
         tapTargetSize: decodeMaterialTapTargetSize(
           value['tapTargetSize'],
@@ -1893,7 +1918,8 @@ class ThemeDecoder {
   ///   "elevation": <double>,
   ///   "margin": <EdgeInsetsGeometry>,
   ///   "shadowColor": <Color>,
-  ///   "shape": <ShapeBorder>
+  ///   "shape": <ShapeBorder>,
+  ///   "surfaceTintColor": <Color>
   /// }
   /// ```
   ///
@@ -1936,6 +1962,10 @@ class ThemeDecoder {
         ),
         shape: decodeShapeBorder(
           value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
       );
@@ -2274,6 +2304,7 @@ class ThemeDecoder {
   ///   "secondaryContainer": <Color>,
   ///   "shadow": <Color>,
   ///   "surface": <Color>,
+  ///   "surfaceVariant": <Color>,
   ///   "tertiary": <Color>,
   ///   "tertiaryContainer": <Color>
   /// }
@@ -2397,6 +2428,14 @@ class ThemeDecoder {
           value['surface'],
           validate: false,
         )!,
+        surfaceTint: decodeColor(
+          value['surfaceTint'],
+          validate: false,
+        ),
+        surfaceVariant: decodeColor(
+          value['surfaceVariant'],
+          validate: false,
+        ),
         tertiary: decodeColor(
           value['tertiary'],
           validate: false,
@@ -2547,8 +2586,6 @@ class ThemeDecoder {
           value['actionTextStyle'],
           validate: false,
         ),
-        // @deprecated
-        // brightness
         dateTimePickerTextStyle: decodeTextStyle(
           value['dateTimePickerTextStyle'],
           validate: false,
@@ -3017,6 +3054,7 @@ class ThemeDecoder {
   ///   "elevation": <double>,
   ///   "scrimColor": <Color>,
   ///   "shape": <ShapeBorder>,
+  ///   "width": <double>
   /// }
   /// ```
   ///
@@ -3052,6 +3090,7 @@ class ThemeDecoder {
           value['shape'],
           validate: false,
         ),
+        width: JsonClass.parseDouble(value['width']),
       );
     }
 
@@ -3153,6 +3192,81 @@ class ThemeDecoder {
           value['style'],
           validate: false,
         ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [ExpansionTileThemeData].  This expects
+  /// the given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": <Color>,
+  ///   "childrenPadding": <EdgeInsetsGeometry>,
+  ///   "collapsedBackgroundColor": <Color>,
+  ///   "collapsedIconColor": <Color>,
+  ///   "collapsedTextColor": <Color>,
+  ///   "expandedAlignment": <AlignmentGeometry>,
+  ///   "iconColor": <Color>,
+  ///   "textColor": <Color>,
+  ///   "tilePadding": <EdgeInsetsGeometry>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeAlignment]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  static ExpansionTileThemeData? decodeExpansionTileThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ExpansionTileThemeData? result;
+
+    if (value is ExpansionTileThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/expansion_tile_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = ExpansionTileThemeData(
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        childrenPadding:
+            decodeEdgeInsetsGeometry(value['childrenPadding'], validate: false),
+        collapsedBackgroundColor: decodeColor(
+          value['collapsedBackgroundColor'],
+          validate: false,
+        ),
+        collapsedIconColor: decodeColor(
+          value['collapsedIconColor'],
+          validate: false,
+        ),
+        collapsedTextColor: decodeColor(
+          value['collapsedTextColor'],
+          validate: false,
+        ),
+        expandedAlignment: decodeAlignment(
+          value['expandedAlignment'],
+          validate: false,
+        ),
+        iconColor: decodeColor(
+          value['iconColor'],
+          validate: false,
+        ),
+        textColor: decodeColor(
+          value['textColor'],
+          validate: false,
+        ),
+        tilePadding:
+            decodeEdgeInsetsGeometry(value['tilePadding'], validate: false),
       );
     }
 
@@ -3450,6 +3564,7 @@ class ThemeDecoder {
   ///   "highlightElevation": <double>,
   ///   "hoverColor": <Color>,
   ///   "hoverElevation": <double>,
+  ///   "iconSize": <double>,
   ///   "largeSizeConstraints": <BoxConstraints>,
   ///   "shape": <ShapeBorder>,
   ///   "sizeConstraints": <BoxConstraints>,
@@ -3510,6 +3625,7 @@ class ThemeDecoder {
           validate: false,
         ),
         hoverElevation: JsonClass.parseDouble(value['hoverElevation']),
+        iconSize: JsonClass.parseDouble(value['iconSize']),
         largeSizeConstraints: decodeBoxConstraints(
           value['largeSizeConstraints'],
         ),
@@ -4111,6 +4227,7 @@ class ThemeDecoder {
   /// {
   ///   "color": <Color>,
   ///   "opacity": <double>,
+  ///   "shadows": <List<Shadow>>,
   ///   "size": <double>
   /// }
   /// ```
@@ -4137,6 +4254,10 @@ class ThemeDecoder {
           validate: false,
         ),
         opacity: JsonClass.parseDouble(value['opacity']),
+        shadows: JsonClass.fromDynamicList(
+          value['shadows'],
+          (map) => decodeShadow(map)!,
+        ),
         size: JsonClass.parseDouble(value['size']),
       );
     }
@@ -4353,19 +4474,20 @@ class ThemeDecoder {
 
           case 'underline':
             result = UnderlineInputBorder(
-                borderRadius: decodeBorderRadius(
-                      value['borderRadius'],
-                      validate: false,
-                    ) ??
-                    BorderRadius.only(
-                      topLeft: Radius.circular(4.0),
-                      topRight: Radius.circular(4.0),
-                    ),
-                borderSide: decodeBorderSide(
-                      value['borderSide'],
-                      validate: false,
-                    ) ??
-                    const BorderSide());
+              borderRadius: decodeBorderRadius(
+                    value['borderRadius'],
+                    validate: false,
+                  ) ??
+                  BorderRadius.only(
+                    topLeft: Radius.circular(4.0),
+                    topRight: Radius.circular(4.0),
+                  ),
+              borderSide: decodeBorderSide(
+                    value['borderSide'],
+                    validate: false,
+                  ) ??
+                  const BorderSide(),
+            );
             break;
         }
       }
@@ -4636,12 +4758,14 @@ class ThemeDecoder {
   ///   "iconColor": <Color>,
   ///   "minLeadingWidth": <double>,
   ///   "minVerticalPadding": <double>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "selectedColor": <Color>,
   ///   "selectedTileColor": <Color>,
   ///   "shape": <ShapeBorder>,
   ///   "style": <ListTileStyle>,
   ///   "textColor": <Color>,
-  ///   "tileColor": <Color>
+  ///   "tileColor": <Color>,
+  ///   "visualDensity": <VisualDensity>
   /// }
   /// ```
   static ListTileThemeData? decodeListTileThemeData(
@@ -4660,22 +4784,54 @@ class ThemeDecoder {
       ));
 
       result = ListTileThemeData(
-        contentPadding: decodeEdgeInsetsGeometry(value['contentPadding']),
+        contentPadding: decodeEdgeInsetsGeometry(
+          value['contentPadding'],
+          validate: false,
+        ),
         dense:
             value['dense'] == null ? null : JsonClass.parseBool(value['dense']),
         enableFeedback: value['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
         horizontalTitleGap: JsonClass.parseDouble(value['horizontalTitleGap']),
-        iconColor: decodeColor(value['iconColor']),
+        iconColor: decodeColor(
+          value['iconColor'],
+          validate: false,
+        ),
         minLeadingWidth: JsonClass.parseDouble(value['minLeadingWidth']),
         minVerticalPadding: JsonClass.parseDouble(value['minVerticalPadding']),
-        selectedColor: decodeColor(value['selectedColor']),
-        selectedTileColor: decodeColor(value['selectedTileColor']),
-        shape: decodeShapeBorder(value['shape']),
-        style: decodeListTileStyle(value['style']),
-        textColor: decodeColor(value['textColor']),
-        tileColor: decodeColor(value['tileColor']),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
+        ),
+        selectedColor: decodeColor(
+          value['selectedColor'],
+          validate: false,
+        ),
+        selectedTileColor: decodeColor(
+          value['selectedTileColor'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        style: decodeListTileStyle(
+          value['style'],
+          validate: false,
+        ),
+        textColor: decodeColor(
+          value['textColor'],
+          validate: false,
+        ),
+        tileColor: decodeColor(
+          value['tileColor'],
+          validate: false,
+        ),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
+          validate: false,
+        ),
       );
     }
 
@@ -6201,6 +6357,7 @@ class ThemeDecoder {
                 'resizeDownLeft',
                 'resizeDownRight',
                 'resizeLeft',
+                'resizeLeftRight',
                 'resizeRight',
                 'resizeRow',
                 'resizeUp',
@@ -6307,6 +6464,10 @@ class ThemeDecoder {
                 result = SystemMouseCursors.resizeLeft;
                 break;
 
+              case 'resizeLeftRight':
+                result = SystemMouseCursors.resizeLeftRight;
+                break;
+
               case 'resizeRight':
                 result = SystemMouseCursors.resizeRight;
                 break;
@@ -6369,62 +6530,17 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [NavigationRailLabelType].  Supported values are:
-  ///  * `all`
-  ///  * `none`
-  ///  * `selected`
-  static NavigationRailLabelType? decodeNavigationRailLabelType(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    NavigationRailLabelType? result;
-    if (value is NavigationRailLabelType) {
-      result = value;
-    } else {
-      _checkSupported(
-        'NavigationRailLabelType',
-        [
-          'all',
-          'none',
-          'selected',
-        ],
-        value,
-      );
-
-      if (value != null) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/navigation_rail_label_type',
-          value: value,
-          validate: validate,
-        ));
-        switch (value) {
-          case 'all':
-            result = NavigationRailLabelType.all;
-            break;
-
-          case 'none':
-            result = NavigationRailLabelType.none;
-            break;
-
-          case 'selected':
-            result = NavigationRailLabelType.selected;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the given [value] to an [NavigationRailThemeData].  This expects
+  /// Decodes the given [value] to an [NavigationBarThemeData].  This expects
   /// the given [value] to be of the following structure:
   ///
   /// ```json
   /// {
   ///   "backgroundColor": <Color>,
+  ///   "elevation": <double>,
   ///   "height": <double>,
   ///   "iconTheme": <MaterialStateProperty<IconThemeData>>,
   ///   "indicatorColor": <Color>,
+  ///   "indicatorShape": <ShapeBorder>,
   ///   "labelBehavior": <NavigationDestinationLabelBehavior>,
   ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>
   /// }
@@ -6454,6 +6570,7 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
+        elevation: JsonClass.parseDouble(value['elevation']),
         height: JsonClass.parseDouble(value['height']),
         iconTheme: decodeMaterialStatePropertyIconThemeData(
           value['iconTheme'],
@@ -6461,6 +6578,10 @@ class ThemeDecoder {
         ),
         indicatorColor: decodeColor(
           value['indicatorColor'],
+          validate: false,
+        ),
+        indicatorShape: decodeShapeBorder(
+          value['indicatorShape'],
           validate: false,
         ),
         labelBehavior: decodeNavigationDestinationLabelBehavior(
@@ -6520,6 +6641,53 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [NavigationRailLabelType].  Supported values are:
+  ///  * `all`
+  ///  * `none`
+  ///  * `selected`
+  static NavigationRailLabelType? decodeNavigationRailLabelType(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    NavigationRailLabelType? result;
+    if (value is NavigationRailLabelType) {
+      result = value;
+    } else {
+      _checkSupported(
+        'NavigationRailLabelType',
+        [
+          'all',
+          'none',
+          'selected',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/navigation_rail_label_type',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'all':
+            result = NavigationRailLabelType.all;
+            break;
+
+          case 'none':
+            result = NavigationRailLabelType.none;
+            break;
+
+          case 'selected':
+            result = NavigationRailLabelType.selected;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [NavigationRailThemeData].  This expects
   /// the given [value] to be of the following structure:
   ///
@@ -6530,6 +6698,8 @@ class ThemeDecoder {
   ///   "groupAlignment": <double>,
   ///   "indicatorColor": <Color>,
   ///   "labelType": <NavigationRailLabelType>,
+  ///   "minExtendedWidth": <double>,
+  ///   "minWidth": <double>,
   ///   "selectedIconTheme": <IconThemeData>,
   ///   "selectedLabelTextStyle": <TextStyle>,
   ///   "unselectedIconTheme": <IconThemeData>,
@@ -6572,6 +6742,8 @@ class ThemeDecoder {
           value['labelType'],
           validate: false,
         ),
+        minExtendedWidth: JsonClass.parseDouble(value['minExtendedWidth']),
+        minWidth: JsonClass.parseDouble(value['minWidth']),
         selectedIconTheme: decodeIconThemeData(
           value['selectedIconTheme'],
           validate: false,
@@ -6889,52 +7061,6 @@ class ThemeDecoder {
     return result;
   }
 
-  // ignore: deprecated_member_use
-  /// Decodes the [value] to a [Overflow].  Supported values are:
-  /// * `clip`
-  /// * `visible`
-  // ignore: deprecated_member_use
-  static Overflow? decodeOverflow(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    // ignore: deprecated_member_use
-    Overflow? result;
-
-    // ignore: deprecated_member_use
-    if (value is Overflow) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported(
-        'Overflow',
-        [
-          'clip',
-          'visible',
-        ],
-        value,
-      );
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/overflow',
-        value: value,
-        validate: validate,
-      ));
-
-      switch (value) {
-        case 'clip':
-          // ignore: deprecated_member_use
-          result = Overflow.clip;
-          break;
-
-        case 'visible':
-          // ignore: deprecated_member_use
-          result = Overflow.visible;
-          break;
-      }
-    }
-
-    return result;
-  }
-
   /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
   /// * `cupertino`
   /// * `fadeUpwards`
@@ -7031,6 +7157,46 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [PopupMenuPosition].  Supported values are:
+  ///  * `over`
+  ///  * `under`
+  static PopupMenuPosition? decodePopupMenuPosition(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    PopupMenuPosition? result;
+
+    if (value is PopupMenuPosition) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'PopupMenuPosition',
+        [
+          'over',
+          'under',
+        ],
+        value,
+      );
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/popup_menu_position',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'over':
+          result = PopupMenuPosition.over;
+          break;
+
+        case 'under':
+          result = PopupMenuPosition.under;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
   /// given [value] to be of the following structure:
   ///
@@ -7039,6 +7205,7 @@ class ThemeDecoder {
   ///   "color": <Color>,
   ///   "elevation": <double>,
   ///   "enableFeedback": <bool>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "shape": <ShapeBorder>,
   ///   "textStyle": <TextStyle>
   /// }
@@ -7046,6 +7213,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static PopupMenuThemeData? decodePopupMenuThemeData(
@@ -7071,6 +7239,10 @@ class ThemeDecoder {
         enableFeedback: value['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
+        ),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
@@ -7672,12 +7844,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>
   /// }
   /// ```
-  ///
-  /// See also:
-  ///  * [decodeAndroidOverscrollIndicator]
   static ScrollBehavior? decodeScrollBehavior(
     dynamic value, {
     bool validate = true,
@@ -7692,11 +7860,7 @@ class ThemeDecoder {
         value: value,
         validate: validate,
       ));
-      result = ScrollBehavior(
-        androidOverscrollIndicator: decodeAndroidOverscrollIndicator(
-          value['androidOverscrollIndicator'],
-        ),
-      );
+      result = ScrollBehavior();
     }
 
     return result;
@@ -7902,13 +8066,12 @@ class ThemeDecoder {
   /// {
   ///   "crossAxisMargin": <double>,
   ///   "interactive": <bool>,
-  ///   "isAlwaysShown": <bool>,
   ///   "mainAxisMargin": <double>,
   ///   "minThumbLength": <double>,
   ///   "radius": <Radius>,
-  ///   "showTrackOnHover": <bool>
   ///   "thickness": <MaterialStateProperty<double>>,
   ///   "thumbColor": <MaterialStateProperty<Color>>,
+  ///   "thumbVisibility": <MaterialStateProperty<bool>>,
   ///   "trackBorderColor": <MaterialStateProperty<Color>>,
   ///   "trackColor": <MaterialStateProperty<Color>>,
   ///   "trackVisibility": <MaterialStateProperty<bool>>,
@@ -7935,42 +8098,40 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ScrollbarThemeData(
-          crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
-          interactive: value['interactive'] == null
-              ? null
-              : JsonClass.parseBool(value['interactive']),
-          isAlwaysShown: value['isAlwaysShown'] == null
-              ? null
-              : JsonClass.parseBool(value['isAlwaysShown']),
-          mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
-          minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
-          radius: decodeRadius(
-            value['radius'],
-            validate: false,
-          ),
-          showTrackOnHover: value['showTrackOnHover'] == null
-              ? null
-              : JsonClass.parseBool(value['showTrackOnHover']),
-          thickness: decodeMaterialStatePropertyDouble(
-            value['thickness'],
-            validate: false,
-          ),
-          thumbColor: decodeMaterialStatePropertyColor(
-            value['thumbColor'],
-            validate: false,
-          ),
-          trackBorderColor: decodeMaterialStatePropertyColor(
-            value['trackBorderColor'],
-            validate: false,
-          ),
-          trackColor: decodeMaterialStatePropertyColor(
-            value['trackColor'],
-            validate: false,
-          ),
-          trackVisibility: decodeMaterialStatePropertyBool(
-            value['trackVisibility'],
-            validate: false,
-          ));
+        crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
+        interactive: value['interactive'] == null
+            ? null
+            : JsonClass.parseBool(value['interactive']),
+        mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
+        minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
+        radius: decodeRadius(
+          value['radius'],
+          validate: false,
+        ),
+        thickness: decodeMaterialStatePropertyDouble(
+          value['thickness'],
+          validate: false,
+        ),
+        thumbColor: decodeMaterialStatePropertyColor(
+          value['thumbColor'],
+          validate: false,
+        ),
+        thumbVisibility: decodeMaterialStatePropertyBool(
+          value['thumbVisibility'],
+        ),
+        trackBorderColor: decodeMaterialStatePropertyColor(
+          value['trackBorderColor'],
+          validate: false,
+        ),
+        trackColor: decodeMaterialStatePropertyColor(
+          value['trackColor'],
+          validate: false,
+        ),
+        trackVisibility: decodeMaterialStatePropertyBool(
+          value['trackVisibility'],
+          validate: false,
+        ),
+      );
     }
 
     return result;
@@ -8319,6 +8480,7 @@ class ThemeDecoder {
   ///   "inactiveTickMarkColor": <Color>,
   ///   "inactiveTrackColor": <Color>,
   ///   "minThumbSeparation": <double>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
   ///   "overlappingShapeStrokeColor": <Color>,
   ///   "overlayColor": <Color>,
   ///   "overlayShape": <SliderComponentShape>,
@@ -8340,6 +8502,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeShowValueIndicator]
   ///  * [decodeSliderComponentShape]
   ///  * [decodeSliderTickMarkShape]
@@ -8399,6 +8562,10 @@ class ThemeDecoder {
           validate: false,
         ),
         minThumbSeparation: JsonClass.parseDouble(value['minThumbSeparation']),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
+        ),
         overlappingShapeStrokeColor: decodeColor(
           value['overlappingShapeStrokeColor'],
           validate: false,
@@ -9015,6 +9182,9 @@ class ThemeDecoder {
   ///   "labelPadding": <EdgeInsetsGeometry>,
   ///   "labelColor": <Color>,
   ///   "labelStyle": <TextStyle>,
+  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
+  ///   "overlayColor": <MaterialStateProperty<Color>>,
+  ///   "splashFactory": <InteractiveInkSplashFactory>,
   ///   "unselectedLabelColor": <Color>,
   ///   "unselectedLabelStyle": <TextStyle>,
   /// }
@@ -9023,6 +9193,9 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeInteractiveInkFeatureFactory]
+  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeTabBarIndicatorSize]
   ///  * [decodeTextStyle]
   static TabBarTheme? decodeTabBarTheme(
@@ -9060,6 +9233,18 @@ class ThemeDecoder {
         ),
         labelStyle: decodeTextStyle(
           value['labelStyle'],
+          validate: false,
+        ),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
+        ),
+        overlayColor: decodeMaterialStatePropertyColor(
+          value['overlayColor'],
+          validate: false,
+        ),
+        splashFactory: decodeInteractiveInkFeatureFactory(
+          value['splashFactory'],
           validate: false,
         ),
         unselectedLabelColor: decodeColor(
@@ -10411,7 +10596,6 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>,
   ///   "appBarTheme": <AppBarTheme>,
   ///   "applyElevationOverlayColor": <bool>,
   ///   "backgroundColor": <Color>,
@@ -10429,6 +10613,7 @@ class ThemeDecoder {
   ///   "checkboxThemeData": <CheckboxThemeData>,
   ///   "chipTheme": <ChipThemeData>,
   ///   "colorScheme": <ColorScheme>,
+  ///   "colorSchemeSeed": <Color>,
   ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
   ///   "cursorColor": <Color>,
   ///   "dataTableTheme": <DataTableThemeData>,
@@ -10440,6 +10625,7 @@ class ThemeDecoder {
   ///   "drawerTheme": <DrawerThemeData>,
   ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
   ///   "errorColor": <Color>,
+  ///   "expansionTileTheme": <ExpansionTileThemeData>,
   ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
   ///   "focusColor": <Color>,
   ///   "fontFamily": <String>,
@@ -10493,7 +10679,6 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
-  ///  * [decodeAndroidOverscrollIndicator]
   ///  * [decodeAppBarTheme]
   ///  * [decodeBottomAppBarTheme]
   ///  * [decodeBottomNavigationBarThemeData]
@@ -10511,6 +10696,7 @@ class ThemeDecoder {
   ///  * [decodeDividerThemeData]
   ///  * [decodeDrawerThemeData]
   ///  * [decodeElevatedButtonThemeData]
+  ///  * [decodeExpansionTileThemeData]
   ///  * [decodeFloatingActionButtonThemeData]
   ///  * [decodeIconThemeData]
   ///  * [decodeInputDecorationTheme]
@@ -10565,10 +10751,9 @@ class ThemeDecoder {
         // @deprecated
         // accentTextTheme: null,
 
-        androidOverscrollIndicator: decodeAndroidOverscrollIndicator(
-          value['androidOverscrollIndicator'],
-          validate: false,
-        ),
+        // @deprecated
+        // androidOverscrollIndicator
+
         appBarTheme: decodeAppBarTheme(
           value['appBarTheme'],
           validate: false,
@@ -10640,6 +10825,10 @@ class ThemeDecoder {
           value['colorScheme'],
           validate: false,
         ),
+        colorSchemeSeed: decodeColor(
+          value['colorSchemeSeed'],
+          validate: false,
+        ),
         cupertinoOverrideTheme: decodeCupertinoThemeData(
           value['cupertinoOverrideTheme'],
           validate: false,
@@ -10680,17 +10869,25 @@ class ThemeDecoder {
           value['elevatedButtonTheme'],
           validate: false,
         ),
-        errorColor: decodeColor(
-          value['errorColor'],
+        expansionTileTheme: decodeExpansionTileThemeData(
+          value['expansionTileTheme'],
           validate: false,
         ),
-        floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
-          value['floatingActionButtonTheme'],
+
+        // @unencodable
+        // extensions
+        errorColor: decodeColor(
+          value['errorColor'],
           validate: false,
         ),
 
         // @deprecated
         // fixTextFieldOutlineLabel: null,
+
+        floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
+          value['floatingActionButtonTheme'],
+          validate: false,
+        ),
 
         focusColor: decodeColor(
           value['focusColor'],

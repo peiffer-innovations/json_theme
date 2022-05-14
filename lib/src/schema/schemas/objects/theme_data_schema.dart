@@ -12,27 +12,24 @@ class ThemeDataSchema {
     'title': 'ThemeData',
     'type': 'object',
     'properties': {
-      'accentColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'accentColorBrightness': SchemaHelper.objectSchema(BrightnessSchema.id),
-      'accentIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
-      'accentTextTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
-      'androidOverscrollIndicator':
-          SchemaHelper.objectSchema(AndroidOverscrollIndicatorSchema.id),
       'appBarTheme': SchemaHelper.objectSchema(AppBarThemeSchema.id),
       'applyElevationOverlayColor': SchemaHelper.boolSchema,
-      'bannerTheme':
-          SchemaHelper.objectSchema(MaterialBannerThemeDataSchema.id),
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'bannerTheme': SchemaHelper.objectSchema(
+        MaterialBannerThemeDataSchema.id,
+      ),
       'bottomAppBarColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'bottomAppBarTheme':
-          SchemaHelper.objectSchema(BottomAppBarThemeScheme.id),
+      'bottomAppBarTheme': SchemaHelper.objectSchema(
+        BottomAppBarThemeScheme.id,
+      ),
+      'bottomNavigationBarTheme': SchemaHelper.objectSchema(
+        BottomNavigationBarThemeDataSchema.id,
+      ),
+      'bottomSheetTheme': SchemaHelper.objectSchema(
+        BottomSheetThemeDataSchema.id,
+      ),
       'brightness': SchemaHelper.objectSchema(BrightnessSchema.id),
-      'bottomNavigationBarTheme':
-          SchemaHelper.objectSchema(BottomNavigationBarThemeDataSchema.id),
-      'bottomSheetTheme':
-          SchemaHelper.objectSchema(BottomSheetThemeDataSchema.id),
       'buttonBarTheme': SchemaHelper.objectSchema(ButtonBarThemeDataSchema.id),
-      'buttonColor': SchemaHelper.objectSchema(ColorSchema.id),
       'buttonTheme': SchemaHelper.objectSchema(ButtonThemeDataSchema.id),
       'canvasColor': SchemaHelper.objectSchema(ColorSchema.id),
       'cardColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -40,8 +37,10 @@ class ThemeDataSchema {
       'checkboxTheme': SchemaHelper.objectSchema(CheckboxThemeDataSchema.id),
       'chipTheme': SchemaHelper.objectSchema(ChipThemeDataSchema.id),
       'colorScheme': SchemaHelper.objectSchema(ColorSchemeSchema.id),
-      'cupertinoOverrideTheme':
-          SchemaHelper.objectSchema(CupertinoThemeDataSchema.id),
+      'colorSchemeSeed': SchemaHelper.objectSchema(ColorSchema.id),
+      'cupertinoOverrideTheme': SchemaHelper.objectSchema(
+        CupertinoThemeDataSchema.id,
+      ),
       'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeSchema.id),
@@ -49,12 +48,16 @@ class ThemeDataSchema {
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
       'drawerTheme': SchemaHelper.objectSchema(DrawerThemeDataSchema.id),
-      'elevatedButtonTheme':
-          SchemaHelper.objectSchema(ElevatedButtonThemeDataSchema.id),
+      'elevatedButtonTheme': SchemaHelper.objectSchema(
+        ElevatedButtonThemeDataSchema.id,
+      ),
+      'expansionTileTheme': SchemaHelper.objectSchema(
+        ExpansionTileThemeDataSchema.id,
+      ),
       'errorColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'fixTextFieldOutlineLabel': SchemaHelper.boolSchema,
-      'floatingActionButtonTheme':
-          SchemaHelper.objectSchema(FloatingActionButtonThemeDataSchema.id),
+      'floatingActionButtonTheme': SchemaHelper.objectSchema(
+        FloatingActionButtonThemeDataSchema.id,
+      ),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'fontFamily': SchemaHelper.stringSchema,
       'highlightColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -80,8 +83,9 @@ class ThemeDataSchema {
       'outlinedButtonTheme': SchemaHelper.objectSchema(
         OutlinedButtonThemeDataSchema.id,
       ),
-      'pageTransitionsTheme':
-          SchemaHelper.objectSchema(PageTransitionsThemeSchema.id),
+      'pageTransitionsTheme': SchemaHelper.objectSchema(
+        PageTransitionsThemeSchema.id,
+      ),
       'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),
       'popupMenuTheme': SchemaHelper.objectSchema(PopupMenuThemeDataSchema.id),
       'primaryColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -90,6 +94,9 @@ class ThemeDataSchema {
       'primaryIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'primarySwatch': SchemaHelper.objectSchema(MaterialColorSchema.id),
       'primaryTextTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
+      'progressIndicatorTheme': SchemaHelper.objectSchema(
+        ProgressIndicatorThemeDataSchema.id,
+      ),
       'radioTheme': SchemaHelper.objectSchema(RadioThemeDataSchema.id),
       'scaffoldBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'scrollbarTheme': SchemaHelper.objectSchema(ScrollbarThemeDataSchema.id),
@@ -104,15 +111,19 @@ class ThemeDataSchema {
       ),
       'switchTheme': SchemaHelper.objectSchema(SwitchThemeDataSchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeSchema.id),
-      'textButtonTheme':
-          SchemaHelper.objectSchema(TextButtonThemeDataSchema.id),
-      'textSelectionTheme':
-          SchemaHelper.objectSchema(TextSelectionThemeDataSchema.id),
+      'textButtonTheme': SchemaHelper.objectSchema(
+        TextButtonThemeDataSchema.id,
+      ),
+      'textSelectionTheme': SchemaHelper.objectSchema(
+        TextSelectionThemeDataSchema.id,
+      ),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
-      'timePickerTheme':
-          SchemaHelper.objectSchema(TimePickerThemeDataSchema.id),
-      'toggleButtonsTheme':
-          SchemaHelper.objectSchema(ToggleButtonsThemeDataSchema.id),
+      'timePickerTheme': SchemaHelper.objectSchema(
+        TimePickerThemeDataSchema.id,
+      ),
+      'toggleButtonsTheme': SchemaHelper.objectSchema(
+        ToggleButtonsThemeDataSchema.id,
+      ),
       'toggleableActiveColor': SchemaHelper.objectSchema(ColorSchema.id),
       'tooltipTheme': SchemaHelper.objectSchema(TooltipThemeDataSchema.id),
       'typography': SchemaHelper.objectSchema(TypographySchema.id),

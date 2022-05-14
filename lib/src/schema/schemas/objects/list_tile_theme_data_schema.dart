@@ -19,12 +19,16 @@ class ListTileThemeDataSchema {
       'iconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'minLeadingWidth': SchemaHelper.numberSchema,
       'minVerticalPadding': SchemaHelper.numberSchema,
+      'mouseCursor': SchemaHelper.objectSchema(
+        MaterialStatePropertyMouseCursorSchema.id,
+      ),
       'selectedColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedTileColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'style': SchemaHelper.objectSchema(ListTileStyleSchema.id),
       'textColor': SchemaHelper.objectSchema(ColorSchema.id),
       'tileColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };
 }

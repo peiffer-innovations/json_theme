@@ -1,4 +1,5 @@
 import 'package:json_theme/json_theme_schemas.dart';
+import 'package:json_theme/src/schema/all.dart';
 
 class Enums {
   static List<String> all = [
@@ -39,8 +40,8 @@ class Enums {
     NavigationRailLabelTypeSchema.id,
     NavigationDestinationLabelBehaviorSchema.id,
     NotchedShapeSchema.id,
-    OverflowSchema.id,
     PageTransitionsBuilderSchema.id,
+    PopupMenuPositionSchema.id,
     RangeSliderTrackShapeSchema.id,
     RangeSliderValueIndicatorShapeSchema.id,
     ScrollViewKeyboardDismissBehaviorSchema.id,

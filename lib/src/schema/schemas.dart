@@ -1,7 +1,7 @@
 import 'all.dart';
 
 class Schemas {
-  static final all = {
+  static final all = <String, Map<String, dynamic>>{
     AlignmentSchema.id: AlignmentSchema.schema,
     AndroidOverscrollIndicatorSchema.id:
         AndroidOverscrollIndicatorSchema.schema,
@@ -51,6 +51,7 @@ class Schemas {
     DrawerThemeDataSchema.id: DrawerThemeDataSchema.schema,
     EdgeInsetsGeometrySchema.id: EdgeInsetsGeometrySchema.schema,
     ElevatedButtonThemeDataSchema.id: ElevatedButtonThemeDataSchema.schema,
+    ExpansionTileThemeDataSchema.id: ExpansionTileThemeDataSchema.schema,
     FilterQualitySchema.id: FilterQualitySchema.schema,
     FlexFitSchema.id: FlexFitSchema.schema,
     FloatingActionButtonAnimatorSchema.id:
@@ -115,9 +116,9 @@ class Schemas {
     OrdinalSortKeySchema.id: OrdinalSortKeySchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
-    OverflowSchema.id: OverflowSchema.schema,
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
+    PopupMenuPositionSchema.id: PopupMenuPositionSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
     ProgressIndicatorThemeDataSchema.id:
         ProgressIndicatorThemeDataSchema.schema,

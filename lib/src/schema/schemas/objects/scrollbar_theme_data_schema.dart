@@ -14,11 +14,9 @@ class ScrollbarThemeDataSchema {
     'properties': {
       'crossAxisMargin': SchemaHelper.numberSchema,
       'interactive': SchemaHelper.boolSchema,
-      'isAlwaysShown': SchemaHelper.boolSchema,
       'mainAxisMargin': SchemaHelper.numberSchema,
       'minThumbLength': SchemaHelper.numberSchema,
       'radius': SchemaHelper.objectSchema(RadiusSchema.id),
-      'showTrackOnHover': SchemaHelper.boolSchema,
       'thickness': {
         'anyOf': [
           {
@@ -34,6 +32,9 @@ class ScrollbarThemeDataSchema {
       },
       'thumbColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
+      ),
+      'thumbVisibility': SchemaHelper.objectSchema(
+        MaterialStatePropertyBoolSchema.id,
       ),
       'trackBorderColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,

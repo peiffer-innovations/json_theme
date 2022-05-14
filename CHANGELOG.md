@@ -1,3 +1,8 @@
+# [4.0.0] - May 14th, 2022
+
+* Flutter 3.0
+
+
 # [3.3.1] - February 6th, 2022
 
 * Updated `encodeThemeData` to encode `CheckboxThemeData`, `RadioThemeData` and `SwitchThemeData`

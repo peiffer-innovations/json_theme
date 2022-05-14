@@ -28,6 +28,7 @@ class FloatingActionButtonThemeDataSchema {
       'highlightElevation': SchemaHelper.numberSchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hoverElevation': SchemaHelper.numberSchema,
+      'iconSize': SchemaHelper.numberSchema,
       'largeSizeConstraints': SchemaHelper.objectSchema(
         BoxConstraintsSchema.id,
       ),

@@ -17,6 +17,8 @@ class NavigationRailThemeDataSchema {
       'groupAlignment': SchemaHelper.numberSchema,
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'labelType': SchemaHelper.objectSchema(NavigationRailLabelTypeSchema.id),
+      'minExtendedWidth': SchemaHelper.numberSchema,
+      'minWidth': SchemaHelper.numberSchema,
       'selectedIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'selectedLabelTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'unselectedIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),

@@ -37,6 +37,8 @@ class ColorSchemeSchema {
       'secondaryContainer': SchemaHelper.objectSchema(ColorSchema.id),
       'shadow': SchemaHelper.objectSchema(ColorSchema.id),
       'surface': SchemaHelper.objectSchema(ColorSchema.id),
+      'surfaceTint': SchemaHelper.objectSchema(ColorSchema.id),
+      'surfaceVariant': SchemaHelper.objectSchema(ColorSchema.id),
       'tertiary': SchemaHelper.objectSchema(ColorSchema.id),
       'tertiaryContainer': SchemaHelper.objectSchema(ColorSchema.id)
     },

@@ -39,6 +39,7 @@ class MouseCursorSchema {
           'resizeDownLeft',
           'resizeDownRight',
           'resizeLeft',
+          'resizeLeftRight',
           'resizeRight',
           'resizeRow',
           'resizeUp',

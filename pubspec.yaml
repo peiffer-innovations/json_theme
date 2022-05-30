@@ -5,7 +5,7 @@ homepage: https://github.com/peiffer-innovations/json_theme
 version: 4.0.0
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=2.17.0 <3.0.0'
 
 analyzer:
   exclude: [lib/generated/**]
@@ -20,3 +20,25 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+ignore_updates:
+  # Ignoring everything in flutter_test as those are all point-in-time entries
+  # can't upgrade without upgrading Flutter itself.
+  - 'async'
+  - 'boolean_selector'
+  - 'characters'
+  - 'charcode'
+  - 'collection'
+  - 'clock'
+  - 'fake_async'
+  - 'file'
+  - 'matcher'
+  - 'material_color_utilities'
+  - 'meta'
+  - 'path'
+  - 'source_span'
+  - 'stack_trace'
+  - 'stream_channel'
+  - 'string_scanner'
+  - 'term_glyph'
+  - 'vector_math'

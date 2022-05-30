@@ -1,12 +1,12 @@
 name: example
 description: Example application for the JSON Theme
 
-publish_to: "none"
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -16,7 +16,7 @@ dependencies:
   intl: ^0.17.0
   json_theme:
     path: ../
-  meta: ^1.3.0
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_test:
@@ -36,3 +36,25 @@ flutter:
     - family: MaterialIcons
       fonts:
         - asset: assets/fonts/MaterialIcons-Regular.ttf
+
+ignore_updates:
+  # Ignoring everything in flutter_test as those are all point-in-time entries
+  # can't upgrade without upgrading Flutter itself.
+  - 'async'
+  - 'boolean_selector'
+  - 'characters'
+  - 'charcode'
+  - 'collection'
+  - 'clock'
+  - 'fake_async'
+  - 'file'
+  - 'matcher'
+  - 'material_color_utilities'
+  - 'meta'
+  - 'path'
+  - 'source_span'
+  - 'stack_trace'
+  - 'stream_channel'
+  - 'string_scanner'
+  - 'term_glyph'
+  - 'vector_math'

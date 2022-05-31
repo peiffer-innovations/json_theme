@@ -1,3 +1,8 @@
+## [4.0.0+1] - May, 31, 2022
+
+* Automated dependency updates
+
+
 # [4.0.0] - May 14th, 2022
 
 * Flutter 3.0
@@ -315,3 +320,4 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+

@@ -1,45 +1,52 @@
-name: example
-description: Example application for the JSON Theme
-
+name: 'example'
+description: 'Example application for the JSON Theme'
 publish_to: 'none'
+version: '1.0.0+2'
 
-version: 1.0.0+1
-
-environment:
+environment: 
   sdk: '>=2.17.0 <3.0.0'
 
-dependencies:
-  flutter:
-    sdk: flutter
-  form_validation: ^2.1.0+2
-  google_fonts: ^2.0.0
-  intl: ^0.17.0
-  json_theme:
-    path: ../
-  meta: ^1.7.0
+dependencies: 
+  flutter: 
+    sdk: 'flutter'
+  form_validation: '^2.1.0+3'
+  google_fonts: '^3.0.1'
+  intl: '^0.17.0'
+  json_theme: 
+    path: '../'
+  meta: '^1.7.0'
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+dev_dependencies: 
+  flutter_test: 
+    sdk: 'flutter'
 
-flutter:
+
+flutter: 
   uses-material-design: true
-  assets:
-    - assets/themes/
-  fonts:
-    - family: lato
-      fonts:
-        - asset: assets/fonts/Lato-Regular.ttf
-    - family: metal
-      fonts:
-        - asset: assets/fonts/MetalMania-Regular.ttf
-    - family: MaterialIcons
-      fonts:
-        - asset: assets/fonts/MaterialIcons-Regular.ttf
+  assets: 
+    - 'assets/themes/'
+  fonts: 
+    - 
+      family: 'lato'
+      fonts: 
+        - 
+          asset: 'assets/fonts/Lato-Regular.ttf'
 
-ignore_updates:
-  # Ignoring everything in flutter_test as those are all point-in-time entries
-  # can't upgrade without upgrading Flutter itself.
+    - 
+      family: 'metal'
+      fonts: 
+        - 
+          asset: 'assets/fonts/MetalMania-Regular.ttf'
+
+    - 
+      family: 'MaterialIcons'
+      fonts: 
+        - 
+          asset: 'assets/fonts/MaterialIcons-Regular.ttf'
+
+
+
+ignore_updates: 
   - 'async'
   - 'boolean_selector'
   - 'characters'

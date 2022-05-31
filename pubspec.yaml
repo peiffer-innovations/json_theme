@@ -1,29 +1,29 @@
-name: json_theme
-description: A library to dynamically generate a ThemeData object from a JSON file or dynamic map object
-homepage: https://github.com/peiffer-innovations/json_theme
+name: 'json_theme'
+description: 'A library to dynamically generate a ThemeData object from a JSON file or dynamic map object'
+homepage: 'https://github.com/peiffer-innovations/json_theme'
+version: '4.0.0+1'
 
-version: 4.0.0
-
-environment:
+environment: 
   sdk: '>=2.17.0 <3.0.0'
 
-analyzer:
-  exclude: [lib/generated/**]
+analyzer: 
+  exclude: 
+    - 'lib/generated/**'
 
-dependencies:
-  flutter:
-    sdk: flutter
-  json_class: ^2.1.2+4
-  json_schema2: ^2.0.2
-  meta: ^1.7.0
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
+dependencies: 
+  flutter: 
+    sdk: 'flutter'
+  json_class: '^2.1.2+5'
+  json_schema2: '^2.0.2+1'
+  meta: '^1.7.0'
 
-ignore_updates:
-  # Ignoring everything in flutter_test as those are all point-in-time entries
-  # can't upgrade without upgrading Flutter itself.
+dev_dependencies: 
+  flutter_test: 
+    sdk: 'flutter'
+
+
+ignore_updates: 
   - 'async'
   - 'boolean_selector'
   - 'characters'

@@ -1,7 +1,7 @@
 name: 'json_theme'
 description: 'A library to dynamically generate a ThemeData object from a JSON file or dynamic map object'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '4.0.0+7'
+version: '4.0.0+8'
 
 environment: 
   sdk: '>=2.17.0 <3.0.0'
@@ -15,7 +15,7 @@ dependencies:
   flutter: 
     sdk: 'flutter'
   json_class: '^2.1.2+8'
-  json_schema2: '^2.0.2+7'
+  json_schema2: '^2.0.2+8'
   meta: '^1.7.0'
 
 dev_dependencies: 

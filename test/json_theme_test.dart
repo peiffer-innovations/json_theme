@@ -4138,6 +4138,16 @@ void main() {
 
       expect(encoded![stateKey], colorStr);
     }
+
+    /// Test if pressed takes precedence over hovered
+    final materialColor = ThemeDecoder.decodeMaterialStatePropertyColor(
+      colors,
+    );
+    final color = materialColor?.resolve({
+      states['hovered']!,
+      states['pressed']!,
+    });
+    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
   });
 
   test('MaterialStatePropertyDouble', () {

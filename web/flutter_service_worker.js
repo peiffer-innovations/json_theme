@@ -19,10 +19,10 @@ const RESOURCES = {
 "assets/FontManifest.json": "731f2bd9f372174a666c49058eb30350",
 "assets/NOTICES": "6a3ef33b66e62e99e59d4c70f1d1ae7c",
 "flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
-"index.html": "a8c4d0349e96e774a49c035f3f2bf450",
-"/": "a8c4d0349e96e774a49c035f3f2bf450",
+"index.html": "a5ed9327a80af2ad9bb42db7dabfec91",
+"/": "a5ed9327a80af2ad9bb42db7dabfec91",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"version.json": "3ddb05f6a10bb8b612ae2489d81d1a9f",
+"version.json": "7fd137b2a5c2fdd6cc43cc0d7ee0cd4d",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"

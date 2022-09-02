@@ -5308,10 +5308,10 @@ class ThemeDecoder {
             result = decodeColor(value['error']);
           } else if (states.contains(MaterialState.focused)) {
             result = decodeColor(value['focused']);
-          } else if (states.contains(MaterialState.hovered)) {
-            result = decodeColor(value['hovered']);
           } else if (states.contains(MaterialState.pressed)) {
             result = decodeColor(value['pressed']);
+          } else if (states.contains(MaterialState.hovered)) {
+            result = decodeColor(value['hovered']);
           } else if (states.contains(MaterialState.scrolledUnder)) {
             result = decodeColor(value['scrolledUnder']);
           } else if (states.contains(MaterialState.selected)) {

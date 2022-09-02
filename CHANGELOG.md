@@ -1,7 +1,11 @@
-## [4.0.1] - August 29, 2022
+## [4.0.1] - September 1st, 2022
 
 * Moved pressed state above hovered state.
 * Fix for [Issue #52](https://https://github.com/peiffer-innovations/json_theme/issues/52)
+
+## [4.0.0+9] - August 30, 2022
+
+* Automated dependency updates
 
 ## [4.0.0+8] - August 9, 2022
 
@@ -360,6 +364,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

@@ -15,7 +15,7 @@ dependencies:
   flutter: 
     sdk: 'flutter'
   json_class: '^2.1.2+8'
-  json_schema2: '^2.0.2+8'
+  json_schema2: '^2.0.2+9'
   meta: '^1.7.0'
 
 dev_dependencies: 

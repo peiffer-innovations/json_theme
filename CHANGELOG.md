@@ -1,3 +1,8 @@
+## [4.0.1+1] - September 6, 2022
+
+* Automated dependency updates
+
+
 ## [4.0.1] - September 1st, 2022
 
 * Moved pressed state above hovered state.
@@ -364,6 +369,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

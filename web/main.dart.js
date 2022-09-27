@@ -55935,7 +55935,7 @@ this.aR()},
 zk(){var s,r=this,q=r.jf$,p=r.nb$
 p=r.jf$=B.d.aZ(B.d.i6(p.gl(p),0,1)*255)
 if(q!==p){s=r.AX$
-p=p>0&&p<255
+p=p>0
 r.AX$=p
 if(r.C$!=null&&s!==p)r.q5()
 r.a8A()

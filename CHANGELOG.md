@@ -1,3 +1,8 @@
+## [4.0.1+5] - October 18, 2022
+
+* Automated dependency updates
+
+
 ## [4.0.1+4] - October 11, 2022
 
 * Automated dependency updates
@@ -384,6 +389,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

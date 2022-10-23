@@ -7760,6 +7760,54 @@ void main() {
       ThemeEncoder.encodeSystemUiOverlayStyle(SystemUiOverlayStyle.light),
       'light',
     );
+
+    expect(
+      ThemeDecoder.decodeSystemUiOverlayStyle({
+        'statusBarBrightness': 'light',
+        'statusBarColor': '#ff000000',
+        'statusBarIconBrightness': 'dark',
+        'systemNavigationBarColor': '#ff111111',
+        'systemNavigationBarContrastEnforced': true,
+        'systemNavigationBarDividerColor': '#ff222222',
+        'systemNavigationBarIconBrightness': 'light',
+        'systemStatusBarContrastEnforced': false,
+      }),
+      SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
+        statusBarColor: const Color(0xff000000),
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: const Color(0xff111111),
+        systemNavigationBarContrastEnforced: true,
+        systemNavigationBarDividerColor: const Color(0xff222222),
+        systemNavigationBarIconBrightness: Brightness.light,
+        systemStatusBarContrastEnforced: false,
+      ),
+    );
+
+    expect(
+      ThemeEncoder.encodeSystemUiOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.light,
+          statusBarColor: const Color(0xff000000),
+          statusBarIconBrightness: Brightness.dark,
+          systemNavigationBarColor: const Color(0xff111111),
+          systemNavigationBarContrastEnforced: true,
+          systemNavigationBarDividerColor: const Color(0xff222222),
+          systemNavigationBarIconBrightness: Brightness.light,
+          systemStatusBarContrastEnforced: false,
+        ),
+      ),
+      {
+        'statusBarBrightness': 'light',
+        'statusBarColor': '#ff000000',
+        'statusBarIconBrightness': 'dark',
+        'systemNavigationBarColor': '#ff111111',
+        'systemNavigationBarContrastEnforced': true,
+        'systemNavigationBarDividerColor': '#ff222222',
+        'systemNavigationBarIconBrightness': 'light',
+        'systemStatusBarContrastEnforced': false,
+      },
+    );
   });
 
   test('TabBarIndicatorSize', () {

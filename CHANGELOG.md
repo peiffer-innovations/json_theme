@@ -1,3 +1,9 @@
+## [4.0.2] - October 23rd, 2022
+
+* Added more options for `SystemUiOverlayStyle`
+* Fix for [Issue #44](https://github.com/peiffer-innovations/json_theme/issues/44)
+
+
 ## [4.0.1+5] - October 18, 2022
 
 * Automated dependency updates

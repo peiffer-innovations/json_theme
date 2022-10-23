@@ -5309,22 +5309,58 @@ class ThemeEncoder {
     return result;
   }
 
-  /// Encodes the given [value] to the String representation.  Supported values
-  /// are:
+  /// Encodes the given [value] to the JSON representation or a String
+  /// representation.  Supported values are:
   ///  * `dark`
   ///  * `light`
   ///
+  /// ... or an object of the form...
+  ///
+  /// ```json
+  /// {
+  ///   "statusBarBrightness": <Brightness>,
+  ///   "statusBarColor": <Color>,
+  ///   "statusBarIconBrightness": <Brightness>,
+  ///   "systemNavigationBarColor": <Color>,
+  ///   "systemNavigationBarContrastEnforced": <bool>,
+  ///   "systemNavigationBarDividerColor": <Color>,
+  ///   "systemNavigationBarIconBrightness": <Brightness>,
+  ///   "systemStatusBarContrastEnforced': <bool>
+  /// }
+  /// ```
+  ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSystemUiOverlayStyle(
+  static dynamic encodeSystemUiOverlayStyle(
     SystemUiOverlayStyle? value,
   ) {
-    String? result;
+    dynamic result;
 
     if (value != null) {
       if (value == SystemUiOverlayStyle.dark) {
         result = 'dark';
       } else if (value == SystemUiOverlayStyle.light) {
         result = 'light';
+      } else {
+        result = {
+          'statusBarBrightness': encodeBrightness(value.statusBarBrightness),
+          'statusBarColor': encodeColor(value.statusBarColor),
+          'statusBarIconBrightness': encodeBrightness(
+            value.statusBarIconBrightness,
+          ),
+          'systemNavigationBarColor': encodeColor(
+            value.systemNavigationBarColor,
+          ),
+          'systemNavigationBarContrastEnforced':
+              value.systemNavigationBarContrastEnforced,
+          'systemNavigationBarDividerColor': encodeColor(
+            value.systemNavigationBarDividerColor,
+          ),
+          'systemNavigationBarIconBrightness': encodeBrightness(
+            value.systemNavigationBarIconBrightness,
+          ),
+          'systemStatusBarContrastEnforced':
+              value.systemStatusBarContrastEnforced,
+        };
       }
     }
 

@@ -9101,6 +9101,41 @@ class ThemeDecoder {
     SystemUiOverlayStyle? result;
     if (value is SystemUiOverlayStyle) {
       result = value;
+    } else if (value is Map) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/system_ui_overlay_style',
+        value: value,
+        validate: validate,
+      ));
+
+      result = SystemUiOverlayStyle(
+        statusBarBrightness: decodeBrightness(value['statusBarBrightness']),
+        statusBarColor: decodeColor(value['statusBarColor']),
+        statusBarIconBrightness: decodeBrightness(
+          value['statusBarIconBrightness'],
+        ),
+        systemNavigationBarColor: decodeColor(
+          value['systemNavigationBarColor'],
+        ),
+        systemNavigationBarContrastEnforced:
+            value['systemNavigationBarContrastEnforced'] == null
+                ? null
+                : JsonClass.parseBool(
+                    value['systemNavigationBarContrastEnforced'],
+                  ),
+        systemNavigationBarDividerColor: decodeColor(
+          value['systemNavigationBarDividerColor'],
+        ),
+        systemNavigationBarIconBrightness: decodeBrightness(
+          value['systemNavigationBarIconBrightness'],
+        ),
+        systemStatusBarContrastEnforced:
+            value['systemStatusBarContrastEnforced'] == null
+                ? null
+                : JsonClass.parseBool(
+                    value['systemStatusBarContrastEnforced'],
+                  ),
+      );
     } else {
       _checkSupported(
         'SystemUiOverlayStyle',

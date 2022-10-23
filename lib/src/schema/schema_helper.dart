@@ -109,7 +109,7 @@ class SchemaHelper {
     return result;
   }
 
-  static dynamic enumSchema(Iterable<String> values) => [
+  static List<Map<String, dynamic>> enumSchema(Iterable<String> values) => [
         {'type': 'string', 'enum': values},
         {
           'type': 'string',

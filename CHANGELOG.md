@@ -1,3 +1,8 @@
+## [4.0.2+1] - October 25, 2022
+
+* Automated dependency updates
+
+
 ## [4.0.2] - October 23rd, 2022
 
 * Added more options for `SystemUiOverlayStyle`
@@ -395,6 +400,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

@@ -14,6 +14,7 @@ class InteractiveInkFeatureFactorySchema {
     'oneOf': SchemaHelper.enumSchema([
       'splash',
       'ripple',
+      'sparkle',
     ]),
   };
 }

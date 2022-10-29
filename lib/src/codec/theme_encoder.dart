@@ -2734,6 +2734,7 @@ class ThemeEncoder {
   /// are:
   ///  * `splash`
   ///  * `ripple`
+  ///  * `sparkle`
   ///
   /// All other values, including `null`, will result in `null`.
   static String? encodeInteractiveInkFeatureFactory(
@@ -2741,10 +2742,12 @@ class ThemeEncoder {
   ) {
     var splashType = InkSplash.splashFactory.runtimeType;
     var rippleType = InkRipple.splashFactory.runtimeType;
+    var sparkleType = InkSparkle.splashFactory.runtimeType;
 
     assert(value == null ||
         value.runtimeType == splashType ||
-        value.runtimeType == rippleType);
+        value.runtimeType == rippleType ||
+        value.runtimeType == sparkleType);
     String? result;
 
     if (value != null) {
@@ -2752,6 +2755,8 @@ class ThemeEncoder {
         result = 'splash';
       } else if (value.runtimeType == rippleType) {
         result = 'ripple';
+      } else if (value.runtimeType == sparkleType) {
+        result = 'sparkle';
       }
     }
 

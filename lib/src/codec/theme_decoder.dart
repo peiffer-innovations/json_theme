@@ -4667,6 +4667,8 @@ class ThemeDecoder {
   /// values are:
   ///  * `splash`
   ///  * `ripple`
+  ///  * `sparkle`
+  ///
   static InteractiveInkFeatureFactory? decodeInteractiveInkFeatureFactory(
     dynamic value, {
     bool validate = true,
@@ -4680,6 +4682,7 @@ class ThemeDecoder {
         [
           'splash',
           'ripple',
+          'sparkle',
         ],
         value,
       );
@@ -4698,6 +4701,9 @@ class ThemeDecoder {
           case 'ripple':
             result = InkRipple.splashFactory;
             break;
+
+          case 'sparkle':
+            result = InkSparkle.splashFactory;
         }
       }
     }

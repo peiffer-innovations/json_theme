@@ -3625,6 +3625,10 @@ void main() {
       ThemeDecoder.decodeInteractiveInkFeatureFactory('ripple'),
       InkRipple.splashFactory,
     );
+    expect(
+      ThemeDecoder.decodeInteractiveInkFeatureFactory('sparkle'),
+      InkSparkle.splashFactory,
+    );
 
     expect(
       ThemeEncoder.encodeInteractiveInkFeatureFactory(InkSplash.splashFactory),
@@ -3633,6 +3637,10 @@ void main() {
     expect(
       ThemeEncoder.encodeInteractiveInkFeatureFactory(InkRipple.splashFactory),
       'ripple',
+    );
+    expect(
+      ThemeEncoder.encodeInteractiveInkFeatureFactory(InkSparkle.splashFactory),
+      'sparkle',
     );
   });
 

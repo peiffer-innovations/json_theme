@@ -1,3 +1,8 @@
+## [4.0.3+1] - November 15, 2022
+
+* Automated dependency updates
+
+
 ## [4.0.3] - November 12th, 2022
 
 * Merged: https://github.com/peiffer-innovations/json_theme/pull/62
@@ -415,6 +420,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

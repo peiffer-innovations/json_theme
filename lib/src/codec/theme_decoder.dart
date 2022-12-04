@@ -32,8 +32,8 @@ class ThemeDecoder {
   /// `Map` then this expects the following JSON structure:
   /// ```json
   /// {
-  ///   "x": <double>,
-  ///   "y": <double>
+  ///   "x": "<double>",
+  ///   "y": "<double>"
   /// }
   /// ```
   ///
@@ -170,20 +170,20 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "actionsIconTheme": <IconThemeData>,
-  ///   "backgroundColor": <Color>,
-  ///   "centerTitle": <bool>,
-  ///   "elevation": <double>,
-  ///   "foregroundColor": <Color>,
-  ///   "iconTheme": <IconThemeData>,
-  ///   "scrolledUnderElevation": <double>,
-  ///   "shadowColor": <Color>,
-  ///   "surfaceTintColor": <Color>,
-  ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
-  ///   "titleSpacing": <double>,
-  ///   "titleTextStyle": <TextStyle>,
-  ///   "toolbarHeight": <double>,
-  ///   "toolbarTextStyle": <TextStyle>
+  ///   "actionsIconTheme": "<IconThemeData>",
+  ///   "backgroundColor": "<Color>",
+  ///   "centerTitle": "<bool>",
+  ///   "elevation": "<double>",
+  ///   "foregroundColor": "<Color>",
+  ///   "iconTheme": "<IconThemeData>",
+  ///   "scrolledUnderElevation": "<double>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "systemOverlayStyle": "<SystemUiOverlayStyle>",
+  ///   "titleSpacing": "<double>",
+  ///   "titleTextStyle": "<TextStyle>",
+  ///   "toolbarHeight": "<double>",
+  ///   "toolbarTextStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -621,7 +621,7 @@ class ThemeDecoder {
   /// Type: `all` expects a structure:
   /// ```json
   /// {
-  ///   "radius": <Radius>,
+  ///   "radius": "<Radius>",
   ///   "type": "all"
   /// }
   /// ```
@@ -629,7 +629,7 @@ class ThemeDecoder {
   /// Type: `circular` expects a structure:
   /// ```json
   /// {
-  ///   "radius": <double>,
+  ///   "radius": "<double>",
   ///   "type": "circular"
   /// }
   /// ```
@@ -637,8 +637,8 @@ class ThemeDecoder {
   /// Type: `horizontal` expects a structure:
   /// ```json
   /// {
-  ///   "left": <Radius>,
-  ///   "right": <Radius>,
+  ///   "left": "<Radius>",
+  ///   "right": "<Radius>",
   ///   "type": "horizontal"
   /// }
   /// ```
@@ -646,10 +646,10 @@ class ThemeDecoder {
   /// Type: `only` expects a structure:
   /// ```json
   /// {
-  ///   "bottomLeft": <Radius>,
-  ///   "bottomRight": <Radius>,
-  ///   "topLeft": <Radius>,
-  ///   "topRight": <Radius>,
+  ///   "bottomLeft": "<Radius>",
+  ///   "bottomRight": "<Radius>",
+  ///   "topLeft": "<Radius>",
+  ///   "topRight": "<Radius>",
   ///   "type": "only"
   /// }
   /// ```
@@ -657,8 +657,8 @@ class ThemeDecoder {
   /// Type: `vertical` expects a structure:
   /// ```json
   /// {
-  ///   "bottom": <Radius>,
-  ///   "top": <Radius>,
+  ///   "bottom": "<Radius>",
+  ///   "top": "<Radius>",
   ///   "type": "vertical"
   /// }
   /// ```
@@ -774,9 +774,10 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "style": <BorderStyle>,
-  ///   "width": <double>
+  ///   "color": "<Color>",
+  ///   "strokeAlign": "<Double>",
+  ///   "style": "<BorderStyle>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -802,7 +803,9 @@ class ThemeDecoder {
               value['color'],
               validate: false,
             ) ??
-            #ff000000 as Color,
+            const Color(0xff000000),
+        strokeAlign: JsonClass.parseDouble(value['strokeAlign']) ??
+            BorderSide.strokeAlignInside,
         style: decodeBorderStyle(
               value['style'],
               validate: false,
@@ -862,9 +865,11 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "shape": <NotchedShape>
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "height": "<double>",
+  ///   "shape": "<NotchedShape>",
+  ///   "surfaceTingColor": "<Color>"
   /// }
   /// ```
   ///
@@ -891,8 +896,13 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
+        height: JsonClass.parseDouble(value['height']),
         shape: decodeNotchedShape(
           value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['color'],
           validate: false,
         ),
       );
@@ -906,20 +916,20 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "enableFeedback": <bool>,
-  ///   "landscapeLayout": <BottomNavigationBarLandscapeLayout>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "selectedIconTheme": <IconThemeData>,
-  ///   "selectedIconColor": <Color>,
-  ///   "selectedLabelStyle": <TextStyle>,
-  ///   "showSelectedLabels": <bool>,
-  ///   "showUnselectedLabels": <bool>,
-  ///   "type": <BottomNavigationBarType>,
-  ///   "unselectedIconTheme": <IconThemeData>,
-  ///   "unselectedItemColor": <Color>,
-  ///   "unselectedLabelStyle": <TextStyle>,
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "enableFeedback": "<bool>",
+  ///   "landscapeLayout": "<BottomNavigationBarLandscapeLayout>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "selectedIconTheme": "<IconThemeData>",
+  ///   "selectedIconColor": "<Color>",
+  ///   "selectedLabelStyle": "<TextStyle>",
+  ///   "showSelectedLabels": "<bool>",
+  ///   "showUnselectedLabels": "<bool>",
+  ///   "type": "<BottomNavigationBarType>",
+  ///   "unselectedIconTheme": "<IconThemeData>",
+  ///   "unselectedItemColor": "<Color>",
+  ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -1089,13 +1099,14 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "clipBehavior": <Clip>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "elevation": <double>,
-  ///   "modalBackgroundColor": <Color>,
-  ///   "modalElevation": <double>,
-  ///   "shape": <ShapeBorder>
+  ///   "backgroundColor": "<Color>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "elevation": "<double>",
+  ///   "modalBackgroundColor": "<Color>",
+  ///   "modalBarrierColor": "<Color>",
+  ///   "modalElevation": "<double>",
+  ///   "shape": "<ShapeBorder>"
   /// }
   /// ```
   ///
@@ -1136,9 +1147,17 @@ class ThemeDecoder {
           value['modalBackgroundColor'],
           validate: false,
         ),
+        modalBarrierColor: decodeColor(
+          value['modalBarrierColor'],
+          validate: false,
+        ),
         modalElevation: JsonClass.parseDouble(value['modalElevation']),
         shape: decodeShapeBorder(
           value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: ThemeDecoder.decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
       );
@@ -1159,10 +1178,10 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <BorderSide>,
-  ///   "left": <BorderSide>,
-  ///   "right": <BorderSide>,
-  ///   "top": <BorderSide>
+  ///   "bottom": "<BorderSide>",
+  ///   "left": "<BorderSide>",
+  ///   "right": "<BorderSide>",
+  ///   "top": "<BorderSide>"
   /// }
   /// ```
   ///
@@ -1226,10 +1245,10 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "maxHeight": <double>,
-  ///   "maxWidth": <double>,
-  ///   "minHeight": <double>,
-  ///   "minWidth": <double>
+  ///   "maxHeight": "<double>",
+  ///   "maxWidth": "<double>",
+  ///   "minHeight": "<double>",
+  ///   "minWidth": "<double>"
   /// }
   /// ```
   static BoxConstraints? decodeBoxConstraints(
@@ -1263,14 +1282,14 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundBlendMode": <BlendMode>,
-  ///   "border": <BoxBorder>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "boxShadow": <BoxShadow[]>
-  ///   "color": <Color>,
-  ///   "image": <DecorationImage>,
-  ///   "gradient": <Gradient>,
-  ///   "shape": <BoxShape>
+  ///   "backgroundBlendMode": "<BlendMode>",
+  ///   "border": "<BoxBorder>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "boxShadow": "<BoxShadow[]>"
+  ///   "color": "<Color>",
+  ///   "image": "<DecorationImage>",
+  ///   "gradient": "<Gradient>",
+  ///   "shape": "<BoxShape>"
   /// }
   /// ```
   ///
@@ -1393,11 +1412,11 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "blurRadius": <double>,
-  ///   "blurStyle": <BlurStyle>,
-  ///   "color": <Color>,
-  ///   "offset": <Offset>,
-  ///   "spreadRadius": <double>
+  ///   "blurRadius": "<double>",
+  ///   "blurStyle": "<BlurStyle>",
+  ///   "color": "<Color>",
+  ///   "offset": "<Offset>",
+  ///   "spreadRadius": "<double>"
   /// }
   /// ```
   ///
@@ -1547,15 +1566,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <MainAxisAlignment>,
-  ///   "buttonAlignedDropdown": <bool>,
-  ///   "buttonHeight": <double>,
-  ///   "buttonMinWidth": <double>,
-  ///   "buttonPadding": <EdgeInsetsGeometry>,
-  ///   "buttonTextTheme": <ButtonTextTheme>,
-  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
-  ///   "mainAxisSize": <MainAxisSize>,
-  ///   "overflowDirection": <VerticalDirection>,
+  ///   "alignment": "<MainAxisAlignment>",
+  ///   "buttonAlignedDropdown": "<bool>",
+  ///   "buttonHeight": "<double>",
+  ///   "buttonMinWidth": "<double>",
+  ///   "buttonPadding": "<EdgeInsetsGeometry>",
+  ///   "buttonTextTheme": "<ButtonTextTheme>",
+  ///   "layoutBehavior": "<ButtonBarLayoutBehavior>",
+  ///   "mainAxisSize": "<MainAxisSize>",
+  ///   "overflowDirection": "<VerticalDirection>",
   /// }
   /// ```
   ///
@@ -1620,26 +1639,28 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "animationDuration": <MaterialStateProperty<double>>,
-  ///   "backgroundColor": <MaterialStateProperty<Color>>,
-  ///   "elevation": <MaterialStateProperty<double>>,
-  ///   "enableFeedback": <bool>,
-  ///   "fixedSize": <MaterialStateProperty<double>>,
-  ///   "foregroundColor": <MaterialStateProperty<Color>>,
-  ///   "maximumSize": <MaterialStateProperty<double>>,
-  ///   "minimumSize": <MaterialStateProperty<Size>>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "padding": <MaterialStateProperty<EdgeInsetsGeometry>>,
-  ///   "shadowColor": <MaterialStateProperty<Color>>,
-  ///   "shape": <MaterialStateProperty<OutlinedBorder>>,
-  ///   "side": <MaterialStateProperty<BorderSide>>,
-  ///   "splashFactory": <InteractiveInkSplashFactory>,
-  ///   "surfaceTintColor": <MaterialStateProperty<Color>>,
-  ///   "tapTargetSize": <MaterialTapTargetSize>,
-  ///   "textStyle": <MaterialStateProperty<TextStyle>>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "animationDuration": "<MaterialStateProperty<double>>",
+  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "enableFeedback": "<bool>",
+  ///   "fixedSize": "<MaterialStateProperty<double>>",
+  ///   "foregroundColor": "<MaterialStateProperty<Color>>",
+  ///   "iconColor": "<MaterialStateProperty<Color>>",
+  ///   "iconSize": "<MaterialStateProperty<double>>",
+  ///   "maximumSize": "<MaterialStateProperty<double>>",
+  ///   "minimumSize": "<MaterialStateProperty<Size>>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "padding": "<MaterialStateProperty<EdgeInsetsGeometry>>",
+  ///   "shadowColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<MaterialStateProperty<OutlinedBorder>>",
+  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "tapTargetSize": "<MaterialTapTargetSize>",
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -1700,6 +1721,14 @@ class ThemeDecoder {
         ),
         foregroundColor: decodeMaterialStatePropertyColor(
           value['foregroundColor'],
+          validate: false,
+        ),
+        iconColor: decodeMaterialStatePropertyColor(
+          value['iconColor'],
+          validate: false,
+        ),
+        iconSize: decodeMaterialStatePropertyDouble(
+          value['iconSize'],
           validate: false,
         ),
         maximumSize: decodeMaterialStatePropertySize(
@@ -1809,21 +1838,21 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "alignedDropdown": <bool>,
-  ///   "buttonColor": <Color>,
-  ///   "colorScheme": <ColorScheme>,
-  ///   "disabledColor": <Color>,
-  ///   "focusColor": <Color>,
-  ///   "height": <double>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "minWidth": <double>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "shape": <ShapeBorder>,
-  ///   "splashColor": <Color>,
-  ///   "textTheme": <ButtonTextTheme>
+  ///   "alignedDropdown": "<bool>",
+  ///   "buttonColor": "<Color>",
+  ///   "colorScheme": "<ColorScheme>",
+  ///   "disabledColor": "<Color>",
+  ///   "focusColor": "<Color>",
+  ///   "height": "<double>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "layoutBehavior": "<ButtonBarLayoutBehavior>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "minWidth": "<double>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "splashColor": "<Color>",
+  ///   "textTheme": "<ButtonTextTheme>"
   /// }
   /// ```
   ///
@@ -1913,13 +1942,13 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "shadowColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "surfaceTintColor": <Color>
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -1979,15 +2008,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "checkColor": <Color>,
-  ///   "fillColor": <MaterialStateProperty<Color>>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "shape": <OutlinedBorder>,
-  ///   "side": <BorderSide>,
-  ///   "splashRadius": <double>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "checkColor": "<Color>",
+  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<OutlinedBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "splashRadius": "<double>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -2059,24 +2088,26 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "brightness": <Brightness>,
-  ///   "checkmarkColor": <Color>,
-  ///   "deleteIconColor": <Color>,
-  ///   "disabledColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "labelPadding": <EdgeInsetsGeometry>,
-  ///   "labelStyle": <TextStyle>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "pressElevation": <double>,
-  ///   "secondaryLabelStyle": <TextStyle>,
-  ///   "secondarySelectedColor": <Color>,
-  ///   "selectedColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "side": <BorderSide>,
-  ///   "selectedShadowColor": <Color>,
-  ///   "shadowColor": <Color>,
-  ///   "showCheckmark": <bool>
+  ///   "backgroundColor": "<Color>",
+  ///   "brightness": "<Brightness>",
+  ///   "checkmarkColor": "<Color>",
+  ///   "deleteIconColor": "<Color>",
+  ///   "disabledColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "iconTheme": "<IconThemeData>",
+  ///   "labelPadding": "<EdgeInsetsGeometry>",
+  ///   "labelStyle": "<TextStyle>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "pressElevation": "<double>",
+  ///   "secondaryLabelStyle": "<TextStyle>",
+  ///   "secondarySelectedColor": "<Color>",
+  ///   "selectedColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "selectedShadowColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "showCheckmark": "<bool>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -2085,6 +2116,7 @@ class ThemeDecoder {
   ///  * [decodeBrightness]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeIconThemeData]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static ChipThemeData? decodeChipThemeData(
@@ -2123,6 +2155,10 @@ class ThemeDecoder {
           validate: false,
         )!,
         elevation: JsonClass.parseDouble(value['elevation']),
+        iconTheme: decodeIconThemeData(
+          value['iconTheme'],
+          validate: false,
+        ),
         labelPadding: decodeEdgeInsetsGeometry(
           value['labelPadding'],
           validate: false,
@@ -2164,6 +2200,10 @@ class ThemeDecoder {
         showCheckmark: value['showCheckmark'] == null
             ? null
             : JsonClass.parseBool(value['showCheckmark']),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
+          validate: false,
+        ),
       );
     }
 
@@ -2279,34 +2319,35 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "background": <Color>,
-  ///   "brightness": <Brightness>,
-  ///   "error": <Color>,
-  ///   "errorContainer": <Color>,
-  ///   "inversePrimary": <Color>,
-  ///   "inverseSurface": <Color>,
-  ///   "onBackground": <Color>,
-  ///   "onError": <Color>,
-  ///   "onErrorContainer": <Color>,
-  ///   "onInverseSurface": <Color>,
-  ///   "onPrimary": <Color>,
-  ///   "onPrimaryContainer": <Color>,
-  ///   "onSecondary": <Color>,
-  ///   "onSecondaryContainer": <Color>,
-  ///   "onSurface": <Color>,
-  ///   "onSurfaceVariant": <Color>,
-  ///   "onTertiary": <Color>,
-  ///   "onTertiaryContainer": <Color>,
-  ///   "outline": <Color>,
-  ///   "primary": <Color>,
-  ///   "primaryContainer": <Color>,
-  ///   "secondary": <Color>,
-  ///   "secondaryContainer": <Color>,
-  ///   "shadow": <Color>,
-  ///   "surface": <Color>,
-  ///   "surfaceVariant": <Color>,
-  ///   "tertiary": <Color>,
-  ///   "tertiaryContainer": <Color>
+  ///   "background": "<Color>",
+  ///   "brightness": "<Brightness>",
+  ///   "error": "<Color>",
+  ///   "errorContainer": "<Color>",
+  ///   "inversePrimary": "<Color>",
+  ///   "inverseSurface": "<Color>",
+  ///   "onBackground": "<Color>",
+  ///   "onError": "<Color>",
+  ///   "onErrorContainer": "<Color>",
+  ///   "onInverseSurface": "<Color>",
+  ///   "onPrimary": "<Color>",
+  ///   "onPrimaryContainer": "<Color>",
+  ///   "onSecondary": "<Color>",
+  ///   "onSecondaryContainer": "<Color>",
+  ///   "onSurface": "<Color>",
+  ///   "onSurfaceVariant": "<Color>",
+  ///   "onTertiary": "<Color>",
+  ///   "onTertiaryContainer": "<Color>",
+  ///   "outline": "<Color>",
+  ///   "outlineVariant": "<Color>",
+  ///   "primary": "<Color>",
+  ///   "primaryContainer": "<Color>",
+  ///   "secondary": "<Color>",
+  ///   "secondaryContainer": "<Color>",
+  ///   "shadow": "<Color>",
+  ///   "surface": "<Color>",
+  ///   "surfaceVariant": "<Color>",
+  ///   "tertiary": "<Color>",
+  ///   "tertiaryContainer": "<Color>"
   /// }
   /// ```
   ///
@@ -2404,6 +2445,10 @@ class ThemeDecoder {
           value['outline'],
           validate: false,
         ),
+        outlineVariant: decodeColor(
+          value['outlineVariant'],
+          validate: false,
+        ),
         primary: decodeColor(
           value['primary'],
           validate: false,
@@ -2412,6 +2457,7 @@ class ThemeDecoder {
           value['primaryContainer'] ?? value['primaryVariant'],
           validate: false,
         ),
+        // primaryVariant: @deprecated
         secondary: decodeColor(
           value['secondary'],
           validate: false,
@@ -2420,6 +2466,7 @@ class ThemeDecoder {
           value['secondaryContainer'] ?? value['secondaryVariant'],
           validate: false,
         ),
+        // secondaryVariant: : @deprecated,
         shadow: decodeColor(
           value['shadow'],
           validate: false,
@@ -2552,15 +2599,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "actionTextStyle": <TextStyle>,
-  ///   "dateTimePickerTextStyle": <TextStyle>,
-  ///   "navActionTextStyle": <TextStyle>,
-  ///   "navLargeTitleTextStyle":<TextStyle>,
-  ///   "navTitleTextStyle": <TextStyle>,
-  ///   "pickerTextStyle": <TextStyle>,
-  ///   "primaryColor": <Color>
-  ///   "tabLabelTextStyle": <TextStyle>,
-  ///   "textStyle": <TextStyle>,
+  ///   "actionTextStyle": "<TextStyle>",
+  ///   "dateTimePickerTextStyle": "<TextStyle>",
+  ///   "navActionTextStyle": "<TextStyle>",
+  ///   "navLargeTitleTextStyle":<TextStyle>",
+  ///   "navTitleTextStyle": "<TextStyle>",
+  ///   "pickerTextStyle": "<TextStyle>",
+  ///   "primaryColor": "<Color>"
+  ///   "tabLabelTextStyle": "<TextStyle>",
+  ///   "textStyle": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -2630,12 +2677,12 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "barBackgroundColor": <Color>,
-  ///   "brightness": <Brightness>,
-  ///   "primaryColor": <Color>,
-  ///   "primaryContrastingColor": <Color>,
-  ///   "scaffoldBackgroundColor": <Color>,
-  ///   "textTheme": <CupertinoTextThemeData>
+  ///   "barBackgroundColor": "<Color>",
+  ///   "brightness": "<Brightness>",
+  ///   "primaryColor": "<Color>",
+  ///   "primaryContrastingColor": "<Color>",
+  ///   "scaffoldBackgroundColor": "<Color>",
+  ///   "textTheme": "<CupertinoTextThemeData>"
   /// }
   /// ```
   ///
@@ -2693,17 +2740,17 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "checkboxHorizontalMargin": <double>,
-  ///   "columnSpacing": <double>,
-  ///   "dataRowColor": <MaterialStateProperty<Color>>,
-  ///   "dataRowHeight": <double>,
-  ///   "dataTextStyle": <TextStyle,
-  ///   "decoration": <BoxDecoration>,
-  ///   "dividerThickness": <double>,
-  ///   "headingRowColor": <MaterialStateProperty<Color>>,
-  ///   "headingRowHeight": <double>,
-  ///   "headingTextStyle": <TextStyle>,
-  ///   "horizontalMargin": <double>
+  ///   "checkboxHorizontalMargin": "<double>",
+  ///   "columnSpacing": "<double>",
+  ///   "dataRowColor": "<MaterialStateProperty<Color>>",
+  ///   "dataRowHeight": "<double>",
+  ///   "dataTextStyle": "<TextStyle,
+  ///   "decoration": "<BoxDecoration>",
+  ///   "dividerThickness": "<double>",
+  ///   "headingRowColor": "<MaterialStateProperty<Color>>",
+  ///   "headingRowHeight": "<double>",
+  ///   "headingTextStyle": "<TextStyle>",
+  ///   "horizontalMargin": "<double>"
   /// }
   /// ```
   ///
@@ -2780,17 +2827,17 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "centerSlice": <Rect>,
-  ///   "filterQuality": <FilterQuality>,
-  ///   "fit": <BoxFit>,
-  ///   "image": <ImageProvider>,
-  ///   "invertColors": <bool>,
-  ///   "isAntiAlias": <bool>,
-  ///   "matchTextDirection": <bool>,
-  ///   "opacity": <double>,
-  ///   "repeat": <ImageRepeat>,
-  ///   "scale": <double>
+  ///   "alignment": "<Alignment>",
+  ///   "centerSlice": "<Rect>",
+  ///   "filterQuality": "<FilterQuality>",
+  ///   "fit": "<BoxFit>",
+  ///   "image": "<ImageProvider>",
+  ///   "invertColors": "<bool>",
+  ///   "isAntiAlias": "<bool>",
+  ///   "matchTextDirection": "<bool>",
+  ///   "opacity": "<double>",
+  ///   "repeat": "<ImageRepeat>",
+  ///   "scale": "<double>"
   /// }
   /// ```
   ///
@@ -2825,10 +2872,8 @@ class ThemeDecoder {
           value['centerSlice'],
           validate: false,
         ),
-        // @unencodable
-        // colorFilter
-        // @unencodable
-        // onError
+        // colorFilter: @unencodable
+        // onError: @unencodable
         fit: decodeBoxFit(
           value['fit'],
           validate: false,
@@ -2904,18 +2949,24 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "backgroundColor": <Color>,
-  ///   "contentTextStyle": <TextStyle>,
-  ///   "elevation": <double>,
-  ///   "shape": <ShapeBorder>,
-  ///   "titleTextStyle": <TextStyle>
+  ///   "actionsPadding": "<EdgeInsetsGeometry>",
+  ///   "alignment": "<Alignment>",
+  ///   "backgroundColor": "<Color>",
+  ///   "contentTextStyle": "<TextStyle>",
+  ///   "elevation": "<double>",
+  ///   "iconColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceColor": "<Color>",
+  ///   "titleTextStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeAlignment]
   ///  * [decodeBrightness]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static DialogTheme? decodeDialogTheme(
@@ -2933,6 +2984,10 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = DialogTheme(
+        actionsPadding: decodeEdgeInsetsGeometry(
+          value['actionsPadding'],
+          validate: false,
+        ),
         alignment: decodeAlignment(
           value['alignment'],
           validate: false,
@@ -2946,8 +3001,20 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
+        iconColor: decodeColor(
+          value['iconColor'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
         shape: decodeShapeBorder(
           value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
         titleTextStyle: decodeTextStyle(
@@ -2965,11 +3032,11 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "endIndent": <double>,
-  ///   "indent": <double>,
-  ///   "space": <double>,
-  ///   "thickness": <double>
+  ///   "color": "<Color>",
+  ///   "endIndent": "<double>",
+  ///   "indent": "<double>",
+  ///   "space": "<double>",
+  ///   "thickness": "<double>"
   /// }
   /// ```
   ///
@@ -3050,11 +3117,13 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "scrimColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "width": <double>
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "scrimColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -3086,8 +3155,16 @@ class ThemeDecoder {
           value['scrimColor'],
           validate: false,
         ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
         shape: decodeShapeBorder(
           value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
         width: JsonClass.parseDouble(value['width']),
@@ -3112,10 +3189,10 @@ class ThemeDecoder {
   /// Finally, this may be a Map-like structure in the following JSON format:
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
   /// }
   /// ```
   static EdgeInsetsGeometry? decodeEdgeInsetsGeometry(
@@ -3167,7 +3244,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "style": <ButtonStyle>
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -3203,22 +3280,27 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "childrenPadding": <EdgeInsetsGeometry>,
-  ///   "collapsedBackgroundColor": <Color>,
-  ///   "collapsedIconColor": <Color>,
-  ///   "collapsedTextColor": <Color>,
-  ///   "expandedAlignment": <AlignmentGeometry>,
-  ///   "iconColor": <Color>,
-  ///   "textColor": <Color>,
-  ///   "tilePadding": <EdgeInsetsGeometry>
+  ///   "backgroundColor": "<Color>",
+  ///   "childrenPadding": "<EdgeInsetsGeometry>",
+  ///   "clipBehavior": "<Color>",
+  ///   "collapsedBackgroundColor": "<Color>",
+  ///   "collapsedIconColor": "<Color>",
+  ///   "collapsedShape": "<ShapeBorder>",
+  ///   "collapsedTextColor": "<Color>",
+  ///   "expandedAlignment": "<AlignmentGeometry>",
+  ///   "iconColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "textColor": "<Color>",
+  ///   "tilePadding": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeAlignment]
+  ///  * [decodeClip]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeShapeBorder]
   static ExpansionTileThemeData? decodeExpansionTileThemeData(
     dynamic value, {
     bool validate = true,
@@ -3239,14 +3321,24 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        childrenPadding:
-            decodeEdgeInsetsGeometry(value['childrenPadding'], validate: false),
+        childrenPadding: decodeEdgeInsetsGeometry(
+          value['childrenPadding'],
+          validate: false,
+        ),
+        clipBehavior: decodeClip(
+          value['clipBehavior'],
+          validate: false,
+        ),
         collapsedBackgroundColor: decodeColor(
           value['collapsedBackgroundColor'],
           validate: false,
         ),
         collapsedIconColor: decodeColor(
           value['collapsedIconColor'],
+          validate: false,
+        ),
+        collapsedShape: decodeShapeBorder(
+          value['collapsedShape'],
           validate: false,
         ),
         collapsedTextColor: decodeColor(
@@ -3261,12 +3353,55 @@ class ThemeDecoder {
           value['iconColor'],
           validate: false,
         ),
+        shape: decodeShapeBorder(
+          value['shapeBorder'],
+          validate: false,
+        ),
         textColor: decodeColor(
           value['textColor'],
           validate: false,
         ),
-        tilePadding:
-            decodeEdgeInsetsGeometry(value['tilePadding'], validate: false),
+        tilePadding: decodeEdgeInsetsGeometry(
+          value['tilePadding'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [FilledButtonThemeData].  This expects
+  /// the given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<ButtonStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static FilledButtonThemeData? decodeFilledButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    FilledButtonThemeData? result;
+
+    if (value is FilledButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/filled_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = FilledButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
       );
     }
 
@@ -3551,31 +3686,33 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "disabledElevation": <double>,
-  ///   "elevation": <double>,
-  ///   "extendedIconLabelSpacing": <double>,
-  ///   "extendedPadding": <EdgeInsetsGeometry>,
-  ///   "extendedSizeConstraints": <BoxConstraints>,
-  ///   "extendedTextStyle": <TextStyle>
-  ///   "focusColor": <Color>,
-  ///   "focusElevation": <double>,
-  ///   "foregroundColor": <Color>,
-  ///   "highlightElevation": <double>,
-  ///   "hoverColor": <Color>,
-  ///   "hoverElevation": <double>,
-  ///   "iconSize": <double>,
-  ///   "largeSizeConstraints": <BoxConstraints>,
-  ///   "shape": <ShapeBorder>,
-  ///   "sizeConstraints": <BoxConstraints>,
-  ///   "smallSizeConstraints": <BoxConstraints>,
-  ///   "splashColor": <Color>
+  ///   "backgroundColor": "<Color>",
+  ///   "disabledElevation": "<double>",
+  ///   "elevation": "<double>",
+  ///   "extendedIconLabelSpacing": "<double>",
+  ///   "extendedPadding": "<EdgeInsetsGeometry>",
+  ///   "extendedSizeConstraints": "<BoxConstraints>",
+  ///   "extendedTextStyle": "<TextStyle>"
+  ///   "focusColor": "<Color>",
+  ///   "focusElevation": "<double>",
+  ///   "foregroundColor": "<Color>",
+  ///   "highlightElevation": "<double>",
+  ///   "hoverColor": "<Color>",
+  ///   "hoverElevation": "<double>",
+  ///   "iconSize": "<double>",
+  ///   "largeSizeConstraints": "<BoxConstraints>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "sizeConstraints": "<BoxConstraints>",
+  ///   "smallSizeConstraints": "<BoxConstraints>",
+  ///   "splashColor": "<Color>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static FloatingActionButtonThemeData? decodeFloatingActionButtonThemeData(
@@ -3628,6 +3765,11 @@ class ThemeDecoder {
         iconSize: JsonClass.parseDouble(value['iconSize']),
         largeSizeConstraints: decodeBoxConstraints(
           value['largeSizeConstraints'],
+          validate: false,
+        ),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
         ),
         shape: decodeShapeBorder(
           value['shape'],
@@ -3745,8 +3887,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "feature": <String>,
-  ///   "value": <int>
+  ///   "feature": "<String>",
+  ///   "value": "<int>"
   /// }
   /// ```
   static FontFeature? decodeFontFeature(
@@ -3910,6 +4052,39 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] into a [FontVariation].  If the value is `null`
+  /// then `null` will be returned.
+  ///
+  /// This expects the format:
+  /// ```json
+  /// {
+  ///   "axis": "<String>",
+  ///   "value": "<double>"
+  /// }
+  /// ```
+  static FontVariation? decodeFontVariation(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    FontVariation? result;
+
+    if (value is FontVariation) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/font_variation',
+        value: value,
+        validate: validate,
+      ));
+      result = FontVariation(
+        value['axis'],
+        JsonClass.parseDouble(value['value'])!,
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] into a [Gradient].  If the value is `null`
   /// then `null` will be returned.
   ///
@@ -3925,42 +4100,42 @@ class ThemeDecoder {
   /// Type: `linear`
   /// ```json
   /// {
-  ///   "begin": <Alignment>,
-  ///   "colors": <Color[]>,
-  ///   "end": <Alignment>,
-  ///   "stops": <double[]>,
-  ///   "tileMode": <TileMode>,
-  ///   "transform": <GradientTransform>
-  ///   "type": "linear",
+  ///   "begin": "<Alignment>",
+  ///   "colors": "<Color[]>",
+  ///   "end": "<Alignment>",
+  ///   "stops": "<double[]>",
+  ///   "tileMode": "<TileMode>",
+  ///   "transform": "<GradientTransform>",
+  ///   "type": "linear"
   /// }
   /// ```
   ///
   /// Type: `radial`
   /// ```json
   /// {
-  ///   "center": <Alignment>,
-  ///   "colors": <Color[]>,
-  ///   "focal": <Alignment>,
-  ///   "focalRadius": <double>,
-  ///   "radius": <double>,
-  ///   "stops": <double[]>,
-  ///   "tileMode": <TileMode>,
-  ///   "transform": <GradientTransform>
-  ///   "type": "radial",
+  ///   "center": "<Alignment>",
+  ///   "colors": "<Color[]>",
+  ///   "focal": "<Alignment>",
+  ///   "focalRadius": "<double>",
+  ///   "radius": "<double>",
+  ///   "stops": "<double[]>",
+  ///   "tileMode": "<TileMode>",
+  ///   "transform": "<GradientTransform>",
+  ///   "type": "radial"
   /// }
   /// ```
   ///
   /// Type: `sweep`
   /// ```json
   /// {
-  ///   "center": <Alignment>,
-  ///   "colors": <Color[]>,
-  ///   "endAngle": <double>,
-  ///   "startAngle": <double>,
-  ///   "stops": <double[]>,
-  ///   "tileMode": <TileMode>,
-  ///   "transform": <GradientTransform>
-  ///   "type": "sweep",
+  ///   "center": "<Alignment>",
+  ///   "colors": "<Color[]>",
+  ///   "endAngle": "<double>",
+  ///   "startAngle": "<double>",
+  ///   "stops": "<double[]>",
+  ///   "tileMode": "<TileMode>",
+  ///   "transform": "<GradientTransform>",
+  ///   "type": "sweep"
   /// }
   /// ```
   ///
@@ -4112,7 +4287,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "radians": <double>
+  ///   "radians": "<double>"
   /// }
   /// ```
   static GradientTransform? decodeGradientTransform(
@@ -4189,10 +4364,110 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "codePoint": <int>,
-  ///   "fontFamily": <String>,
-  ///   "fontPackage": <String>,
-  ///   "matchTextDirection": <bool>
+  ///   "color": "<Color>",
+  ///   "fill": "<double>",
+  ///   "grade": "<double>",
+  ///   "icon": "<IconData>",
+  ///   "opticalSize": "<double>",
+  ///   "semanticLabel": "<String>",
+  ///   "shadows": "<List<Shadow>>",
+  ///   "size": "<double>",
+  ///   "textDirection": "<TextDirection>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeIconData]
+  ///  * [decodeShadow]
+  ///  * [decodeTextDirection]
+  static Icon? decodeIcon(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    Icon? result;
+
+    if (value is Icon) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/icon',
+        value: value,
+        validate: validate,
+      ));
+      result = Icon(
+        decodeIconData(value['icon'], validate: false)!,
+        color: ThemeDecoder.decodeColor(
+          value['color'],
+          validate: false,
+        ),
+        fill: JsonClass.parseDouble(value['fill']),
+        grade: JsonClass.parseDouble(value['grade']),
+        opticalSize: JsonClass.parseDouble(value['opticalSize']),
+        semanticLabel: value['semanticLabel'],
+        shadows: JsonClass.fromDynamicList(
+          value['shadows'],
+          (map) => ThemeDecoder.decodeShadow(
+            map,
+            validate: false,
+          )!,
+        ),
+        size: JsonClass.parseDouble(value['size']),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          value['textDirection'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [IconButtonThemeData].  This
+  /// expects the given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<ButtonStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static IconButtonThemeData? decodeIconButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    IconButtonThemeData? result;
+
+    if (value is IconButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/icon_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = IconButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into an [IconData].  If the value is `null` then
+  /// `null` will be returned.
+  ///
+  /// ```json
+  /// {
+  ///   "codePoint": "<int>",
+  ///   "fontFamily": "<String>",
+  ///   "fontPackage": "<String>",
+  ///   "matchTextDirection": "<bool>"
   /// }
   /// ```
   static IconData? decodeIconData(
@@ -4225,10 +4500,14 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "opacity": <double>,
-  ///   "shadows": <List<Shadow>>,
-  ///   "size": <double>
+  ///   "color": "<Color>",
+  ///   "fill": "<Color>",
+  ///   "grade": "<double>",
+  ///   "opacity": "<double>",
+  ///   "opticalSize": "<double>",
+  ///   "shadows": "<List<Shadow>>",
+  ///   "size": "<double>",
+  ///   "weight": "<double>"
   /// }
   /// ```
   ///
@@ -4253,12 +4532,16 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
+        fill: JsonClass.parseDouble(value['fill']),
+        grade: JsonClass.parseDouble(value['grade']),
         opacity: JsonClass.parseDouble(value['opacity']),
+        opticalSize: JsonClass.parseDouble(value['opticalSize']),
         shadows: JsonClass.fromDynamicList(
           value['shadows'],
           (map) => decodeShadow(map)!,
         ),
         size: JsonClass.parseDouble(value['size']),
+        weight: JsonClass.parseDouble(value['weight']),
       );
     }
 
@@ -4276,8 +4559,8 @@ class ThemeDecoder {
   /// Type: `asset`
   /// ```json
   /// {
-  ///   "assetName": <String>,
-  ///   "package": <String>,
+  ///   "assetName": "<String>",
+  ///   "package": "<String>",
   ///   "type": "asset"
   /// }
   /// ```
@@ -4285,8 +4568,8 @@ class ThemeDecoder {
   /// Type: `memory`
   /// ```json
   /// {
-  ///   "bytes": <String>,
-  ///   "scale": <double>,
+  ///   "bytes": "<String>",
+  ///   "scale": "<double>",
   ///   "type": "memory"
   /// }
   /// ```
@@ -4294,10 +4577,10 @@ class ThemeDecoder {
   /// Type: `network`
   /// ```json
   /// {
-  ///   "headers": <Map<String, String>>,
+  ///   "headers": "<Map<String, String>>",
   ///   "type": "network",
-  ///   "scale": <double>,
-  ///   "url": <String>
+  ///   "scale": "<double>",
+  ///   "url": "<String>"
   /// }
   /// ```
   static ImageProvider? decodeImageProvider(
@@ -4412,17 +4695,17 @@ class ThemeDecoder {
   /// Type: `outline`
   /// ```json
   /// {
-  ///   borderRadius: <BorderRadius>,
-  ///   borderSide: <BorderSide>,
-  ///   gapPadding: <double>
+  ///   borderRadius: <BorderRadius>",
+  ///   borderSide: <BorderSide>",
+  ///   gapPadding: <double>"
   /// }
   /// ```
   ///
   /// Type: `underline`
   /// ```json
   /// {
-  ///   borderRadius: <BorderRadius>,
-  ///   borderSide: <BorderSide>
+  ///   borderRadius: <BorderRadius>",
+  ///   borderSide: <BorderSide>"
   /// }
   /// ```
   ///
@@ -4501,40 +4784,43 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "alignLabelWithHint": <bool>,
-  ///   "border": <InputBorder>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "contentPadding": <EdgeInsetsGeometry>,
-  ///   "counterStyle": <TextStyle>,
-  ///   "disabledBorder": <InputBorder>,
-  ///   "enabledBorder": <InputBorder>,
-  ///   "errorBorder": <InputBorder>,
-  ///   "errorMaxLines": <int>,
-  ///   "errorStyle": <TextStyle>,
-  ///   "fillColor": <Color>,
-  ///   "filled": <bool>,
-  ///   "floatingLabelAlignment": <FloatingLabelAlignment>,
-  ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
-  ///   "floatingLabelStyle": <TextStyle>,
-  ///   "focusColor": <Color>,
-  ///   "focusedBorder": <InputBorder>,
-  ///   "focusedErrorBorder": <InputBorder>,
-  ///   "helperMaxLines": <int>,
-  ///   "helperStyle": <TextStyle>,
-  ///   "hintStyle": <TextStyle>,
-  ///   "hoverColor": <Color>,
-  ///   "iconColor": <Color>,
-  ///   "isCollapsed": <bool>,
-  ///   "isDense": <bool>,
-  ///   "labelStyle": <TextStyle>,
-  ///   "prefixIconColor": <Color>,
-  ///   "prefixStyle": <TextStyle>,
-  ///   "suffixStyle": <Color>,
-  ///   "suffixStyle": <TextStyle>
+  ///   "activeIndicatorBorder": "<BorderSide>",
+  ///   "alignLabelWithHint": "<bool>",
+  ///   "border": "<InputBorder>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "contentPadding": "<EdgeInsetsGeometry>",
+  ///   "counterStyle": "<TextStyle>",
+  ///   "disabledBorder": "<InputBorder>",
+  ///   "enabledBorder": "<InputBorder>",
+  ///   "errorBorder": "<InputBorder>",
+  ///   "errorMaxLines": "<int>",
+  ///   "errorStyle": "<TextStyle>",
+  ///   "fillColor": "<Color>",
+  ///   "filled": "<bool>",
+  ///   "floatingLabelAlignment": "<FloatingLabelAlignment>",
+  ///   "floatingLabelBehavior": "<FloatingLabelBehavior>",
+  ///   "floatingLabelStyle": "<TextStyle>",
+  ///   "focusColor": "<Color>",
+  ///   "focusedBorder": "<InputBorder>",
+  ///   "focusedErrorBorder": "<InputBorder>",
+  ///   "helperMaxLines": "<int>",
+  ///   "helperStyle": "<TextStyle>",
+  ///   "hintStyle": "<TextStyle>",
+  ///   "hoverColor": "<Color>",
+  ///   "iconColor": "<Color>",
+  ///   "isCollapsed": "<bool>",
+  ///   "isDense": "<bool>",
+  ///   "labelStyle": "<TextStyle>",
+  ///   "outlineBorder": "<BorderSide>",
+  ///   "prefixIconColor": "<Color>",
+  ///   "prefixStyle": "<TextStyle>",
+  ///   "suffixStyle": "<Color>",
+  ///   "suffixStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [decodeBorderSide]
   ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
@@ -4556,6 +4842,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = InputDecorationTheme(
+        activeIndicatorBorder: decodeBorderSide(value['activeIndicatorBorder']),
         alignLabelWithHint: JsonClass.parseBool(value['alignLabelWithHint']),
         border: decodeInputBorder(
           value['border'],
@@ -4639,6 +4926,10 @@ class ThemeDecoder {
         isDense: JsonClass.parseBool(value['isDense']),
         labelStyle: decodeTextStyle(
           value['labelStyle'],
+          validate: false,
+        ),
+        outlineBorder: decodeBorderSide(
+          value['outlineBorder'],
           validate: false,
         ),
         prefixIconColor: decodeColor(
@@ -4757,21 +5048,21 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "contentPadding": <EdgeInsetsGeometry>,
-  ///   "dense": <bool>,
-  ///   "enableFeedback": <bool>,
-  ///   "horizontalTitleGap": <double>,
-  ///   "iconColor": <Color>,
-  ///   "minLeadingWidth": <double>,
-  ///   "minVerticalPadding": <double>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "selectedColor": <Color>,
-  ///   "selectedTileColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "style": <ListTileStyle>,
-  ///   "textColor": <Color>,
-  ///   "tileColor": <Color>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "contentPadding": "<EdgeInsetsGeometry>",
+  ///   "dense": "<bool>",
+  ///   "enableFeedback": "<bool>",
+  ///   "horizontalTitleGap": "<double>",
+  ///   "iconColor": "<Color>",
+  ///   "minLeadingWidth": "<double>",
+  ///   "minVerticalPadding": "<double>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "selectedColor": "<Color>",
+  ///   "selectedTileColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "style": "<ListTileStyle>",
+  ///   "textColor": "<Color>",
+  ///   "tileColor": "<Color>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   static ListTileThemeData? decodeListTileThemeData(
@@ -4849,8 +5140,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "countryCode": <String>,
-  ///   "languageCode": <String>
+  ///   "countryCode": "<String>",
+  ///   "languageCode": "<String>"
   /// }
   /// ```
   static Locale? decodeLocale(
@@ -4980,11 +5271,14 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "contentTextStyle": <TextStyle>,
-  ///   "elevation": <double>,
-  ///   "leadingPadding": <EdgeInsetsGeometry>,
-  ///   "padding": <EdgeInsetsGeometry>
+  ///   "backgroundColor": "<Color>",
+  ///   "contentTextStyle": "<TextStyle>",
+  ///   "dividerColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "leadingPadding": "<EdgeInsetsGeometry>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -5015,6 +5309,10 @@ class ThemeDecoder {
           value['contentTextStyle'],
           validate: false,
         ),
+        dividerColor: decodeColor(
+          value['dividerColor'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(value['elevation']),
         leadingPadding: decodeEdgeInsetsGeometry(
           value['leadingPadding'],
@@ -5022,6 +5320,14 @@ class ThemeDecoder {
         ),
         padding: decodeEdgeInsetsGeometry(
           value['padding'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
       );
@@ -5035,8 +5341,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "primary": <Color>,
-  ///   "swatches": <Map<String, Color>
+  ///   "primary": "<Color>",
+  ///   "swatches": "<Map<String, Color>"
   /// }
   /// ```
   ///
@@ -5081,15 +5387,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <bool>,
-  ///   "dragged": <bool>,
-  ///   "empty": <bool>,
-  ///   "error": <bool>,
-  ///   "focused": <bool>,
-  ///   "hovered": <bool>,
-  ///   "pressed": <bool>,
-  ///   "scrolledUnder": <bool>,
-  ///   "selected": <bool>
+  ///   "disabled": "<bool>",
+  ///   "dragged": "<bool>",
+  ///   "empty": "<bool>",
+  ///   "error": "<bool>",
+  ///   "focused": "<bool>",
+  ///   "hovered": "<bool>",
+  ///   "pressed": "<bool>",
+  ///   "scrolledUnder": "<bool>",
+  ///   "selected": "<bool>"
   /// }
   /// ```
   static MaterialStateProperty<bool?>? decodeMaterialStatePropertyBool(
@@ -5168,15 +5474,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <BorderSide>,
-  ///   "dragged": <BorderSide>,
-  ///   "empty": <BorderSide>,
-  ///   "error": <BorderSide>,
-  ///   "focused": <BorderSide>,
-  ///   "hovered": <BorderSide>,
-  ///   "pressed": <BorderSide>,
-  ///   "scrolledUnder": <BorderSide>,
-  ///   "selected": <BorderSide>
+  ///   "disabled": "<BorderSide>",
+  ///   "dragged": "<BorderSide>",
+  ///   "empty": "<BorderSide>",
+  ///   "error": "<BorderSide>",
+  ///   "focused": "<BorderSide>",
+  ///   "hovered": "<BorderSide>",
+  ///   "pressed": "<BorderSide>",
+  ///   "scrolledUnder": "<BorderSide>",
+  ///   "selected": "<BorderSide>"
   /// }
   /// ```
   ///
@@ -5270,15 +5576,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <Color>,
-  ///   "dragged": <Color>,
-  ///   "empty": <Color>,
-  ///   "error": <Color>,
-  ///   "focused": <Color>,
-  ///   "hovered": <Color>,
-  ///   "pressed": <Color>,
-  ///   "scrolledUnder": <Color>,
-  ///   "selected": <Color>
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
   /// }
   /// ```
   ///
@@ -5343,15 +5649,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <double>,
-  ///   "dragged": <double>,
-  ///   "empty": <double>,
-  ///   "error": <double>,
-  ///   "focused": <double>,
-  ///   "hovered": <double>,
-  ///   "pressed": <double>,
-  ///   "scrolledUnder": <double>,
-  ///   "selected": <double>
+  ///   "disabled": "<double>",
+  ///   "dragged": "<double>",
+  ///   "empty": "<double>",
+  ///   "error": "<double>",
+  ///   "focused": "<double>",
+  ///   "hovered": "<double>",
+  ///   "pressed": "<double>",
+  ///   "scrolledUnder": "<double>",
+  ///   "selected": "<double>"
   /// }
   /// ```
   static MaterialStateProperty<double?>? decodeMaterialStatePropertyDouble(
@@ -5425,10 +5731,10 @@ class ThemeDecoder {
   /// The value may be a [Map] in the following format:
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
   /// }
   /// ```
   ///
@@ -5436,15 +5742,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <EdgeInsetsGeometry>,
-  ///   "dragged": <EdgeInsetsGeometry>,
-  ///   "empty": <EdgeInsetsGeometry>,
-  ///   "error": <EdgeInsetsGeometry>,
-  ///   "focused": <EdgeInsetsGeometry>,
-  ///   "hovered": <EdgeInsetsGeometry>,
-  ///   "pressed": <EdgeInsetsGeometry>,
-  ///   "scrolledUnder": <EdgeInsetsGeometry>,
-  ///   "selected": <EdgeInsetsGeometry>
+  ///   "disabled": "<EdgeInsetsGeometry>",
+  ///   "dragged": "<EdgeInsetsGeometry>",
+  ///   "empty": "<EdgeInsetsGeometry>",
+  ///   "error": "<EdgeInsetsGeometry>",
+  ///   "focused": "<EdgeInsetsGeometry>",
+  ///   "hovered": "<EdgeInsetsGeometry>",
+  ///   "pressed": "<EdgeInsetsGeometry>",
+  ///   "scrolledUnder": "<EdgeInsetsGeometry>",
+  ///   "selected": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///
@@ -5531,6 +5837,106 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a [value] into a [Icon] based [MaterialStateProperty].  This
+  /// accepts a [Icon] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Icon>",
+  ///   "dragged": "<Icon>",
+  ///   "empty": "<Icon>",
+  ///   "error": "<Icon>",
+  ///   "focused": "<Icon>",
+  ///   "hovered": "<Icon>",
+  ///   "pressed": "<Icon>",
+  ///   "scrolledUnder": "<Icon>",
+  ///   "selected": "<Icon>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeIconData]
+  static MaterialStateProperty<Icon?>? decodeMaterialStatePropertyIcon(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MaterialStateProperty<Icon?>? result;
+
+    if (value is MaterialStateProperty<Icon?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is Icon) {
+        result = MaterialStateProperty.all<Icon?>(value);
+      } else if (value is IconData) {
+        result = MaterialStateProperty.all<Icon?>(Icon(value));
+      } else if (value is Map) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/material_state_property_icon',
+          value: value,
+          validate: validate,
+        ));
+
+        result = MaterialStateProperty.resolveWith((states) {
+          Icon? result;
+          if (states.contains(MaterialState.disabled)) {
+            result = decodeIcon(
+              value['disabled'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.dragged)) {
+            result = decodeIcon(
+              value['dragged'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.error)) {
+            result = decodeIcon(
+              value['error'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.focused)) {
+            result = decodeIcon(
+              value['focused'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.pressed)) {
+            result = decodeIcon(
+              value['pressed'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.hovered)) {
+            result = decodeIcon(
+              value['hovered'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.scrolledUnder)) {
+            result = decodeIcon(
+              value['scrolledUnder'],
+              validate: false,
+            );
+          } else if (states.contains(MaterialState.selected)) {
+            result = decodeIcon(
+              value['selected'],
+              validate: false,
+            );
+          } else {
+            result = decodeIcon(
+              value['empty'],
+              validate: false,
+            );
+          }
+
+          return result;
+        });
+      } else {
+        result = MaterialStateProperty.all<Icon?>(value);
+      }
+    }
+    return result;
+  }
+
   /// Decodes a [value] into a [IconThemeData] based [MaterialStateProperty].
   /// This accepts a [IconThemeData] or a [String] which will be resolved for
   /// all states.
@@ -5540,15 +5946,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <IconThemeData>,
-  ///   "dragged": <IconThemeData>,
-  ///   "empty": <IconThemeData>,
-  ///   "error": <IconThemeData>,
-  ///   "focused": <IconThemeData>,
-  ///   "hovered": <IconThemeData>,
-  ///   "pressed": <IconThemeData>,
-  ///   "scrolledUnder": <IconThemeData>,
-  ///   "selected": <IconThemeData>
+  ///   "disabled": "<IconThemeData>",
+  ///   "dragged": "<IconThemeData>",
+  ///   "empty": "<IconThemeData>",
+  ///   "error": "<IconThemeData>",
+  ///   "focused": "<IconThemeData>",
+  ///   "hovered": "<IconThemeData>",
+  ///   "pressed": "<IconThemeData>",
+  ///   "scrolledUnder": "<IconThemeData>",
+  ///   "selected": "<IconThemeData>"
   /// }
   /// ```
   ///
@@ -5643,15 +6049,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <MouseCursor>,
-  ///   "dragged": <MouseCursor>,
-  ///   "empty": <MouseCursor>,
-  ///   "error": <MouseCursor>,
-  ///   "focused": <MouseCursor>,
-  ///   "hovered": <MouseCursor>,
-  ///   "pressed": <MouseCursor>,
-  ///   "scrolledUnder": <MouseCursor>,
-  ///   "selected": <MouseCursor>
+  ///   "disabled": "<MouseCursor>",
+  ///   "dragged": "<MouseCursor>",
+  ///   "empty": "<MouseCursor>",
+  ///   "error": "<MouseCursor>",
+  ///   "focused": "<MouseCursor>",
+  ///   "hovered": "<MouseCursor>",
+  ///   "pressed": "<MouseCursor>",
+  ///   "scrolledUnder": "<MouseCursor>",
+  ///   "selected": "<MouseCursor>"
   /// }
   /// ```
   ///
@@ -5745,15 +6151,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <OutlinedBorder>,
-  ///   "dragged": <OutlinedBorder>,
-  ///   "empty": <OutlinedBorder>,
-  ///   "error": <OutlinedBorder>,
-  ///   "focused": <OutlinedBorder>,
-  ///   "hovered": <OutlinedBorder>,
-  ///   "pressed": <OutlinedBorder>,
-  ///   "scrolledUnder": <OutlinedBorder>,
-  ///   "selected": <OutlinedBorder>
+  ///   "disabled": "<OutlinedBorder>",
+  ///   "dragged": "<OutlinedBorder>",
+  ///   "empty": "<OutlinedBorder>",
+  ///   "error": "<OutlinedBorder>",
+  ///   "focused": "<OutlinedBorder>",
+  ///   "hovered": "<OutlinedBorder>",
+  ///   "pressed": "<OutlinedBorder>",
+  ///   "scrolledUnder": "<OutlinedBorder>",
+  ///   "selected": "<OutlinedBorder>"
   /// }
   /// ```
   ///
@@ -5847,15 +6253,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <Size>,
-  ///   "dragged": <Size>,
-  ///   "empty": <Size>,
-  ///   "error": <Size>,
-  ///   "focused": <Size>,
-  ///   "hovered": <Size>,
-  ///   "pressed": <Size>,
-  ///   "scrolledUnder": <Size>,
-  ///   "selected": <Size>
+  ///   "disabled": "<Size>",
+  ///   "dragged": "<Size>",
+  ///   "empty": "<Size>",
+  ///   "error": "<Size>",
+  ///   "focused": "<Size>",
+  ///   "hovered": "<Size>",
+  ///   "pressed": "<Size>",
+  ///   "scrolledUnder": "<Size>",
+  ///   "selected": "<Size>"
   /// }
   /// ```
   ///
@@ -5944,15 +6350,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <TextStyle>,
-  ///   "dragged": <TextStyle>,
-  ///   "empty": <TextStyle>,
-  ///   "error": <TextStyle>,
-  ///   "focused": <TextStyle>,
-  ///   "hovered": <TextStyle>,
-  ///   "pressed": <TextStyle>,
-  ///   "scrolledUnder": <TextStyle>,
-  ///   "selected": <TextStyle>
+  ///   "disabled": "<TextStyle>",
+  ///   "dragged": "<TextStyle>",
+  ///   "empty": "<TextStyle>",
+  ///   "error": "<TextStyle>",
+  ///   "focused": "<TextStyle>",
+  ///   "hovered": "<TextStyle>",
+  ///   "pressed": "<TextStyle>",
+  ///   "scrolledUnder": "<TextStyle>",
+  ///   "selected": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -6234,6 +6640,218 @@ class ThemeDecoder {
             break;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [MenuBarThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<MenuStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeMenuStyle]
+  static MenuBarThemeData? decodeMenuBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MenuBarThemeData? result;
+
+    if (value is MenuBarThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/menu_bar_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = MenuBarThemeData(
+        style: decodeMenuStyle(
+          value,
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [MenuButtonThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<ButtonStyle>",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  static MenuButtonThemeData? decodeMenuButtonThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MenuButtonThemeData? result;
+
+    if (value is MenuButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/menu_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = MenuButtonThemeData(
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [MenuStyle].  This expects the given
+  /// [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": "<Alignment>",
+  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "fixedSize": "<MaterialStateProperty<Size>>",
+  ///   "maximumSize": "<MaterialStateProperty<Size>>",
+  ///   "minimumSize": "<MaterialStateProperty<Size>>",
+  ///   "padding": "<MaterialStateProperty<EdgeInsets>>",
+  ///   "shadowColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<MaterialStateProperty<OutlinedBorder>>",
+  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "visualDensity": "<VisualDensity>",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeAlignment]
+  ///  * [decodeMaterialStatePropertyBorderSide]
+  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeMaterialStatePropertyDouble]
+  ///  * [decodeMaterialStatePropertyEdgeInsetsGeometry]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeMaterialStatePropertySize]
+  ///  * [decodeVisualDensity]
+  static MenuStyle? decodeMenuStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MenuStyle? result;
+
+    if (value is MenuStyle) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/menu_style',
+        value: value,
+        validate: validate,
+      ));
+
+      result = MenuStyle(
+        alignment: decodeAlignment(
+          value['alignment'],
+          validate: false,
+        ),
+        backgroundColor: decodeMaterialStatePropertyColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        elevation: decodeMaterialStatePropertyDouble(
+          value['elevation'],
+          validate: false,
+        ),
+        fixedSize: decodeMaterialStatePropertySize(value['fixedSize'],
+            validate: false),
+        maximumSize: decodeMaterialStatePropertySize(
+          value['maximumSize'],
+          validate: false,
+        ),
+        minimumSize: decodeMaterialStatePropertySize(
+          value['minimumSize'],
+          validate: false,
+        ),
+        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+          value['mouseCursor'],
+          validate: false,
+        ),
+        padding: decodeMaterialStatePropertyEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
+        shadowColor: decodeMaterialStatePropertyColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        shape: decodeMaterialStatePropertyOutlinedBorder(
+          value['shape'],
+          validate: false,
+        ),
+        side: decodeMaterialStatePropertyBorderSide(
+          value['side'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeMaterialStatePropertyColor(
+          value['surfaceTintColor'],
+          validate: false,
+        ),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [MenuThemeData].  This expects the given
+  /// [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<MenuStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeMenuStyle]
+  static MenuThemeData? decodeMenuThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MenuThemeData? result;
+
+    if (value is MenuThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/menu_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = MenuThemeData(
+        style: decodeMenuStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
     }
 
     return result;
@@ -6541,14 +7159,16 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "height": <double>,
-  ///   "iconTheme": <MaterialStateProperty<IconThemeData>>,
-  ///   "indicatorColor": <Color>,
-  ///   "indicatorShape": <ShapeBorder>,
-  ///   "labelBehavior": <NavigationDestinationLabelBehavior>,
-  ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "height": "<double>",
+  ///   "iconTheme": "<MaterialStateProperty<IconThemeData>>",
+  ///   "indicatorColor": "<Color>",
+  ///   "indicatorShape": "<ShapeBorder>",
+  ///   "labelBehavior": "<NavigationDestinationLabelBehavior>",
+  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -6596,6 +7216,14 @@ class ThemeDecoder {
         ),
         labelTextStyle: decodeMaterialStatePropertyTextStyle(
           value['labelTextStyle'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
       );
@@ -6699,18 +7327,18 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "groupAlignment": <double>,
-  ///   "indicatorColor": <Color>,
-  ///   "labelType": <NavigationRailLabelType>,
-  ///   "minExtendedWidth": <double>,
-  ///   "minWidth": <double>,
-  ///   "selectedIconTheme": <IconThemeData>,
-  ///   "selectedLabelTextStyle": <TextStyle>,
-  ///   "unselectedIconTheme": <IconThemeData>,
-  ///   "unselectedLabelTextStyle": <TextStyle>,
-  ///   "useIndicator": <bool>
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "groupAlignment": "<double>",
+  ///   "indicatorColor": "<Color>",
+  ///   "labelType": "<NavigationRailLabelType>",
+  ///   "minExtendedWidth": "<double>",
+  ///   "minWidth": "<double>",
+  ///   "selectedIconTheme": "<IconThemeData>",
+  ///   "selectedLabelTextStyle": "<TextStyle>",
+  ///   "unselectedIconTheme": "<IconThemeData>",
+  ///   "unselectedLabelTextStyle": "<TextStyle>",
+  ///   "useIndicator": "<bool>"
   /// }
   /// ```
   ///
@@ -6814,8 +7442,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "dx": <double>,
-  ///   "dy": <double>
+  ///   "dx": "<double>",
+  ///   "dy": "<double>"
   /// }
   /// ```
   static Offset? decodeOffset(
@@ -6846,8 +7474,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "name": <String>,
-  ///   "order": <double>
+  ///   "name": "<String>",
+  ///   "order": "<double>"
   /// }
   /// ```
   static OrdinalSortKey? decodeOrdinalSortKey(
@@ -6888,8 +7516,8 @@ class ThemeDecoder {
   /// `BeveledRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "beveled"
   /// }
   /// ```
@@ -6897,7 +7525,7 @@ class ThemeDecoder {
   /// `CircleBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "circle"
   /// }
   /// ```
@@ -6905,8 +7533,8 @@ class ThemeDecoder {
   /// `ContinuousRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rectangle"
   /// }
   /// ```
@@ -6914,8 +7542,8 @@ class ThemeDecoder {
   /// `RoundedRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rounded"
   /// }
   /// ```
@@ -6923,7 +7551,7 @@ class ThemeDecoder {
   /// `StadiumBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "stadium"
   /// }
   ///
@@ -7036,7 +7664,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "style": <ButtonStyle>
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -7124,7 +7752,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "builders": <Map<TargetPlatform, PageTransitionBuilder>>
+  ///   "builders": "<Map<TargetPlatform, PageTransitionBuilder>>"
   /// }
   /// ```
   ///
@@ -7208,18 +7836,24 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "enableFeedback": <bool>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "shape": <ShapeBorder>,
-  ///   "textStyle": <TextStyle>
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "enableFeedback": "<bool>",
+  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "position": "<PopupMenuPosition>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodePopupMenuPosition]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static PopupMenuThemeData? decodePopupMenuThemeData(
@@ -7245,12 +7879,28 @@ class ThemeDecoder {
         enableFeedback: value['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
+        labelTextStyle: decodeMaterialStatePropertyTextStyle(
+          value['labelTextStyle'],
+          validate: false,
+        ),
         mouseCursor: decodeMaterialStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
+        position: decodePopupMenuPosition(
+          value['position'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
         shape: decodeShapeBorder(
           value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
           validate: false,
         ),
         textStyle: decodeTextStyle(
@@ -7268,11 +7918,11 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "circularTrackColor": <Color>,
-  ///   "color": <Color>,
-  ///   "linearMinHeight": <double>,
-  ///   "linearTrackColor": <Color>,
-  ///   "refreshBackgroundColor": <Color>
+  ///   "circularTrackColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "linearMinHeight": "<double>",
+  ///   "linearTrackColor": "<Color>",
+  ///   "refreshBackgroundColor": "<Color>"
   /// }
   /// ```
   ///
@@ -7294,11 +7944,23 @@ class ThemeDecoder {
       ));
 
       result = ProgressIndicatorThemeData(
-        circularTrackColor: decodeColor(value['circularTrackColor']),
-        color: decodeColor(value['color']),
+        circularTrackColor: decodeColor(
+          value['circularTrackColor'],
+          validate: false,
+        ),
+        color: decodeColor(
+          value['color'],
+          validate: false,
+        ),
         linearMinHeight: JsonClass.parseDouble(value['linearMinHeight']),
-        linearTrackColor: decodeColor(value['linearTrackColor']),
-        refreshBackgroundColor: decodeColor(value['refreshBackgroundColor']),
+        linearTrackColor: decodeColor(
+          value['linearTrackColor'],
+          validate: false,
+        ),
+        refreshBackgroundColor: decodeColor(
+          value['refreshBackgroundColor'],
+          validate: false,
+        ),
       );
     }
 
@@ -7310,12 +7972,12 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "fillColor": <MaterialStateProperty<Color>>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "splashRadius": <double>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "splashRadius": "<double>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -7385,7 +8047,7 @@ class ThemeDecoder {
   /// Type: `circular`
   /// ```json
   /// {
-  ///   "radius": <double>,
+  ///   "radius": "<double>",
   ///   "type": "circular"
   /// }
   /// ```
@@ -7394,8 +8056,8 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///  "type": "elliptical",
-  ///   "x": <double>,
-  ///   "y": <double>
+  ///   "x": "<double>",
+  ///   "y": "<double>"
   /// }
   /// ```
   ///
@@ -7444,8 +8106,8 @@ class ThemeDecoder {
 
             case 'elliptical':
               result = Radius.elliptical(
-                JsonClass.parseDouble(value['x'], 0)!,
-                JsonClass.parseDouble(value['y'], 0)!,
+                JsonClass.parseDouble(value['x']) ?? 0.0,
+                JsonClass.parseDouble(value['y']) ?? 0.0,
               );
               break;
 
@@ -7469,10 +8131,10 @@ class ThemeDecoder {
   /// Type: `round`
   /// ```json
   /// {
-  ///   "disabledThumbRadius": <double>,
-  ///   "enabledThumbRadius": <double>,
-  ///   "elevation": <double>,
-  ///   "pressedElevation": <double>,
+  ///   "disabledThumbRadius": "<double>",
+  ///   "enabledThumbRadius": "<double>",
+  ///   "elevation": "<double>",
+  ///   "pressedElevation": "<double>",
   ///   "type": "round"
   /// }
   /// ```
@@ -7507,15 +8169,15 @@ class ThemeDecoder {
               disabledThumbRadius: JsonClass.parseDouble(
                 value['disabledThumbRadius'],
               ),
-              elevation: JsonClass.parseDouble(value['elevation'], 1.0)!,
+              elevation: JsonClass.parseDouble(value['elevation']) ?? 1.0,
               enabledThumbRadius: JsonClass.parseDouble(
-                value['enabledThumbRadius'],
-                10.0,
-              )!,
+                    value['enabledThumbRadius'],
+                  ) ??
+                  10.0,
               pressedElevation: JsonClass.parseDouble(
-                value['pressedElevation'],
-                6.0,
-              )!,
+                    value['pressedElevation'],
+                  ) ??
+                  6.0,
             );
             break;
         }
@@ -7534,7 +8196,7 @@ class ThemeDecoder {
   /// Type: `round`
   /// ```json
   /// {
-  ///   "tickMarkRadius": <double>,
+  ///   "tickMarkRadius": "<double>",
   ///   "type": "round"
   /// }
   /// ```
@@ -7674,11 +8336,11 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "center": {
-  ///     "dx": <double>,
-  ///     "dy": <double>
+  ///     "dx": "<double>",
+  ///     "dy": "<double>"
   ///   },
-  ///   "height": <double>,
-  ///   "width": <double>,
+  ///   "height": "<double>",
+  ///   "width": "<double>",
   ///   "type": "center"
   /// }
   /// ```
@@ -7687,10 +8349,10 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "center": {
-  ///     "dx": <double>,
-  ///     "dy": <double>
+  ///     "dx": "<double>",
+  ///     "dy": "<double>"
   ///   },
-  ///   "radius": <double>,
+  ///   "radius": "<double>",
   ///   "type": "circle"
   /// }
   /// ```
@@ -7705,10 +8367,10 @@ class ThemeDecoder {
   /// Type: `ltrb`
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>,
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>",
   ///   "type": "ltrb"
   /// }
   /// ```
@@ -7716,11 +8378,11 @@ class ThemeDecoder {
   /// Type: `ltwh`
   /// ```json
   /// {
-  ///   "height": <double>,
-  ///   "left": <double>,
-  ///   "top": <double>,
+  ///   "height": "<double>",
+  ///   "left": "<double>",
+  ///   "top": "<double>",
   ///   "type": "ltwh",
-  ///   "width": <double>
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -7728,12 +8390,12 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "a": {
-  ///     "dx": <double>,
-  ///     "dy": <double>
+  ///     "dx": "<double>",
+  ///     "dy": "<double>"
   ///   },
   ///   "b": {
-  ///     "dx": <double>,
-  ///     "dy": <double>
+  ///     "dx": "<double>",
+  ///     "dy": "<double>"
   ///   }
   ///   "type": "points"
   /// }
@@ -7885,8 +8547,8 @@ class ThemeDecoder {
   /// This expects the JSON representation to follow the structure:
   /// ```json
   /// {
-  ///   "parent": <ScrollPhysics>,
-  ///   "type": <String>
+  ///   "parent": "<ScrollPhysics>",
+  ///   "type": "<String>"
   /// }
   /// ```
   static ScrollPhysics? decodeScrollPhysics(
@@ -8070,17 +8732,17 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "crossAxisMargin": <double>,
-  ///   "interactive": <bool>,
-  ///   "mainAxisMargin": <double>,
-  ///   "minThumbLength": <double>,
-  ///   "radius": <Radius>,
-  ///   "thickness": <MaterialStateProperty<double>>,
-  ///   "thumbColor": <MaterialStateProperty<Color>>,
-  ///   "thumbVisibility": <MaterialStateProperty<bool>>,
-  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>,
-  ///   "trackVisibility": <MaterialStateProperty<bool>>,
+  ///   "crossAxisMargin": "<double>",
+  ///   "interactive": "<bool>",
+  ///   "mainAxisMargin": "<double>",
+  ///   "minThumbLength": "<double>",
+  ///   "radius": "<Radius>",
+  ///   "thickness": "<MaterialStateProperty<double>>",
+  ///   "thumbColor": "<MaterialStateProperty<Color>>",
+  ///   "thumbVisibility": "<MaterialStateProperty<bool>>",
+  ///   "trackBorderColor": "<MaterialStateProperty<Color>>",
+  ///   "trackColor": "<MaterialStateProperty<Color>>",
+  ///   "trackVisibility": "<MaterialStateProperty<bool>>",
   /// }
   /// ```
   ///
@@ -8108,12 +8770,14 @@ class ThemeDecoder {
         interactive: value['interactive'] == null
             ? null
             : JsonClass.parseBool(value['interactive']),
+        // isAlwaysShown: @deprecated,
         mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
         minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
         radius: decodeRadius(
           value['radius'],
           validate: false,
         ),
+        // showTrackOnHover: @deprecated
         thickness: decodeMaterialStatePropertyDouble(
           value['thickness'],
           validate: false,
@@ -8148,7 +8812,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "name": <String>
+  ///   "name": "<String>"
   /// }
   /// ```
   static SemanticsTag? decodeSemanticsTag(
@@ -8177,9 +8841,9 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "blurRadius": <double>,
-  ///   "color": <Color>,
-  ///   "offset": <Offset>
+  ///   "blurRadius": "<double>",
+  ///   "color": "<Color>",
+  ///   "offset": "<Offset>"
   /// }
   /// ```
   ///
@@ -8228,7 +8892,7 @@ class ThemeDecoder {
   /// `CircleBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "circle"
   /// }
   /// ```
@@ -8236,8 +8900,8 @@ class ThemeDecoder {
   /// `ContinuousRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rectangle"
   /// }
   /// ```
@@ -8245,8 +8909,8 @@ class ThemeDecoder {
   /// `RoundedRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rounded"
   /// }
   /// ```
@@ -8254,7 +8918,7 @@ class ThemeDecoder {
   /// `StadiumBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "stadium"
   /// }
   /// ```
@@ -8403,8 +9067,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "height": <double>,
-  ///   "width": <double>
+  ///   "height": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   static Size? decodeSize(
@@ -8476,33 +9140,35 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "activeTickMarkColor": <Color>,
-  ///   "activeTrackColor": <Color>,
-  ///   "disabledActiveTickMarkColor": <Color>,
-  ///   "disabledActiveTrackColor": <Color>,
-  ///   "disabledInactiveTickMarkColor": <Color>,
-  ///   "disabledInactiveTrackColor": <Color>,
-  ///   "disabledThumbColor": <Color>,
-  ///   "inactiveTickMarkColor": <Color>,
-  ///   "inactiveTrackColor": <Color>,
-  ///   "minThumbSeparation": <double>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlappingShapeStrokeColor": <Color>,
-  ///   "overlayColor": <Color>,
-  ///   "overlayShape": <SliderComponentShape>,
-  ///   "rangeThumbShape": <RangeSliderThumbShape>,
-  ///   "rangeTickMarkShape": <RangeSliderTickMarkShape>,
-  ///   "rangeTrackShape": <RangeSliderTrackShape>,
-  ///   "rangeValueIndicatorShape": <RangeSliderValueIndicatorShape>,
-  ///   "showValueIndicator": <ShowValueIndicator>,
-  ///   "thumbColor": <Color>,
-  ///   "thumbShape": <SliderComponentShape>,
-  ///   "tickMarkShape": <SliderTickMarkShape>,
-  ///   "trackHeight": <double>,
-  ///   "trackShape": <SliderTrackShape>,
-  ///   "valueIndicatorColor": <Color>,
-  ///   "valueIndicatorShape": <SliderComponentShape>,
-  ///   "valueIndicatorTextStyle": <TextStyle>
+  ///   "activeTickMarkColor": "<Color>",
+  ///   "activeTrackColor": "<Color>",
+  ///   "disabledActiveTickMarkColor": "<Color>",
+  ///   "disabledActiveTrackColor": "<Color>",
+  ///   "disabledInactiveTickMarkColor": "<Color>",
+  ///   "disabledInactiveTrackColor": "<Color>",
+  ///   "disabledSecondaryActiveTrackColor": "<Color>",
+  ///   "disabledThumbColor": "<Color>",
+  ///   "inactiveTickMarkColor": "<Color>",
+  ///   "inactiveTrackColor": "<Color>",
+  ///   "minThumbSeparation": "<double>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlappingShapeStrokeColor": "<Color>",
+  ///   "overlayColor": "<Color>",
+  ///   "overlayShape": "<SliderComponentShape>",
+  ///   "rangeThumbShape": "<RangeSliderThumbShape>",
+  ///   "rangeTickMarkShape": "<RangeSliderTickMarkShape>",
+  ///   "rangeTrackShape": "<RangeSliderTrackShape>",
+  ///   "rangeValueIndicatorShape": "<RangeSliderValueIndicatorShape>",
+  ///   "secondaryActiveTrackColor": "<Color>",
+  ///   "showValueIndicator": "<ShowValueIndicator>",
+  ///   "thumbColor": "<Color>",
+  ///   "thumbShape": "<SliderComponentShape>",
+  ///   "tickMarkShape": "<SliderTickMarkShape>",
+  ///   "trackHeight": "<double>",
+  ///   "trackShape": "<SliderTrackShape>",
+  ///   "valueIndicatorColor": "<Color>",
+  ///   "valueIndicatorShape": "<SliderComponentShape>",
+  ///   "valueIndicatorTextStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -8555,6 +9221,10 @@ class ThemeDecoder {
           value['disabledInactiveTrackColor'],
           validate: false,
         ),
+        disabledSecondaryActiveTrackColor: decodeColor(
+          value['disabledSecondaryActiveTrackColor'],
+          validate: false,
+        ),
         disabledThumbColor: decodeColor(
           value['disabledThumbColor'],
           validate: false,
@@ -8600,6 +9270,10 @@ class ThemeDecoder {
           value['rangeValueIndicatorShape'],
           validate: false,
         ),
+        secondaryActiveTrackColor: decodeColor(
+          value['secondaryActiveTrackColor'],
+          validate: false,
+        ),
         showValueIndicator: decodeShowValueIndicator(
           value['showValueIndicator'],
           validate: false,
@@ -8608,8 +9282,7 @@ class ThemeDecoder {
           value['thumbColor'],
           validate: false,
         ),
-        // @unencodable
-        // thumbSelector
+        // thumbSelector: @unencodable
         thumbShape: decodeSliderComponentShape(
           value['thumbShape'],
           validate: false,
@@ -8696,15 +9369,6 @@ class ThemeDecoder {
   ///   "type": "rounded"
   /// }
   /// ```
-  ///
-  /// See also:
-  ///  * [decodeColor]
-  ///  * [decodeShowValueIndicator]
-  ///  * [decodeSliderComponentShape]
-  ///  * [decodeRangeSliderThumbShape]
-  ///  * [decodeRangeSliderTickMarkShape]
-  ///  * [decodeRangeSliderTrackShape]
-  ///  * [decodeRangeSliderValueIndicatorShape]
   static SliderTrackShape? decodeSliderTrackShape(
     dynamic value, {
     bool validate = true,
@@ -8871,13 +9535,14 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "actionTextColor": <Color>,
-  ///   "backgroundColor": <Color>,
-  ///   "behavior": <SnackBarBehavior>,
-  ///   "contentTextStyle": <TextStyle>,
-  ///   "disabledActionTextColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "shape": <ShapeBorder>,
+  ///   "actionTextColor": "<Color>",
+  ///   "backgroundColor": "<Color>",
+  ///   "behavior": "<SnackBarBehavior>",
+  ///   "contentTextStyle": "<TextStyle>",
+  ///   "disabledActionTextColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -8926,6 +9591,7 @@ class ThemeDecoder {
           value['shape'],
           validate: false,
         ),
+        width: JsonClass.parseDouble(value['width']),
       );
     }
 
@@ -8974,16 +9640,16 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "fontFamily": <String>,
-  ///   "fontFamilyFallback": <String[]>,
-  ///   "fontSize": <double>,
-  ///   "fontStyle": <FontStyle>,
-  ///   "fontWeight": <FontWeight>
-  ///   "forceStrutHeight": <bool>,
-  ///   "height": <double>,
-  ///   "leading": <double>,
-  ///   "leadingDistribution": <TextLeadingDistribution>,
-  ///   "package": <String>
+  ///   "fontFamily": "<String>",
+  ///   "fontFamilyFallback": "<String[]>",
+  ///   "fontSize": "<double>",
+  ///   "fontStyle": "<FontStyle>",
+  ///   "fontWeight": "<FontWeight>"
+  ///   "forceStrutHeight": "<bool>",
+  ///   "height": "<double>",
+  ///   "leading": "<double>",
+  ///   "leadingDistribution": "<TextLeadingDistribution>",
+  ///   "package": "<String>"
   /// }
   /// ```
   ///
@@ -9040,12 +9706,12 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "splashRadius": <double>,
-  ///   "thumbColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "splashRadius": "<double>",
+  ///   "thumbColor": "<MaterialStateProperty<Color>>",
+  ///   "trackColor": "<MaterialStateProperty<Color>>"
   /// }
   /// ```
   ///
@@ -9085,6 +9751,10 @@ class ThemeDecoder {
         splashRadius: JsonClass.parseDouble(value['splashRadius']),
         thumbColor: decodeMaterialStatePropertyColor(
           value['thumbColor'],
+          validate: false,
+        ),
+        thumbIcon: decodeMaterialStatePropertyIcon(
+          value['thumbIcon'],
           validate: false,
         ),
         trackColor: decodeMaterialStatePropertyColor(
@@ -9219,15 +9889,15 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "indicatorSize": <TabBarIndicatorSize>,
-  ///   "labelPadding": <EdgeInsetsGeometry>,
-  ///   "labelColor": <Color>,
-  ///   "labelStyle": <TextStyle>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "splashFactory": <InteractiveInkSplashFactory>,
-  ///   "unselectedLabelColor": <Color>,
-  ///   "unselectedLabelStyle": <TextStyle>,
+  ///   "indicatorSize": "<TabBarIndicatorSize>",
+  ///   "labelPadding": "<EdgeInsetsGeometry>",
+  ///   "labelColor": "<Color>",
+  ///   "labelStyle": "<TextStyle>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "unselectedLabelColor": "<Color>",
+  ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -9307,13 +9977,13 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "bottom": <BorderSide>,
-  ///   "horizontalInside": <BorderSide>,
-  ///   "left": <BorderSide>,
-  ///   "right": <BorderSide>,
-  ///   "top": <BorderSide>,
-  ///   "verticalInside": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "bottom": "<BorderSide>",
+  ///   "horizontalInside": "<BorderSide>",
+  ///   "left": "<BorderSide>",
+  ///   "right": "<BorderSide>",
+  ///   "top": "<BorderSide>",
+  ///   "verticalInside": "<BorderSide>",
   /// }
   /// ```
   ///
@@ -9381,10 +10051,10 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "a": <TableColumnWidth>,
-  ///   "b": <TableColumnWidth>,
-  ///   "type": <"fixed" | "flex" | "fraction" | "intrinsic" | "max" | "min">,
-  ///   "value": <double>
+  ///   "a": "<TableColumnWidth>",
+  ///   "b": "<TableColumnWidth>",
+  ///   "type": "<"fixed" | "flex" | "fraction" | "intrinsic" | "max" | "min">",
+  ///   "value": "<double>"
   /// }
   /// ```
   static TableColumnWidth? decodeTableColumnWidth(
@@ -9655,7 +10325,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "style": <ButtonStyle>
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -9898,9 +10568,9 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "applyHeightToFirstAscent": <bool>,
-  ///   "applyHeightToLastDescent": <bool>,
-  ///   "leadingDistribution": <TextLeadingDistribution>
+  ///   "applyHeightToFirstAscent": "<bool>",
+  ///   "applyHeightToLastDescent": "<bool>",
+  ///   "leadingDistribution": "<TextLeadingDistribution>"
   /// }
   /// ```
   static TextHeightBehavior? decodeTextHeightBehavior(
@@ -10048,6 +10718,7 @@ class ThemeDecoder {
   ///  * `emailAddress`
   ///  * `multiline`
   ///  * `name`
+  ///  * `none`
   ///  * `number`
   ///  * `phone`
   ///  * `streetAddress`
@@ -10069,6 +10740,7 @@ class ThemeDecoder {
           'emailAddress',
           'multiline',
           'name',
+          'none',
           'number',
           'phone',
           'streetAddress',
@@ -10100,6 +10772,10 @@ class ThemeDecoder {
 
           case 'name':
             result = TextInputType.name;
+            break;
+
+          case 'none':
+            result = TextInputType.none;
             break;
 
           case 'number':
@@ -10227,9 +10903,9 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "cursorColor": <Color>,
-  ///   "selectionColor": <Color>,
-  ///   "selectionHandleColor": <Color>
+  ///   "cursorColor": "<Color>",
+  ///   "selectionColor": "<Color>",
+  ///   "selectionHandleColor": "<Color>"
   /// }
   /// ```
   ///
@@ -10273,28 +10949,28 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "color": <Color>,
-  ///   "decoration": <TextDecoration>,
-  ///   "decorationColor": <Color>,
-  ///   "decorationStyle": <TextDecorationStyle>,
-  ///   "decorationThickness": <double>,
-  ///   "fontFamily": <FontFamily>,
-  ///   "fontFamilyFallback": <String[]>,
-  ///   "fontFeatures": <FontFeature[]>,
-  ///   "fontSize": <double>,
-  ///   "fontStyle": <FontStyle>,
-  ///   "fontWeight": <FontWeight>,
-  ///   "height": <double>,
-  ///   "inherit": <bool>,
-  ///   "leadingDistribution": <TextLeadingDistribution>,
-  ///   "letterSpacing": <double>,
-  ///   "locale": <Locale>,
-  ///   "overflow": <TextOverflow>,
-  ///   "package": <String>,
-  ///   "shadows": <Shadow[]>,
-  ///   "textBaseline": <TextBaseline>,
-  ///   "wordSpacing": <double>
+  ///   "backgroundColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "decoration": "<TextDecoration>",
+  ///   "decorationColor": "<Color>",
+  ///   "decorationStyle": "<TextDecorationStyle>",
+  ///   "decorationThickness": "<double>",
+  ///   "fontFamily": "<FontFamily>",
+  ///   "fontFamilyFallback": "<String[]>",
+  ///   "fontFeatures": "<FontFeature[]>",
+  ///   "fontSize": "<double>",
+  ///   "fontStyle": "<FontStyle>",
+  ///   "fontWeight": "<FontWeight>",
+  ///   "height": "<double>",
+  ///   "inherit": "<bool>",
+  ///   "leadingDistribution": "<TextLeadingDistribution>",
+  ///   "letterSpacing": "<double>",
+  ///   "locale": "<Locale>",
+  ///   "overflow": "<TextOverflow>",
+  ///   "package": "<String>",
+  ///   "shadows": "<Shadow[]>",
+  ///   "textBaseline": "<TextBaseline>",
+  ///   "wordSpacing": "<double>"
   /// }
   /// ```
   ///
@@ -10302,6 +10978,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeFontFeature]
   ///  * [decodeFontStyle]
+  ///  * [decodeFontVariation]
   ///  * [decodeFontWeight]
   ///  * [decodeLocale]
   ///  * [decodeShadow]
@@ -10325,8 +11002,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = TextStyle(
-        // @unencodable
-        // background
+        // background: @unencodable
         backgroundColor: decodeColor(
           value['backgroundColor'],
           validate: false,
@@ -10363,6 +11039,14 @@ class ThemeDecoder {
                   ),
                 ),
               ),
+        fontVariations: (value['fontVariations'] as List?)
+            ?.map<FontVariation>(
+              (e) => decodeFontVariation(
+                e,
+                validate: false,
+              )!,
+            )
+            .toList(),
         fontWeight: decodeFontWeight(
           value['fontWeight'],
           validate: false,
@@ -10372,8 +11056,7 @@ class ThemeDecoder {
           value['fontStyle'],
           validate: false,
         ),
-        // @unencodable
-        // foreground
+        // foreground: @unencodable
         height: JsonClass.parseDouble(value['height']),
         inherit: value['inherit'] == null
             ? true
@@ -10415,40 +11098,40 @@ class ThemeDecoder {
   /// ## 2018 version
   /// ```json
   /// {
-  ///   "bodyText1": <TextStyle>,
-  ///   "bodyText2": <TextStyle>,
-  ///   "button": <TextStyle>,
-  ///   "caption": <TextStyle>,
-  ///   "headline1": <TextStyle>,
-  ///   "headline2": <TextStyle>,
-  ///   "headline3": <TextStyle>,
-  ///   "headline4": <TextStyle>,
-  ///   "headline5": <TextStyle>,
-  ///   "headline6": <TextStyle>,
-  ///   "overline": <TextStyle>,
-  ///   "subtitle1": <TextStyle>,
-  ///   "subtitle2": <TextStyle>
+  ///   "bodyText1": "<TextStyle>",
+  ///   "bodyText2": "<TextStyle>",
+  ///   "button": "<TextStyle>",
+  ///   "caption": "<TextStyle>",
+  ///   "headline1": "<TextStyle>",
+  ///   "headline2": "<TextStyle>",
+  ///   "headline3": "<TextStyle>",
+  ///   "headline4": "<TextStyle>",
+  ///   "headline5": "<TextStyle>",
+  ///   "headline6": "<TextStyle>",
+  ///   "overline": "<TextStyle>",
+  ///   "subtitle1": "<TextStyle>",
+  ///   "subtitle2": "<TextStyle>"
   /// }
   /// ```
   ///
   /// ## 2021 version
   /// ```json
   /// {
-  ///   "bodyLarge": <TextStyle>,
-  ///   "bodyMedium": <TextStyle>,
-  ///   "bodySmall": <TextStyle>,
-  ///   "displayLarge": <TextStyle>,
-  ///   "displayMedium": <TextStyle>,
-  ///   "displaySmall": <TextStyle>,
-  ///   "headlineLarge": <TextStyle>,
-  ///   "headlineMedium": <TextStyle>,
-  ///   "headlineSmall": <TextStyle>,
-  ///   "labelLarge": <TextStyle>,
-  ///   "labelMedium": <TextStyle>,
-  ///   "labelSmall": <TextStyle>,
-  ///   "titleLarge": <TextStyle>,
-  ///   "titleMedium": <TextStyle>,
-  ///   "titleSmall": <TextStyle>
+  ///   "bodyLarge": "<TextStyle>",
+  ///   "bodyMedium": "<TextStyle>",
+  ///   "bodySmall": "<TextStyle>",
+  ///   "displayLarge": "<TextStyle>",
+  ///   "displayMedium": "<TextStyle>",
+  ///   "displaySmall": "<TextStyle>",
+  ///   "headlineLarge": "<TextStyle>",
+  ///   "headlineMedium": "<TextStyle>",
+  ///   "headlineSmall": "<TextStyle>",
+  ///   "labelLarge": "<TextStyle>",
+  ///   "labelMedium": "<TextStyle>",
+  ///   "labelSmall": "<TextStyle>",
+  ///   "titleLarge": "<TextStyle>",
+  ///   "titleMedium": "<TextStyle>",
+  ///   "titleSmall": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -10481,6 +11164,11 @@ class ThemeDecoder {
           value['bodySmall'] ?? value['caption'],
           validate: false,
         ),
+        // bodyText1: @deprecated,
+        // bodyText2: @deprecated,
+        // button: @deprecated,
+        // caption: @deprecated,
+
         displayLarge: decodeTextStyle(
           value['displayLarge'] ?? value['headline1'],
           validate: false,
@@ -10493,6 +11181,12 @@ class ThemeDecoder {
           value['displaySmall'] ?? value['headline3'],
           validate: false,
         ),
+        // headline1: @deprecated,
+        // headline2: @deprecated,
+        // headline3: @deprecated,
+        // headline4: @deprecated,
+        // headline5: @deprecated,
+        // headline6: @deprecated,
         headlineLarge: decodeTextStyle(
           value['headlineLarge'] ?? value[''],
           validate: false,
@@ -10517,6 +11211,9 @@ class ThemeDecoder {
           value['labelSmall'] ?? value['overline'],
           validate: false,
         ),
+        // overline: @deprecated,
+        // subtitle1: @deprecated,
+        // subtitle2: @deprecated,
         titleLarge: decodeTextStyle(
           value['titleLarge'] ?? value['headline6'],
           validate: false,
@@ -10529,62 +11226,6 @@ class ThemeDecoder {
           value['titleSmall'] ?? value['subtitle2'],
           validate: false,
         ),
-
-        // @deprecated
-        // body1
-        // body2
-        // bodyText1: decodeTextStyle(
-        //   value['bodyText1'],
-        //   validate: false,
-        // ),
-        // bodyText2: decodeTextStyle(
-        //   value['bodyText2'],
-        //   validate: false,
-        // ),
-        // button: decodeTextStyle(
-        //   value['button'],
-        //   validate: false,
-        // ),
-        // caption: decodeTextStyle(
-        //   value['caption'],
-        //   validate: false,
-        // ),
-        // headline1: decodeTextStyle(
-        //   value['headline1'],
-        //   validate: false,
-        // ),
-        // headline2: decodeTextStyle(
-        //   value['headline2'],
-        //   validate: false,
-        // ),
-        // headline3: decodeTextStyle(
-        //   value['headline3'],
-        //   validate: false,
-        // ),
-        // headline4: decodeTextStyle(
-        //   value['headline4'],
-        //   validate: false,
-        // ),
-        // headline5: decodeTextStyle(
-        //   value['headline5'],
-        //   validate: false,
-        // ),
-        // headline6: decodeTextStyle(
-        //   value['headline6'],
-        //   validate: false,
-        // ),
-        // overline: decodeTextStyle(
-        //   value['overline'],
-        //   validate: false,
-        // ),
-        // subtitle1: decodeTextStyle(
-        //   value['subtitle1'],
-        //   validate: false,
-        // ),
-        // subtitle2: decodeTextStyle(
-        //   value['subtitle2'],
-        //   validate: false,
-        // ),
       );
     }
 
@@ -10637,85 +11278,84 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "appBarTheme": <AppBarTheme>,
-  ///   "applyElevationOverlayColor": <bool>,
-  ///   "backgroundColor": <Color>,
-  ///   "bannerTheme": <MaterialBannerThemeData>,
-  ///   "bottomAppBarColor": <Color>,
-  ///   "bottomAppBarTheme": <BottomAppBarTheme>,
-  ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
-  ///   "bottomSheetTheme": <BottomSheetThemeData>,
-  ///   "brightness": <Brightness>,
-  ///   "buttonBarTheme": <ButtonBarThemeData>,
-  ///   "buttonTheme": <ButtonThemeData>,
-  ///   "canvasColor": <Color>,
-  ///   "cardColor": <Color>,
-  ///   "cardTheme": <CardTheme>,
-  ///   "checkboxThemeData": <CheckboxThemeData>,
-  ///   "chipTheme": <ChipThemeData>,
-  ///   "colorScheme": <ColorScheme>,
-  ///   "colorSchemeSeed": <Color>,
-  ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
-  ///   "cursorColor": <Color>,
-  ///   "dataTableTheme": <DataTableThemeData>,
-  ///   "dialogBackgroundColor": <Color>,
-  ///   "dialogTheme": <DialogTheme>,
-  ///   "disabledColor": <Color>,
-  ///   "dividerColor": <Color>,
-  ///   "dividerTheme": <DividerThemeData>,
-  ///   "drawerTheme": <DrawerThemeData>,
-  ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
-  ///   "errorColor": <Color>,
-  ///   "expansionTileTheme": <ExpansionTileThemeData>,
-  ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
-  ///   "focusColor": <Color>,
-  ///   "fontFamily": <String>,
-  ///   "highlightColor": <Color>,
-  ///   "hintColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "iconTheme": <IconThemeData>,
-  ///   "indicatorColor": <Color>,
-  ///   "inputDecorationTheme": <InputDecorationTheme>,
-  ///   "listTileTheme": <ListTileThemeData>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "navigationBarTheme": <NavigationBarThemeData>,
-  ///   "navigationRailTheme": <NavigationRailThemeData>,
-  ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
-  ///   "pageTransitionsTheme": <PageTransitionsTheme>,
-  ///   "platform": <TargetPlatform>,
-  ///   "popupMenuTheme": <PopupMenuThemeData>,
-  ///   "primaryColor": <Color>,
-  ///   "primaryColorDark": <Color>,
-  ///   "primaryColorLight": <Color>,
-  ///   "primaryIconTheme": <IconThemeData>,
-  ///   "primarySwatch": <MaterialColor>,
-  ///   "primaryTextTheme": <TextTheme>,
-  ///   "progressIndicatorTheme": <ProgressIndicatorTheme>,
-  ///   "radioTheme": <RadioThemeData>,
-  ///   "scaffoldBackgroundColor": <Color>,
-  ///   "scrollbarTheme": <ScrollbarThemeData>,
-  ///   "secondaryHeaderColor": <Color>,
-  ///   "selectedRowColor": <Color>,
-  ///   "shadowColor": <Color>,
-  ///   "sliderTheme": <SliderThemeData>,
-  ///   "snackBarTheme": <SnackBarThemeData>,
-  ///   "splashColor": <Color>,
-  ///   "splashFactory": <InteractiveInkFeatureFactory>,
-  ///   "switchTheme": <SwitchThemeData>,
-  ///   "tabBarTheme": <TabBarTheme>,
-  ///   "textButtonTheme": <TextButtonThemeData>,
-  ///   "textSelectionColor": <Color>,
-  ///   "textSelectionHandleColor": <Color>,
-  ///   "textSelectionTheme": <TextSelectionThemeData>,
-  ///   "textTheme": <TextTheme>,
-  ///   "timePickerTheme": <TimePickerThemeData>,
-  ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
-  ///   "toggleableActiveColor": <Color>,
-  ///   "tooltipTheme": <TooltipThemeData>,
-  ///   "typography": <Typography>,
-  ///   "unselectedWidgetColor": <Color>,
-  ///   "useMaterial3": <bool>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "appBarTheme": "<AppBarTheme>",
+  ///   "applyElevationOverlayColor": "<bool>",
+  ///   "bannerTheme": "<MaterialBannerThemeData>",
+  ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id,
+  ///   "bottomNavigationBarTheme": "<BottomNavigationBarThemeData>",
+  ///   "bottomSheetTheme": "<BottomSheetThemeData>",
+  ///   "brightness": "<Brightness>",
+  ///   "buttonBarTheme": "<ButtonBarThemeData>",
+  ///   "buttonTheme": "<ButtonThemeData>",
+  ///   "canvasColor": "<Color>",
+  ///   "cardColor": "<Color>",
+  ///   "cardTheme": "<CardTheme>",
+  ///   "checkboxTheme": "<CheckboxThemeData>",
+  ///   "chipTheme": "<ChipThemeData>",
+  ///   "colorScheme": "<ColorScheme>",
+  ///   "colorSchemeSeed": "<Color>",
+  ///   "cupertinoOverrideTheme": "<CupertinoThemeData>",
+  ///   "dataTableTheme": "<DataTableThemeData>",
+  ///   "dialogBackgroundColor": "<Color>",
+  ///   "dialogTheme": "<DialogTheme>",
+  ///   "disabledColor": "<Color>",
+  ///   "dividerColor": "<Color>",
+  ///   "dividerTheme": "<DividerThemeData>",
+  ///   "drawerTheme": "<DrawerThemeData>",
+  ///   "elevatedButtonTheme": "<ElevatedButtonThemeData>",
+  ///   "expansionTileTheme": "<ExpansionTileThemeData>",
+  ///   "filledButtonTheme": "<FilledButtonThemeDataScheme>"",
+  ///   "floatingActionButtonTheme": "<FloatingActionButtonThemeData>",
+  ///   "focusColor": "<Color>",
+  ///   "fontFamily": "<String>",
+  ///   "fontFamilyFallback": "<List<String>>",
+  ///   "highlightColor": "<Color>",
+  ///   "hintColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "iconButtonTheme": "<IconButtonThemeData>",
+  ///   "iconTheme": "<IconThemeData>",
+  ///   "indicatorColor": "<Color>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "listTileTheme": "<ListTileThemeData>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "menuBarTheme": "<MenuBarThemeData>",
+  ///   "menuButtonTheme": "<MenuButtonThemeData>",
+  ///   "menuTheme": "<MenuThemeData>",
+  ///   "navigationBarTheme": "<NavigationBarThemeData>",
+  ///   "navigationRailTheme": "<NavigationRailThemeData>",
+  ///   "outlinedButtonTheme": "<OutlinedButtonThemeData>",
+  ///   "package": "<String>",
+  ///   "pageTransitionsTheme": "<PageTransitionsTheme>",
+  ///   "platform": "<TargetPlatform>",
+  ///   "popupMenuTheme": "<PopupMenuThemeData>",
+  ///   "primaryColor": "<Color>",
+  ///   "primaryColorDark": "<Color>",
+  ///   "primaryColorLight": "<Color>",
+  ///   "primaryIconTheme": "<IconThemeData>",
+  ///   "primarySwatch": "<MaterialColor>",
+  ///   "primaryTextTheme": "<TextTheme>",
+  ///   "progressIndicatorTheme": "<ProgressIndicatorThemeData>",
+  ///   "radioTheme": "<RadioThemeData>",
+  ///   "scaffoldBackgroundColor": "<Color>",
+  ///   "scrollbarTheme": "<ScrollbarThemeData>",
+  ///   "secondaryHeaderColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "sliderTheme": "<SliderThemeData>",
+  ///   "snackBarTheme": "<SnackBarThemeData>",
+  ///   "splashColor": "<Color>",
+  ///   "splashFactory": "<InteractiveInkFeatureFactory>",
+  ///   "switchTheme": "<SwitchThemeData>",
+  ///   "tabBarTheme": "<TabBarTheme>",
+  ///   "textButtonTheme": "<TextButtonThemeData>",
+  ///   "textSelectionTheme": "<TextSelectionThemeData>",
+  ///   "textTheme": "<TextTheme>",
+  ///   "timePickerTheme": "<TimePickerThemeData>",
+  ///   "toggleButtonsTheme": "<ToggleButtonsThemeData>",
+  ///   "tooltipTheme": "<TooltipThemeData>",
+  ///   "typography": "<Typography>",
+  ///   "unselectedWidgetColor": "<Color>",
+  ///   "useMaterial3": "<bool>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -10738,13 +11378,18 @@ class ThemeDecoder {
   ///  * [decodeDrawerThemeData]
   ///  * [decodeElevatedButtonThemeData]
   ///  * [decodeExpansionTileThemeData]
+  ///  * [decodeFilledButtonThemeData]
   ///  * [decodeFloatingActionButtonThemeData]
+  ///  * [decodeIconButtonThemeData]
   ///  * [decodeIconThemeData]
   ///  * [decodeInputDecorationTheme]
   ///  * [decodeInteractiveInkFeatureFactory]
   ///  * [decodeListTileThemeData]
   ///  * [decodeMaterialBannerThemeData]
   ///  * [decodeMaterialTapTargetSize]
+  ///  * [decodeMenuBarThemeData]
+  ///  * [decodeMenuButtonThemeData]
+  ///  * [decodeMenuThemeData]
   ///  * [decodeNavigationBarThemeData]
   ///  * [decodeNavigationRailThemeData]
   ///  * [decodeOutlinedButtonThemeData]
@@ -10780,20 +11425,11 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ThemeData(
-        // @deprecated
-        // accentColor: null,
-
-        // @deprecated
-        // accentColorBrightness: null,
-
-        // @deprecated
-        // accentIconTheme: null,
-
-        // @deprecated
-        // accentTextTheme: null,
-
-        // @deprecated
-        // androidOverscrollIndicator
+        // accentColor: @deprecated
+        // accentColorBrightness: @deprecated
+        // accentIconTheme: @deprecated
+        // accentTextTheme: @deprecated
+        // androidOverscrollIndicator: @deprecated
 
         appBarTheme: decodeAppBarTheme(
           value['appBarTheme'],
@@ -10802,18 +11438,12 @@ class ThemeDecoder {
         applyElevationOverlayColor: value['applyElevationOverlayColor'] == null
             ? null
             : JsonClass.parseBool(value['applyElevationOverlayColor']),
-        backgroundColor: decodeColor(
-          value['backgroundColor'],
-          validate: false,
-        ),
+        // backgroundColor: @deprecated,
         bannerTheme: decodeMaterialBannerThemeData(
           value['bannerTheme'],
           validate: false,
         ),
-        bottomAppBarColor: decodeColor(
-          value['bottomAppBarColor'],
-          validate: false,
-        ),
+        // bottomAppBarColor: @deprecated,
         bottomAppBarTheme: decodeBottomAppBarTheme(
           value['bottomAppBarTheme'],
           validate: false,
@@ -10835,8 +11465,7 @@ class ThemeDecoder {
           validate: false,
         ),
 
-        // @deprecated
-        // buttonColor: null,
+        // buttonColor: @deprecated
 
         buttonTheme: decodeButtonThemeData(
           value['buttonTheme'],
@@ -10875,8 +11504,7 @@ class ThemeDecoder {
           validate: false,
         ),
 
-        // @deprecated
-        // cursorColor: null,
+        // cursorColor: @deprecated
 
         dataTableTheme: decodeDataTableThemeData(
           value['dataTableTheme'],
@@ -10915,16 +11543,15 @@ class ThemeDecoder {
           validate: false,
         ),
 
-        // @unencodable
-        // extensions
-        errorColor: decodeColor(
-          value['errorColor'],
+        // extensions: @unencodable,
+        // errorColor: @deprecated,
+
+        filledButtonTheme: decodeFilledButtonThemeData(
+          value[''],
           validate: false,
         ),
 
-        // @deprecated
-        // fixTextFieldOutlineLabel: null,
-
+        // fixTextFieldOutlineLabel: @deprecated
         floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
           value['floatingActionButtonTheme'],
           validate: false,
@@ -10935,6 +11562,11 @@ class ThemeDecoder {
           validate: false,
         ),
         fontFamily: value['fontFamily'],
+        fontFamilyFallback: value['fontFamilyFallback'] == null
+            ? null
+            : List<String>.from(
+                value['fontFamilyFallback'],
+              ),
         highlightColor: decodeColor(
           value['highlightColor'],
           validate: false,
@@ -10945,6 +11577,10 @@ class ThemeDecoder {
         ),
         hoverColor: decodeColor(
           value['hoverColor'],
+          validate: false,
+        ),
+        iconButtonTheme: decodeIconButtonThemeData(
+          value['iconButtonTheme'],
           validate: false,
         ),
         iconTheme: decodeIconThemeData(
@@ -10967,6 +11603,18 @@ class ThemeDecoder {
           value['materialTapTargetSize'],
           validate: false,
         ),
+        menuBarTheme: decodeMenuBarThemeData(
+          value['menuBarTheme'],
+          validate: false,
+        ),
+        menuButtonTheme: decodeMenuButtonThemeData(
+          value['menuButtonTheme'],
+          validate: false,
+        ),
+        menuTheme: decodeMenuThemeData(
+          value['menuTheme'],
+          validate: false,
+        ),
         navigationBarTheme: decodeNavigationBarThemeData(
           value['navigationBarTheme'],
           validate: false,
@@ -10983,6 +11631,7 @@ class ThemeDecoder {
           value['pageTransitionsTheme'],
           validate: false,
         ),
+        package: value['package'],
         platform: decodeTargetPlatform(
           value['platform'],
           validate: false,
@@ -10996,8 +11645,7 @@ class ThemeDecoder {
           validate: false,
         ),
 
-        // @deprecated
-        // primaryColorBrightness: null,
+        // primaryColorBrightness: @deprecated
 
         primaryColorDark: decodeColor(
           value['primaryColorDark'],
@@ -11039,10 +11687,6 @@ class ThemeDecoder {
           value['secondaryHeaderColor'],
           validate: false,
         ),
-        selectedRowColor: decodeColor(
-          value['selectedRowColor'],
-          validate: false,
-        ),
         shadowColor: decodeColor(
           value['shadowColor'],
           validate: false,
@@ -11076,10 +11720,8 @@ class ThemeDecoder {
           validate: false,
         ),
 
-        // @deprecated
-        // textSelectionColor: null,
-        // @deprecated
-        // textSelectionHandleColor: null,
+        // textSelectionColor: @deprecated,
+        // textSelectionHandleColor: @deprecated,
 
         textSelectionTheme: decodeTextSelectionThemeData(
           value['textSelectionTheme'],
@@ -11090,19 +11732,14 @@ class ThemeDecoder {
           validate: false,
         ),
         timePickerTheme: decodeTimePickerThemeData(
-          value['timePickerTheme'] ??
-              /* This was the original, incorrect, value; kept for backwards compatibility */
-              value['timePickerThemeData'],
+          value['timePickerTheme'],
           validate: false,
         ),
         toggleButtonsTheme: decodeToggleButtonsThemeData(
           value['toggleButtonsTheme'],
           validate: false,
         ),
-        toggleableActiveColor: decodeColor(
-          value['toggleableActiveColor'],
-          validate: false,
-        ),
+        // toggleableActiveColor: @deprecated,
         tooltipTheme: decodeTooltipThemeData(
           value['tooltipTheme'],
           validate: false,
@@ -11121,8 +11758,7 @@ class ThemeDecoder {
                 value['useMaterial3'],
               ),
 
-        // @deprecated
-        // useTextSelectionTheme: null,
+        // useTextSelectionTheme: @deprecated,
 
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
@@ -11192,23 +11828,23 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "dayPeriodBorderSide": <BorderSide>,
-  ///   "dayPeriodColor": <Color>,
-  ///   "dayPeriodShape": <ShapeBorder>,
-  ///   "dayPeriodTextColor": <Color>,
-  ///   "dayPeriodTextStyle": <TextStyle>,
-  ///   "dialBackgroundColor": <Color>,
-  ///   "dialHandColor": <Color>,
-  ///   "dialTextColor": <Color>,
-  ///   "entryModeIconColor": <Color>,
-  ///   "helpTextStyle": <TextStyle>,
-  ///   "hourMinuteColor": <Color>,
-  ///   "hourMinuteShape": <ShapeBorder>,
-  ///   "hourMinuteTextColor": <Color>,
-  ///   "hourMinuteTextStyle": <TextStyle>,
-  ///   "inputDecorationTheme": <InputDecorationTheme>,
-  ///   "shape": <ShapeBorder>
+  ///   "backgroundColor": "<Color>",
+  ///   "dayPeriodBorderSide": "<BorderSide>",
+  ///   "dayPeriodColor": "<Color>",
+  ///   "dayPeriodShape": "<ShapeBorder>",
+  ///   "dayPeriodTextColor": "<Color>",
+  ///   "dayPeriodTextStyle": "<TextStyle>",
+  ///   "dialBackgroundColor": "<Color>",
+  ///   "dialHandColor": "<Color>",
+  ///   "dialTextColor": "<Color>",
+  ///   "entryModeIconColor": "<Color>",
+  ///   "helpTextStyle": "<TextStyle>",
+  ///   "hourMinuteColor": "<Color>",
+  ///   "hourMinuteShape": "<ShapeBorder>",
+  ///   "hourMinuteTextColor": "<Color>",
+  ///   "hourMinuteTextStyle": "<TextStyle>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "shape": "<ShapeBorder>"
   /// }
   /// ```
   ///
@@ -11234,26 +11870,76 @@ class ThemeDecoder {
       ));
 
       result = TimePickerThemeData(
-        backgroundColor: decodeColor(value['backgroundColor']),
-        dayPeriodBorderSide: decodeBorderSide(value['dayPeriodBorderSide']),
-        dayPeriodColor: decodeColor(value['dayPeriodColor']),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        dayPeriodBorderSide: decodeBorderSide(
+          value['dayPeriodBorderSide'],
+          validate: false,
+        ),
+        dayPeriodColor: decodeColor(
+          value['dayPeriodColor'],
+          validate: false,
+        ),
         dayPeriodShape: value['dayPeriodShape'] == null
             ? null
-            : decodeShapeBorder(value['dayPeriodShape']) as OutlinedBorder?,
-        dayPeriodTextColor: decodeColor(value['dayPeriodTextColor']),
-        dayPeriodTextStyle: decodeTextStyle(value['dayPeriodTextStyle']),
-        dialBackgroundColor: decodeColor(value['dialBackgroundColor']),
-        dialHandColor: decodeColor(value['dialHandColor']),
-        dialTextColor: decodeColor(value['dialTextColor']),
-        entryModeIconColor: decodeColor(value['entryModeIconColor']),
-        helpTextStyle: decodeTextStyle(value['helpTextStyle']),
-        hourMinuteColor: decodeColor(value['hourMinuteColor']),
-        hourMinuteShape: decodeShapeBorder(value['hourMinuteShape']),
-        hourMinuteTextColor: decodeColor(value['hourMinuteTextColor']),
-        hourMinuteTextStyle: decodeTextStyle(value['hourMinuteTextStyle']),
-        inputDecorationTheme:
-            decodeInputDecorationTheme(value['inputDecorationTheme']),
-        shape: decodeShapeBorder(value['shape']),
+            : decodeShapeBorder(
+                value['dayPeriodShape'],
+                validate: false,
+              ) as OutlinedBorder?,
+        dayPeriodTextColor: decodeColor(
+          value['dayPeriodTextColor'],
+          validate: false,
+        ),
+        dayPeriodTextStyle: decodeTextStyle(
+          value['dayPeriodTextStyle'],
+          validate: false,
+        ),
+        dialBackgroundColor: decodeColor(
+          value['dialBackgroundColor'],
+          validate: false,
+        ),
+        dialHandColor: decodeColor(
+          value['dialHandColor'],
+          validate: false,
+        ),
+        dialTextColor: decodeColor(
+          value['dialTextColor'],
+          validate: false,
+        ),
+        entryModeIconColor: decodeColor(
+          value['entryModeIconColor'],
+          validate: false,
+        ),
+        helpTextStyle: decodeTextStyle(
+          value['helpTextStyle'],
+          validate: false,
+        ),
+        hourMinuteColor: decodeColor(
+          value['hourMinuteColor'],
+          validate: false,
+        ),
+        hourMinuteShape: decodeShapeBorder(
+          value['hourMinuteShape'],
+          validate: false,
+        ),
+        hourMinuteTextColor: decodeColor(
+          value['hourMinuteTextColor'],
+          validate: false,
+        ),
+        hourMinuteTextStyle: decodeTextStyle(
+          value['hourMinuteTextStyle'],
+          validate: false,
+        ),
+        inputDecorationTheme: decodeInputDecorationTheme(
+          value['inputDecorationTheme'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
       );
     }
 
@@ -11265,21 +11951,21 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "borderColor": <Color>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "borderWidth": <double>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "disabledBorderColor": <Color>,
-  ///   "disabledColor": <Color>,
-  ///   "fillColor": <Color>,
-  ///   "focusColor": <Color>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "selectedBorderColor": <Color>,
-  ///   "selectedColor": <Color>,
-  ///   "splashColor": <Color>,
-  ///   "textStyle": <TextStyle>
+  ///   "borderColor": "<Color>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "borderWidth": "<double>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "disabledBorderColor": "<Color>",
+  ///   "disabledColor": "<Color>",
+  ///   "fillColor": "<Color>",
+  ///   "focusColor": "<Color>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "selectedBorderColor": "<Color>",
+  ///   "selectedColor": "<Color>",
+  ///   "splashColor": "<Color>",
+  ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -11367,61 +12053,28 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to a [ToolbarOptions].  This expects the
-  /// [value] to have the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "copy": <bool>,
-  ///   "cut": <bool>,
-  ///   "paste": <bool>,
-  ///   "selectAll": <bool>
-  /// }
-  /// ```
-  static ToolbarOptions? decodeToolbarOptions(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    ToolbarOptions? result;
-    if (value is ToolbarOptions) {
-      result = value;
-    } else if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/toolbar_options',
-        value: value,
-        validate: validate,
-      ));
-      result = ToolbarOptions(
-        copy: JsonClass.parseBool(value['copy']),
-        cut: JsonClass.parseBool(value['cut']),
-        paste: JsonClass.parseBool(value['paste']),
-        selectAll: JsonClass.parseBool(value['selectAll']),
-      );
-    }
-
-    return result;
-  }
-
   /// Decodes the given [value] to a [TooltipThemeData].  This expects the
   /// [value] to have the following structure:
   ///
   /// ```json
   /// {
-  ///   "enableFeedback": <bool>,
-  ///   "excludeFromSemantics": <bool>,
-  ///   "height": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "preferBelow": <bool>
-  ///   "showDuration": <int; millis>,
-  ///   "textStyle": <TextStyle>,
-  ///   "verticalOffset": <double>,
-  ///   "waitDuration": <int; millis>,
+  ///   "enableFeedback": "<bool>",
+  ///   "excludeFromSemantics": "<bool>",
+  ///   "height": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "preferBelow": "<bool>"
+  ///   "showDuration": "<int; millis>",
+  ///   "textAlign": "<TextAlign>",
+  ///   "textStyle": "<TextStyle>",
+  ///   "verticalOffset": "<double>",
+  ///   "waitDuration": "<int; millis>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeTextAlign]
   ///  * [decodeTextStyle]
   ///  * [decodeTooltipTriggerMode]
   static TooltipThemeData? decodeTooltipThemeData(
@@ -11443,8 +12096,7 @@ class ThemeDecoder {
         'TooltipThemeData.decoration is not supported',
       );
       result = TooltipThemeData(
-        // @unencodable
-        // decoration
+        // decoration: @unencodable
         enableFeedback: value['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(value['enableFeedback']),
@@ -11464,6 +12116,10 @@ class ThemeDecoder {
             ? null
             : JsonClass.parseBool(value['preferBelow']),
         showDuration: JsonClass.parseDurationFromMillis(value['showDuration']),
+        textAlign: decodeTextAlign(
+          value['textAlign'],
+          validate: false,
+        ),
         textStyle: decodeTextStyle(
           value['textStyle'],
           validate: false,
@@ -11526,12 +12182,12 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "black": <TextTheme>,
-  ///   "dense": <TextTheme>,
-  ///   "englishLike": <TextTheme>,
-  ///   "platform": <TargetPlatform>,
-  ///   "tall": <TextTheme>,
-  ///   "white": <TextTheme>,
+  ///   "black": "<TextTheme>",
+  ///   "dense": "<TextTheme>",
+  ///   "englishLike": "<TextTheme>",
+  ///   "platform": "<TargetPlatform>",
+  ///   "tall": "<TextTheme>",
+  ///   "white": "<TextTheme>",
   /// }
   /// ```
   ///

@@ -12,11 +12,15 @@ class DialogThemeSchema {
     'title': 'DialogTheme',
     'type': 'object',
     'properties': {
+      'actionsPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'contentTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'iconCoor': SchemaHelper.objectSchema(ColorSchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
       'titleTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };

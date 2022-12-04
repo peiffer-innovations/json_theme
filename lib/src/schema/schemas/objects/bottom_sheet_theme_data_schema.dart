@@ -18,8 +18,10 @@ class BottomSheetThemeDataSchema {
       'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'modalBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'modalBarrierColor': SchemaHelper.objectSchema(ColorSchema.id),
       'modalElevation': SchemaHelper.numberSchema,
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };
 }

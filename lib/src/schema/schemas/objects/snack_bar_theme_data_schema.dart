@@ -19,6 +19,7 @@ class SnackBarThemeDataSchema {
       'disabledActionTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'width': SchemaHelper.numberSchema,
     },
   };
 }

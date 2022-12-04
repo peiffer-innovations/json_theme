@@ -16,6 +16,7 @@ class TextInputTypeSchema {
       'emailAddress',
       'multiline',
       'name',
+      'none',
       'number',
       'phone',
       'streetAddress',

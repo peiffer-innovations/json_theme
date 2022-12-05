@@ -39,11 +39,11 @@ void main() {
           'y': 0.4,
         },
       ),
-      Alignment(0.2, 0.4),
+      const Alignment(0.2, 0.4),
     );
     expect(
       ThemeEncoder.encodeAlignment(
-        Alignment(0.2, 0.4),
+        const Alignment(0.2, 0.4),
       ),
       {
         'x': 0.2,
@@ -166,7 +166,7 @@ void main() {
     expect(ThemeDecoder.decodeAppBarTheme(null), null);
     expect(ThemeEncoder.encodeAppBarTheme(null), null);
 
-    var entry = AppBarTheme(
+    final entry = const AppBarTheme(
       color: _kColor,
       centerTitle: true,
       elevation: 6.0,
@@ -178,8 +178,8 @@ void main() {
 
     expect(ThemeDecoder.decodeAppBarTheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeAppBarTheme(entry);
-    var decoded = ThemeDecoder.decodeAppBarTheme(encoded);
+    final encoded = ThemeEncoder.encodeAppBarTheme(entry);
+    final decoded = ThemeDecoder.decodeAppBarTheme(encoded);
 
     expect(
       json.encode(encoded),
@@ -349,12 +349,12 @@ void main() {
     expect(ThemeDecoder.decodeBorderRadius(null), null);
     expect(ThemeEncoder.encodeBorderRadius(null), null);
 
-    var entry = BorderRadius.circular(16.0);
+    final entry = BorderRadius.circular(16.0);
 
     expect(ThemeDecoder.decodeBorderRadius(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBorderRadius(entry);
-    var decoded = ThemeDecoder.decodeBorderRadius(encoded);
+    final encoded = ThemeEncoder.encodeBorderRadius(entry);
+    final decoded = ThemeDecoder.decodeBorderRadius(encoded);
 
     const corner = {
       'type': 'elliptical',
@@ -385,7 +385,7 @@ void main() {
     expect(ThemeDecoder.decodeBorderSide(null), null);
     expect(ThemeEncoder.encodeBorderSide(null), null);
 
-    var entry = BorderSide(
+    final entry = const BorderSide(
       color: _kColor,
       strokeAlign: 3.0,
       style: BorderStyle.solid,
@@ -394,8 +394,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBorderSide(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBorderSide(entry);
-    var decoded = ThemeDecoder.decodeBorderSide(encoded);
+    final encoded = ThemeEncoder.encodeBorderSide(entry);
+    final decoded = ThemeDecoder.decodeBorderSide(encoded);
 
     expect(
       encoded,
@@ -435,7 +435,7 @@ void main() {
     expect(ThemeDecoder.decodeBottomAppBarTheme(null), null);
     expect(ThemeEncoder.encodeBottomAppBarTheme(null), null);
 
-    var entry = BottomAppBarTheme(
+    final entry = const BottomAppBarTheme(
       color: _kColor,
       elevation: 8.0,
       height: 20.0,
@@ -445,8 +445,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBottomAppBarTheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBottomAppBarTheme(entry);
-    var decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded)!;
+    final encoded = ThemeEncoder.encodeBottomAppBarTheme(entry);
+    final decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded)!;
 
     expect(encoded, {
       'color': _kColorStr,
@@ -520,7 +520,7 @@ void main() {
     expect(ThemeDecoder.decodeBottomNavigationBarThemeData(null), null);
     expect(ThemeEncoder.encodeBottomNavigationBarThemeData(null), null);
 
-    var entry = BottomNavigationBarThemeData(
+    final entry = const BottomNavigationBarThemeData(
       backgroundColor: Color(0xff111111),
       elevation: 1.0,
       selectedIconTheme: IconThemeData(opacity: 0.2),
@@ -536,8 +536,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBottomNavigationBarThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBottomNavigationBarThemeData(entry);
-    var decoded = ThemeDecoder.decodeBottomNavigationBarThemeData(encoded);
+    final encoded = ThemeEncoder.encodeBottomNavigationBarThemeData(entry);
+    final decoded = ThemeDecoder.decodeBottomNavigationBarThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -607,7 +607,7 @@ void main() {
     expect(ThemeDecoder.decodeBottomSheetThemeData(null), null);
     expect(ThemeEncoder.encodeBottomSheetThemeData(null), null);
 
-    var entry = BottomSheetThemeData(
+    final entry = const BottomSheetThemeData(
       backgroundColor: Color(0xff111111),
       clipBehavior: Clip.antiAlias,
       constraints: BoxConstraints(maxHeight: 40.0),
@@ -623,8 +623,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBottomSheetThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBottomSheetThemeData(entry);
-    var decoded = ThemeDecoder.decodeBottomSheetThemeData(encoded);
+    final encoded = ThemeEncoder.encodeBottomSheetThemeData(entry);
+    final decoded = ThemeDecoder.decodeBottomSheetThemeData(encoded);
 
     expect(
       encoded,
@@ -670,7 +670,7 @@ void main() {
     expect(ThemeDecoder.decodeBoxBorder(null), null);
     expect(ThemeEncoder.encodeBoxBorder(null), null);
 
-    var entry = Border(
+    final entry = const Border(
       bottom: BorderSide(color: Color(0xff111111)),
       left: BorderSide(color: Color(0xff222222)),
       right: BorderSide(color: Color(0xff333333)),
@@ -679,8 +679,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBoxBorder(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBoxBorder(entry);
-    var decoded = ThemeDecoder.decodeBoxBorder(encoded);
+    final encoded = ThemeEncoder.encodeBoxBorder(entry);
+    final decoded = ThemeDecoder.decodeBoxBorder(encoded);
 
     expect(encoded, {
       'bottom': {
@@ -721,7 +721,7 @@ void main() {
         'width': 1,
       }),
       Border.all(
-        color: Color(0xff000000),
+        color: const Color(0xff000000),
         style: BorderStyle.solid,
         width: 1.0,
       ),
@@ -732,7 +732,7 @@ void main() {
     expect(ThemeDecoder.decodeBoxConstraints(null), null);
     expect(ThemeEncoder.encodeBoxConstraints(null), null);
 
-    var entry = BoxConstraints(
+    final entry = const BoxConstraints(
       maxHeight: 1000.0,
       maxWidth: 1001.0,
       minHeight: 100.0,
@@ -741,8 +741,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBoxConstraints(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBoxConstraints(entry);
-    var decoded = ThemeDecoder.decodeBoxConstraints(encoded);
+    final encoded = ThemeEncoder.encodeBoxConstraints(entry);
+    final decoded = ThemeDecoder.decodeBoxConstraints(encoded);
 
     expect(
       encoded,
@@ -755,7 +755,7 @@ void main() {
     );
 
     expect(
-      ThemeEncoder.encodeBoxConstraints(BoxConstraints()),
+      ThemeEncoder.encodeBoxConstraints(const BoxConstraints()),
       {
         'minHeight': 0.0,
         'minWidth': 0.0,
@@ -772,22 +772,22 @@ void main() {
     expect(ThemeDecoder.decodeBoxDecoration(null), null);
     expect(ThemeEncoder.encodeBoxDecoration(null), null);
 
-    var entry = BoxDecoration(
+    final entry = BoxDecoration(
       backgroundBlendMode: BlendMode.colorBurn,
       border: Border.all(color: _kColor),
       borderRadius: BorderRadius.circular(1.0),
       boxShadow: [
-        BoxShadow(
+        const BoxShadow(
           blurStyle: BlurStyle.inner,
           color: Color(0xff111111),
         ),
-        BoxShadow(
+        const BoxShadow(
           blurStyle: BlurStyle.normal,
           color: Color(0xff222222),
         )
       ],
-      color: Color(0xff333333),
-      gradient: RadialGradient(
+      color: const Color(0xff333333),
+      gradient: const RadialGradient(
         colors: [
           Color(0xff444444),
           Color(0xff555555),
@@ -801,8 +801,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBoxDecoration(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBoxDecoration(entry);
-    var decoded = ThemeDecoder.decodeBoxDecoration(encoded);
+    final encoded = ThemeEncoder.encodeBoxDecoration(entry);
+    final decoded = ThemeDecoder.decodeBoxDecoration(encoded);
 
     expect(
       encoded,
@@ -948,7 +948,7 @@ void main() {
     expect(ThemeDecoder.decodeBoxShadow(null), null);
     expect(ThemeEncoder.encodeBoxShadow(null), null);
 
-    var entry = BoxShadow(
+    final entry = const BoxShadow(
       blurRadius: 1.0,
       blurStyle: BlurStyle.outer,
       color: _kColor,
@@ -958,8 +958,8 @@ void main() {
 
     expect(ThemeDecoder.decodeBoxShadow(entry), entry);
 
-    var encoded = ThemeEncoder.encodeBoxShadow(entry);
-    var decoded = ThemeDecoder.decodeBoxShadow(encoded);
+    final encoded = ThemeEncoder.encodeBoxShadow(entry);
+    final decoded = ThemeDecoder.decodeBoxShadow(encoded);
 
     expect(
       encoded,
@@ -1021,7 +1021,7 @@ void main() {
     expect(ThemeDecoder.decodeButtonBarThemeData(null), null);
     expect(ThemeEncoder.encodeButtonBarThemeData(null), null);
 
-    var entry = ButtonBarThemeData(
+    final entry = const ButtonBarThemeData(
       alignment: MainAxisAlignment.spaceEvenly,
       buttonAlignedDropdown: true,
       buttonHeight: 16.0,
@@ -1035,8 +1035,8 @@ void main() {
 
     expect(ThemeDecoder.decodeButtonBarThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeButtonBarThemeData(entry);
-    var decoded = ThemeDecoder.decodeButtonBarThemeData(encoded);
+    final encoded = ThemeEncoder.encodeButtonBarThemeData(entry);
+    final decoded = ThemeDecoder.decodeButtonBarThemeData(encoded);
 
     expect(
       encoded,
@@ -1101,61 +1101,61 @@ void main() {
     expect(ThemeDecoder.decodeButtonStyle(null), null);
     expect(ThemeEncoder.encodeButtonStyle(null), null);
 
-    var entry = ButtonStyle(
+    final entry = ButtonStyle(
       alignment: Alignment.bottomCenter,
-      animationDuration: Duration(milliseconds: 1000),
+      animationDuration: const Duration(milliseconds: 1000),
       backgroundColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       elevation: MaterialStateProperty.all(1.0),
       enableFeedback: false,
       fixedSize: MaterialStateProperty.all(
-        Size(50.0, 50.0),
+        const Size(50.0, 50.0),
       ),
       foregroundColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       iconColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       iconSize: MaterialStateProperty.all(
         12.0,
       ),
       maximumSize: MaterialStateProperty.all(
-        Size(10.0, 10.0),
+        const Size(10.0, 10.0),
       ),
       minimumSize: MaterialStateProperty.all(
-        Size(100.0, 100.0),
+        const Size(100.0, 100.0),
       ),
       mouseCursor: MaterialStateProperty.all(
         MouseCursor.defer,
       ),
       overlayColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       padding: MaterialStateProperty.all(
         EdgeInsets.zero,
       ),
       shadowColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       shape: MaterialStateProperty.all(
-        CircleBorder(),
+        const CircleBorder(),
       ),
       side: MaterialStateProperty.all(
-        BorderSide(),
+        const BorderSide(),
       ),
       tapTargetSize: MaterialTapTargetSize.padded,
       textStyle: MaterialStateProperty.all(
-        TextStyle(),
+        const TextStyle(),
       ),
       visualDensity: VisualDensity.standard,
     );
 
     expect(ThemeDecoder.decodeButtonStyle(entry), entry);
 
-    var encoded = ThemeEncoder.encodeButtonStyle(entry);
-    var decoded = ThemeDecoder.decodeButtonStyle(encoded);
+    final encoded = ThemeEncoder.encodeButtonStyle(entry);
+    final decoded = ThemeDecoder.decodeButtonStyle(encoded);
 
     expect(
       encoded,
@@ -1226,7 +1226,7 @@ void main() {
         }),
         ButtonStyle(
           padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(horizontal: 1, vertical: 2)),
+              const EdgeInsets.symmetric(horizontal: 1, vertical: 2)),
         ),
       ),
       true,
@@ -1238,7 +1238,8 @@ void main() {
           'padding': [1, 2, 3, 4],
         }),
         ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(1, 2, 3, 4)),
+          padding:
+              MaterialStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
         ),
       ),
       true,
@@ -1248,7 +1249,7 @@ void main() {
       _buttonStylesAreEqual(
         ThemeDecoder.decodeButtonStyle({'padding': 1}),
         ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.all(1)),
+          padding: MaterialStateProperty.all(const EdgeInsets.all(1)),
         ),
       ),
       true,
@@ -1260,7 +1261,8 @@ void main() {
           'padding': {'left': 1, 'top': 2, 'right': 3, 'bottom': 4},
         }),
         ButtonStyle(
-          padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(1, 2, 3, 4)),
+          padding:
+              MaterialStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
         ),
       ),
       true,
@@ -1309,35 +1311,35 @@ void main() {
     expect(ThemeDecoder.decodeButtonThemeData(null), null);
     expect(ThemeEncoder.encodeButtonThemeData(null), null);
 
-    var entry = ButtonThemeData(
+    final entry = ButtonThemeData(
       alignedDropdown: true,
-      buttonColor: Color(0xff111111),
-      colorScheme: ColorScheme.dark(),
-      disabledColor: Color(0xff222222),
-      focusColor: Color(0xff333333),
+      buttonColor: const Color(0xff111111),
+      colorScheme: const ColorScheme.dark(),
+      disabledColor: const Color(0xff222222),
+      focusColor: const Color(0xff333333),
       height: 16.0,
-      highlightColor: Color(0xff444444),
-      hoverColor: Color(0xff555555),
+      highlightColor: const Color(0xff444444),
+      hoverColor: const Color(0xff555555),
       layoutBehavior: ButtonBarLayoutBehavior.padded,
       materialTapTargetSize: MaterialTapTargetSize.padded,
       minWidth: 10.0,
-      padding: EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(18.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
-        side: BorderSide(
+        side: const BorderSide(
           color: Color(0xff666666),
           width: 2.0,
           style: BorderStyle.solid,
         ),
       ),
-      splashColor: Color(0xff777777),
+      splashColor: const Color(0xff777777),
       textTheme: ButtonTextTheme.accent,
     );
 
     expect(ThemeDecoder.decodeButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeButtonThemeData({
+    final encoded = ThemeEncoder.encodeButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeButtonThemeData({
       'alignedDropdown': true,
       'buttonColor': '#ff111111',
       'colorScheme': {
@@ -1494,12 +1496,12 @@ void main() {
     expect(ThemeDecoder.decodeCardTheme(null), null);
     expect(ThemeEncoder.encodeCardTheme(null), null);
 
-    var entry = CardTheme(
+    final entry = CardTheme(
       clipBehavior: Clip.hardEdge,
-      color: Color(0xff111111),
+      color: const Color(0xff111111),
       elevation: 3.0,
-      margin: EdgeInsets.all(10.0),
-      shadowColor: Color(0xff222222),
+      margin: const EdgeInsets.all(10.0),
+      shadowColor: const Color(0xff222222),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
         side: BorderSide.none,
@@ -1514,8 +1516,8 @@ void main() {
       'y': 12.0,
     };
 
-    var encoded = ThemeEncoder.encodeCardTheme(entry);
-    var decoded = ThemeDecoder.decodeCardTheme(encoded);
+    final encoded = ThemeEncoder.encodeCardTheme(entry);
+    final decoded = ThemeDecoder.decodeCardTheme(encoded);
 
     expect(encoded, {
       'clipBehavior': 'hardEdge',
@@ -1555,7 +1557,7 @@ void main() {
     expect(ThemeDecoder.decodeCheckboxThemeData(null), null);
     expect(ThemeEncoder.encodeCheckboxThemeData(null), null);
 
-    var entry = CheckboxThemeData(
+    final entry = CheckboxThemeData(
       checkColor: MaterialStateProperty.all(_kColor),
       fillColor: MaterialStateProperty.all(_kColor),
       materialTapTargetSize: MaterialTapTargetSize.padded,
@@ -1567,8 +1569,8 @@ void main() {
 
     expect(ThemeDecoder.decodeCheckboxThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeCheckboxThemeData(entry);
-    var decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
+    final encoded = ThemeEncoder.encodeCheckboxThemeData(entry);
+    final decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
 
     expect(
       decoded!.checkColor!.resolve({MaterialState.error}),
@@ -1604,37 +1606,37 @@ void main() {
     expect(ThemeDecoder.decodeChipThemeData(null), null);
     expect(ThemeEncoder.encodeChipThemeData(null), null);
 
-    var entry = ChipThemeData(
-      backgroundColor: Color(0xff111111),
+    final entry = ChipThemeData(
+      backgroundColor: const Color(0xff111111),
       brightness: Brightness.light,
-      checkmarkColor: Color(0xff222222),
-      deleteIconColor: Color(0xff333333),
-      disabledColor: Color(0xff444444),
+      checkmarkColor: const Color(0xff222222),
+      deleteIconColor: const Color(0xff333333),
+      disabledColor: const Color(0xff444444),
       elevation: 2.0,
-      iconTheme: IconThemeData(color: _kColor),
-      labelPadding: EdgeInsets.all(4.0),
-      labelStyle: TextStyle(color: Color(0xff555555)),
-      padding: EdgeInsets.all(8.0),
+      iconTheme: const IconThemeData(color: _kColor),
+      labelPadding: const EdgeInsets.all(4.0),
+      labelStyle: const TextStyle(color: Color(0xff555555)),
+      padding: const EdgeInsets.all(8.0),
       pressElevation: 1.0,
-      secondaryLabelStyle: TextStyle(
+      secondaryLabelStyle: const TextStyle(
         color: _kColor,
       ),
-      secondarySelectedColor: Color(0xff666666),
+      secondarySelectedColor: const Color(0xff666666),
       selectedColor: _kColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      selectedShadowColor: Color(0xff777777),
-      shadowColor: Color(0xff888888),
+      selectedShadowColor: const Color(0xff777777),
+      shadowColor: const Color(0xff888888),
       showCheckmark: true,
-      side: BorderSide(width: 2.0),
+      side: const BorderSide(width: 2.0),
       surfaceTintColor: _kColor,
     );
 
     expect(ThemeDecoder.decodeChipThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeChipThemeData(entry);
-    var decoded = ThemeDecoder.decodeChipThemeData(encoded);
+    final encoded = ThemeEncoder.encodeChipThemeData(entry);
+    final decoded = ThemeDecoder.decodeChipThemeData(encoded);
 
     expect(
       encoded,
@@ -1751,12 +1753,12 @@ void main() {
     expect(ThemeDecoder.decodeColor(null), null);
     expect(ThemeEncoder.encodeColor(null), null);
 
-    var entry = _kColor;
+    final entry = _kColor;
 
     expect(ThemeDecoder.decodeColor(entry), entry);
 
-    var encoded = ThemeEncoder.encodeColor(entry);
-    var decoded = ThemeDecoder.decodeColor(encoded);
+    final encoded = ThemeEncoder.encodeColor(entry);
+    final decoded = ThemeDecoder.decodeColor(encoded);
 
     expect(encoded, _kColorStr);
 
@@ -1765,32 +1767,32 @@ void main() {
       entry,
     );
 
-    expect(ThemeDecoder.decodeColor('ddd'), Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('#ddd'), Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('DDD'), Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('#DDD'), Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('ddd'), const Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('#ddd'), const Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('DDD'), const Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('#DDD'), const Color(0xffdddddd));
 
-    expect(ThemeDecoder.decodeColor('dadada'), Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('#dadada'), Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('DADADA'), Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('#DADADA'), Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('dadada'), const Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('#dadada'), const Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('DADADA'), const Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('#DADADA'), const Color(0xffdadada));
 
-    expect(ThemeDecoder.decodeColor('dadadada'), Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('#dadadada'), Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('DADADADA'), Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('#DADADADA'), Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('dadadada'), const Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('#dadadada'), const Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('DADADADA'), const Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('#DADADADA'), const Color(0xdadadada));
   });
 
   test('ColorScheme', () {
     expect(ThemeDecoder.decodeColorScheme(null), null);
     expect(ThemeEncoder.encodeColorScheme(null), null);
 
-    var entry = ColorScheme.dark();
+    final entry = const ColorScheme.dark();
 
     expect(ThemeDecoder.decodeColorScheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeColorScheme(entry);
-    var decoded = ThemeDecoder.decodeColorScheme(encoded);
+    final encoded = ThemeEncoder.encodeColorScheme(entry);
+    final decoded = ThemeDecoder.decodeColorScheme(encoded);
 
     expect(
       encoded,
@@ -1921,7 +1923,7 @@ void main() {
     expect(ThemeDecoder.decodeCupertinoTextThemeData(null), null);
     expect(ThemeEncoder.encodeCupertinoTextThemeData(null), null);
 
-    var entry = CupertinoTextThemeData(
+    final entry = const CupertinoTextThemeData(
       actionTextStyle: _kTextStyle,
       dateTimePickerTextStyle: _kTextStyle,
       navActionTextStyle: _kTextStyle,
@@ -1935,8 +1937,8 @@ void main() {
 
     expect(ThemeDecoder.decodeCupertinoTextThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeCupertinoTextThemeData(entry);
-    var decoded = ThemeDecoder.decodeCupertinoTextThemeData(
+    final encoded = ThemeEncoder.encodeCupertinoTextThemeData(entry);
+    final decoded = ThemeDecoder.decodeCupertinoTextThemeData(
       {
         'actionTextStyle': _kTextStyleJson,
         'dateTimePickerTextStyle': _kTextStyleJson,
@@ -2003,7 +2005,7 @@ void main() {
     expect(ThemeDecoder.decodeCupertinoThemeData(null), null);
     expect(ThemeEncoder.encodeCupertinoThemeData(null), null);
 
-    var entry = CupertinoThemeData(
+    final entry = const CupertinoThemeData(
       barBackgroundColor: Color(0xff111111),
       brightness: Brightness.light,
       primaryColor: Color(0xff222222),
@@ -2024,8 +2026,8 @@ void main() {
 
     expect(ThemeDecoder.decodeCupertinoThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeCupertinoThemeData(entry);
-    var decoded = ThemeDecoder.decodeCupertinoThemeData(encoded)!;
+    final encoded = ThemeEncoder.encodeCupertinoThemeData(entry);
+    final decoded = ThemeDecoder.decodeCupertinoThemeData(encoded)!;
 
     expect(encoded, {
       'barBackgroundColor': '#ff111111',
@@ -2133,28 +2135,28 @@ void main() {
     expect(ThemeDecoder.decodeDataTableThemeData(null), null);
     expect(ThemeEncoder.encodeDataTableThemeData(null), null);
 
-    var entry = DataTableThemeData(
+    final entry = DataTableThemeData(
       checkboxHorizontalMargin: 24.0,
       columnSpacing: 1.0,
       dataRowColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       dataRowHeight: 1.0,
-      dataTextStyle: TextStyle(),
-      decoration: BoxDecoration(color: _kColor),
+      dataTextStyle: const TextStyle(),
+      decoration: const BoxDecoration(color: _kColor),
       dividerThickness: 1.0,
       headingRowColor: MaterialStateProperty.all(
-        Color(0xff555555),
+        const Color(0xff555555),
       ),
       headingRowHeight: 1.0,
-      headingTextStyle: TextStyle(),
+      headingTextStyle: const TextStyle(),
       horizontalMargin: 1.0,
     );
 
     expect(ThemeDecoder.decodeDataTableThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeDataTableThemeData(entry);
-    var decoded = ThemeDecoder.decodeDataTableThemeData(encoded);
+    final encoded = ThemeEncoder.encodeDataTableThemeData(entry);
+    final decoded = ThemeDecoder.decodeDataTableThemeData(encoded);
 
     expect(
       encoded,
@@ -2214,7 +2216,7 @@ void main() {
     expect(ThemeDecoder.decodeDecorationImage(null), null);
     expect(ThemeEncoder.encodeDecorationImage(null), null);
 
-    var entry = DecorationImage(
+    final entry = DecorationImage(
       alignment: Alignment.bottomCenter,
       centerSlice: Rect.zero,
       filterQuality: FilterQuality.high,
@@ -2230,8 +2232,8 @@ void main() {
 
     expect(ThemeDecoder.decodeDecorationImage(entry), entry);
 
-    var encoded = ThemeEncoder.encodeDecorationImage(entry);
-    var decoded = ThemeDecoder.decodeDecorationImage(encoded);
+    final encoded = ThemeEncoder.encodeDecorationImage(entry);
+    final decoded = ThemeDecoder.decodeDecorationImage(encoded);
 
     expect(encoded, {
       'alignment': 'bottomCenter',
@@ -2325,7 +2327,7 @@ void main() {
     expect(ThemeDecoder.decodeDialogTheme(null), null);
     expect(ThemeEncoder.encodeDialogTheme(null), null);
 
-    var entry = DialogTheme(
+    final entry = const DialogTheme(
       actionsPadding: EdgeInsets.all(8.0),
       alignment: Alignment.bottomLeft,
       backgroundColor: _kColor,
@@ -2338,8 +2340,8 @@ void main() {
 
     expect(ThemeDecoder.decodeDialogTheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeDialogTheme(entry);
-    var decoded = ThemeDecoder.decodeDialogTheme(encoded);
+    final encoded = ThemeEncoder.encodeDialogTheme(entry);
+    final decoded = ThemeDecoder.decodeDialogTheme(encoded);
 
     expect(
       encoded,
@@ -2401,7 +2403,7 @@ void main() {
     expect(ThemeDecoder.decodeDividerThemeData(null), null);
     expect(ThemeEncoder.encodeDividerThemeData(null), null);
 
-    var entry = DividerThemeData(
+    final entry = const DividerThemeData(
       color: _kColor,
       endIndent: 1.0,
       indent: 2.0,
@@ -2411,8 +2413,8 @@ void main() {
 
     expect(ThemeDecoder.decodeDividerThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeDividerThemeData(entry);
-    var decoded = ThemeDecoder.decodeDividerThemeData(encoded);
+    final encoded = ThemeEncoder.encodeDividerThemeData(entry);
+    final decoded = ThemeDecoder.decodeDividerThemeData(encoded);
 
     expect(
       encoded,
@@ -2465,7 +2467,7 @@ void main() {
     expect(ThemeDecoder.decodeDrawerThemeData(null), null);
     expect(ThemeEncoder.encodeDrawerThemeData(null), null);
 
-    var entry = DrawerThemeData(
+    final entry = const DrawerThemeData(
       backgroundColor: Color(0xff111111),
       elevation: 5,
       scrimColor: Color(0xff222222),
@@ -2478,8 +2480,8 @@ void main() {
 
     expect(ThemeDecoder.decodeDrawerThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeDrawerThemeData(entry);
-    var decoded = ThemeDecoder.decodeDrawerThemeData(encoded);
+    final encoded = ThemeEncoder.encodeDrawerThemeData(entry);
+    final decoded = ThemeDecoder.decodeDrawerThemeData(encoded);
 
     expect(
       encoded,
@@ -2507,7 +2509,7 @@ void main() {
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(null), null);
     expect(ThemeEncoder.encodeEdgeInsetsGeometry(null), null);
 
-    var entry = EdgeInsets.fromLTRB(
+    final entry = const EdgeInsets.fromLTRB(
       1.0,
       2.0,
       3.0,
@@ -2516,8 +2518,8 @@ void main() {
 
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(entry), entry);
 
-    var encoded = ThemeEncoder.encodeEdgeInsetsGeometry(entry);
-    var decoded = ThemeDecoder.decodeEdgeInsetsGeometry(encoded);
+    final encoded = ThemeEncoder.encodeEdgeInsetsGeometry(entry);
+    final decoded = ThemeDecoder.decodeEdgeInsetsGeometry(encoded);
 
     expect(encoded, {
       'bottom': 4.0,
@@ -2533,19 +2535,19 @@ void main() {
 
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry('16'),
-      EdgeInsets.all(16.0),
+      const EdgeInsets.all(16.0),
     );
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry(16),
-      EdgeInsets.all(16.0),
+      const EdgeInsets.all(16.0),
     );
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2]),
-      EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
+      const EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
     );
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2, 3.0, '4.0']),
-      EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
+      const EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
     );
   });
 
@@ -2553,18 +2555,18 @@ void main() {
     expect(ThemeDecoder.decodeElevatedButtonThemeData(null), null);
     expect(ThemeEncoder.encodeElevatedButtonThemeData(null), null);
 
-    var entry = ElevatedButtonThemeData(
+    final entry = ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          Color(0xff222222),
+          const Color(0xff222222),
         ),
       ),
     );
 
     expect(ThemeDecoder.decodeElevatedButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeElevatedButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeElevatedButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeElevatedButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeElevatedButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -2599,7 +2601,7 @@ void main() {
     expect(ThemeDecoder.decodeExpansionTileThemeData(null), null);
     expect(ThemeEncoder.encodeExpansionTileThemeData(null), null);
 
-    var entry = ExpansionTileThemeData(
+    final entry = const ExpansionTileThemeData(
       backgroundColor: Color(0xff111111),
       childrenPadding: EdgeInsets.all(8.0),
       collapsedBackgroundColor: Color(0xff222222),
@@ -2612,10 +2614,10 @@ void main() {
 
     expect(ThemeDecoder.decodeExpansionTileThemeData(entry), entry);
 
-    var encoded = JsonClass.removeNull(
+    final encoded = JsonClass.removeNull(
       ThemeEncoder.encodeExpansionTileThemeData(entry),
     );
-    var decoded = ThemeDecoder.decodeExpansionTileThemeData(encoded);
+    final decoded = ThemeDecoder.decodeExpansionTileThemeData(encoded);
 
     expect(
       encoded,
@@ -2648,54 +2650,54 @@ void main() {
     expect(ThemeDecoder.decodeFilledButtonThemeData(null), null);
     expect(ThemeEncoder.encodeFilledButtonThemeData(null), null);
 
-    var entry = FilledButtonThemeData(
+    final entry = FilledButtonThemeData(
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
-        animationDuration: Duration(milliseconds: 1000),
+        animationDuration: const Duration(milliseconds: 1000),
         backgroundColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         elevation: MaterialStateProperty.all(1.0),
         enableFeedback: false,
         fixedSize: MaterialStateProperty.all(
-          Size(50.0, 50.0),
+          const Size(50.0, 50.0),
         ),
         foregroundColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         iconColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         iconSize: MaterialStateProperty.all(
           12.0,
         ),
         maximumSize: MaterialStateProperty.all(
-          Size(10.0, 10.0),
+          const Size(10.0, 10.0),
         ),
         minimumSize: MaterialStateProperty.all(
-          Size(100.0, 100.0),
+          const Size(100.0, 100.0),
         ),
         mouseCursor: MaterialStateProperty.all(
           MouseCursor.defer,
         ),
         overlayColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         padding: MaterialStateProperty.all(
           EdgeInsets.zero,
         ),
         shadowColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         shape: MaterialStateProperty.all(
-          CircleBorder(),
+          const CircleBorder(),
         ),
         side: MaterialStateProperty.all(
-          BorderSide(),
+          const BorderSide(),
         ),
         tapTargetSize: MaterialTapTargetSize.padded,
         textStyle: MaterialStateProperty.all(
-          TextStyle(),
+          const TextStyle(),
         ),
         visualDensity: VisualDensity.standard,
       ),
@@ -2703,8 +2705,8 @@ void main() {
 
     expect(ThemeDecoder.decodeFilledButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeFilledButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeFilledButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeFilledButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeFilledButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -2837,7 +2839,7 @@ void main() {
     expect(ThemeDecoder.decodeFloatingActionButtonLocation(null), null);
     expect(ThemeEncoder.encodeFloatingActionButtonLocation(null), null);
 
-    var values = <String, FloatingActionButtonLocation>{
+    final values = <String, FloatingActionButtonLocation>{
       'centerDocked': FloatingActionButtonLocation.centerDocked,
       'centerFloat': FloatingActionButtonLocation.centerFloat,
       'centerTop': FloatingActionButtonLocation.centerTop,
@@ -2892,7 +2894,7 @@ void main() {
       },
     );
 
-    var entry = FloatingActionButtonThemeData(
+    final entry = const FloatingActionButtonThemeData(
       backgroundColor: Color(0xff111111),
       disabledElevation: 1.0,
       elevation: 2.0,
@@ -2928,8 +2930,8 @@ void main() {
 
     expect(ThemeDecoder.decodeFloatingActionButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeFloatingActionButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeFloatingActionButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeFloatingActionButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeFloatingActionButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -3085,12 +3087,12 @@ void main() {
     expect(ThemeDecoder.decodeFontFeature(null), null);
     expect(ThemeEncoder.encodeFontFeature(null), null);
 
-    var entry = FontFeature('fooo', 2);
+    final entry = const FontFeature('fooo', 2);
 
     expect(ThemeDecoder.decodeFontFeature(entry), entry);
 
-    var encoded = ThemeEncoder.encodeFontFeature(entry);
-    var decoded = ThemeDecoder.decodeFontFeature(encoded);
+    final encoded = ThemeEncoder.encodeFontFeature(entry);
+    final decoded = ThemeDecoder.decodeFontFeature(encoded);
 
     expect(
       encoded,
@@ -3159,7 +3161,7 @@ void main() {
     expect(ThemeDecoder.decodeFontVariation(null), null);
     expect(ThemeEncoder.encodeFontVariation(null), null);
 
-    final entry = FontVariation('slnt', 20.0);
+    final entry = const FontVariation('slnt', 20.0);
     final encoded = ThemeEncoder.encodeFontVariation(entry);
     final decoded = ThemeDecoder.decodeFontVariation(encoded);
 
@@ -3178,7 +3180,7 @@ void main() {
     expect(ThemeDecoder.decodeGradient(null), null);
     expect(ThemeEncoder.encodeGradient(null), null);
 
-    Gradient entry = LinearGradient(
+    Gradient entry = const LinearGradient(
       colors: <Color>[Color(0xff111111), Color(0xff222222)],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -3210,7 +3212,7 @@ void main() {
       entry,
     );
 
-    entry = RadialGradient(
+    entry = const RadialGradient(
       center: Alignment.bottomCenter,
       colors: <Color>[Color(0xff111111), Color(0xff222222)],
       focal: Alignment.topCenter,
@@ -3244,7 +3246,7 @@ void main() {
       entry,
     );
 
-    entry = SweepGradient(
+    entry = const SweepGradient(
       center: Alignment.bottomCenter,
       colors: <Color>[Color(0xff111111), Color(0xff222222)],
       endAngle: 5.0,
@@ -3281,12 +3283,12 @@ void main() {
     expect(ThemeDecoder.decodeGradientTransform(null), null);
     expect(ThemeEncoder.encodeGradientTransform(null), null);
 
-    var entry = GradientRotation(10.0);
+    final entry = const GradientRotation(10.0);
 
     expect(ThemeDecoder.decodeGradientTransform(entry), entry);
 
-    var encoded = ThemeEncoder.encodeGradientTransform(entry);
-    var decoded = ThemeDecoder.decodeGradientTransform(encoded)!;
+    final encoded = ThemeEncoder.encodeGradientTransform(entry);
+    final decoded = ThemeDecoder.decodeGradientTransform(encoded)!;
 
     expect(
       encoded,
@@ -3348,7 +3350,7 @@ void main() {
     expect(ThemeDecoder.decodeIcon(null), null);
     expect(ThemeEncoder.encodeIcon(null), null);
 
-    var data = IconData(
+    final data = const IconData(
       2,
       fontFamily: 'foo',
       fontPackage: 'bar',
@@ -3366,7 +3368,7 @@ void main() {
       },
       ThemeEncoder.encodeIcon(Icon(data)),
     );
-    var entry = Icon(
+    final entry = Icon(
       data,
       color: _kColor,
       fill: 0.1,
@@ -3374,12 +3376,13 @@ void main() {
       opticalSize: 0.3,
       size: 12.0,
       textDirection: TextDirection.ltr,
+      weight: 400.0,
     );
 
     expect(ThemeDecoder.decodeIcon(entry), entry);
 
-    var encoded = ThemeEncoder.encodeIcon(entry);
-    var decoded = ThemeDecoder.decodeIcon(encoded);
+    final encoded = ThemeEncoder.encodeIcon(entry);
+    final decoded = ThemeDecoder.decodeIcon(encoded);
 
     expect(
       encoded,
@@ -3396,6 +3399,7 @@ void main() {
         'opticalSize': 0.3,
         'size': 12.0,
         'textDirection': 'ltr',
+        'weight': 400.0,
       },
     );
 
@@ -3409,54 +3413,54 @@ void main() {
     expect(ThemeDecoder.decodeIconButtonThemeData(null), null);
     expect(ThemeEncoder.encodeIconButtonThemeData(null), null);
 
-    var entry = IconButtonThemeData(
+    final entry = IconButtonThemeData(
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
-        animationDuration: Duration(milliseconds: 1000),
+        animationDuration: const Duration(milliseconds: 1000),
         backgroundColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         elevation: MaterialStateProperty.all(1.0),
         enableFeedback: false,
         fixedSize: MaterialStateProperty.all(
-          Size(50.0, 50.0),
+          const Size(50.0, 50.0),
         ),
         foregroundColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         iconColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         iconSize: MaterialStateProperty.all(
           12.0,
         ),
         maximumSize: MaterialStateProperty.all(
-          Size(10.0, 10.0),
+          const Size(10.0, 10.0),
         ),
         minimumSize: MaterialStateProperty.all(
-          Size(100.0, 100.0),
+          const Size(100.0, 100.0),
         ),
         mouseCursor: MaterialStateProperty.all(
           MouseCursor.defer,
         ),
         overlayColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         padding: MaterialStateProperty.all(
           EdgeInsets.zero,
         ),
         shadowColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         shape: MaterialStateProperty.all(
-          CircleBorder(),
+          const CircleBorder(),
         ),
         side: MaterialStateProperty.all(
-          BorderSide(),
+          const BorderSide(),
         ),
         tapTargetSize: MaterialTapTargetSize.padded,
         textStyle: MaterialStateProperty.all(
-          TextStyle(),
+          const TextStyle(),
         ),
         visualDensity: VisualDensity.standard,
       ),
@@ -3464,8 +3468,8 @@ void main() {
 
     expect(ThemeDecoder.decodeIconButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeIconButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeIconButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeIconButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeIconButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -3536,7 +3540,7 @@ void main() {
     expect(ThemeDecoder.decodeIconData(null), null);
     expect(ThemeEncoder.encodeIconData(null), null);
 
-    var entry = IconData(
+    final entry = const IconData(
       2,
       fontFamily: 'foo',
       fontPackage: 'bar',
@@ -3545,8 +3549,8 @@ void main() {
 
     expect(ThemeDecoder.decodeIconData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeIconData(entry);
-    var decoded = ThemeDecoder.decodeIconData(encoded);
+    final encoded = ThemeEncoder.encodeIconData(entry);
+    final decoded = ThemeDecoder.decodeIconData(encoded);
 
     expect(
       encoded,
@@ -3568,7 +3572,7 @@ void main() {
     expect(ThemeDecoder.decodeIconThemeData(null), null);
     expect(ThemeEncoder.encodeIconThemeData(null), null);
 
-    var entry = IconThemeData(
+    final entry = const IconThemeData(
       color: _kColor,
       fill: 0.5,
       grade: 3.0,
@@ -3580,8 +3584,8 @@ void main() {
 
     expect(ThemeDecoder.decodeIconThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeIconThemeData(entry);
-    var decoded = ThemeDecoder.decodeIconThemeData(encoded);
+    final encoded = ThemeEncoder.encodeIconThemeData(entry);
+    final decoded = ThemeDecoder.decodeIconThemeData(encoded);
 
     expect(
       encoded,
@@ -3606,7 +3610,7 @@ void main() {
     expect(ThemeDecoder.decodeImageProvider(null), null);
     expect(ThemeEncoder.encodeImageProvider(null), null);
 
-    var images = [
+    final images = [
       {
         'assetName': 'asset',
         'package': 'package',
@@ -3626,7 +3630,7 @@ void main() {
     ];
 
     for (var image in images) {
-      var decoded = ThemeDecoder.decodeImageProvider(image);
+      final decoded = ThemeDecoder.decodeImageProvider(image);
       expect(ThemeDecoder.decodeImageProvider(decoded), decoded);
       expect(ThemeEncoder.encodeImageProvider(decoded), image);
     }
@@ -3658,7 +3662,7 @@ void main() {
     expect(ThemeDecoder.decodeInputBorder(null), null);
     expect(ThemeEncoder.encodeInputBorder(null), null);
 
-    var entry = OutlineInputBorder(
+    final entry = const OutlineInputBorder(
       borderSide: BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
@@ -3669,8 +3673,8 @@ void main() {
 
     expect(ThemeDecoder.decodeInputBorder(entry), entry);
 
-    var encoded = ThemeEncoder.encodeInputBorder(entry);
-    var decoded = ThemeDecoder.decodeInputBorder(encoded);
+    final encoded = ThemeEncoder.encodeInputBorder(entry);
+    final decoded = ThemeDecoder.decodeInputBorder(encoded);
 
     expect(
       encoded,
@@ -3714,7 +3718,7 @@ void main() {
       entry,
     );
 
-    var entry2 = UnderlineInputBorder(
+    final entry2 = const UnderlineInputBorder(
       borderSide: BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
@@ -3722,8 +3726,8 @@ void main() {
       ),
     );
 
-    var encoded2 = ThemeEncoder.encodeInputBorder(entry2);
-    var decoded2 = ThemeDecoder.decodeInputBorder(encoded2);
+    final encoded2 = ThemeEncoder.encodeInputBorder(entry2);
+    final decoded2 = ThemeDecoder.decodeInputBorder(encoded2);
 
     expect(
       encoded2,
@@ -3771,8 +3775,8 @@ void main() {
     expect(ThemeDecoder.decodeInputDecorationTheme(null), null);
     expect(ThemeEncoder.encodeInputDecorationTheme(null), null);
 
-    var entry = InputDecorationTheme(
-      activeIndicatorBorder: BorderSide(
+    final entry = InputDecorationTheme(
+      activeIndicatorBorder: const BorderSide(
         color: _kColor,
         strokeAlign: -2.0,
         style: BorderStyle.solid,
@@ -3780,12 +3784,12 @@ void main() {
       ),
       alignLabelWithHint: true,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0)),
-      constraints: BoxConstraints(
+      constraints: const BoxConstraints(
         minHeight: 2.0,
         minWidth: 1.0,
       ),
-      contentPadding: EdgeInsets.all(10.0),
-      counterStyle: TextStyle(color: Color(0xff111111)),
+      contentPadding: const EdgeInsets.all(10.0),
+      counterStyle: const TextStyle(color: Color(0xff111111)),
       disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(2.0),
       ),
@@ -3796,13 +3800,13 @@ void main() {
         borderRadius: BorderRadius.circular(4.0),
       ),
       errorMaxLines: 1,
-      errorStyle: TextStyle(color: Color(0xff222222)),
-      fillColor: Color(0xff333333),
+      errorStyle: const TextStyle(color: Color(0xff222222)),
+      fillColor: const Color(0xff333333),
       filled: true,
       floatingLabelAlignment: FloatingLabelAlignment.center,
       floatingLabelBehavior: FloatingLabelBehavior.always,
-      floatingLabelStyle: TextStyle(color: Color(0x00000000)),
-      focusColor: Color(0xff444444),
+      floatingLabelStyle: const TextStyle(color: Color(0x00000000)),
+      focusColor: const Color(0xff444444),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(3.0),
       ),
@@ -3810,29 +3814,29 @@ void main() {
         borderRadius: BorderRadius.circular(4.0),
       ),
       helperMaxLines: 2,
-      helperStyle: TextStyle(color: Color(0xff555555)),
-      hintStyle: TextStyle(color: Color(0xff666666)),
-      hoverColor: Color(0xff777777),
-      iconColor: Color(0xff223322),
+      helperStyle: const TextStyle(color: Color(0xff555555)),
+      hintStyle: const TextStyle(color: Color(0xff666666)),
+      hoverColor: const Color(0xff777777),
+      iconColor: const Color(0xff223322),
       isCollapsed: true,
       isDense: true,
-      labelStyle: TextStyle(color: Color(0xff888888)),
-      outlineBorder: BorderSide(
+      labelStyle: const TextStyle(color: Color(0xff888888)),
+      outlineBorder: const BorderSide(
         color: _kColor,
         strokeAlign: -3.0,
         style: BorderStyle.solid,
         width: 2.0,
       ),
-      prefixIconColor: Color(0xff334433),
-      prefixStyle: TextStyle(color: Color(0xff999999)),
-      suffixIconColor: Color(0xff445544),
-      suffixStyle: TextStyle(color: Color(0xff000000)),
+      prefixIconColor: const Color(0xff334433),
+      prefixStyle: const TextStyle(color: Color(0xff999999)),
+      suffixIconColor: const Color(0xff445544),
+      suffixStyle: const TextStyle(color: Color(0xff000000)),
     );
 
     expect(ThemeDecoder.decodeInputDecorationTheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeInputDecorationTheme(entry);
-    var decoded = ThemeDecoder.decodeInputDecorationTheme(encoded);
+    final encoded = ThemeEncoder.encodeInputDecorationTheme(entry);
+    final decoded = ThemeDecoder.decodeInputDecorationTheme(encoded);
 
     expect(
       encoded,
@@ -4172,7 +4176,7 @@ void main() {
     expect(ThemeDecoder.decodeListTileThemeData(null), null);
     expect(ThemeEncoder.encodeListTileThemeData(null), null);
 
-    var entry = ListTileThemeData(
+    final entry = const ListTileThemeData(
       contentPadding: EdgeInsets.fromLTRB(
         1,
         2,
@@ -4193,8 +4197,8 @@ void main() {
       tileColor: Color(0xff555555),
     );
 
-    var decoded = ThemeDecoder.decodeListTileThemeData(entry);
-    var encoded = ThemeEncoder.encodeListTileThemeData(decoded);
+    final decoded = ThemeDecoder.decodeListTileThemeData(entry);
+    final encoded = ThemeEncoder.encodeListTileThemeData(decoded);
 
     expect(
       encoded,
@@ -4242,12 +4246,12 @@ void main() {
     expect(ThemeDecoder.decodeLocale(null), null);
     expect(ThemeEncoder.encodeLocale(null), null);
 
-    var entry = Locale('en', 'US');
+    final entry = const Locale('en', 'US');
 
     expect(ThemeDecoder.decodeLocale(entry), entry);
 
-    var encoded = ThemeEncoder.encodeLocale(entry);
-    var decoded = ThemeDecoder.decodeLocale(encoded);
+    final encoded = ThemeEncoder.encodeLocale(entry);
+    final decoded = ThemeDecoder.decodeLocale(encoded);
 
     expect(
       encoded,
@@ -4347,7 +4351,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialBannerThemeData(null), null);
     expect(ThemeEncoder.encodeMaterialBannerThemeData(null), null);
 
-    var entry = MaterialBannerThemeData(
+    final entry = const MaterialBannerThemeData(
       backgroundColor: _kColor,
       contentTextStyle: _kTextStyle,
       dividerColor: Color(0xff111111),
@@ -4360,8 +4364,8 @@ void main() {
 
     expect(ThemeDecoder.decodeMaterialBannerThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeMaterialBannerThemeData(entry);
-    var decoded = ThemeDecoder.decodeMaterialBannerThemeData(encoded);
+    final encoded = ThemeEncoder.encodeMaterialBannerThemeData(entry);
+    final decoded = ThemeDecoder.decodeMaterialBannerThemeData(encoded);
 
     expect(
       encoded,
@@ -4397,7 +4401,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialColor(null), null);
     expect(ThemeEncoder.encodeMaterialColor(null), null);
 
-    var entry = MaterialColor(_kColor.value, {
+    final entry = MaterialColor(_kColor.value, {
       50: _kColor,
       100: _kColor,
       200: _kColor,
@@ -4412,8 +4416,8 @@ void main() {
 
     expect(ThemeDecoder.decodeMaterialColor(entry), entry);
 
-    var encoded = ThemeEncoder.encodeMaterialColor(entry);
-    var decoded = ThemeDecoder.decodeMaterialColor(encoded);
+    final encoded = ThemeEncoder.encodeMaterialColor(entry);
+    final decoded = ThemeDecoder.decodeMaterialColor(encoded);
 
     expect(
       encoded,
@@ -4441,7 +4445,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyBool(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyBool(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4452,7 +4456,7 @@ void main() {
       'selected': MaterialState.selected,
     };
 
-    var values = {
+    final values = {
       'disabled': true,
       'dragged': true,
       'error': true,
@@ -4464,10 +4468,10 @@ void main() {
     };
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var value = values[stateKey];
+      final value = values[stateKey];
 
       var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
       expect(decoded?.resolve({state}), value);
@@ -4475,36 +4479,36 @@ void main() {
       decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value.toString());
       expect(decoded?.resolve({state}), value);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
       expect(encoded![stateKey], value);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : values[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyBool(prop);
     for (var entry in states.entries) {
-      var value = values[entry.value];
+      final value = values[entry.value];
 
       expect(decoded!.resolve({entry.value}), value);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
 
       expect(encoded?[entry.key], value);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var value = values[stateKey];
+      final value = values[stateKey];
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
 
       expect(decoded!.resolve({state}), value);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
 
       expect(encoded![stateKey], value);
     }
@@ -4514,7 +4518,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyBorderSide(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyBorderSide(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4526,61 +4530,64 @@ void main() {
     };
 
     var count = 1.0;
-    var sides = <MaterialState, BorderSide>{};
+    final sides = <MaterialState, BorderSide>{};
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = BorderSide(
+      final side = BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: ++count,
       );
       sides[state] = side;
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(side);
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(side);
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
+      final encoded =
+          ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
 
       expect(encoded![stateKey]['width'], side.width);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : sides[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(prop);
     for (var entry in states.entries) {
-      var side = sides[entry.value];
+      final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
+      final encoded =
+          ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
 
       expect(encoded![entry.key]['width'], side!.width);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = BorderSide(
+      final side = BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: ++count,
       );
-      var encodedSide = ThemeEncoder.encodeBorderSide(side);
+      final encodedSide = ThemeEncoder.encodeBorderSide(side);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
+      final encoded =
+          ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
 
       expect(encoded![stateKey]['width'], side.width);
     }
@@ -4590,7 +4597,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4601,7 +4608,7 @@ void main() {
       'selected': MaterialState.selected,
     };
 
-    var colors = {
+    final colors = {
       'disabled': '#ff111111',
       'dragged': '#ff222222',
       'error': '#ff333333',
@@ -4613,11 +4620,11 @@ void main() {
     };
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var colorStr = colors[stateKey];
-      var color = ThemeDecoder.decodeColor(colorStr);
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
 
       var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(color);
       expect(decoded!.resolve({state}), color);
@@ -4625,41 +4632,41 @@ void main() {
       decoded = ThemeDecoder.decodeMaterialStatePropertyColor(colorStr);
       expect(decoded!.resolve({state}), color);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
       expect(encoded![stateKey], colorStr);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : ThemeDecoder.decodeColor(colors[states.first]);
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyColor(prop);
     for (var entry in states.entries) {
-      var colorStr = colors[entry.value];
-      var color = ThemeDecoder.decodeColor(colorStr);
+      final colorStr = colors[entry.value];
+      final color = ThemeDecoder.decodeColor(colorStr);
 
       expect(decoded!.resolve({entry.value}), color);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
 
       expect(encoded?[entry.key], colorStr);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var colorStr = colors[stateKey];
-      var color = ThemeDecoder.decodeColor(colorStr);
-      var encodedColor = ThemeEncoder.encodeColor(color);
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+      final encodedColor = ThemeEncoder.encodeColor(color);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyColor(
         encodedColor,
       );
 
       expect(decoded!.resolve({state}), color);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
 
       expect(encoded![stateKey], colorStr);
     }
@@ -4679,7 +4686,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyDouble(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyDouble(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4690,7 +4697,7 @@ void main() {
       'selected': MaterialState.selected,
     };
 
-    var values = {
+    final values = {
       'disabled': 1.0,
       'dragged': 2.0,
       'error': 3.0,
@@ -4702,10 +4709,10 @@ void main() {
     };
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var value = values[stateKey];
+      final value = values[stateKey];
 
       var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
       expect(decoded!.resolve({state}), value);
@@ -4714,36 +4721,36 @@ void main() {
           ThemeDecoder.decodeMaterialStatePropertyDouble(value.toString());
       expect(decoded!.resolve({state}), value);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
       expect(encoded![stateKey], value);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : values[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(prop);
     for (var entry in states.entries) {
-      var value = values[entry.value];
+      final value = values[entry.value];
 
       expect(decoded!.resolve({entry.value}), value);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
 
       expect(encoded?[entry.key], value);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var value = values[stateKey];
+      final value = values[stateKey];
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
 
       expect(decoded!.resolve({state}), value);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
 
       expect(encoded![stateKey], value);
     }
@@ -4755,7 +4762,7 @@ void main() {
     expect(
         ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4767,57 +4774,58 @@ void main() {
     };
 
     var count = 1.0;
-    var sides = <MaterialState, EdgeInsetsGeometry>{};
+    final sides = <MaterialState, EdgeInsetsGeometry>{};
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = EdgeInsets.all(++count);
+      final side = EdgeInsets.all(++count);
       sides[state] = side;
 
-      var decoded =
+      final decoded =
           ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(side);
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![stateKey]['bottom'], side.bottom);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : sides[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded =
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded =
         ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(prop);
     for (var entry in states.entries) {
-      var side = sides[entry.value];
+      final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![entry.key]['bottom'], (side as EdgeInsets).bottom);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = EdgeInsets.all(++count);
-      var encodedSide = ThemeEncoder.encodeEdgeInsetsGeometry(side);
+      final side = EdgeInsets.all(++count);
+      final encodedSide = ThemeEncoder.encodeEdgeInsetsGeometry(side);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
+      final decoded =
+          ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![stateKey]['bottom'], side.bottom);
@@ -4827,20 +4835,21 @@ void main() {
         ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry([1, 2]);
     for (var state in states.values) {
       expect(symmetricDecoded!.resolve({state}),
-          EdgeInsets.symmetric(horizontal: 1, vertical: 2));
+          const EdgeInsets.symmetric(horizontal: 1, vertical: 2));
     }
 
     final ltrbDecoded =
         ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
             [1, 2, 3, 4]);
     for (var state in states.values) {
-      expect(ltrbDecoded!.resolve({state}), EdgeInsets.fromLTRB(1, 2, 3, 4));
+      expect(
+          ltrbDecoded!.resolve({state}), const EdgeInsets.fromLTRB(1, 2, 3, 4));
     }
 
     final allDecoded =
         ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(1);
     for (var state in states.values) {
-      expect(allDecoded!.resolve({state}), EdgeInsets.all(1));
+      expect(allDecoded!.resolve({state}), const EdgeInsets.all(1));
     }
   });
 
@@ -4848,7 +4857,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyIconThemeData(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyIconThemeData(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4859,40 +4868,41 @@ void main() {
       'selected': MaterialState.selected,
     };
 
-    var icons = <MaterialState, IconThemeData>{};
+    final icons = <MaterialState, IconThemeData>{};
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var icon = IconThemeData(
+      final icon = const IconThemeData(
         color: _kColor,
         opacity: 0.5,
         size: 12.0,
       );
       icons[state] = icon;
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(icon);
+      final decoded =
+          ThemeDecoder.decodeMaterialStatePropertyIconThemeData(icon);
 
       expect(decoded!.resolve({state}), icon);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
 
       expect(encoded![stateKey]['color'], _kColorStr);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : icons[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(prop);
     for (var entry in states.entries) {
-      var icon = icons[entry.value];
+      final icon = icons[entry.value];
 
       expect(decoded!.resolve({entry.value}), icon);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyIconThemeData(
+      final encoded = ThemeEncoder.encodeMaterialStatePropertyIconThemeData(
         decoded,
       );
 
@@ -4900,19 +4910,19 @@ void main() {
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var icon = icons[state];
-      var encodedSide = ThemeEncoder.encodeIconThemeData(icon);
+      final icon = icons[state];
+      final encodedSide = ThemeEncoder.encodeIconThemeData(icon);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), icon);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
 
       expect(encoded![stateKey]['color'], _kColorStr);
@@ -4923,7 +4933,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -4934,7 +4944,7 @@ void main() {
       'selected': MaterialState.selected,
     };
 
-    var cursors = {
+    final cursors = {
       'disabled': {'type': 'system', 'cursor': 'alias'},
       'dragged': {'type': 'system', 'cursor': 'allScroll'},
       'error': {'type': 'system', 'cursor': 'basic'},
@@ -4946,11 +4956,11 @@ void main() {
     };
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var cursorStr = cursors[stateKey];
-      var cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+      final cursorStr = cursors[stateKey];
+      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
 
       var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(cursor);
       expect(decoded!.resolve({state}), cursor);
@@ -4958,44 +4968,44 @@ void main() {
       decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(cursorStr);
       expect(decoded!.resolve({state}), cursor);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
       expect(encoded![stateKey], cursorStr);
     }
 
-    var func = (Set<MaterialState> states) => states.isEmpty
+    final func = (Set<MaterialState> states) => states.isEmpty
         ? null
         : ThemeDecoder.decodeMouseCursor(cursors[states.first]);
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(prop);
     for (var entry in states.entries) {
-      var cursorStr = cursors[entry.value];
-      var cursor = ThemeDecoder.decodeColor(cursorStr);
+      final cursorStr = cursors[entry.value];
+      final cursor = ThemeDecoder.decodeColor(cursorStr);
 
       expect(decoded!.resolve({entry.value}), cursor);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
 
       expect(encoded?[entry.key], cursorStr);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var cursorStr = cursors[stateKey];
-      var cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
-      var encodedCursor = ThemeEncoder.encodeMouseCursor(cursor);
+      final cursorStr = cursors[stateKey];
+      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+      final encodedCursor = ThemeEncoder.encodeMouseCursor(cursor);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(
         encodedCursor,
       );
 
       expect(decoded!.resolve({state}), cursor);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
 
       expect(encoded![stateKey], cursorStr);
@@ -5006,7 +5016,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -5018,13 +5028,13 @@ void main() {
     };
 
     var count = 1.0;
-    var sides = <MaterialState, OutlinedBorder>{};
+    final sides = <MaterialState, OutlinedBorder>{};
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = RoundedRectangleBorder(
+      final side = RoundedRectangleBorder(
         side: BorderSide(
           color: Colors.black,
           style: BorderStyle.solid,
@@ -5033,47 +5043,48 @@ void main() {
       );
       sides[state] = side;
 
-      var decoded =
+      final decoded =
           ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(side);
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
 
       expect(encoded![stateKey]['side']['width'], side.side.width);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : sides[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded =
+        ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(prop);
     for (var entry in states.entries) {
-      var side = sides[entry.value];
+      final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
 
       expect(encoded![entry.key]['side']['width'], side!.side.width);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = sides[state];
-      var encodedSide = ThemeEncoder.encodeOutlinedBorder(side);
+      final side = sides[state];
+      final encodedSide = ThemeEncoder.encodeOutlinedBorder(side);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded =
+      final encoded =
           ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
 
       expect(encoded![stateKey]['side']['width'], side!.side.width);
@@ -5090,7 +5101,7 @@ void main() {
       null,
     );
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -5102,56 +5113,56 @@ void main() {
     };
 
     var count = 1.0;
-    var sides = <MaterialState, Size>{};
+    final sides = <MaterialState, Size>{};
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = Size(
+      final side = Size(
         ++count,
         ++count,
       );
       sides[state] = side;
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertySize(side);
+      final decoded = ThemeDecoder.decodeMaterialStatePropertySize(side);
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
 
       expect(encoded![stateKey]['width'], side.width);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : sides[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertySize(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertySize(prop);
     for (var entry in states.entries) {
-      var side = sides[entry.value];
+      final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
 
       expect(encoded![entry.key]['width'], side!.width);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = sides[state];
-      var encodedSide = ThemeEncoder.encodeSize(side);
+      final side = sides[state];
+      final encodedSide = ThemeEncoder.encodeSize(side);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertySize(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertySize(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
+      final encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
 
       expect(encoded![stateKey]['width'], side!.width);
     }
@@ -5161,7 +5172,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyTextStyle(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyTextStyle(null), null);
 
-    var states = {
+    final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
       'error': MaterialState.error,
@@ -5173,53 +5184,56 @@ void main() {
     };
 
     var count = 1.0;
-    var sides = <MaterialState, TextStyle>{};
+    final sides = <MaterialState, TextStyle>{};
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = TextStyle(fontSize: ++count);
+      final side = TextStyle(fontSize: ++count);
       sides[state] = side;
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(side);
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(side);
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
+      final encoded =
+          ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
 
       expect(encoded![stateKey]['fontSize'], side.fontSize);
     }
 
-    var func = (Set<MaterialState> states) =>
+    final func = (Set<MaterialState> states) =>
         states.isEmpty ? null : sides[states.first];
 
-    var prop = MaterialStateProperty.resolveWith(func);
-    var decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(prop);
+    final prop = MaterialStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(prop);
     for (var entry in states.entries) {
-      var side = sides[entry.value];
+      final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
+      final encoded =
+          ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
 
       expect(encoded![entry.key]['fontSize'], side!.fontSize);
     }
 
     for (var entry in states.entries) {
-      var stateKey = entry.key;
-      var state = entry.value;
+      final stateKey = entry.key;
+      final state = entry.value;
 
-      var side = sides[state];
-      var encodedSide = ThemeEncoder.encodeTextStyle(side);
+      final side = sides[state];
+      final encodedSide = ThemeEncoder.encodeTextStyle(side);
 
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(
+      final decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      var encoded = ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
+      final encoded =
+          ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
 
       expect(encoded![stateKey]['fontSize'], side!.fontSize);
     }
@@ -5291,7 +5305,7 @@ void main() {
     expect(ThemeDecoder.decodeMatrix4(null), null);
     expect(ThemeEncoder.encodeMatrix4(null), null);
 
-    var entry = Matrix4(
+    final entry = Matrix4(
       1.0,
       2.0,
       3.0,
@@ -5312,8 +5326,8 @@ void main() {
 
     expect(ThemeDecoder.decodeMatrix4(entry), entry);
 
-    var encoded = ThemeEncoder.encodeMatrix4(entry);
-    var decoded = ThemeDecoder.decodeMatrix4(encoded);
+    final encoded = ThemeEncoder.encodeMatrix4(entry);
+    final decoded = ThemeDecoder.decodeMatrix4(encoded);
 
     expect(
       encoded,
@@ -5378,54 +5392,54 @@ void main() {
     expect(ThemeDecoder.decodeMenuButtonThemeData(null), null);
     expect(ThemeEncoder.encodeMenuButtonThemeData(null), null);
 
-    var entry = MenuButtonThemeData(
+    final entry = MenuButtonThemeData(
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
-        animationDuration: Duration(milliseconds: 1000),
+        animationDuration: const Duration(milliseconds: 1000),
         backgroundColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         elevation: MaterialStateProperty.all(1.0),
         enableFeedback: false,
         fixedSize: MaterialStateProperty.all(
-          Size(50.0, 50.0),
+          const Size(50.0, 50.0),
         ),
         foregroundColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         iconColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         iconSize: MaterialStateProperty.all(
           12.0,
         ),
         maximumSize: MaterialStateProperty.all(
-          Size(10.0, 10.0),
+          const Size(10.0, 10.0),
         ),
         minimumSize: MaterialStateProperty.all(
-          Size(100.0, 100.0),
+          const Size(100.0, 100.0),
         ),
         mouseCursor: MaterialStateProperty.all(
           MouseCursor.defer,
         ),
         overlayColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         padding: MaterialStateProperty.all(
           EdgeInsets.zero,
         ),
         shadowColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         shape: MaterialStateProperty.all(
-          CircleBorder(),
+          const CircleBorder(),
         ),
         side: MaterialStateProperty.all(
-          BorderSide(),
+          const BorderSide(),
         ),
         tapTargetSize: MaterialTapTargetSize.padded,
         textStyle: MaterialStateProperty.all(
-          TextStyle(),
+          const TextStyle(),
         ),
         visualDensity: VisualDensity.standard,
       ),
@@ -5433,8 +5447,8 @@ void main() {
 
     expect(ThemeDecoder.decodeMenuButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeMenuButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeMenuButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeMenuButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeMenuButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -5505,7 +5519,7 @@ void main() {
     expect(ThemeDecoder.decodeMenuStyle(null), null);
     expect(ThemeEncoder.encodeMenuStyle(null), null);
 
-    final entry = MenuStyle(
+    final entry = const MenuStyle(
       alignment: Alignment.center,
     );
 
@@ -6250,7 +6264,7 @@ void main() {
     expect(ThemeDecoder.decodeNavigationBarThemeData(null), null);
     expect(ThemeEncoder.encodeNavigationBarThemeData(null), null);
 
-    var entry = NavigationBarThemeData(
+    final entry = const NavigationBarThemeData(
       backgroundColor: Color(0xff111111),
       elevation: 4.0,
       height: 12.0,
@@ -6260,8 +6274,8 @@ void main() {
       surfaceTintColor: Color(0xff444444),
     );
 
-    var encoded = ThemeEncoder.encodeNavigationBarThemeData(entry);
-    var decoded = ThemeDecoder.decodeNavigationBarThemeData(encoded);
+    final encoded = ThemeEncoder.encodeNavigationBarThemeData(entry);
+    final decoded = ThemeDecoder.decodeNavigationBarThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -6279,7 +6293,7 @@ void main() {
     expect(ThemeDecoder.decodeNavigationRailThemeData(null), null);
     expect(ThemeEncoder.encodeNavigationRailThemeData(null), null);
 
-    var entry = NavigationRailThemeData(
+    final entry = const NavigationRailThemeData(
       backgroundColor: Color(0xff111111),
       elevation: 1.0,
       groupAlignment: 2.0,
@@ -6302,8 +6316,8 @@ void main() {
 
     expect(ThemeDecoder.decodeNavigationRailThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeNavigationRailThemeData(entry);
-    var decoded = ThemeDecoder.decodeNavigationRailThemeData(encoded);
+    final encoded = ThemeEncoder.encodeNavigationRailThemeData(entry);
+    final decoded = ThemeDecoder.decodeNavigationRailThemeData(encoded);
 
     expect(
       encoded,
@@ -6345,17 +6359,17 @@ void main() {
     expect(ThemeDecoder.decodeNotchedShape(null), null);
     expect(ThemeEncoder.encodeNotchedShape(null), null);
 
-    var entry = CircularNotchedRectangle();
+    final entry = const CircularNotchedRectangle();
     expect(
       ThemeDecoder.decodeNotchedShape(entry),
       entry,
     );
     expect(
       ThemeDecoder.decodeNotchedShape('circular')?.runtimeType,
-      CircularNotchedRectangle().runtimeType,
+      const CircularNotchedRectangle().runtimeType,
     );
     expect(
-      ThemeEncoder.encodeNotchedShape(CircularNotchedRectangle()),
+      ThemeEncoder.encodeNotchedShape(const CircularNotchedRectangle()),
       'circular',
     );
   });
@@ -6364,15 +6378,15 @@ void main() {
     expect(ThemeDecoder.decodeOrdinalSortKey(null), null);
     expect(ThemeEncoder.encodeOrdinalSortKey(null), null);
 
-    var entry = OrdinalSortKey(
+    final entry = const OrdinalSortKey(
       1.0,
       name: 'foo',
     );
 
     expect(ThemeDecoder.decodeOrdinalSortKey(entry), entry);
 
-    var encoded = ThemeEncoder.encodeOrdinalSortKey(entry);
-    var decoded = ThemeDecoder.decodeOrdinalSortKey(encoded);
+    final encoded = ThemeEncoder.encodeOrdinalSortKey(entry);
+    final decoded = ThemeDecoder.decodeOrdinalSortKey(encoded);
 
     expect(
       encoded,
@@ -6396,15 +6410,15 @@ void main() {
     expect(ThemeDecoder.decodeOffset(null), null);
     expect(ThemeEncoder.encodeOffset(null), null);
 
-    var entry = Offset(
+    final entry = const Offset(
       1.0,
       2.0,
     );
 
     expect(ThemeDecoder.decodeOffset(entry), entry);
 
-    var encoded = ThemeEncoder.encodeOffset(entry);
-    var decoded = ThemeDecoder.decodeOffset(encoded);
+    final encoded = ThemeEncoder.encodeOffset(entry);
+    final decoded = ThemeDecoder.decodeOffset(encoded);
 
     expect(
       encoded,
@@ -6426,7 +6440,7 @@ void main() {
 
     OutlinedBorder entry = BeveledRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
-      side: BorderSide(
+      side: const BorderSide(
         color: _kColor,
         width: 1.0,
         style: BorderStyle.solid,
@@ -6463,7 +6477,7 @@ void main() {
       entry,
     );
 
-    entry = CircleBorder(
+    entry = const CircleBorder(
       side: BorderSide(
         color: _kColor,
         width: 1.0,
@@ -6494,7 +6508,7 @@ void main() {
 
     entry = ContinuousRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
-      side: BorderSide(
+      side: const BorderSide(
         color: _kColor,
         width: 1.0,
         style: BorderStyle.solid,
@@ -6531,7 +6545,7 @@ void main() {
 
     entry = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
-      side: BorderSide(
+      side: const BorderSide(
         color: _kColor,
         width: 1.0,
         style: BorderStyle.solid,
@@ -6582,7 +6596,7 @@ void main() {
       entry,
     );
 
-    entry = StadiumBorder(
+    entry = const StadiumBorder(
       side: BorderSide(
         color: _kColor,
         width: 1.0,
@@ -6616,18 +6630,18 @@ void main() {
     expect(ThemeDecoder.decodeOutlinedButtonThemeData(null), null);
     expect(ThemeEncoder.encodeOutlinedButtonThemeData(null), null);
 
-    var entry = OutlinedButtonThemeData(
+    final entry = OutlinedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          Color(0xff222222),
+          const Color(0xff222222),
         ),
       ),
     );
 
     expect(ThemeDecoder.decodeOutlinedButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeOutlinedButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeOutlinedButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeOutlinedButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeOutlinedButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -6681,25 +6695,25 @@ void main() {
 
     expect(
       ThemeEncoder.encodePageTransitionsBuilder(
-        CupertinoPageTransitionsBuilder(),
+        const CupertinoPageTransitionsBuilder(),
       ),
       'cupertino',
     );
     expect(
       ThemeEncoder.encodePageTransitionsBuilder(
-        FadeUpwardsPageTransitionsBuilder(),
+        const FadeUpwardsPageTransitionsBuilder(),
       ),
       'fadeUpwards',
     );
     expect(
       ThemeEncoder.encodePageTransitionsBuilder(
-        OpenUpwardsPageTransitionsBuilder(),
+        const OpenUpwardsPageTransitionsBuilder(),
       ),
       'openUpwards',
     );
     expect(
       ThemeEncoder.encodePageTransitionsBuilder(
-        ZoomPageTransitionsBuilder(),
+        const ZoomPageTransitionsBuilder(),
       ),
       'zoom',
     );
@@ -6709,14 +6723,14 @@ void main() {
     expect(ThemeDecoder.decodePageTransitionsTheme(null), null);
     expect(ThemeEncoder.encodePageTransitionsTheme(null), null);
 
-    var builders = {
-      TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
-      TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
-      TargetPlatform.macOS: OpenUpwardsPageTransitionsBuilder(),
-      TargetPlatform.windows: ZoomPageTransitionsBuilder(),
+    final builders = {
+      TargetPlatform.fuchsia: const CupertinoPageTransitionsBuilder(),
+      TargetPlatform.linux: const FadeUpwardsPageTransitionsBuilder(),
+      TargetPlatform.macOS: const OpenUpwardsPageTransitionsBuilder(),
+      TargetPlatform.windows: const ZoomPageTransitionsBuilder(),
     };
 
-    var encoded = ThemeEncoder.encodePageTransitionsTheme(
+    final encoded = ThemeEncoder.encodePageTransitionsTheme(
       PageTransitionsTheme(builders: builders),
     );
 
@@ -6732,13 +6746,56 @@ void main() {
       },
     );
 
-    var decoded = ThemeDecoder.decodePageTransitionsTheme(encoded);
+    final decoded = ThemeDecoder.decodePageTransitionsTheme(encoded);
     for (var entry in builders.entries) {
       expect(
         decoded?.builders[entry.key]?.runtimeType,
         entry.value.runtimeType,
       );
     }
+  });
+
+  test('PanAxis', () {
+    expect(ThemeDecoder.decodePanAxis(null), null);
+    expect(ThemeEncoder.encodePanAxis(null), null);
+
+    expect(
+      ThemeDecoder.decodePanAxis(PanAxis.aligned),
+      PanAxis.aligned,
+    );
+    expect(
+      ThemeDecoder.decodePanAxis('aligned'),
+      PanAxis.aligned,
+    );
+    expect(
+      ThemeDecoder.decodePanAxis('free'),
+      PanAxis.free,
+    );
+    expect(
+      ThemeDecoder.decodePanAxis('horizontal'),
+      PanAxis.horizontal,
+    );
+    expect(
+      ThemeDecoder.decodePanAxis('vertical'),
+      PanAxis.vertical,
+    );
+
+    expect(
+      ThemeEncoder.encodePanAxis(PanAxis.aligned),
+      'aligned',
+    );
+    expect(
+      ThemeEncoder.encodePanAxis(PanAxis.free),
+      'free',
+    );
+    expect(
+      ThemeEncoder.encodePanAxis(PanAxis.horizontal),
+      'horizontal',
+    );
+    expect(
+      ThemeEncoder.encodePanAxis(PanAxis.vertical),
+      'vertical',
+    );
   });
 
   test('PopupMenuPosition', () {
@@ -6772,7 +6829,7 @@ void main() {
     expect(ThemeDecoder.decodePopupMenuThemeData(null), null);
     expect(ThemeEncoder.encodePopupMenuThemeData(null), null);
 
-    var entry = PopupMenuThemeData(
+    final entry = const PopupMenuThemeData(
       color: _kColor,
       elevation: 1.0,
       enableFeedback: true,
@@ -6785,8 +6842,8 @@ void main() {
 
     expect(ThemeDecoder.decodePopupMenuThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodePopupMenuThemeData(entry);
-    var decoded = ThemeDecoder.decodePopupMenuThemeData(encoded);
+    final encoded = ThemeEncoder.encodePopupMenuThemeData(entry);
+    final decoded = ThemeDecoder.decodePopupMenuThemeData(encoded);
 
     expect(
       encoded,
@@ -6846,7 +6903,7 @@ void main() {
     expect(ThemeDecoder.decodeProgressIndicatorThemeData(null), null);
     expect(ThemeEncoder.encodeProgressIndicatorThemeData(null), null);
 
-    var entry = ProgressIndicatorThemeData(
+    final entry = const ProgressIndicatorThemeData(
       circularTrackColor: _kColor,
       color: _kColor,
       linearMinHeight: 16.0,
@@ -6856,8 +6913,8 @@ void main() {
 
     expect(ThemeDecoder.decodeProgressIndicatorThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeProgressIndicatorThemeData(entry);
-    var decoded = ThemeDecoder.decodeProgressIndicatorThemeData(encoded);
+    final encoded = ThemeEncoder.encodeProgressIndicatorThemeData(entry);
+    final decoded = ThemeDecoder.decodeProgressIndicatorThemeData(encoded);
 
     expect(
       encoded,
@@ -6880,7 +6937,7 @@ void main() {
     expect(ThemeDecoder.decodeRadioThemeData(null), null);
     expect(ThemeEncoder.encodeRadioThemeData(null), null);
 
-    var entry = RadioThemeData(
+    final entry = RadioThemeData(
       fillColor: MaterialStateProperty.all(_kColor),
       materialTapTargetSize: MaterialTapTargetSize.padded,
       mouseCursor: MaterialStateProperty.all(MouseCursor.uncontrolled),
@@ -6891,8 +6948,8 @@ void main() {
 
     expect(ThemeDecoder.decodeRadioThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRadioThemeData(entry);
-    var decoded = ThemeDecoder.decodeRadioThemeData(encoded);
+    final encoded = ThemeEncoder.encodeRadioThemeData(entry);
+    final decoded = ThemeDecoder.decodeRadioThemeData(encoded);
 
     expect(
       decoded!.fillColor!.resolve({MaterialState.error}),
@@ -6923,12 +6980,12 @@ void main() {
     expect(ThemeDecoder.decodeRadius(null), null);
     expect(ThemeEncoder.encodeRadius(null), null);
 
-    var entry = Radius.circular(1.0);
+    final entry = const Radius.circular(1.0);
 
     expect(ThemeDecoder.decodeRadius(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRadius(entry);
-    var decoded = ThemeDecoder.decodeRadius(encoded);
+    final encoded = ThemeEncoder.encodeRadius(entry);
+    final decoded = ThemeDecoder.decodeRadius(encoded);
 
     expect(
       encoded,
@@ -6949,7 +7006,7 @@ void main() {
         'radius': 4.0,
         'type': 'circular',
       }),
-      Radius.circular(4.0),
+      const Radius.circular(4.0),
     );
     expect(
       ThemeDecoder.decodeRadius({
@@ -6957,7 +7014,7 @@ void main() {
         'x': 1.0,
         'y': 2.0,
       }),
-      Radius.elliptical(1.0, 2.0),
+      const Radius.elliptical(1.0, 2.0),
     );
     expect(
       ThemeDecoder.decodeRadius({
@@ -6966,14 +7023,14 @@ void main() {
       Radius.zero,
     );
 
-    expect(ThemeDecoder.decodeRadius(16), Radius.circular(16));
+    expect(ThemeDecoder.decodeRadius(16), const Radius.circular(16));
   });
 
   test('RangeSliderThumbShape', () {
     expect(ThemeDecoder.decodeRangeSliderThumbShape(null), null);
     expect(ThemeEncoder.encodeRangeSliderThumbShape(null), null);
 
-    var entry = RoundRangeSliderThumbShape(
+    final entry = const RoundRangeSliderThumbShape(
       disabledThumbRadius: 1.0,
       elevation: 3.0,
       enabledThumbRadius: 2.0,
@@ -6982,8 +7039,8 @@ void main() {
 
     expect(ThemeDecoder.decodeRangeSliderThumbShape(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
-    var decoded = ThemeDecoder.decodeRangeSliderThumbShape(encoded)
+    final encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
+    final decoded = ThemeDecoder.decodeRangeSliderThumbShape(encoded)
         as RoundRangeSliderThumbShape;
 
     expect(
@@ -7012,14 +7069,14 @@ void main() {
     expect(ThemeDecoder.decodeRangeSliderTickMarkShape(null), null);
     expect(ThemeEncoder.encodeRangeSliderTickMarkShape(null), null);
 
-    var entry = RoundRangeSliderTickMarkShape(
+    final entry = const RoundRangeSliderTickMarkShape(
       tickMarkRadius: 1.0,
     );
 
     expect(ThemeDecoder.decodeRangeSliderTickMarkShape(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRangeSliderTickMarkShape(entry);
-    var decoded = ThemeDecoder.decodeRangeSliderTickMarkShape(encoded)
+    final encoded = ThemeEncoder.encodeRangeSliderTickMarkShape(entry);
+    final decoded = ThemeDecoder.decodeRangeSliderTickMarkShape(encoded)
         as RoundRangeSliderTickMarkShape;
 
     expect(
@@ -7040,17 +7097,17 @@ void main() {
     expect(ThemeDecoder.decodeRangeSliderTrackShape(null), null);
     expect(ThemeEncoder.encodeRangeSliderTrackShape(null), null);
 
-    var entry = RectangularRangeSliderTrackShape();
+    final entry = const RectangularRangeSliderTrackShape();
 
     expect(ThemeDecoder.decodeRangeSliderTrackShape(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRangeSliderTrackShape(entry);
-    var decoded = ThemeDecoder.decodeRangeSliderTrackShape(encoded);
+    final encoded = ThemeEncoder.encodeRangeSliderTrackShape(entry);
+    final decoded = ThemeDecoder.decodeRangeSliderTrackShape(encoded);
 
     expect(encoded, 'rectangular');
     expect(
       ThemeEncoder.encodeRangeSliderTrackShape(
-        RoundedRectRangeSliderTrackShape(),
+        const RoundedRectRangeSliderTrackShape(),
       ),
       'rounded',
     );
@@ -7058,7 +7115,7 @@ void main() {
       ThemeDecoder.decodeRangeSliderTrackShape(
         'rounded',
       ).runtimeType,
-      RoundedRectRangeSliderTrackShape().runtimeType,
+      const RoundedRectRangeSliderTrackShape().runtimeType,
     );
 
     expect(
@@ -7071,12 +7128,12 @@ void main() {
     expect(ThemeDecoder.decodeRangeSliderValueIndicatorShape(null), null);
     expect(ThemeEncoder.encodeRangeSliderValueIndicatorShape(null), null);
 
-    var entry = PaddleRangeSliderValueIndicatorShape();
+    final entry = const PaddleRangeSliderValueIndicatorShape();
 
     expect(ThemeDecoder.decodeRangeSliderValueIndicatorShape(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry);
-    var decoded = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded);
+    final encoded = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry);
+    final decoded = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded);
 
     expect(
       encoded,
@@ -7088,10 +7145,11 @@ void main() {
       entry.runtimeType,
     );
 
-    var entry2 = RectangularRangeSliderValueIndicatorShape();
+    final entry2 = const RectangularRangeSliderValueIndicatorShape();
 
-    var encoded2 = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry2);
-    var decoded2 = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded2);
+    final encoded2 = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry2);
+    final decoded2 =
+        ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded2);
 
     expect(
       encoded2,
@@ -7108,12 +7166,12 @@ void main() {
     expect(ThemeDecoder.decodeRect(null), null);
     expect(ThemeEncoder.encodeRect(null), null);
 
-    var entry = Rect.fromLTRB(1.0, 2.0, 3.0, 4.0);
+    final entry = const Rect.fromLTRB(1.0, 2.0, 3.0, 4.0);
 
     expect(ThemeDecoder.decodeRect(entry), entry);
 
-    var encoded = ThemeEncoder.encodeRect(entry);
-    var decoded = ThemeDecoder.decodeRect(encoded);
+    final encoded = ThemeEncoder.encodeRect(entry);
+    final decoded = ThemeDecoder.decodeRect(encoded);
 
     expect(encoded, {
       'bottom': 4.0,
@@ -7139,7 +7197,7 @@ void main() {
         'type': 'center',
       }),
       Rect.fromCenter(
-        center: Offset(1.0, 2.0),
+        center: const Offset(1.0, 2.0),
         height: 3.0,
         width: 4.0,
       ),
@@ -7155,7 +7213,7 @@ void main() {
         'type': 'circle',
       }),
       Rect.fromCircle(
-        center: Offset(1.0, 2.0),
+        center: const Offset(1.0, 2.0),
         radius: 3.0,
       ),
     );
@@ -7173,7 +7231,7 @@ void main() {
         'top': 2.0,
         'type': 'ltrb',
       }),
-      Rect.fromLTRB(
+      const Rect.fromLTRB(
         1.0,
         2.0,
         3.0,
@@ -7188,7 +7246,7 @@ void main() {
         'type': 'ltwh',
         'width': 3.0,
       }),
-      Rect.fromLTWH(
+      const Rect.fromLTWH(
         1.0,
         2.0,
         3.0,
@@ -7208,11 +7266,11 @@ void main() {
         'type': 'points',
       }),
       Rect.fromPoints(
-        Offset(
+        const Offset(
           1.0,
           2.0,
         ),
-        Offset(
+        const Offset(
           3.0,
           4.0,
         ),
@@ -7230,7 +7288,7 @@ void main() {
     expect(ThemeDecoder.decodeScrollBehavior(null), null);
     expect(ThemeEncoder.encodeScrollBehavior(null), null);
 
-    var entry = ScrollBehavior();
+    final entry = const ScrollBehavior();
 
     expect(ThemeDecoder.decodeScrollBehavior(entry), entry);
 
@@ -7241,39 +7299,39 @@ void main() {
     expect(ThemeDecoder.decodeScrollPhysics(null), null);
     expect(ThemeEncoder.encodeScrollPhysics(null), null);
 
-    var entry = AlwaysScrollableScrollPhysics();
+    final entry = const AlwaysScrollableScrollPhysics();
     expect(
       ThemeDecoder.decodeScrollPhysics(entry),
       entry,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'always'}).runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'bouncing'}).runtimeType,
-      BouncingScrollPhysics().runtimeType,
+      const BouncingScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'clamping'}).runtimeType,
-      ClampingScrollPhysics().runtimeType,
+      const ClampingScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'fixedExtent'}).runtimeType,
-      FixedExtentScrollPhysics().runtimeType,
+      const FixedExtentScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'never'}).runtimeType,
-      NeverScrollableScrollPhysics().runtimeType,
+      const NeverScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'page'}).runtimeType,
-      PageScrollPhysics().runtimeType,
+      const PageScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'rangeMaintaining'})
           .runtimeType,
-      RangeMaintainingScrollPhysics().runtimeType,
+      const RangeMaintainingScrollPhysics().runtimeType,
     );
 
     expect(
@@ -7283,7 +7341,7 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -7292,7 +7350,7 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -7301,7 +7359,7 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -7310,7 +7368,7 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -7319,7 +7377,7 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -7328,7 +7386,7 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
@@ -7337,13 +7395,13 @@ void main() {
       })!
           .parent
           .runtimeType,
-      AlwaysScrollableScrollPhysics().runtimeType,
+      const AlwaysScrollableScrollPhysics().runtimeType,
     );
 
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          AlwaysScrollableScrollPhysics(),
+          const AlwaysScrollableScrollPhysics(),
         ),
       ),
       {
@@ -7352,7 +7410,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(BouncingScrollPhysics()),
+        ThemeEncoder.encodeScrollPhysics(const BouncingScrollPhysics()),
       ),
       {
         'type': 'bouncing',
@@ -7360,7 +7418,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(ClampingScrollPhysics()),
+        ThemeEncoder.encodeScrollPhysics(const ClampingScrollPhysics()),
       ),
       {
         'type': 'clamping',
@@ -7368,7 +7426,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(FixedExtentScrollPhysics()),
+        ThemeEncoder.encodeScrollPhysics(const FixedExtentScrollPhysics()),
       ),
       {
         'type': 'fixedExtent',
@@ -7376,7 +7434,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(NeverScrollableScrollPhysics()),
+        ThemeEncoder.encodeScrollPhysics(const NeverScrollableScrollPhysics()),
       ),
       {
         'type': 'never',
@@ -7384,7 +7442,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(PageScrollPhysics()),
+        ThemeEncoder.encodeScrollPhysics(const PageScrollPhysics()),
       ),
       {
         'type': 'page',
@@ -7392,7 +7450,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(RangeMaintainingScrollPhysics()),
+        ThemeEncoder.encodeScrollPhysics(const RangeMaintainingScrollPhysics()),
       ),
       {
         'type': 'rangeMaintaining',
@@ -7402,7 +7460,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          AlwaysScrollableScrollPhysics(
+          const AlwaysScrollableScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7415,7 +7473,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          BouncingScrollPhysics(
+          const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7428,7 +7486,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          ClampingScrollPhysics(
+          const ClampingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7441,7 +7499,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          FixedExtentScrollPhysics(
+          const FixedExtentScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7454,7 +7512,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          NeverScrollableScrollPhysics(
+          const NeverScrollableScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7467,7 +7525,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          PageScrollPhysics(
+          const PageScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7480,7 +7538,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          RangeMaintainingScrollPhysics(
+          const RangeMaintainingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
         ),
@@ -7578,19 +7636,19 @@ void main() {
     expect(ThemeDecoder.decodeScrollbarThemeData(null), null);
     expect(ThemeEncoder.encodeScrollbarThemeData(null), null);
 
-    var entry = ScrollbarThemeData(
+    final entry = ScrollbarThemeData(
       crossAxisMargin: 1.0,
       interactive: true,
       mainAxisMargin: 2.0,
       minThumbLength: 3.0,
-      radius: Radius.circular(4.0),
+      radius: const Radius.circular(4.0),
       thickness: MaterialStateProperty.all(5.0),
       thumbVisibility: MaterialStateProperty.all(true),
     );
 
     expect(ThemeDecoder.decodeScrollbarThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeScrollbarThemeData(entry);
+    final encoded = ThemeEncoder.encodeScrollbarThemeData(entry);
     expect(
       encoded!['crossAxisMargin'],
       entry.crossAxisMargin,
@@ -7626,7 +7684,7 @@ void main() {
       entry.thumbVisibility!.resolve({MaterialState.error}),
     );
 
-    var decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
+    final decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
     expect(
       decoded!.crossAxisMargin,
       entry.crossAxisMargin,
@@ -7667,12 +7725,12 @@ void main() {
     expect(ThemeDecoder.decodeSemanticsTag(null), null);
     expect(ThemeEncoder.encodeSemanticsTag(null), null);
 
-    var entry = SemanticsTag('foo');
+    final entry = const SemanticsTag('foo');
 
     expect(ThemeDecoder.decodeSemanticsTag(entry), entry);
 
-    var encoded = ThemeEncoder.encodeSemanticsTag(entry);
-    var decoded = ThemeDecoder.decodeSemanticsTag(encoded);
+    final encoded = ThemeEncoder.encodeSemanticsTag(entry);
+    final decoded = ThemeDecoder.decodeSemanticsTag(encoded);
 
     expect(
       encoded,
@@ -7691,7 +7749,7 @@ void main() {
     expect(ThemeDecoder.decodeShadow(null), null);
     expect(ThemeEncoder.encodeShadow(null), null);
 
-    var entry = Shadow(
+    final entry = const Shadow(
       color: _kColor,
       blurRadius: 1.0,
       offset: Offset(
@@ -7702,8 +7760,8 @@ void main() {
 
     expect(ThemeDecoder.decodeShadow(entry), entry);
 
-    var encoded = ThemeEncoder.encodeShadow(entry);
-    var decoded = ThemeDecoder.decodeShadow(encoded);
+    final encoded = ThemeEncoder.encodeShadow(entry);
+    final decoded = ThemeDecoder.decodeShadow(encoded);
 
     expect(
       encoded,
@@ -7727,7 +7785,7 @@ void main() {
     expect(ThemeDecoder.decodeShapeBorder(null), null);
     expect(ThemeEncoder.encodeShapeBorder(null), null);
 
-    ShapeBorder entry = CircleBorder(
+    ShapeBorder entry = const CircleBorder(
       side: BorderSide(
         color: _kColor,
         width: 1.0,
@@ -7760,7 +7818,7 @@ void main() {
 
     entry = ContinuousRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
-      side: BorderSide(
+      side: const BorderSide(
         color: _kColor,
         width: 1.0,
         style: BorderStyle.solid,
@@ -7797,7 +7855,7 @@ void main() {
 
     entry = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
-      side: BorderSide(
+      side: const BorderSide(
         color: _kColor,
         width: 1.0,
         style: BorderStyle.solid,
@@ -7848,7 +7906,7 @@ void main() {
       entry,
     );
 
-    entry = StadiumBorder(
+    entry = const StadiumBorder(
       side: BorderSide(
         color: _kColor,
         width: 1.0,
@@ -7930,12 +7988,12 @@ void main() {
     expect(ThemeDecoder.decodeSize(null), null);
     expect(ThemeEncoder.encodeSize(null), null);
 
-    var entry = Size(0.0, 0.0);
+    final entry = const Size(0.0, 0.0);
 
     expect(ThemeDecoder.decodeSize(entry), entry);
 
-    var encoded = ThemeEncoder.encodeSize(entry);
-    var decoded = ThemeDecoder.decodeSize(encoded);
+    final encoded = ThemeEncoder.encodeSize(entry);
+    final decoded = ThemeDecoder.decodeSize(encoded);
 
     expect(
       encoded,
@@ -7985,39 +8043,39 @@ void main() {
     expect(ThemeDecoder.decodeSliderThemeData(null), null);
     expect(ThemeEncoder.encodeSliderThemeData(null), null);
 
-    var entry = SliderThemeData(
-      activeTickMarkColor: Color(0xff111111),
-      activeTrackColor: Color(0xff222222),
-      disabledActiveTickMarkColor: Color(0xff333333),
-      disabledActiveTrackColor: Color(0xff444444),
-      disabledInactiveTickMarkColor: Color(0xff555555),
-      disabledInactiveTrackColor: Color(0xff666666),
-      disabledSecondaryActiveTrackColor: Color(0xff676767),
-      disabledThumbColor: Color(0xff777777),
-      inactiveTickMarkColor: Color(0xff888888),
-      inactiveTrackColor: Color(0xff999999),
+    final entry = SliderThemeData(
+      activeTickMarkColor: const Color(0xff111111),
+      activeTrackColor: const Color(0xff222222),
+      disabledActiveTickMarkColor: const Color(0xff333333),
+      disabledActiveTrackColor: const Color(0xff444444),
+      disabledInactiveTickMarkColor: const Color(0xff555555),
+      disabledInactiveTrackColor: const Color(0xff666666),
+      disabledSecondaryActiveTrackColor: const Color(0xff676767),
+      disabledThumbColor: const Color(0xff777777),
+      inactiveTickMarkColor: const Color(0xff888888),
+      inactiveTrackColor: const Color(0xff999999),
       minThumbSeparation: 5.0,
-      overlappingShapeStrokeColor: Color(0xff000000),
-      overlayColor: Color(0xffaaaaaa),
+      overlappingShapeStrokeColor: const Color(0xff000000),
+      overlayColor: const Color(0xffaaaaaa),
       overlayShape: SliderComponentShape.noOverlay,
-      rangeThumbShape: RoundRangeSliderThumbShape(),
-      rangeTrackShape: RectangularRangeSliderTrackShape(),
-      rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
-      secondaryActiveTrackColor: Color(0xffababab),
+      rangeThumbShape: const RoundRangeSliderThumbShape(),
+      rangeTrackShape: const RectangularRangeSliderTrackShape(),
+      rangeValueIndicatorShape: const PaddleRangeSliderValueIndicatorShape(),
+      secondaryActiveTrackColor: const Color(0xffababab),
       showValueIndicator: ShowValueIndicator.always,
-      thumbColor: Color(0xffbbbbbb),
+      thumbColor: const Color(0xffbbbbbb),
       thumbShape: SliderComponentShape.noOverlay,
       trackHeight: 10.0,
-      trackShape: RectangularSliderTrackShape(),
-      valueIndicatorColor: Color(0xffcccccc),
+      trackShape: const RectangularSliderTrackShape(),
+      valueIndicatorColor: const Color(0xffcccccc),
       valueIndicatorShape: SliderComponentShape.noOverlay,
       valueIndicatorTextStyle: _kTextStyle,
     );
 
     expect(ThemeDecoder.decodeSliderThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeSliderThemeData(entry);
-    var decoded = ThemeDecoder.decodeSliderThemeData(encoded);
+    final encoded = ThemeEncoder.encodeSliderThemeData(entry);
+    final decoded = ThemeDecoder.decodeSliderThemeData(encoded);
 
     expect(
       encoded,
@@ -8093,7 +8151,7 @@ void main() {
     expect(ThemeDecoder.decodeSliderTrackShape(null), null);
     expect(ThemeEncoder.encodeSliderTrackShape(null), null);
 
-    SliderTrackShape entry = RectangularSliderTrackShape();
+    SliderTrackShape entry = const RectangularSliderTrackShape();
 
     expect(ThemeDecoder.decodeSliderTrackShape(entry), entry);
 
@@ -8112,7 +8170,7 @@ void main() {
       entry.runtimeType,
     );
 
-    entry = RoundedRectSliderTrackShape();
+    entry = const RoundedRectSliderTrackShape();
 
     encoded = ThemeEncoder.encodeSliderTrackShape(entry);
     decoded = ThemeDecoder.decodeSliderTrackShape(encoded);
@@ -8164,7 +8222,7 @@ void main() {
     expect(ThemeDecoder.decodeSnackBarThemeData(null), null);
     expect(ThemeEncoder.encodeSnackBarThemeData(null), null);
 
-    var entry = SnackBarThemeData(
+    final entry = const SnackBarThemeData(
       actionTextColor: Color(0xff111111),
       backgroundColor: Color(0xff222222),
       behavior: SnackBarBehavior.floating,
@@ -8177,8 +8235,8 @@ void main() {
 
     expect(ThemeDecoder.decodeSnackBarThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeSnackBarThemeData(entry);
-    var decoded = ThemeDecoder.decodeSnackBarThemeData(encoded);
+    final encoded = ThemeEncoder.encodeSnackBarThemeData(entry);
+    final decoded = ThemeDecoder.decodeSnackBarThemeData(encoded);
 
     expect(
       encoded,
@@ -8313,7 +8371,7 @@ void main() {
     expect(ThemeDecoder.decodeStrutStyle(null), null);
     expect(ThemeEncoder.encodeStrutStyle(null), null);
 
-    var entry = StrutStyle(
+    final entry = const StrutStyle(
       fontFamily: 'foo',
       fontFamilyFallback: ['a', 'b', 'c'],
       fontSize: 1.0,
@@ -8328,8 +8386,8 @@ void main() {
 
     expect(ThemeDecoder.decodeStrutStyle(entry), entry);
 
-    var encoded = ThemeEncoder.encodeStrutStyle(entry);
-    var decoded = ThemeDecoder.decodeStrutStyle(encoded);
+    final encoded = ThemeEncoder.encodeStrutStyle(entry);
+    final decoded = ThemeDecoder.decodeStrutStyle(encoded);
 
     expect(
       encoded,
@@ -8360,7 +8418,7 @@ void main() {
     expect(ThemeDecoder.decodeSwitchThemeData(null), null);
     expect(ThemeEncoder.encodeSwitchThemeData(null), null);
 
-    var entry = SwitchThemeData(
+    final entry = SwitchThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       mouseCursor: MaterialStateProperty.all(MouseCursor.defer),
       overlayColor: MaterialStateProperty.all(_kColor),
@@ -8369,7 +8427,7 @@ void main() {
       trackColor: MaterialStateProperty.all(_kColor),
     );
 
-    var encoded = {
+    final encoded = {
       'materialTapTargetSize': 'shrinkWrap',
       'mouseCursor': {
         'disabled': {'type': 'defer'},
@@ -8436,7 +8494,7 @@ void main() {
 
     expect(
       theme!.thumbColor!.resolve({MaterialState.selected}),
-      Color(0xff2196f3),
+      const Color(0xff2196f3),
     );
   });
 
@@ -8480,13 +8538,13 @@ void main() {
         'systemNavigationBarIconBrightness': 'light',
         'systemStatusBarContrastEnforced': false,
       }),
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
-        statusBarColor: const Color(0xff000000),
+        statusBarColor: Color(0xff000000),
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: const Color(0xff111111),
+        systemNavigationBarColor: Color(0xff111111),
         systemNavigationBarContrastEnforced: true,
-        systemNavigationBarDividerColor: const Color(0xff222222),
+        systemNavigationBarDividerColor: Color(0xff222222),
         systemNavigationBarIconBrightness: Brightness.light,
         systemStatusBarContrastEnforced: false,
       ),
@@ -8494,13 +8552,13 @@ void main() {
 
     expect(
       ThemeEncoder.encodeSystemUiOverlayStyle(
-        SystemUiOverlayStyle(
+        const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.light,
-          statusBarColor: const Color(0xff000000),
+          statusBarColor: Color(0xff000000),
           statusBarIconBrightness: Brightness.dark,
-          systemNavigationBarColor: const Color(0xff111111),
+          systemNavigationBarColor: Color(0xff111111),
           systemNavigationBarContrastEnforced: true,
-          systemNavigationBarDividerColor: const Color(0xff222222),
+          systemNavigationBarDividerColor: Color(0xff222222),
           systemNavigationBarIconBrightness: Brightness.light,
           systemStatusBarContrastEnforced: false,
         ),
@@ -8559,7 +8617,7 @@ void main() {
       // pass
     }
 
-    var entry = TabBarTheme(
+    final entry = const TabBarTheme(
       indicatorSize: TabBarIndicatorSize.label,
       labelColor: Color(0xff111111),
       labelPadding: EdgeInsets.all(1.0),
@@ -8570,8 +8628,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTabBarTheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTabBarTheme(entry);
-    var decoded = ThemeDecoder.decodeTabBarTheme(encoded);
+    final encoded = ThemeEncoder.encodeTabBarTheme(entry);
+    final decoded = ThemeDecoder.decodeTabBarTheme(encoded);
 
     expect(
       encoded,
@@ -8603,34 +8661,34 @@ void main() {
     expect(ThemeDecoder.decodeTableBorder(null), null);
     expect(ThemeEncoder.encodeTableBorder(null), null);
 
-    var entry = TableBorder(
+    final entry = TableBorder(
       borderRadius: BorderRadius.circular(1.0),
-      bottom: BorderSide(
+      bottom: const BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: 2.0,
       ),
-      horizontalInside: BorderSide(
+      horizontalInside: const BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: 3.0,
       ),
-      left: BorderSide(
+      left: const BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: 4.0,
       ),
-      right: BorderSide(
+      right: const BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: 5.0,
       ),
-      top: BorderSide(
+      top: const BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: 6.0,
       ),
-      verticalInside: BorderSide(
+      verticalInside: const BorderSide(
         color: _kColor,
         style: BorderStyle.solid,
         width: 7.0,
@@ -8639,8 +8697,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTableBorder(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTableBorder(entry);
-    var decoded = ThemeDecoder.decodeTableBorder(encoded);
+    final encoded = ThemeEncoder.encodeTableBorder(entry);
+    final decoded = ThemeDecoder.decodeTableBorder(encoded);
 
     expect(
       encoded,
@@ -8717,7 +8775,7 @@ void main() {
     expect(ThemeDecoder.decodeTableColumnWidth(null), null);
     expect(ThemeEncoder.encodeTableColumnWidth(null), null);
 
-    var entry = FlexColumnWidth();
+    final entry = const FlexColumnWidth();
 
     expect(ThemeDecoder.decodeTableColumnWidth(entry), entry);
 
@@ -8726,7 +8784,7 @@ void main() {
         'type': 'fixed',
         'value': 1.0,
       }).toString(),
-      FixedColumnWidth(
+      const FixedColumnWidth(
         1.0,
       ).toString(),
     );
@@ -8735,7 +8793,7 @@ void main() {
         'type': 'flex',
         'value': 2.0,
       }).toString(),
-      FlexColumnWidth(
+      const FlexColumnWidth(
         2.0,
       ).toString(),
     );
@@ -8744,7 +8802,7 @@ void main() {
         'type': 'fraction',
         'value': 3.0,
       }).toString(),
-      FractionColumnWidth(
+      const FractionColumnWidth(
         3.0,
       ).toString(),
     );
@@ -8753,7 +8811,7 @@ void main() {
         'type': 'intrinsic',
         'value': 4.0,
       }).toString(),
-      IntrinsicColumnWidth(
+      const IntrinsicColumnWidth(
         flex: 4.0,
       ).toString(),
     );
@@ -8769,7 +8827,7 @@ void main() {
         },
         'type': 'max',
       }).toString(),
-      MaxColumnWidth(
+      const MaxColumnWidth(
         FixedColumnWidth(5.0),
         FixedColumnWidth(6.0),
       ).toString(),
@@ -8786,7 +8844,7 @@ void main() {
         },
         'type': 'min',
       }).toString(),
-      MinColumnWidth(
+      const MinColumnWidth(
         FixedColumnWidth(5.0),
         FixedColumnWidth(6.0),
       ).toString(),
@@ -8794,7 +8852,7 @@ void main() {
 
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        FixedColumnWidth(1.0),
+        const FixedColumnWidth(1.0),
       ),
       {
         'type': 'fixed',
@@ -8803,7 +8861,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        FlexColumnWidth(2.0),
+        const FlexColumnWidth(2.0),
       ),
       {
         'type': 'flex',
@@ -8812,7 +8870,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        FractionColumnWidth(3.0),
+        const FractionColumnWidth(3.0),
       ),
       {
         'type': 'fraction',
@@ -8821,7 +8879,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        IntrinsicColumnWidth(flex: 4.0),
+        const IntrinsicColumnWidth(flex: 4.0),
       ),
       {
         'type': 'intrinsic',
@@ -8830,7 +8888,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        MaxColumnWidth(
+        const MaxColumnWidth(
           FixedColumnWidth(5.0),
           FixedColumnWidth(6.0),
         ),
@@ -8849,7 +8907,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        MinColumnWidth(
+        const MinColumnWidth(
           FixedColumnWidth(5.0),
           FixedColumnWidth(6.0),
         ),
@@ -9028,18 +9086,18 @@ void main() {
     expect(ThemeDecoder.decodeTextButtonThemeData(null), null);
     expect(ThemeEncoder.encodeTextButtonThemeData(null), null);
 
-    var entry = TextButtonThemeData(
+    final entry = TextButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
-          Color(0xff222222),
+          const Color(0xff222222),
         ),
       ),
     );
 
     expect(ThemeDecoder.decodeTextButtonThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTextButtonThemeData(entry);
-    var decoded = ThemeDecoder.decodeTextButtonThemeData(encoded);
+    final encoded = ThemeEncoder.encodeTextButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeTextButtonThemeData(encoded);
 
     expect(
       encoded,
@@ -9250,7 +9308,7 @@ void main() {
     expect(ThemeDecoder.decodeTextHeightBehavior(null), null);
     expect(ThemeEncoder.encodeTextHeightBehavior(null), null);
 
-    var entry = TextHeightBehavior(
+    final entry = const TextHeightBehavior(
       applyHeightToFirstAscent: true,
       applyHeightToLastDescent: true,
       leadingDistribution: TextLeadingDistribution.even,
@@ -9258,8 +9316,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTextHeightBehavior(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTextHeightBehavior(entry);
-    var decoded = ThemeDecoder.decodeTextHeightBehavior(encoded);
+    final encoded = ThemeEncoder.encodeTextHeightBehavior(entry);
+    final decoded = ThemeDecoder.decodeTextHeightBehavior(encoded);
 
     expect(
       encoded,
@@ -9554,7 +9612,7 @@ void main() {
     expect(ThemeDecoder.decodeTextSelectionThemeData(null), null);
     expect(ThemeEncoder.encodeTextSelectionThemeData(null), null);
 
-    var entry = TextSelectionThemeData(
+    final entry = const TextSelectionThemeData(
       cursorColor: Color(0xff222222),
       selectionColor: Color(0xff222222),
       selectionHandleColor: Color(0xff222222),
@@ -9562,8 +9620,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTextSelectionThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTextSelectionThemeData(entry);
-    var decoded = ThemeDecoder.decodeTextSelectionThemeData(encoded);
+    final encoded = ThemeEncoder.encodeTextSelectionThemeData(entry);
+    final decoded = ThemeDecoder.decodeTextSelectionThemeData(encoded);
 
     expect(
       encoded,
@@ -9580,11 +9638,73 @@ void main() {
     );
   });
 
+  test('TextSpan', () {
+    expect(ThemeDecoder.decodeTextSpan(null), null);
+    expect(ThemeEncoder.encodeTextSpan(null), null);
+
+    final entry = const TextSpan(
+      children: [
+        TextSpan(text: 'Hello'),
+        TextSpan(
+          text: 'World',
+          style: TextStyle(fontSize: 24.0),
+        ),
+      ],
+      mouseCursor: SystemMouseCursors.copy,
+      style: TextStyle(
+        fontSize: 20.0,
+        fontWeight: FontWeight.w100,
+      ),
+    );
+    final encoded = ThemeEncoder.encodeTextSpan(entry);
+    final decoded = ThemeDecoder.decodeTextSpan(encoded);
+
+    expect(
+      encoded,
+      {
+        'children': [
+          {
+            'mouseCursor': {
+              'type': 'defer',
+            },
+            'text': 'Hello',
+          },
+          {
+            'mouseCursor': {
+              'type': 'defer',
+            },
+            'text': 'World',
+            'style': {
+              'fontSize': 24.0,
+              'inherit': true,
+            }
+          },
+        ],
+        'mouseCursor': {
+          'cursor': 'copy',
+          'type': 'system',
+        },
+        'style': {
+          'fontSize': 20.0,
+          'fontWeight': 'w100',
+          'inherit': true,
+        },
+      },
+    );
+
+    expect(decoded, entry);
+
+    expect(
+      ThemeDecoder.decodeTextSpan('Hello World'),
+      const TextSpan(text: 'Hello World'),
+    );
+  });
+
   test('TextStyle', () {
     expect(ThemeDecoder.decodeTextStyle(null), null);
     expect(ThemeEncoder.encodeTextStyle(null), null);
 
-    var entry = TextStyle(
+    final entry = const TextStyle(
       backgroundColor: Color(0xff111111),
       color: Color(0xff222222),
       decoration: TextDecoration.lineThrough,
@@ -9621,8 +9741,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTextStyle(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTextStyle(entry);
-    var decoded = ThemeDecoder.decodeTextStyle(encoded);
+    final encoded = ThemeEncoder.encodeTextStyle(entry);
+    final decoded = ThemeDecoder.decodeTextStyle(encoded);
 
     expect(
       encoded,
@@ -9681,7 +9801,7 @@ void main() {
     expect(ThemeDecoder.decodeTextTheme(null), null);
     expect(ThemeEncoder.encodeTextTheme(null), null);
 
-    var entry = TextTheme(
+    final entry = const TextTheme(
       bodyLarge: TextStyle(color: Color(0xff111111)),
       bodyMedium: TextStyle(color: Color(0xff222222)),
       bodySmall: TextStyle(color: Color(0xff333333)),
@@ -9701,8 +9821,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTextTheme(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTextTheme(entry);
-    var decoded = ThemeDecoder.decodeTextTheme(encoded);
+    final encoded = ThemeEncoder.encodeTextTheme(entry);
+    final decoded = ThemeDecoder.decodeTextTheme(encoded);
 
     expect(
       encoded,
@@ -9810,76 +9930,77 @@ void main() {
     expect(ThemeDecoder.decodeThemeData(null), null);
     expect(ThemeEncoder.encodeThemeData(null), null);
 
-    var entry = ThemeData(
-      appBarTheme: AppBarTheme(color: Color(0xff444444)),
+    final entry = ThemeData(
+      appBarTheme: const AppBarTheme(color: Color(0xff444444)),
       applyElevationOverlayColor: true,
-      bannerTheme: MaterialBannerThemeData(backgroundColor: Color(0xff666666)),
-      bottomAppBarTheme: BottomAppBarTheme(
+      bannerTheme:
+          const MaterialBannerThemeData(backgroundColor: Color(0xff666666)),
+      bottomAppBarTheme: const BottomAppBarTheme(
         color: Color(0xff888888),
         shape: CircularNotchedRectangle(),
       ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Color(0xff999999),
       ),
-      bottomSheetTheme: BottomSheetThemeData(
+      bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Color(0xff000000),
       ),
-      buttonBarTheme: ButtonBarThemeData(buttonHeight: 3.0),
-      buttonTheme: ButtonThemeData(buttonColor: Color(0xffbbbbbb)),
-      canvasColor: Color(0xffcccccc),
-      cardColor: Color(0xffdddddd),
-      cardTheme: CardTheme(color: Color(0xffeeeeee)),
+      buttonBarTheme: const ButtonBarThemeData(buttonHeight: 3.0),
+      buttonTheme: const ButtonThemeData(buttonColor: Color(0xffbbbbbb)),
+      canvasColor: const Color(0xffcccccc),
+      cardColor: const Color(0xffdddddd),
+      cardTheme: const CardTheme(color: Color(0xffeeeeee)),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.all(Color(0xff123456)),
+        fillColor: MaterialStateProperty.all(const Color(0xff123456)),
       ),
       chipTheme: ChipThemeData(
-        backgroundColor: Color(0xff111111),
+        backgroundColor: const Color(0xff111111),
         brightness: Brightness.light,
-        checkmarkColor: Color(0xff222222),
-        deleteIconColor: Color(0xff333333),
-        disabledColor: Color(0xff444444),
+        checkmarkColor: const Color(0xff222222),
+        deleteIconColor: const Color(0xff333333),
+        disabledColor: const Color(0xff444444),
         elevation: 2.0,
-        labelPadding: EdgeInsets.all(4.0),
-        labelStyle: TextStyle(color: Color(0xff555555)),
-        padding: EdgeInsets.all(8.0),
+        labelPadding: const EdgeInsets.all(4.0),
+        labelStyle: const TextStyle(color: Color(0xff555555)),
+        padding: const EdgeInsets.all(8.0),
         pressElevation: 1.0,
-        secondaryLabelStyle: TextStyle(
+        secondaryLabelStyle: const TextStyle(
           color: _kColor,
         ),
-        secondarySelectedColor: Color(0xff666666),
+        secondarySelectedColor: const Color(0xff666666),
         selectedColor: _kColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        selectedShadowColor: Color(0xff777777),
-        shadowColor: Color(0xff888888),
+        selectedShadowColor: const Color(0xff777777),
+        shadowColor: const Color(0xff888888),
         showCheckmark: true,
       ),
-      colorScheme: ColorScheme.dark(),
-      cupertinoOverrideTheme: CupertinoThemeData(
+      colorScheme: const ColorScheme.dark(),
+      cupertinoOverrideTheme: const CupertinoThemeData(
         barBackgroundColor: Color(0xee111111),
       ),
       dataTableTheme: DataTableThemeData(
         columnSpacing: 1.0,
         dataRowColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         dataRowHeight: 1.0,
-        dataTextStyle: TextStyle(),
+        dataTextStyle: const TextStyle(),
         dividerThickness: 1.0,
         headingRowColor: MaterialStateProperty.all(
-          Color(0xff555555),
+          const Color(0xff555555),
         ),
         headingRowHeight: 1.0,
-        headingTextStyle: TextStyle(),
+        headingTextStyle: const TextStyle(),
         horizontalMargin: 1.0,
       ),
-      dialogBackgroundColor: Color(0xee888888),
-      dialogTheme: DialogTheme(backgroundColor: Color(0xee999999)),
-      disabledColor: Color(0xee000000),
-      dividerColor: Color(0xeeaaaaaa),
-      dividerTheme: DividerThemeData(color: Color(0xeebbbbbb)),
-      drawerTheme: DrawerThemeData(
+      dialogBackgroundColor: const Color(0xee888888),
+      dialogTheme: const DialogTheme(backgroundColor: Color(0xee999999)),
+      disabledColor: const Color(0xee000000),
+      dividerColor: const Color(0xeeaaaaaa),
+      dividerTheme: const DividerThemeData(color: Color(0xeebbbbbb)),
+      drawerTheme: const DrawerThemeData(
         backgroundColor: Color(0xff111111),
         elevation: 5,
         scrimColor: Color(0xff222222),
@@ -9890,24 +10011,24 @@ void main() {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Color(0xff222222),
+            const Color(0xff222222),
           ),
         ),
       ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xeedddddd),
       ),
-      focusColor: Color(0xee333333),
+      focusColor: const Color(0xee333333),
       fontFamily: 'foo',
-      highlightColor: Color(0xdd111111),
-      hintColor: Color(0xdd222222),
-      hoverColor: Color(0xee222222),
-      iconTheme: IconThemeData(color: Color(0xdd333333)),
-      indicatorColor: Color(0xdd444444),
-      inputDecorationTheme: InputDecorationTheme(
+      highlightColor: const Color(0xdd111111),
+      hintColor: const Color(0xdd222222),
+      hoverColor: const Color(0xee222222),
+      iconTheme: const IconThemeData(color: Color(0xdd333333)),
+      indicatorColor: const Color(0xdd444444),
+      inputDecorationTheme: const InputDecorationTheme(
         focusColor: Color(0xdd555555),
       ),
-      listTileTheme: ListTileThemeData(
+      listTileTheme: const ListTileThemeData(
         contentPadding: EdgeInsets.fromLTRB(
           1,
           2,
@@ -9928,29 +10049,29 @@ void main() {
         tileColor: Color(0xff555555),
       ),
       materialTapTargetSize: MaterialTapTargetSize.padded,
-      navigationBarTheme: NavigationBarThemeData(
+      navigationBarTheme: const NavigationBarThemeData(
         backgroundColor: Color(0xff111111),
         height: 12.0,
         indicatorColor: Color(0xff222222),
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       ),
-      navigationRailTheme: NavigationRailThemeData(
+      navigationRailTheme: const NavigationRailThemeData(
         backgroundColor: Color(0xdd666666),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Color(0xff222222),
+            const Color(0xff222222),
           ),
         ),
       ),
       platform: TargetPlatform.android,
-      popupMenuTheme: PopupMenuThemeData(color: Color(0xdd777777)),
-      primaryColor: Color(0xdd888888),
-      primaryColorDark: Color(0xdd999999),
-      primaryColorLight: Color(0xdd000000),
-      primaryIconTheme: IconThemeData(color: Color(0xddaaaaaa)),
-      primarySwatch: MaterialColor(
+      popupMenuTheme: const PopupMenuThemeData(color: Color(0xdd777777)),
+      primaryColor: const Color(0xdd888888),
+      primaryColorDark: const Color(0xdd999999),
+      primaryColorLight: const Color(0xdd000000),
+      primaryIconTheme: const IconThemeData(color: Color(0xddaaaaaa)),
+      primarySwatch: const MaterialColor(
         0xcc000000,
         {
           50: Color(0xcc111111),
@@ -9965,45 +10086,49 @@ void main() {
           900: Color(0xcc000000),
         },
       ),
-      primaryTextTheme: TextTheme(
+      primaryTextTheme: const TextTheme(
         bodyMedium: TextStyle(color: Color(0xccaaaaaa)),
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.all(Color(0xff123456)),
+        fillColor: MaterialStateProperty.all(const Color(0xff123456)),
       ),
-      scaffoldBackgroundColor: Color(0xee666666),
-      secondaryHeaderColor: Color(0xccbbbbbb),
-      shadowColor: Color(0xcccccccc),
-      sliderTheme: SliderThemeData(activeTickMarkColor: Color(0xccdddddd)),
-      snackBarTheme: SnackBarThemeData(actionTextColor: Color(0xcceeeeee)),
-      splashColor: Color(0xee444444),
+      scaffoldBackgroundColor: const Color(0xee666666),
+      secondaryHeaderColor: const Color(0xccbbbbbb),
+      shadowColor: const Color(0xcccccccc),
+      sliderTheme:
+          const SliderThemeData(activeTickMarkColor: Color(0xccdddddd)),
+      snackBarTheme:
+          const SnackBarThemeData(actionTextColor: Color(0xcceeeeee)),
+      splashColor: const Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.all(Color(0xff123456)),
+        thumbColor: MaterialStateProperty.all(const Color(0xff123456)),
       ),
-      tabBarTheme: TabBarTheme(labelColor: Color(0xccffffff)),
+      tabBarTheme: const TabBarTheme(labelColor: Color(0xccffffff)),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Color(0xff222222),
+            const Color(0xff222222),
           ),
         ),
       ),
-      textSelectionTheme: TextSelectionThemeData(
+      textSelectionTheme: const TextSelectionThemeData(
         cursorColor: Color(0xff222222),
         selectionColor: Color(0xff222222),
         selectionHandleColor: Color(0xff222222),
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         bodyMedium: TextStyle(
           color: Color(0xee555555),
         ),
       ),
-      timePickerTheme: TimePickerThemeData(backgroundColor: Color(0x11111111)),
-      toggleButtonsTheme: ToggleButtonsThemeData(color: Color(0xbb222222)),
-      tooltipTheme: TooltipThemeData(height: 19.0),
+      timePickerTheme:
+          const TimePickerThemeData(backgroundColor: Color(0x11111111)),
+      toggleButtonsTheme:
+          const ToggleButtonsThemeData(color: Color(0xbb222222)),
+      tooltipTheme: const TooltipThemeData(height: 19.0),
       typography: Typography.material2018(),
-      unselectedWidgetColor: Color(0xbb444444),
+      unselectedWidgetColor: const Color(0xbb444444),
       useMaterial3: true,
       visualDensity: VisualDensity.comfortable,
     );
@@ -11028,38 +11153,39 @@ void main() {
     expect(ThemeDecoder.decodeTimePickerThemeData(null), null);
     expect(ThemeEncoder.encodeTimePickerThemeData(null), null);
 
-    var entry = TimePickerThemeData(
-      backgroundColor: Color(0xff000001),
-      dayPeriodBorderSide: BorderSide(
+    final entry = TimePickerThemeData(
+      backgroundColor: const Color(0xff000001),
+      dayPeriodBorderSide: const BorderSide(
         color: Color(0xff000002),
         style: BorderStyle.solid,
         width: 1.0,
       ),
-      dayPeriodColor: Color(0xff000003),
+      dayPeriodColor: const Color(0xff000003),
       dayPeriodShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4.0),
       ),
-      dayPeriodTextColor: Color(0xff000004),
-      dayPeriodTextStyle: TextStyle(fontSize: 1.0),
-      dialBackgroundColor: Color(0xff000005),
-      dialHandColor: Color(0xff000006),
-      dialTextColor: Color(0xff000007),
-      entryModeIconColor: Color(0xff000008),
-      helpTextStyle: TextStyle(fontSize: 2.0),
-      hourMinuteColor: Color(0xff000009),
+      dayPeriodTextColor: const Color(0xff000004),
+      dayPeriodTextStyle: const TextStyle(fontSize: 1.0),
+      dialBackgroundColor: const Color(0xff000005),
+      dialHandColor: const Color(0xff000006),
+      dialTextColor: const Color(0xff000007),
+      entryModeIconColor: const Color(0xff000008),
+      helpTextStyle: const TextStyle(fontSize: 2.0),
+      hourMinuteColor: const Color(0xff000009),
       hourMinuteShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),
-      hourMinuteTextColor: Color(0xff000010),
-      hourMinuteTextStyle: TextStyle(fontSize: 3.0),
-      inputDecorationTheme: InputDecorationTheme(fillColor: Color(0xff000011)),
+      hourMinuteTextColor: const Color(0xff000010),
+      hourMinuteTextStyle: const TextStyle(fontSize: 3.0),
+      inputDecorationTheme:
+          const InputDecorationTheme(fillColor: Color(0xff000011)),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
     );
 
     expect(ThemeDecoder.decodeTimePickerThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTimePickerThemeData(entry);
-    var decoded = ThemeDecoder.decodeTimePickerThemeData(encoded);
+    final encoded = ThemeEncoder.encodeTimePickerThemeData(entry);
+    final decoded = ThemeDecoder.decodeTimePickerThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff000001',
@@ -11158,33 +11284,33 @@ void main() {
     expect(ThemeDecoder.decodeToggleButtonsThemeData(null), null);
     expect(ThemeEncoder.encodeToggleButtonsThemeData(null), null);
 
-    var entry = ToggleButtonsThemeData(
-      borderColor: Color(0xff111111),
+    final entry = ToggleButtonsThemeData(
+      borderColor: const Color(0xff111111),
       borderRadius: BorderRadius.circular(1.0),
       borderWidth: 2.0,
-      color: Color(0xff222222),
-      constraints: BoxConstraints(
+      color: const Color(0xff222222),
+      constraints: const BoxConstraints(
         maxHeight: 30.0,
         maxWidth: 40.0,
         minHeight: 5.0,
         minWidth: 6.0,
       ),
-      disabledBorderColor: Color(0xff333333),
-      disabledColor: Color(0xff444444),
-      fillColor: Color(0xff555555),
-      focusColor: Color(0xff666666),
-      highlightColor: Color(0xff777777),
-      hoverColor: Color(0xff888888),
-      selectedBorderColor: Color(0xff999999),
-      selectedColor: Color(0xff000000),
-      splashColor: Color(0xffaaaaaa),
-      textStyle: TextStyle(color: Color(0xffbbbbbb)),
+      disabledBorderColor: const Color(0xff333333),
+      disabledColor: const Color(0xff444444),
+      fillColor: const Color(0xff555555),
+      focusColor: const Color(0xff666666),
+      highlightColor: const Color(0xff777777),
+      hoverColor: const Color(0xff888888),
+      selectedBorderColor: const Color(0xff999999),
+      selectedColor: const Color(0xff000000),
+      splashColor: const Color(0xffaaaaaa),
+      textStyle: const TextStyle(color: Color(0xffbbbbbb)),
     );
 
     expect(ThemeDecoder.decodeToggleButtonsThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeToggleButtonsThemeData(entry);
-    var decoded = ThemeDecoder.decodeToggleButtonsThemeData(encoded);
+    final encoded = ThemeEncoder.encodeToggleButtonsThemeData(entry);
+    final decoded = ThemeDecoder.decodeToggleButtonsThemeData(encoded);
 
     expect(
       encoded,
@@ -11228,7 +11354,7 @@ void main() {
     expect(ThemeDecoder.decodeTooltipThemeData(null), null);
     expect(ThemeEncoder.encodeTooltipThemeData(null), null);
 
-    var entry = TooltipThemeData(
+    final entry = const TooltipThemeData(
       enableFeedback: true,
       excludeFromSemantics: true,
       height: 1.0,
@@ -11245,8 +11371,8 @@ void main() {
 
     expect(ThemeDecoder.decodeTooltipThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTooltipThemeData(entry);
-    var decoded = ThemeDecoder.decodeTooltipThemeData(encoded);
+    final encoded = ThemeEncoder.encodeTooltipThemeData(entry);
+    final decoded = ThemeDecoder.decodeTooltipThemeData(encoded);
 
     expect(
       encoded,
@@ -11322,18 +11448,19 @@ void main() {
     expect(ThemeDecoder.decodeTypography(null), null);
     expect(ThemeEncoder.encodeTypography(null), null);
 
-    var entry = Typography.material2018(
-      black: TextTheme(bodyLarge: TextStyle(color: Color(0xff111111))),
-      dense: TextTheme(bodyLarge: TextStyle(color: Color(0xff222222))),
-      englishLike: TextTheme(bodyLarge: TextStyle(color: Color(0xff333333))),
-      tall: TextTheme(bodyLarge: TextStyle(color: Color(0xff444444))),
-      white: TextTheme(bodyLarge: TextStyle(color: Color(0xff555555))),
+    final entry = Typography.material2018(
+      black: const TextTheme(bodyLarge: TextStyle(color: Color(0xff111111))),
+      dense: const TextTheme(bodyLarge: TextStyle(color: Color(0xff222222))),
+      englishLike:
+          const TextTheme(bodyLarge: TextStyle(color: Color(0xff333333))),
+      tall: const TextTheme(bodyLarge: TextStyle(color: Color(0xff444444))),
+      white: const TextTheme(bodyLarge: TextStyle(color: Color(0xff555555))),
     );
 
     expect(ThemeDecoder.decodeTypography(entry), entry);
 
-    var encoded = ThemeEncoder.encodeTypography(entry);
-    var decoded = ThemeDecoder.decodeTypography(encoded);
+    final encoded = ThemeEncoder.encodeTypography(entry);
+    final decoded = ThemeDecoder.decodeTypography(encoded);
 
     expect(
       encoded,

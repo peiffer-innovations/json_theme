@@ -24,6 +24,7 @@ class IconSchema {
       'shadows': SchemaHelper.arraySchema(ShadowSchema.id),
       'size': SchemaHelper.numberSchema,
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
+      'weight': SchemaHelper.numberSchema,
     },
   };
 }

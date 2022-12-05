@@ -17,7 +17,7 @@ class ThemePage extends StatelessWidget {
       child: Builder(
         builder: (BuildContext context) => Scaffold(
           appBar: AppBar(
-            title: Text('Themed Page'),
+            title: const Text('Themed Page'),
           ),
           body: SingleChildScrollView(
             child: ExampleForm(),

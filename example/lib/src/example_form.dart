@@ -46,7 +46,7 @@ class _ExampleFormState extends State<ExampleForm> {
 
   void _validate() {
     if (_formKey.currentState?.validate() != true) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Please correct form errors'),
       ));
     }
@@ -64,7 +64,7 @@ class _ExampleFormState extends State<ExampleForm> {
           ),
           child: Column(
             children: <Widget>[
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -72,7 +72,7 @@ class _ExampleFormState extends State<ExampleForm> {
                   Flexible(
                     child: TextFormField(
                       controller: _firstNameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'First Name',
                       ),
                       validator: (value) => Validator(validators: [
@@ -84,11 +84,11 @@ class _ExampleFormState extends State<ExampleForm> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 16.0),
+                  const SizedBox(width: 16.0),
                   Flexible(
                     child: TextFormField(
                       controller: _lastNameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Last Name',
                       ),
                       validator: (value) => Validator(validators: [
@@ -102,10 +102,10 @@ class _ExampleFormState extends State<ExampleForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'example@example.com',
                   labelText: 'Email',
                 ),
@@ -119,10 +119,10 @@ class _ExampleFormState extends State<ExampleForm> {
                   value: value,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: _phoneNumberController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Phone Number',
                 ),
                 keyboardType: TextInputType.phone,
@@ -135,7 +135,7 @@ class _ExampleFormState extends State<ExampleForm> {
                   value: value,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -145,10 +145,10 @@ class _ExampleFormState extends State<ExampleForm> {
                         setState(() => _phoneNumberMobile = value),
                     value: _phoneNumberMobile,
                   ),
-                  Flexible(child: Text('Mobile')),
+                  const Flexible(child: Text('Mobile')),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -159,7 +159,7 @@ class _ExampleFormState extends State<ExampleForm> {
                         TextFormField(
                           autocorrect: false,
                           controller: _passwordController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             errorMaxLines: 1,
                             labelText: 'Password',
                           ),
@@ -176,12 +176,12 @@ class _ExampleFormState extends State<ExampleForm> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 16.0),
+                  const SizedBox(width: 16.0),
                   Flexible(
                     child: TextFormField(
                       autocorrect: false,
                       controller: _confirmPasswordController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Confirm Password',
                       ),
                       obscureText: true,
@@ -202,10 +202,10 @@ class _ExampleFormState extends State<ExampleForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: null,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your comments...',
                   labelText: 'Comments',
                 ),
@@ -219,9 +219,9 @@ class _ExampleFormState extends State<ExampleForm> {
                   value: value,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               DropdownButton<String>(
-                hint: Text('Country'),
+                hint: const Text('Country'),
                 items: _createCountryList().map((String str) {
                   return DropdownMenuItem(
                     value: str,
@@ -236,7 +236,7 @@ class _ExampleFormState extends State<ExampleForm> {
                 },
                 value: _countryValue,
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -251,10 +251,10 @@ class _ExampleFormState extends State<ExampleForm> {
                             setState(() => _radioValue = value?.toString()),
                         value: 'one',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 16.0,
                       ),
-                      Text(
+                      const Text(
                         'One',
                       ),
                     ],
@@ -270,10 +270,10 @@ class _ExampleFormState extends State<ExampleForm> {
                             setState(() => _radioValue = value?.toString()),
                         value: 'two',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 16.0,
                       ),
-                      Text(
+                      const Text(
                         'Two',
                       ),
                     ],
@@ -289,19 +289,19 @@ class _ExampleFormState extends State<ExampleForm> {
                             setState(() => _radioValue = value?.toString()),
                         value: 'three',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 16.0,
                       ),
-                      Text(
+                      const Text(
                         'Three',
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               DropdownButton<String>(
-                hint: Text('Countries (Disabled)'),
+                hint: const Text('Countries (Disabled)'),
                 items: _createCountryList().map((String str) {
                   return DropdownMenuItem(
                     value: str,
@@ -314,9 +314,9 @@ class _ExampleFormState extends State<ExampleForm> {
                 onChanged: null,
                 value: null,
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               DropdownButton<String>(
-                hint: Text('Countries (Selected; Disabled)'),
+                hint: const Text('Countries (Selected; Disabled)'),
                 items: _createCountryList().map((String str) {
                   return DropdownMenuItem(
                     value: str,
@@ -329,21 +329,21 @@ class _ExampleFormState extends State<ExampleForm> {
                 onChanged: null,
                 value: 'United States of America (USA)',
               ),
-              SizedBox(height: 16.0),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Checkbox(
+                  const Checkbox(
                     onChanged: null,
                     value: true,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Text(
+                  const Text(
                     'Disabled 1',
                   ),
                 ],
@@ -353,14 +353,14 @@ class _ExampleFormState extends State<ExampleForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Checkbox(
+                  const Checkbox(
                     onChanged: null,
                     value: false,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Text(
+                  const Text(
                     'Disabled 2',
                   ),
                 ],
@@ -370,33 +370,33 @@ class _ExampleFormState extends State<ExampleForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Checkbox(
+                  const Checkbox(
                     onChanged: null,
                     value: false,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Text(
+                  const Text(
                     'Disabled 3',
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Radio(
+                  const Radio(
                     groupValue: '1',
                     onChanged: null,
                     value: '1',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Text(
+                  const Text(
                     'Disabled 1',
                   ),
                 ],
@@ -406,15 +406,15 @@ class _ExampleFormState extends State<ExampleForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Radio(
+                  const Radio(
                     groupValue: '2',
                     onChanged: null,
                     value: '2',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Text(
+                  const Text(
                     'Disabled 2',
                   ),
                 ],
@@ -424,32 +424,32 @@ class _ExampleFormState extends State<ExampleForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Radio(
+                  const Radio(
                     groupValue: '3',
                     onChanged: null,
                     value: '3',
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Text(
+                  const Text(
                     'Disabled 3',
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: null,
                 enabled: false,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Required',
                   labelText: 'Disabled',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: null,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Disabled multiline...',
                   labelText: 'Disabled',
                 ),
@@ -464,20 +464,20 @@ class _ExampleFormState extends State<ExampleForm> {
                   value: value,
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Flexible(
                     child: TextButton(
                       onPressed: () {},
-                      child: Text('Enabled'),
+                      child: const Text('Enabled'),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Flexible(
+                  const Flexible(
                     child: TextButton(
                       onPressed: null,
                       child: Text('Disabled'),
@@ -485,20 +485,20 @@ class _ExampleFormState extends State<ExampleForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Flexible(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: Text('Enabled'),
+                      child: const Text('Enabled'),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16.0,
                   ),
-                  Flexible(
+                  const Flexible(
                     child: ElevatedButton(
                       onPressed: null,
                       child: Text('Disabled'),
@@ -506,12 +506,12 @@ class _ExampleFormState extends State<ExampleForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () => _validate(),
-                child: Text('Validate'),
+                child: const Text('Validate'),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
             ],
           ),
         ),
@@ -520,7 +520,7 @@ class _ExampleFormState extends State<ExampleForm> {
   }
 
   List<String> _createCountryList() {
-    var str = '''Afghanistan
+    final str = '''Afghanistan
 Albania
 Algeria
 Andorra

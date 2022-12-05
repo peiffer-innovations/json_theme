@@ -1325,7 +1325,7 @@ class ThemeEncoder {
     String? result;
 
     if (value != null) {
-      var hex = value.value.toRadixString(16).padLeft(8, '0');
+      final hex = value.value.toRadixString(16).padLeft(8, '0');
       result = '#$hex';
     }
 
@@ -1540,7 +1540,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      var runtimeTypeStr = value.runtimeType.toString();
+      final runtimeTypeStr = value.runtimeType.toString();
       // In Flutter < 1.24, the type is: CupertinoThemeData or _NoDefaultCupertinoThemeData
       // In Flutter >= 1.24, the type is: NoDefaultCupertinoThemeData
       assert(runtimeTypeStr == 'CupertinoThemeData' ||
@@ -2538,7 +2538,8 @@ class ThemeEncoder {
   ///   "semanticLabel": "<String>",
   ///   "shadows": "<List<Shadow>>",
   ///   "size": "<double>",
-  ///   "textDirection": "<TextDirection>"
+  ///   "textDirection": "<TextDirection>",
+  ///   "weight": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeIcon(Icon? value) {
@@ -2555,6 +2556,7 @@ class ThemeEncoder {
         'shadows': value.shadows?.map((e) => encodeShadow(e)).toList(),
         'size': value.size,
         'textDirection': encodeTextDirection(value.textDirection),
+        'weight': value.weight,
       };
     }
 
@@ -2904,9 +2906,9 @@ class ThemeEncoder {
   static String? encodeInteractiveInkFeatureFactory(
     InteractiveInkFeatureFactory? value,
   ) {
-    var splashType = InkSplash.splashFactory.runtimeType;
-    var rippleType = InkRipple.splashFactory.runtimeType;
-    var sparkleType = InkSparkle.splashFactory.runtimeType;
+    final splashType = InkSplash.splashFactory.runtimeType;
+    final rippleType = InkRipple.splashFactory.runtimeType;
+    final sparkleType = InkSparkle.splashFactory.runtimeType;
 
     assert(value == null ||
         value.runtimeType == splashType ||
@@ -4509,7 +4511,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      var builders = <String?, String?>{};
+      final builders = <String?, String?>{};
       value.builders.forEach(
         (key, value) =>
             builders[encodeTargetPlatform(key)] = encodePageTransitionsBuilder(
@@ -4520,6 +4522,37 @@ class ThemeEncoder {
       result = {
         'builders': builders,
       };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [PanAxis] to a string:
+  ///  * `aligned`
+  ///  * `free`
+  ///  * `horizontal`
+  ///  * `vertical`
+  static String? encodePanAxis(PanAxis? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case PanAxis.aligned:
+          result = 'aligned';
+          break;
+
+        case PanAxis.free:
+          result = 'free';
+          break;
+
+        case PanAxis.horizontal:
+          result = 'horizontal';
+          break;
+
+        case PanAxis.vertical:
+          result = 'vertical';
+          break;
+      }
     }
 
     return result;
@@ -4752,7 +4785,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      var shape = value as RoundRangeSliderTickMarkShape;
+      final shape = value as RoundRangeSliderTickMarkShape;
       result = <String, dynamic>{
         'tickMarkRadius': shape.tickMarkRadius,
         'type': 'round',
@@ -6379,10 +6412,56 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes a [TextStyle] object into a JSON map:
+  ///
+  /// ```json
+  /// {
+  ///   "children": "<List<TextSpan>>",
+  ///   "locale": "<Locale>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onEnter": "<PointerEnterEventListener>",
+  ///   "onExit": "<PointerExitEventListener>",
+  ///   "recognizer": "<GestureRecognizer>",
+  ///   "semanticsLabel": "<String>",
+  ///   "spellOut": "<bool>",
+  ///   "style": "<TextStyle>",
+  ///   "text": "<String>"
+  /// }
+  /// ```
+  ///
+  /// See Also:
+  ///  * [encodeLocale]
+  ///  * [encodeMouseCursor]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeTextSpan(TextSpan? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'children': value.children
+            ?.whereType<TextSpan>()
+            .map((e) => encodeTextSpan(e)!)
+            .toList(),
+        'locale': encodeLocale(value.locale),
+        'mouseCursor': encodeMouseCursor(value.mouseCursor),
+        // 'onEnter': @unencodable,
+        // 'onExit': @unencodable,
+        // 'recognizer': @unencodable,
+        'semanticsLabel': value.semanticsLabel,
+        'spellOut': value.spellOut,
+        'style': encodeTextStyle(value.style),
+        'text': value.text,
+      };
+    }
+
+    return _stripNull(result);
+  }
+
   /// Encodes a given [value] into a JSON compatible Map structure.  This will
   /// return the following structure:
   ///
   /// ```json
+  /// {
   ///   "backgroundColor": "<Color>",
   ///   "color": "<Color>",
   ///   "decoration": "<TextDecoration>",
@@ -6406,6 +6485,7 @@ class ThemeEncoder {
   ///   "shadows": "<Shadow[]>",
   ///   "textBaseline": "<TextBaseline>",
   ///   "wordSpacing": "<double>"
+  /// }
   /// ```
   ///
   /// See also:
@@ -7158,7 +7238,7 @@ class ThemeEncoder {
       for (var entry in input.entries) {
         if (entry.value != null) {
           if (entry.value is Map) {
-            var processed = _stripNull(entry.value);
+            final processed = _stripNull(entry.value);
             if (processed != null) {
               result[entry.key] = processed;
             }

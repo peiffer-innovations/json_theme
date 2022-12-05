@@ -1,3 +1,8 @@
+## [5.0.0-prerelease1] - December 5th, 2022
+
+* Preparing for Flutter 3.6
+
+
 ## [4.0.3+1] - November 15, 2022
 
 * Automated dependency updates

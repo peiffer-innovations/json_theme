@@ -4522,7 +4522,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return result;
   }
 
   /// Encodes the [PopupMenuPosition] to a string:
@@ -5688,7 +5688,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return result is Map<String, dynamic> ? _stripNull(result) : result;
   }
 
   /// Encodes the given [value] to the String representation.  Supported values

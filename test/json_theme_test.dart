@@ -685,21 +685,25 @@ void main() {
     expect(encoded, {
       'bottom': {
         'color': '#ff111111',
+        'strokeAlign': -1.0,
         'style': 'solid',
         'width': 1.0,
       },
       'left': {
         'color': '#ff222222',
+        'strokeAlign': -1.0,
         'style': 'solid',
         'width': 1.0,
       },
       'right': {
         'color': '#ff333333',
+        'strokeAlign': -1.0,
         'style': 'solid',
         'width': 1.0,
       },
       'top': {
         'color': '#ff444444',
+        'strokeAlign': -1.0,
         'style': 'solid',
         'width': 1.0,
       },
@@ -807,21 +811,25 @@ void main() {
         'border': {
           'bottom': {
             'color': _kColorStr,
+            'strokeAlign': -1.0,
             'style': 'solid',
             'width': 1.0,
           },
           'left': {
             'color': _kColorStr,
+            'strokeAlign': -1.0,
             'style': 'solid',
             'width': 1.0,
           },
           'right': {
             'color': _kColorStr,
+            'strokeAlign': -1.0,
             'style': 'solid',
             'width': 1.0,
           },
           'top': {
             'color': _kColorStr,
+            'strokeAlign': -1.0,
             'style': 'solid',
             'width': 1.0,
           },
@@ -1352,6 +1360,7 @@ void main() {
         'onTertiary': '#ff000000',
         'onTertiaryContainer': '#ff000000',
         'outline': '#ffffffff',
+        'outlineVarient': '#ffffffff',
         'primary': '#ffbb86fc',
         'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
@@ -1384,6 +1393,7 @@ void main() {
         },
         'side': {
           'color': '#ff666666',
+          'strokeAlign': -1.0,
           'width': 2.0,
           'style': 'solid',
         },
@@ -1417,6 +1427,7 @@ void main() {
           'onTertiary': '#ff000000',
           'onTertiaryContainer': '#ff000000',
           'outline': '#ffffffff',
+          'outlineVarient': '#ffffffff',
           'primary': '#ffbb86fc',
           'primaryContainer': '#ffbb86fc',
           'secondary': '#ff03dac6',
@@ -1463,6 +1474,7 @@ void main() {
           },
           'side': {
             'color': '#ff666666',
+            'strokeAlign': -1.0,
             'style': 'solid',
             'width': 2.0,
           },
@@ -1526,6 +1538,7 @@ void main() {
         },
         'side': {
           'color': '#ff000000',
+          'strokeAlign': -1.0,
           'style': 'none',
           'width': 0.0,
         },
@@ -3687,6 +3700,7 @@ void main() {
         },
         'borderSide': {
           'color': '#00123456',
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 3.0,
         },
@@ -3739,6 +3753,7 @@ void main() {
         },
         'borderSide': {
           'color': '#00123456',
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 3.0,
         },
@@ -4206,7 +4221,12 @@ void main() {
             'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
             'type': 'only'
           },
-          'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+          'side': {
+            'color': '#ff000000',
+            'strokeAlign': -1.0,
+            'style': 'none',
+            'width': 0.0,
+          },
           'type': 'rectangle',
         },
         'style': 'drawer',
@@ -6430,6 +6450,7 @@ void main() {
         },
         'side': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -6458,6 +6479,7 @@ void main() {
       {
         'side': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -6494,6 +6516,7 @@ void main() {
         },
         'side': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -6546,6 +6569,7 @@ void main() {
         },
         'side': {
           'color': '#00123456',
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -6574,6 +6598,7 @@ void main() {
       {
         'side': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -7683,8 +7708,8 @@ void main() {
     expect(
       encoded,
       {
-        'color': _kColorStr,
         'blurRadius': 1.0,
+        'color': _kColorStr,
         'offset': {
           'dx': 2.0,
           'dy': 3.0,
@@ -7720,6 +7745,7 @@ void main() {
       {
         'side': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -7756,6 +7782,7 @@ void main() {
         },
         'side': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -7808,6 +7835,7 @@ void main() {
         },
         'side': {
           'color': '#00123456',
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -7836,6 +7864,7 @@ void main() {
       {
         'side': {
           'color': '#00123456',
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 1.0,
         },
@@ -8641,31 +8670,37 @@ void main() {
         },
         'bottom': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 2.0,
         },
         'horizontalInside': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 3.0,
         },
         'left': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 4.0,
         },
         'right': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 5.0,
         },
         'top': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 6.0,
         },
         'verticalInside': {
           'color': _kColorStr,
+          'strokeAlign': -1.0,
           'style': 'solid',
           'width': 7.0,
         },
@@ -9975,81 +10010,62 @@ void main() {
 
     expect(ThemeDecoder.decodeThemeData(entry), entry);
 
-    var encoded = ThemeEncoder.encodeThemeData(entry);
-    var decoded = ThemeDecoder.decodeThemeData(encoded)!;
+    final encoded = ThemeEncoder.encodeThemeData(entry);
+    final decoded = ThemeDecoder.decodeThemeData(encoded)!;
 
-    var jsonMap = {
-      'appBarTheme': {
-        'backgroundColor': '#ff444444',
-      },
+    final jsonMap = {
+      'appBarTheme': {'backgroundColor': '#ff444444'},
       'applyElevationOverlayColor': true,
       'bannerTheme': {'backgroundColor': '#ff666666'},
-      'backgroundColor': '#ff555555',
-      'bottomAppBarColor': '#ff777777',
       'bottomAppBarTheme': {
         'color': '#ff888888',
         'shape': 'circular',
+        'surfaceTintColor': '#ff888888'
       },
-      'bottomNavigationBarTheme': {
-        'backgroundColor': '#ff999999',
-      },
+      'bottomNavigationBarTheme': {'backgroundColor': '#ff999999'},
+      'bottomSheetTheme': {'backgroundColor': '#ff000000'},
       'brightness': 'dark',
-      'bottomSheetTheme': {
-        'backgroundColor': '#ff000000',
-      },
-      'buttonBarTheme': {
-        'buttonHeight': 3.0,
-      },
+      'buttonBarTheme': {'buttonHeight': 3.0},
       'buttonTheme': {
         'alignedDropdown': false,
         'height': 36.0,
         'layoutBehavior': 'padded',
         'minWidth': 88.0,
-        'padding': {
-          'bottom': 0.0,
-          'left': 16.0,
-          'right': 16.0,
-          'top': 0.0,
-        },
+        'padding': {'bottom': 0.0, 'left': 16.0, 'right': 16.0, 'top': 0.0},
         'shape': {
           'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'type': 'only',
+            'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+            'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+            'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+            'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+            'type': 'only'
           },
           'side': {
             'color': '#ff000000',
+            'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0,
+            'width': 0.0
           },
-          'type': 'rounded',
+          'type': 'rounded'
         },
-        'textTheme': 'normal',
+        'textTheme': 'normal'
       },
       'canvasColor': '#ffcccccc',
       'cardColor': '#ffdddddd',
-      'cardTheme': {
-        'color': '#ffeeeeee',
+      'cardTheme': {'color': '#ffeeeeee'},
+      'checkboxTheme': {
+        'fillColor': {
+          'disabled': '#ff123456',
+          'dragged': '#ff123456',
+          'empty': '#ff123456',
+          'error': '#ff123456',
+          'focused': '#ff123456',
+          'hovered': '#ff123456',
+          'pressed': '#ff123456',
+          'scrolledUnder': '#ff123456',
+          'selected': '#ff123456'
+        }
       },
-      'checkboxTheme': {'fillColor': _materializeState('#ff123456')},
       'chipTheme': {
         'backgroundColor': '#ff111111',
         'brightness': 'light',
@@ -10057,63 +10073,32 @@ void main() {
         'deleteIconColor': '#ff333333',
         'disabledColor': '#ff444444',
         'elevation': 2.0,
-        'labelPadding': {
-          'bottom': 4.0,
-          'left': 4.0,
-          'right': 4.0,
-          'top': 4.0,
-        },
-        'labelStyle': {
-          'color': '#ff555555',
-          'inherit': true,
-        },
-        'padding': {
-          'bottom': 8.0,
-          'left': 8.0,
-          'right': 8.0,
-          'top': 8.0,
-        },
+        'labelPadding': {'bottom': 4.0, 'left': 4.0, 'right': 4.0, 'top': 4.0},
+        'labelStyle': {'color': '#ff555555', 'inherit': true},
+        'padding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
         'pressElevation': 1.0,
-        'secondaryLabelStyle': {
-          'color': '#00123456',
-          'inherit': true,
-        },
+        'secondaryLabelStyle': {'color': '#00123456', 'inherit': true},
         'secondarySelectedColor': '#ff666666',
         'selectedColor': '#00123456',
         'shape': {
           'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'type': 'only',
+            'bottomLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+            'bottomRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+            'topLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+            'topRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+            'type': 'only'
           },
           'side': {
             'color': '#ff000000',
+            'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0,
+            'width': 0.0
           },
-          'type': 'rounded',
+          'type': 'rounded'
         },
         'selectedShadowColor': '#ff777777',
         'shadowColor': '#ff888888',
-        'showCheckmark': true,
+        'showCheckmark': true
       },
       'colorScheme': {
         'background': '#ff121212',
@@ -10135,6 +10120,7 @@ void main() {
         'onTertiary': '#ff000000',
         'onTertiaryContainer': '#ff000000',
         'outline': '#ffffffff',
+        'outlineVarient': '#ffffffff',
         'primary': '#ffbb86fc',
         'primaryContainer': '#ffbb86fc',
         'secondary': '#ff03dac6',
@@ -10144,35 +10130,45 @@ void main() {
         'surfaceTint': '#ffbb86fc',
         'surfaceVariant': '#ff121212',
         'tertiary': '#ff03dac6',
-        'tertiaryContainer': '#ff03dac6',
+        'tertiaryContainer': '#ff03dac6'
       },
-      'cupertinoOverrideTheme': {
-        'barBackgroundColor': '#ee111111',
-      },
+      'cupertinoOverrideTheme': {'barBackgroundColor': '#ee111111'},
       'dataTableTheme': {
         'columnSpacing': 1.0,
-        'dataRowColor': _materializeState('#ff555555'),
+        'dataRowColor': {
+          'disabled': '#ff555555',
+          'dragged': '#ff555555',
+          'empty': '#ff555555',
+          'error': '#ff555555',
+          'focused': '#ff555555',
+          'hovered': '#ff555555',
+          'pressed': '#ff555555',
+          'scrolledUnder': '#ff555555',
+          'selected': '#ff555555'
+        },
         'dataRowHeight': 1.0,
-        'dataTextStyle': {
-          'inherit': true,
-        },
+        'dataTextStyle': {'inherit': true},
         'dividerThickness': 1.0,
-        'headingRowColor': _materializeState('#ff555555'),
-        'headingRowHeight': 1.0,
-        'headingTextStyle': {
-          'inherit': true,
+        'headingRowColor': {
+          'disabled': '#ff555555',
+          'dragged': '#ff555555',
+          'empty': '#ff555555',
+          'error': '#ff555555',
+          'focused': '#ff555555',
+          'hovered': '#ff555555',
+          'pressed': '#ff555555',
+          'scrolledUnder': '#ff555555',
+          'selected': '#ff555555'
         },
-        'horizontalMargin': 1.0,
+        'headingRowHeight': 1.0,
+        'headingTextStyle': {'inherit': true},
+        'horizontalMargin': 1.0
       },
       'dialogBackgroundColor': '#ee888888',
-      'dialogTheme': {
-        'backgroundColor': '#ee999999',
-      },
+      'dialogTheme': {'backgroundColor': '#ee999999'},
       'disabledColor': '#ee000000',
       'dividerColor': '#eeaaaaaa',
-      'dividerTheme': {
-        'color': '#eebbbbbb',
-      },
+      'dividerTheme': {'color': '#eebbbbbb'},
       'drawerTheme': {
         'backgroundColor': '#ff111111',
         'elevation': 5.0,
@@ -10180,28 +10176,34 @@ void main() {
         'shape': {
           'side': {
             'color': '#ff000000',
+            'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0,
+            'width': 0.0
           },
           'type': 'circle'
         }
       },
       'elevatedButtonTheme': {
         'style': {
-          'backgroundColor': _materializeState('#ff222222'),
-        },
+          'backgroundColor': {
+            'disabled': '#ff222222',
+            'dragged': '#ff222222',
+            'empty': '#ff222222',
+            'error': '#ff222222',
+            'focused': '#ff222222',
+            'hovered': '#ff222222',
+            'pressed': '#ff222222',
+            'scrolledUnder': '#ff222222',
+            'selected': '#ff222222'
+          }
+        }
       },
-      'errorColor': '#eecccccc',
-      'floatingActionButtonTheme': {
-        'backgroundColor': '#eedddddd',
-      },
+      'floatingActionButtonTheme': {'backgroundColor': '#eedddddd'},
       'focusColor': '#ee333333',
       'highlightColor': '#dd111111',
       'hintColor': '#dd222222',
       'hoverColor': '#ee222222',
-      'iconTheme': {
-        'color': '#dd333333',
-      },
+      'iconTheme': {'color': '#dd333333'},
       'indicatorColor': '#dd444444',
       'inputDecorationTheme': {
         'alignLabelWithHint': false,
@@ -10210,21 +10212,21 @@ void main() {
         'floatingLabelBehavior': 'auto',
         'focusColor': '#dd555555',
         'isCollapsed': false,
-        'isDense': false,
+        'isDense': false
       },
       'listTileTheme': {
         'contentPadding': {
-          'left': 1,
-          'top': 2,
-          'right': 3,
-          'bottom': 4,
+          'bottom': 4.0,
+          'left': 1.0,
+          'right': 3.0,
+          'top': 2.0
         },
         'dense': true,
         'enableFeedback': false,
-        'horizontalTitleGap': 5,
+        'horizontalTitleGap': 5.0,
         'iconColor': '#ff111111',
-        'minLeadingWidth': 6,
-        'minVerticalPadding': 7,
+        'minLeadingWidth': 6.0,
+        'minVerticalPadding': 7.0,
         'selectedColor': '#ff222222',
         'selectedTileColor': '#ff333333',
         'shape': {
@@ -10235,51 +10237,60 @@ void main() {
             'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
             'type': 'only'
           },
-          'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
-          'type': 'rectangle',
+          'side': {
+            'color': '#ff000000',
+            'strokeAlign': -1.0,
+            'style': 'none',
+            'width': 0.0
+          },
+          'type': 'rectangle'
         },
         'style': 'drawer',
         'textColor': '#ff444444',
-        'tileColor': '#ff555555',
+        'tileColor': '#ff555555'
       },
       'materialTapTargetSize': 'padded',
       'navigationBarTheme': {
         'backgroundColor': '#ff111111',
         'height': 12.0,
         'indicatorColor': '#ff222222',
-        'labelBehavior': 'onlyShowSelected',
+        'labelBehavior': 'onlyShowSelected'
       },
-      'navigationRailTheme': {
-        'backgroundColor': '#dd666666',
-      },
+      'navigationRailTheme': {'backgroundColor': '#dd666666'},
       'outlinedButtonTheme': {
         'style': {
-          'backgroundColor': _materializeState('#ff222222'),
-        },
+          'backgroundColor': {
+            'disabled': '#ff222222',
+            'dragged': '#ff222222',
+            'empty': '#ff222222',
+            'error': '#ff222222',
+            'focused': '#ff222222',
+            'hovered': '#ff222222',
+            'pressed': '#ff222222',
+            'scrolledUnder': '#ff222222',
+            'selected': '#ff222222'
+          }
+        }
       },
       'platform': 'android',
-      'popupMenuTheme': {
-        'color': '#dd777777',
-      },
+      'popupMenuTheme': {'color': '#dd777777'},
       'primaryColor': '#dd888888',
       'primaryColorDark': '#dd999999',
       'primaryColorLight': '#dd000000',
-      'primaryIconTheme': {
-        'color': '#ddaaaaaa',
-      },
+      'primaryIconTheme': {'color': '#ddaaaaaa'},
       'primaryTextTheme': {
         'bodyLarge': {
+          'color': '#ffffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        },
+        'bodyMedium': {
           'color': '#ccaaaaaa',
           'decoration': 'none',
           'fontFamily': 'foo',
           'inherit': true
         },
-        'bodyMedium': {
-          'color': '#ffffffff',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true
-        },
         'bodySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
@@ -10359,46 +10370,73 @@ void main() {
           'inherit': true
         }
       },
-      'radioTheme': {'fillColor': _materializeState('#ff123456')},
+      'radioTheme': {
+        'fillColor': {
+          'disabled': '#ff123456',
+          'dragged': '#ff123456',
+          'empty': '#ff123456',
+          'error': '#ff123456',
+          'focused': '#ff123456',
+          'hovered': '#ff123456',
+          'pressed': '#ff123456',
+          'scrolledUnder': '#ff123456',
+          'selected': '#ff123456'
+        }
+      },
       'scaffoldBackgroundColor': '#ee666666',
       'secondaryHeaderColor': '#ccbbbbbb',
-      'selectedRowColor': '#cccccccc',
       'shadowColor': '#cccccccc',
-      'sliderTheme': {
-        'activeTickMarkColor': '#ccdddddd',
-      },
-      'snackBarTheme': {
-        'actionTextColor': '#cceeeeee',
-      },
+      'sliderTheme': {'activeTickMarkColor': '#ccdddddd'},
+      'snackBarTheme': {'actionTextColor': '#cceeeeee'},
       'splashColor': '#ee444444',
       'splashFactory': 'splash',
-      'switchTheme': {'thumbColor': _materializeState('#ff123456')},
-      'tabBarTheme': {
-        'labelColor': '#ccffffff',
+      'switchTheme': {
+        'thumbColor': {
+          'disabled': '#ff123456',
+          'dragged': '#ff123456',
+          'empty': '#ff123456',
+          'error': '#ff123456',
+          'focused': '#ff123456',
+          'hovered': '#ff123456',
+          'pressed': '#ff123456',
+          'scrolledUnder': '#ff123456',
+          'selected': '#ff123456'
+        }
       },
+      'tabBarTheme': {'labelColor': '#ccffffff'},
       'textButtonTheme': {
         'style': {
-          'backgroundColor': _materializeState('#ff222222'),
-        },
+          'backgroundColor': {
+            'disabled': '#ff222222',
+            'dragged': '#ff222222',
+            'empty': '#ff222222',
+            'error': '#ff222222',
+            'focused': '#ff222222',
+            'hovered': '#ff222222',
+            'pressed': '#ff222222',
+            'scrolledUnder': '#ff222222',
+            'selected': '#ff222222'
+          }
+        }
       },
       'textSelectionTheme': {
         'cursorColor': '#ff222222',
         'selectionColor': '#ff222222',
-        'selectionHandleColor': '#ff222222',
+        'selectionHandleColor': '#ff222222'
       },
       'textTheme': {
         'bodyLarge': {
+          'color': '#ffffffff',
+          'decoration': 'none',
+          'fontFamily': 'foo',
+          'inherit': true
+        },
+        'bodyMedium': {
           'color': '#ee555555',
           'decoration': 'none',
           'fontFamily': 'foo',
           'inherit': true
         },
-        'bodyMedium': {
-          'color': '#ffffffff',
-          'decoration': 'none',
-          'fontFamily': 'foo',
-          'inherit': true
-        },
         'bodySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
@@ -10478,13 +10516,8 @@ void main() {
           'inherit': true
         }
       },
-      'toggleButtonsTheme': {
-        'color': '#bb222222',
-      },
-      'toggleableActiveColor': '#bb333333',
-      'tooltipTheme': {
-        'height': 19.0,
-      },
+      'toggleButtonsTheme': {'color': '#bb222222'},
+      'tooltipTheme': {'height': 19.0},
       'typography': {
         'black': {
           'bodyLarge': {
@@ -10576,298 +10609,298 @@ void main() {
             'decoration': 'none',
             'fontFamily': 'Roboto',
             'inherit': true
-          },
+          }
         },
         'dense': {
           'bodyLarge': {
-            'fontWeight': 'w400',
             'fontSize': 17.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'bodyMedium': {
-            'fontWeight': 'w400',
             'fontSize': 15.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'bodySmall': {
-            'fontWeight': 'w400',
             'fontSize': 13.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'displayLarge': {
-            'fontWeight': 'w100',
             'fontSize': 96.0,
-            'inherit': true,
+            'fontWeight': 'w100',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'displayMedium': {
-            'fontWeight': 'w100',
             'fontSize': 60.0,
-            'inherit': true,
+            'fontWeight': 'w100',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'displaySmall': {
-            'fontWeight': 'w400',
             'fontSize': 48.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'headlineLarge': {
-            'fontWeight': 'w400',
             'fontSize': 40.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'headlineMedium': {
-            'fontWeight': 'w400',
             'fontSize': 34.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'headlineSmall': {
-            'fontWeight': 'w400',
             'fontSize': 24.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'labelLarge': {
-            'fontWeight': 'w500',
             'fontSize': 15.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'labelMedium': {
-            'fontWeight': 'w400',
             'fontSize': 12.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'labelSmall': {
-            'fontWeight': 'w400',
             'fontSize': 11.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'titleLarge': {
-            'fontWeight': 'w500',
             'fontSize': 21.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'titleMedium': {
-            'fontWeight': 'w400',
             'fontSize': 17.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'ideographic'
           },
           'titleSmall': {
-            'fontWeight': 'w500',
             'fontSize': 15.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'textBaseline': 'ideographic'
-          },
+          }
         },
         'englishLike': {
           'bodyLarge': {
-            'fontWeight': 'w400',
             'fontSize': 16.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.5,
             'textBaseline': 'alphabetic'
           },
           'bodyMedium': {
-            'fontWeight': 'w400',
             'fontSize': 14.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.25,
             'textBaseline': 'alphabetic'
           },
           'bodySmall': {
-            'fontWeight': 'w400',
             'fontSize': 12.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.4,
             'textBaseline': 'alphabetic'
           },
           'displayLarge': {
-            'fontWeight': 'w300',
             'fontSize': 96.0,
-            'inherit': true,
+            'fontWeight': 'w300',
+            'inherit': false,
             'letterSpacing': -1.5,
             'textBaseline': 'alphabetic'
           },
           'displayMedium': {
-            'fontWeight': 'w300',
             'fontSize': 60.0,
-            'inherit': true,
+            'fontWeight': 'w300',
+            'inherit': false,
             'letterSpacing': -0.5,
             'textBaseline': 'alphabetic'
           },
           'displaySmall': {
-            'fontWeight': 'w400',
             'fontSize': 48.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.0,
             'textBaseline': 'alphabetic'
           },
           'headlineLarge': {
-            'fontWeight': 'w400',
             'fontSize': 40.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.25,
             'textBaseline': 'alphabetic'
           },
           'headlineMedium': {
-            'fontWeight': 'w400',
             'fontSize': 34.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.25,
             'textBaseline': 'alphabetic'
           },
           'headlineSmall': {
-            'fontWeight': 'w400',
             'fontSize': 24.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.0,
             'textBaseline': 'alphabetic'
           },
           'labelLarge': {
-            'fontWeight': 'w500',
             'fontSize': 14.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'letterSpacing': 1.25,
             'textBaseline': 'alphabetic'
           },
           'labelMedium': {
-            'fontWeight': 'w400',
             'fontSize': 11.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 1.5,
             'textBaseline': 'alphabetic'
           },
           'labelSmall': {
-            'fontWeight': 'w400',
             'fontSize': 10.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 1.5,
             'textBaseline': 'alphabetic'
           },
           'titleLarge': {
-            'fontWeight': 'w500',
             'fontSize': 20.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'letterSpacing': 0.15,
             'textBaseline': 'alphabetic'
           },
           'titleMedium': {
-            'fontWeight': 'w400',
             'fontSize': 16.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'letterSpacing': 0.15,
             'textBaseline': 'alphabetic'
           },
           'titleSmall': {
-            'fontWeight': 'w500',
             'fontSize': 14.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'letterSpacing': 0.1,
             'textBaseline': 'alphabetic'
-          },
+          }
         },
         'tall': {
           'bodyLarge': {
-            'fontWeight': 'w700',
             'fontSize': 17.0,
-            'inherit': true,
+            'fontWeight': 'w700',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'bodyMedium': {
-            'fontWeight': 'w400',
             'fontSize': 15.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'bodySmall': {
-            'fontWeight': 'w400',
             'fontSize': 13.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'displayLarge': {
-            'fontWeight': 'w400',
             'fontSize': 96.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'displayMedium': {
-            'fontWeight': 'w400',
             'fontSize': 60.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'displaySmall': {
-            'fontWeight': 'w400',
             'fontSize': 48.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'headlineLarge': {
-            'fontWeight': 'w400',
             'fontSize': 40.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'headlineMedium': {
-            'fontWeight': 'w400',
             'fontSize': 34.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'headlineSmall': {
-            'fontWeight': 'w400',
             'fontSize': 24.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'labelLarge': {
-            'fontWeight': 'w700',
             'fontSize': 15.0,
-            'inherit': true,
+            'fontWeight': 'w700',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'labelMedium': {
-            'fontWeight': 'w400',
             'fontSize': 12.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'labelSmall': {
-            'fontWeight': 'w400',
             'fontSize': 11.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'titleLarge': {
-            'fontWeight': 'w700',
             'fontSize': 21.0,
-            'inherit': true,
+            'fontWeight': 'w700',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'titleMedium': {
-            'fontWeight': 'w400',
             'fontSize': 17.0,
-            'inherit': true,
+            'fontWeight': 'w400',
+            'inherit': false,
             'textBaseline': 'alphabetic'
           },
           'titleSmall': {
-            'fontWeight': 'w500',
             'fontSize': 15.0,
-            'inherit': true,
+            'fontWeight': 'w500',
+            'inherit': false,
             'textBaseline': 'alphabetic'
-          },
+          }
         },
         'white': {
           'bodyLarge': {
@@ -10959,12 +10992,12 @@ void main() {
             'decoration': 'none',
             'fontFamily': 'Roboto',
             'inherit': true
-          },
-        },
+          }
+        }
       },
       'unselectedWidgetColor': '#bb444444',
       'useMaterial3': true,
-      'visualDensity': 'comfortable',
+      'visualDensity': 'comfortable'
     };
 
     expect(encoded, jsonMap);
@@ -11032,6 +11065,7 @@ void main() {
       'backgroundColor': '#ff000001',
       'dayPeriodBorderSide': {
         'color': '#ff000002',
+        'strokeAlign': -1.0,
         'style': 'solid',
         'width': 1.0,
       },
@@ -11044,7 +11078,12 @@ void main() {
           'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
           'type': 'only'
         },
-        'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
         'type': 'rounded',
       },
       'dayPeriodTextColor': '#ff000004',
@@ -11069,7 +11108,12 @@ void main() {
           'topRight': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
           'type': 'only'
         },
-        'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
         'type': 'rounded',
       },
       'hourMinuteTextColor': '#ff000010',
@@ -11094,7 +11138,12 @@ void main() {
           'topRight': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
           'type': 'only'
         },
-        'side': {'color': '#ff000000', 'style': 'none', 'width': 0.0},
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
         'type': 'rounded',
       },
     });
@@ -11274,11 +11323,11 @@ void main() {
     expect(ThemeEncoder.encodeTypography(null), null);
 
     var entry = Typography.material2018(
-      black: TextTheme(bodyText1: TextStyle(color: Color(0xff111111))),
-      dense: TextTheme(bodyText1: TextStyle(color: Color(0xff222222))),
-      englishLike: TextTheme(bodyText1: TextStyle(color: Color(0xff333333))),
-      tall: TextTheme(bodyText1: TextStyle(color: Color(0xff444444))),
-      white: TextTheme(bodyText1: TextStyle(color: Color(0xff555555))),
+      black: TextTheme(bodyLarge: TextStyle(color: Color(0xff111111))),
+      dense: TextTheme(bodyLarge: TextStyle(color: Color(0xff222222))),
+      englishLike: TextTheme(bodyLarge: TextStyle(color: Color(0xff333333))),
+      tall: TextTheme(bodyLarge: TextStyle(color: Color(0xff444444))),
+      white: TextTheme(bodyLarge: TextStyle(color: Color(0xff555555))),
     );
 
     expect(ThemeDecoder.decodeTypography(entry), entry);

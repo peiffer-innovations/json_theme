@@ -1,4 +1,4 @@
-## [5.0.0-prerelease1] - December 5th, 2022
+## [5.0.0-prerelease2] - December 5th, 2022
 
 * Added `PanAxis` encoder / decoder
 * Added `TextSpan` encoder / decoder

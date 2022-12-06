@@ -127,6 +127,7 @@ class Schemas {
     PanAxisSchema.id: PanAxisSchema.schema,
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
+    PointerDeviceKindSchema.id: PointerDeviceKindSchema.schema,
     PopupMenuPositionSchema.id: PopupMenuPositionSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
     ProgressIndicatorThemeDataSchema.id:

@@ -8163,6 +8163,65 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [PointerDeviceKind].  Supported values are:
+  ///  * `invertedStylus`
+  ///  * `mouse`
+  ///  * `stylus`
+  ///  * `touch`
+  ///  * `trackpad`
+  ///  * `unknown`
+  static PointerDeviceKind? decodePointerDeviceKind(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    PointerDeviceKind? result;
+
+    if (value is PointerDeviceKind) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'PointerDeviceKind',
+        [
+          'invertedStylus',
+          'mouse',
+          'stylus',
+          'touch',
+          'trackpad',
+          'unknown',
+        ],
+        value,
+      );
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/pointer_device_kind',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'invertedStylus':
+          result = PointerDeviceKind.invertedStylus;
+          break;
+        case 'mouse':
+          result = PointerDeviceKind.mouse;
+          break;
+        case 'stylus':
+          result = PointerDeviceKind.stylus;
+          break;
+        case 'touch':
+          result = PointerDeviceKind.touch;
+          break;
+        case 'trackpad':
+          result = PointerDeviceKind.trackpad;
+          break;
+        case 'unknown':
+          result = PointerDeviceKind.unknown;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [PopupMenuPosition].  Supported values are:
   ///  * `over`
   ///  * `under`

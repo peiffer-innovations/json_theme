@@ -6798,6 +6798,65 @@ void main() {
     );
   });
 
+  test('PointerDeviceKind', () {
+    expect(ThemeDecoder.decodePointerDeviceKind(null), null);
+    expect(ThemeEncoder.encodePointerDeviceKind(null), null);
+
+    expect(
+      ThemeDecoder.decodePointerDeviceKind(PointerDeviceKind.mouse),
+      PointerDeviceKind.mouse,
+    );
+    expect(
+      ThemeDecoder.decodePointerDeviceKind('invertedStylus'),
+      PointerDeviceKind.invertedStylus,
+    );
+    expect(
+      ThemeDecoder.decodePointerDeviceKind('mouse'),
+      PointerDeviceKind.mouse,
+    );
+    expect(
+      ThemeDecoder.decodePointerDeviceKind('stylus'),
+      PointerDeviceKind.stylus,
+    );
+    expect(
+      ThemeDecoder.decodePointerDeviceKind('touch'),
+      PointerDeviceKind.touch,
+    );
+    expect(
+      ThemeDecoder.decodePointerDeviceKind('trackpad'),
+      PointerDeviceKind.trackpad,
+    );
+    expect(
+      ThemeDecoder.decodePointerDeviceKind('unknown'),
+      PointerDeviceKind.unknown,
+    );
+
+    expect(
+      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.invertedStylus),
+      'invertedStylus',
+    );
+    expect(
+      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.mouse),
+      'mouse',
+    );
+    expect(
+      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.stylus),
+      'stylus',
+    );
+    expect(
+      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.touch),
+      'touch',
+    );
+    expect(
+      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.trackpad),
+      'trackpad',
+    );
+    expect(
+      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.unknown),
+      'unknown',
+    );
+  });
+
   test('PopupMenuPosition', () {
     expect(ThemeDecoder.decodePopupMenuPosition(null), null);
     expect(ThemeEncoder.encodePopupMenuPosition(null), null);

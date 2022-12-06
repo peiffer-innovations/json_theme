@@ -4558,6 +4558,42 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the [value] to a String.  Supported values are:
+  ///  * `invertedStylus`
+  ///  * `mouse`
+  ///  * `stylus`
+  ///  * `touch`
+  ///  * `trackpad`
+  ///  * `unknown`
+  static String? encodePointerDeviceKind(PointerDeviceKind? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case PointerDeviceKind.invertedStylus:
+          result = 'invertedStylus';
+          break;
+        case PointerDeviceKind.mouse:
+          result = 'mouse';
+          break;
+        case PointerDeviceKind.stylus:
+          result = 'stylus';
+          break;
+        case PointerDeviceKind.touch:
+          result = 'touch';
+          break;
+        case PointerDeviceKind.trackpad:
+          result = 'trackpad';
+          break;
+        case PointerDeviceKind.unknown:
+          result = 'unknown';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the [PopupMenuPosition] to a string:
   ///  * `over`
   ///  * `under`

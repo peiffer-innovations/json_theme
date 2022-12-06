@@ -42,6 +42,7 @@ class Enums {
     NotchedShapeSchema.id,
     PageTransitionsBuilderSchema.id,
     PanAxisSchema.id,
+    PointerDeviceKindSchema.id,
     PopupMenuPositionSchema.id,
     RangeSliderTrackShapeSchema.id,
     RangeSliderValueIndicatorShapeSchema.id,

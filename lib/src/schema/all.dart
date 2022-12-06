@@ -38,6 +38,7 @@ export 'schemas/enums/navigation_rail_label_type_schema.dart';
 export 'schemas/enums/notched_shape_schema.dart';
 export 'schemas/enums/page_transitions_builder_schema.dart';
 export 'schemas/enums/pan_axis_schema.dart';
+export 'schemas/enums/pointer_device_kind_schema.dart';
 export 'schemas/enums/popup_menu_position_schema.dart';
 export 'schemas/enums/range_slider_track_shape_schema.dart';
 export 'schemas/enums/range_slider_value_indicator_shape_schema.dart';

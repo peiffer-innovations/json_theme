@@ -2,6 +2,7 @@ import 'all.dart';
 
 class Schemas {
   static final all = <String, Map<String, dynamic>>{
+    AlignmentDirectionalSchema.id: AlignmentDirectionalSchema.schema,
     AlignmentSchema.id: AlignmentSchema.schema,
     AndroidOverscrollIndicatorSchema.id:
         AndroidOverscrollIndicatorSchema.schema,
@@ -96,6 +97,7 @@ class Schemas {
         MaterialStatePropertyDoubleSchema.schema,
     MaterialStatePropertyEdgeInsetsGeometrySchema.id:
         MaterialStatePropertyEdgeInsetsGeometrySchema.schema,
+    MaterialStatePropertyIconSchema.id: MaterialStatePropertyIconSchema.schema,
     MaterialStatePropertyIconThemeDataSchema.id:
         MaterialStatePropertyIconThemeDataSchema.schema,
     MaterialStatePropertyMouseCursorSchema.id:

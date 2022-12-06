@@ -130,6 +130,97 @@ void main() {
     );
   });
 
+  test('AlignmentDirectional', () {
+    expect(ThemeDecoder.decodeAlignmentDirectional(null), null);
+    expect(ThemeEncoder.encodeAlignmentDirectional(null), null);
+
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional(
+        AlignmentDirectional.bottomCenter,
+      ),
+      AlignmentDirectional.bottomCenter,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('bottomCenter'),
+      AlignmentDirectional.bottomCenter,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('bottomEnd'),
+      AlignmentDirectional.bottomEnd,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('bottomStart'),
+      AlignmentDirectional.bottomStart,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('center'),
+      AlignmentDirectional.center,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('centerEnd'),
+      AlignmentDirectional.centerEnd,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('centerStart'),
+      AlignmentDirectional.centerStart,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('topCenter'),
+      AlignmentDirectional.topCenter,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('topEnd'),
+      AlignmentDirectional.topEnd,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentDirectional('topStart'),
+      AlignmentDirectional.topStart,
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(
+          AlignmentDirectional.bottomCenter),
+      'bottomCenter',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.bottomEnd),
+      'bottomEnd',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.bottomStart),
+      'bottomStart',
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.centerEnd),
+      'centerEnd',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.centerStart),
+      'centerStart',
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.topCenter),
+      'topCenter',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.topEnd),
+      'topEnd',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.topStart),
+      'topStart',
+    );
+  });
+
   test('AndroidOverscrollIndicator', () {
     expect(ThemeDecoder.decodeAndroidOverscrollIndicator(null), null);
     expect(ThemeEncoder.encodeAndroidOverscrollIndicator(null), null);

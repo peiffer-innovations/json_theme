@@ -1,3 +1,4 @@
+export 'schemas/enums/alignment_directional_schema.dart';
 export 'schemas/enums/android_overscroll_indicator_schema.dart';
 export 'schemas/enums/autovalidate_mode_schema.dart';
 export 'schemas/enums/axis_schema.dart';
@@ -123,6 +124,7 @@ export 'schemas/objects/material_state_property_border_side_schema.dart';
 export 'schemas/objects/material_state_property_color_schema.dart';
 export 'schemas/objects/material_state_property_double_schema.dart';
 export 'schemas/objects/material_state_property_edge_insets_geometry_schema.dart';
+export 'schemas/objects/material_state_property_icon_schema.dart';
 export 'schemas/objects/material_state_property_icon_theme_data_schema.dart';
 export 'schemas/objects/material_state_property_mouse_cursor_schema.dart';
 export 'schemas/objects/material_state_property_outlined_border_schema.dart';

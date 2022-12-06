@@ -80,6 +80,46 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a [String].  The supported values are:
+  ///  * `bottomCenter`
+  ///  * `bottomEnd`
+  ///  * `bottomStart`
+  ///  * `center`
+  ///  * `centerEnd`
+  ///  * `centerStart`
+  ///  * `topCenter`
+  ///  * `topEnd`
+  ///  * `topStart`
+  static String? encodeAlignmentDirectional(
+    AlignmentDirectional? value, {
+    bool validate = true,
+  }) {
+    String? result;
+
+    if (value != null) {
+      if (value == AlignmentDirectional.bottomCenter) {
+        result = 'bottomCenter';
+      } else if (value == AlignmentDirectional.bottomEnd) {
+        result = 'bottomEnd';
+      } else if (value == AlignmentDirectional.bottomStart) {
+        result = 'bottomStart';
+      } else if (value == AlignmentDirectional.center) {
+        result = 'center';
+      } else if (value == AlignmentDirectional.centerEnd) {
+        result = 'centerEnd';
+      } else if (value == AlignmentDirectional.centerStart) {
+        result = 'centerStart';
+      } else if (value == AlignmentDirectional.topCenter) {
+        result = 'topCenter';
+      } else if (value == AlignmentDirectional.topEnd) {
+        result = 'topEnd';
+      } else if (value == AlignmentDirectional.topStart) {
+        result = 'topStart';
+      }
+    }
+    return result;
+  }
+
   /// Encodes the given [value] to a [String].  Supported values are:
   /// * `glow`
   /// * `stretch`

@@ -3,6 +3,7 @@ import 'package:json_theme/src/schema/all.dart';
 
 class Enums {
   static List<String> all = [
+    AlignmentDirectionalSchema.id,
     AndroidOverscrollIndicatorSchema.id,
     AxisSchema.id,
     AutovalidateModeSchema.id,

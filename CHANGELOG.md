@@ -1,5 +1,6 @@
-## [5.0.0-prerelease2] - December 5th, 2022
+## [5.0.0-prerelease3] - December 5th, 2022
 
+* Added `AlignmentDirectional` encoder / decoder
 * Added `PanAxis` encoder / decoder
 * Added `TextSpan` encoder / decoder
 * Preparing for Flutter 3.6

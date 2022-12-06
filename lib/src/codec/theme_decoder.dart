@@ -123,6 +123,82 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [AlignmentDirectional].  The supported
+  /// values are:
+  ///  * `bottomCenter`
+  ///  * `bottomEnd`
+  ///  * `bottomStart`
+  ///  * `center`
+  ///  * `centerEnd`
+  ///  * `centerStart`
+  ///  * `topCenter`
+  ///  * `topEnd`
+  ///  * `topStart`
+  static AlignmentDirectional? decodeAlignmentDirectional(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    AlignmentDirectional? result;
+
+    if (value is AlignmentDirectional) {
+      result = value;
+    } else {
+      _checkSupported(
+        'Alignment',
+        [
+          'bottomCenter',
+          'bottomEnd',
+          'bottomStart',
+          'center',
+          'centerEnd',
+          'centerStart',
+          'topCenter',
+          'topEnd',
+          'topStart',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/alignment_directional',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'bottomCenter':
+            result = AlignmentDirectional.bottomCenter;
+            break;
+          case 'bottomEnd':
+            result = AlignmentDirectional.bottomEnd;
+            break;
+          case 'bottomStart':
+            result = AlignmentDirectional.bottomStart;
+            break;
+          case 'center':
+            result = AlignmentDirectional.center;
+            break;
+          case 'centerEnd':
+            result = AlignmentDirectional.centerEnd;
+            break;
+          case 'centerStart':
+            result = AlignmentDirectional.centerStart;
+            break;
+          case 'topCenter':
+            result = AlignmentDirectional.topCenter;
+            break;
+          case 'topEnd':
+            result = AlignmentDirectional.topEnd;
+            break;
+          case 'topStart':
+            result = AlignmentDirectional.topStart;
+            break;
+        }
+      }
+    }
+    return result;
+  }
+
   /// Decodes the given [value] to an [AndroidOverscrollIndicator].  Supported
   /// values are:
   /// * `glow`

@@ -22,11 +22,11 @@ const RESOURCES = {
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/fonts/MaterialIcons-Regular.ttf": "a37b0c01c0baf1888ca812cc0508f6e2",
 "assets/assets/fonts/Lato-Regular.ttf": "2d36b1a925432bae7f3c53a340868c6e",
-"assets/NOTICES": "97cc786d99baf40c1d259e446f42f3c4",
-"index.html": "ad699d8caf117d8339b4f0e4de59b012",
-"/": "ad699d8caf117d8339b4f0e4de59b012",
+"assets/NOTICES": "c9036f8816e4a01e30ee455fe978a0fd",
+"index.html": "23cd03855d28eca55d2097e4b8ce47c9",
+"/": "23cd03855d28eca55d2097e4b8ce47c9",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"version.json": "0df7183dc316a23945aefc7b009b67da"
+"version.json": "22687e2a32c90877609a23ccb96fee2a"
 };
 
 // The application shell files that are downloaded before a service worker can

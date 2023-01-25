@@ -22,7 +22,7 @@ class NavigationBarThemeDataSchema {
       'labelBehavior': SchemaHelper.objectSchema(
           NavigationDestinationLabelBehaviorSchema.id),
       'labelTextStyle':
-          SchemaHelper.objectSchema(MaterialStatePropertyTextStyleSchema.id)
+          SchemaHelper.objectSchema(MaterialStatePropertyTextStyleSchema.id),
     },
   };
 }

@@ -20,7 +20,7 @@ class ExpansionTileThemeDataSchema {
       'expandedAlignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'iconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'tilePadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id)
+      'tilePadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
     },
   };
 }

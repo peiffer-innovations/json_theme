@@ -3300,7 +3300,7 @@ class ThemeDecoder {
   }) {
     EdgeInsetsGeometry? result;
 
-    if (value is String && value.contains(",")) {
+    if (value is String && value.contains(',')) {
       value = value.split(',');
     }
 

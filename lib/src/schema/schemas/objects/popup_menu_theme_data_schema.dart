@@ -11,14 +11,21 @@ class PopupMenuThemeDataSchema {
         'https://api.flutter.dev/flutter/material/PopupMenuThemeData-class.html',
     'title': 'PopupMenuThemeData',
     'type': 'object',
+    'additionalProperties': false,
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'enableFeedback': SchemaHelper.boolSchema,
+      'labelTextStyle': SchemaHelper.objectSchema(
+        MaterialStatePropertyTextStyleSchema.id,
+      ),
       'mouseCursor': SchemaHelper.objectSchema(
         MaterialStatePropertyMouseCursorSchema.id,
       ),
+      'position': SchemaHelper.objectSchema(PopupMenuPositionSchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };

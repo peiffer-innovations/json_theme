@@ -11,14 +11,13 @@ class ThemeDataSchema {
         'https://api.flutter.dev/flutter/material/ThemeData-class.html',
     'title': 'ThemeData',
     'type': 'object',
+    'additionalProperties': false,
     'properties': {
       'appBarTheme': SchemaHelper.objectSchema(AppBarThemeSchema.id),
       'applyElevationOverlayColor': SchemaHelper.boolSchema,
-      'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'bannerTheme': SchemaHelper.objectSchema(
         MaterialBannerThemeDataSchema.id,
       ),
-      'bottomAppBarColor': SchemaHelper.objectSchema(ColorSchema.id),
       'bottomAppBarTheme': SchemaHelper.objectSchema(
         BottomAppBarThemeScheme.id,
       ),
@@ -54,15 +53,26 @@ class ThemeDataSchema {
       'expansionTileTheme': SchemaHelper.objectSchema(
         ExpansionTileThemeDataSchema.id,
       ),
-      'errorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'filledButtonTheme': SchemaHelper.objectSchema(
+        FilledButtonThemeDataSchema.id,
+      ),
       'floatingActionButtonTheme': SchemaHelper.objectSchema(
         FloatingActionButtonThemeDataSchema.id,
       ),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'fontFamily': SchemaHelper.stringSchema,
+      'fontFamilyFallback': {
+        'type': 'array',
+        'items': {
+          'type': 'string',
+        },
+      },
       'highlightColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hintColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'iconButtonTheme': SchemaHelper.objectSchema(
+        IconButtonThemeDataSchema.id,
+      ),
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'inputDecorationTheme': SchemaHelper.objectSchema(
@@ -74,6 +84,11 @@ class ThemeDataSchema {
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
+      'menuBarTheme': SchemaHelper.objectSchema(MenuBarThemeDataSchema.id),
+      'menuButtonTheme': SchemaHelper.objectSchema(
+        MenuButtonThemeDataSchema.id,
+      ),
+      'menuTheme': SchemaHelper.objectSchema(MenuThemeDataSchema.id),
       'navigationBarTheme': SchemaHelper.objectSchema(
         NavigationBarThemeDataSchema.id,
       ),
@@ -83,6 +98,7 @@ class ThemeDataSchema {
       'outlinedButtonTheme': SchemaHelper.objectSchema(
         OutlinedButtonThemeDataSchema.id,
       ),
+      'package': SchemaHelper.stringSchema,
       'pageTransitionsTheme': SchemaHelper.objectSchema(
         PageTransitionsThemeSchema.id,
       ),
@@ -101,7 +117,6 @@ class ThemeDataSchema {
       'scaffoldBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'scrollbarTheme': SchemaHelper.objectSchema(ScrollbarThemeDataSchema.id),
       'secondaryHeaderColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'selectedRowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'sliderTheme': SchemaHelper.objectSchema(SliderThemeDataSchema.id),
       'snackBarTheme': SchemaHelper.objectSchema(SnackBarThemeDataSchema.id),
@@ -124,7 +139,6 @@ class ThemeDataSchema {
       'toggleButtonsTheme': SchemaHelper.objectSchema(
         ToggleButtonsThemeDataSchema.id,
       ),
-      'toggleableActiveColor': SchemaHelper.objectSchema(ColorSchema.id),
       'tooltipTheme': SchemaHelper.objectSchema(TooltipThemeDataSchema.id),
       'typography': SchemaHelper.objectSchema(TypographySchema.id),
       'unselectedWidgetColor': SchemaHelper.objectSchema(ColorSchema.id),

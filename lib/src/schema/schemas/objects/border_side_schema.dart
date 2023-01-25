@@ -14,6 +14,7 @@ class BorderSideSchema {
     'additionalProperties': false,
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'strokeAlign': SchemaHelper.numberSchema,
       'style': SchemaHelper.objectSchema(BorderStyleSchema.id),
       'width': SchemaHelper.numberSchema,
     },

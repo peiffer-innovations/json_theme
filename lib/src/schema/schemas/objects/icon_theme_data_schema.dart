@@ -13,9 +13,13 @@ class IconThemeDataSchema {
     'type': 'object',
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'fill': SchemaHelper.numberSchema,
+      'grade': SchemaHelper.numberSchema,
       'opacity': SchemaHelper.numberSchema,
+      'opticalSize': SchemaHelper.numberSchema,
       'shadows': SchemaHelper.arraySchema(ShadowSchema.id),
       'size': SchemaHelper.numberSchema,
+      'weight': SchemaHelper.numberSchema,
     },
   };
 }

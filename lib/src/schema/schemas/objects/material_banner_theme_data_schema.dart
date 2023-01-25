@@ -11,12 +11,16 @@ class MaterialBannerThemeDataSchema {
         'https://api.flutter.dev/flutter/material/MaterialBannerThemeData-class.html',
     'title': 'MaterialBannerThemeData',
     'type': 'object',
+    'additionalProperties': false,
     'properties': {
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'contentTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'leadingPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };
 }

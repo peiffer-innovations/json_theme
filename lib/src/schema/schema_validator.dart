@@ -77,9 +77,9 @@ class SchemaValidator {
     var result = true;
     RefProvider? refProvider;
     refProvider = (String ref) {
-      var schema = SchemaCache().getSchema(ref);
+      final schema = SchemaCache().getSchema(ref);
       if (schema == null) {
-        throw Exception('Unable to find schema: $ref');
+        throw Exception('Unable to find schema: [$ref].');
       }
 
       return JsonSchema.createSchema(
@@ -88,8 +88,11 @@ class SchemaValidator {
       );
     };
 
-    var schemaData = SchemaCache().getSchema(schemaId)!;
-    var jsonSchema = JsonSchema.createSchema(
+    final schemaData = SchemaCache().getSchema(schemaId);
+    if (schemaData == null) {
+      throw Exception('Unable to locate schema: [$schemaId].');
+    }
+    final jsonSchema = JsonSchema.createSchema(
       schemaData,
       refProvider: refProvider,
     );
@@ -102,7 +105,7 @@ class SchemaValidator {
       removed = {};
     }
 
-    var errors = jsonSchema.validateWithErrors(removed);
+    final errors = jsonSchema.validateWithErrors(removed);
     if (errors.isNotEmpty == true) {
       result = false;
       var errorStr =

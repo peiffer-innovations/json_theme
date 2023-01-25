@@ -37,10 +37,28 @@ class ButtonStyleSchema {
       'foregroundColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
-      'maximumSize':
-          SchemaHelper.objectSchema(MaterialStatePropertySizeSchema.id),
-      'minimumSize':
-          SchemaHelper.objectSchema(MaterialStatePropertySizeSchema.id),
+      'iconColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'iconSize': {
+        'anyOf': [
+          {
+            'type': 'number',
+          },
+          {
+            'type': 'string',
+          },
+          {
+            r'$ref': MaterialStatePropertyDoubleSchema.id,
+          },
+        ],
+      },
+      'maximumSize': SchemaHelper.objectSchema(
+        MaterialStatePropertySizeSchema.id,
+      ),
+      'minimumSize': SchemaHelper.objectSchema(
+        MaterialStatePropertySizeSchema.id,
+      ),
       'mouseCursor': SchemaHelper.objectSchema(
         MaterialStatePropertyMouseCursorSchema.id,
       ),
@@ -50,8 +68,9 @@ class ButtonStyleSchema {
       'padding': SchemaHelper.objectSchema(
         MaterialStatePropertyEdgeInsetsGeometrySchema.id,
       ),
-      'shadowColor':
-          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+      'shadowColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'shape': SchemaHelper.objectSchema(
         MaterialStatePropertyOutlinedBorderSchema.id,
       ),

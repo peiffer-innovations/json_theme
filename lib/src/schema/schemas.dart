@@ -2,6 +2,7 @@ import 'all.dart';
 
 class Schemas {
   static final all = <String, Map<String, dynamic>>{
+    AlignmentDirectionalSchema.id: AlignmentDirectionalSchema.schema,
     AlignmentSchema.id: AlignmentSchema.schema,
     AndroidOverscrollIndicatorSchema.id:
         AndroidOverscrollIndicatorSchema.schema,
@@ -52,6 +53,7 @@ class Schemas {
     EdgeInsetsGeometrySchema.id: EdgeInsetsGeometrySchema.schema,
     ElevatedButtonThemeDataSchema.id: ElevatedButtonThemeDataSchema.schema,
     ExpansionTileThemeDataSchema.id: ExpansionTileThemeDataSchema.schema,
+    FilledButtonThemeDataSchema.id: FilledButtonThemeDataSchema.schema,
     FilterQualitySchema.id: FilterQualitySchema.schema,
     FlexFitSchema.id: FlexFitSchema.schema,
     FloatingActionButtonAnimatorSchema.id:
@@ -65,9 +67,12 @@ class Schemas {
     FontFeatureSchema.id: FontFeatureSchema.schema,
     FontStyleSchema.id: FontStyleSchema.schema,
     FontWeightSchema.id: FontWeightSchema.schema,
+    FontVariationSchema.id: FontVariationSchema.schema,
     GradientSchema.id: GradientSchema.schema,
     GradientTransformSchema.id: GradientTransformSchema.schema,
     HitTestBehaviorSchema.id: HitTestBehaviorSchema.schema,
+    IconButtonThemeDataSchema.id: IconButtonThemeDataSchema.schema,
+    IconSchema.id: IconSchema.schema,
     IconDataSchema.id: IconDataSchema.schema,
     IconThemeDataSchema.id: IconThemeDataSchema.schema,
     ImageProviderSchema.id: ImageProviderSchema.schema,
@@ -92,6 +97,7 @@ class Schemas {
         MaterialStatePropertyDoubleSchema.schema,
     MaterialStatePropertyEdgeInsetsGeometrySchema.id:
         MaterialStatePropertyEdgeInsetsGeometrySchema.schema,
+    MaterialStatePropertyIconSchema.id: MaterialStatePropertyIconSchema.schema,
     MaterialStatePropertyIconThemeDataSchema.id:
         MaterialStatePropertyIconThemeDataSchema.schema,
     MaterialStatePropertyMouseCursorSchema.id:
@@ -105,6 +111,10 @@ class Schemas {
     MaterialTypeSchema.id: MaterialTypeSchema.schema,
     Matrix4Schema.id: Matrix4Schema.schema,
     MaxLengthEnforcementSchema.id: MaxLengthEnforcementSchema.schema,
+    MenuBarThemeDataSchema.id: MenuBarThemeDataSchema.schema,
+    MenuButtonThemeDataSchema.id: MenuButtonThemeDataSchema.schema,
+    MenuStyleSchema.id: MenuStyleSchema.schema,
+    MenuThemeDataSchema.id: MenuThemeDataSchema.schema,
     MouseCursorSchema.id: MouseCursorSchema.schemas,
     NavigationBarThemeDataSchema.id: NavigationBarThemeDataSchema.schema,
     NavigationDestinationLabelBehaviorSchema.id:
@@ -116,8 +126,10 @@ class Schemas {
     OrdinalSortKeySchema.id: OrdinalSortKeySchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
+    PanAxisSchema.id: PanAxisSchema.schema,
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
+    PointerDeviceKindSchema.id: PointerDeviceKindSchema.schema,
     PopupMenuPositionSchema.id: PopupMenuPositionSchema.schema,
     PopupMenuThemeDataSchema.id: PopupMenuThemeDataSchema.schema,
     ProgressIndicatorThemeDataSchema.id:
@@ -172,6 +184,7 @@ class Schemas {
     TextLeadingDistributionSchema.id: TextLeadingDistributionSchema.schema,
     TextOverflowSchema.id: TextOverflowSchema.schema,
     TextSelectionThemeDataSchema.id: TextSelectionThemeDataSchema.schema,
+    TextSpanSchema.id: TextSpanSchema.schema,
     TextStyleSchema.id: TextStyleSchema.schema,
     TextThemeSchema.id: TextThemeSchema.schema,
     TextWidthBasisSchema.id: TextWidthBasisSchema.schema,
@@ -179,7 +192,6 @@ class Schemas {
     TileModeSchema.id: TileModeSchema.schema,
     TimePickerThemeDataSchema.id: TimePickerThemeDataSchema.schema,
     ToggleButtonsThemeDataSchema.id: ToggleButtonsThemeDataSchema.schema,
-    ToolbarOptionsSchema.id: ToolbarOptionsSchema.schema,
     TooltipThemeDataSchema.id: TooltipThemeDataSchema.schema,
     TooltipTriggerModeSchema.id: TooltipTriggerModeSchema.schema,
     TypographySchema.id: TypographySchema.schema,

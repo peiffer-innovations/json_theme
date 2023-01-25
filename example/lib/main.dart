@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: RootPage(),
     );
   }
@@ -35,10 +35,14 @@ class RootPage extends StatelessWidget {
   ];
 
   Future<void> _onThemeSelected(BuildContext context, String themeId) async {
-    var themeStr = await rootBundle.loadString('assets/themes/$themeId.json');
-    var themeJson = json.decode(themeStr);
+    final themeStr = await rootBundle.loadString('assets/themes/$themeId.json');
+    final themeJson = json.decode(themeStr);
 
-    var theme = ThemeDecoder.decodeThemeData(themeJson) ?? ThemeData();
+    final theme = ThemeDecoder.decodeThemeData(
+          themeJson,
+          validate: true,
+        ) ??
+        ThemeData();
 
     await Navigator.of(context).push(
       MaterialPageRoute(
@@ -53,7 +57,7 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Theme'),
+        title: const Text('Select Theme'),
       ),
       body: ListView.builder(
         itemCount: _themes.length,

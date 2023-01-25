@@ -12,6 +12,7 @@ class InputDecorationThemeSchema {
     'title': 'InputDecorationTheme',
     'type': 'object',
     'properties': {
+      'activeIndicatorBorder': SchemaHelper.objectSchema(BorderSideSchema.id),
       'alignLabelWithHint': SchemaHelper.boolSchema,
       'border': SchemaHelper.objectSchema(InputBorderSchema.id),
       'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
@@ -40,6 +41,7 @@ class InputDecorationThemeSchema {
       'iconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'isDense': SchemaHelper.boolSchema,
       'labelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'outlineBorder': SchemaHelper.objectSchema(BorderSideSchema.id),
       'prefixIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'prefixStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'suffixIconColor': SchemaHelper.objectSchema(ColorSchema.id),

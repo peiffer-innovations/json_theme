@@ -21,8 +21,8 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "x": <double>,
-  ///   "y": <double>
+  ///   "x": "<double>",
+  ///   "y": "<double>"
   /// }
   /// ```
   ///
@@ -80,11 +80,52 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a [String].  The supported values are:
+  ///  * `bottomCenter`
+  ///  * `bottomEnd`
+  ///  * `bottomStart`
+  ///  * `center`
+  ///  * `centerEnd`
+  ///  * `centerStart`
+  ///  * `topCenter`
+  ///  * `topEnd`
+  ///  * `topStart`
+  static String? encodeAlignmentDirectional(
+    AlignmentDirectional? value, {
+    bool validate = true,
+  }) {
+    String? result;
+
+    if (value != null) {
+      if (value == AlignmentDirectional.bottomCenter) {
+        result = 'bottomCenter';
+      } else if (value == AlignmentDirectional.bottomEnd) {
+        result = 'bottomEnd';
+      } else if (value == AlignmentDirectional.bottomStart) {
+        result = 'bottomStart';
+      } else if (value == AlignmentDirectional.center) {
+        result = 'center';
+      } else if (value == AlignmentDirectional.centerEnd) {
+        result = 'centerEnd';
+      } else if (value == AlignmentDirectional.centerStart) {
+        result = 'centerStart';
+      } else if (value == AlignmentDirectional.topCenter) {
+        result = 'topCenter';
+      } else if (value == AlignmentDirectional.topEnd) {
+        result = 'topEnd';
+      } else if (value == AlignmentDirectional.topStart) {
+        result = 'topStart';
+      }
+    }
+    return result;
+  }
+
   /// Encodes the given [value] to a [String].  Supported values are:
   /// * `glow`
   /// * `stretch`
   static String? encodeAndroidOverscrollIndicator(
-      AndroidOverscrollIndicator? value) {
+    AndroidOverscrollIndicator? value,
+  ) {
     String? result;
 
     if (value != null) {
@@ -106,20 +147,20 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "actionsIconTheme": <IconThemeData>,
-  ///   "backgroundColor": <Color>,
-  ///   "centerTitle": <bool>,
-  ///   "elevation": <double>,
-  ///   "foregroundColor": <Color>,
-  ///   "iconTheme": <IconThemeData>,
-  ///   "scrolledUnderElevation": <double>,
-  ///   "shadowColor": <Color>,
-  ///   "surfaceTintColor": <Color>,
-  ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
-  ///   "titleSpacing": <double>,
-  ///   "titleTextStyle": <TextStyle>,
-  ///   "toolbarHeight": <double>,
-  ///   "toolbarTextStyle": <TextStyle>
+  ///   "actionsIconTheme": "<IconThemeData>",
+  ///   "backgroundColor": "<Color>",
+  ///   "centerTitle": "<bool>",
+  ///   "elevation": "<double>",
+  ///   "foregroundColor": "<Color>",
+  ///   "iconTheme": "<IconThemeData>",
+  ///   "scrolledUnderElevation": "<double>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "systemOverlayStyle": "<SystemUiOverlayStyle>",
+  ///   "titleSpacing": "<double>",
+  ///   "titleTextStyle": "<TextStyle>",
+  ///   "toolbarHeight": "<double>",
+  ///   "toolbarTextStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -390,10 +431,10 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "bottomLeft": <Radius>,
-  ///   "bottomRight": <Radius>,
-  ///   "topLeft": <Radius>,
-  ///   "topRight": <Radius>,
+  ///   "bottomLeft": "<Radius>",
+  ///   "bottomRight": "<Radius>",
+  ///   "topLeft": "<Radius>",
+  ///   "topRight": "<Radius>",
   ///   "type": "only"
   /// }
   /// ```
@@ -420,9 +461,9 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "style": <BorderStyle>,
-  ///   "width": <double>
+  ///   "color": "<Color>",
+  ///   "style": "<BorderStyle>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -435,6 +476,7 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'color': encodeColor(value.color),
+        'strokeAlign': value.strokeAlign,
         'style': encodeBorderStyle(value.style),
         'width': value.width,
       };
@@ -471,9 +513,11 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "shape": <NotchedShape>
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "height": "<double>",
+  ///   "shape": "<NotchedShape>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -481,14 +525,17 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeNotchedShape]
   static Map<String, dynamic>? encodeBottomAppBarTheme(
-      BottomAppBarTheme? value) {
+    BottomAppBarTheme? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = <String, dynamic>{
         'color': encodeColor(value.color),
         'elevation': value.elevation,
+        'height': value.height,
         'shape': encodeNotchedShape(value.shape),
+        'surfaceTintColor': encodeColor(value.color),
       };
     }
 
@@ -499,18 +546,18 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "landscapeLayout": <BottomNavigationBarLandscapeLayout>,
-  ///   "selectedIconTheme": <IconThemeData>,
-  ///   "selectedIconColor": <Color>,
-  ///   "selectedLabelStyle": <TextStyle>,
-  ///   "showSelectedLabels": <bool>,
-  ///   "showUnselectedLabels": <bool>,
-  ///   "type": <BottomNavigationBarType>,
-  ///   "unselectedIconTheme": <IconThemeData>,
-  ///   "unselectedItemColor": <Color>,
-  ///   "unselectedLabelStyle": <TextStyle>,
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "landscapeLayout": "<BottomNavigationBarLandscapeLayout>",
+  ///   "selectedIconTheme": "<IconThemeData>",
+  ///   "selectedIconColor": "<Color>",
+  ///   "selectedLabelStyle": "<TextStyle>",
+  ///   "showSelectedLabels": "<bool>",
+  ///   "showUnselectedLabels": "<bool>",
+  ///   "type": "<BottomNavigationBarType>",
+  ///   "unselectedIconTheme": "<IconThemeData>",
+  ///   "unselectedItemColor": "<Color>",
+  ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -604,13 +651,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "clipBehavior": <Clip>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "elevation": <double>,
-  ///   "modalBackgroundColor": <Color>,
-  ///   "modalElevation": <double>,
-  ///   "shape": <ShapeBorder>
+  ///   "backgroundColor": "<Color>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "elevation": "<double>",
+  ///   "modalBackgroundColor": "<Color>",
+  ///   "modalBarrierColor": "<Color>",
+  ///   "modalElevation": "<double>",
+  ///   "shape": "<ShapeBorder>"
   /// }
   /// ```
   ///
@@ -631,8 +679,10 @@ class ThemeEncoder {
         'constraints': encodeBoxConstraints(value.constraints),
         'elevation': value.elevation,
         'modalBackgroundColor': encodeColor(value.modalBackgroundColor),
+        'modalBarrierColor': encodeColor(value.modalBarrierColor),
         'modalElevation': value.modalElevation,
         'shape': encodeShapeBorder(value.shape),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
       };
     }
 
@@ -644,10 +694,10 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <BorderSide>,
-  ///   "left": <BorderSide>,
-  ///   "right": <BorderSide>,
-  ///   "top": <BorderSide>
+  ///   "bottom": "<BorderSide>",
+  ///   "left": "<BorderSide>",
+  ///   "right": "<BorderSide>",
+  ///   "top": "<BorderSide>"
   /// }
   /// ```
   /// A [value] of `null` will result in `null` being returned.
@@ -674,10 +724,10 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "maxHeight": <double>,
-  ///   "maxWidth": <double>,
-  ///   "minHeight": <double>,
-  ///   "minWidth": <double>
+  ///   "maxHeight": "<double>",
+  ///   "maxWidth": "<double>",
+  ///   "minHeight": "<double>",
+  ///   "minWidth": "<double>"
   /// }
   /// ```
   ///
@@ -703,14 +753,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundBlendMode": <BlendMode>,
-  ///   "border": <BoxBorder>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "boxShadow": <BoxShadow[]>
-  ///   "color": <Color>,
-  ///   "image": <DecorationImage>,
-  ///   "gradient": <Gradient>,
-  ///   "shape": <BoxShape>
+  ///   "backgroundBlendMode": "<BlendMode>",
+  ///   "border": "<BoxBorder>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "boxShadow": "<BoxShadow[]>"
+  ///   "color": "<Color>",
+  ///   "image": "<DecorationImage>",
+  ///   "gradient": "<Gradient>",
+  ///   "shape": "<BoxShape>"
   /// }
   /// ```
   ///
@@ -799,11 +849,11 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "blurRadius": <double>,
-  ///   "blurStyle": <BlurStyle>,
-  ///   "color": <Color>,
-  ///   "offset": <Offset>,
-  ///   "spreadRadius": <double>
+  ///   "blurRadius": "<double>",
+  ///   "blurStyle": "<BlurStyle>",
+  ///   "color": "<Color>",
+  ///   "offset": "<Offset>",
+  ///   "spreadRadius": "<double>"
   /// }
   /// ```
   ///
@@ -898,15 +948,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <MainAxisAlignment>,
-  ///   "buttonAlignedDropdown": <bool>,
-  ///   "buttonHeight": <double>,
-  ///   "buttonMinWidth": <double>,
-  ///   "buttonPadding": <EdgeInsetsGeometry>,
-  ///   "buttonTextTheme": <ButtonTextTheme>,
-  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
-  ///   "mainAxisSize": <MainAxisSize>,
-  ///   "overflowDirection": <VerticalDirection>,
+  ///   "alignment": "<MainAxisAlignment>",
+  ///   "buttonAlignedDropdown": "<bool>",
+  ///   "buttonHeight": "<double>",
+  ///   "buttonMinWidth": "<double>",
+  ///   "buttonPadding": "<EdgeInsetsGeometry>",
+  ///   "buttonTextTheme": "<ButtonTextTheme>",
+  ///   "layoutBehavior": "<ButtonBarLayoutBehavior>",
+  ///   "mainAxisSize": "<MainAxisSize>",
+  ///   "overflowDirection": "<VerticalDirection>",
   /// }
   /// ```
   ///
@@ -944,26 +994,28 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "animationDuration": <MaterialStateProperty<double>>,
-  ///   "backgroundColor": <MaterialStateProperty<Color>>,
-  ///   "elevation": <MaterialStateProperty<double>>,
-  ///   "enableFeedback": <bool>,
-  ///   "fixedSize": <MaterialStateProperty<double>>,
-  ///   "foregroundColor": <MaterialStateProperty<Color>>,
-  ///   "maximumSize": <MaterialStateProperty<double>>,
-  ///   "minimumSize": <MaterialStateProperty<Size>>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "padding": <MaterialStateProperty<EdgeInsetsGeometry>>,
-  ///   "shadowColor": <MaterialStateProperty<Color>>,
-  ///   "shape": <MaterialStateProperty<OutlinedBorder>>,
-  ///   "side": <MaterialStateProperty<BorderSide>>,
-  ///   "splashFactory": <InteractiveInkSplashFactory>,
-  ///   "surfaceTintColor": <MaterialStateProperty<Color>>,
-  ///   "tapTargetSize": <MaterialTapTargetSize>,
-  ///   "textStyle": <MaterialStateProperty<TextStyle>>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "animationDuration": "<MaterialStateProperty<double>>",
+  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "enableFeedback": "<bool>",
+  ///   "fixedSize": "<MaterialStateProperty<double>>",
+  ///   "foregroundColor": "<MaterialStateProperty<Color>>",
+  ///   "iconColor": "<MaterialStateProperty<Color>>",
+  ///   "iconSize": "<MaterialStateProperty<double>>",
+  ///   "maximumSize": "<MaterialStateProperty<double>>",
+  ///   "minimumSize": "<MaterialStateProperty<Size>>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "padding": "<MaterialStateProperty<EdgeInsetsGeometry>>",
+  ///   "shadowColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<MaterialStateProperty<OutlinedBorder>>",
+  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "tapTargetSize": "<MaterialTapTargetSize>",
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -1008,6 +1060,8 @@ class ThemeEncoder {
         'foregroundColor': encodeMaterialStatePropertyColor(
           value.foregroundColor,
         ),
+        'iconColor': encodeMaterialStatePropertyColor(value.iconColor),
+        'iconSize': encodeMaterialStatePropertyDouble(value.iconSize),
         'maximumSize': encodeMaterialStatePropertySize(value.maximumSize),
         'minimumSize': encodeMaterialStatePropertySize(value.minimumSize),
         'mouseCursor': encodeMaterialStatePropertyMouseCursor(
@@ -1068,21 +1122,21 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "alignedDropdown": <bool>,
-  ///   "buttonColor": <Color>,
-  ///   "colorScheme": <ColorScheme>,
-  ///   "disabledColor": <Color>,
-  ///   "focusColor": <Color>,
-  ///   "height": <double>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "layoutBehavior": <ButtonBarLayoutBehavior>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "minWidth": <double>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "shape": <ShapeBorder>,
-  ///   "splashColor": <Color>,
-  ///   "textTheme": <ButtonTextTheme>
+  ///   "alignedDropdown": "<bool>",
+  ///   "buttonColor": "<Color>",
+  ///   "colorScheme": "<ColorScheme>",
+  ///   "disabledColor": "<Color>",
+  ///   "focusColor": "<Color>",
+  ///   "height": "<double>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "layoutBehavior": "<ButtonBarLayoutBehavior>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "minWidth": "<double>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "splashColor": "<Color>",
+  ///   "textTheme": "<ButtonTextTheme>"
   /// }
   /// ```
   ///
@@ -1117,13 +1171,13 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "shadowColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "surfaceTintColor": <Color>
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -1154,15 +1208,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "checkColor": <Color>,
-  ///   "fillColor": <MaterialStateProperty<Color>>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "shape": <OutlinedBorder>,
-  ///   "side": <BorderSide>,
-  ///   "splashRadius": <double>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "checkColor": "<Color>",
+  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<OutlinedBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "splashRadius": "<double>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -1208,24 +1262,26 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "borderSide": <BorderSide>,
-  ///   "brightness": <Brightness>,
-  ///   "checkmarkColor": <Color>,
-  ///   "deleteIconColor": <Color>,
-  ///   "disabledColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "labelPadding": <EdgeInsetsGeometry>,
-  ///   "labelStyle": <TextStyle>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "pressElevation": <double>,
-  ///   "secondaryLabelStyle": <TextStyle>,
-  ///   "secondarySelectedColor": <Color>,
-  ///   "selectedColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "selectedShadowColor": <Color>,
-  ///   "shadowColor": <Color>,
-  ///   "showCheckmark": <bool>
+  ///   "backgroundColor": "<Color>",
+  ///   "brightness": "<Brightness>",
+  ///   "checkmarkColor": "<Color>",
+  ///   "deleteIconColor": "<Color>",
+  ///   "disabledColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "iconTheme": "<IconThemeData>",
+  ///   "labelPadding": "<EdgeInsetsGeometry>",
+  ///   "labelStyle": "<TextStyle>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "pressElevation": "<double>",
+  ///   "secondaryLabelStyle": "<TextStyle>",
+  ///   "secondarySelectedColor": "<Color>",
+  ///   "selectedColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "selectedShadowColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "showCheckmark": "<bool>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -1234,6 +1290,7 @@ class ThemeEncoder {
   ///  * [encodeBrightness]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeIconThemeData]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeChipThemeData(ChipThemeData? value) {
@@ -1247,8 +1304,10 @@ class ThemeEncoder {
         'deleteIconColor': encodeColor(value.deleteIconColor),
         'disabledColor': encodeColor(value.disabledColor),
         'elevation': value.elevation,
-        'labelPadding':
-            encodeEdgeInsetsGeometry(value.labelPadding as EdgeInsets?),
+        'iconTheme': encodeIconThemeData(value.iconTheme),
+        'labelPadding': encodeEdgeInsetsGeometry(
+          value.labelPadding as EdgeInsets?,
+        ),
         'labelStyle': encodeTextStyle(value.labelStyle),
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
         'pressElevation': value.pressElevation,
@@ -1260,6 +1319,7 @@ class ThemeEncoder {
         'selectedShadowColor': encodeColor(value.selectedShadowColor),
         'shadowColor': encodeColor(value.shadowColor),
         'showCheckmark': value.showCheckmark,
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
       };
     }
 
@@ -1305,7 +1365,7 @@ class ThemeEncoder {
     String? result;
 
     if (value != null) {
-      var hex = value.value.toRadixString(16).padLeft(8, '0');
+      final hex = value.value.toRadixString(16).padLeft(8, '0');
       result = '#$hex';
     }
 
@@ -1316,35 +1376,36 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "background": <Color>,
-  ///   "brightness": <Brightness>,
-  ///   "error": <Color>,
-  ///   "errorContainer": <Color>,
-  ///   "inversePrimary": <Color>,
-  ///   "inverseSurface": <Color>,
-  ///   "onBackground": <Color>,
-  ///   "onError": <Color>,
-  ///   "onErrorContainer": <Color>,
-  ///   "onInverseSurface": <Color>,
-  ///   "onPrimary": <Color>,
-  ///   "onPrimaryContainer": <Color>,
-  ///   "onSecondary": <Color>,
-  ///   "onSecondaryContainer": <Color>,
-  ///   "onSurface": <Color>,
-  ///   "onSurfaceVariant": <Color>,
-  ///   "onTertiary": <Color>,
-  ///   "onTertiaryContainer": <Color>,
-  ///   "outline": <Color>,
-  ///   "primary": <Color>,
-  ///   "primaryContainer": <Color>,
-  ///   "secondary": <Color>,
-  ///   "secondaryContainer": <Color>,
-  ///   "shadow": <Color>,
-  ///   "surface": <Color>,
-  ///   "surfaceTint": <Color>,
-  ///   "surfaceVariant": <Color>,
-  ///   "tertiary": <Color>,
-  ///   "tertiaryContainer": <Color>
+  ///   "background": "<Color>",
+  ///   "brightness": "<Brightness>",
+  ///   "error": "<Color>",
+  ///   "errorContainer": "<Color>",
+  ///   "inversePrimary": "<Color>",
+  ///   "inverseSurface": "<Color>",
+  ///   "onBackground": "<Color>",
+  ///   "onError": "<Color>",
+  ///   "onErrorContainer": "<Color>",
+  ///   "onInverseSurface": "<Color>",
+  ///   "onPrimary": "<Color>",
+  ///   "onPrimaryContainer": "<Color>",
+  ///   "onSecondary": "<Color>",
+  ///   "onSecondaryContainer": "<Color>",
+  ///   "onSurface": "<Color>",
+  ///   "onSurfaceVariant": "<Color>",
+  ///   "onTertiary": "<Color>",
+  ///   "onTertiaryContainer": "<Color>",
+  ///   "outline": "<Color>",
+  ///   "outlineVariant": "<Color>",
+  ///   "primary": "<Color>",
+  ///   "primaryContainer": "<Color>",
+  ///   "secondary": "<Color>",
+  ///   "secondaryContainer": "<Color>",
+  ///   "shadow": "<Color>",
+  ///   "surface": "<Color>",
+  ///   "surfaceTint": "<Color>",
+  ///   "surfaceVariant": "<Color>",
+  ///   "tertiary": "<Color>",
+  ///   "tertiaryContainer": "<Color>"
   /// }
   /// ```
   ///
@@ -1375,6 +1436,7 @@ class ThemeEncoder {
         'onTertiary': encodeColor(value.onTertiary),
         'onTertiaryContainer': encodeColor(value.onTertiaryContainer),
         'outline': encodeColor(value.outline),
+        'outlineVarient': encodeColor(value.outlineVariant),
         'primary': encodeColor(value.primary),
         'primaryContainer': encodeColor(value.primaryContainer),
         'secondary': encodeColor(value.secondary),
@@ -1453,15 +1515,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "actionTextStyle": <TextStyle>,
-  ///   "dateTimePickerTextStyle": <TextStyle>,
-  ///   "navActionTextStyle": <TextStyle>,
-  ///   "navLargeTitleTextStyle":<TextStyle>,
-  ///   "navTitleTextStyle": <TextStyle>,
-  ///   "pickerTextStyle": <TextStyle>,
-  ///   "primaryColor": <Color>
-  ///   "tabLabelTextStyle": <TextStyle>,
-  ///   "textStyle": <TextStyle>,
+  ///   "actionTextStyle": "<TextStyle>",
+  ///   "dateTimePickerTextStyle": "<TextStyle>",
+  ///   "navActionTextStyle": "<TextStyle>",
+  ///   "navLargeTitleTextStyle":<TextStyle>",
+  ///   "navTitleTextStyle": "<TextStyle>",
+  ///   "pickerTextStyle": "<TextStyle>",
+  ///   "primaryColor": "<Color>"
+  ///   "tabLabelTextStyle": "<TextStyle>",
+  ///   "textStyle": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -1495,12 +1557,12 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "barBackgroundColor": <Color>,
-  ///   "brightness": <Brightness>,
-  ///   "primaryColor": <Color>,
-  ///   "primaryContrastingColor": <Color>,
-  ///   "scaffoldBackgroundColor": <Color>,
-  ///   "textTheme": <CupertinoTextThemeData>
+  ///   "barBackgroundColor": "<Color>",
+  ///   "brightness": "<Brightness>",
+  ///   "primaryColor": "<Color>",
+  ///   "primaryContrastingColor": "<Color>",
+  ///   "scaffoldBackgroundColor": "<Color>",
+  ///   "textTheme": "<CupertinoTextThemeData>"
   /// }
   /// ```
   ///
@@ -1518,7 +1580,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      var runtimeTypeStr = value.runtimeType.toString();
+      final runtimeTypeStr = value.runtimeType.toString();
       // In Flutter < 1.24, the type is: CupertinoThemeData or _NoDefaultCupertinoThemeData
       // In Flutter >= 1.24, the type is: NoDefaultCupertinoThemeData
       assert(runtimeTypeStr == 'CupertinoThemeData' ||
@@ -1550,17 +1612,17 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "checkboxHorizontalMargin": <double>,
-  ///   "columnSpacing": <double>,
-  ///   "dataRowColor": <MaterialStateProperty<Color>>,
-  ///   "dataRowHeight": <double>,
-  ///   "dataTextStyle": <TextStyle,
-  ///   "decoration": <BoxDecoration>,
-  ///   "dividerThickness": <double>,
-  ///   "headingRowColor": <MaterialStateProperty<Color>>,
-  ///   "headingRowHeight": <double>,
-  ///   "headingTextStyle": <TextStyle>,
-  ///   "horizontalMargin": <double>
+  ///   "checkboxHorizontalMargin": "<double>",
+  ///   "columnSpacing": "<double>",
+  ///   "dataRowColor": "<MaterialStateProperty<Color>>",
+  ///   "dataRowHeight": "<double>",
+  ///   "dataTextStyle": "<TextStyle,
+  ///   "decoration": "<BoxDecoration>",
+  ///   "dividerThickness": "<double>",
+  ///   "headingRowColor": "<MaterialStateProperty<Color>>",
+  ///   "headingRowHeight": "<double>",
+  ///   "headingTextStyle": "<TextStyle>",
+  ///   "horizontalMargin": "<double>"
   /// }
   /// ```
   ///
@@ -1610,17 +1672,17 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "centerSlice": <Rect>,
-  ///   "filterQuality": <FilterQuality>,
-  ///   "fit": <BoxFit>,
-  ///   "image": <ImageProvider>,
-  ///   "invertColors": <bool>,
-  ///   "isAntiAlias": <bool>,
-  ///   "matchTextDirection": <bool>,
-  ///   "opacity": <double>,
-  ///   "repeat": <ImageRepeat>,
-  ///   "scale": <double>
+  ///   "alignment": "<Alignment>",
+  ///   "centerSlice": "<Rect>",
+  ///   "filterQuality": "<FilterQuality>",
+  ///   "fit": "<BoxFit>",
+  ///   "image": "<ImageProvider>",
+  ///   "invertColors": "<bool>",
+  ///   "isAntiAlias": "<bool>",
+  ///   "matchTextDirection": "<bool>",
+  ///   "opacity": "<double>",
+  ///   "repeat": "<ImageRepeat>",
+  ///   "scale": "<double>"
   /// }
   /// ```
   ///
@@ -1680,18 +1742,23 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "backgroundColor": <Color>,
-  ///   "contentTextStyle": <TextStyle>,
-  ///   "elevation": <double>,
-  ///   "shape": <ShapeBorder>,
-  ///   "titleTextStyle": <TextStyle>
+  ///   "actionsPadding": "<EdgeInsetsGeometry>",
+  ///   "alignment": "<Alignment>",
+  ///   "backgroundColor": "<Color>",
+  ///   "contentTextStyle": "<TextStyle>",
+  ///   "elevation": "<double>",
+  ///   "iconColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceColor": "<Color>",
+  ///   "titleTextStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeAlignment]
   ///  * [encodeBrightness]
+  ///  * [encodeColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeDialogTheme(DialogTheme? value) {
@@ -1699,11 +1766,16 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'actionsPadding': encodeEdgeInsetsGeometry(
+          value.actionsPadding as EdgeInsets?,
+        ),
         'alignment': encodeAlignment(value.alignment as Alignment?),
         'backgroundColor': encodeColor(value.backgroundColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
         'elevation': value.elevation,
+        'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
+        'surfaceTintColor': encodeColor(value.shadowColor),
         'titleTextStyle': encodeTextStyle(value.titleTextStyle),
       };
     }
@@ -1715,11 +1787,11 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "endIndent": <double>,
-  ///   "indent": <double>,
-  ///   "space": <double>,
-  ///   "thickness": <double>
+  ///   "color": "<Color>",
+  ///   "endIndent": "<double>",
+  ///   "indent": "<double>",
+  ///   "space": "<double>",
+  ///   "thickness": "<double>"
   /// }
   /// ```
   ///
@@ -1768,11 +1840,13 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "scrimColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "width": <double>
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "scrimColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -1790,7 +1864,9 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'elevation': value.elevation,
         'scrimColor': encodeColor(value.scrimColor),
+        'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
         'width': value.width,
       };
     }
@@ -1803,10 +1879,10 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeEdgeInsetsGeometry(EdgeInsets? value) {
@@ -1828,7 +1904,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "style": <ButtonStyle>
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -1852,15 +1928,17 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "childrenPadding": <EdgeInsetsGeometry>,
-  ///   "collapsedBackgroundColor": <Color>,
-  ///   "collapsedIconColor": <Color>,
-  ///   "collapsedTextColor": <Color>,
-  ///   "expandedAlignment": <AlignmentGeometry>,
-  ///   "iconColor": <Color>,
-  ///   "textColor": <Color>,
-  ///   "tilePadding": <EdgeInsetsGeometry>
+  ///   "backgroundColor": "<Color>",
+  ///   "childrenPadding": "<EdgeInsetsGeometry>",
+  ///   "collapsedBackgroundColor": "<Color>",
+  ///   "collapsedIconColor": "<Color>",
+  ///   "collapsedShape": "<ShapeBorder>",
+  ///   "collapsedTextColor": "<Color>",
+  ///   "expandedAlignment": "<AlignmentGeometry>",
+  ///   "iconColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "textColor": "<Color>",
+  ///   "tilePadding": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///
@@ -1868,6 +1946,7 @@ class ThemeEncoder {
   ///  * [encodeAlignment]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeShapeBorder]
   static Map<String, dynamic>? encodeExpansionTileThemeData(
     ExpansionTileThemeData? value,
   ) {
@@ -1881,11 +1960,13 @@ class ThemeEncoder {
         ),
         'collapsedBackgroundColor': encodeColor(value.collapsedBackgroundColor),
         'collapsedIconColor': encodeColor(value.collapsedIconColor),
+        'collapsedShape': encodeShapeBorder(value.collapsedShape),
         'collapsedTextColor': encodeColor(value.collapsedTextColor),
         'expandedAlignment': encodeAlignment(
           value.expandedAlignment as Alignment?,
         ),
         'iconColor': encodeColor(value.iconColor),
+        'shape': encodeShapeBorder(value.shape),
         'textColor': encodeColor(value.textColor),
         'tilePadding': encodeEdgeInsetsGeometry(
           value.tilePadding as EdgeInsets?,
@@ -1893,7 +1974,31 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to it's JSON form.
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<ButtonStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonStyle]
+  static Map<String, dynamic>? encodeFilledButtonThemeData(
+    FilledButtonThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'style': encodeButtonStyle(value.style),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2040,31 +2145,33 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "disabledElevation": <double>,
-  ///   "elevation": <double>,
-  ///   "extendedIconLabelSpacing": <double>,
-  ///   "extendedPadding": <EdgeInsetsGeometry>,
-  ///   "extendedSizeConstraints": <BoxConstraints>,
-  ///   "extendedTextStyle": <TextStyle>
-  ///   "focusColor": <Color>,
-  ///   "focusElevation": <double>,
-  ///   "foregroundColor": <Color>,
-  ///   "highlightElevation": <double>,
-  ///   "hoverColor": <Color>,
-  ///   "hoverElevation": <double>,
-  ///   "iconSize": <double>,
-  ///   "largeSizeConstraints": <BoxConstraints>,
-  ///   "shape": <ShapeBorder>,
-  ///   "sizeConstraints": <BoxConstraints>,
-  ///   "smallSizeConstraints": <BoxConstraints>,
-  ///   "splashColor": <Color>
+  ///   "backgroundColor": "<Color>",
+  ///   "disabledElevation": "<double>",
+  ///   "elevation": "<double>",
+  ///   "extendedIconLabelSpacing": "<double>",
+  ///   "extendedPadding": "<EdgeInsetsGeometry>",
+  ///   "extendedSizeConstraints": "<BoxConstraints>",
+  ///   "extendedTextStyle": "<TextStyle>"
+  ///   "focusColor": "<Color>",
+  ///   "focusElevation": "<double>",
+  ///   "foregroundColor": "<Color>",
+  ///   "highlightElevation": "<double>",
+  ///   "hoverColor": "<Color>",
+  ///   "hoverElevation": "<double>",
+  ///   "iconSize": "<double>",
+  ///   "largeSizeConstraints": "<BoxConstraints>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "sizeConstraints": "<BoxConstraints>",
+  ///   "smallSizeConstraints": "<BoxConstraints>",
+  ///   "splashColor": "<Color>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeBoxConstraints]
   ///  * [encodeColor]
+  ///  * [encodeMaterialStatePropertyMouseCursor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeFloatingActionButtonThemeData(
@@ -2095,6 +2202,9 @@ class ThemeEncoder {
         'iconSize': value.iconSize,
         'largeSizeConstraints': encodeBoxConstraints(
           value.largeSizeConstraints,
+        ),
+        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+          value.mouseCursor,
         ),
         'shape': encodeShapeBorder(value.shape),
         'sizeConstraints': encodeBoxConstraints(value.sizeConstraints),
@@ -2161,8 +2271,8 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "feature": <String>,
-  ///   "value": <int>
+  ///   "feature": "<String>",
+  ///   "value": "<int>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeFontFeature(FontFeature? value) {
@@ -2176,6 +2286,30 @@ class ThemeEncoder {
     }
 
     return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `italic`
+  ///  * `normal`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeFontStyle(FontStyle? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case FontStyle.italic:
+          result = 'italic';
+          break;
+
+        case FontStyle.normal:
+          result = 'normal';
+          break;
+      }
+    }
+
+    return result;
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2245,28 +2379,26 @@ class ThemeEncoder {
     return result;
   }
 
-  /// Encodes the given [value] to the String representation.  Supported values
-  /// are:
-  ///  * `italic`
-  ///  * `normal`
+  /// Encodes the given [value] into a JSON map value.
   ///
-  /// All other values, including `null`, will result in `null`.
-  static String? encodeFontStyle(FontStyle? value) {
-    String? result;
+  /// This returns the format:
+  /// ```json
+  /// {
+  ///   "axis": "<String>",
+  ///   "value": "<double>"
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeFontVariation(FontVariation? value) {
+    Map<String, dynamic>? result;
 
     if (value != null) {
-      switch (value) {
-        case FontStyle.italic:
-          result = 'italic';
-          break;
-
-        case FontStyle.normal:
-          result = 'normal';
-          break;
-      }
+      result = {
+        'axis': value.axis,
+        'value': value.value,
+      };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  This only
@@ -2281,12 +2413,12 @@ class ThemeEncoder {
   /// [LinearGradient]
   /// ```json
   /// {
-  ///   "begin": <Alignment>,
-  ///   "colors": <Color[]>,
-  ///   "end": <Alignment>,
-  ///   "stops": <double[]>,
-  ///   "tileMode": <TileMode>,
-  ///   "transform": <GradientTransform>
+  ///   "begin": "<Alignment>",
+  ///   "colors": "<Color[]>",
+  ///   "end": "<Alignment>",
+  ///   "stops": "<double[]>",
+  ///   "tileMode": "<TileMode>",
+  ///   "transform": "<GradientTransform>"
   ///   "type": "linear",
   /// }
   /// ```
@@ -2294,14 +2426,14 @@ class ThemeEncoder {
   /// [RadialGradient]
   /// ```json
   /// {
-  ///   "center": <Alignment>,
-  ///   "colors": <Color[]>,
-  ///   "focal": <Alignment>,
-  ///   "focalRadius": <double>,
-  ///   "radius": <double>,
-  ///   "stops": <double[]>,
-  ///   "tileMode": <TileMode>,
-  ///   "transform": <GradientTransform>
+  ///   "center": "<Alignment>",
+  ///   "colors": "<Color[]>",
+  ///   "focal": "<Alignment>",
+  ///   "focalRadius": "<double>",
+  ///   "radius": "<double>",
+  ///   "stops": "<double[]>",
+  ///   "tileMode": "<TileMode>",
+  ///   "transform": "<GradientTransform>"
   ///   "type": "radial",
   /// }
   /// ```
@@ -2309,13 +2441,13 @@ class ThemeEncoder {
   /// [SweepGradient]
   /// ```json
   /// {
-  ///   "center": <Alignment>,
-  ///   "colors": <Color[]>,
-  ///   "endAngle": <double>,
-  ///   "startAngle": <double>,
-  ///   "stops": <double[]>,
-  ///   "tileMode": <TileMode>,
-  ///   "transform": <GradientTransform>
+  ///   "center": "<Alignment>",
+  ///   "colors": "<Color[]>",
+  ///   "endAngle": "<double>",
+  ///   "startAngle": "<double>",
+  ///   "stops": "<double[]>",
+  ///   "tileMode": "<TileMode>",
+  ///   "transform": "<GradientTransform>"
   ///   "type": "sweep",
   /// }
   /// ```
@@ -2390,7 +2522,7 @@ class ThemeEncoder {
   /// [GradientRotation]
   /// ```json
   /// {
-  ///   "radians": <double>
+  ///   "radians": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeGradientTransform(
@@ -2438,10 +2570,71 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "codePoint": <int>,
-  ///   "fontFamily": <String>,
-  ///   "fontPackage": <String>,
-  ///   "matchTextDirection": <bool>
+  ///   "color": "<Color>",
+  ///   "fill": "<double>",
+  ///   "grade": "<double>",
+  ///   "icon": "<IconData>",
+  ///   "opticalSize": "<double>",
+  ///   "semanticLabel": "<String>",
+  ///   "shadows": "<List<Shadow>>",
+  ///   "size": "<double>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "weight": "<double>"
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeIcon(Icon? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'color': encodeColor(value.color),
+        'fill': value.fill,
+        'grade': value.grade,
+        'icon': encodeIconData(value.icon),
+        'opticalSize': value.opticalSize,
+        'semanticLabel': value.semanticLabel,
+        'shadows': value.shadows?.map((e) => encodeShadow(e)).toList(),
+        'size': value.size,
+        'textDirection': encodeTextDirection(value.textDirection),
+        'weight': value.weight,
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Decodes the given [value] to an JSON map
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<ButtonStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonStyle]
+  static Map<String, dynamic>? encodeIconButtonThemeData(
+    IconButtonThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'style': encodeButtonStyle(value.style),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to the JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "codePoint": "<int>",
+  ///   "fontFamily": "<String>",
+  ///   "fontPackage": "<String>",
+  ///   "matchTextDirection": "<bool>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeIconData(IconData? value) {
@@ -2463,10 +2656,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "opacity": <double>,
-  ///   "shadows": <List<Shadow>>,
-  ///   "size": <double>
+  ///   "color": "<Color>",
+  ///   "fill": "<Color>",
+  ///   "grade": "<double>",
+  ///   "opacity": "<double>",
+  ///   "opticalSize": "<double>",
+  ///   "shadows": "<List<Shadow>>",
+  ///   "size": "<double>",
+  ///   "weight": "<double>"
   /// }
   /// ```
   ///
@@ -2478,9 +2675,13 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'color': encodeColor(value.color),
+        'fill': value.fill,
+        'grade': value.grade,
         'opacity': value.opacity,
+        'opticalSize': value.opticalSize,
         'shadows': value.shadows?.map((e) => encodeShadow(e)),
         'size': value.size,
+        'weight': value.weight,
       };
     }
 
@@ -2498,28 +2699,28 @@ class ThemeEncoder {
   /// Type: `asset`
   /// ```json
   /// {
-  ///   "assetName": <String>,
+  ///   "assetName": "<String>",
   ///   "type": "asset",
-  ///   "package": <String>
+  ///   "package": "<String>"
   /// }
   /// ```
   ///
   /// Type: `memory`
   /// ```json
   /// {
-  ///   "bytes": <String>,
+  ///   "bytes": "<String>",
   ///   "type": "memory",
-  ///   "scale": <double>
+  ///   "scale": "<double>"
   /// }
   /// ```
   ///
   /// Type: `network`
   /// ```json
   /// {
-  ///   "headers": <Map<String, String>>,
+  ///   "headers": "<Map<String, String>>",
   ///   "type": "network"
-  ///   "scale": <double>,
-  ///   "url": <String>
+  ///   "scale": "<double>",
+  ///   "url": "<String>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeImageProvider(
@@ -2596,17 +2797,17 @@ class ThemeEncoder {
   /// `OutlineInputBorder`
   /// ```json
   /// {
-  ///   borderRadius: <BorderRadius>,
-  ///   borderSide: <BorderSide>,
-  ///   gapPadding: <double>
+  ///   borderRadius: <BorderRadius>",
+  ///   borderSide: <BorderSide>",
+  ///   gapPadding: <double>"
   /// }
   /// ```
   ///
   /// `UnderlineInputborder`
   /// ```json
   /// {
-  ///   borderRadius: <BorderRadius>,
-  ///   borderSide: <BorderSide>
+  ///   borderRadius: <BorderRadius>",
+  ///   borderSide: <BorderSide>"
   /// }
   /// ```
   ///
@@ -2643,40 +2844,43 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "alignLabelWithHint": <bool>,
-  ///   "border": <InputBorder>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "contentPadding": <EdgeInsetsGeometry>,
-  ///   "counterStyle": <TextStyle>,
-  ///   "disabledBorder": <InputBorder>,
-  ///   "enabledBorder": <InputBorder>,
-  ///   "errorBorder": <InputBorder>,
-  ///   "errorMaxLines": <int>,
-  ///   "errorStyle": <TextStyle>,
-  ///   "fillColor": <Color>,
-  ///   "filled": <bool>,
-  ///   "floatingLabelAlignment": <FloatingLabelAlignment>,
-  ///   "floatingLabelBehavior": <FloatingLabelBehavior>,
-  ///   "floatingLabelStyle": <TextStyle>,
-  ///   "focusColor": <Color>,
-  ///   "focusedBorder": <InputBorder>,
-  ///   "focusedErrorBorder": <InputBorder>,
-  ///   "helperMaxLines": <int>,
-  ///   "helperStyle": <TextStyle>,
-  ///   "hintStyle": <TextStyle>,
-  ///   "hoverColor": <Color>,
-  ///   "iconColor": <Color>,
-  ///   "isCollapsed": <bool>,
-  ///   "isDense": <bool>,
-  ///   "labelStyle": <TextStyle>,
-  ///   "prefixIconColor": <Color>,
-  ///   "prefixStyle": <TextStyle>,
-  ///   "suffixIconColor": <Color>,
-  ///   "suffixStyle": <TextStyle>
+  ///   "activeIndicatorBorder": "<BorderSide>",
+  ///   "alignLabelWithHint": "<bool>",
+  ///   "border": "<InputBorder>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "contentPadding": "<EdgeInsetsGeometry>",
+  ///   "counterStyle": "<TextStyle>",
+  ///   "disabledBorder": "<InputBorder>",
+  ///   "enabledBorder": "<InputBorder>",
+  ///   "errorBorder": "<InputBorder>",
+  ///   "errorMaxLines": "<int>",
+  ///   "errorStyle": "<TextStyle>",
+  ///   "fillColor": "<Color>",
+  ///   "filled": "<bool>",
+  ///   "floatingLabelAlignment": "<FloatingLabelAlignment>",
+  ///   "floatingLabelBehavior": "<FloatingLabelBehavior>",
+  ///   "floatingLabelStyle": "<TextStyle>",
+  ///   "focusColor": "<Color>",
+  ///   "focusedBorder": "<InputBorder>",
+  ///   "focusedErrorBorder": "<InputBorder>",
+  ///   "helperMaxLines": "<int>",
+  ///   "helperStyle": "<TextStyle>",
+  ///   "hintStyle": "<TextStyle>",
+  ///   "hoverColor": "<Color>",
+  ///   "iconColor": "<Color>",
+  ///   "isCollapsed": "<bool>",
+  ///   "isDense": "<bool>",
+  ///   "labelStyle": "<TextStyle>",
+  ///   "outlineBorder": "<BorderSide>",
+  ///   "prefixIconColor": "<Color>",
+  ///   "prefixStyle": "<TextStyle>",
+  ///   "suffixStyle": "<Color>",
+  ///   "suffixStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [encodeBorderSide]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeInputBorder]
@@ -2689,6 +2893,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'activeIndicatorBorder': encodeBorderSide(value.activeIndicatorBorder),
         'alignLabelWithHint': value.alignLabelWithHint,
         'border': encodeInputBorder(value.border),
         'constraints': encodeBoxConstraints(value.constraints),
@@ -2720,6 +2925,7 @@ class ThemeEncoder {
         'isCollapsed': value.isCollapsed,
         'isDense': value.isDense,
         'labelStyle': encodeTextStyle(value.labelStyle),
+        'outlineBorder': encodeBorderSide(value.outlineBorder),
         'prefixIconColor': encodeColor(value.prefixIconColor),
         'prefixStyle': encodeTextStyle(value.prefixStyle),
         'suffixIconColor': encodeColor(value.suffixIconColor),
@@ -2740,9 +2946,9 @@ class ThemeEncoder {
   static String? encodeInteractiveInkFeatureFactory(
     InteractiveInkFeatureFactory? value,
   ) {
-    var splashType = InkSplash.splashFactory.runtimeType;
-    var rippleType = InkRipple.splashFactory.runtimeType;
-    var sparkleType = InkSparkle.splashFactory.runtimeType;
+    final splashType = InkSplash.splashFactory.runtimeType;
+    final rippleType = InkRipple.splashFactory.runtimeType;
+    final sparkleType = InkSparkle.splashFactory.runtimeType;
 
     assert(value == null ||
         value.runtimeType == splashType ||
@@ -2790,21 +2996,21 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "contentPadding": <EdgeInsetsGeometry>,
-  ///   "dense": <bool>,
-  ///   "enableFeedback": <bool>,
-  ///   "horizontalTitleGap": <double>,
-  ///   "iconColor": <Color>,
-  ///   "minLeadingWidth": <double>,
-  ///   "minVerticalPadding": <double>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "selectedColor": <Color>,
-  ///   "selectedTileColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "style": <ListTileStyle>,
-  ///   "textColor": <Color>,
-  ///   "tileColor": <Color>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "contentPadding": "<EdgeInsetsGeometry>",
+  ///   "dense": "<bool>",
+  ///   "enableFeedback": "<bool>",
+  ///   "horizontalTitleGap": "<double>",
+  ///   "iconColor": "<Color>",
+  ///   "minLeadingWidth": "<double>",
+  ///   "minVerticalPadding": "<double>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "selectedColor": "<Color>",
+  ///   "selectedTileColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "style": "<ListTileStyle>",
+  ///   "textColor": "<Color>",
+  ///   "tileColor": "<Color>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeListTileThemeData(
@@ -2842,8 +3048,8 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "countryCode": <String>,
-  ///   "languageCode": <String>
+  ///   "countryCode": "<String>",
+  ///   "languageCode": "<String>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeLocale(Locale? value) {
@@ -2924,11 +3130,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "contentTextStyle": <TextStyle>,
-  ///   "elevation": <double>,
-  ///   "leadingPadding": <EdgeInsetsGeometry>,
-  ///   "padding": <EdgeInsetsGeometry>
+  ///   "backgroundColor": "<Color>",
+  ///   "contentTextStyle": "<TextStyle>",
+  ///   "dividerColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "leadingPadding": "<EdgeInsetsGeometry>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -2945,10 +3154,14 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'backgroundColor': encodeColor(value.backgroundColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
+        'dividerColor': encodeColor(value.dividerColor),
         'elevation': value.elevation,
-        'leadingPadding':
-            encodeEdgeInsetsGeometry(value.leadingPadding as EdgeInsets?),
+        'leadingPadding': encodeEdgeInsetsGeometry(
+          value.leadingPadding as EdgeInsets?,
+        ),
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
+        'shadowColor': encodeColor(value.shadowColor),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
       };
     }
 
@@ -2959,8 +3172,8 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "primary": <Color>,
-  ///   "swatches": <Map<String, Color>
+  ///   "primary": "<Color>",
+  ///   "swatches": "<Map<String, Color>"
   /// }
   /// ```
   ///
@@ -2995,15 +3208,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <bool>,
-  ///   "dragged": <bool>,
-  ///   "empty": <bool>,
-  ///   "error": <bool>,
-  ///   "focused": <bool>,
-  ///   "hovered": <bool>,
-  ///   "pressed": <bool>,
-  ///   "scrolledUnder": <bool>,
-  ///   "selected": <bool>
+  ///   "disabled": "<bool>",
+  ///   "dragged": "<bool>",
+  ///   "empty": "<bool>",
+  ///   "error": "<bool>",
+  ///   "focused": "<bool>",
+  ///   "hovered": "<bool>",
+  ///   "pressed": "<bool>",
+  ///   "scrolledUnder": "<bool>",
+  ///   "selected": "<bool>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeMaterialStatePropertyBool(
@@ -3034,15 +3247,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <BorderSide>,
-  ///   "dragged": <BorderSide>,
-  ///   "empty": <BorderSide>,
-  ///   "error": <BorderSide>,
-  ///   "focused": <BorderSide>,
-  ///   "hovered": <BorderSide>,
-  ///   "pressed": <BorderSide>,
-  ///   "scrolledUnder": <BorderSide>,
-  ///   "selected": <BorderSide>
+  ///   "disabled": "<BorderSide>",
+  ///   "dragged": "<BorderSide>",
+  ///   "empty": "<BorderSide>",
+  ///   "error": "<BorderSide>",
+  ///   "focused": "<BorderSide>",
+  ///   "hovered": "<BorderSide>",
+  ///   "pressed": "<BorderSide>",
+  ///   "scrolledUnder": "<BorderSide>",
+  ///   "selected": "<BorderSide>"
   /// }
   /// ```
   ///
@@ -3078,15 +3291,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <Color>,
-  ///   "dragged": <Color>,
-  ///   "empty": <Color>,
-  ///   "error": <Color>,
-  ///   "focused": <Color>,
-  ///   "hovered": <Color>,
-  ///   "pressed": <Color>,
-  ///   "scrolledUnder": <Color>,
-  ///   "selected": <Color>
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
   /// }
   /// ```
   ///
@@ -3122,15 +3335,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <double>,
-  ///   "dragged": <double>,
-  ///   "empty": <double>,
-  ///   "error": <double>,
-  ///   "focused": <double>,
-  ///   "hovered": <double>,
-  ///   "pressed": <double>,
-  ///   "scrolledUnder": <double>,
-  ///   "selected": <double>
+  ///   "disabled": "<double>",
+  ///   "dragged": "<double>",
+  ///   "empty": "<double>",
+  ///   "error": "<double>",
+  ///   "focused": "<double>",
+  ///   "hovered": "<double>",
+  ///   "pressed": "<double>",
+  ///   "scrolledUnder": "<double>",
+  ///   "selected": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeMaterialStatePropertyDouble(
@@ -3161,15 +3374,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <EdgeInsetsGeometry>,
-  ///   "dragged": <EdgeInsetsGeometry>,
-  ///   "empty": <EdgeInsetsGeometry>,
-  ///   "error": <EdgeInsetsGeometry>,
-  ///   "focused": <EdgeInsetsGeometry>,
-  ///   "hovered": <EdgeInsetsGeometry>,
-  ///   "pressed": <EdgeInsetsGeometry>,
-  ///   "scrolledUnder": <EdgeInsetsGeometry>,
-  ///   "selected": <EdgeInsetsGeometry>
+  ///   "disabled": "<EdgeInsetsGeometry>",
+  ///   "dragged": "<EdgeInsetsGeometry>",
+  ///   "empty": "<EdgeInsetsGeometry>",
+  ///   "error": "<EdgeInsetsGeometry>",
+  ///   "focused": "<EdgeInsetsGeometry>",
+  ///   "hovered": "<EdgeInsetsGeometry>",
+  ///   "pressed": "<EdgeInsetsGeometry>",
+  ///   "scrolledUnder": "<EdgeInsetsGeometry>",
+  ///   "selected": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///
@@ -3221,15 +3434,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <IconThemeData>,
-  ///   "dragged": <IconThemeData>,
-  ///   "empty": <IconThemeData>,
-  ///   "error": <IconThemeData>,
-  ///   "focused": <IconThemeData>,
-  ///   "hovered": <IconThemeData>,
-  ///   "pressed": <IconThemeData>,
-  ///   "scrolledUnder": <IconThemeData>,
-  ///   "selected": <IconThemeData>
+  ///   "disabled": "<IconThemeData>",
+  ///   "dragged": "<IconThemeData>",
+  ///   "empty": "<IconThemeData>",
+  ///   "error": "<IconThemeData>",
+  ///   "focused": "<IconThemeData>",
+  ///   "hovered": "<IconThemeData>",
+  ///   "pressed": "<IconThemeData>",
+  ///   "scrolledUnder": "<IconThemeData>",
+  ///   "selected": "<IconThemeData>"
   /// }
   /// ```
   ///
@@ -3269,15 +3482,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <MouseCursor>,
-  ///   "dragged": <MouseCursor>,
-  ///   "empty": <MouseCursor>,
-  ///   "error": <MouseCursor>,
-  ///   "focused": <MouseCursor>,
-  ///   "hovered": <MouseCursor>,
-  ///   "pressed": <MouseCursor>,
-  ///   "scrolledUnder": <MouseCursor>,
-  ///   "selected": <MouseCursor>
+  ///   "disabled": "<MouseCursor>",
+  ///   "dragged": "<MouseCursor>",
+  ///   "empty": "<MouseCursor>",
+  ///   "error": "<MouseCursor>",
+  ///   "focused": "<MouseCursor>",
+  ///   "hovered": "<MouseCursor>",
+  ///   "pressed": "<MouseCursor>",
+  ///   "scrolledUnder": "<MouseCursor>",
+  ///   "selected": "<MouseCursor>"
   /// }
   /// ```
   ///
@@ -3313,15 +3526,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <OutlinedBorder>,
-  ///   "dragged": <OutlinedBorder>,
-  ///   "empty": <OutlinedBorder>,
-  ///   "error": <OutlinedBorder>,
-  ///   "focused": <OutlinedBorder>,
-  ///   "hovered": <OutlinedBorder>,
-  ///   "pressed": <OutlinedBorder>,
-  ///   "scrolledUnder": <OutlinedBorder>,
-  ///   "selected": <OutlinedBorder>
+  ///   "disabled": "<OutlinedBorder>",
+  ///   "dragged": "<OutlinedBorder>",
+  ///   "empty": "<OutlinedBorder>",
+  ///   "error": "<OutlinedBorder>",
+  ///   "focused": "<OutlinedBorder>",
+  ///   "hovered": "<OutlinedBorder>",
+  ///   "pressed": "<OutlinedBorder>",
+  ///   "scrolledUnder": "<OutlinedBorder>",
+  ///   "selected": "<OutlinedBorder>"
   /// }
   /// ```
   ///
@@ -3361,15 +3574,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <Size>,
-  ///   "dragged": <Size>,
-  ///   "empty": <Size>,
-  ///   "error": <Size>,
-  ///   "focused": <Size>,
-  ///   "hovered": <Size>,
-  ///   "pressed": <Size>,
-  ///   "scrolledUnder": <Size>,
-  ///   "selected": <Size>
+  ///   "disabled": "<Size>",
+  ///   "dragged": "<Size>",
+  ///   "empty": "<Size>",
+  ///   "error": "<Size>",
+  ///   "focused": "<Size>",
+  ///   "hovered": "<Size>",
+  ///   "pressed": "<Size>",
+  ///   "scrolledUnder": "<Size>",
+  ///   "selected": "<Size>"
   /// }
   /// ```
   ///
@@ -3404,15 +3617,15 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "disabled": <TextStyle>,
-  ///   "dragged": <TextStyle>,
-  ///   "empty": <TextStyle>,
-  ///   "error": <TextStyle>,
-  ///   "focused": <TextStyle>,
-  ///   "hovered": <TextStyle>,
-  ///   "pressed": <TextStyle>,
-  ///   "scrolledUnder": <TextStyle>,
-  ///   "selected": <TextStyle>,
+  ///   "disabled": "<TextStyle>",
+  ///   "dragged": "<TextStyle>",
+  ///   "empty": "<TextStyle>",
+  ///   "error": "<TextStyle>",
+  ///   "focused": "<TextStyle>",
+  ///   "hovered": "<TextStyle>",
+  ///   "pressed": "<TextStyle>",
+  ///   "scrolledUnder": "<TextStyle>",
+  ///   "selected": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -3576,6 +3789,134 @@ class ThemeEncoder {
     }
 
     return result;
+  }
+
+  /// Encodes the given [value] to an JSON map.
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<MenuStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeMenuStyle]
+  static Map<String, dynamic>? encodeMenuBarThemeData(MenuBarThemeData? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'style': encodeMenuStyle(
+          value.style,
+        ),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to an JSON map.
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<ButtonStyle>",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonStyle]
+  static Map<String, dynamic>? encodeMenuButtonThemeData(
+    MenuButtonThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'style': encodeButtonStyle(value.style),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to an JSON map.
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": "<Alignment>",
+  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "fixedSize": "<MaterialStateProperty<Size>>",
+  ///   "maximumSize": "<MaterialStateProperty<Size>>",
+  ///   "minimumSize": "<MaterialStateProperty<Size>>",
+  ///   "padding": "<MaterialStateProperty<EdgeInsets>>",
+  ///   "shadowColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<MaterialStateProperty<OutlinedBorder>>",
+  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "visualDensity": "<VisualDensity>",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeAlignment]
+  ///  * [encodeMaterialStatePropertyBorderSide]
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeMaterialStatePropertyDouble]
+  ///  * [encodeMaterialStatePropertyEdgeInsetsGeometry]
+  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeMaterialStatePropertySize]
+  ///  * [encodeVisualDensity]
+  static Map<String, dynamic>? encodeMenuStyle(MenuStyle? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'alignment': encodeAlignment(value.alignment as Alignment?),
+        'backgroundColor': encodeMaterialStatePropertyColor(
+          value.backgroundColor,
+        ),
+        'elevation': encodeMaterialStatePropertyDouble(value.elevation),
+        'fixedSize': encodeMaterialStatePropertySize(value.fixedSize),
+        'maximumSize': encodeMaterialStatePropertySize(value.maximumSize),
+        'minimumSize': encodeMaterialStatePropertySize(value.minimumSize),
+        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+          value.mouseCursor,
+        ),
+        'padding': encodeMaterialStatePropertyEdgeInsetsGeometry(value.padding),
+        'shadowColor': encodeMaterialStatePropertyColor(value.shadowColor),
+        'shape': encodeMaterialStatePropertyOutlinedBorder(value.shape),
+        'side': encodeMaterialStatePropertyBorderSide(value.side),
+        'surfaceTintColor': encodeMaterialStatePropertyColor(
+          value.surfaceTintColor,
+        ),
+        'visualDensity': encodeVisualDensity(value.visualDensity),
+      };
+    }
+
+    return _stripNull(result);
+  }
+
+  /// Encodes the given [value] to an JSON map.
+  ///
+  /// ```json
+  /// {
+  ///   "style": "<MenuStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeMenuStyle]
+  static Map<String, dynamic>? encodeMenuThemeData(MenuThemeData? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'style': encodeMenuStyle(value.style),
+      };
+    }
+
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.  There will be a
@@ -3832,14 +4173,16 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "height": <double>,
-  ///   "iconTheme": <MaterialStateProperty<IconThemeData>>,
-  ///   "indicatorColor": <Color>,
-  ///   "indicatorShape": <ShapeBorder>,
-  ///   "labelBehavior": <NavigationDestinationLabelBehavior>,
-  ///   "labelTextStyle": <MaterialStateProperty<TextStyle>>,
-  ///   "useIndicator": <bool>
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "height": "<double>",
+  ///   "iconTheme": "<MaterialStateProperty<IconThemeData>>",
+  ///   "indicatorColor": "<Color>",
+  ///   "indicatorShape": "<ShapeBorder>",
+  ///   "labelBehavior": "<NavigationDestinationLabelBehavior>",
+  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -3863,11 +4206,14 @@ class ThemeEncoder {
         ),
         'indicatorColor': encodeColor(value.indicatorColor),
         'indicatorShape': encodeShapeBorder(value.indicatorShape),
-        'labelBehavior':
-            encodeNavigationDestinationLabelBehavior(value.labelBehavior),
+        'labelBehavior': encodeNavigationDestinationLabelBehavior(
+          value.labelBehavior,
+        ),
         'labelTextStyle': encodeMaterialStatePropertyTextStyle(
           value.labelTextStyle,
         ),
+        'shadowColor': encodeColor(value.shadowColor),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
       };
     }
 
@@ -3939,18 +4285,18 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "groupAlignment": <double>,
-  ///   "indicatorColor": <Color>,
-  ///   "labelType": <NavigationRailLabelType>,
-  ///   "minExtendedWidth": <double>,
-  ///   "minWidth": <double>,
-  ///   "selectedIconTheme": <IconThemeData>,
-  ///   "selectedLabelTextStyle": <TextStyle>,
-  ///   "unselectedIconTheme": <IconThemeData>,
-  ///   "unselectedLabelTextStyle": <TextStyle>,
-  ///   "useIndicator": <bool>
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "groupAlignment": "<double>",
+  ///   "indicatorColor": "<Color>",
+  ///   "labelType": "<NavigationRailLabelType>",
+  ///   "minExtendedWidth": "<double>",
+  ///   "minWidth": "<double>",
+  ///   "selectedIconTheme": "<IconThemeData>",
+  ///   "selectedLabelTextStyle": "<TextStyle>",
+  ///   "unselectedIconTheme": "<IconThemeData>",
+  ///   "unselectedLabelTextStyle": "<TextStyle>",
+  ///   "useIndicator": "<bool>"
   /// }
   /// ```
   ///
@@ -4008,8 +4354,8 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "dx": <double>,
-  ///   "dy": <double>
+  ///   "dx": "<double>",
+  ///   "dy": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeOffset(Offset? value) {
@@ -4030,8 +4376,8 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "name": <String>,
-  ///   "order": <double>
+  ///   "name": "<String>",
+  ///   "order": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeOrdinalSortKey(OrdinalSortKey? value) {
@@ -4053,8 +4399,8 @@ class ThemeEncoder {
   /// `BeveledRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "beveled"
   /// }
   /// ```
@@ -4062,7 +4408,7 @@ class ThemeEncoder {
   /// `CircleBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "circle"
   /// }
   /// ```
@@ -4070,8 +4416,8 @@ class ThemeEncoder {
   /// `ContinuousRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rectangle"
   /// }
   /// ```
@@ -4079,8 +4425,8 @@ class ThemeEncoder {
   /// `RoundedRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rounded"
   /// }
   /// ```
@@ -4088,7 +4434,7 @@ class ThemeEncoder {
   /// `StadiumBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "stadium"
   /// }
   /// ```
@@ -4147,7 +4493,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "style": <ButtonStyle>
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -4192,7 +4538,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "builders": <Map<TargetPlatform, PageTransitionBuilder>>
+  ///   "builders": "<Map<TargetPlatform, PageTransitionBuilder>>"
   /// }
   /// ```
   ///
@@ -4205,7 +4551,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      var builders = <String?, String?>{};
+      final builders = <String?, String?>{};
       value.builders.forEach(
         (key, value) =>
             builders[encodeTargetPlatform(key)] = encodePageTransitionsBuilder(
@@ -4216,6 +4562,73 @@ class ThemeEncoder {
       result = {
         'builders': builders,
       };
+    }
+
+    return result;
+  }
+
+  /// Encodes the [PanAxis] to a string:
+  ///  * `aligned`
+  ///  * `free`
+  ///  * `horizontal`
+  ///  * `vertical`
+  static String? encodePanAxis(PanAxis? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case PanAxis.aligned:
+          result = 'aligned';
+          break;
+
+        case PanAxis.free:
+          result = 'free';
+          break;
+
+        case PanAxis.horizontal:
+          result = 'horizontal';
+          break;
+
+        case PanAxis.vertical:
+          result = 'vertical';
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Encodes the [value] to a String.  Supported values are:
+  ///  * `invertedStylus`
+  ///  * `mouse`
+  ///  * `stylus`
+  ///  * `touch`
+  ///  * `trackpad`
+  ///  * `unknown`
+  static String? encodePointerDeviceKind(PointerDeviceKind? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case PointerDeviceKind.invertedStylus:
+          result = 'invertedStylus';
+          break;
+        case PointerDeviceKind.mouse:
+          result = 'mouse';
+          break;
+        case PointerDeviceKind.stylus:
+          result = 'stylus';
+          break;
+        case PointerDeviceKind.touch:
+          result = 'touch';
+          break;
+        case PointerDeviceKind.trackpad:
+          result = 'trackpad';
+          break;
+        case PointerDeviceKind.unknown:
+          result = 'unknown';
+          break;
+      }
     }
 
     return result;
@@ -4246,18 +4659,24 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "enableFeedback": <bool>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "shape": <ShapeBorder>,
-  ///   "textStyle": <TextStyle>
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "enableFeedback": "<bool>",
+  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "position": "<PopupMenuPosition>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeMaterialStatePropertyTextStyle]
+  ///  * [encodePopupMenuPosition]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodePopupMenuThemeData(
@@ -4270,10 +4689,16 @@ class ThemeEncoder {
         'color': encodeColor(value.color),
         'elevation': value.elevation,
         'enableFeedback': value.enableFeedback,
+        'labelTextStyle': encodeMaterialStatePropertyTextStyle(
+          value.labelTextStyle,
+        ),
         'mouseCursor': encodeMaterialStatePropertyMouseCursor(
           value.mouseCursor,
         ),
+        'position': encodePopupMenuPosition(value.position),
+        'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
         'textStyle': encodeTextStyle(value.textStyle),
       };
     }
@@ -4285,11 +4710,11 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "circularTrackColor": <Color>,
-  ///   "color": <Color>,
-  ///   "linearMinHeight": <double>,
-  ///   "linearTrackColor": <Color>,
-  ///   "refreshBackgroundColor": <Color>
+  ///   "circularTrackColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "linearMinHeight": "<double>",
+  ///   "linearTrackColor": "<Color>",
+  ///   "refreshBackgroundColor": "<Color>"
   /// }
   /// ```
   ///
@@ -4317,12 +4742,12 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "fillColor": <Color>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "overlayColor": <Color>,
-  ///   "splashRadius": <double>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "fillColor": "<Color>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "overlayColor": "<Color>",
+  ///   "splashRadius": "<double>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -4364,8 +4789,8 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///  "type": "elliptical",
-  ///   "x": <double>,
-  ///   "y": <double>
+  ///   "x": "<double>",
+  ///   "y": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeRadius(Radius? value) {
@@ -4391,10 +4816,10 @@ class ThemeEncoder {
   /// Type: `round`
   /// ```json
   /// {
-  ///   "disabledThumbRadius": <double>,
-  ///   "elevation": <double>,
-  ///   "enabledThumbRadius": <double>,
-  ///   "pressedElevation": <double>,
+  ///   "disabledThumbRadius": "<double>",
+  ///   "elevation": "<double>",
+  ///   "enabledThumbRadius": "<double>",
+  ///   "pressedElevation": "<double>",
   ///   "type": "round"
   /// }
   /// ```
@@ -4425,7 +4850,7 @@ class ThemeEncoder {
   /// `RoundRangeSliderTickMarkShape`
   /// ```json
   /// {
-  ///   "tickMarkRadius": <double>,
+  ///   "tickMarkRadius": "<double>",
   ///   "type": "round"
   /// }
   /// ```
@@ -4436,7 +4861,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      var shape = value as RoundRangeSliderTickMarkShape;
+      final shape = value as RoundRangeSliderTickMarkShape;
       result = <String, dynamic>{
         'tickMarkRadius': shape.tickMarkRadius,
         'type': 'round',
@@ -4499,10 +4924,10 @@ class ThemeEncoder {
   /// This returns the JSON representation to follow the structure:
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>,
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>",
   ///   "type": "ltrb"
   /// }
   /// ```
@@ -4543,7 +4968,7 @@ class ThemeEncoder {
       result = {};
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -4551,8 +4976,8 @@ class ThemeEncoder {
   /// This returns the JSON representation to follow the structure:
   /// ```json
   /// {
-  ///   "parent": <ScrollPhysics>,
-  ///   "type": <String>
+  ///   "parent": "<ScrollPhysics>",
+  ///   "type": "<String>"
   /// }
   /// ```
   ///
@@ -4665,17 +5090,17 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "crossAxisMargin": <double>,
-  ///   "interactive": <bool>,
-  ///   "mainAxisMargin": <double>,
-  ///   "minThumbLength": <double>,
-  ///   "radius": <Radius>,
-  ///   "thickness": <MaterialStateProperty<double>>,
-  ///   "thumbColor": <MaterialStateProperty<Color>>,
-  ///   "thumbVisibility": <MaterialStateProperty<bool>>,
-  ///   "trackBorderColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>,
-  ///   "trackVisibility": <MaterialStateProperty<bool>>
+  ///   "crossAxisMargin": "<double>",
+  ///   "interactive": "<bool>",
+  ///   "mainAxisMargin": "<double>",
+  ///   "minThumbLength": "<double>",
+  ///   "radius": "<Radius>",
+  ///   "thickness": "<MaterialStateProperty<double>>",
+  ///   "thumbColor": "<MaterialStateProperty<Color>>",
+  ///   "thumbVisibility": "<MaterialStateProperty<bool>>",
+  ///   "trackBorderColor": "<MaterialStateProperty<Color>>",
+  ///   "trackColor": "<MaterialStateProperty<Color>>",
+  ///   "trackVisibility": "<MaterialStateProperty<bool>>"
   /// }
   /// ```
   ///
@@ -4721,7 +5146,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "name": <String>
+  ///   "name": "<String>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeSemanticsTag(SemanticsTag? value) {
@@ -4740,9 +5165,9 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "blurRadius": <double>,
-  ///   "color": <Color>,
-  ///   "offset": <Offset>
+  ///   "blurRadius": "<double>",
+  ///   "color": "<Color>",
+  ///   "offset": "<Offset>"
   /// }
   /// ```
   ///
@@ -4769,7 +5194,7 @@ class ThemeEncoder {
   /// `CircleBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "circle"
   /// }
   /// ```
@@ -4777,8 +5202,8 @@ class ThemeEncoder {
   /// `ContinuousRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rectangle"
   /// }
   /// ```
@@ -4786,8 +5211,8 @@ class ThemeEncoder {
   /// `RoundedRectangleBorder`
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "side": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "side": "<BorderSide>",
   ///   "type": "rounded"
   /// }
   /// ```
@@ -4795,7 +5220,7 @@ class ThemeEncoder {
   /// `StadiumBorder`
   /// ```json
   /// {
-  ///   "side": <BorderSide>,
+  ///   "side": "<BorderSide>",
   ///   "type": "stadium"
   /// }
   /// ```
@@ -4881,8 +5306,8 @@ class ThemeEncoder {
   /// This returns the JSON representation to follow the structure:
   /// ```json
   /// {
-  ///   "height": <double>,
-  ///   "width": <double>
+  ///   "height": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeSize(Size? value) {
@@ -4925,33 +5350,35 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "activeTickMarkColor": <Color>,
-  ///   "activeTrackColor": <Color>,
-  ///   "disabledActiveTickMarkColor": <Color>,
-  ///   "disabledActiveTrackColor": <Color>,
-  ///   "disabledInactiveTickMarkColor": <Color>,
-  ///   "disabledInactiveTrackColor": <Color>,
-  ///   "disabledThumbColor": <Color>,
-  ///   "inactiveTickMarkColor": <Color>,
-  ///   "inactiveTrackColor": <Color>,
-  ///   "minThumbSeparation": <double>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlappingShapeStrokeColor": <Color>,
-  ///   "overlayColor": <Color>,
-  ///   "overlayShape": <SliderComponentShape>,
-  ///   "rangeThumbShape": <RangeSliderThumbShape>,
-  ///   "rangeTickMarkShape": <RangeSliderTickMarkShape>,
-  ///   "rangeTrackShape": <RangeSliderTrackShape>,
-  ///   "rangeValueIndicatorShape": <RangeSliderValueIndicatorShape>,
-  ///   "showValueIndicator": <ShowValueIndicator>,
-  ///   "thumbColor": <Color>,
-  ///   "thumbShape": <SliderComponentShape>,
-  ///   "tickMarkShape": <SliderTickMarkShape>,
-  ///   "trackHeight": <double>,
-  ///   "trackShape": <SliderTrackShape>,
-  ///   "valueIndicatorColor": <Color>,
-  ///   "valueIndicatorShape": <SliderComponentShape>,
-  ///   "valueIndicatorTextStyle": <TextStyle>
+  ///   "activeTickMarkColor": "<Color>",
+  ///   "activeTrackColor": "<Color>",
+  ///   "disabledActiveTickMarkColor": "<Color>",
+  ///   "disabledActiveTrackColor": "<Color>",
+  ///   "disabledInactiveTickMarkColor": "<Color>",
+  ///   "disabledInactiveTrackColor": "<Color>",
+  ///   "disabledSecondaryActiveTrackColor": "<Color>",
+  ///   "disabledThumbColor": "<Color>",
+  ///   "inactiveTickMarkColor": "<Color>",
+  ///   "inactiveTrackColor": "<Color>",
+  ///   "minThumbSeparation": "<double>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlappingShapeStrokeColor": "<Color>",
+  ///   "overlayColor": "<Color>",
+  ///   "overlayShape": "<SliderComponentShape>",
+  ///   "rangeThumbShape": "<RangeSliderThumbShape>",
+  ///   "rangeTickMarkShape": "<RangeSliderTickMarkShape>",
+  ///   "rangeTrackShape": "<RangeSliderTrackShape>",
+  ///   "rangeValueIndicatorShape": "<RangeSliderValueIndicatorShape>",
+  ///   "secondaryActiveTrackColor": "<Color>",
+  ///   "showValueIndicator": "<ShowValueIndicator>",
+  ///   "thumbColor": "<Color>",
+  ///   "thumbShape": "<SliderComponentShape>",
+  ///   "tickMarkShape": "<SliderTickMarkShape>",
+  ///   "trackHeight": "<double>",
+  ///   "trackShape": "<SliderTrackShape>",
+  ///   "valueIndicatorColor": "<Color>",
+  ///   "valueIndicatorShape": "<SliderComponentShape>",
+  ///   "valueIndicatorTextStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -4979,8 +5406,12 @@ class ThemeEncoder {
         'disabledInactiveTickMarkColor': encodeColor(
           value.disabledInactiveTickMarkColor,
         ),
-        'disabledInactiveTrackColor':
-            encodeColor(value.disabledInactiveTrackColor),
+        'disabledInactiveTrackColor': encodeColor(
+          value.disabledInactiveTrackColor,
+        ),
+        'disabledSecondaryActiveTrackColor': encodeColor(
+          value.disabledSecondaryActiveTrackColor,
+        ),
         'disabledThumbColor': encodeColor(value.disabledThumbColor),
         'inactiveTickMarkColor': encodeColor(value.inactiveTickMarkColor),
         'inactiveTrackColor': encodeColor(value.inactiveTrackColor),
@@ -5001,6 +5432,9 @@ class ThemeEncoder {
         'rangeTrackShape': encodeRangeSliderTrackShape(value.rangeTrackShape),
         'rangeValueIndicatorShape': encodeRangeSliderValueIndicatorShape(
           value.rangeValueIndicatorShape,
+        ),
+        'secondaryActiveTrackColor': encodeColor(
+          value.secondaryActiveTrackColor,
         ),
         'showValueIndicator': encodeShowValueIndicator(
           value.showValueIndicator,
@@ -5058,15 +5492,6 @@ class ThemeEncoder {
   ///   "type": "round"
   /// }
   /// ```
-  ///
-  /// See also:
-  ///  * [encodeColor]
-  ///  * [encodeShowValueIndicator]
-  ///  * [encodeSliderComponentShape]
-  ///  * [encodeRangeSliderThumbShape]
-  ///  * [encodeRangeSliderTickMarkShape]
-  ///  * [encodeRangeSliderTrackShape]
-  ///  * [encodeRangeSliderValueIndicatorShape]
   static Map<String, dynamic>? encodeSliderTrackShape(SliderTrackShape? value) {
     assert(value == null ||
         value is RectangularSliderTrackShape ||
@@ -5162,13 +5587,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "actionTextColor": <Color>,
-  ///   "backgroundColor": <Color>,
-  ///   "behavior": <SnackBarBehavior>,
-  ///   "contentTextStyle": <TextStyle>,
-  ///   "disabledActionTextColor": <Color>,
-  ///   "elevation": <double>,
-  ///   "shape": <ShapeBorder>,
+  ///   "actionTextColor": "<Color>",
+  ///   "backgroundColor": "<Color>",
+  ///   "behavior": "<SnackBarBehavior>",
+  ///   "contentTextStyle": "<TextStyle>",
+  ///   "disabledActionTextColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -5178,7 +5604,8 @@ class ThemeEncoder {
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeSnackBarThemeData(
-      SnackBarThemeData? value) {
+    SnackBarThemeData? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5190,6 +5617,7 @@ class ThemeEncoder {
         'disabledActionTextColor': encodeColor(value.disabledActionTextColor),
         'elevation': value.elevation,
         'shape': encodeShapeBorder(value.shape),
+        'width': value.width,
       };
     }
 
@@ -5227,16 +5655,16 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "fontFamily": <String>,
-  ///   "fontFamilyFallback": <String[]>,
-  ///   "fontSize": <double>,
-  ///   "fontStyle": <FontStyle>,
-  ///   "fontWeight": <FontWeight>
-  ///   "forceStrutHeight": <bool>,
-  ///   "height": <double>,
-  ///   "leading": <double>,
-  ///   "leadingDistribution": <TextLeadingDistribution>,
-  ///   "package": <String>
+  ///   "fontFamily": "<String>",
+  ///   "fontFamilyFallback": "<String[]>",
+  ///   "fontSize": "<double>",
+  ///   "fontStyle": "<FontStyle>",
+  ///   "fontWeight": "<FontWeight>"
+  ///   "forceStrutHeight": "<bool>",
+  ///   "height": "<double>",
+  ///   "leading": "<double>",
+  ///   "leadingDistribution": "<TextLeadingDistribution>",
+  ///   "package": "<String>"
   /// }
   /// ```
   ///
@@ -5270,12 +5698,12 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MaterialStateProperty<MouseCursor>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "splashRadius": <double>,
-  ///   "thumbColor": <MaterialStateProperty<Color>>,
-  ///   "trackColor": <MaterialStateProperty<Color>>
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "splashRadius": "<double>",
+  ///   "thumbColor": "<MaterialStateProperty<Color>>",
+  ///   "trackColor": "<MaterialStateProperty<Color>>"
   /// }
   /// ```
   ///
@@ -5311,7 +5739,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation or a String
@@ -5323,14 +5751,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "statusBarBrightness": <Brightness>,
-  ///   "statusBarColor": <Color>,
-  ///   "statusBarIconBrightness": <Brightness>,
-  ///   "systemNavigationBarColor": <Color>,
-  ///   "systemNavigationBarContrastEnforced": <bool>,
-  ///   "systemNavigationBarDividerColor": <Color>,
-  ///   "systemNavigationBarIconBrightness": <Brightness>,
-  ///   "systemStatusBarContrastEnforced': <bool>
+  ///   "statusBarBrightness": "<Brightness>",
+  ///   "statusBarColor": "<Color>",
+  ///   "statusBarIconBrightness": "<Brightness>",
+  ///   "systemNavigationBarColor": "<Color>",
+  ///   "systemNavigationBarContrastEnforced": "<bool>",
+  ///   "systemNavigationBarDividerColor": "<Color>",
+  ///   "systemNavigationBarIconBrightness": "<Brightness>",
+  ///   "systemStatusBarContrastEnforced': <bool>"
   /// }
   /// ```
   ///
@@ -5369,7 +5797,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return result is Map<String, dynamic> ? _stripNull(result) : result;
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5400,14 +5828,14 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "indicatorSize": <TabBarIndicatorSize>,
-  ///   "labelPadding": <EdgeInsetsGeometry>,
-  ///   "labelColor": <Color>,
-  ///   "labelStyle": <TextStyle>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "splashFactory": <InteractiveInkSplashFactory>,
-  ///   "unselectedLabelColor": <Color>,
-  ///   "unselectedLabelStyle": <TextStyle>,
+  ///   "indicatorSize": "<TabBarIndicatorSize>",
+  ///   "labelPadding": "<EdgeInsetsGeometry>",
+  ///   "labelColor": "<Color>",
+  ///   "labelStyle": "<TextStyle>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "unselectedLabelColor": "<Color>",
+  ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
   /// ```
   ///
@@ -5451,13 +5879,13 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "bottom": <BorderSide>,
-  ///   "horizontalInside": <BorderSide>,
-  ///   "left": <BorderSide>,
-  ///   "right": <BorderSide>,
-  ///   "top": <BorderSide>,
-  ///   "verticalInside": <BorderSide>,
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "bottom": "<BorderSide>",
+  ///   "horizontalInside": "<BorderSide>",
+  ///   "left": "<BorderSide>",
+  ///   "right": "<BorderSide>",
+  ///   "top": "<BorderSide>",
+  ///   "verticalInside": "<BorderSide>",
   /// }
   /// ```
   ///
@@ -5482,18 +5910,18 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripNull(result);
   }
 
-  /// Decodes the given [value] to a [TableColumnWidth].  This expects the
+  /// Encodes the given [value] to a [TableColumnWidth].  This expects the
   /// [value] to have the following structure:
   ///
   /// ```json
   /// {
-  ///   "a": <TableColumnWidth>,
-  ///   "b": <TableColumnWidth>,
-  ///   "type": <"fixed" | "flex" | "fraction" | "intrinsic" | "max" | "min">,
-  ///   "value": <double>
+  ///   "a": "<TableColumnWidth>",
+  ///   "b": "<TableColumnWidth>",
+  ///   "type": "<"fixed" | "flex" | "fraction" | "intrinsic" | "max" | "min">",
+  ///   "value": "<double>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeTableColumnWidth(TableColumnWidth? value) {
@@ -5537,7 +5965,7 @@ class ThemeEncoder {
       );
     }
 
-    return result;
+    return _stripNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5678,7 +6106,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "style": <ButtonStyle>
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -5901,8 +6329,9 @@ class ThemeEncoder {
   /// Encodes the [value] into a String representation.  Supported values are:
   ///  * `datetime`
   ///  * `emailAddress`
-  ///  * `name`
   ///  * `multiline`
+  ///  * `name`
+  ///  * `none`
   ///  * `number`
   ///  * `phone`
   ///  * `streetAddress`
@@ -5923,6 +6352,8 @@ class ThemeEncoder {
         result = 'multiline';
       } else if (value.index == TextInputType.name.index) {
         result = 'name';
+      } else if (value.index == TextInputType.none.index) {
+        result = 'none';
       } else if (value.index == TextInputType.number.index) {
         result = 'number';
       } else if (value.index == TextInputType.phone.index) {
@@ -5945,9 +6376,9 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "applyHeightToFirstAscent": <bool>,
-  ///   "applyHeightToLastDescent": <bool>,
-  ///   "leadingDistribution": <TextLeadingDistribution>
+  ///   "applyHeightToFirstAscent": "<bool>",
+  ///   "applyHeightToLastDescent": "<bool>",
+  ///   "leadingDistribution": "<TextLeadingDistribution>"
   /// }
   /// ```
   static Map<String, dynamic>? encodeTextHeightBehavior(
@@ -6028,15 +6459,16 @@ class ThemeEncoder {
   /// return the following structure:
   ///
   /// ```json
-  ///   "cursorColor": <Color>,
-  ///   "selectionColor": <Color>,
-  ///   "selectionHandleColor": <Color>
+  ///   "cursorColor": "<Color>",
+  ///   "selectionColor": "<Color>",
+  ///   "selectionHandleColor": "<Color>"
   /// ```
   ///
   /// See also:
   ///  * [encodeColor]
   static Map<String, dynamic>? encodeTextSelectionThemeData(
-      TextSelectionThemeData? value) {
+    TextSelectionThemeData? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6056,38 +6488,87 @@ class ThemeEncoder {
     return _stripNull(result);
   }
 
+  /// Encodes a [TextStyle] object into a JSON map:
+  ///
+  /// ```json
+  /// {
+  ///   "children": "<List<TextSpan>>",
+  ///   "locale": "<Locale>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onEnter": "<PointerEnterEventListener>",
+  ///   "onExit": "<PointerExitEventListener>",
+  ///   "recognizer": "<GestureRecognizer>",
+  ///   "semanticsLabel": "<String>",
+  ///   "spellOut": "<bool>",
+  ///   "style": "<TextStyle>",
+  ///   "text": "<String>"
+  /// }
+  /// ```
+  ///
+  /// See Also:
+  ///  * [encodeLocale]
+  ///  * [encodeMouseCursor]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeTextSpan(TextSpan? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'children': value.children
+            ?.whereType<TextSpan>()
+            .map((e) => encodeTextSpan(e)!)
+            .toList(),
+        'locale': encodeLocale(value.locale),
+        'mouseCursor': encodeMouseCursor(value.mouseCursor),
+        // 'onEnter': @unencodable,
+        // 'onExit': @unencodable,
+        // 'recognizer': @unencodable,
+        'semanticsLabel': value.semanticsLabel,
+        'spellOut': value.spellOut,
+        'style': encodeTextStyle(value.style),
+        'text': value.text,
+      };
+    }
+
+    return _stripNull(result);
+  }
+
   /// Encodes a given [value] into a JSON compatible Map structure.  This will
   /// return the following structure:
   ///
   /// ```json
-  ///   "backgroundColor": <Color>,
-  ///   "color": <Color>,
-  ///   "decoration": <TextDecoration>,
-  ///   "decorationColor": <Color>,
-  ///   "decorationStyle": <TextDecorationStyle>,
-  ///   "decorationThickness": <double>,
+  /// {
+  ///   "backgroundColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "decoration": "<TextDecoration>",
+  ///   "decorationColor": "<Color>",
+  ///   "decorationStyle": "<TextDecorationStyle>",
+  ///   "decorationThickness": "<double>",
   ///   "fontFamily": value['fontFamily'],
-  ///   "fontFamilyFallback": <String[]>,
-  ///   "fontFeatures": <FontFeature[]>,
-  ///   "fontWeight": <FontWeight>,
-  ///   "fontSize": <double>,
-  ///   "fontStyle": <FontStyle>,
-  ///   "height": <double>,
-  ///   "inherit": <bool>,
-  ///   "leadingDistribution": <TextLeadingDistribution>,
-  ///   "letterSpacing": <double>,
-  ///   "locale": <Locale>,
-  ///   "overflow": <TextOverflow>,
-  ///   "package": <String>,
-  ///   "shadows": <Shadow[]>,
-  ///   "textBaseline": <TextBaseline>,
-  ///   "wordSpacing": <double>
+  ///   "fontFamilyFallback": "<String[]>",
+  ///   "fontFeatures": "<FontFeature[]>",
+  ///   "fontSize": "<double>",
+  ///   "fontStyle": "<FontStyle>",
+  ///   "fontVariation": "<FontVariation>",
+  ///   "fontWeight": "<FontWeight>",
+  ///   "height": "<double>",
+  ///   "inherit": "<bool>",
+  ///   "leadingDistribution": "<TextLeadingDistribution>",
+  ///   "letterSpacing": "<double>",
+  ///   "locale": "<Locale>",
+  ///   "overflow": "<TextOverflow>",
+  ///   "package": "<String>",
+  ///   "shadows": "<Shadow[]>",
+  ///   "textBaseline": "<TextBaseline>",
+  ///   "wordSpacing": "<double>"
+  /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeFontFeature]
   ///  * [encodeFontStyle]
+  ///  * [encodeFontVariation]
   ///  * [encodeFontWeight]
   ///  * [encodeLocale]
   ///  * [encodeShadow]
@@ -6116,9 +6597,14 @@ class ThemeEncoder {
                   (value) => encodeFontFeature(value),
                 )
                 .toList(),
-        'fontWeight': encodeFontWeight(value.fontWeight),
         'fontSize': value.fontSize,
         'fontStyle': encodeFontStyle(value.fontStyle),
+        'fontVariations': value.fontVariations
+            ?.map(
+              (e) => encodeFontVariation(e),
+            )
+            .toList(),
+        'fontWeight': encodeFontWeight(value.fontWeight),
         'height': value.height,
         'inherit': value.inherit,
         'leadingDistribution': encodeTextLeadingDistribution(
@@ -6147,21 +6633,21 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "bodyLarge": <TextStyle>,
-  ///   "bodyMedium": <TextStyle>,
-  ///   "bodySmall": <TextStyle>,
-  ///   "displayLarge": <TextStyle>,
-  ///   "displayMedium": <TextStyle>,
-  ///   "displaySmall": <TextStyle>,
-  ///   "headlineLarge": <TextStyle>,
-  ///   "headlineMedium": <TextStyle>,
-  ///   "headlineSmall": <TextStyle>,
-  ///   "labelLarge": <TextStyle>,
-  ///   "labelMedium": <TextStyle>,
-  ///   "labelSmall": <TextStyle>,
-  ///   "titleLarge": <TextStyle>,
-  ///   "titleMedium": <TextStyle>,
-  ///   "titleSmall": <TextStyle>
+  ///   "bodyLarge": "<TextStyle>",
+  ///   "bodyMedium": "<TextStyle>",
+  ///   "bodySmall": "<TextStyle>",
+  ///   "displayLarge": "<TextStyle>",
+  ///   "displayMedium": "<TextStyle>",
+  ///   "displaySmall": "<TextStyle>",
+  ///   "headlineLarge": "<TextStyle>",
+  ///   "headlineMedium": "<TextStyle>",
+  ///   "headlineSmall": "<TextStyle>",
+  ///   "labelLarge": "<TextStyle>",
+  ///   "labelMedium": "<TextStyle>",
+  ///   "labelSmall": "<TextStyle>",
+  ///   "titleLarge": "<TextStyle>",
+  ///   "titleMedium": "<TextStyle>",
+  ///   "titleSmall": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -6220,78 +6706,84 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "appBarTheme": <AppBarTheme>,
-  ///   "applyElevationOverlayColor": <bool>,
-  ///   "bannerTheme": <MaterialBannerThemeData>,
-  ///   "backgroundColor": <Color>,
-  ///   "bottomAppBarColor": <Color>,
-  ///   "bottomAppBarTheme": <BottomAppBarTheme>,
-  ///   "bottomNavigationBarTheme": <BottomNavigationBarThemeData>,
-  ///   "bottomSheetTheme": <BottomSheetThemeData>,
-  ///   "brightness": <Brightness>,
-  ///   "buttonBarTheme": <ButtonBarThemeData>,
-  ///   "buttonTheme": <ButtonThemeData>,
-  ///   "canvasColor": <Color>,
-  ///   "cardColor": <Color>,
-  ///   "cardTheme": <CardTheme>,
-  ///   "checkboxTheme": <CheckboxThemeData>,
-  ///   "chipTheme": <ChipThemeData>,
-  ///   "colorScheme": <ColorScheme>,
-  ///   "colorSchemeSeed": <Color>,
-  ///   "cupertinoOverrideTheme": <CupertinoThemeData>,
-  ///   "dataTableTheme": <DataTableThemeData>,
-  ///   "dialogBackgroundColor": <Color>,
-  ///   "dialogTheme": <DialogTheme>,
-  ///   "disabledColor": <Color>,
-  ///   "dividerColor": <Color>,
-  ///   "dividerTheme": <DividerThemeData>,
-  ///   "drawerTheme": <DrawerThemeData>,
-  ///   "elevatedButtonTheme": <ElevatedButtonThemeData>,
-  ///   "expansionTileTheme": <ExpansionTileThemeData>,
-  ///   "errorColor": <Color>,
-  ///   "floatingActionButtonTheme": <FloatingActionButtonThemeData>,
-  ///   "focusColor": <Color>,
-  ///   "fontFamily": <String>,
-  ///   "highlightColor": <Color>,
-  ///   "hintColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "iconTheme": <IconThemeData>,
-  ///   "indicatorColor": <Color>,
-  ///   "inputDecorationTheme": <InputDecorationTheme>,
-  ///   "listTileTheme": <ListTileThemeData>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "navigationBarTheme": <NavigationBarThemeData>,
-  ///   "navigationRailTheme": <NavigationRailThemeData>,
-  ///   "outlinedButtonTheme": <OutlinedButtonThemeData>,
-  ///   "platform": <TargetPlatform>,
-  ///   "popupMenuTheme": <PopupMenuThemeData>,
-  ///   "primaryColor": <Color>,
-  ///   "primaryColorDark": <Color>,
-  ///   "primaryColorLight": <Color>,
-  ///   "primaryIconTheme": <IconThemeData>,
-  ///   "primarySwatch": <MaterialColor>,
-  ///   "primaryTextTheme": <TextTheme>,
-  ///   "radioTheme": <RadioThemeData>,
-  ///   "scaffoldBackgroundColor": <Color>,
-  ///   "secondaryHeaderColor": <Color>,
-  ///   "selectedRowColor": <Color>,
-  ///   "shadowColor": <Color>,
-  ///   "sliderTheme": <SliderThemeData>,
-  ///   "snackBarTheme": SnackBarThemeData>,
-  ///   "splashColor": <Color>,
-  ///   "splashFactory": <InteractiveInkFeatureFactory>,
-  ///   "switchTheme": <SwitchThemeData>,
-  ///   "tabBarTheme": <TabBarTheme>,
-  ///   "textButtonTheme": <TextButtonThemeData>,
-  ///   "textSelectionTheme": <TextSelectionThemeData>,
-  ///   "textTheme": <TextTheme>,
-  ///   "toggleButtonsTheme": <ToggleButtonsThemeData>,
-  ///   "toggleableActiveColor": <Color>,
-  ///   "tooltipTheme": <TooltipThemeData>,
-  ///   "typography": <Typography>,
-  ///   "unselectedWidgetColor": <Color>,
-  ///   "useMaterial3": <bool>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "appBarTheme": "<AppBarTheme>",
+  ///   "applyElevationOverlayColor": "<bool>",
+  ///   "bannerTheme": "<MaterialBannerThemeData>",
+  ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id,
+  ///   "bottomNavigationBarTheme": "<BottomNavigationBarThemeData>",
+  ///   "bottomSheetTheme": "<BottomSheetThemeData>",
+  ///   "brightness": "<Brightness>",
+  ///   "buttonBarTheme": "<ButtonBarThemeData>",
+  ///   "buttonTheme": "<ButtonThemeData>",
+  ///   "canvasColor": "<Color>",
+  ///   "cardColor": "<Color>",
+  ///   "cardTheme": "<CardTheme>",
+  ///   "checkboxTheme": "<CheckboxThemeData>",
+  ///   "chipTheme": "<ChipThemeData>",
+  ///   "colorScheme": "<ColorScheme>",
+  ///   "colorSchemeSeed": "<Color>",
+  ///   "cupertinoOverrideTheme": "<CupertinoThemeData>",
+  ///   "dataTableTheme": "<DataTableThemeData>",
+  ///   "dialogBackgroundColor": "<Color>",
+  ///   "dialogTheme": "<DialogTheme>",
+  ///   "disabledColor": "<Color>",
+  ///   "dividerColor": "<Color>",
+  ///   "dividerTheme": "<DividerThemeData>",
+  ///   "drawerTheme": "<DrawerThemeData>",
+  ///   "elevatedButtonTheme": "<ElevatedButtonThemeData>",
+  ///   "expansionTileTheme": "<ExpansionTileThemeData>",
+  ///   "filledButtonTheme": "<FilledButtonThemeDataScheme>"",
+  ///   "floatingActionButtonTheme": "<FloatingActionButtonThemeData>",
+  ///   "focusColor": "<Color>",
+  ///   "fontFamily": "<String>",
+  ///   "fontFamilyFallback": "<List<String>>",
+  ///   "highlightColor": "<Color>",
+  ///   "hintColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "iconButtonTheme": "<IconButtonThemeData>",
+  ///   "iconTheme": "<IconThemeData>",
+  ///   "indicatorColor": "<Color>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "listTileTheme": "<ListTileThemeData>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "menuBarTheme": "<MenuBarThemeData>",
+  ///   "menuButtonTheme": "<MenuButtonThemeData>",
+  ///   "menuTheme": "<MenuThemeData>",
+  ///   "navigationBarTheme": "<NavigationBarThemeData>",
+  ///   "navigationRailTheme": "<NavigationRailThemeData>",
+  ///   "outlinedButtonTheme": "<OutlinedButtonThemeData>",
+  ///   "package": "<String>",
+  ///   "pageTransitionsTheme": "<PageTransitionsTheme>",
+  ///   "platform": "<TargetPlatform>",
+  ///   "popupMenuTheme": "<PopupMenuThemeData>",
+  ///   "primaryColor": "<Color>",
+  ///   "primaryColorDark": "<Color>",
+  ///   "primaryColorLight": "<Color>",
+  ///   "primaryIconTheme": "<IconThemeData>",
+  ///   "primarySwatch": "<MaterialColor>",
+  ///   "primaryTextTheme": "<TextTheme>",
+  ///   "progressIndicatorTheme": "<ProgressIndicatorThemeData>",
+  ///   "radioTheme": "<RadioThemeData>",
+  ///   "scaffoldBackgroundColor": "<Color>",
+  ///   "scrollbarTheme": "<ScrollbarThemeData>",
+  ///   "secondaryHeaderColor": "<Color>",
+  ///   "shadowColor": "<Color>",
+  ///   "sliderTheme": "<SliderThemeData>",
+  ///   "snackBarTheme": "<SnackBarThemeData>",
+  ///   "splashColor": "<Color>",
+  ///   "splashFactory": "<InteractiveInkFeatureFactory>",
+  ///   "switchTheme": "<SwitchThemeData>",
+  ///   "tabBarTheme": "<TabBarTheme>",
+  ///   "textButtonTheme": "<TextButtonThemeData>",
+  ///   "textSelectionTheme": "<TextSelectionThemeData>",
+  ///   "textTheme": "<TextTheme>",
+  ///   "timePickerTheme": "<TimePickerThemeData>",
+  ///   "toggleButtonsTheme": "<ToggleButtonsThemeData>",
+  ///   "tooltipTheme": "<TooltipThemeData>",
+  ///   "typography": "<Typography>",
+  ///   "unselectedWidgetColor": "<Color>",
+  ///   "useMaterial3": "<bool>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -6313,13 +6805,18 @@ class ThemeEncoder {
   ///  * [encodeDrawerThemeData]
   ///  * [encodeElevatedButtonThemeData]
   ///  * [encodeExpansionTileThemeData]
+  ///  * [encodeFilledButtonThemeData]
   ///  * [encodeFloatingActionButtonThemeData]
+  ///  * [encodeIconButtonThemeData]
   ///  * [encodeIconThemeData]
   ///  * [encodeInputDecorationTheme]
   ///  * [encodeInteractiveInkFeatureFactory]
   ///  * [encodeListTileThemeData]
   ///  * [encodeMaterialBannerThemeData]
   ///  * [encodeMaterialTapTargetSize]
+  ///  * [encodeMenuBarThemeData]
+  ///  * [encodeMenuButtonThemeData]
+  ///  * [encodeMenuThemeData]
   ///  * [encodeNavigationBarThemeData]
   ///  * [encodeNavigationRailThemeData]
   ///  * [encodeOutlinedButtonThemeData]
@@ -6344,8 +6841,6 @@ class ThemeEncoder {
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
         'bannerTheme': encodeMaterialBannerThemeData(value.bannerTheme),
-        'backgroundColor': encodeColor(value.backgroundColor),
-        'bottomAppBarColor': encodeColor(value.bottomAppBarColor),
         'bottomAppBarTheme': encodeBottomAppBarTheme(value.bottomAppBarTheme),
         'bottomNavigationBarTheme': encodeBottomNavigationBarThemeData(
           value.bottomNavigationBarTheme,
@@ -6360,8 +6855,7 @@ class ThemeEncoder {
         'checkboxTheme': encodeCheckboxThemeData(value.checkboxTheme),
         'chipTheme': encodeChipThemeData(value.chipTheme),
         'colorScheme': encodeColorScheme(value.colorScheme),
-        // @nonexistant
-        // 'colorSchemeSeed': encodeColor(value.colorSchemSeed),
+        // 'colorSchemeSeed': @nonexistant,
         'cupertinoOverrideTheme': encodeCupertinoThemeData(
           value.cupertinoOverrideTheme,
         ),
@@ -6378,7 +6872,9 @@ class ThemeEncoder {
         'expansionTileThemeData': encodeExpansionTileThemeData(
           value.expansionTileTheme,
         ),
-        'errorColor': encodeColor(value.errorColor),
+        'filledButtonTheme': encodeFilledButtonThemeData(
+          value.filledButtonTheme,
+        ),
         'floatingActionButtonTheme': encodeFloatingActionButtonThemeData(
           value.floatingActionButtonTheme,
         ),
@@ -6386,6 +6882,7 @@ class ThemeEncoder {
         'highlightColor': encodeColor(value.highlightColor),
         'hintColor': encodeColor(value.hintColor),
         'hoverColor': encodeColor(value.hoverColor),
+        'iconButtonTheme': encodeIconButtonThemeData(value.iconButtonTheme),
         'iconTheme': encodeIconThemeData(value.iconTheme),
         'indicatorColor': encodeColor(value.indicatorColor),
         'inputDecorationTheme': encodeInputDecorationTheme(
@@ -6395,6 +6892,9 @@ class ThemeEncoder {
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
+        'menuBarTheme': encodeMenuBarThemeData(value.menuBarTheme),
+        'menuButtonTheme': encodeMenuButtonThemeData(value.menuButtonTheme),
+        'menuTheme': encodeMenuThemeData(value.menuTheme),
         'navigationBarTheme': encodeNavigationBarThemeData(
           value.navigationBarTheme,
         ),
@@ -6414,7 +6914,6 @@ class ThemeEncoder {
         'radioTheme': encodeRadioThemeData(value.radioTheme),
         'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
         'secondaryHeaderColor': encodeColor(value.secondaryHeaderColor),
-        'selectedRowColor': encodeColor(value.selectedRowColor),
         'shadowColor': encodeColor(value.shadowColor),
         'sliderTheme': encodeSliderThemeData(value.sliderTheme),
         'snackBarTheme': encodeSnackBarThemeData(value.snackBarTheme),
@@ -6431,7 +6930,6 @@ class ThemeEncoder {
         'toggleButtonsTheme': encodeToggleButtonsThemeData(
           value.toggleButtonsTheme,
         ),
-        'toggleableActiveColor': encodeColor(value.toggleableActiveColor),
         'tooltipTheme': encodeTooltipThemeData(value.tooltipTheme),
         'typography': encodeTypography(value.typography),
         'unselectedWidgetColor': encodeColor(value.unselectedWidgetColor),
@@ -6479,23 +6977,23 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "dayPeriodBorderSide": <BorderSide>,
-  ///   "dayPeriodColor": <Color>,
-  ///   "dayPeriodShape": <ShapeBorder>,
-  ///   "dayPeriodTextColor": <Color>,
-  ///   "dayPeriodTextStyle": <TextStyle>,
-  ///   "dialBackgroundColor": <Color>,
-  ///   "dialHandColor": <Color>,
-  ///   "dialTextColor": <Color>,
-  ///   "entryModeIconColor": <Color>,
-  ///   "helpTextStyle": <TextStyle>,
-  ///   "hourMinuteColor": <Color>,
-  ///   "hourMinuteShape": <ShapeBorder>,
-  ///   "hourMinuteTextColor": <Color>,
-  ///   "hourMinuteTextStyle": <TextStyle>,
-  ///   "inputDecorationTheme": <InputDecorationTheme>,
-  ///   "shape": <ShapeBorder>
+  ///   "backgroundColor": "<Color>",
+  ///   "dayPeriodBorderSide": "<BorderSide>",
+  ///   "dayPeriodColor": "<Color>",
+  ///   "dayPeriodShape": "<ShapeBorder>",
+  ///   "dayPeriodTextColor": "<Color>",
+  ///   "dayPeriodTextStyle": "<TextStyle>",
+  ///   "dialBackgroundColor": "<Color>",
+  ///   "dialHandColor": "<Color>",
+  ///   "dialTextColor": "<Color>",
+  ///   "entryModeIconColor": "<Color>",
+  ///   "helpTextStyle": "<TextStyle>",
+  ///   "hourMinuteColor": "<Color>",
+  ///   "hourMinuteShape": "<ShapeBorder>",
+  ///   "hourMinuteTextColor": "<Color>",
+  ///   "hourMinuteTextStyle": "<TextStyle>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "shape": "<ShapeBorder>"
   /// }
   /// ```
   ///
@@ -6541,21 +7039,21 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "borderColor": <Color>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "borderWidth": <double>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "disabledBorderColor": <Color>,
-  ///   "disabledColor": <Color>,
-  ///   "fillColor": <Color>,
-  ///   "focusColor": <Color>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "selectedBorderColor": <Color>,
-  ///   "selectedColor": <Color>,
-  ///   "splashColor": <Color>,
-  ///   "textStyle": <TextStyle>
+  ///   "borderColor": "<Color>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "borderWidth": "<double>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "disabledBorderColor": "<Color>",
+  ///   "disabledColor": "<Color>",
+  ///   "fillColor": "<Color>",
+  ///   "focusColor": "<Color>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "selectedBorderColor": "<Color>",
+  ///   "selectedColor": "<Color>",
+  ///   "splashColor": "<Color>",
+  ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -6597,42 +7095,18 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "copy": <bool>,
-  ///   "cut": <bool>,
-  ///   "paste": <bool>,
-  ///   "selectAll": <bool>
-  /// }
-  /// ```
-  static Map<String, dynamic>? encodeToolbarOptions(ToolbarOptions? value) {
-    Map<String, dynamic>? result;
-    if (value != null) {
-      result = {
-        'copy': value.copy,
-        'cut': value.cut,
-        'paste': value.paste,
-        'selectAll': value.selectAll,
-      };
-    }
-
-    return _stripNull(result);
-  }
-
-  /// Encodes the given [value] to a JSON compatible Map.  The returned returned
-  /// value will have the following structure.
-  ///
-  /// ```json
-  /// {
-  ///   "enableFeedback": <bool>,
-  ///   "excludeFromSemantics": <bool>,
-  ///   "height": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "preferBelow": <bool>
-  ///   "showDuration": <int; millis>,
-  ///   "textStyle": <TextStyle>,
-  ///   "triggerMode": <TooltipTriggerMode>,
-  ///   "verticalOffset": <double>,
-  ///   "waitDuration": <int; millis>,
+  ///   "enableFeedback": "<bool>",
+  ///   "excludeFromSemantics": "<bool>",
+  ///   "height": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "preferBelow": "<bool>"
+  ///   "showDuration": "<int; millis>",
+  ///   "textAlign": "<TextAlign>",
+  ///   "textStyle": "<TextStyle>",
+  ///   "triggerMode": "<TooltipTriggerMode>",
+  ///   "verticalOffset": "<double>",
+  ///   "waitDuration": "<int; millis>"
   /// }
   /// ```
   ///
@@ -6652,6 +7126,7 @@ class ThemeEncoder {
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
         'preferBelow': value.preferBelow,
         'showDuration': value.showDuration?.inMilliseconds,
+        'textAlign': encodeTextAlign(value.textAlign),
         'textStyle': encodeTextStyle(value.textStyle),
         'triggerMode': encodeTooltipTriggerMode(value.triggerMode),
         'verticalOffset': value.verticalOffset,
@@ -6690,12 +7165,12 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "black": <TextTheme>,
-  ///   "dense": <TextTheme>,
-  ///   "englishLike": <TextTheme>,
-  ///   "platform": <TargetPlatform>,
-  ///   "tall": <TextTheme>,
-  ///   "white": <TextTheme>,
+  ///   "black": "<TextTheme>",
+  ///   "dense": "<TextTheme>",
+  ///   "englishLike": "<TextTheme>",
+  ///   "platform": "<TargetPlatform>",
+  ///   "tall": "<TextTheme>",
+  ///   "white": "<TextTheme>",
   /// }
   /// ```
   ///
@@ -6839,7 +7314,7 @@ class ThemeEncoder {
       for (var entry in input.entries) {
         if (entry.value != null) {
           if (entry.value is Map) {
-            var processed = _stripNull(entry.value);
+            final processed = _stripNull(entry.value);
             if (processed != null) {
               result[entry.key] = processed;
             }

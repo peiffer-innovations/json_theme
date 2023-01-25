@@ -18,6 +18,7 @@ class ChipThemeDataSchema {
       'deleteIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'pressElevation': SchemaHelper.numberSchema,
       'secondaryLabelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
@@ -27,6 +28,7 @@ class ChipThemeDataSchema {
       'selectedShadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'showCheckmark': SchemaHelper.boolSchema,
+      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };
 }

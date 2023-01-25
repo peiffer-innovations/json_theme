@@ -3,18 +3,17 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
-"index.html": "6ae51359d195d786783ea8a5fa89887e",
-"/": "6ae51359d195d786783ea8a5fa89887e",
-"main.dart.js": "1e5d602537422d99131c2ae4aa928492",
+  "flutter.js": "1cfe996e845b3a8a33f57607e8b09ee4",
+"index.html": "c8fd35c05b5e27e9d4423b6376a52dcc",
+"/": "c8fd35c05b5e27e9d4423b6376a52dcc",
+"main.dart.js": "f51f673fa4ceffca56c6de5e40d08a1d",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "assets/FontManifest.json": "731f2bd9f372174a666c49058eb30350",
-"assets/NOTICES": "9f62b3f85a9b4ecda722116ba8665c35",
-"assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
-"assets/shaders/ink_sparkle.frag": "59f1e52ba59fd6c96cc822ff3e5a3de9",
+"assets/NOTICES": "83fb8c7e776f9c8593e9870781f414ea",
+"assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/fonts/MaterialIcons-Regular.ttf": "a37b0c01c0baf1888ca812cc0508f6e2",
 "assets/assets/fonts/Lato-Regular.ttf": "2d36b1a925432bae7f3c53a340868c6e",
@@ -22,10 +21,10 @@ const RESOURCES = {
 "assets/assets/themes/default.json": "99914b932bd37a50b983c5e7c90ae93b",
 "assets/assets/themes/calm_blue.json": "19965e6cc98d8e7c49780fd73a3d06e6",
 "assets/AssetManifest.json": "ddc8a9e051399846ede99d3b6451ccc1",
-"canvaskit/canvaskit.wasm": "bf50631470eb967688cca13ee181af62",
-"canvaskit/canvaskit.js": "2bc454a691c631b07a9307ac4ca47797",
-"canvaskit/profiling/canvaskit.wasm": "95a45378b69e77af5ed2bc72b2209b94",
-"canvaskit/profiling/canvaskit.js": "38164e5a72bdad0faa4ce740c9b8e564",
+"canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
+"canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
+"canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
+"canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
 "version.json": "91dc565250c887e2a14425637aa230e9"
 };
 

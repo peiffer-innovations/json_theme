@@ -3300,6 +3300,10 @@ class ThemeDecoder {
   }) {
     EdgeInsetsGeometry? result;
 
+    if (value is String && value.contains(",")) {
+      value = value.split(',');
+    }
+
     if (value is EdgeInsetsGeometry) {
       result = value;
     } else if (value != null) {
@@ -3307,12 +3311,30 @@ class ThemeDecoder {
         result = EdgeInsets.all(JsonClass.parseDouble(value)!);
       } else if (value is List) {
         assert(value.length == 2 || value.length == 4);
-        if (value.length == 2) {
+        // LR,TB
+        if (value.length == 1) {
+          result = EdgeInsets.all(
+            JsonClass.parseDouble(value[0], 0)!,
+          );
+        }
+        // LR,TB
+        else if (value.length == 2) {
           result = EdgeInsets.symmetric(
             horizontal: JsonClass.parseDouble(value[0], 0)!,
             vertical: JsonClass.parseDouble(value[1], 0)!,
           );
-        } else if (value.length == 4) {
+        }
+        // T,LR,B
+        else if (value.length == 3) {
+          result = EdgeInsets.fromLTRB(
+            JsonClass.parseDouble(value[1])!,
+            JsonClass.parseDouble(value[0])!,
+            JsonClass.parseDouble(value[1])!,
+            JsonClass.parseDouble(value[2])!,
+          );
+        }
+        // L,T,R,B
+        else if (value.length == 4) {
           result = EdgeInsets.fromLTRB(
             JsonClass.parseDouble(value[0])!,
             JsonClass.parseDouble(value[1])!,

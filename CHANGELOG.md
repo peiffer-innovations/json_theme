@@ -1,9 +1,29 @@
-## [5.0.0-prerelease3] - December 5th, 2022
+## [5.0.0] - January 24th, 2023
 
 * Added `AlignmentDirectional` encoder / decoder
 * Added `PanAxis` encoder / decoder
 * Added `TextSpan` encoder / decoder
 * Preparing for Flutter 3.6
+
+
+## [4.0.3+5] - January 24, 2023
+
+* Automated dependency updates
+
+
+## [4.0.3+4] - January 17, 2023
+
+* Automated dependency updates
+
+
+## [4.0.3+3] - January 3, 2023
+
+* Automated dependency updates
+
+
+## [4.0.3+2] - December 13, 2022
+
+* Automated dependency updates
 
 
 ## [4.0.3+1] - November 15, 2022
@@ -428,6 +448,10 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
+
+
+
 
 
 

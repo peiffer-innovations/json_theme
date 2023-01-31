@@ -1,3 +1,8 @@
+## [5.0.0+1] - January 31, 2023
+
+* Automated dependency updates
+
+
 ## [5.0.0] - January 24th, 2023
 
 * Added `AlignmentDirectional` encoder / decoder
@@ -448,6 +453,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

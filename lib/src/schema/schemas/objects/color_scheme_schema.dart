@@ -31,7 +31,7 @@ class ColorSchemeSchema {
       'onTertiary': SchemaHelper.objectSchema(ColorSchema.id),
       'onTertiaryContainer': SchemaHelper.objectSchema(ColorSchema.id),
       'outline': SchemaHelper.objectSchema(ColorSchema.id),
-      'outlineVarient': SchemaHelper.objectSchema(ColorSchema.id),
+      'outlineVariant': SchemaHelper.objectSchema(ColorSchema.id),
       'primary': SchemaHelper.objectSchema(ColorSchema.id),
       'primaryContainer': SchemaHelper.objectSchema(ColorSchema.id),
       'secondary': SchemaHelper.objectSchema(ColorSchema.id),

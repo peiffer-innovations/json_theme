@@ -1,4 +1,4 @@
-## [5.0.1] - March 19th, 2023
+## [5.0.1+1] - March 19th, 2023
 
 * Added decoder for `ColorFilter`.  It's not encodable though.
 

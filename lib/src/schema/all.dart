@@ -90,6 +90,7 @@ export 'schemas/objects/button_theme_data_schema.dart';
 export 'schemas/objects/card_theme_schema.dart';
 export 'schemas/objects/checkbox_theme_data_schema.dart';
 export 'schemas/objects/chip_theme_data_schema.dart';
+export 'schemas/objects/color_filter_schema.dart';
 export 'schemas/objects/color_schema.dart';
 export 'schemas/objects/color_scheme_schema.dart';
 export 'schemas/objects/cupertino_text_theme_data_schema.dart';

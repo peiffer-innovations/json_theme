@@ -37,6 +37,7 @@ class Schemas {
     CheckboxThemeDataSchema.id: CheckboxThemeDataSchema.schema,
     ChipThemeDataSchema.id: ChipThemeDataSchema.schema,
     ClipSchema.id: ClipSchema.schema,
+    ColorFilterSchema.id: ColorFilterSchema.schema,
     ColorSchema.id: ColorSchema.schema,
     ColorSchemeSchema.id: ColorSchemeSchema.schema,
     CrossAxisAlignmentSchema.id: CrossAxisAlignmentSchema.schema,

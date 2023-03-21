@@ -1,3 +1,18 @@
+## [5.0.1+2] - March 21, 2023
+
+* Automated dependency updates
+
+
+## [5.0.1+1] - March 19th, 2023
+
+* Added decoder for `ColorFilter`.  It's not encodable though.
+
+
+## [5.0.0+5] - March 7, 2023
+
+* Automated dependency updates
+
+
 ## [5.0.0+4] - February 21, 2023
 
 * Automated dependency updates
@@ -468,6 +483,8 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
+
 
 
 

@@ -2413,6 +2413,73 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a dynamic value into a [ColorFilter].  The schema this requires
+  /// depends on the type.
+  ///
+  /// Type: `matrix`
+  /// ```json
+  /// {
+  ///   matrix: "<List<double>"
+  /// }
+  /// ```
+  ///
+  /// Type: `mode`
+  /// ```json
+  /// {
+  ///   blendMode: "<BlendMode>",
+  ///   color: "<Color>"
+  /// }
+  /// ```
+  ///
+  /// Neither type of `linearToSrgbGamma` or `srgbToLinearGamma` requires any
+  /// additional properties.
+  static ColorFilter? decodeColorFilter(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    ColorFilter? result;
+
+    if (value is ColorFilter) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/color_filter',
+        value: value,
+        validate: validate,
+      ));
+
+      final type = value['type']?.toString();
+
+      switch (type) {
+        case 'linearToSrgbGamma':
+          result = const ColorFilter.linearToSrgbGamma();
+          break;
+
+        case 'matrix':
+          result = ColorFilter.matrix(
+            JsonClass.parseDoubleList(value['matrix'])!,
+          );
+          break;
+
+        case 'mode':
+          result = ColorFilter.mode(
+            decodeColor(value['color'])!,
+            decodeBlendMode(value['blendMode']) ?? BlendMode.srcIn,
+          );
+          break;
+
+        case 'srgbToLinearGamma':
+          result = const ColorFilter.srgbToLinearGamma();
+          break;
+
+        default:
+          throw Exception('Unknown ColorFilter type: [$type]');
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [CardTheme].  This expects the given
   /// [value] to follow the structure below:
   ///
@@ -4839,17 +4906,17 @@ class ThemeDecoder {
   /// Type: `outline`
   /// ```json
   /// {
-  ///   borderRadius: <BorderRadius>",
-  ///   borderSide: <BorderSide>",
-  ///   gapPadding: <double>"
+  ///   borderRadius: "<BorderRadius>",
+  ///   borderSide: "<BorderSide>",
+  ///   gapPadding: "<double>"
   /// }
   /// ```
   ///
   /// Type: `underline`
   /// ```json
   /// {
-  ///   borderRadius: <BorderRadius>",
-  ///   borderSide: <BorderSide>"
+  ///   borderRadius: "<BorderRadius>",
+  ///   borderSide: "<BorderSide>"
   /// }
   /// ```
   ///

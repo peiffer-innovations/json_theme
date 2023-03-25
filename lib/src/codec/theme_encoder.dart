@@ -1458,7 +1458,7 @@ class ThemeEncoder {
         'onTertiary': encodeColor(value.onTertiary),
         'onTertiaryContainer': encodeColor(value.onTertiaryContainer),
         'outline': encodeColor(value.outline),
-        'outlineVarient': encodeColor(value.outlineVariant),
+        'outlineVariant': encodeColor(value.outlineVariant),
         'primary': encodeColor(value.primary),
         'primaryContainer': encodeColor(value.primaryContainer),
         'secondary': encodeColor(value.secondary),

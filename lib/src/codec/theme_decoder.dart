@@ -144,7 +144,7 @@ class ThemeDecoder {
       result = value;
     } else {
       _checkSupported(
-        'Alignment',
+        'AlignmentDirectional',
         [
           'bottomCenter',
           'bottomEnd',
@@ -196,6 +196,122 @@ class ThemeDecoder {
         }
       }
     }
+    return result;
+  }
+
+  /// Decodes the given [value] to an [AlignmentGeometry].  The supported
+  /// values are:
+  ///  * `bottomCenter`
+  ///  * `bottomEnd`
+  ///  * `bottomLeft`
+  ///  * `bottomRight`
+  ///  * `bottomStart`
+  ///  * `center`
+  ///  * `centerEnd`
+  ///  * `centerLeft`
+  ///  * `centerRight`
+  ///  * `centerStart`
+  ///  * `topCenter`
+  ///  * `topEnd`
+  ///  * `topLeft`
+  ///  * `topRight`
+  ///  * `topStart`
+  static AlignmentGeometry? decodeAlignmentGeometry(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    AlignmentGeometry? result;
+
+    if (value is AlignmentGeometry) {
+      result = value;
+    } else if (value is Map) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/alignment',
+        value: value,
+        validate: validate,
+      ));
+
+      result = Alignment(
+        JsonClass.parseDouble(value['x']) ?? 0.0,
+        JsonClass.parseDouble(value['y']) ?? 0.0,
+      );
+    } else if (value != null) {
+      _checkSupported(
+        'Alignment',
+        [
+          'bottomCenter',
+          'bottomEnd',
+          'bottomLeft',
+          'bottomRight',
+          'bottomStart',
+          'center',
+          'centerEnd',
+          'centerLeft',
+          'centerRight',
+          'centerStart',
+          'topCenter',
+          'topEnd',
+          'topLeft',
+          'topRight',
+          'topStart',
+        ],
+        value,
+      );
+
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/alignment_geometry',
+        value: value,
+        validate: validate,
+      ));
+      switch (value) {
+        case 'bottomCenter':
+          result = Alignment.bottomCenter;
+          break;
+        case 'bottomEnd':
+          result = AlignmentDirectional.bottomEnd;
+          break;
+        case 'bottomLeft':
+          result = Alignment.bottomLeft;
+          break;
+        case 'bottomRight':
+          result = Alignment.bottomRight;
+          break;
+        case 'bottomStart':
+          result = AlignmentDirectional.bottomStart;
+          break;
+        case 'center':
+          result = AlignmentDirectional.center;
+          break;
+        case 'centerEnd':
+          result = AlignmentDirectional.centerEnd;
+          break;
+        case 'centerLeft':
+          result = Alignment.centerLeft;
+          break;
+        case 'centerRight':
+          result = Alignment.centerRight;
+          break;
+        case 'centerStart':
+          result = AlignmentDirectional.centerStart;
+          break;
+        case 'topCenter':
+          result = AlignmentDirectional.topCenter;
+          break;
+        case 'topEnd':
+          result = AlignmentDirectional.topEnd;
+          break;
+        case 'topLeft':
+          result = Alignment.topLeft;
+          break;
+        case 'topRight':
+          result = Alignment.topRight;
+          break;
+        case 'topStart':
+          result = AlignmentDirectional.topStart;
+          break;
+      }
+    }
+
     return result;
   }
 

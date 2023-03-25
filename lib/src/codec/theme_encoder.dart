@@ -120,6 +120,28 @@ class ThemeEncoder {
     return result;
   }
 
+  /// Encodes the given [value] to a [String].  This delegates to either
+  /// [encodeAlignment] or [encodeAlignmentDirectional]
+  static dynamic encodeAlignmentGeometry(
+    AlignmentGeometry? value, {
+    bool validate = true,
+  }) {
+    dynamic result;
+
+    if (value != null) {
+      if (value is AlignmentDirectional) {
+        result = encodeAlignmentDirectional(value);
+      } else if (value is Alignment) {
+        result = encodeAlignment(value);
+      } else {
+        throw Exception(
+          'Unknown type of AlignmentGeometry encountered: ${value.runtimeType}.',
+        );
+      }
+    }
+    return result;
+  }
+
   /// Encodes the given [value] to a [String].  Supported values are:
   /// * `glow`
   /// * `stretch`
@@ -1049,7 +1071,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'alignment': encodeAlignment(value.alignment as Alignment?),
+        'alignment': encodeAlignmentGeometry(value.alignment),
         'animationDuration': value.animationDuration?.inMilliseconds,
         'backgroundColor': encodeMaterialStatePropertyColor(
           value.backgroundColor,
@@ -1698,7 +1720,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'alignment': encodeAlignment(value.alignment as Alignment?),
+        'alignment': encodeAlignmentGeometry(value.alignment),
         'centerSlice': encodeRect(value.centerSlice),
         'filterQuality': encodeFilterQuality(value.filterQuality),
         'fit': encodeBoxFit(value.fit),
@@ -1769,7 +1791,7 @@ class ThemeEncoder {
         'actionsPadding': encodeEdgeInsetsGeometry(
           value.actionsPadding as EdgeInsets?,
         ),
-        'alignment': encodeAlignment(value.alignment as Alignment?),
+        'alignment': encodeAlignmentGeometry(value.alignment),
         'backgroundColor': encodeColor(value.backgroundColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
         'elevation': value.elevation,
@@ -1962,9 +1984,7 @@ class ThemeEncoder {
         'collapsedIconColor': encodeColor(value.collapsedIconColor),
         'collapsedShape': encodeShapeBorder(value.collapsedShape),
         'collapsedTextColor': encodeColor(value.collapsedTextColor),
-        'expandedAlignment': encodeAlignment(
-          value.expandedAlignment as Alignment?,
-        ),
+        'expandedAlignment': encodeAlignmentGeometry(value.expandedAlignment),
         'iconColor': encodeColor(value.iconColor),
         'shape': encodeShapeBorder(value.shape),
         'textColor': encodeColor(value.textColor),
@@ -2466,12 +2486,12 @@ class ThemeEncoder {
     if (value != null) {
       if (value is LinearGradient) {
         result = {
-          'begin': encodeAlignment(value.begin as Alignment?),
+          'begin': encodeAlignmentGeometry(value.begin),
           'colors': _encodeList<String?>(
             value.colors,
             (value) => encodeColor(value),
           ),
-          'end': encodeAlignment(value.end as Alignment?),
+          'end': encodeAlignmentGeometry(value.end),
           'stops': value.stops,
           'tileMode': encodeTileMode(value.tileMode),
           'transform': encodeGradientTransform(value.transform),
@@ -2479,12 +2499,12 @@ class ThemeEncoder {
         };
       } else if (value is RadialGradient) {
         result = {
-          'center': encodeAlignment(value.center as Alignment?),
+          'center': encodeAlignmentGeometry(value.center),
           'colors': _encodeList<String?>(
             value.colors,
             (value) => encodeColor(value),
           ),
-          'focal': encodeAlignment(value.focal as Alignment?),
+          'focal': encodeAlignmentGeometry(value.focal),
           'focalRadius': value.focalRadius,
           'radius': value.radius,
           'stops': value.stops,
@@ -2494,7 +2514,7 @@ class ThemeEncoder {
         };
       } else if (value is SweepGradient) {
         result = {
-          'center': encodeAlignment(value.center as Alignment?),
+          'center': encodeAlignmentGeometry(value.center),
           'colors': _encodeList<String?>(
             value.colors,
             (value) => encodeColor(value),
@@ -3872,7 +3892,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'alignment': encodeAlignment(value.alignment as Alignment?),
+        'alignment': encodeAlignmentGeometry(value.alignment),
         'backgroundColor': encodeMaterialStatePropertyColor(
           value.backgroundColor,
         ),

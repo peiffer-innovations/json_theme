@@ -3,6 +3,7 @@ import 'all.dart';
 class Schemas {
   static final all = <String, Map<String, dynamic>>{
     AlignmentDirectionalSchema.id: AlignmentDirectionalSchema.schema,
+    AlignmentGeometrySchema.id: AlignmentGeometrySchema.schema,
     AlignmentSchema.id: AlignmentSchema.schema,
     AndroidOverscrollIndicatorSchema.id:
         AndroidOverscrollIndicatorSchema.schema,

@@ -1,3 +1,8 @@
+## [5.0.2+1] - March 25th, 2023
+
+* Added encoders / decoders for `AlignmentGeometry`
+* Fixed typo in encodeColorScheme for Outline Variant (thanks `sarbagya-acme`).
+
 ## [5.0.1+2] - March 21, 2023
 
 * Automated dependency updates

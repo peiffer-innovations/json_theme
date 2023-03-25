@@ -22,6 +22,10 @@ This provides two main classes.
 
 The decodes utilize a JSON Schema validator to ensure the JSON is well formed.  This validation is enabled by default in debug mode and disabled in release mode for performance reasons.  Even in development mode, you can disable the validation by setting the optional `validate` parameter to `false`.
 
+**Important Note**
+
+Because this library allows for icons to be dynamically referenced, Flutter cannot tree shake icons because it has no way of knowing what icons may or may not be referenced.  If you include this library, then you will need to add the `--no-tree-shake-icons` flag to your Flutter build or you will get an error stating that Flutter cannot tree shake the icons.
+
 
 # Live Example
 

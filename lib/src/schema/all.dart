@@ -73,6 +73,7 @@ export 'schemas/enums/visual_density_schema.dart';
 export 'schemas/enums/wrap_alignment_schema.dart';
 export 'schemas/enums/wrap_cross_alignment_schema.dart';
 //
+export 'schemas/objects/alignment_geometry_schema.dart';
 export 'schemas/objects/alignment_schema.dart';
 export 'schemas/objects/app_bar_theme_schema.dart';
 export 'schemas/objects/border_radius_schema.dart';

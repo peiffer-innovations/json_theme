@@ -221,6 +221,186 @@ void main() {
     );
   });
 
+  test('AlignmentGeometry', () {
+    expect(ThemeDecoder.decodeAlignmentGeometry(null), null);
+    expect(ThemeEncoder.encodeAlignmentGeometry(null), null);
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry(
+        Alignment.bottomCenter,
+      ),
+      Alignment.bottomCenter,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry(
+        {
+          'x': 0.2,
+          'y': 0.4,
+        },
+      ),
+      const Alignment(0.2, 0.4),
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(
+        const Alignment(0.2, 0.4),
+      ),
+      {
+        'x': 0.2,
+        'y': 0.4,
+      },
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('bottomCenter'),
+      Alignment.bottomCenter,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('bottomLeft'),
+      Alignment.bottomLeft,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('bottomRight'),
+      Alignment.bottomRight,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('center'),
+      Alignment.center,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('centerLeft'),
+      Alignment.centerLeft,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('centerRight'),
+      Alignment.centerRight,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('topCenter'),
+      Alignment.topCenter,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('topLeft'),
+      Alignment.topLeft,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('topRight'),
+      Alignment.topRight,
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.bottomCenter),
+      'bottomCenter',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.bottomLeft),
+      'bottomLeft',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.bottomRight),
+      'bottomRight',
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.centerLeft),
+      'centerLeft',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.centerRight),
+      'centerRight',
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.topCenter),
+      'topCenter',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.topLeft),
+      'topLeft',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(Alignment.topRight),
+      'topRight',
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry(
+        AlignmentDirectional.bottomCenter,
+      ),
+      AlignmentDirectional.bottomCenter,
+    );
+
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('bottomEnd'),
+      AlignmentDirectional.bottomEnd,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('bottomStart'),
+      AlignmentDirectional.bottomStart,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('centerEnd'),
+      AlignmentDirectional.centerEnd,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('centerStart'),
+      AlignmentDirectional.centerStart,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('topEnd'),
+      AlignmentDirectional.topEnd,
+    );
+    expect(
+      ThemeDecoder.decodeAlignmentGeometry('topStart'),
+      AlignmentDirectional.topStart,
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.bottomCenter),
+      'bottomCenter',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.bottomEnd),
+      'bottomEnd',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.bottomStart),
+      'bottomStart',
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.centerEnd),
+      'centerEnd',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.centerStart),
+      'centerStart',
+    );
+
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.topCenter),
+      'topCenter',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.topEnd),
+      'topEnd',
+    );
+    expect(
+      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.topStart),
+      'topStart',
+    );
+  });
+
   test('AndroidOverscrollIndicator', () {
     expect(ThemeDecoder.decodeAndroidOverscrollIndicator(null), null);
     expect(ThemeEncoder.encodeAndroidOverscrollIndicator(null), null);

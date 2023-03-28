@@ -1,3 +1,8 @@
+## [5.0.2+2] - March 28, 2023
+
+* Automated dependency updates
+
+
 ## [5.0.2+1] - March 25th, 2023
 
 * Added encoders / decoders for `AlignmentGeometry`
@@ -488,6 +493,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

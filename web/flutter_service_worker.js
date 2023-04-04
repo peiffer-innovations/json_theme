@@ -10,7 +10,7 @@ const RESOURCES = {
 "canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
 "canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"version.json": "97f26092bf154d1f57e56668cef82ecb",
+"version.json": "87490cf111baf62bd87576ed4a49907d",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "assets/AssetManifest.json": "ddc8a9e051399846ede99d3b6451ccc1",
 "assets/assets/themes/default.json": "99914b932bd37a50b983c5e7c90ae93b",
@@ -22,8 +22,8 @@ const RESOURCES = {
 "assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
 "assets/FontManifest.json": "731f2bd9f372174a666c49058eb30350",
 "assets/NOTICES": "83fb8c7e776f9c8593e9870781f414ea",
-"index.html": "b76ccb24119a3071d8008801f1a34807",
-"/": "b76ccb24119a3071d8008801f1a34807",
+"index.html": "a8c08b4700328905a1de3ed56d1ce286",
+"/": "a8c08b4700328905a1de3ed56d1ce286",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
 };

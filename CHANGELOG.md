@@ -1,3 +1,8 @@
+## [5.0.2+5] - April 25, 2023
+
+* Automated dependency updates
+
+
 ## [5.0.2+4] - April 11, 2023
 
 * Automated dependency updates
@@ -503,6 +508,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

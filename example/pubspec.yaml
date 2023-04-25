@@ -1,7 +1,7 @@
 name: 'example'
 description: 'Example application for the JSON Theme'
 publish_to: 'none'
-version: '1.0.0+32'
+version: '1.0.0+33'
 
 environment: 
   sdk: '>=2.19.0 <4.0.0'
@@ -9,9 +9,9 @@ environment:
 dependencies: 
   flutter: 
     sdk: 'flutter'
-  form_validation: '^2.2.1+4'
+  form_validation: '^2.2.1+5'
   google_fonts: '^4.0.3'
-  intl: '^0.18.0'
+  intl: '^0.18.1'
   json_theme: 
     path: '../'
   meta: '^1.8.0'

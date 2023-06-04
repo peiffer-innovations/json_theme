@@ -2412,7 +2412,8 @@ void main() {
       dataRowColor: MaterialStateProperty.all(
         const Color(0xff555555),
       ),
-      dataRowHeight: 1.0,
+      dataRowMaxHeight: 1.0,
+      dataRowMinHeight: 1.0,
       dataTextStyle: const TextStyle(),
       decoration: const BoxDecoration(color: _kColor),
       dividerThickness: 1.0,
@@ -2435,7 +2436,8 @@ void main() {
         'checkboxHorizontalMargin': 24.0,
         'columnSpacing': 1.0,
         'dataRowColor': _materializeState('#ff555555'),
-        'dataRowHeight': 1.0,
+        'dataRowMaxHeight': 1.0,
+        'dataRowMinHeight': 1.0,
         'dataTextStyle': {
           'inherit': true,
         },
@@ -2464,7 +2466,8 @@ void main() {
         result = first.columnSpacing == second.columnSpacing &&
             first.dataRowColor?.resolve({}) ==
                 second.dataRowColor?.resolve({}) &&
-            first.dataRowHeight == second.dataRowHeight &&
+            first.dataRowMaxHeight == second.dataRowMaxHeight &&
+            first.dataRowMinHeight == second.dataRowMinHeight &&
             first.dataTextStyle == second.dataTextStyle &&
             first.dividerThickness == second.dividerThickness &&
             first.headingRowColor?.resolve({}) ==
@@ -10315,7 +10318,8 @@ void main() {
         dataRowColor: MaterialStateProperty.all(
           const Color(0xff555555),
         ),
-        dataRowHeight: 1.0,
+        dataRowMaxHeight: 1.0,
+        dataRowMinHeight: 1.0,
         dataTextStyle: const TextStyle(),
         dividerThickness: 1.0,
         headingRowColor: MaterialStateProperty.all(
@@ -10601,7 +10605,8 @@ void main() {
           'scrolledUnder': '#ff555555',
           'selected': '#ff555555'
         },
-        'dataRowHeight': 1.0,
+        'dataRowMaxHeight': 1.0,
+        'dataRowMinHeight': 1.0,
         'dataTextStyle': {'inherit': true},
         'dividerThickness': 1.0,
         'headingRowColor': {

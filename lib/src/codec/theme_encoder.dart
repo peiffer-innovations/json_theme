@@ -1637,7 +1637,8 @@ class ThemeEncoder {
   ///   "checkboxHorizontalMargin": "<double>",
   ///   "columnSpacing": "<double>",
   ///   "dataRowColor": "<MaterialStateProperty<Color>>",
-  ///   "dataRowHeight": "<double>",
+  ///   "dataRowMaxHeight": "<double>",
+  ///   "dataRowMinHeight": "<double>",
   ///   "dataTextStyle": "<TextStyle,
   ///   "decoration": "<BoxDecoration>",
   ///   "dividerThickness": "<double>",
@@ -1666,7 +1667,8 @@ class ThemeEncoder {
         'dataRowColor': encodeMaterialStatePropertyColor(
           value.dataRowColor,
         ),
-        'dataRowHeight': value.dataRowHeight,
+        'dataRowMaxHeight': value.dataRowMaxHeight,
+        'dataRowMinHeight': value.dataRowMinHeight,
         'dataTextStyle': encodeTextStyle(
           value.dataTextStyle,
         ),

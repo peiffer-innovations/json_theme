@@ -3025,7 +3025,8 @@ class ThemeDecoder {
   ///   "checkboxHorizontalMargin": "<double>",
   ///   "columnSpacing": "<double>",
   ///   "dataRowColor": "<MaterialStateProperty<Color>>",
-  ///   "dataRowHeight": "<double>",
+  ///   "dataRowMaxHeight": "<double>",
+  ///   "dataRowMinHeight": "<double>",
   ///   "dataTextStyle": "<TextStyle,
   ///   "decoration": "<BoxDecoration>",
   ///   "dividerThickness": "<double>",
@@ -3070,8 +3071,11 @@ class ThemeDecoder {
           value['dataRowColor'],
           validate: false,
         ),
-        dataRowHeight: JsonClass.parseDouble(
-          value['dataRowHeight'],
+        dataRowMaxHeight: JsonClass.parseDouble(
+          value['dataRowMaxHeight'],
+        ),
+        dataRowMinHeight: JsonClass.parseDouble(
+          value['dataRowMinHeight'],
         ),
         dataTextStyle: decodeTextStyle(
           value['dataTextStyle'],
@@ -13255,8 +13259,7 @@ class ThemeDecoder {
     Iterable<dynamic>? list,
     T Function(
       dynamic value,
-    )
-        decoder,
+    ) decoder,
   ) {
     List<T>? result;
 

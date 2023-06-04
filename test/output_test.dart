@@ -17,7 +17,7 @@ void main() {
     for (var schema in Schemas.all.values) {
       for (var i = 0; i < 3; i++) {
         try {
-          final id = schema['\$id'];
+          final id = schema['\$id'].toString();
           final fileName = id.split('/').last;
 
           final file = File('${output.path}/$fileName');

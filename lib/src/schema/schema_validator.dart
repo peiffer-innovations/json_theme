@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
-import 'package:json_schema2/json_schema2.dart';
+import 'package:json_schema/json_schema.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
 /// Schema validator that can validate the JSON Theme objects while also being
@@ -75,24 +75,23 @@ class SchemaValidator {
       schemaId += '.json';
     }
     var result = true;
-    RefProvider? refProvider;
-    refProvider = (String ref) {
-      final schema = SchemaCache().getSchema(ref);
-      if (schema == null) {
-        throw Exception('Unable to find schema: [$ref].');
-      }
+    final refProvider = RefProvider(
+      (ref) {
+        final schema = SchemaCache().getSchema(ref);
+        if (schema == null) {
+          throw Exception('Unable to find schema: [$ref].');
+        }
 
-      return JsonSchema.createSchema(
-        schema,
-        refProvider: refProvider,
-      );
-    };
+        return schema;
+      },
+      true,
+    );
 
     final schemaData = SchemaCache().getSchema(schemaId);
     if (schemaData == null) {
       throw Exception('Unable to locate schema: [$schemaId].');
     }
-    final jsonSchema = JsonSchema.createSchema(
+    final jsonSchema = JsonSchema.create(
       schemaData,
       refProvider: refProvider,
     );
@@ -105,12 +104,12 @@ class SchemaValidator {
       removed = {};
     }
 
-    final errors = jsonSchema.validateWithErrors(removed);
-    if (errors.isNotEmpty == true) {
+    final vResult = jsonSchema.validate(removed);
+    if (vResult.errors.isNotEmpty == true) {
       result = false;
       var errorStr =
           'Value: ${json.encode(value)}\n\nSchema Error: $schemaId\n';
-      for (var error in errors) {
+      for (var error in vResult.errors) {
         errorStr += ' * [${error.schemaPath}]: ${error.message}\n';
       }
 

@@ -1,3 +1,8 @@
+## [6.0.0] - June 4th, 2023
+
+* Switched from [json_schema2] to [json_schema] now that it supports Null Safety.
+
+
 ## [5.0.2+6] - May 2, 2023
 
 * Automated dependency updates

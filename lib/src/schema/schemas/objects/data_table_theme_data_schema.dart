@@ -16,7 +16,8 @@ class DataTableThemeDataSchema {
       'columnSpacing': SchemaHelper.numberSchema,
       'dataRowColor':
           SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
-      'dataRowHeight': SchemaHelper.numberSchema,
+      'dataRowMaxHeight': SchemaHelper.numberSchema,
+      'dataRowMinHeight': SchemaHelper.numberSchema,
       'dataTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
       'dividerThickness': SchemaHelper.numberSchema,

@@ -1,6 +1,4 @@
 {
-  "backgroundColor": "#f5f5f5",
-  "buttonColor": "#b71c1c",
   "buttonTheme": {
     "buttonColor": "#b71c1c",
     "textTheme": "primary"
@@ -21,7 +19,6 @@
       "elevation": 20.0
     }
   },
-  "errorColor": "#880e4f",
   "fontFamily": "metal",
   "iconTheme": {
     "color": "#37474f"
@@ -34,7 +31,5 @@
       "color": "#880e4f"
     }
   },
-  "primaryColor": "#b71c1c",
-  "primaryColorBrightness": "dark",
-  "toggleableActiveColor": "#b71c1c"
+  "primaryColor": "#b71c1c"
 }

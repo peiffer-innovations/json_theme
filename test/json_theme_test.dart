@@ -529,6 +529,52 @@ void main() {
     expect(ThemeEncoder.encodeAxis(Axis.vertical), 'vertical');
   });
 
+  test('BadgeThemeData', () {
+    expect(ThemeDecoder.decodeBadgeThemeData(null), null);
+    expect(ThemeEncoder.encodeBadgeThemeData(null), null);
+
+    final entry = const BadgeThemeData(
+      alignment: Alignment.bottomCenter,
+      backgroundColor: _kColor,
+      largeSize: 20.0,
+      offset: Offset(10.0, 20.0),
+      padding: EdgeInsets.all(16.0),
+      smallSize: 10.0,
+      textColor: _kColor,
+      textStyle: TextStyle(
+        fontWeight: FontWeight.w400,
+      ),
+    );
+
+    expect(
+      ThemeDecoder.decodeBadgeThemeData(entry),
+      entry,
+    );
+
+    final encoded = ThemeEncoder.encodeBadgeThemeData(entry);
+
+    expect(encoded, {
+      'alignment': 'bottomCenter',
+      'backgroundColor': _kColorStr,
+      'largeSize': 20.0,
+      'offset': {
+        'dx': 10.0,
+        'dy': 20.0,
+      },
+      'padding': {
+        'bottom': 16.0,
+        'left': 16.0,
+        'right': 16.0,
+        'top': 16.0,
+      },
+      'smallSize': 10.0,
+      'textColor': _kColorStr,
+      'textStyle': {
+        'fontWeight': 'w400',
+        'inherit': true,
+      }
+    });
+  });
   test('BlendMode', () {
     expect(ThemeDecoder.decodeBlendMode(null), null);
     expect(ThemeEncoder.encodeBlendMode(null), null);
@@ -710,6 +756,8 @@ void main() {
       color: _kColor,
       elevation: 8.0,
       height: 20.0,
+      padding: EdgeInsets.all(16.0),
+      shadowColor: _kColor,
       shape: CircularNotchedRectangle(),
       surfaceTintColor: _kColor,
     );
@@ -723,6 +771,13 @@ void main() {
       'color': _kColorStr,
       'elevation': 8.0,
       'height': 20.0,
+      'padding': {
+        'bottom': 16.0,
+        'left': 16.0,
+        'right': 16.0,
+        'top': 16.0,
+      },
+      'shadowColor': _kColorStr,
       'shape': 'circular',
       'surfaceTintColor': _kColorStr,
     });
@@ -882,13 +937,17 @@ void main() {
       backgroundColor: Color(0xff111111),
       clipBehavior: Clip.antiAlias,
       constraints: BoxConstraints(maxHeight: 40.0),
+      dragHandleColor: _kColor,
+      dragHandleSize: Size(20.0, 2.0),
       elevation: 12.0,
       modalBackgroundColor: Color(0xff222222),
       modalBarrierColor: Color(0xff333333),
       modalElevation: 18.0,
+      shadowColor: _kColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16.0)),
       ),
+      showDragHandle: true,
       surfaceTintColor: _kColor,
     );
 
@@ -907,10 +966,13 @@ void main() {
           'minHeight': 0.0,
           'minWidth': 0.0,
         },
+        'dragHandleColor': _kColorStr,
+        'dragHandleSize': {'height': 2.0, 'width': 20.0},
         'elevation': 12.0,
         'modalBackgroundColor': '#ff222222',
         'modalBarrierColor': '#ff333333',
         'modalElevation': 18.0,
+        'shadowColor': _kColorStr,
         'shape': {
           'borderRadius': {
             'bottomLeft': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
@@ -927,13 +989,14 @@ void main() {
           },
           'type': 'rounded'
         },
+        'showDragHandle': true,
         'surfaceTintColor': _kColorStr,
       },
     );
 
     expect(
-      decoded,
-      entry,
+      ThemeEncoder.encodeBottomSheetThemeData(decoded),
+      ThemeEncoder.encodeBottomSheetThemeData(entry),
     );
   });
 
@@ -2277,6 +2340,7 @@ void main() {
     expect(ThemeEncoder.encodeCupertinoThemeData(null), null);
 
     final entry = const CupertinoThemeData(
+      applyThemeToAll: true,
       barBackgroundColor: Color(0xff111111),
       brightness: Brightness.light,
       primaryColor: Color(0xff222222),
@@ -2301,6 +2365,7 @@ void main() {
     final decoded = ThemeDecoder.decodeCupertinoThemeData(encoded)!;
 
     expect(encoded, {
+      'applyThemeToAll': true,
       'barBackgroundColor': '#ff111111',
       'brightness': 'light',
       'primaryColor': '#ff222222',
@@ -2402,6 +2467,23 @@ void main() {
     );
   });
 
+  test('DatePickerThemeData', () {
+    expect(ThemeDecoder.decodeDatePickerThemeData(null), null);
+    expect(ThemeEncoder.encodeDatePickerThemeData(null), null);
+
+    final entry = const DatePickerThemeData(
+      backgroundColor: _kColor,
+    );
+
+    expect(ThemeDecoder.decodeDatePickerThemeData(entry), entry);
+
+    final encoded = ThemeEncoder.encodeDatePickerThemeData(entry);
+
+    expect(encoded, {
+      'backgroundColor': _kColorStr,
+    });
+  });
+
   test('DataTableThemeData', () {
     expect(ThemeDecoder.decodeDataTableThemeData(null), null);
     expect(ThemeEncoder.encodeDataTableThemeData(null), null);
@@ -2412,11 +2494,14 @@ void main() {
       dataRowColor: MaterialStateProperty.all(
         const Color(0xff555555),
       ),
+      dataRowCursor: const MaterialStatePropertyAll(SystemMouseCursors.basic),
       dataRowMaxHeight: 1.0,
       dataRowMinHeight: 1.0,
       dataTextStyle: const TextStyle(),
       decoration: const BoxDecoration(color: _kColor),
       dividerThickness: 1.0,
+      headingCellCursor:
+          const MaterialStatePropertyAll(SystemMouseCursors.click),
       headingRowColor: MaterialStateProperty.all(
         const Color(0xff555555),
       ),
@@ -2436,6 +2521,17 @@ void main() {
         'checkboxHorizontalMargin': 24.0,
         'columnSpacing': 1.0,
         'dataRowColor': _materializeState('#ff555555'),
+        'dataRowCursor': {
+          'disabled': {'cursor': 'basic', 'type': 'system'},
+          'dragged': {'cursor': 'basic', 'type': 'system'},
+          'empty': {'cursor': 'basic', 'type': 'system'},
+          'error': {'cursor': 'basic', 'type': 'system'},
+          'focused': {'cursor': 'basic', 'type': 'system'},
+          'hovered': {'cursor': 'basic', 'type': 'system'},
+          'pressed': {'cursor': 'basic', 'type': 'system'},
+          'scrolledUnder': {'cursor': 'basic', 'type': 'system'},
+          'selected': {'cursor': 'basic', 'type': 'system'}
+        },
         'dataRowMaxHeight': 1.0,
         'dataRowMinHeight': 1.0,
         'dataTextStyle': {
@@ -2446,6 +2542,17 @@ void main() {
           'shape': 'rectangle',
         },
         'dividerThickness': 1.0,
+        'headingCellCursor': {
+          'disabled': {'cursor': 'click', 'type': 'system'},
+          'dragged': {'cursor': 'click', 'type': 'system'},
+          'empty': {'cursor': 'click', 'type': 'system'},
+          'error': {'cursor': 'click', 'type': 'system'},
+          'focused': {'cursor': 'click', 'type': 'system'},
+          'hovered': {'cursor': 'click', 'type': 'system'},
+          'pressed': {'cursor': 'click', 'type': 'system'},
+          'scrolledUnder': {'cursor': 'click', 'type': 'system'},
+          'selected': {'cursor': 'click', 'type': 'system'}
+        },
         'headingRowColor': _materializeState('#ff555555'),
         'headingRowHeight': 1.0,
         'headingTextStyle': {
@@ -2744,6 +2851,9 @@ void main() {
     final entry = const DrawerThemeData(
       backgroundColor: Color(0xff111111),
       elevation: 5,
+      endShape: CircleBorder(
+        side: BorderSide.none,
+      ),
       scrimColor: Color(0xff222222),
       shadowColor: _kColor,
       shape: CircleBorder(
@@ -2762,6 +2872,15 @@ void main() {
       {
         'backgroundColor': '#ff111111',
         'elevation': 5.0,
+        'endShape': {
+          'side': {
+            'color': '#ff000000',
+            'strokeAlign': -1.0,
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle'
+        },
         'scrimColor': '#ff222222',
         'shadowColor': _kColorStr,
         'shape': {
@@ -2778,6 +2897,14 @@ void main() {
     );
     expect(decoded, entry);
   });
+
+  test(
+    'DropdownMenuThemeData',
+    () {
+      expect(ThemeDecoder.decodeDropdownMenuThemeData(null), null);
+      expect(ThemeEncoder.encodeDropdownMenuThemeData(null), null);
+    },
+  );
 
   test('EdgeInsetsGeometry', () {
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(null), null);
@@ -4444,6 +4571,62 @@ void main() {
 
     expect(ThemeEncoder.encodeListTileStyle(ListTileStyle.drawer), 'drawer');
     expect(ThemeEncoder.encodeListTileStyle(ListTileStyle.list), 'list');
+  });
+
+  test('ListTileTitleAlignment', () {
+    expect(ThemeDecoder.decodeListTileTitleAlignment(null), null);
+    expect(ThemeEncoder.encodeListTileTitleAlignment(null), null);
+
+    expect(
+      ThemeDecoder.decodeListTileTitleAlignment(
+        ListTileTitleAlignment.bottom,
+      ),
+      ListTileTitleAlignment.bottom,
+    );
+
+    expect(
+      ThemeDecoder.decodeListTileTitleAlignment('bottom'),
+      ListTileTitleAlignment.bottom,
+    );
+    expect(
+      ThemeDecoder.decodeListTileTitleAlignment('center'),
+      ListTileTitleAlignment.center,
+    );
+    expect(
+      ThemeDecoder.decodeListTileTitleAlignment('threeLine'),
+      ListTileTitleAlignment.threeLine,
+    );
+    expect(
+      ThemeDecoder.decodeListTileTitleAlignment('titleHeight'),
+      ListTileTitleAlignment.titleHeight,
+    );
+    expect(
+      ThemeDecoder.decodeListTileTitleAlignment('top'),
+      ListTileTitleAlignment.top,
+    );
+
+    expect(
+      ThemeEncoder.encodeListTileTitleAlignment(ListTileTitleAlignment.bottom),
+      'bottom',
+    );
+    expect(
+      ThemeEncoder.encodeListTileTitleAlignment(ListTileTitleAlignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.encodeListTileTitleAlignment(
+          ListTileTitleAlignment.threeLine),
+      'threeLine',
+    );
+    expect(
+      ThemeEncoder.encodeListTileTitleAlignment(
+          ListTileTitleAlignment.titleHeight),
+      'titleHeight',
+    );
+    expect(
+      ThemeEncoder.encodeListTileTitleAlignment(ListTileTitleAlignment.top),
+      'top',
+    );
   });
 
   test('ListTileThemeData', () {
@@ -8054,6 +8237,205 @@ void main() {
     );
   });
 
+  test('SearchBarThemeData', () {
+    expect(ThemeDecoder.decodeSearchBarThemeData(null), null);
+    expect(ThemeEncoder.encodeSearchBarThemeData(null), null);
+
+    final entry = SearchBarThemeData(
+      backgroundColor: MaterialStateProperty.all(_kColor),
+      constraints: const BoxConstraints(
+        maxWidth: 200.0,
+        minWidth: 100.0,
+      ),
+      elevation: MaterialStateProperty.all(4.0),
+      hintStyle: MaterialStateProperty.all(_kTextStyle),
+      overlayColor: MaterialStateProperty.all(_kColor),
+      padding: MaterialStateProperty.all(const EdgeInsets.all(16.0)),
+      shadowColor: MaterialStateProperty.all(_kColor),
+      textStyle: MaterialStateProperty.all(_kTextStyle),
+    );
+
+    expect(
+      ThemeDecoder.decodeSearchBarThemeData(entry),
+      entry,
+    );
+
+    final encoded = ThemeEncoder.encodeSearchBarThemeData(entry);
+
+    expect(
+      encoded,
+      {
+        'backgroundColor': {
+          'disabled': '#00123456',
+          'dragged': '#00123456',
+          'empty': '#00123456',
+          'error': '#00123456',
+          'focused': '#00123456',
+          'hovered': '#00123456',
+          'pressed': '#00123456',
+          'scrolledUnder': '#00123456',
+          'selected': '#00123456'
+        },
+        'constraints': {'maxWidth': 200.0, 'minHeight': 0.0, 'minWidth': 100.0},
+        'elevation': {
+          'disabled': 4.0,
+          'dragged': 4.0,
+          'empty': 4.0,
+          'error': 4.0,
+          'focused': 4.0,
+          'hovered': 4.0,
+          'pressed': 4.0,
+          'scrolledUnder': 4.0,
+          'selected': 4.0
+        },
+        'hintStyle': {
+          'disabled': {'color': '#00123456', 'inherit': true},
+          'dragged': {'color': '#00123456', 'inherit': true},
+          'empty': {'color': '#00123456', 'inherit': true},
+          'error': {'color': '#00123456', 'inherit': true},
+          'focused': {'color': '#00123456', 'inherit': true},
+          'hovered': {'color': '#00123456', 'inherit': true},
+          'pressed': {'color': '#00123456', 'inherit': true},
+          'scrolledUnder': {'color': '#00123456', 'inherit': true},
+          'selected': {'color': '#00123456', 'inherit': true}
+        },
+        'overlayColor': {
+          'disabled': '#00123456',
+          'dragged': '#00123456',
+          'empty': '#00123456',
+          'error': '#00123456',
+          'focused': '#00123456',
+          'hovered': '#00123456',
+          'pressed': '#00123456',
+          'scrolledUnder': '#00123456',
+          'selected': '#00123456'
+        },
+        'padding': {
+          'disabled': {
+            'bottom': 16.0,
+            'left': 16.0,
+            'right': 16.0,
+            'top': 16.0
+          },
+          'dragged': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+          'empty': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+          'error': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+          'focused': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+          'hovered': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+          'pressed': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+          'scrolledUnder': {
+            'bottom': 16.0,
+            'left': 16.0,
+            'right': 16.0,
+            'top': 16.0
+          },
+          'selected': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0}
+        },
+        'shadowColor': {
+          'disabled': '#00123456',
+          'dragged': '#00123456',
+          'empty': '#00123456',
+          'error': '#00123456',
+          'focused': '#00123456',
+          'hovered': '#00123456',
+          'pressed': '#00123456',
+          'scrolledUnder': '#00123456',
+          'selected': '#00123456'
+        },
+        'textStyle': {
+          'disabled': {'color': '#00123456', 'inherit': true},
+          'dragged': {'color': '#00123456', 'inherit': true},
+          'empty': {'color': '#00123456', 'inherit': true},
+          'error': {'color': '#00123456', 'inherit': true},
+          'focused': {'color': '#00123456', 'inherit': true},
+          'hovered': {'color': '#00123456', 'inherit': true},
+          'pressed': {'color': '#00123456', 'inherit': true},
+          'scrolledUnder': {'color': '#00123456', 'inherit': true},
+          'selected': {'color': '#00123456', 'inherit': true}
+        },
+      },
+    );
+  });
+
+  test('SearchViewThemeData', () {
+    expect(ThemeDecoder.decodeSearchViewThemeData(null), null);
+    expect(ThemeEncoder.encodeSearchViewThemeData(null), null);
+
+    final entry = const SearchViewThemeData(
+      backgroundColor: _kColor,
+      constraints: BoxConstraints(
+        maxWidth: 200.0,
+        minWidth: 100.0,
+      ),
+      dividerColor: _kColor,
+      elevation: 4.0,
+      headerHintStyle: _kTextStyle,
+      headerTextStyle: _kTextStyle,
+      surfaceTintColor: _kColor,
+    );
+
+    expect(ThemeDecoder.decodeSearchViewThemeData(entry), entry);
+
+    final encoded = ThemeEncoder.encodeSearchViewThemeData(entry);
+    final decoded = ThemeDecoder.decodeSearchViewThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'backgroundColor': '#00123456',
+        'constraints': {'maxWidth': 200.0, 'minHeight': 0.0, 'minWidth': 100.0},
+        'dividerColor': '#00123456',
+        'elevation': 4.0,
+        'headerHintStyle': {'color': '#00123456', 'inherit': true},
+        'headerTextStyle': {'color': '#00123456', 'inherit': true},
+        'surfaceTintColor': '#00123456'
+      },
+    );
+
+    expect(
+      decoded,
+      entry,
+    );
+  });
+
+  test('SegmentedButton', () {
+    expect(ThemeDecoder.decodeSegmentedButtonThemeData(null), null);
+    expect(ThemeEncoder.encodeSegmentedButtonThemeData(null), null);
+
+    final entry = const SegmentedButtonThemeData(
+      selectedIcon: Icon(Icons.abc),
+      style: ButtonStyle(enableFeedback: false),
+    );
+
+    final encoded = ThemeEncoder.encodeSegmentedButtonThemeData(entry);
+    final decoded = ThemeDecoder.decodeSegmentedButtonThemeData(encoded);
+
+    expect(
+      encoded,
+      {
+        'selectedIcon': {
+          'icon': {
+            'codePoint': 984246,
+            'fontFamily': 'MaterialIcons',
+            'matchTextDirection': false
+          }
+        },
+        'style': {
+          'enableFeedback': false,
+        },
+      },
+    );
+
+    expect(
+      entry.selectedIcon.toString(),
+      decoded?.selectedIcon.toString(),
+    );
+    expect(
+      entry.style,
+      decoded?.style,
+    );
+  });
+
   test('SemanticsTag', () {
     expect(ThemeDecoder.decodeSemanticsTag(null), null);
     expect(ThemeEncoder.encodeSemanticsTag(null), null);
@@ -8571,53 +8953,31 @@ void main() {
     final encoded = ThemeEncoder.encodeSnackBarThemeData(entry);
     final decoded = ThemeDecoder.decodeSnackBarThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'actionTextColor': '#ff111111',
-        'backgroundColor': '#ff222222',
-        'behavior': 'floating',
-        'contentTextStyle': {
-          'color': '#ff333333',
-          'inherit': true,
+    expect(encoded, {
+      'actionTextColor': '#ff111111',
+      'backgroundColor': '#ff222222',
+      'behavior': 'floating',
+      'contentTextStyle': {'color': '#ff333333', 'inherit': true},
+      'disabledActionTextColor': '#ff444444',
+      'elevation': 1.0,
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'type': 'only'
         },
-        'disabledActionTextColor': '#ff444444',
-        'elevation': 1.0,
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0
         },
-        'width': 12.0,
+        'type': 'rounded'
       },
-    );
+      'width': 12.0
+    });
 
     expect(
       decoded,
@@ -8771,41 +9131,52 @@ void main() {
         'hovered': {'type': 'defer'},
         'pressed': {'type': 'defer'},
         'scrolledUnder': {'type': 'defer'},
-        'selected': {'type': 'defer'},
+        'selected': {'type': 'defer'}
       },
       'overlayColor': {
-        'disabled': _kColorStr,
-        'dragged': _kColorStr,
-        'empty': _kColorStr,
-        'error': _kColorStr,
-        'focused': _kColorStr,
-        'hovered': _kColorStr,
-        'pressed': _kColorStr,
-        'scrolledUnder': _kColorStr,
-        'selected': _kColorStr,
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456'
       },
       'splashRadius': 20.0,
       'thumbColor': {
-        'disabled': _kColorStr,
-        'dragged': _kColorStr,
-        'empty': _kColorStr,
-        'error': _kColorStr,
-        'focused': _kColorStr,
-        'hovered': _kColorStr,
-        'pressed': _kColorStr,
-        'scrolledUnder': _kColorStr,
-        'selected': _kColorStr,
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456'
       },
       'trackColor': {
-        'disabled': _kColorStr,
-        'dragged': _kColorStr,
-        'empty': _kColorStr,
-        'error': _kColorStr,
-        'focused': _kColorStr,
-        'hovered': _kColorStr,
-        'pressed': _kColorStr,
-        'scrolledUnder': _kColorStr,
-        'selected': _kColorStr,
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456'
+      },
+      'trackOutlineColor': {
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456'
       },
     };
 
@@ -11461,7 +11832,9 @@ void main() {
     };
 
     expect(encoded, jsonMap);
-    expect(ThemeEncoder.encodeThemeData(decoded), jsonMap);
+
+    final reencoded = ThemeEncoder.encodeThemeData(decoded);
+    expect(reencoded, jsonMap);
   });
 
   test('TileMode', () {

@@ -1,3 +1,8 @@
+## [6.0.1] - June 16th, 2023
+
+* Switched from [json_schema] to [json_schema2] to support http 1.0.0.
+
+
 ## [6.0.0] - June 4th, 2023
 
 * Switched from [json_schema2] to [json_schema] now that it supports Null Safety.

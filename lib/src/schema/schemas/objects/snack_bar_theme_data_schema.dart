@@ -12,13 +12,20 @@ class SnackBarThemeDataSchema {
     'title': 'SnackBarThemeData',
     'type': 'object',
     'properties': {
+      'actionBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'actionOverflowThreshold': SchemaHelper.numberSchema,
       'actionTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'behavior': SchemaHelper.objectSchema(SnackBarBehaviorSchema.id),
+      'closeIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'contentTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'disabledActionBackgroundColor':
+          SchemaHelper.objectSchema(ColorSchema.id),
       'disabledActionTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'insetPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'showCloseIcon': SchemaHelper.boolSchema,
       'width': SchemaHelper.numberSchema,
     },
   };

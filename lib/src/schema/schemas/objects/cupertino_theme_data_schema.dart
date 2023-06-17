@@ -12,6 +12,7 @@ class CupertinoThemeDataSchema {
     'title': 'CupertinoThemeData',
     'type': 'object',
     'properties': {
+      'applyThemeToAll': SchemaHelper.boolSchema,
       'barBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'brightness': SchemaHelper.objectSchema(BrightnessSchema.id),
       'primaryColor': SchemaHelper.objectSchema(ColorSchema.id),

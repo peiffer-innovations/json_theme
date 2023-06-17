@@ -16,6 +16,7 @@ class DrawerThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'contentTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'endShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),

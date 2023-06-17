@@ -77,7 +77,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a [String].  The supported values are:
@@ -117,7 +117,7 @@ class ThemeEncoder {
         result = 'topStart';
       }
     }
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a [String].  This delegates to either
@@ -139,7 +139,7 @@ class ThemeEncoder {
         );
       }
     }
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a [String].  Supported values are:
@@ -162,7 +162,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -216,7 +216,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a [String].  Supported values are:
@@ -242,7 +242,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -264,7 +264,48 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to an JSON encoded map.  This provides the given
+  /// structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "backgroundColor": "<Color>",
+  ///   "largeSize": "<double>",
+  ///   "offset": "<Offset>",
+  ///   "padding": "<EdgeInsets>",
+  ///   "smallSize": "<double>",
+  ///   "textColor": "<Color>",
+  ///   "textStyle": "<TextStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeAlignmentGeometry]
+  ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeOffset]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeBadgeThemeData(BadgeThemeData? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'alignment': encodeAlignmentGeometry(value.alignment),
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'largeSize': value.largeSize,
+        'offset': encodeOffset(value.offset),
+        'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
+        'smallSize': value.smallSize,
+        'textColor': encodeColor(value.textColor),
+        'textStyle': encodeTextStyle(value.textStyle),
+      };
+    }
+
+    return _stripDynamicNull(result);
   }
 
   /// encodes the given [value] to an [BlendMode].  Supported values are:
@@ -420,7 +461,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   static String? encodeBlurStyle(BlurStyle? value) {
@@ -446,7 +487,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -476,7 +517,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -504,7 +545,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -528,7 +569,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -538,6 +579,8 @@ class ThemeEncoder {
   ///   "color": "<Color>",
   ///   "elevation": "<double>",
   ///   "height": "<double>",
+  ///   "padding": "<EdgeInsets>",
+  ///   "shadowColor": "<Color>",
   ///   "shape": "<NotchedShape>",
   ///   "surfaceTintColor": "<Color>"
   /// }
@@ -545,6 +588,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeNotchedShape]
   static Map<String, dynamic>? encodeBottomAppBarTheme(
     BottomAppBarTheme? value,
@@ -556,12 +600,14 @@ class ThemeEncoder {
         'color': encodeColor(value.color),
         'elevation': value.elevation,
         'height': value.height,
+        'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
+        'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeNotchedShape(value.shape),
         'surfaceTintColor': encodeColor(value.color),
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [BottomNavigationBarThemeData] to a JSON compatible map.
@@ -612,7 +658,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -643,7 +689,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -666,7 +712,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -676,11 +722,16 @@ class ThemeEncoder {
   ///   "backgroundColor": "<Color>",
   ///   "clipBehavior": "<Clip>",
   ///   "constraints": "<BoxConstraints>",
+  ///   "dragHandleColor": "<Color>",
+  ///   "dragHandleSize": "<Size>",
   ///   "elevation": "<double>",
   ///   "modalBackgroundColor": "<Color>",
   ///   "modalBarrierColor": "<Color>",
   ///   "modalElevation": "<double>",
-  ///   "shape": "<ShapeBorder>"
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "showDragHandle": "<bool>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -689,6 +740,7 @@ class ThemeEncoder {
   ///  * [encodeClip]
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
+  ///  * [encodeSize]
   static Map<String, dynamic>? encodeBottomSheetThemeData(
     BottomSheetThemeData? value,
   ) {
@@ -699,16 +751,20 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'clipBehavior': encodeClip(value.clipBehavior),
         'constraints': encodeBoxConstraints(value.constraints),
+        'dragHandleColor': encodeColor(value.dragHandleColor),
+        'dragHandleSize': encodeSize(value.dragHandleSize),
         'elevation': value.elevation,
         'modalBackgroundColor': encodeColor(value.modalBackgroundColor),
         'modalBarrierColor': encodeColor(value.modalBarrierColor),
         'modalElevation': value.modalElevation,
+        'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
+        'showDragHandle': value.showDragHandle,
         'surfaceTintColor': encodeColor(value.surfaceTintColor),
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON compatible map.  This produces a Map
@@ -738,7 +794,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON compatible map.  This produces a Map
@@ -767,7 +823,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON compatible map.  This produces a Map
@@ -816,7 +872,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -863,7 +919,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON compatible map.  This produces a Map
@@ -895,7 +951,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a [BoxShape].  Supported values are:
@@ -916,7 +972,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -940,7 +996,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -963,7 +1019,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -1009,7 +1065,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -1110,7 +1166,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1137,7 +1193,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1186,7 +1242,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1223,7 +1279,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [CheckboxThemeData] to a JSON representation.
@@ -1277,7 +1333,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -1345,7 +1401,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1376,7 +1432,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  This will always
@@ -1391,7 +1447,7 @@ class ThemeEncoder {
       result = '#$hex';
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1472,7 +1528,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1507,7 +1563,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1530,7 +1586,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1572,13 +1628,14 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
   ///
   /// ```json
   /// {
+  ///   "applyThemeToAll": "<bool>",
   ///   "barBackgroundColor": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "primaryColor": "<Color>",
@@ -1593,41 +1650,145 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeCupertinoTextThemeData]
   static Map<String, dynamic>? encodeCupertinoThemeData(
-    // Set as dynamic rather than CupertinoThemeData to be compatible with 1.22 and 1.24 where the type switches.
-    dynamic value,
-
-    // TODO: 1.24
-    // NoDefaultCupertinoThemeData value,
+    NoDefaultCupertinoThemeData? value,
   ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      final runtimeTypeStr = value.runtimeType.toString();
-      // In Flutter < 1.24, the type is: CupertinoThemeData or _NoDefaultCupertinoThemeData
-      // In Flutter >= 1.24, the type is: NoDefaultCupertinoThemeData
-      assert(runtimeTypeStr == 'CupertinoThemeData' ||
-          runtimeTypeStr == 'NoDefaultCupertinoThemeData' ||
-          runtimeTypeStr == '_NoDefaultCupertinoThemeData');
-
-      if (runtimeTypeStr == 'CupertinoThemeData' ||
-          runtimeTypeStr == 'NoDefaultCupertinoThemeData' ||
-          runtimeTypeStr == '_NoDefaultCupertinoThemeData') {
-        result = <String, dynamic>{
-          'barBackgroundColor': encodeColor(value.barBackgroundColor),
-          'brightness': encodeBrightness(value.brightness),
-          'primaryColor': encodeColor(value.primaryColor),
-          'primaryContrastingColor': encodeColor(value.primaryContrastingColor),
-          'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
-          'textTheme': encodeCupertinoTextThemeData(value.textTheme),
-        };
-      } else {
-        throw Exception(
-          'Unknown type passed in to [encodeCupertinoThemeData]: [$runtimeTypeStr]',
-        );
-      }
+      result = <String, dynamic>{
+        'applyThemeToAll': value.applyThemeToAll,
+        'barBackgroundColor': encodeColor(value.barBackgroundColor),
+        'brightness': encodeBrightness(value.brightness),
+        'primaryColor': encodeColor(value.primaryColor),
+        'primaryContrastingColor': encodeColor(value.primaryContrastingColor),
+        'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
+        'textTheme': encodeCupertinoTextThemeData(value.textTheme),
+      };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON representation.
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<Color>",
+  ///   "dayBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "dayForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "dayOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "dayStyle: "<TextStyle>",
+  ///   "elevation": "<double>",
+  ///   "headerBackgroundColor": "<Color>",
+  ///   "headerForegroundColor": "<Color>",
+  ///   "headerHeadlineStyle": "<TextStyle>",
+  ///   "headerHelpStyle": "<TextStyle>",
+  ///   "rangePickerBackgroundColor": "<Color>",
+  ///   "rangePickerElevation": "<double>",
+  ///   "rangePickerHeaderBackgroundColor": "<Color>",
+  ///   "rangePickerHeaderForegroundColor": "<Color>",
+  ///   "rangePickerHeaderHeadlineStyle": "<TextStyle>",
+  ///   "rangePickerHeaderHelpStyle": "<TextStyle>",
+  ///   "rangePickerShadowColor": "<Color>",
+  ///   "rangePickerShape": "<ShapeBorder>",
+  ///   "rangePickerSurfaceTintColor": "<Color>",
+  ///   "rangeSelectionBackgroundColor": "<Color>",
+  ///   "rangeSelectionOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "todayBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "todayBorder": "<ShapeBorder>",
+  ///   "todayForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "weekdayStyle": "<TextStyle>",
+  ///   "yearBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "yearForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "yearOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "yearStyle": "<TextStyle>",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderSide]
+  ///  * [encodeColor]
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeShapeBorder]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeDatePickerThemeData(
+    DatePickerThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'dayBackgroundColor': encodeMaterialStatePropertyColor(
+          value.dayBackgroundColor,
+        ),
+        'dayForegroundColor': encodeMaterialStatePropertyColor(
+          value.dayForegroundColor,
+        ),
+        'dayOverlayColor': encodeMaterialStatePropertyColor(
+          value.dayOverlayColor,
+        ),
+        'dayStyle': encodeTextStyle(value.dayStyle),
+        'elevation': value.elevation,
+        'headerBackgroundColor': encodeColor(value.headerBackgroundColor),
+        'headerForegroundColor': encodeColor(value.headerForegroundColor),
+        'headerHeadlineStyle': encodeTextStyle(value.headerHeadlineStyle),
+        'headerHelpStyle': encodeTextStyle(value.headerHelpStyle),
+        'rangePickerBackgroundColor': encodeColor(
+          value.rangePickerBackgroundColor,
+        ),
+        'rangePickerElevation': value.rangePickerElevation,
+        'rangePickerHeaderBackgroundColor': encodeColor(
+          value.rangePickerHeaderBackgroundColor,
+        ),
+        'rangePickerHeaderForegroundColor': encodeColor(
+          value.rangePickerHeaderForegroundColor,
+        ),
+        'rangePickerHeaderHeadlineStyle': encodeTextStyle(
+          value.rangePickerHeaderHeadlineStyle,
+        ),
+        'rangePickerHeaderHelpStyle': encodeTextStyle(
+          value.rangePickerHeaderHelpStyle,
+        ),
+        'rangePickerShadowColor': encodeColor(value.rangePickerShadowColor),
+        'rangePickerShape': encodeShapeBorder(value.rangePickerShape),
+        'rangePickerSurfaceTintColor': encodeColor(
+          value.rangePickerSurfaceTintColor,
+        ),
+        'rangeSelectionBackgroundColor': encodeColor(
+          value.rangeSelectionBackgroundColor,
+        ),
+        'rangeSelectionOverlayColor': encodeMaterialStatePropertyColor(
+          value.rangeSelectionOverlayColor,
+        ),
+        'shadowColor': encodeColor(value.shadowColor),
+        'shape': encodeShapeBorder(value.shape),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
+        'todayBackgroundColor': encodeMaterialStatePropertyColor(
+          value.todayBackgroundColor,
+        ),
+        'todayBorder': encodeBorderSide(value.todayBorder),
+        'todayForegroundColor': encodeMaterialStatePropertyColor(
+          value.todayForegroundColor,
+        ),
+        'weekdayStyle': encodeTextStyle(value.weekdayStyle),
+        'yearBackgroundColor': encodeMaterialStatePropertyColor(
+          value.yearBackgroundColor,
+        ),
+        'yearForegroundColor': encodeMaterialStatePropertyColor(
+          value.yearForegroundColor,
+        ),
+        'yearOverlayColor': encodeMaterialStatePropertyColor(
+          value.yearOverlayColor,
+        ),
+        'yearStyle': encodeTextStyle(value.yearStyle),
+      };
+    }
+
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1637,11 +1798,13 @@ class ThemeEncoder {
   ///   "checkboxHorizontalMargin": "<double>",
   ///   "columnSpacing": "<double>",
   ///   "dataRowColor": "<MaterialStateProperty<Color>>",
+  ///   "dataRowCursor": "<MaterialStateProperty<MouseCursor>",
   ///   "dataRowMaxHeight": "<double>",
   ///   "dataRowMinHeight": "<double>",
   ///   "dataTextStyle": "<TextStyle,
   ///   "decoration": "<BoxDecoration>",
   ///   "dividerThickness": "<double>",
+  ///   "headingCellCursor": "<MaterialStateProperty<MouseCursor>",
   ///   "headingRowColor": "<MaterialStateProperty<Color>>",
   ///   "headingRowHeight": "<double>",
   ///   "headingTextStyle": "<TextStyle>",
@@ -1657,7 +1820,8 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeDataTableThemeData(
-      DataTableThemeData? value) {
+    DataTableThemeData? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1666,6 +1830,9 @@ class ThemeEncoder {
         'columnSpacing': value.columnSpacing,
         'dataRowColor': encodeMaterialStatePropertyColor(
           value.dataRowColor,
+        ),
+        'dataRowCursor': encodeMaterialStatePropertyMouseCursor(
+          value.dataRowCursor,
         ),
         'dataRowMaxHeight': value.dataRowMaxHeight,
         'dataRowMinHeight': value.dataRowMinHeight,
@@ -1678,6 +1845,9 @@ class ThemeEncoder {
               : value.decoration as BoxDecoration,
         ),
         'dividerThickness': value.dividerThickness,
+        'headingCellCursor': encodeMaterialStatePropertyMouseCursor(
+          value.headingCellCursor,
+        ),
         'headingRowColor': encodeMaterialStatePropertyColor(
           value.headingRowColor,
         ),
@@ -1689,7 +1859,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1736,7 +1906,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1759,7 +1929,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1804,7 +1974,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -1834,7 +2004,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -1856,7 +2026,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible [Map].  The returned result
@@ -1866,6 +2036,7 @@ class ThemeEncoder {
   /// {
   ///   "backgroundColor": "<Color>",
   ///   "elevation": "<double>",
+  ///   "endShape": "<ShapeBorder>",
   ///   "scrimColor": "<Color>",
   ///   "shadowColor": "<Color>",
   ///   "shape": "<ShapeBorder>",
@@ -1887,6 +2058,7 @@ class ThemeEncoder {
       result = {
         'backgroundColor': encodeColor(value.backgroundColor),
         'elevation': value.elevation,
+        'endShape': encodeShapeBorder(value.endShape),
         'scrimColor': encodeColor(value.scrimColor),
         'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
@@ -1895,7 +2067,40 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON compatible [Map].  The returned result
+  /// will always have the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "menuStyle": "<MenuStyle>",
+  ///   "textStyle": "<TextStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeMenuStyle]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeDropdownMenuThemeData(
+    DropdownMenuThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'inputDecorationTheme': encodeInputDecorationTheme(
+          value.inputDecorationTheme,
+        ),
+        'menuStyle': encodeMenuStyle(value.menuStyle),
+        'textStyle': encodeTextStyle(value.textStyle),
+      };
+    }
+
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible [Map].  The returned result
@@ -1921,7 +2126,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -1945,7 +2150,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -1996,7 +2201,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to it's JSON form.
@@ -2020,7 +2225,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2052,7 +2257,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2074,7 +2279,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2092,7 +2297,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a String.  Supported values
@@ -2160,7 +2365,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -2237,7 +2442,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2257,7 +2462,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2286,7 +2491,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -2307,7 +2512,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2331,7 +2536,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2398,7 +2603,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON map value.
@@ -2420,7 +2625,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  This only
@@ -2531,7 +2736,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  This only
@@ -2558,7 +2763,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2585,7 +2790,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.
@@ -2622,10 +2827,10 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
-  /// Decodes the given [value] to an JSON map
+  /// encodes the given [value] to an JSON map
   ///
   /// ```json
   /// {
@@ -2646,7 +2851,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.
@@ -2671,7 +2876,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -2707,7 +2912,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to an JSON value.  This expects a specific
@@ -2776,7 +2981,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a String representation.  Supported values
@@ -2805,7 +3010,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   ///
@@ -2859,7 +3064,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -2955,7 +3160,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -2988,7 +3193,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3011,7 +3216,42 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `bottom`
+  ///  * `center`
+  ///  * `threeLine`
+  ///  * `titleHeight`
+  ///  * `top`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeListTileTitleAlignment(ListTileTitleAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case ListTileTitleAlignment.bottom:
+          result = 'bottom';
+          break;
+        case ListTileTitleAlignment.center:
+          result = 'center';
+          break;
+        case ListTileTitleAlignment.threeLine:
+          result = 'threeLine';
+          break;
+        case ListTileTitleAlignment.titleHeight:
+          result = 'titleHeight';
+          break;
+        case ListTileTitleAlignment.top:
+          result = 'top';
+          break;
+      }
+    }
+
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a  JSON representation.
@@ -3048,6 +3288,9 @@ class ThemeEncoder {
         'enableFeedback': value.enableFeedback,
         'horizontalTitleGap': value.horizontalTitleGap,
         'iconColor': encodeColor(value.iconColor),
+        'leadingAndTrailingTextStyle': encodeTextStyle(
+          value.leadingAndTrailingTextStyle,
+        ),
         'minLeadingWidth': value.minLeadingWidth,
         'minVerticalPadding': value.minVerticalPadding,
         'mouseCursor': encodeMaterialStatePropertyMouseCursor(
@@ -3056,14 +3299,18 @@ class ThemeEncoder {
         'selectedColor': encodeColor(value.selectedColor),
         'selectedTileColor': encodeColor(value.selectedTileColor),
         'shape': encodeShapeBorder(value.shape),
+        'subtitleTextStyle': encodeTextStyle(value.subtitleTextStyle),
         'style': encodeListTileStyle(value.style),
         'textColor': encodeColor(value.textColor),
         'tileColor': encodeColor(value.tileColor),
+        'titleTextAlignment': encodeListTileTitleAlignment(
+          value.titleAlignment,
+        ),
         'visualDensity': encodeVisualDensity(value.visualDensity),
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a  JSON representation.
@@ -3084,7 +3331,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3123,7 +3370,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3145,7 +3392,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -3187,7 +3434,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -3222,7 +3469,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3261,7 +3508,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3305,7 +3552,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3349,7 +3596,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3388,7 +3635,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3448,7 +3695,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3496,7 +3743,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3540,7 +3787,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3588,7 +3835,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3631,7 +3878,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a JSON representation.
@@ -3675,7 +3922,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3698,7 +3945,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -3733,7 +3980,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a [Matrix4]. This will encode the [value] into a 16
@@ -3784,7 +4031,7 @@ class ThemeEncoder {
       ];
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a [MaxLengthEnforcement].  Supported values are:
@@ -3810,7 +4057,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to an JSON map.
@@ -3834,7 +4081,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to an JSON map.
@@ -3858,7 +4105,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to an JSON map.
@@ -3916,7 +4163,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to an JSON map.
@@ -3938,7 +4185,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.  There will be a
@@ -4188,7 +4435,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -4239,7 +4486,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -4271,7 +4518,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -4300,7 +4547,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -4311,6 +4558,7 @@ class ThemeEncoder {
   ///   "elevation": "<double>",
   ///   "groupAlignment": "<double>",
   ///   "indicatorColor": "<Color>",
+  ///   "indicatorShape": "<ShapeBorder>",
   ///   "labelType": "<NavigationRailLabelType>",
   ///   "minExtendedWidth": "<double>",
   ///   "minWidth": "<double>",
@@ -4326,6 +4574,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeIconThemeData]
   ///  * [encodeNavigationRailLabelType]
+  ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeNavigationRailThemeData(
     NavigationRailThemeData? value,
@@ -4338,6 +4587,7 @@ class ThemeEncoder {
         'elevation': value.elevation,
         'groupAlignment': value.groupAlignment,
         'indicatorColor': encodeColor(value.indicatorColor),
+        'indicatorShape': encodeShapeBorder(value.indicatorShape),
         'labelType': encodeNavigationRailLabelType(value.labelType),
         'minExtendedWidth': value.minExtendedWidth,
         'minWidth': value.minWidth,
@@ -4353,7 +4603,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -4369,7 +4619,7 @@ class ThemeEncoder {
       result = 'circular';
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -4390,7 +4640,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [OrdinalSortKey] to a JSON representation.  This
@@ -4412,7 +4662,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The value structure
@@ -4508,7 +4758,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -4532,7 +4782,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a [String].  Supported values are:
@@ -4553,7 +4803,7 @@ class ThemeEncoder {
       result = 'zoom';
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation
@@ -4573,10 +4823,10 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      final builders = <String?, String?>{};
+      final builders = <String, String?>{};
       value.builders.forEach(
         (key, value) =>
-            builders[encodeTargetPlatform(key)] = encodePageTransitionsBuilder(
+            builders[encodeTargetPlatform(key)!] = encodePageTransitionsBuilder(
           value,
         ),
       );
@@ -4586,7 +4836,7 @@ class ThemeEncoder {
       };
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [PanAxis] to a string:
@@ -4617,7 +4867,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a String.  Supported values are:
@@ -4653,7 +4903,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [PopupMenuPosition] to a string:
@@ -4674,7 +4924,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a JSON representation.
@@ -4725,7 +4975,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a JSON representation.
@@ -4757,7 +5007,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [RadioThemeData] to a JSON representation.
@@ -4803,7 +5053,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible map.
@@ -4826,7 +5076,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.  This only supports
@@ -4860,7 +5110,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.  This only supports
@@ -4890,7 +5140,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -4913,7 +5163,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -4938,7 +5188,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -4966,7 +5216,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -4990,7 +5240,7 @@ class ThemeEncoder {
       result = {};
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -5051,7 +5301,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a String.  Supported values are:
@@ -5073,7 +5323,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a String.  Supported values are:
@@ -5104,7 +5354,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [ScrollbarThemeData] to the JSON representation.  This
@@ -5160,7 +5410,135 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to the JSON representation  This provies the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "hintStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "padding": "<MaterialStateProperty<EdgeInsetsGeometry>>",
+  ///   "shadowColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": MaterialStateProperty<OutlinedBorder>,
+  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBoxConstraints]
+  ///  * [encodeMaterialStatePropertyBorderSide]
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeMaterialStatePropertyDouble]
+  ///  * [encodeMaterialStatePropertyEdgeInsetsGeometry]
+  ///  * [encodeMaterialStatePropertyOutlinedBorder]
+  ///  * [encodeMaterialStatePropertyTextStyle]
+  static Map<String, dynamic>? encodeSearchBarThemeData(
+    SearchBarThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'backgroundColor': encodeMaterialStatePropertyColor(
+          value.backgroundColor,
+        ),
+        'constraints': encodeBoxConstraints(value.constraints),
+        'elevation': encodeMaterialStatePropertyDouble(value.elevation),
+        'hintStyle': encodeMaterialStatePropertyTextStyle(value.hintStyle),
+        'overlayColor': encodeMaterialStatePropertyColor(value.overlayColor),
+        'padding': encodeMaterialStatePropertyEdgeInsetsGeometry(value.padding),
+        'shadowColor': encodeMaterialStatePropertyColor(value.shadowColor),
+        'shape': encodeMaterialStatePropertyOutlinedBorder(value.shape),
+        'side': encodeMaterialStatePropertyBorderSide(value.side),
+        'surfaceTintColor': encodeMaterialStatePropertyColor(
+          value.surfaceTintColor,
+        ),
+        'textStyle': encodeMaterialStatePropertyTextStyle(value.textStyle),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON representation as follows:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "dividerColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "headerHintStyle": "<TextStyle>",
+  ///   "headerTextStyle": "<TextStyle>",
+  ///   "shape": "<OutlinedBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "surfaceTintColor": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderSide]
+  ///  * [encodeBoxConstraints]
+  ///  * [encodeColor]
+  ///  * [encodeOutlinedBorder]
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeSearchViewThemeData(
+    SearchViewThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'backgroundColor': encodeColor(value.backgroundColor),
+        'constraints': encodeBoxConstraints(value.constraints),
+        'dividerColor': encodeColor(value.dividerColor),
+        'elevation': value.elevation,
+        'headerHintStyle': encodeTextStyle(value.headerHintStyle),
+        'headerTextStyle': encodeTextStyle(value.headerTextStyle),
+        'shape': encodeOutlinedBorder(value.shape),
+        'side': encodeBorderSide(value.side),
+        'surfaceTintColor': encodeColor(value.surfaceTintColor),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON representation as follows:
+  ///
+  /// ```json
+  /// {
+  ///   "selectedIcon": "<Icon>",
+  ///   "style": "<ButtonStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeButtonStyle]
+  ///  * [encodeIcon]
+  static Map<String, dynamic>? encodeSegmentedButtonThemeData(
+    SegmentedButtonThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      final icon = value.selectedIcon;
+
+      result = {
+        'selectedIcon': icon is Icon ? encodeIcon(icon) : null,
+        'style': encodeButtonStyle(value.style),
+      };
+    }
+
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [SemanticsTag] to a JSON representation.  This
@@ -5180,7 +5558,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -5207,7 +5585,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The value structure
@@ -5286,7 +5664,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5320,7 +5698,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.
@@ -5342,7 +5720,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5365,7 +5743,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.
@@ -5476,7 +5854,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [SliderTickMarkShape] to a [String].  Supported values are:
@@ -5491,7 +5869,7 @@ class ThemeEncoder {
       result = 'noTickMark';
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON representation.  This only supports
@@ -5532,7 +5910,7 @@ class ThemeEncoder {
       }
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5555,7 +5933,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5578,7 +5956,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5602,26 +5980,33 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.
   ///
   /// ```json
   /// {
+  ///   "actionBackgroundColor": "<Color>",
+  ///   "actionOverflowThreshold": "<double>",
   ///   "actionTextColor": "<Color>",
   ///   "backgroundColor": "<Color>",
   ///   "behavior": "<SnackBarBehavior>",
+  ///   "closeIconColor": "<Color>",
   ///   "contentTextStyle": "<TextStyle>",
+  ///   "disabledActionBackgroundColor": "<Color>",
   ///   "disabledActionTextColor": "<Color>",
   ///   "elevation": "<double>",
+  ///   "insetPadding": "<EdgeInsets>",
   ///   "shape": "<ShapeBorder>",
+  ///   "showCloseIcon": "<bool>",
   ///   "width": "<double>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeSnackBarBehavior]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
@@ -5632,18 +6017,26 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'actionBackgroundColor': encodeColor(value.actionBackgroundColor),
+        'actionOverflowThreshold': value.actionOverflowThreshold,
         'actionTextColor': encodeColor(value.actionTextColor),
         'backgroundColor': encodeColor(value.backgroundColor),
         'behavior': encodeSnackBarBehavior(value.behavior),
+        'closeIconColor': encodeColor(value.closeIconColor),
         'contentTextStyle': encodeTextStyle(value.contentTextStyle),
+        'disabledActionBackgroundColor': encodeColor(
+          value.disabledActionBackgroundColor,
+        ),
         'disabledActionTextColor': encodeColor(value.disabledActionTextColor),
         'elevation': value.elevation,
+        'insetPadding': encodeEdgeInsetsGeometry(value.insetPadding),
         'shape': encodeShapeBorder(value.shape),
+        'showCloseIcon': value.showCloseIcon,
         'width': value.width,
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -5670,7 +6063,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.
@@ -5713,7 +6106,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to it's JSON representation.
@@ -5725,7 +6118,8 @@ class ThemeEncoder {
   ///   "overlayColor": "<MaterialStateProperty<Color>>",
   ///   "splashRadius": "<double>",
   ///   "thumbColor": "<MaterialStateProperty<Color>>",
-  ///   "trackColor": "<MaterialStateProperty<Color>>"
+  ///   "trackColor": "<MaterialStateProperty<Color>>",
+  ///   "trackOutlineColor": "<MaterialStateProperty<Color>>"
   /// }
   /// ```
   ///
@@ -5758,10 +6152,13 @@ class ThemeEncoder {
         'trackColor': encodeMaterialStatePropertyColor(
           value.trackColor,
         ),
+        'trackOutlineColor': encodeMaterialStatePropertyColor(
+          value.trackColor,
+        ),
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation or a String
@@ -5843,17 +6240,20 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.
   ///
   /// ```json
   /// {
+  ///   "dividerColor": "<Color>",
+  ///   "indicatorColor": "<Color>",
   ///   "indicatorSize": "<TabBarIndicatorSize>",
   ///   "labelPadding": "<EdgeInsetsGeometry>",
   ///   "labelColor": "<Color>",
   ///   "labelStyle": "<TextStyle>",
+  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "overlayColor": "<MaterialStateProperty<Color>>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
   ///   "unselectedLabelColor": "<Color>",
@@ -5874,6 +6274,8 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'dividerColor': encodeColor(value.dividerColor),
+        'indicatorColor': encodeColor(value.dividerColor),
         'indicatorSize': encodeTabBarIndicatorSize(value.indicatorSize),
         'labelPadding':
             encodeEdgeInsetsGeometry(value.labelPadding as EdgeInsets?),
@@ -5893,7 +6295,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.  Supported values
@@ -5932,7 +6334,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a [TableColumnWidth].  This expects the
@@ -5987,7 +6389,7 @@ class ThemeEncoder {
       );
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6031,7 +6433,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6070,7 +6472,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6097,7 +6499,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6121,7 +6523,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] into a JSON representation.
@@ -6145,7 +6547,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6179,7 +6581,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6205,7 +6607,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -6244,7 +6646,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -6267,7 +6669,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -6345,7 +6747,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -6391,7 +6793,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the JSON representation.
@@ -6418,7 +6820,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -6441,7 +6843,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -6474,7 +6876,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes a given [value] into a JSON compatible Map structure.  This will
@@ -6507,7 +6909,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes a [TextStyle] object into a JSON map:
@@ -6552,7 +6954,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes a given [value] into a JSON compatible Map structure.  This will
@@ -6647,7 +7049,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned Map will
@@ -6698,7 +7100,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] into a String representation.  Supported values are:
@@ -6720,7 +7122,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned Map will
@@ -6730,6 +7132,7 @@ class ThemeEncoder {
   /// {
   ///   "appBarTheme": "<AppBarTheme>",
   ///   "applyElevationOverlayColor": "<bool>",
+  ///   "badgeTheme": "<BadgeThemeData>",
   ///   "bannerTheme": "<MaterialBannerThemeData>",
   ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id,
   ///   "bottomNavigationBarTheme": "<BottomNavigationBarThemeData>",
@@ -6745,6 +7148,7 @@ class ThemeEncoder {
   ///   "colorScheme": "<ColorScheme>",
   ///   "colorSchemeSeed": "<Color>",
   ///   "cupertinoOverrideTheme": "<CupertinoThemeData>",
+  ///   "datePickerTheme": "<DatePickerThemeData>",
   ///   "dataTableTheme": "<DataTableThemeData>",
   ///   "dialogBackgroundColor": "<Color>",
   ///   "dialogTheme": "<DialogTheme>",
@@ -6752,6 +7156,7 @@ class ThemeEncoder {
   ///   "dividerColor": "<Color>",
   ///   "dividerTheme": "<DividerThemeData>",
   ///   "drawerTheme": "<DrawerThemeData>",
+  ///   "dropdownMenuTheme": "<DropDownMenuThemeData>",
   ///   "elevatedButtonTheme": "<ElevatedButtonThemeData>",
   ///   "expansionTileTheme": "<ExpansionTileThemeData>",
   ///   "filledButtonTheme": "<FilledButtonThemeDataScheme>"",
@@ -6772,6 +7177,7 @@ class ThemeEncoder {
   ///   "menuButtonTheme": "<MenuButtonThemeData>",
   ///   "menuTheme": "<MenuThemeData>",
   ///   "navigationBarTheme": "<NavigationBarThemeData>",
+  ///   "navigationDrawerTheme": "<NavigationDrawerThemeData>",
   ///   "navigationRailTheme": "<NavigationRailThemeData>",
   ///   "outlinedButtonTheme": "<OutlinedButtonThemeData>",
   ///   "package": "<String>",
@@ -6788,7 +7194,10 @@ class ThemeEncoder {
   ///   "radioTheme": "<RadioThemeData>",
   ///   "scaffoldBackgroundColor": "<Color>",
   ///   "scrollbarTheme": "<ScrollbarThemeData>",
+  ///   "searchBarTheme": "<SearchBarThemeData>",
+  ///   "searchViewTheme": "<SearchViewThemeData>",
   ///   "secondaryHeaderColor": "<Color>",
+  ///   "segmentedButtonTheme": "<SegmentedButtonThemeData>",
   ///   "shadowColor": "<Color>",
   ///   "sliderTheme": "<SliderThemeData>",
   ///   "snackBarTheme": "<SnackBarThemeData>",
@@ -6811,6 +7220,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeAppBarTheme]
+  ///  * [encodeBadgeThemeData]
   ///  * [encodeBrightness]
   ///  * [encodeBottomAppBarTheme]
   ///  * [encodeBottomSheetThemeData]
@@ -6821,6 +7231,7 @@ class ThemeEncoder {
   ///  * [encodeChipThemeData]
   ///  * [encodeColor]
   ///  * [encodeColorScheme]
+  ///  * [encodeDatePickerThemeData]
   ///  * [encodeDataTableThemeData]
   ///  * [encodeDialogTheme]
   ///  * [encodeDividerThemeData]
@@ -6840,10 +7251,14 @@ class ThemeEncoder {
   ///  * [encodeMenuButtonThemeData]
   ///  * [encodeMenuThemeData]
   ///  * [encodeNavigationBarThemeData]
+  ///  * [encodeNavigationDrawerThemeData]
   ///  * [encodeNavigationRailThemeData]
   ///  * [encodeOutlinedButtonThemeData]
   ///  * [encodePopupMenuThemeData]
   ///  * [encodeRadioThemeData]
+  ///  * [encodeSearchBarThemeData]
+  ///  * [encodeSearchViewThemeData]
+  ///  * [encodeSegmentedButtonThemeData]
   ///  * [encodeSliderThemeData]
   ///  * [encodeSnackBarThemeData]
   ///  * [encodeSwitchThemeData]
@@ -6862,6 +7277,7 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
+        'badgeTheme': encodeBadgeThemeData(value.badgeTheme),
         'bannerTheme': encodeMaterialBannerThemeData(value.bannerTheme),
         'bottomAppBarTheme': encodeBottomAppBarTheme(value.bottomAppBarTheme),
         'bottomNavigationBarTheme': encodeBottomNavigationBarThemeData(
@@ -6881,6 +7297,7 @@ class ThemeEncoder {
         'cupertinoOverrideTheme': encodeCupertinoThemeData(
           value.cupertinoOverrideTheme,
         ),
+        'datePickerThemeData': encodeDatePickerThemeData(value.datePickerTheme),
         'dataTableTheme': encodeDataTableThemeData(value.dataTableTheme),
         'dialogBackgroundColor': encodeColor(value.dialogBackgroundColor),
         'dialogTheme': encodeDialogTheme(value.dialogTheme),
@@ -6935,6 +7352,8 @@ class ThemeEncoder {
         'primaryTextTheme': encodeTextTheme(value.primaryTextTheme),
         'radioTheme': encodeRadioThemeData(value.radioTheme),
         'scaffoldBackgroundColor': encodeColor(value.scaffoldBackgroundColor),
+        'searchBarTheme': encodeSearchBarThemeData(value.searchBarTheme),
+        'searchViewTheme': encodeSearchViewThemeData(value.searchViewTheme),
         'secondaryHeaderColor': encodeColor(value.secondaryHeaderColor),
         'shadowColor': encodeColor(value.shadowColor),
         'sliderTheme': encodeSliderThemeData(value.sliderTheme),
@@ -6960,7 +7379,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the [value] to a [TileMode].  Supported values are:
@@ -6991,7 +7410,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// encodes the given [value] to a [TimePickerThemeData].  This expects the
@@ -7000,6 +7419,8 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "backgroundColor": "<Color>",
+  ///   "cancelButtonStyle": "<ButtonStyle>",
+  ///   "confirmButtonStyle": "<ButtonStyle>",
   ///   "dayPeriodBorderSide": "<BorderSide>",
   ///   "dayPeriodColor": "<Color>",
   ///   "dayPeriodShape": "<ShapeBorder>",
@@ -7008,6 +7429,8 @@ class ThemeEncoder {
   ///   "dialBackgroundColor": "<Color>",
   ///   "dialHandColor": "<Color>",
   ///   "dialTextColor": "<Color>",
+  ///   "dialTextStyle": "<TextStyle>",
+  ///   "elevation": "<double>",
   ///   "entryModeIconColor": "<Color>",
   ///   "helpTextStyle": "<TextStyle>",
   ///   "hourMinuteColor": "<Color>",
@@ -7015,12 +7438,14 @@ class ThemeEncoder {
   ///   "hourMinuteTextColor": "<Color>",
   ///   "hourMinuteTextStyle": "<TextStyle>",
   ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "padding": "<EdgeInsetsGeometry>",
   ///   "shape": "<ShapeBorder>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeBorderSide]
+  ///  * [encodeButtonStyle]
   ///  * [encodeColor]
   ///  * [encodeInputDecorationTheme]
   ///  * [encodeShapeBorder]
@@ -7033,6 +7458,8 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'backgroundColor': encodeColor(value.backgroundColor),
+        'cancelButtonStyle': encodeButtonStyle(value.cancelButtonStyle),
+        'confirmButtonStyle': encodeButtonStyle(value.confirmButtonStyle),
         'dayPeriodBorderSide': encodeBorderSide(value.dayPeriodBorderSide),
         'dayPeriodColor': encodeColor(value.dayPeriodColor),
         'dayPeriodShape': encodeShapeBorder(value.dayPeriodShape),
@@ -7041,19 +7468,23 @@ class ThemeEncoder {
         'dialBackgroundColor': encodeColor(value.dialBackgroundColor),
         'dialHandColor': encodeColor(value.dialHandColor),
         'dialTextColor': encodeColor(value.dialTextColor),
+        'dialTextStyle': encodeTextStyle(value.dialTextStyle),
+        'elevation': value.elevation,
         'entryModeIconColor': encodeColor(value.entryModeIconColor),
         'helpTextStyle': encodeTextStyle(value.helpTextStyle),
         'hourMinuteColor': encodeColor(value.hourMinuteColor),
         'hourMinuteShape': encodeShapeBorder(value.hourMinuteShape),
         'hourMinuteTextColor': encodeColor(value.hourMinuteTextColor),
         'hourMinuteTextStyle': encodeTextStyle(value.hourMinuteTextStyle),
-        'inputDecorationTheme':
-            encodeInputDecorationTheme(value.inputDecorationTheme),
+        'inputDecorationTheme': encodeInputDecorationTheme(
+          value.inputDecorationTheme,
+        ),
+        'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
         'shape': encodeShapeBorder(value.shape),
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned
@@ -7109,7 +7540,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned
@@ -7156,7 +7587,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -7179,7 +7610,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to a JSON compatible Map.  The returned returned
@@ -7212,7 +7643,7 @@ class ThemeEncoder {
       };
     }
 
-    return _stripNull(result);
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -7235,7 +7666,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -7258,7 +7689,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -7297,7 +7728,7 @@ class ThemeEncoder {
       }
     }
 
-    return result;
+    return _stripDynamicNull(result);
   }
 
   /// Encodes the given [value] to the String representation.  Supported values
@@ -7322,6 +7753,16 @@ class ThemeEncoder {
           result = 'start';
           break;
       }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  static dynamic _stripDynamicNull(dynamic input) {
+    var result = input;
+
+    if (input is Map<String, dynamic>) {
+      result = _stripNull(input);
     }
 
     return result;

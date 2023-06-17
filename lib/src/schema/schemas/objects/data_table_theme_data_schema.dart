@@ -14,6 +14,8 @@ class DataTableThemeDataSchema {
     'properties': {
       'checkboxHorizontalMargin': SchemaHelper.numberSchema,
       'columnSpacing': SchemaHelper.numberSchema,
+      'dataRowCursor':
+          SchemaHelper.objectSchema(MaterialStatePropertyMouseCursorSchema.id),
       'dataRowColor':
           SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
       'dataRowMaxHeight': SchemaHelper.numberSchema,
@@ -21,6 +23,8 @@ class DataTableThemeDataSchema {
       'dataTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
       'dividerThickness': SchemaHelper.numberSchema,
+      'headingCellCursor':
+          SchemaHelper.objectSchema(MaterialStatePropertyMouseCursorSchema.id),
       'headingRowColor':
           SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
       'headingRowHeight': SchemaHelper.numberSchema,

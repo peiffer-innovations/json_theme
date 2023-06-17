@@ -16,6 +16,8 @@ class BottomAppBarThemeScheme {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'height': SchemaHelper.numberSchema,
+      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(NotchedShapeSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
     },

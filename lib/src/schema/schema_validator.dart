@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
-import 'package:json_schema/json_schema.dart';
+import 'package:json_schema2/json_schema.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
 /// Schema validator that can validate the JSON Theme objects while also being

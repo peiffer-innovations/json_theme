@@ -541,6 +541,75 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [BadgeThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "backgroundColor": "<Color>",
+  ///   "largeSize": "<double>",
+  ///   "offset": "<Offset>",
+  ///   "padding": "<EdgeInsets>",
+  ///   "smallSize": "<double>",
+  ///   "textColor": "<Color>",
+  ///   "textStyle": "<TextStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeAlignmentGeometry]
+  ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeOffset]
+  ///  * [decodeTextStyle]
+  static BadgeThemeData? decodeBadgeThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    BadgeThemeData? result;
+
+    if (value is BadgeThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/badge_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = BadgeThemeData(
+        alignment: decodeAlignmentGeometry(
+          value['alignment'],
+          validate: false,
+        ),
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        largeSize: JsonClass.parseDouble(value['largeSize']),
+        offset: decodeOffset(
+          value['offset'],
+          validate: false,
+        ),
+        padding: decodeEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
+        smallSize: JsonClass.parseDouble(value['smallSize']),
+        textColor: decodeColor(
+          value['textColor'],
+          validate: false,
+        ),
+        textStyle: decodeTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [BlendMode].  Supported values are:
   /// * `clear`
   /// * `color`
@@ -1066,6 +1135,8 @@ class ThemeDecoder {
   ///   "color": "<Color>",
   ///   "elevation": "<double>",
   ///   "height": "<double>",
+  ///   "padding": "<EdgeInsets>",
+  ///   "shadowColor": "<Color>",
   ///   "shape": "<NotchedShape>",
   ///   "surfaceTingColor": "<Color>"
   /// }
@@ -1073,6 +1144,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeNotchedShape]
   static BottomAppBarTheme? decodeBottomAppBarTheme(
     dynamic value, {
@@ -1095,12 +1167,20 @@ class ThemeDecoder {
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
         height: JsonClass.parseDouble(value['height']),
+        padding: decodeEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
         shape: decodeNotchedShape(
           value['shape'],
           validate: false,
         ),
         surfaceTintColor: decodeColor(
-          value['color'],
+          value['surfaceTintColor'],
           validate: false,
         ),
       );
@@ -1300,11 +1380,16 @@ class ThemeDecoder {
   ///   "backgroundColor": "<Color>",
   ///   "clipBehavior": "<Clip>",
   ///   "constraints": "<BoxConstraints>",
+  ///   "dragHandleColor": "<Color>",
+  ///   "dragHandleSize": "<Size>",
   ///   "elevation": "<double>",
   ///   "modalBackgroundColor": "<Color>",
   ///   "modalBarrierColor": "<Color>",
   ///   "modalElevation": "<double>",
-  ///   "shape": "<ShapeBorder>"
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "showDragHandle": "<bool>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -1312,6 +1397,7 @@ class ThemeDecoder {
   ///  * [decodeBoxConstraints]
   ///  * [decodeClip]
   ///  * [decodeColor]
+  ///  * [decodeSize]
   ///  * [decodeShapeBorder]
   static BottomSheetThemeData? decodeBottomSheetThemeData(
     dynamic value, {
@@ -1340,6 +1426,8 @@ class ThemeDecoder {
           value['constraints'],
           validate: false,
         ),
+        dragHandleColor: decodeColor(value['dragHandleColor'], validate: false),
+        dragHandleSize: decodeSize(value['dragHandleSize'], validate: false),
         elevation: JsonClass.parseDouble(value['elevation']),
         modalBackgroundColor: decodeColor(
           value['modalBackgroundColor'],
@@ -1350,10 +1438,14 @@ class ThemeDecoder {
           validate: false,
         ),
         modalElevation: JsonClass.parseDouble(value['modalElevation']),
+        shadowColor: decodeColor(value['shadowColor'], validate: false),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
         ),
+        showDragHandle: value['showDragHandle'] == null
+            ? null
+            : JsonClass.parseBool(value['showDragHandle']),
         surfaceTintColor: ThemeDecoder.decodeColor(
           value['surfaceTintColor'],
           validate: false,
@@ -2959,6 +3051,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "applyThemeToAll": "<bool>"",
   ///   "barBackgroundColor": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "primaryColor": "<Color>",
@@ -2987,6 +3080,9 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = CupertinoThemeData(
+        applyThemeToAll: value['applyThemeToAll'] == null
+            ? null
+            : JsonClass.parseBool(value['applyThemeToAll']),
         barBackgroundColor: decodeColor(
           value['barBackgroundColor'],
           validate: false,
@@ -3017,6 +3113,200 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [DatePickerThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<Color>",
+  ///   "dayBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "dayForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "dayOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "dayStyle": "<TextStyle>",
+  ///   "elevation": "<double>",
+  ///   "headerBackgroundColor": "<Color>",
+  ///   "headerForegroundColor": "<Color>",
+  ///   "headerHeadlineStyle": "<TextStyle>",
+  ///   "headerHelpStyle": "<TextStyle>",
+  ///   "rangePickerBackgroundColor": "<Color>",
+  ///   "rangePickerElevation": "<double>",
+  ///   "rangePickerHeaderBackgroundColor": "<Color>",
+  ///   "rangePickerHeaderForegroundColor": "<Color>",
+  ///   "rangePickerHeaderHeadlineStyle": "<TextStyle>",
+  ///   "rangePickerHeaderHelpStyle": "<TextStyle>",
+  ///   "rangePickerShadowColor": "<Color>",
+  ///   "rangePickerShape": "<ShapeBorder>",
+  ///   "rangePickerSurfaceTintColor": "<Color>",
+  ///   "rangeSelectionBackgroundColor": "<Color>",
+  ///   "rangeSelectionOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "todayBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "todayBorder": "<ShapeBorder>",
+  ///   "todayForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "weekdayStyle": "<TextStyle>",
+  ///   "yearBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "yearForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "yearOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "yearStyle": "<TextStyle>",
+  /// }
+  /// ```
+  ///
+  /// This will use the properties passed through JSON to create the
+  /// [MaterialStateProperty] of each corresponding property by using
+  /// the [MaterialStateProperty.all] function with the value passed in.
+  ///
+  /// See also:
+  ///  * [decodeBorderSide]
+  ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeShapeBorder]
+  ///  * [decodeTextStyle]
+  static DatePickerThemeData? decodeDatePickerThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DatePickerThemeData? result;
+
+    if (value is DatePickerThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/date_picker_theme_data',
+        value: value,
+        validate: validate,
+      ));
+      result = DatePickerThemeData(
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        dayBackgroundColor: decodeMaterialStatePropertyColor(
+          value['dayBackgroundColor'],
+          validate: false,
+        ),
+        dayForegroundColor: decodeMaterialStatePropertyColor(
+          value['dayForegroundColor'],
+          validate: false,
+        ),
+        dayOverlayColor: decodeMaterialStatePropertyColor(
+          value['dayOverlayColor'],
+          validate: false,
+        ),
+        dayStyle: decodeTextStyle(
+          value['dayStyle'],
+          validate: false,
+        ),
+        elevation: JsonClass.parseDouble(value['elevation']),
+        headerBackgroundColor: decodeColor(
+          value['headerBackgroundColor'],
+          validate: false,
+        ),
+        headerForegroundColor: decodeColor(
+          value['headerForegroundColor'],
+          validate: false,
+        ),
+        headerHeadlineStyle: decodeTextStyle(
+          value['headerHeadlineStyle'],
+          validate: false,
+        ),
+        headerHelpStyle: decodeTextStyle(
+          value['headerHelpStyle'],
+          validate: false,
+        ),
+        rangePickerBackgroundColor: decodeColor(
+          value['rangePickerBackgroundColor'],
+          validate: false,
+        ),
+        rangePickerElevation:
+            JsonClass.parseDouble(value['rangePickerElevation']),
+        rangePickerHeaderBackgroundColor: decodeColor(
+          value['rangePickerHeaderBackgroundColor'],
+          validate: false,
+        ),
+        rangePickerHeaderForegroundColor: decodeColor(
+          value['rangePickerHeaderForegroundColor'],
+          validate: false,
+        ),
+        rangePickerHeaderHeadlineStyle: decodeTextStyle(
+          value['rangePickerHeaderHeadlineStyle'],
+          validate: false,
+        ),
+        rangePickerHeaderHelpStyle: decodeTextStyle(
+          value['rangePickerHeaderHelpStyle'],
+          validate: false,
+        ),
+        rangePickerShadowColor: decodeColor(
+          value['rangePickerShadowColor'],
+          validate: false,
+        ),
+        rangePickerShape: decodeShapeBorder(
+          value['rangePickerShape'],
+          validate: false,
+        ),
+        rangePickerSurfaceTintColor: decodeColor(
+          value['rangePickerSurfaceTintColor'],
+          validate: false,
+        ),
+        rangeSelectionBackgroundColor: decodeColor(
+          value['rangeSelectionBackgroundColor'],
+          validate: false,
+        ),
+        rangeSelectionOverlayColor: decodeMaterialStatePropertyColor(
+          value['rangeSelectionOverlayColor'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        shape: decodeShapeBorder(
+          value['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
+          validate: false,
+        ),
+        todayBackgroundColor: decodeMaterialStatePropertyColor(
+          value['todayBackgroundColor'],
+          validate: false,
+        ),
+        todayBorder: decodeBorderSide(
+          value['todayBorder'],
+          validate: false,
+        ),
+        todayForegroundColor: decodeMaterialStatePropertyColor(
+          value['todayForegroundColor'],
+          validate: false,
+        ),
+        weekdayStyle: decodeTextStyle(
+          value['weekdayStyle'],
+          validate: false,
+        ),
+        yearBackgroundColor: decodeMaterialStatePropertyColor(
+          value['yearBackgroundColor'],
+          validate: false,
+        ),
+        yearForegroundColor: decodeMaterialStatePropertyColor(
+          value['yearForegroundColor'],
+          validate: false,
+        ),
+        yearOverlayColor: decodeMaterialStatePropertyColor(
+          value['yearOverlayColor'],
+          validate: false,
+        ),
+        yearStyle: decodeTextStyle(
+          value['yearStyle'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [DataTableThemeData].  This expects the
   /// given [value] to be of the following structure:
   ///
@@ -3025,11 +3315,13 @@ class ThemeDecoder {
   ///   "checkboxHorizontalMargin": "<double>",
   ///   "columnSpacing": "<double>",
   ///   "dataRowColor": "<MaterialStateProperty<Color>>",
+  ///   "dataRowCursor": "<MaterialStateProperty<MouseCursor>",
   ///   "dataRowMaxHeight": "<double>",
   ///   "dataRowMinHeight": "<double>",
   ///   "dataTextStyle": "<TextStyle,
   ///   "decoration": "<BoxDecoration>",
   ///   "dividerThickness": "<double>",
+  ///   "headingCellCursor": "<MaterialStateProperty<MouseCursor>",
   ///   "headingRowColor": "<MaterialStateProperty<Color>>",
   ///   "headingRowHeight": "<double>",
   ///   "headingTextStyle": "<TextStyle>",
@@ -3045,6 +3337,7 @@ class ThemeDecoder {
   ///  * [decodeBoxDecoration]
   ///  * [decodeColor]
   ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeTextStyle]
   static DataTableThemeData? decodeDataTableThemeData(
     dynamic value, {
@@ -3071,6 +3364,10 @@ class ThemeDecoder {
           value['dataRowColor'],
           validate: false,
         ),
+        dataRowCursor: decodeMaterialStatePropertyMouseCursor(
+          value['dataRowCursor'],
+          validate: false,
+        ),
         dataRowMaxHeight: JsonClass.parseDouble(
           value['dataRowMaxHeight'],
         ),
@@ -3087,6 +3384,10 @@ class ThemeDecoder {
         ),
         dividerThickness: JsonClass.parseDouble(
           value['dividerThickness'],
+        ),
+        headingCellCursor: decodeMaterialStatePropertyMouseCursor(
+          value['dataRowCursor'],
+          validate: false,
         ),
         headingRowColor: decodeMaterialStatePropertyColor(
           value['headingRowColor'],
@@ -3405,6 +3706,7 @@ class ThemeDecoder {
   /// {
   ///   "backgroundColor": "<Color>",
   ///   "elevation": "<double>",
+  ///   "endShape": "<ShapeBorder>",
   ///   "scrimColor": "<Color>",
   ///   "shadowColor": "<Color>",
   ///   "shape": "<ShapeBorder>",
@@ -3437,6 +3739,10 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
+        endShape: decodeShapeBorder(
+          value['endShape'],
+          validate: false,
+        ),
         scrimColor: decodeColor(
           value['scrimColor'],
           validate: false,
@@ -3454,6 +3760,55 @@ class ThemeDecoder {
           validate: false,
         ),
         width: JsonClass.parseDouble(value['width']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [DropdownMenuThemeData].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "menuStyle": "<MenuStyle>",
+  ///   "textStyle": "<TextStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeMenuStyle]
+  ///  * [decodeTextStyle]
+  static DropdownMenuThemeData? decodeDropdownMenuThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DropdownMenuThemeData? result;
+
+    if (value is DropdownMenuThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/dropdown_menu_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = DropdownMenuThemeData(
+        inputDecorationTheme: decodeInputDecorationTheme(
+          value['inputDecorationTheme'],
+          validate: false,
+        ),
+        menuStyle: decodeMenuStyle(
+          value['menuStyle'],
+          validate: false,
+        ),
+        textStyle: decodeTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
       );
     }
 
@@ -5380,6 +5735,62 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to an [ListTileTitleAlignment].  Supported
+  /// values are:
+  ///  * `bottom`
+  ///  * `center`
+  ///  * `threeLine`
+  ///  * `titleHeight`
+  ///  * `top`
+  static ListTileTitleAlignment? decodeListTileTitleAlignment(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    ListTileTitleAlignment? result;
+
+    if (value is ListTileTitleAlignment) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'ListTileTitleAlignment',
+        [
+          'bottom',
+          'center',
+          'threeLine',
+          'titleHeight',
+          'top',
+        ],
+        value,
+      );
+
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/list_tile_title_alignment',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'bottom':
+          result = ListTileTitleAlignment.bottom;
+          break;
+        case 'center':
+          result = ListTileTitleAlignment.center;
+          break;
+        case 'threeLine':
+          result = ListTileTitleAlignment.threeLine;
+          break;
+        case 'titleHeight':
+          result = ListTileTitleAlignment.titleHeight;
+          break;
+        case 'top':
+          result = ListTileTitleAlignment.top;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [Locale].  This expects the
   /// given [value] to be of the following structure:
   ///
@@ -5390,6 +5801,7 @@ class ThemeDecoder {
   ///   "enableFeedback": "<bool>",
   ///   "horizontalTitleGap": "<double>",
   ///   "iconColor": "<Color>",
+  ///   "leadingAndTrailingTextStyle": "<TextStyle>",
   ///   "minLeadingWidth": "<double>",
   ///   "minVerticalPadding": "<double>",
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
@@ -5432,6 +5844,10 @@ class ThemeDecoder {
           value['iconColor'],
           validate: false,
         ),
+        leadingAndTrailingTextStyle: decodeTextStyle(
+          value['leadingAndTrailingTextStyle'],
+          validate: false,
+        ),
         minLeadingWidth: JsonClass.parseDouble(value['minLeadingWidth']),
         minVerticalPadding: JsonClass.parseDouble(value['minVerticalPadding']),
         mouseCursor: decodeMaterialStatePropertyMouseCursor(
@@ -5450,6 +5866,10 @@ class ThemeDecoder {
           value['shape'],
           validate: false,
         ),
+        subtitleTextStyle: decodeTextStyle(
+          value['subtitleTextStyle'],
+          validate: false,
+        ),
         style: decodeListTileStyle(
           value['style'],
           validate: false,
@@ -5460,6 +5880,14 @@ class ThemeDecoder {
         ),
         tileColor: decodeColor(
           value['tileColor'],
+          validate: false,
+        ),
+        titleAlignment: decodeListTileTitleAlignment(
+          value['titleAlignment'],
+          validate: false,
+        ),
+        titleTextStyle: decodeTextStyle(
+          value['titleTextStyle'],
           validate: false,
         ),
         visualDensity: decodeVisualDensity(
@@ -7878,6 +8306,81 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [NavigationDrawerThemeData].  This expects
+  /// the given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "iconTheme": "<MaterialStateProperty<IconThemeData>>",
+  ///   "indicatorColor": "<Color>",
+  ///   "indicatorShape": "<ShapeBorder>",
+  ///   "indicatorSize": "<Size>",
+  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "tileHeight": "<double>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyIconThemeData]
+  ///  * [decodeShapeBorder]
+  static NavigationDrawerThemeData? decodeNavigationDrawerThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    NavigationDrawerThemeData? result;
+
+    if (value is NavigationDrawerThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/navigation_drawer_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = NavigationDrawerThemeData(
+        backgroundColor: decodeColor(value['backgroundColor'], validate: false),
+        elevation: JsonClass.parseDouble(value['elevation']),
+        iconTheme: decodeMaterialStatePropertyIconThemeData(
+          value['iconTheme'],
+          validate: false,
+        ),
+        indicatorColor: decodeColor(
+          value['indicatorColor'],
+          validate: false,
+        ),
+        indicatorShape: decodeShapeBorder(
+          value['indicateShape'],
+          validate: false,
+        ),
+        indicatorSize: decodeSize(
+          value['size'],
+          validate: false,
+        ),
+        labelTextStyle: decodeMaterialStatePropertyTextStyle(
+          value['labelTextStyle'],
+          validate: false,
+        ),
+        shadowColor: decodeColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
+          validate: false,
+        ),
+        tileHeight: JsonClass.parseDouble(value['tileHeight']),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [NavigationRailLabelType].  Supported values are:
   ///  * `all`
   ///  * `none`
@@ -7934,6 +8437,7 @@ class ThemeDecoder {
   ///   "elevation": "<double>",
   ///   "groupAlignment": "<double>",
   ///   "indicatorColor": "<Color>",
+  ///   "indicatorShape": "<ShapeBorder>",
   ///   "labelType": "<NavigationRailLabelType>",
   ///   "minExtendedWidth": "<double>",
   ///   "minWidth": "<double>",
@@ -7949,6 +8453,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeIconThemeData]
   ///  * [decodeNavigationRailLabelType]
+  ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static NavigationRailThemeData? decodeNavigationRailThemeData(
     dynamic value, {
@@ -7973,6 +8478,10 @@ class ThemeDecoder {
         groupAlignment: JsonClass.parseDouble(value['groupAlignment']),
         indicatorColor: decodeColor(
           value['indicatorColor'],
+          validate: false,
+        ),
+        indicatorShape: decodeShapeBorder(
+          value['indicatorShape'],
           validate: false,
         ),
         labelType: decodeNavigationRailLabelType(
@@ -9524,6 +10033,220 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given [value] to an [SearchBarThemeData].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "hintStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "padding": "<MaterialStateProperty<EdgeInsetsGeometry>>",
+  ///   "shadowColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": MaterialStateProperty<OutlinedBorder>,
+  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBoxConstraints]
+  ///  * [decodeMaterialStatePropertyBorderSide]
+  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeMaterialStatePropertyDouble]
+  ///  * [decodeMaterialStatePropertyEdgeInsetsGeometry]
+  ///  * [decodeMaterialStatePropertyOutlinedBorder]
+  ///  * [decodeMaterialStatePropertyTextStyle]
+  static SearchBarThemeData? decodeSearchBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    SearchBarThemeData? result;
+
+    if (value is SearchBarThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/search_bar_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = SearchBarThemeData(
+        backgroundColor: decodeMaterialStatePropertyColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        constraints: decodeBoxConstraints(
+          value['constraints'],
+          validate: false,
+        ),
+        elevation: decodeMaterialStatePropertyDouble(
+          value['elevation'],
+          validate: false,
+        ),
+        hintStyle: decodeMaterialStatePropertyTextStyle(
+          value['hintStyle'],
+          validate: false,
+        ),
+        overlayColor: decodeMaterialStatePropertyColor(
+          value['overlayColor'],
+          validate: false,
+        ),
+        padding: decodeMaterialStatePropertyEdgeInsetsGeometry(
+          value['padding'],
+          validate: false,
+        ),
+        shadowColor: decodeMaterialStatePropertyColor(
+          value['shadowColor'],
+          validate: false,
+        ),
+        shape: decodeMaterialStatePropertyOutlinedBorder(
+          value['shape'],
+          validate: false,
+        ),
+        side: decodeMaterialStatePropertyBorderSide(
+          value['side'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeMaterialStatePropertyColor(
+          value['surfaceTintColor'],
+          validate: false,
+        ),
+        textStyle: decodeMaterialStatePropertyTextStyle(
+          value['textStyle'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [SearchViewThemeData].  This expects the
+  /// given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "backgroundColor": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "dividerColor": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "headerHintStyle": "<TextStyle>",
+  ///   "headerTextStyle": "<TextStyle>",
+  ///   "shape": "<OutlinedBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "surfaceTintColor": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderSide]
+  ///  * [decodeBoxConstraints]
+  ///  * [decodeColor]
+  ///  * [decodeOutlinedBorder]
+  ///  * [decodeTextStyle]
+  static SearchViewThemeData? decodeSearchViewThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    SearchViewThemeData? result;
+
+    if (value is SearchViewThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/search_view_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = SearchViewThemeData(
+        backgroundColor: decodeColor(
+          value['backgroundColor'],
+          validate: false,
+        ),
+        constraints: decodeBoxConstraints(
+          value['constraints'],
+          validate: false,
+        ),
+        dividerColor: decodeColor(
+          value['dividerColor'],
+          validate: false,
+        ),
+        elevation: JsonClass.parseDouble(value['elevation']),
+        headerHintStyle: decodeTextStyle(
+          value['headerHintStyle'],
+          validate: false,
+        ),
+        headerTextStyle: decodeTextStyle(
+          value['headerTextStyle'],
+          validate: false,
+        ),
+        shape: decodeOutlinedBorder(
+          value['shape'],
+          validate: false,
+        ),
+        side: decodeBorderSide(
+          value['side'],
+          validate: false,
+        ),
+        surfaceTintColor: decodeColor(
+          value['surfaceTintColor'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [SegmentedButtonThemeData].  This expects
+  /// the given [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "selectedIcon": "<Icon>",
+  ///   "style": "<ButtonStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeButtonStyle]
+  ///  * [decodeIcon]
+  static SegmentedButtonThemeData? decodeSegmentedButtonThemeData(
+    dynamic value, {
+    validate = true,
+  }) {
+    SegmentedButtonThemeData? result;
+
+    if (value is SegmentedButtonThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/segmented_button_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = SegmentedButtonThemeData(
+        selectedIcon: decodeIcon(
+          value['selectedIcon'],
+          validate: false,
+        ),
+        style: decodeButtonStyle(
+          value['style'],
+          validate: false,
+        ),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [SemanticsTag].  This expects the given
   /// [value] to be of the following structure:
   ///
@@ -10253,19 +10976,26 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "actionBackgroundColor": "<Color>",
+  ///   "actionOverflowThreshold": "<double>",
   ///   "actionTextColor": "<Color>",
   ///   "backgroundColor": "<Color>",
   ///   "behavior": "<SnackBarBehavior>",
+  ///   "closeIconColor": "<Color>",
   ///   "contentTextStyle": "<TextStyle>",
+  ///   "disabledActionBackgroundColor": "<Color>",
   ///   "disabledActionTextColor": "<Color>",
   ///   "elevation": "<double>",
+  ///   "insetPadding": "<EdgeInsets>",
   ///   "shape": "<ShapeBorder>",
+  ///   "showCloseIcon": "<bool>",
   ///   "width": "<double>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeSnackBarBehavior]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
@@ -10284,6 +11014,13 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = SnackBarThemeData(
+        actionBackgroundColor: decodeColor(
+          value['actionBackgroundColor'],
+          validate: false,
+        ),
+        actionOverflowThreshold: JsonClass.parseDouble(
+          value['actionOverflowThreshold'],
+        ),
         actionTextColor: decodeColor(
           value['actionTextColor'],
           validate: false,
@@ -10296,8 +11033,16 @@ class ThemeDecoder {
           value['behavior'],
           validate: false,
         ),
+        closeIconColor: decodeColor(
+          value['closeIconColor'],
+          validate: false,
+        ),
         contentTextStyle: decodeTextStyle(
           value['contentTextStyle'],
+          validate: false,
+        ),
+        disabledActionBackgroundColor: decodeColor(
+          value['disabledActionBackgroundColor'],
           validate: false,
         ),
         disabledActionTextColor: decodeColor(
@@ -10305,10 +11050,17 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.parseDouble(value['elevation']),
+        insetPadding: decodeEdgeInsetsGeometry(
+          value['insetPadding'],
+          validate: false,
+        ) as EdgeInsets?,
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
         ),
+        showCloseIcon: value['showCloseIcon'] == null
+            ? null
+            : JsonClass.parseBool(value['showCloseIcon']),
         width: JsonClass.parseDouble(value['width']),
       );
     }
@@ -10430,7 +11182,8 @@ class ThemeDecoder {
   ///   "overlayColor": "<MaterialStateProperty<Color>>",
   ///   "splashRadius": "<double>",
   ///   "thumbColor": "<MaterialStateProperty<Color>>",
-  ///   "trackColor": "<MaterialStateProperty<Color>>"
+  ///   "trackColor": "<MaterialStateProperty<Color>>",
+  ///   "trackOutlineColor": "<MaterialStateProperty<Color>>"
   /// }
   /// ```
   ///
@@ -10478,6 +11231,10 @@ class ThemeDecoder {
         ),
         trackColor: decodeMaterialStatePropertyColor(
           value['trackColor'],
+          validate: false,
+        ),
+        trackOutlineColor: decodeMaterialStatePropertyColor(
+          value['trackOutlineColor'],
           validate: false,
         ),
       );
@@ -10618,6 +11375,8 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "dividerColor": "<Color>",
+  ///   "indicatorColor": "<Color>",
   ///   "indicatorSize": "<TabBarIndicatorSize>",
   ///   "labelPadding": "<EdgeInsetsGeometry>",
   ///   "labelColor": "<Color>",
@@ -10657,8 +11416,16 @@ class ThemeDecoder {
         'TabBarTheme.indicator is not supported',
       );
       result = TabBarTheme(
+        dividerColor: decodeColor(
+          value['dividerColor'],
+          validate: false,
+        ),
         // @unencodable
         // indicator
+        indicatorColor: decodeColor(
+          value['indicatorColor'],
+          validate: false,
+        ),
         indicatorSize: decodeTabBarIndicatorSize(
           value['indicatorSize'],
           validate: false,
@@ -12084,6 +12851,7 @@ class ThemeDecoder {
   /// {
   ///   "appBarTheme": "<AppBarTheme>",
   ///   "applyElevationOverlayColor": "<bool>",
+  ///   "badgeTheme": "<BadgeThemeData>",
   ///   "bannerTheme": "<MaterialBannerThemeData>",
   ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id,
   ///   "bottomNavigationBarTheme": "<BottomNavigationBarThemeData>",
@@ -12099,6 +12867,7 @@ class ThemeDecoder {
   ///   "colorScheme": "<ColorScheme>",
   ///   "colorSchemeSeed": "<Color>",
   ///   "cupertinoOverrideTheme": "<CupertinoThemeData>",
+  ///   "datePickerTheme": "<DatePickerThemeData>",
   ///   "dataTableTheme": "<DataTableThemeData>",
   ///   "dialogBackgroundColor": "<Color>",
   ///   "dialogTheme": "<DialogTheme>",
@@ -12106,6 +12875,7 @@ class ThemeDecoder {
   ///   "dividerColor": "<Color>",
   ///   "dividerTheme": "<DividerThemeData>",
   ///   "drawerTheme": "<DrawerThemeData>",
+  ///   "dropdownMenuTheme": "<DropDownMenuThemeData>",
   ///   "elevatedButtonTheme": "<ElevatedButtonThemeData>",
   ///   "expansionTileTheme": "<ExpansionTileThemeData>",
   ///   "filledButtonTheme": "<FilledButtonThemeDataScheme>"",
@@ -12126,6 +12896,7 @@ class ThemeDecoder {
   ///   "menuButtonTheme": "<MenuButtonThemeData>",
   ///   "menuTheme": "<MenuThemeData>",
   ///   "navigationBarTheme": "<NavigationBarThemeData>",
+  ///   "navigationDrawerTheme": "<NavigationDrawerThemeData>",
   ///   "navigationRailTheme": "<NavigationRailThemeData>",
   ///   "outlinedButtonTheme": "<OutlinedButtonThemeData>",
   ///   "package": "<String>",
@@ -12142,7 +12913,10 @@ class ThemeDecoder {
   ///   "radioTheme": "<RadioThemeData>",
   ///   "scaffoldBackgroundColor": "<Color>",
   ///   "scrollbarTheme": "<ScrollbarThemeData>",
+  ///   "searchBarTheme": "<SearchBarThemeData>",
+  ///   "searchViewTheme": "<SearchViewThemeData>",
   ///   "secondaryHeaderColor": "<Color>",
+  ///   "segmentedButtonTheme": "<SegmentedButtonThemeData>",
   ///   "shadowColor": "<Color>",
   ///   "sliderTheme": "<SliderThemeData>",
   ///   "snackBarTheme": "<SnackBarThemeData>",
@@ -12165,6 +12939,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeAppBarTheme]
+  ///  * [decodeBadgeThemeData]
   ///  * [decodeBottomAppBarTheme]
   ///  * [decodeBottomNavigationBarThemeData]
   ///  * [decodeBottomSheetThemeData]
@@ -12176,6 +12951,7 @@ class ThemeDecoder {
   ///  * [decodeChipThemeData]
   ///  * [decodeColor]
   ///  * [decodeColorScheme]
+  ///  * [decodeDatePickerThemeData]
   ///  * [decodeDataTableThemeData]
   ///  * [decodeDialogTheme]
   ///  * [decodeDividerThemeData]
@@ -12195,6 +12971,7 @@ class ThemeDecoder {
   ///  * [decodeMenuButtonThemeData]
   ///  * [decodeMenuThemeData]
   ///  * [decodeNavigationBarThemeData]
+  ///  * [decodeNavigationDrawerThemeData]
   ///  * [decodeNavigationRailThemeData]
   ///  * [decodeOutlinedButtonThemeData]
   ///  * [decodePageTransitionsTheme]
@@ -12202,6 +12979,9 @@ class ThemeDecoder {
   ///  * [decodeProgressIndicatorThemeData]
   ///  * [decodeRadioThemeData]
   ///  * [decodeScrollbarThemeData]
+  ///  * [decodeSearchBarThemeData]
+  ///  * [decodeSearchViewThemeData]
+  ///  * [decodeSegmentedButtonThemeData]
   ///  * [decodeSliderThemeData]
   ///  * [decodeSnackBarThemeData]
   ///  * [decodeSwitchThemeData]
@@ -12243,6 +13023,10 @@ class ThemeDecoder {
             ? null
             : JsonClass.parseBool(value['applyElevationOverlayColor']),
         // backgroundColor: @deprecated,
+        badgeTheme: decodeBadgeThemeData(
+          value['badgeTheme'],
+          validate: false,
+        ),
         bannerTheme: decodeMaterialBannerThemeData(
           value['bannerTheme'],
           validate: false,
@@ -12310,6 +13094,10 @@ class ThemeDecoder {
 
         // cursorColor: @deprecated
 
+        datePickerTheme: decodeDatePickerThemeData(
+          value['datePickerThemeData'],
+          validate: false,
+        ),
         dataTableTheme: decodeDataTableThemeData(
           value['dataTableTheme'],
           validate: false,
@@ -12338,6 +13126,10 @@ class ThemeDecoder {
           value['drawerTheme'],
           validate: false,
         ),
+        dropdownMenuTheme: decodeDropdownMenuThemeData(
+          value['dropdownMenuTheme'],
+          validate: false,
+        ),
         elevatedButtonTheme: decodeElevatedButtonThemeData(
           value['elevatedButtonTheme'],
           validate: false,
@@ -12347,8 +13139,8 @@ class ThemeDecoder {
           validate: false,
         ),
 
-        // extensions: @unencodable,
         // errorColor: @deprecated,
+        // extensions: @unencodable,
 
         filledButtonTheme: decodeFilledButtonThemeData(
           value[''],
@@ -12423,6 +13215,10 @@ class ThemeDecoder {
           value['navigationBarTheme'],
           validate: false,
         ),
+        navigationDrawerTheme: decodeNavigationDrawerThemeData(
+          value['navigationDrawerTheme'],
+          validate: false,
+        ),
         navigationRailTheme: decodeNavigationRailThemeData(
           value['navigationRailTheme'],
           validate: false,
@@ -12487,10 +13283,24 @@ class ThemeDecoder {
           value['scrollbarTheme'],
           validate: false,
         ),
+        searchBarTheme: decodeSearchBarThemeData(
+          value['searchBarTheme'],
+          validate: false,
+        ),
+        searchViewTheme: decodeSearchViewThemeData(
+          value['searchViewTheme'],
+          validate: false,
+        ),
         secondaryHeaderColor: decodeColor(
           value['secondaryHeaderColor'],
           validate: false,
         ),
+        segmentedButtonTheme: decodeSegmentedButtonThemeData(
+          value['segmentedButtonTheme'],
+          validate: false,
+        ),
+        // selectedRowColor: @deprecated
+
         shadowColor: decodeColor(
           value['shadowColor'],
           validate: false,
@@ -12633,6 +13443,8 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "backgroundColor": "<Color>",
+  ///   "cancelButtonStyle": "<ButtonStyle>",
+  ///   "confirmButtonStyle": "<ButtonStyle>",
   ///   "dayPeriodBorderSide": "<BorderSide>",
   ///   "dayPeriodColor": "<Color>",
   ///   "dayPeriodShape": "<ShapeBorder>",
@@ -12641,6 +13453,8 @@ class ThemeDecoder {
   ///   "dialBackgroundColor": "<Color>",
   ///   "dialHandColor": "<Color>",
   ///   "dialTextColor": "<Color>",
+  ///   "dialTextStyle": "<TextStyle>",
+  ///   "elevation": "<double>",
   ///   "entryModeIconColor": "<Color>",
   ///   "helpTextStyle": "<TextStyle>",
   ///   "hourMinuteColor": "<Color>",
@@ -12648,13 +13462,16 @@ class ThemeDecoder {
   ///   "hourMinuteTextColor": "<Color>",
   ///   "hourMinuteTextStyle": "<TextStyle>",
   ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "padding": "<EdgeInsetsGeometry>",
   ///   "shape": "<ShapeBorder>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeBorderSide]
+  ///  * [decodeButtonStyle]
   ///  * [decodeColor]
+  ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeInputDecorationTheme]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
@@ -12676,6 +13493,14 @@ class ThemeDecoder {
       result = TimePickerThemeData(
         backgroundColor: decodeColor(
           value['backgroundColor'],
+          validate: false,
+        ),
+        cancelButtonStyle: decodeButtonStyle(
+          value['cancelButtonStyle'],
+          validate: false,
+        ),
+        confirmButtonStyle: decodeButtonStyle(
+          value['confirmButtonStyle'],
           validate: false,
         ),
         dayPeriodBorderSide: decodeBorderSide(
@@ -12712,6 +13537,11 @@ class ThemeDecoder {
           value['dialTextColor'],
           validate: false,
         ),
+        dialTextStyle: decodeTextStyle(
+          value['dialTextStyle'],
+          validate: false,
+        ),
+        elevation: JsonClass.parseDouble(value['elevation']),
         entryModeIconColor: decodeColor(
           value['entryModeIconColor'],
           validate: false,
@@ -12740,6 +13570,7 @@ class ThemeDecoder {
           value['inputDecorationTheme'],
           validate: false,
         ),
+        padding: decodeEdgeInsetsGeometry(value['padding'], validate: false),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,

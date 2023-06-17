@@ -15,6 +15,7 @@ class ThemeDataSchema {
     'properties': {
       'appBarTheme': SchemaHelper.objectSchema(AppBarThemeSchema.id),
       'applyElevationOverlayColor': SchemaHelper.boolSchema,
+      'badgeTheme': SchemaHelper.objectSchema(BadgeThemeDataSchema.id),
       'bannerTheme': SchemaHelper.objectSchema(
         MaterialBannerThemeDataSchema.id,
       ),
@@ -39,6 +40,9 @@ class ThemeDataSchema {
       'colorSchemeSeed': SchemaHelper.objectSchema(ColorSchema.id),
       'cupertinoOverrideTheme': SchemaHelper.objectSchema(
         CupertinoThemeDataSchema.id,
+      ),
+      'datePickerTheme': SchemaHelper.objectSchema(
+        DatePickerThemeDataSchema.id,
       ),
       'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),

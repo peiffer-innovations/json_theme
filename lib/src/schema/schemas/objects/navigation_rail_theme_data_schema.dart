@@ -16,6 +16,7 @@ class NavigationRailThemeDataSchema {
       'elevation': SchemaHelper.numberSchema,
       'groupAlignment': SchemaHelper.numberSchema,
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'indicatorShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'labelType': SchemaHelper.objectSchema(NavigationRailLabelTypeSchema.id),
       'minExtendedWidth': SchemaHelper.numberSchema,
       'minWidth': SchemaHelper.numberSchema,

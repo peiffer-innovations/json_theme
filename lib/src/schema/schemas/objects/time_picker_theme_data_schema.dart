@@ -13,6 +13,8 @@ class TimePickerThemeDataSchema {
     'type': 'object',
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'cancelButtonStyle': SchemaHelper.objectSchema(ButtonStyleSchema.id),
+      'confirmButtonStyle': SchemaHelper.objectSchema(ButtonStyleSchema.id),
       'dayPeriodBorderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
       'dayPeriodColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dayPeriodShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
@@ -21,14 +23,18 @@ class TimePickerThemeDataSchema {
       'dialBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialHandColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialTextColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dialTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'elevation': SchemaHelper.numberSchema,
       'entryModeIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'helpTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'hourMinuteColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hourMinuteShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'hourMinuteTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hourMinuteTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
-      'inputDecorationTheme':
-          SchemaHelper.objectSchema(InputDecorationThemeSchema.id),
+      'inputDecorationTheme': SchemaHelper.objectSchema(
+        InputDecorationThemeSchema.id,
+      ),
+      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
     },
   };

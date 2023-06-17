@@ -12,6 +12,8 @@ class TabBarThemeSchema {
     'title': 'TabBarTheme',
     'type': 'object',
     'properties': {
+      'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'indicatorSize': SchemaHelper.objectSchema(TabBarIndicatorSizeSchema.id),
       'labelPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'labelColor': SchemaHelper.objectSchema(ColorSchema.id),

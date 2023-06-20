@@ -1,3 +1,8 @@
+## [6.0.1+1] - June 20, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.1] - June 16th, 2023
 
 * Switched from [json_schema] to [json_schema2] to support http 1.0.0.
@@ -523,6 +528,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

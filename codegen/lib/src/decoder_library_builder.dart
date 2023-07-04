@@ -35,16 +35,15 @@ class DecoderLibraryBuilder extends GeneratorForAnnotation<JsonThemeDecoder> {
     final buf = StringBuffer();
 
     buf.write('''
-typedef Decoder = dynamic Function(dynamic map, {bool validate});
-
-const k${name}s = <String, Decoder>{
+const k${name}s = <String, String>{
 ''');
 
     for (var entry in methods.entries) {
-      buf.write("'${entry.key}': ${entry.value},");
+      buf.write("  '${entry.key}': '${entry.value}',\n");
     }
 
     buf.write('};');
+
     return buf.toString();
   }
 }

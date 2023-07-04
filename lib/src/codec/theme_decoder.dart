@@ -12,8 +12,6 @@ import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 import '../schema/schema_validator.dart';
 
-part 'theme_decoder.g.dart';
-
 /// Decoder capable of converting JSON compatible values into Flutter Theme
 /// related classes and enums.
 ///

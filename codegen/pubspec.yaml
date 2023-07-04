@@ -1,7 +1,7 @@
 name: 'json_theme_codegen'
 description: 'A library to generate the mapping of decoders to the class names they decode'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '1.0.0'
+version: '1.0.0+1'
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

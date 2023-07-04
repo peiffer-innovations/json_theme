@@ -15,6 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Run Codegen
+        run: |
+          flutter packages get
+          dart run build_runner build --delete-conflicting-outputs -v
+        working-directory: json_theme
+
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
@@ -43,11 +49,6 @@ jobs:
           git commit --allow-empty -m "json_theme: schema update"
           git push origin HEAD:gh-pages
           cd ..
-        working-directory: json_theme
-
-      - name: Run Codegen
-        run: |
-          dart run build_runner build --delete-conflicting-outputs -v
         working-directory: json_theme
 
       - name: Publish

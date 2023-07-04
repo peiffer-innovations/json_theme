@@ -1,13 +1,12 @@
 name: Flutter Pages Deployer
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-    # paths:
-    #   - .github/workflows/pages.yaml
-    #   - pubspec.yaml
-    #   - lib/**
-    #   - example/**
+    paths:
+      - .github/workflows/pages.yaml
+      - json_theme/pubspec.yaml
 
 jobs:
   build_number:
@@ -32,6 +31,8 @@ jobs:
 
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
+        with:
+          path: json_theme
 
       - name: Web
         uses: peiffer-innovations/actions-flutter-deploy-pages@v1
@@ -41,5 +42,5 @@ jobs:
           build_number: ${{ needs.build_number.outputs.buildnumber }}
           deploy_path: web
           repo_url: https://github.com/${{ github.repository }}
-          source_path: example
+          source_path: json_theme/example
           token: ${{ secrets.GITHUB_TOKEN }}

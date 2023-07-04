@@ -1,3 +1,8 @@
+## [6.0.1+2] - July 4, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.1+1] - June 20, 2023
 
 * Automated dependency updates
@@ -528,6 +533,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

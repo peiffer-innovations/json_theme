@@ -39,7 +39,17 @@ const k${name}s = <String, String>{
 ''');
 
     for (var entry in methods.entries) {
-      buf.write("  '${entry.key}': '${entry.value}',\n");
+      const msp = 'MaterialStateProperty';
+      const nativeTypes = ['bool', 'int', 'double', 'num'];
+      var key = entry.key;
+      if (key.startsWith(msp)) {
+        var type = key.substring(msp.length);
+        if (nativeTypes.contains(type.toLowerCase())) {
+          type = type.toLowerCase();
+        }
+        key = '$msp<$type>';
+      }
+      buf.write("  '$key': '${entry.value}',\n");
     }
 
     buf.write('};');

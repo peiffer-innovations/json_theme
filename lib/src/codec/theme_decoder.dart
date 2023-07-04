@@ -8,8 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
+import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 import '../schema/schema_validator.dart';
+
+part 'theme_decoder.g.dart';
 
 /// Decoder capable of converting JSON compatible values into Flutter Theme
 /// related classes and enums.
@@ -22,6 +25,7 @@ import '../schema/schema_validator.dart';
 /// Unless otherwise stated, each function will return `null` when given an
 /// input of `null`.
 @immutable
+@jsonThemeDecoder
 class ThemeDecoder {
   ThemeDecoder._();
 

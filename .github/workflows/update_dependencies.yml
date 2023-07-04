@@ -6,7 +6,35 @@ on:
     - cron: '0 1 * * 2'
 
 jobs:
+  update_dependencies_annotation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dependencies
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.18
+        with:
+          merge: true
+          paths: annotation
+          pull_request: true
+          token: ${{ secrets.REPO_TOKEN }}
+
+  update_dependencies_codegen:
+    needs:
+      - update_dependencies_annotation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dependencies
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.18
+        with:
+          merge: true
+          paths: .,example
+          pull_request: true
+          token: ${{ secrets.REPO_TOKEN }}
+
   update_dependencies:
+    needs:
+      - update_dependencies_codegen
     runs-on: ubuntu-latest
 
     steps:

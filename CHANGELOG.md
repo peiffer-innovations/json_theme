@@ -1,3 +1,8 @@
+## [6.0.2] - July 4th, 2023
+
+* Added a code generator to automatically generate the existing decoders into a map.
+
+
 ## [6.0.1+2] - July 4, 2023
 
 * Automated dependency updates

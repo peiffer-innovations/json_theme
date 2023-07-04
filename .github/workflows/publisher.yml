@@ -1,6 +1,7 @@
 name: Flutter Publisher
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -40,6 +41,10 @@ jobs:
           git commit --allow-empty -m "json_theme: schema update"
           git push origin HEAD:gh-pages
           cd ..
+
+      - name: Run Codegen
+        run: |
+          dart run build_runner build --delete-conflicting-outputs -v
 
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2

@@ -65,8 +65,8 @@ class ThemeDecoder {
       ));
 
       result = Alignment(
-        JsonClass.parseDouble(value['x']) ?? 0.0,
-        JsonClass.parseDouble(value['y']) ?? 0.0,
+        JsonClass.maybeParseDouble(value['x']) ?? 0.0,
+        JsonClass.maybeParseDouble(value['y']) ?? 0.0,
       );
     } else {
       _checkSupported(
@@ -234,8 +234,8 @@ class ThemeDecoder {
       ));
 
       result = Alignment(
-        JsonClass.parseDouble(value['x']) ?? 0.0,
-        JsonClass.parseDouble(value['y']) ?? 0.0,
+        JsonClass.maybeParseDouble(value['x']) ?? 0.0,
+        JsonClass.maybeParseDouble(value['y']) ?? 0.0,
       );
     } else if (value != null) {
       _checkSupported(
@@ -410,10 +410,8 @@ class ThemeDecoder {
           value['backgroundColor'] ?? value['color'],
           validate: false,
         ),
-        centerTitle: value['centerTitle'] == null
-            ? null
-            : JsonClass.parseBool(value['centerTitle']),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        centerTitle: JsonClass.maybeParseBool(value['centerTitle']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         foregroundColor: decodeColor(
           value['foregroundColor'],
           validate: false,
@@ -422,7 +420,7 @@ class ThemeDecoder {
           value['iconTheme'],
           validate: false,
         ),
-        scrolledUnderElevation: JsonClass.parseDouble(
+        scrolledUnderElevation: JsonClass.maybeParseDouble(
           value['scrolledUnderElevation'],
         ),
         shape: ThemeDecoder.decodeShapeBorder(
@@ -441,12 +439,12 @@ class ThemeDecoder {
           value['surfaceTintColor'],
           validate: false,
         ),
-        titleSpacing: JsonClass.parseDouble(value['titleSpacing']),
+        titleSpacing: JsonClass.maybeParseDouble(value['titleSpacing']),
         titleTextStyle: decodeTextStyle(
           value['titleTextStyle'],
           validate: false,
         ),
-        toolbarHeight: JsonClass.parseDouble(value['toolbarHeight']),
+        toolbarHeight: JsonClass.maybeParseDouble(value['toolbarHeight']),
         toolbarTextStyle: decodeTextStyle(
           value['toolbarTextStyle'],
           validate: false,
@@ -588,7 +586,7 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        largeSize: JsonClass.parseDouble(value['largeSize']),
+        largeSize: JsonClass.maybeParseDouble(value['largeSize']),
         offset: decodeOffset(
           value['offset'],
           validate: false,
@@ -597,7 +595,7 @@ class ThemeDecoder {
           value['padding'],
           validate: false,
         ),
-        smallSize: JsonClass.parseDouble(value['smallSize']),
+        smallSize: JsonClass.maybeParseDouble(value['smallSize']),
         textColor: decodeColor(
           value['textColor'],
           validate: false,
@@ -872,7 +870,7 @@ class ThemeDecoder {
   /// [String], an [int], a [double], or a Map-like object.
   ///
   /// When the [value] is a [String], [int], or [double] then the value will be
-  /// parsed via [JsonClass.parseDouble] and the result will be passed to
+  /// parsed via [JsonClass.maybeParseDouble] and the result will be passed to
   /// [BorderRadius.circular].
   ///
   /// If the [value] is a Map-like object then the expected structure depends on
@@ -940,7 +938,7 @@ class ThemeDecoder {
     if (value is BorderRadius) {
       result = value;
     } else {
-      final radius = JsonClass.parseDouble(value);
+      final radius = JsonClass.maybeParseDouble(value);
       if (radius != null) {
         result = BorderRadius.circular(radius);
       } else {
@@ -975,7 +973,7 @@ class ThemeDecoder {
               break;
             case 'circular':
               result = BorderRadius.circular(
-                JsonClass.parseDouble(value['radius'])!,
+                JsonClass.maybeParseDouble(value['radius'])!,
               );
               break;
             case 'horizontal':
@@ -1073,14 +1071,14 @@ class ThemeDecoder {
               validate: false,
             ) ??
             const Color(0xff000000),
-        strokeAlign: JsonClass.parseDouble(value['strokeAlign']) ??
+        strokeAlign: JsonClass.maybeParseDouble(value['strokeAlign']) ??
             BorderSide.strokeAlignInside,
         style: decodeBorderStyle(
               value['style'],
               validate: false,
             ) ??
             BorderStyle.solid,
-        width: JsonClass.parseDouble(value['width'], 1.0)!,
+        width: JsonClass.maybeParseDouble(value['width'], 1.0)!,
       );
     }
 
@@ -1167,8 +1165,8 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
-        height: JsonClass.parseDouble(value['height']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
+        height: JsonClass.maybeParseDouble(value['height']),
         padding: decodeEdgeInsetsGeometry(
           value['padding'],
           validate: false,
@@ -1234,10 +1232,8 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
-        enableFeedback: value['enableFeedback'] == null
-            ? null
-            : JsonClass.parseBool(value['enableFeedback']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
+        enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
         landscapeLayout: decodeBottomNavigationBarLandscapeLayout(
           value['landscapeLayout'],
           validate: false,
@@ -1258,12 +1254,12 @@ class ThemeDecoder {
           value['selectedLabelStyle'],
           validate: false,
         ),
-        showSelectedLabels: value['showSelectedLabels'] == null
-            ? null
-            : JsonClass.parseBool(value['showSelectedLabels']),
-        showUnselectedLabels: value['showUnselectedLabels'] == null
-            ? null
-            : JsonClass.parseBool(value['showUnselectedLabels']),
+        showSelectedLabels: JsonClass.maybeParseBool(
+          value['showSelectedLabels'],
+        ),
+        showUnselectedLabels: JsonClass.maybeParseBool(
+          value['showUnselectedLabels'],
+        ),
         type: decodeBottomNavigationBarType(
           value['type'],
           validate: false,
@@ -1430,7 +1426,7 @@ class ThemeDecoder {
         ),
         dragHandleColor: decodeColor(value['dragHandleColor'], validate: false),
         dragHandleSize: decodeSize(value['dragHandleSize'], validate: false),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         modalBackgroundColor: decodeColor(
           value['modalBackgroundColor'],
           validate: false,
@@ -1439,15 +1435,13 @@ class ThemeDecoder {
           value['modalBarrierColor'],
           validate: false,
         ),
-        modalElevation: JsonClass.parseDouble(value['modalElevation']),
+        modalElevation: JsonClass.maybeParseDouble(value['modalElevation']),
         shadowColor: decodeColor(value['shadowColor'], validate: false),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
         ),
-        showDragHandle: value['showDragHandle'] == null
-            ? null
-            : JsonClass.parseBool(value['showDragHandle']),
+        showDragHandle: JsonClass.maybeParseBool(value['showDragHandle']),
         surfaceTintColor: ThemeDecoder.decodeColor(
           value['surfaceTintColor'],
           validate: false,
@@ -1561,10 +1555,12 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = BoxConstraints(
-        maxHeight: JsonClass.parseDouble(value['maxHeight'], double.infinity)!,
-        maxWidth: JsonClass.parseDouble(value['maxWidth'], double.infinity)!,
-        minHeight: JsonClass.parseDouble(value['minHeight'], 0)!,
-        minWidth: JsonClass.parseDouble(value['minWidth'], 0)!,
+        maxHeight:
+            JsonClass.maybeParseDouble(value['maxHeight'], double.infinity)!,
+        maxWidth:
+            JsonClass.maybeParseDouble(value['maxWidth'], double.infinity)!,
+        minHeight: JsonClass.maybeParseDouble(value['minHeight'], 0)!,
+        minWidth: JsonClass.maybeParseDouble(value['minWidth'], 0)!,
       );
     }
 
@@ -1742,7 +1738,7 @@ class ThemeDecoder {
               validate: false,
             ) ??
             BlurStyle.normal,
-        blurRadius: JsonClass.parseDouble(value['blurRadius'], 0)!,
+        blurRadius: JsonClass.maybeParseDouble(value['blurRadius'], 0)!,
         color: decodeColor(
               value['color'],
               validate: false,
@@ -1753,7 +1749,7 @@ class ThemeDecoder {
               validate: false,
             ) ??
             Offset.zero,
-        spreadRadius: JsonClass.parseDouble(value['spreadRadius'], 0)!,
+        spreadRadius: JsonClass.maybeParseDouble(value['spreadRadius'], 0)!,
       );
     }
 
@@ -1902,11 +1898,11 @@ class ThemeDecoder {
           value['alignment'],
           validate: false,
         ),
-        buttonAlignedDropdown: value['buttonAlignedDropdown'] == null
-            ? null
-            : JsonClass.parseBool(value['buttonAlignedDropdown']),
-        buttonHeight: JsonClass.parseDouble(value['buttonHeight']),
-        buttonMinWidth: JsonClass.parseDouble(value['buttonMinWidth']),
+        buttonAlignedDropdown: JsonClass.maybeParseBool(
+          value['buttonAlignedDropdown'],
+        ),
+        buttonHeight: JsonClass.maybeParseDouble(value['buttonHeight']),
+        buttonMinWidth: JsonClass.maybeParseDouble(value['buttonMinWidth']),
         buttonPadding: decodeEdgeInsetsGeometry(
           value['buttonPadding'],
           validate: false,
@@ -2005,7 +2001,7 @@ class ThemeDecoder {
           value['alignment'],
           validate: false,
         ),
-        animationDuration: JsonClass.parseDurationFromMillis(
+        animationDuration: JsonClass.maybeParseDurationFromMillis(
           value['animationDuration'],
         ),
         backgroundColor: decodeMaterialStatePropertyColor(
@@ -2016,9 +2012,7 @@ class ThemeDecoder {
           value['elevation'],
           validate: false,
         ),
-        enableFeedback: value['enableFeedback'] == null
-            ? null
-            : JsonClass.parseBool(value['enableFeedback']),
+        enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
         fixedSize: decodeMaterialStatePropertySize(
           value['fixedSize'],
           validate: false,
@@ -2202,7 +2196,7 @@ class ThemeDecoder {
           value['focusColor'],
           validate: false,
         ),
-        height: JsonClass.parseDouble(value['height'], 36.0)!,
+        height: JsonClass.maybeParseDouble(value['height'], 36.0)!,
         highlightColor: decodeColor(
           value['highlightColor'],
           validate: false,
@@ -2220,7 +2214,7 @@ class ThemeDecoder {
           value['materialTapTargetSize'],
           validate: false,
         ),
-        minWidth: JsonClass.parseDouble(value['minWidth'], 88.0)!,
+        minWidth: JsonClass.maybeParseDouble(value['minWidth'], 88.0)!,
         padding: decodeEdgeInsetsGeometry(
           value['padding'],
           validate: false,
@@ -2286,7 +2280,7 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         margin: decodeEdgeInsetsGeometry(
           value['margin'],
           validate: false,
@@ -2378,7 +2372,7 @@ class ThemeDecoder {
           value['borderSide'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(value['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(value['splashRadius']),
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
           validate: false,
@@ -2460,7 +2454,7 @@ class ThemeDecoder {
           value['disabledColor'],
           validate: false,
         )!,
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         iconTheme: decodeIconThemeData(
           value['iconTheme'],
           validate: false,
@@ -2477,7 +2471,7 @@ class ThemeDecoder {
           value['padding'],
           validate: false,
         )!,
-        pressElevation: JsonClass.parseDouble(value['pressElevation']),
+        pressElevation: JsonClass.maybeParseDouble(value['pressElevation']),
         secondaryLabelStyle: decodeTextStyle(
           value['secondaryLabelStyle'],
           validate: false,
@@ -2506,9 +2500,7 @@ class ThemeDecoder {
           value['shadowColor'],
           validate: false,
         ),
-        showCheckmark: value['showCheckmark'] == null
-            ? null
-            : JsonClass.parseBool(value['showCheckmark']),
+        showCheckmark: JsonClass.maybeParseBool(value['showCheckmark']),
         surfaceTintColor: decodeColor(
           value['surfaceTintColor'],
           validate: false,
@@ -2667,7 +2659,7 @@ class ThemeDecoder {
 
         case 'matrix':
           result = ColorFilter.matrix(
-            JsonClass.parseDoubleList(value['matrix'])!,
+            JsonClass.maybeParseDoubleList(value['matrix'])!,
           );
           break;
 
@@ -3082,9 +3074,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = CupertinoThemeData(
-        applyThemeToAll: value['applyThemeToAll'] == null
-            ? null
-            : JsonClass.parseBool(value['applyThemeToAll']),
+        applyThemeToAll: JsonClass.maybeParseBool(value['applyThemeToAll']),
         barBackgroundColor: decodeColor(
           value['barBackgroundColor'],
           validate: false,
@@ -3200,7 +3190,7 @@ class ThemeDecoder {
           value['dayStyle'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         headerBackgroundColor: decodeColor(
           value['headerBackgroundColor'],
           validate: false,
@@ -3222,7 +3212,7 @@ class ThemeDecoder {
           validate: false,
         ),
         rangePickerElevation:
-            JsonClass.parseDouble(value['rangePickerElevation']),
+            JsonClass.maybeParseDouble(value['rangePickerElevation']),
         rangePickerHeaderBackgroundColor: decodeColor(
           value['rangePickerHeaderBackgroundColor'],
           validate: false,
@@ -3356,10 +3346,10 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = DataTableThemeData(
-        checkboxHorizontalMargin: JsonClass.parseDouble(
+        checkboxHorizontalMargin: JsonClass.maybeParseDouble(
           value['checkboxHorizontalMargin'],
         ),
-        columnSpacing: JsonClass.parseDouble(
+        columnSpacing: JsonClass.maybeParseDouble(
           value['columnSpacing'],
         ),
         dataRowColor: decodeMaterialStatePropertyColor(
@@ -3370,10 +3360,10 @@ class ThemeDecoder {
           value['dataRowCursor'],
           validate: false,
         ),
-        dataRowMaxHeight: JsonClass.parseDouble(
+        dataRowMaxHeight: JsonClass.maybeParseDouble(
           value['dataRowMaxHeight'],
         ),
-        dataRowMinHeight: JsonClass.parseDouble(
+        dataRowMinHeight: JsonClass.maybeParseDouble(
           value['dataRowMinHeight'],
         ),
         dataTextStyle: decodeTextStyle(
@@ -3384,7 +3374,7 @@ class ThemeDecoder {
           value['decoration'],
           validate: false,
         ),
-        dividerThickness: JsonClass.parseDouble(
+        dividerThickness: JsonClass.maybeParseDouble(
           value['dividerThickness'],
         ),
         headingCellCursor: decodeMaterialStatePropertyMouseCursor(
@@ -3395,14 +3385,14 @@ class ThemeDecoder {
           value['headingRowColor'],
           validate: false,
         ),
-        headingRowHeight: JsonClass.parseDouble(
+        headingRowHeight: JsonClass.maybeParseDouble(
           value['headingRowHeight'],
         ),
         headingTextStyle: decodeTextStyle(
           value['headingTextStyle'],
           validate: false,
         ),
-        horizontalMargin: JsonClass.parseDouble(
+        horizontalMargin: JsonClass.maybeParseDouble(
           value['horizontalMargin'],
         ),
       );
@@ -3479,13 +3469,13 @@ class ThemeDecoder {
         invertColors: JsonClass.parseBool(value['invertColors']),
         isAntiAlias: JsonClass.parseBool(value['isAntiAlias']),
         matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
-        opacity: JsonClass.parseDouble(value['opacity']) ?? 1.0,
+        opacity: JsonClass.maybeParseDouble(value['opacity']) ?? 1.0,
         repeat: decodeImageRepeat(
               value['repeat'],
               validate: false,
             ) ??
             ImageRepeat.noRepeat,
-        scale: JsonClass.parseDouble(value['scale'], 1.0)!,
+        scale: JsonClass.maybeParseDouble(value['scale'], 1.0)!,
       );
     }
 
@@ -3589,7 +3579,7 @@ class ThemeDecoder {
           value['contentTextStyle'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         iconColor: decodeColor(
           value['iconColor'],
           validate: false,
@@ -3650,10 +3640,10 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        endIndent: JsonClass.parseDouble(value['endIndent']),
-        indent: JsonClass.parseDouble(value['indent']),
-        space: JsonClass.parseDouble(value['space']),
-        thickness: JsonClass.parseDouble(value['thickness']),
+        endIndent: JsonClass.maybeParseDouble(value['endIndent']),
+        indent: JsonClass.maybeParseDouble(value['indent']),
+        space: JsonClass.maybeParseDouble(value['space']),
+        thickness: JsonClass.maybeParseDouble(value['thickness']),
       );
     }
 
@@ -3740,7 +3730,7 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         endShape: decodeShapeBorder(
           value['endShape'],
           validate: false,
@@ -3761,7 +3751,7 @@ class ThemeDecoder {
           value['surfaceTintColor'],
           validate: false,
         ),
-        width: JsonClass.parseDouble(value['width']),
+        width: JsonClass.maybeParseDouble(value['width']),
       );
     }
 
@@ -3852,38 +3842,38 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is String || value is double || value is int) {
-        result = EdgeInsets.all(JsonClass.parseDouble(value)!);
+        result = EdgeInsets.all(JsonClass.maybeParseDouble(value)!);
       } else if (value is List) {
         assert(value.length == 2 || value.length == 4);
         // LR,TB
         if (value.length == 1) {
           result = EdgeInsets.all(
-            JsonClass.parseDouble(value[0], 0)!,
+            JsonClass.maybeParseDouble(value[0], 0)!,
           );
         }
         // LR,TB
         else if (value.length == 2) {
           result = EdgeInsets.symmetric(
-            horizontal: JsonClass.parseDouble(value[0], 0)!,
-            vertical: JsonClass.parseDouble(value[1], 0)!,
+            horizontal: JsonClass.maybeParseDouble(value[0], 0)!,
+            vertical: JsonClass.maybeParseDouble(value[1], 0)!,
           );
         }
         // T,LR,B
         else if (value.length == 3) {
           result = EdgeInsets.fromLTRB(
-            JsonClass.parseDouble(value[1])!,
-            JsonClass.parseDouble(value[0])!,
-            JsonClass.parseDouble(value[1])!,
-            JsonClass.parseDouble(value[2])!,
+            JsonClass.maybeParseDouble(value[1])!,
+            JsonClass.maybeParseDouble(value[0])!,
+            JsonClass.maybeParseDouble(value[1])!,
+            JsonClass.maybeParseDouble(value[2])!,
           );
         }
         // L,T,R,B
         else if (value.length == 4) {
           result = EdgeInsets.fromLTRB(
-            JsonClass.parseDouble(value[0])!,
-            JsonClass.parseDouble(value[1])!,
-            JsonClass.parseDouble(value[2])!,
-            JsonClass.parseDouble(value[3])!,
+            JsonClass.maybeParseDouble(value[0])!,
+            JsonClass.maybeParseDouble(value[1])!,
+            JsonClass.maybeParseDouble(value[2])!,
+            JsonClass.maybeParseDouble(value[3])!,
           );
         }
       } else {
@@ -3893,10 +3883,10 @@ class ThemeDecoder {
           validate: validate,
         ));
         result = EdgeInsets.only(
-          bottom: JsonClass.parseDouble(value['bottom'], 0.0)!,
-          left: JsonClass.parseDouble(value['left'], 0.0)!,
-          right: JsonClass.parseDouble(value['right'], 0.0)!,
-          top: JsonClass.parseDouble(value['top'], 0.0)!,
+          bottom: JsonClass.maybeParseDouble(value['bottom'], 0.0)!,
+          left: JsonClass.maybeParseDouble(value['left'], 0.0)!,
+          right: JsonClass.maybeParseDouble(value['right'], 0.0)!,
+          top: JsonClass.maybeParseDouble(value['top'], 0.0)!,
         );
       }
     }
@@ -4399,12 +4389,11 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        disabledElevation: JsonClass.parseDouble(value['disabledElevation']),
-        enableFeedback: value['enableFeedback'] == null
-            ? null
-            : JsonClass.parseBool(value['enableFeedback']),
-        elevation: JsonClass.parseDouble(value['elevation']),
-        extendedIconLabelSpacing: JsonClass.parseDouble(
+        disabledElevation:
+            JsonClass.maybeParseDouble(value['disabledElevation']),
+        enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
+        extendedIconLabelSpacing: JsonClass.maybeParseDouble(
           value['extendedIconLabelSpacing'],
         ),
         extendedPadding: decodeEdgeInsetsGeometry(
@@ -4423,18 +4412,19 @@ class ThemeDecoder {
           value['focusColor'],
           validate: false,
         ),
-        focusElevation: JsonClass.parseDouble(value['focusElevation']),
+        focusElevation: JsonClass.maybeParseDouble(value['focusElevation']),
         foregroundColor: decodeColor(
           value['foregroundColor'],
           validate: false,
         ),
-        highlightElevation: JsonClass.parseDouble(value['highlightElevation']),
+        highlightElevation:
+            JsonClass.maybeParseDouble(value['highlightElevation']),
         hoverColor: decodeColor(
           value['hoverColor'],
           validate: false,
         ),
-        hoverElevation: JsonClass.parseDouble(value['hoverElevation']),
-        iconSize: JsonClass.parseDouble(value['iconSize']),
+        hoverElevation: JsonClass.maybeParseDouble(value['hoverElevation']),
+        iconSize: JsonClass.maybeParseDouble(value['iconSize']),
         largeSizeConstraints: decodeBoxConstraints(
           value['largeSizeConstraints'],
           validate: false,
@@ -4581,7 +4571,7 @@ class ThemeDecoder {
       ));
       result = FontFeature(
         value['feature'],
-        JsonClass.parseInt(value['value'])!,
+        JsonClass.maybeParseInt(value['value'])!,
       );
     }
 
@@ -4752,7 +4742,7 @@ class ThemeDecoder {
       ));
       result = FontVariation(
         value['axis'],
-        JsonClass.parseDouble(value['value'])!,
+        JsonClass.maybeParseDouble(value['value'])!,
       );
     }
 
@@ -4870,7 +4860,7 @@ class ThemeDecoder {
                   Alignment.centerRight,
               stops: _decodeDynamicList<double>(
                 value['stops'],
-                (value) => JsonClass.parseDouble(value)!,
+                (value) => JsonClass.maybeParseDouble(value)!,
               ),
               tileMode: decodeTileMode(
                     value['tileMode'],
@@ -4901,11 +4891,12 @@ class ThemeDecoder {
                 value['focal'],
                 validate: false,
               ),
-              focalRadius: JsonClass.parseDouble(value['focalRadius'], 0.0)!,
-              radius: JsonClass.parseDouble(value['radius'], 0.5)!,
+              focalRadius:
+                  JsonClass.maybeParseDouble(value['focalRadius'], 0.0)!,
+              radius: JsonClass.maybeParseDouble(value['radius'], 0.5)!,
               stops: _decodeDynamicList<double>(
                 value['stops'],
-                (value) => JsonClass.parseDouble(value)!,
+                (value) => JsonClass.maybeParseDouble(value)!,
               ),
               tileMode: decodeTileMode(
                     value['tileMode'],
@@ -4932,17 +4923,17 @@ class ThemeDecoder {
                   validate: false,
                 )!,
               )!,
-              endAngle: JsonClass.parseDouble(
+              endAngle: JsonClass.maybeParseDouble(
                 value['endAngle'],
                 math.pi * 2,
               )!,
-              startAngle: JsonClass.parseDouble(
+              startAngle: JsonClass.maybeParseDouble(
                 value['startAngle'],
                 0.0,
               )!,
               stops: _decodeDynamicList<double>(
                 value['stops'],
-                (value) => JsonClass.parseDouble(value)!,
+                (value) => JsonClass.maybeParseDouble(value)!,
               ),
               tileMode: decodeTileMode(
                     value['tileMode'],
@@ -4988,7 +4979,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = GradientRotation(
-        JsonClass.parseDouble(value['radians'])!,
+        JsonClass.maybeParseDouble(value['radians'])!,
       );
     }
 
@@ -5085,23 +5076,23 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        fill: JsonClass.parseDouble(value['fill']),
-        grade: JsonClass.parseDouble(value['grade']),
-        opticalSize: JsonClass.parseDouble(value['opticalSize']),
+        fill: JsonClass.maybeParseDouble(value['fill']),
+        grade: JsonClass.maybeParseDouble(value['grade']),
+        opticalSize: JsonClass.maybeParseDouble(value['opticalSize']),
         semanticLabel: value['semanticLabel'],
-        shadows: JsonClass.fromDynamicList(
+        shadows: JsonClass.maybeFromDynamicList(
           value['shadows'],
           (map) => ThemeDecoder.decodeShadow(
             map,
             validate: false,
           )!,
         ),
-        size: JsonClass.parseDouble(value['size']),
+        size: JsonClass.maybeParseDouble(value['size']),
         textDirection: ThemeDecoder.decodeTextDirection(
           value['textDirection'],
           validate: false,
         ),
-        weight: JsonClass.parseDouble(value['weight']),
+        weight: JsonClass.maybeParseDouble(value['weight']),
       );
     }
 
@@ -5170,7 +5161,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = IconData(
-        JsonClass.parseInt(value['codePoint'])!,
+        JsonClass.maybeParseInt(value['codePoint'])!,
         fontFamily: value['fontFamily'],
         fontPackage: value['fontPackage'],
         matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
@@ -5217,19 +5208,19 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        fill: JsonClass.parseDouble(value['fill']),
-        grade: JsonClass.parseDouble(value['grade']),
-        opacity: JsonClass.parseDouble(value['opacity']),
-        opticalSize: JsonClass.parseDouble(value['opticalSize']),
-        shadows: JsonClass.fromDynamicList(
+        fill: JsonClass.maybeParseDouble(value['fill']),
+        grade: JsonClass.maybeParseDouble(value['grade']),
+        opacity: JsonClass.maybeParseDouble(value['opacity']),
+        opticalSize: JsonClass.maybeParseDouble(value['opticalSize']),
+        shadows: JsonClass.maybeFromDynamicList(
           value['shadows'],
           (map) => decodeShadow(
             map,
             validate: false,
           )!,
         ),
-        size: JsonClass.parseDouble(value['size']),
-        weight: JsonClass.parseDouble(value['weight']),
+        size: JsonClass.maybeParseDouble(value['size']),
+        weight: JsonClass.maybeParseDouble(value['weight']),
       );
     }
 
@@ -5306,14 +5297,14 @@ class ThemeDecoder {
           case 'memory':
             result = MemoryImage(
               base64Decode(value['bytes']),
-              scale: JsonClass.parseDouble(value['scale'], 1.0)!,
+              scale: JsonClass.maybeParseDouble(value['scale'], 1.0)!,
             );
             break;
           case 'network':
             result = NetworkImage(
               value['url'],
               headers: value['headers'],
-              scale: JsonClass.parseDouble(value['scale'], 1.0)!,
+              scale: JsonClass.maybeParseDouble(value['scale'], 1.0)!,
             );
             break;
         }
@@ -5439,7 +5430,7 @@ class ThemeDecoder {
                     validate: false,
                   ) ??
                   const BorderSide(),
-              gapPadding: JsonClass.parseDouble(value['gapPadding'], 4.0)!,
+              gapPadding: JsonClass.maybeParseDouble(value['gapPadding'], 4.0)!,
             );
             break;
 
@@ -5563,7 +5554,7 @@ class ThemeDecoder {
           value['errorBorder'],
           validate: false,
         ),
-        errorMaxLines: JsonClass.parseInt(value['errorMaxLines']),
+        errorMaxLines: JsonClass.maybeParseInt(value['errorMaxLines']),
         errorStyle: decodeTextStyle(
           value['errorStyle'],
           validate: false,
@@ -5599,7 +5590,7 @@ class ThemeDecoder {
           value['focusedErrorBorder'],
           validate: false,
         ),
-        helperMaxLines: JsonClass.parseInt(value['helperMaxLines']),
+        helperMaxLines: JsonClass.maybeParseInt(value['helperMaxLines']),
         helperStyle: decodeTextStyle(
           value['helperStyle'],
           validate: false,
@@ -5836,12 +5827,10 @@ class ThemeDecoder {
           value['contentPadding'],
           validate: false,
         ),
-        dense:
-            value['dense'] == null ? null : JsonClass.parseBool(value['dense']),
-        enableFeedback: value['enableFeedback'] == null
-            ? null
-            : JsonClass.parseBool(value['enableFeedback']),
-        horizontalTitleGap: JsonClass.parseDouble(value['horizontalTitleGap']),
+        dense: JsonClass.maybeParseBool(value['dense']),
+        enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
+        horizontalTitleGap:
+            JsonClass.maybeParseDouble(value['horizontalTitleGap']),
         iconColor: decodeColor(
           value['iconColor'],
           validate: false,
@@ -5850,8 +5839,9 @@ class ThemeDecoder {
           value['leadingAndTrailingTextStyle'],
           validate: false,
         ),
-        minLeadingWidth: JsonClass.parseDouble(value['minLeadingWidth']),
-        minVerticalPadding: JsonClass.parseDouble(value['minVerticalPadding']),
+        minLeadingWidth: JsonClass.maybeParseDouble(value['minLeadingWidth']),
+        minVerticalPadding:
+            JsonClass.maybeParseDouble(value['minVerticalPadding']),
         mouseCursor: decodeMaterialStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
@@ -6080,7 +6070,7 @@ class ThemeDecoder {
           value['dividerColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         leadingPadding: decodeEdgeInsetsGeometry(
           value['leadingPadding'],
           validate: false,
@@ -6133,7 +6123,7 @@ class ThemeDecoder {
 
       final swatchesIn = value['swatches'];
       swatchesIn.forEach(
-        (key, value) => swatches[JsonClass.parseInt(key)!] = decodeColor(
+        (key, value) => swatches[JsonClass.maybeParseInt(key)!] = decodeColor(
           value,
           validate: false,
         )!,
@@ -6192,41 +6182,23 @@ class ThemeDecoder {
         result = MaterialStateProperty.resolveWith((states) {
           bool? result;
           if (states.contains(MaterialState.disabled)) {
-            result = value['disabled'] == null
-                ? null
-                : JsonClass.parseBool(value['disabled']);
+            result = JsonClass.maybeParseBool(value['disabled']);
           } else if (states.contains(MaterialState.dragged)) {
-            result = value['dragged'] == null
-                ? null
-                : JsonClass.parseBool(value['dragged']);
+            result = JsonClass.maybeParseBool(value['dragged']);
           } else if (states.contains(MaterialState.error)) {
-            result = value['error'] == null
-                ? null
-                : JsonClass.parseBool(value['error']);
+            result = JsonClass.maybeParseBool(value['error']);
           } else if (states.contains(MaterialState.focused)) {
-            result = value['focused'] == null
-                ? null
-                : JsonClass.parseBool(value['focused']);
+            result = JsonClass.maybeParseBool(value['focused']);
           } else if (states.contains(MaterialState.hovered)) {
-            result = value['hovered'] == null
-                ? null
-                : JsonClass.parseBool(value['hovered']);
+            result = JsonClass.maybeParseBool(value['hovered']);
           } else if (states.contains(MaterialState.pressed)) {
-            result = value['pressed'] == null
-                ? null
-                : JsonClass.parseBool(value['pressed']);
+            result = JsonClass.maybeParseBool(value['pressed']);
           } else if (states.contains(MaterialState.scrolledUnder)) {
-            result = value['scrolledUnder'] == null
-                ? null
-                : JsonClass.parseBool(value['scrolledUnder']);
+            result = JsonClass.maybeParseBool(value['scrolledUnder']);
           } else if (states.contains(MaterialState.selected)) {
-            result = value['selected'] == null
-                ? null
-                : JsonClass.parseBool(value['selected']);
+            result = JsonClass.maybeParseBool(value['selected']);
           } else {
-            result = value['empty'] == null
-                ? null
-                : JsonClass.parseBool(value['empty']);
+            result = JsonClass.maybeParseBool(value['empty']);
           }
 
           return result;
@@ -6511,7 +6483,7 @@ class ThemeDecoder {
         result = MaterialStateProperty.all<double?>(value);
       } else if (value is String) {
         result = MaterialStateProperty.all<double?>(
-          JsonClass.parseDouble(value),
+          JsonClass.maybeParseDouble(value),
         );
       } else if (value is Map) {
         assert(SchemaValidator.validate(
@@ -6523,23 +6495,23 @@ class ThemeDecoder {
         result = MaterialStateProperty.resolveWith((states) {
           double? result;
           if (states.contains(MaterialState.disabled)) {
-            result = JsonClass.parseDouble(value['disabled']);
+            result = JsonClass.maybeParseDouble(value['disabled']);
           } else if (states.contains(MaterialState.dragged)) {
-            result = JsonClass.parseDouble(value['dragged']);
+            result = JsonClass.maybeParseDouble(value['dragged']);
           } else if (states.contains(MaterialState.error)) {
-            result = JsonClass.parseDouble(value['error']);
+            result = JsonClass.maybeParseDouble(value['error']);
           } else if (states.contains(MaterialState.focused)) {
-            result = JsonClass.parseDouble(value['focused']);
+            result = JsonClass.maybeParseDouble(value['focused']);
           } else if (states.contains(MaterialState.hovered)) {
-            result = JsonClass.parseDouble(value['hovered']);
+            result = JsonClass.maybeParseDouble(value['hovered']);
           } else if (states.contains(MaterialState.pressed)) {
-            result = JsonClass.parseDouble(value['pressed']);
+            result = JsonClass.maybeParseDouble(value['pressed']);
           } else if (states.contains(MaterialState.scrolledUnder)) {
-            result = JsonClass.parseDouble(value['scrolledUnder']);
+            result = JsonClass.maybeParseDouble(value['scrolledUnder']);
           } else if (states.contains(MaterialState.selected)) {
-            result = JsonClass.parseDouble(value['selected']);
+            result = JsonClass.maybeParseDouble(value['selected']);
           } else {
-            result = JsonClass.parseDouble(value['empty']);
+            result = JsonClass.maybeParseDouble(value['empty']);
           }
 
           return result;
@@ -7610,22 +7582,22 @@ class ThemeDecoder {
         ));
         final list = value.toList();
         result = Matrix4(
-          JsonClass.parseDouble(list[0])!,
-          JsonClass.parseDouble(list[1])!,
-          JsonClass.parseDouble(list[2])!,
-          JsonClass.parseDouble(list[3])!,
-          JsonClass.parseDouble(list[4])!,
-          JsonClass.parseDouble(list[5])!,
-          JsonClass.parseDouble(list[6])!,
-          JsonClass.parseDouble(list[7])!,
-          JsonClass.parseDouble(list[8])!,
-          JsonClass.parseDouble(list[9])!,
-          JsonClass.parseDouble(list[10])!,
-          JsonClass.parseDouble(list[11])!,
-          JsonClass.parseDouble(list[12])!,
-          JsonClass.parseDouble(list[13])!,
-          JsonClass.parseDouble(list[14])!,
-          JsonClass.parseDouble(list[15])!,
+          JsonClass.maybeParseDouble(list[0])!,
+          JsonClass.maybeParseDouble(list[1])!,
+          JsonClass.maybeParseDouble(list[2])!,
+          JsonClass.maybeParseDouble(list[3])!,
+          JsonClass.maybeParseDouble(list[4])!,
+          JsonClass.maybeParseDouble(list[5])!,
+          JsonClass.maybeParseDouble(list[6])!,
+          JsonClass.maybeParseDouble(list[7])!,
+          JsonClass.maybeParseDouble(list[8])!,
+          JsonClass.maybeParseDouble(list[9])!,
+          JsonClass.maybeParseDouble(list[10])!,
+          JsonClass.maybeParseDouble(list[11])!,
+          JsonClass.maybeParseDouble(list[12])!,
+          JsonClass.maybeParseDouble(list[13])!,
+          JsonClass.maybeParseDouble(list[14])!,
+          JsonClass.maybeParseDouble(list[15])!,
         );
       }
     }
@@ -8229,8 +8201,8 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
-        height: JsonClass.parseDouble(value['height']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
+        height: JsonClass.maybeParseDouble(value['height']),
         iconTheme: decodeMaterialStatePropertyIconThemeData(
           value['iconTheme'],
           validate: false,
@@ -8347,7 +8319,7 @@ class ThemeDecoder {
 
       result = NavigationDrawerThemeData(
         backgroundColor: decodeColor(value['backgroundColor'], validate: false),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         iconTheme: decodeMaterialStatePropertyIconThemeData(
           value['iconTheme'],
           validate: false,
@@ -8376,7 +8348,7 @@ class ThemeDecoder {
           value['surfaceTintColor'],
           validate: false,
         ),
-        tileHeight: JsonClass.parseDouble(value['tileHeight']),
+        tileHeight: JsonClass.maybeParseDouble(value['tileHeight']),
       );
     }
 
@@ -8476,8 +8448,8 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
-        groupAlignment: JsonClass.parseDouble(value['groupAlignment']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
+        groupAlignment: JsonClass.maybeParseDouble(value['groupAlignment']),
         indicatorColor: decodeColor(
           value['indicatorColor'],
           validate: false,
@@ -8490,8 +8462,8 @@ class ThemeDecoder {
           value['labelType'],
           validate: false,
         ),
-        minExtendedWidth: JsonClass.parseDouble(value['minExtendedWidth']),
-        minWidth: JsonClass.parseDouble(value['minWidth']),
+        minExtendedWidth: JsonClass.maybeParseDouble(value['minExtendedWidth']),
+        minWidth: JsonClass.maybeParseDouble(value['minWidth']),
         selectedIconTheme: decodeIconThemeData(
           value['selectedIconTheme'],
           validate: false,
@@ -8508,9 +8480,7 @@ class ThemeDecoder {
           value['unselectedLabelTextStyle'],
           validate: false,
         ),
-        useIndicator: value['useIndicator'] == null
-            ? null
-            : JsonClass.parseBool(value['useIndicator']),
+        useIndicator: JsonClass.maybeParseBool(value['useIndicator']),
       );
     }
 
@@ -8575,8 +8545,8 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = Offset(
-        JsonClass.parseDouble(value['dx'], 0)!,
-        JsonClass.parseDouble(value['dy'], 0)!,
+        JsonClass.maybeParseDouble(value['dx'], 0)!,
+        JsonClass.maybeParseDouble(value['dy'], 0)!,
       );
     }
 
@@ -8608,7 +8578,7 @@ class ThemeDecoder {
       ));
 
       result = OrdinalSortKey(
-        JsonClass.parseDouble(value['order'])!,
+        JsonClass.maybeParseDouble(value['order'])!,
         name: value['name'],
       );
     }
@@ -9102,10 +9072,8 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
-        enableFeedback: value['enableFeedback'] == null
-            ? null
-            : JsonClass.parseBool(value['enableFeedback']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
+        enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
         labelTextStyle: decodeMaterialStatePropertyTextStyle(
           value['labelTextStyle'],
           validate: false,
@@ -9179,7 +9147,7 @@ class ThemeDecoder {
           value['color'],
           validate: false,
         ),
-        linearMinHeight: JsonClass.parseDouble(value['linearMinHeight']),
+        linearMinHeight: JsonClass.maybeParseDouble(value['linearMinHeight']),
         linearTrackColor: decodeColor(
           value['linearTrackColor'],
           validate: false,
@@ -9247,7 +9215,7 @@ class ThemeDecoder {
           value['overlayColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(value['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(value['splashRadius']),
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
           validate: false,
@@ -9266,7 +9234,7 @@ class ThemeDecoder {
   ///  * `zero`
   ///
   /// When passed in as a [String], [int], or [double] then this will use
-  /// [JsonClass.parseDouble] to parse the number to send to [Radius.circular].
+  /// [JsonClass.maybeParseDouble] to parse the number to send to [Radius.circular].
   ///
   /// Otherwise, if this is an object then the structure of the other attributes
   /// depends on the "type".
@@ -9302,7 +9270,7 @@ class ThemeDecoder {
     if (value is Radius) {
       result = value;
     } else {
-      final radius = JsonClass.parseDouble(value);
+      final radius = JsonClass.maybeParseDouble(value);
 
       if (radius != null) {
         result = Radius.circular(radius);
@@ -9328,13 +9296,14 @@ class ThemeDecoder {
 
           switch (type) {
             case 'circular':
-              result = Radius.circular(JsonClass.parseDouble(value['radius'])!);
+              result =
+                  Radius.circular(JsonClass.maybeParseDouble(value['radius'])!);
               break;
 
             case 'elliptical':
               result = Radius.elliptical(
-                JsonClass.parseDouble(value['x']) ?? 0.0,
-                JsonClass.parseDouble(value['y']) ?? 0.0,
+                JsonClass.maybeParseDouble(value['x']) ?? 0.0,
+                JsonClass.maybeParseDouble(value['y']) ?? 0.0,
               );
               break;
 
@@ -9393,15 +9362,15 @@ class ThemeDecoder {
         switch (type) {
           case 'round':
             result = RoundRangeSliderThumbShape(
-              disabledThumbRadius: JsonClass.parseDouble(
+              disabledThumbRadius: JsonClass.maybeParseDouble(
                 value['disabledThumbRadius'],
               ),
-              elevation: JsonClass.parseDouble(value['elevation']) ?? 1.0,
-              enabledThumbRadius: JsonClass.parseDouble(
+              elevation: JsonClass.maybeParseDouble(value['elevation']) ?? 1.0,
+              enabledThumbRadius: JsonClass.maybeParseDouble(
                     value['enabledThumbRadius'],
                   ) ??
                   10.0,
-              pressedElevation: JsonClass.parseDouble(
+              pressedElevation: JsonClass.maybeParseDouble(
                     value['pressedElevation'],
                   ) ??
                   6.0,
@@ -9455,7 +9424,8 @@ class ThemeDecoder {
         switch (type) {
           case 'round':
             result = RoundRangeSliderTickMarkShape(
-              tickMarkRadius: JsonClass.parseDouble(value['tickMarkRadius']),
+              tickMarkRadius:
+                  JsonClass.maybeParseDouble(value['tickMarkRadius']),
             );
             break;
         }
@@ -9674,8 +9644,8 @@ class ThemeDecoder {
                 value['center'],
                 validate: false,
               )!,
-              height: JsonClass.parseDouble(value['height'])!,
-              width: JsonClass.parseDouble(value['width'])!,
+              height: JsonClass.maybeParseDouble(value['height'])!,
+              width: JsonClass.maybeParseDouble(value['width'])!,
             );
             break;
 
@@ -9685,7 +9655,7 @@ class ThemeDecoder {
                 value['center'],
                 validate: false,
               )!,
-              radius: JsonClass.parseDouble(value['radius'])!,
+              radius: JsonClass.maybeParseDouble(value['radius'])!,
             );
             break;
 
@@ -9695,19 +9665,19 @@ class ThemeDecoder {
 
           case 'ltrb':
             result = Rect.fromLTRB(
-              JsonClass.parseDouble(value['left'])!,
-              JsonClass.parseDouble(value['top'])!,
-              JsonClass.parseDouble(value['right'])!,
-              JsonClass.parseDouble(value['bottom'])!,
+              JsonClass.maybeParseDouble(value['left'])!,
+              JsonClass.maybeParseDouble(value['top'])!,
+              JsonClass.maybeParseDouble(value['right'])!,
+              JsonClass.maybeParseDouble(value['bottom'])!,
             );
             break;
 
           case 'ltwh':
             result = Rect.fromLTWH(
-              JsonClass.parseDouble(value['left'])!,
-              JsonClass.parseDouble(value['top'])!,
-              JsonClass.parseDouble(value['width'])!,
-              JsonClass.parseDouble(value['height'])!,
+              JsonClass.maybeParseDouble(value['left'])!,
+              JsonClass.maybeParseDouble(value['top'])!,
+              JsonClass.maybeParseDouble(value['width'])!,
+              JsonClass.maybeParseDouble(value['height'])!,
             );
             break;
 
@@ -9993,13 +9963,11 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ScrollbarThemeData(
-        crossAxisMargin: JsonClass.parseDouble(value['crossAxisMargin']),
-        interactive: value['interactive'] == null
-            ? null
-            : JsonClass.parseBool(value['interactive']),
+        crossAxisMargin: JsonClass.maybeParseDouble(value['crossAxisMargin']),
+        interactive: JsonClass.maybeParseBool(value['interactive']),
         // isAlwaysShown: @deprecated,
-        mainAxisMargin: JsonClass.parseDouble(value['mainAxisMargin']),
-        minThumbLength: JsonClass.parseDouble(value['minThumbLength']),
+        mainAxisMargin: JsonClass.maybeParseDouble(value['mainAxisMargin']),
+        minThumbLength: JsonClass.maybeParseDouble(value['minThumbLength']),
         radius: decodeRadius(
           value['radius'],
           validate: false,
@@ -10179,7 +10147,7 @@ class ThemeDecoder {
           value['dividerColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         headerHintStyle: decodeTextStyle(
           value['headerHintStyle'],
           validate: false,
@@ -10307,7 +10275,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = Shadow(
-        blurRadius: JsonClass.parseDouble(value['blurRadius'], 0.0)!,
+        blurRadius: JsonClass.maybeParseDouble(value['blurRadius'], 0.0)!,
         color: decodeColor(
           value['color'],
           validate: false,
@@ -10529,8 +10497,8 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = Size(
-        JsonClass.parseDouble(value['width'])!,
-        JsonClass.parseDouble(value['height'])!,
+        JsonClass.maybeParseDouble(value['width'])!,
+        JsonClass.maybeParseDouble(value['height'])!,
       );
     }
 
@@ -10680,7 +10648,8 @@ class ThemeDecoder {
           value['inactiveTrackColor'],
           validate: false,
         ),
-        minThumbSeparation: JsonClass.parseDouble(value['minThumbSeparation']),
+        minThumbSeparation:
+            JsonClass.maybeParseDouble(value['minThumbSeparation']),
         mouseCursor: decodeMaterialStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
@@ -10734,7 +10703,7 @@ class ThemeDecoder {
           value['tickMarkShape'],
           validate: false,
         ),
-        trackHeight: JsonClass.parseDouble(value['trackHeight']),
+        trackHeight: JsonClass.maybeParseDouble(value['trackHeight']),
         trackShape: decodeSliderTrackShape(
           value['trackShape'],
           validate: false,
@@ -11020,7 +10989,7 @@ class ThemeDecoder {
           value['actionBackgroundColor'],
           validate: false,
         ),
-        actionOverflowThreshold: JsonClass.parseDouble(
+        actionOverflowThreshold: JsonClass.maybeParseDouble(
           value['actionOverflowThreshold'],
         ),
         actionTextColor: decodeColor(
@@ -11051,7 +11020,7 @@ class ThemeDecoder {
           value['disabledActionTextColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         insetPadding: decodeEdgeInsetsGeometry(
           value['insetPadding'],
           validate: false,
@@ -11060,10 +11029,8 @@ class ThemeDecoder {
           value['shape'],
           validate: false,
         ),
-        showCloseIcon: value['showCloseIcon'] == null
-            ? null
-            : JsonClass.parseBool(value['showCloseIcon']),
-        width: JsonClass.parseDouble(value['width']),
+        showCloseIcon: JsonClass.maybeParseBool(value['showCloseIcon']),
+        width: JsonClass.maybeParseDouble(value['width']),
       );
     }
 
@@ -11149,7 +11116,7 @@ class ThemeDecoder {
           value['fontFamilyFallback'],
           (value) => value,
         ),
-        fontSize: JsonClass.parseDouble(value['fontSize']),
+        fontSize: JsonClass.maybeParseDouble(value['fontSize']),
         fontStyle: decodeFontStyle(
           value['fontStyle'],
           validate: false,
@@ -11158,11 +11125,9 @@ class ThemeDecoder {
           value['fontWeight'],
           validate: false,
         ),
-        forceStrutHeight: value['forceStrutHeight'] == null
-            ? null
-            : JsonClass.parseBool(value['forceStrutHeight']),
-        height: JsonClass.parseDouble(value['height']),
-        leading: JsonClass.parseDouble(value['leading']),
+        forceStrutHeight: JsonClass.maybeParseBool(value['forceStrutHeight']),
+        height: JsonClass.maybeParseDouble(value['height']),
+        leading: JsonClass.maybeParseDouble(value['leading']),
         leadingDistribution: decodeTextLeadingDistribution(
           value['leadingDistribution'],
           validate: false,
@@ -11222,7 +11187,7 @@ class ThemeDecoder {
           value['overlayColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(value['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(value['splashRadius']),
         thumbColor: decodeMaterialStatePropertyColor(
           value['thumbColor'],
           validate: false,
@@ -11279,12 +11244,9 @@ class ThemeDecoder {
           value['systemNavigationBarColor'],
           validate: false,
         ),
-        systemNavigationBarContrastEnforced:
-            value['systemNavigationBarContrastEnforced'] == null
-                ? null
-                : JsonClass.parseBool(
-                    value['systemNavigationBarContrastEnforced'],
-                  ),
+        systemNavigationBarContrastEnforced: JsonClass.maybeParseBool(
+          value['systemNavigationBarContrastEnforced'],
+        ),
         systemNavigationBarDividerColor: decodeColor(
           value['systemNavigationBarDividerColor'],
           validate: false,
@@ -11293,12 +11255,9 @@ class ThemeDecoder {
           value['systemNavigationBarIconBrightness'],
           validate: false,
         ),
-        systemStatusBarContrastEnforced:
-            value['systemStatusBarContrastEnforced'] == null
-                ? null
-                : JsonClass.parseBool(
-                    value['systemStatusBarContrastEnforced'],
-                  ),
+        systemStatusBarContrastEnforced: JsonClass.maybeParseBool(
+          value['systemStatusBarContrastEnforced'],
+        ),
       );
     } else {
       _checkSupported(
@@ -11573,24 +11532,25 @@ class ThemeDecoder {
 
       switch (type) {
         case 'fixed':
-          result = FixedColumnWidth(JsonClass.parseDouble(value['value'])!);
+          result =
+              FixedColumnWidth(JsonClass.maybeParseDouble(value['value'])!);
           break;
 
         case 'flex':
           result = FlexColumnWidth(
-            JsonClass.parseDouble(value['value']) ?? 1.0,
+            JsonClass.maybeParseDouble(value['value']) ?? 1.0,
           );
           break;
 
         case 'fraction':
           result = FractionColumnWidth(
-            JsonClass.parseDouble(value['value'])!,
+            JsonClass.maybeParseDouble(value['value'])!,
           );
           break;
 
         case 'intrinsic':
           result = IntrinsicColumnWidth(
-            flex: JsonClass.parseDouble(value['value']),
+            flex: JsonClass.maybeParseDouble(value['value']),
           );
           break;
 
@@ -12086,12 +12046,14 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = TextHeightBehavior(
-        applyHeightToFirstAscent: value['applyHeightToFirstAscent'] == null
-            ? true
-            : JsonClass.parseBool(value['applyHeightToLastDescent']),
-        applyHeightToLastDescent: value['applyHeightToLastDescent'] == null
-            ? true
-            : JsonClass.parseBool(value['applyHeightToLastDescent']),
+        applyHeightToFirstAscent: JsonClass.parseBool(
+          value['applyHeightToLastDescent'],
+          whenNull: true,
+        ),
+        applyHeightToLastDescent: JsonClass.parseBool(
+          value['applyHeightToLastDescent'],
+          whenNull: true,
+        ),
         leadingDistribution: decodeTextLeadingDistribution(
               value['leadingDistribution'],
               validate: false,
@@ -12497,9 +12459,7 @@ class ThemeDecoder {
         onExit: value['onExit'],
         recognizer: value['recognizer'],
         semanticsLabel: value['semanticsLabel']?.toString(),
-        spellOut: value['spellOut'] == null
-            ? null
-            : JsonClass.parseBool(value['spellOut']),
+        spellOut: JsonClass.maybeParseBool(value['spellOut']),
         style: decodeTextStyle(
           value['style'],
           validate: false,
@@ -12591,7 +12551,7 @@ class ThemeDecoder {
           validate: false,
         ),
         decorationThickness:
-            JsonClass.parseDouble(value['decorationThickness']),
+            JsonClass.maybeParseDouble(value['decorationThickness']),
         fontFamily: value['fontFamily'],
         fontFamilyFallback: value['fontFamilyFallback'] == null
             ? null
@@ -12618,23 +12578,22 @@ class ThemeDecoder {
           value['fontWeight'],
           validate: false,
         ),
-        fontSize: JsonClass.parseDouble(value['fontSize']),
+        fontSize: JsonClass.maybeParseDouble(value['fontSize']),
         fontStyle: decodeFontStyle(
           value['fontStyle'],
           validate: false,
         ),
         // foreground: @unencodable
-        height: JsonClass.parseDouble(value['height']),
-        inherit: value['inherit'] == null
-            ? true
-            : JsonClass.parseBool(
-                value['inherit'],
-              ),
+        height: JsonClass.maybeParseDouble(value['height']),
+        inherit: JsonClass.parseBool(
+          value['inherit'],
+          whenNull: true,
+        ),
         leadingDistribution: decodeTextLeadingDistribution(
           value['leadingDistribution'],
           validate: false,
         ),
-        letterSpacing: JsonClass.parseDouble(value['letterSpacing']),
+        letterSpacing: JsonClass.maybeParseDouble(value['letterSpacing']),
         locale: decodeLocale(
           value['locale'],
           validate: false,
@@ -12658,7 +12617,7 @@ class ThemeDecoder {
           value['textBaseline'],
           validate: false,
         ),
-        wordSpacing: JsonClass.parseDouble(value['wordSpacing']),
+        wordSpacing: JsonClass.maybeParseDouble(value['wordSpacing']),
       );
     }
 
@@ -13021,9 +12980,9 @@ class ThemeDecoder {
           value['appBarTheme'],
           validate: false,
         ),
-        applyElevationOverlayColor: value['applyElevationOverlayColor'] == null
-            ? null
-            : JsonClass.parseBool(value['applyElevationOverlayColor']),
+        applyElevationOverlayColor: JsonClass.maybeParseBool(
+          value['applyElevationOverlayColor'],
+        ),
         // backgroundColor: @deprecated,
         badgeTheme: decodeBadgeThemeData(
           value['badgeTheme'],
@@ -13368,11 +13327,7 @@ class ThemeDecoder {
           value['unselectedWidgetColor'],
           validate: false,
         ),
-        useMaterial3: value['useMaterial3'] == null
-            ? null
-            : JsonClass.parseBool(
-                value['useMaterial3'],
-              ),
+        useMaterial3: JsonClass.maybeParseBool(value['useMaterial3']),
 
         // useTextSelectionTheme: @deprecated,
 
@@ -13543,7 +13498,7 @@ class ThemeDecoder {
           value['dialTextStyle'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(value['elevation']),
+        elevation: JsonClass.maybeParseDouble(value['elevation']),
         entryModeIconColor: decodeColor(
           value['entryModeIconColor'],
           validate: false,
@@ -13635,7 +13590,7 @@ class ThemeDecoder {
           value['borderRadius'],
           validate: false,
         ),
-        borderWidth: JsonClass.parseDouble(value['borderWidth']),
+        borderWidth: JsonClass.maybeParseDouble(value['borderWidth']),
         color: decodeColor(
           value['color'],
           validate: false,
@@ -13734,13 +13689,11 @@ class ThemeDecoder {
       );
       result = TooltipThemeData(
         // decoration: @unencodable
-        enableFeedback: value['enableFeedback'] == null
-            ? null
-            : JsonClass.parseBool(value['enableFeedback']),
-        excludeFromSemantics: value['excludeFromSemantics'] == null
-            ? null
-            : JsonClass.parseBool(value['excludeFromSemantics']),
-        height: JsonClass.parseDouble(value['height']),
+        enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
+        excludeFromSemantics: JsonClass.maybeParseBool(
+          value['excludeFromSemantics'],
+        ),
+        height: JsonClass.maybeParseDouble(value['height']),
         margin: decodeEdgeInsetsGeometry(
           value['margin'],
           validate: false,
@@ -13749,10 +13702,10 @@ class ThemeDecoder {
           value['padding'],
           validate: false,
         ),
-        preferBelow: value['preferBelow'] == null
-            ? null
-            : JsonClass.parseBool(value['preferBelow']),
-        showDuration: JsonClass.parseDurationFromMillis(value['showDuration']),
+        preferBelow: JsonClass.maybeParseBool(value['preferBelow']),
+        showDuration: JsonClass.maybeParseDurationFromMillis(
+          value['showDuration'],
+        ),
         textAlign: decodeTextAlign(
           value['textAlign'],
           validate: false,
@@ -13765,8 +13718,9 @@ class ThemeDecoder {
           value['triggerMode'],
           validate: false,
         ),
-        verticalOffset: JsonClass.parseDouble(value['verticalOffset']),
-        waitDuration: JsonClass.parseDurationFromMillis(value['waitDuration']),
+        verticalOffset: JsonClass.maybeParseDouble(value['verticalOffset']),
+        waitDuration:
+            JsonClass.maybeParseDurationFromMillis(value['waitDuration']),
       );
     }
 

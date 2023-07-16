@@ -1,3 +1,8 @@
+## [6.1.0] - July 16th, 2023
+
+* Upgraded to json_class 3.0.0
+
+
 ## [6.0.2+3] - July 4th, 2023
 
 * Added a code generator to automatically generate the existing decoders into a map.

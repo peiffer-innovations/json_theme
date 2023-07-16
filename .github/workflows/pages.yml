@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - .github/workflows/pages.yaml
+      - .github/workflows/pages.yml
       - json_theme/pubspec.yaml
 
 jobs:

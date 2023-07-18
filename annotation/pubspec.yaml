@@ -1,20 +1,21 @@
 name: 'json_theme_annotation'
 description: 'Simple package holding the annotations needed by the JsonTheme code generator.'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '1.0.0+1'
+version: '1.0.0+2'
 
-environment:
+environment: 
   sdk: '>=3.0.0 <4.0.0'
 
-analyzer:
-  exclude:
+analyzer: 
+  exclude: 
     - 'lib/generated/**'
     - 'lib/**/*.g.dart'
 
-dev_dependencies:
-  test: '^1.24.3'
 
-ignore_updates:
+dev_dependencies: 
+  test: '^1.24.4'
+
+ignore_updates: 
   - 'archive'
   - 'async'
   - 'boolean_selector'

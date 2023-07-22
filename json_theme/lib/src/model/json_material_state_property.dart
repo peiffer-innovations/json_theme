@@ -46,7 +46,7 @@ class JsonMaterialStateProperty<T> implements MaterialStateProperty<T> {
     final map = <MaterialState, T?>{};
     for (final state in MaterialState.values) map[state] = _resolve({state});
     map.removeWhere((_, value) => value == null);
-    final sb = StringBuffer('${runtimeType}.fromMap<$T>({');
+    final sb = StringBuffer('JsonMaterialStateProperty.fromMap<$T>({');
     if (map.isNotEmpty) {
       for (final en in map.entries) sb.write('${en.key}: ${en.value}, ');
     }

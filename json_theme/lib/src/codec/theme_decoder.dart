@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
+import '../model/json_material_state_property.dart';
 import '../schema/schema_validator.dart';
 
 /// Decoder capable of converting JSON compatible values into Flutter Theme
@@ -6391,7 +6392,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = JsonMaterialStateProperty.resolveWith((states) {
           Color? result;
           if (states.contains(MaterialState.disabled)) {
             result = decodeColor(

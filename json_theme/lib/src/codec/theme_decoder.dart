@@ -6180,7 +6180,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = JsonMaterialStateProperty.resolveWith((states) {
           bool? result;
           if (states.contains(MaterialState.disabled)) {
             result = JsonClass.maybeParseBool(value['disabled']);
@@ -6288,7 +6288,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             BorderSide? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeBorderSide(
@@ -6493,7 +6493,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = JsonMaterialStateProperty.resolveWith((states) {
           double? result;
           if (states.contains(MaterialState.disabled)) {
             result = JsonClass.maybeParseDouble(value['disabled']);
@@ -6620,7 +6620,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             EdgeInsetsGeometry? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeEdgeInsetsGeometry(
@@ -6721,7 +6721,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = JsonMaterialStateProperty.resolveWith((states) {
           Icon? result;
           if (states.contains(MaterialState.disabled)) {
             result = decodeIcon(
@@ -6856,7 +6856,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             IconThemeData? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeIconThemeData(
@@ -6990,7 +6990,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             MouseCursor? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeMouseCursor(
@@ -7126,7 +7126,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             OutlinedBorder? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeOutlinedBorder(
@@ -7256,7 +7256,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             Size? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeSize(
@@ -7389,7 +7389,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = JsonMaterialStateProperty.resolveWith((states) {
             TextStyle? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeTextStyle(

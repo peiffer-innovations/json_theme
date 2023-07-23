@@ -16,8 +16,8 @@ class JsonMaterialStateProperty<T extends Object>
 
   bool get _hasValues => map.values.whereType<T>().isNotEmpty;
 
-  /// Partially copies the behavior of the ThemeDecoder's
-  /// `decodeMaterialStateProperty*` through [MaterialState.values].
+  /// Copies the behavior of the ThemeDecoder's `decodeMaterialStateProperty*`
+  /// through [MaterialState.values].
   @experimental
   @override
   T? resolve(Set<MaterialState> states) {

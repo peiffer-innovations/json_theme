@@ -11,6 +11,7 @@ class JsonMaterialStateProperty<T extends Object>
     implements MaterialStateProperty<T?> {
   const JsonMaterialStateProperty(this.map);
 
+  /// Map containing [MaterialState?] and it's corresponding [T] values.
   final Map<MaterialState?, T> map;
 
   bool get _hasValues => map.values.whereType<T>().isNotEmpty;

@@ -11,14 +11,27 @@ void main() => group('JsonMaterialStateProperty', () {
         );
 
         test(
+          'should return null on empty (null) key in map',
+          () => expect(emptyMap.resolve({}), isNull),
+        );
+
+        test(
           'should return null on toString() call',
           () => expect(emptyMap.toString(), null.toString()),
         );
       });
 
       group('with non-empty map input', () {
-        const map = {MaterialState.disabled: true, MaterialState.error: false};
+        const map = {
+          MaterialState.disabled: true,
+          MaterialState.error: false,
+          null: true
+        };
         const property = JsonMaterialStateProperty(map);
+        test(
+          'should return null on empty (null) key in map',
+          () => expect(property.resolve({}), isTrue),
+        );
         test(
           'should throw assertion error on resolve() call',
           () {
@@ -28,7 +41,7 @@ void main() => group('JsonMaterialStateProperty', () {
               reason: 'provides no value for ${MaterialState.values.first}',
             );
             expect(
-              property.resolve({map.keys.first}),
+              property.resolve({map.keys.first!}),
               isTrue,
               reason:
                   'provides ${map.values.first} value for ${map.keys.first}',
@@ -40,7 +53,7 @@ void main() => group('JsonMaterialStateProperty', () {
           'should return full JsonMaterialStateProperty object on toString()',
           () => expect(
             property.toString(),
-            '''JsonMaterialStateProperty({MaterialState.disabled: true, MaterialState.error: false,})''',
+            '''JsonMaterialStateProperty({MaterialState.disabled: true, MaterialState.error: false, null: true,})''',
           ),
         );
       });

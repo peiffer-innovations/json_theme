@@ -4,26 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:meta/meta.dart' show experimental;
 
 /// Helper class that allows to expose values of [MaterialPropertyResolver] in
-/// form of type-safe [Map<MaterialState, T>] instead of `Instance of
+/// form of type-safe [Map<MaterialState?, T>] instead of `Instance of
 /// '_MaterialStatePropertyWith'` via toString() call.
 @immutable
 class JsonMaterialStateProperty<T extends Object>
     implements MaterialStateProperty<T?> {
   const JsonMaterialStateProperty(this.map);
 
-  final Map<MaterialState, T> map;
+  final Map<MaterialState?, T> map;
 
   bool get _hasValues => map.values.whereType<T>().isNotEmpty;
 
   /// Partially copies the behavior of the ThemeDecoder's
-  /// `decodeMaterialStateProperty*` methods but without the `empty` value and
-  /// through [MaterialState.values].
+  /// `decodeMaterialStateProperty*` through [MaterialState.values].
   @experimental
   @override
   T? resolve(Set<MaterialState> states) {
-    if (states.isEmpty || !_hasValues) return null;
+    if (!_hasValues) return null;
     for (final s in MaterialState.values) if (states.contains(s)) return map[s];
-    return null;
+    return map[null];
   }
 
   @override

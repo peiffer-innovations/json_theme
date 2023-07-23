@@ -29,16 +29,17 @@ class MapMaterialStateProperty<R extends Object, T extends R?>
 
   @override
   String toString() {
-    final map = <MaterialState, T?>{};
+    final map = <MaterialState?, T?>{};
     // ignore: curly_braces_in_flow_control_structures
     for (final state in MaterialState.values) map[state] = _resolve({state});
+    map[null] = _resolve({}); // Covers "empty" case.
 
     return JsonMaterialStateProperty(_nonNullValueMap(map)).toString();
   }
 
-  Map<MaterialState, R> _nonNullValueMap(Map<MaterialState, T?> map) {
+  Map<MaterialState?, R> _nonNullValueMap(Map<MaterialState?, T?> map) {
     map.removeWhere((_, value) => value == null);
 
-    return Map<MaterialState, R>.unmodifiable(map);
+    return Map<MaterialState?, R>.unmodifiable(map);
   }
 }

@@ -1,17 +1,24 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart' show experimental;
 
-typedef _MapStates<T> = Map<MaterialState, T>;
-
+/// Helper class that allows to expose values of [MaterialPropertyResolver] in
+/// form of type-safe [Map<MaterialState, T>] instead of `Instance of
+/// '_MaterialStatePropertyWith'` via toString() call.
+@immutable
 class JsonMaterialStateProperty<T extends Object>
     implements MaterialStateProperty<T?> {
   const JsonMaterialStateProperty(this.map);
 
-  final _MapStates<T> map;
+  final Map<MaterialState, T> map;
 
   bool get _hasValues => map.values.whereType<T>().isNotEmpty;
 
+  /// Partially copies the behavior of the ThemeDecoder's
+  /// `decodeMaterialStateProperty*` methods but without the `empty` value and
+  /// through [MaterialState.values].
+  @experimental
   @override
   T? resolve(Set<MaterialState> states) {
     if (states.isEmpty || !_hasValues) return null;

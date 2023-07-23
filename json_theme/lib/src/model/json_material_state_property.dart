@@ -30,7 +30,7 @@ class JsonMaterialStateProperty<T extends Object>
   String toString() {
     if (!_hasValues) return null.toString();
     final sb = StringBuffer('JsonMaterialStateProperty({');
-    for (final en in map.entries) sb.write('${en.key}: ${en.value}, ');
+    for (final entry in map.entries) sb.write('${entry.key}: ${entry.value}, ');
     return '${sb.toString().trimRight()}})';
   }
 }

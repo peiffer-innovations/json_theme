@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
+import '../model/map_material_state_property.dart';
 import '../schema/schema_validator.dart';
 
 /// Decoder capable of converting JSON compatible values into Flutter Theme
@@ -6179,7 +6180,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = MapMaterialStateProperty.resolveWith((states) {
           bool? result;
           if (states.contains(MaterialState.disabled)) {
             result = JsonClass.maybeParseBool(value['disabled']);
@@ -6287,7 +6288,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             BorderSide? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeBorderSide(
@@ -6391,7 +6392,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = MapMaterialStateProperty.resolveWith((states) {
           Color? result;
           if (states.contains(MaterialState.disabled)) {
             result = decodeColor(
@@ -6492,7 +6493,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = MapMaterialStateProperty.resolveWith((states) {
           double? result;
           if (states.contains(MaterialState.disabled)) {
             result = JsonClass.maybeParseDouble(value['disabled']);
@@ -6619,7 +6620,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             EdgeInsetsGeometry? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeEdgeInsetsGeometry(
@@ -6720,7 +6721,7 @@ class ThemeDecoder {
           validate: validate,
         ));
 
-        result = MaterialStateProperty.resolveWith((states) {
+        result = MapMaterialStateProperty.resolveWith((states) {
           Icon? result;
           if (states.contains(MaterialState.disabled)) {
             result = decodeIcon(
@@ -6855,7 +6856,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             IconThemeData? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeIconThemeData(
@@ -6989,7 +6990,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             MouseCursor? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeMouseCursor(
@@ -7125,7 +7126,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             OutlinedBorder? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeOutlinedBorder(
@@ -7255,7 +7256,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             Size? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeSize(
@@ -7388,7 +7389,7 @@ class ThemeDecoder {
             validate: validate,
           ));
 
-          result = MaterialStateProperty.resolveWith((states) {
+          result = MapMaterialStateProperty.resolveWith((states) {
             TextStyle? result;
             if (states.contains(MaterialState.disabled)) {
               result = decodeTextStyle(

@@ -1,3 +1,8 @@
+## [6.2.0] - August 7th, 2023
+
+* Added a code generator to automatically generate the existing encoders into a map.
+
+
 ## [6.1.0] - July 16th, 2023
 
 * Upgraded to json_class 3.0.0

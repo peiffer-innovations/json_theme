@@ -1,5 +1,5 @@
-const jsonThemeDecoder = JsonThemeDecoder();
+class JsonThemeCodec {
+  const JsonThemeCodec(this.name);
 
-class JsonThemeDecoder {
-  const JsonThemeDecoder();
+  final String name;
 }

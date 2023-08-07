@@ -5,14 +5,18 @@ import 'package:build/build.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 import 'package:source_gen/source_gen.dart';
 
-class DecoderLibraryBuilder extends GeneratorForAnnotation<JsonThemeDecoder> {
+class CodecLibraryBuilder extends GeneratorForAnnotation<JsonThemeCodec> {
   @override
   String generateForAnnotatedElement(
     Element element,
     ConstantReader annotation,
     BuildStep buildStep,
   ) {
-    const kDecode = 'decode';
+    final codec = annotation.read('name').stringValue;
+    return _process(element, codec);
+  }
+
+  String _process(Element element, String codec) {
     final name = element.name;
     if (name == null) {
       throw Exception(
@@ -21,13 +25,13 @@ class DecoderLibraryBuilder extends GeneratorForAnnotation<JsonThemeDecoder> {
     }
 
     if (element is! ClassElement) {
-      throw Exception('Annotation found but is ');
+      throw Exception('Annotation found but is ${element.runtimeType}');
     }
     final methods = <String, String>{};
     for (var m in element.methods) {
-      if (m.isStatic && m.name.startsWith(kDecode)) {
+      if (m.isStatic && m.name.startsWith(codec)) {
         final mName = m.name;
-        methods[mName.substring(kDecode.length)] = '$name.$mName';
+        methods[mName.substring(codec.length)] = '$name.$mName';
         print(mName);
       }
     }

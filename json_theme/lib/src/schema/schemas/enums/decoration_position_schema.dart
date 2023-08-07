@@ -6,7 +6,7 @@ class DecorationPositionSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment':
         'https://api.flutter.dev/flutter/rendering/DecorationPosition-class.html',
     'type': 'string',

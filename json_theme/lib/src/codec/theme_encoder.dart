@@ -16,7 +16,7 @@ import 'package:json_theme_annotation/json_theme_annotation.dart';
 @immutable
 @JsonThemeCodec('encode')
 class ThemeEncoder {
-  ThemeEncoder._();
+  const ThemeEncoder._();
 
   /// Encodes the given [value] to either a String representation of the
   /// [Alignment] or a JSON map that follows the structure:

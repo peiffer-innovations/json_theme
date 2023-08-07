@@ -1,7 +1,8 @@
-## [6.2.1] - August 7th, 2023
+## [6.2.1+1] - August 7th, 2023
 
 * Added `JsonMaterialStateProperty` class that allows to show values of `MaterialPropertyResolver` in form of type-safe `Map<MaterialState?, T>` instead of Instance of '_MaterialStatePropertyWith' on toString() call.
-* Thanks [tsinis](https://github.com/tsinis)
+    * Thanks [tsinis](https://github.com/tsinis)
+* Updated analysis rules
 
 ## [6.2.0] - August 7th, 2023
 

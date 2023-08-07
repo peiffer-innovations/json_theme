@@ -11,7 +11,7 @@ import 'json_material_state_property.dart';
 class MapMaterialStateProperty<R extends Object, T extends R?>
     implements MaterialStateProperty<T> {
   /// Class is internal, means that it not a part of the public API.
-  MapMaterialStateProperty(this._resolve);
+  const MapMaterialStateProperty(this._resolve);
 
   final MaterialPropertyResolver<T> _resolve;
 

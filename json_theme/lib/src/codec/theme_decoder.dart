@@ -24,7 +24,7 @@ import '../schema/schema_validator.dart';
 /// Unless otherwise stated, each function will return `null` when given an
 /// input of `null`.
 @immutable
-@jsonThemeDecoder
+@JsonThemeCodec('decode')
 class ThemeDecoder {
   ThemeDecoder._();
 

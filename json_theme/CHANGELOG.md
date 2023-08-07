@@ -1,6 +1,12 @@
-## [6.1.1] - July 23th, 2023
+## [6.2.1] - August 7th, 2023
 
 * Added `JsonMaterialStateProperty` class that allows to show values of `MaterialPropertyResolver` in form of type-safe `Map<MaterialState?, T>` instead of Instance of '_MaterialStatePropertyWith' on toString() call.
+* Thanks [tsinis](https://github.com/tsinis)
+
+## [6.2.0] - August 7th, 2023
+
+* Added a code generator to automatically generate the existing encoders into a map.
+
 
 ## [6.1.0] - July 16th, 2023
 

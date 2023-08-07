@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
+import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 /// Encoder capable of converting Flutter Theme related classes and enums into
 /// JSON compatible values.
@@ -13,6 +14,7 @@ import 'package:flutter/services.dart';
 /// Unless otherwise stated, each function will return `null` when given an
 /// input of `null`.
 @immutable
+@JsonThemeCodec('encode')
 class ThemeEncoder {
   ThemeEncoder._();
 

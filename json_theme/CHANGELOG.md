@@ -1,3 +1,8 @@
+## [6.2.2] - August 9th, 2023
+
+* Minor bug fixes and improvements
+
+
 ## [6.2.1+1] - August 7th, 2023
 
 * Added `JsonMaterialStateProperty` class that allows to show values of `MaterialPropertyResolver` in form of type-safe `Map<MaterialState?, T>` instead of Instance of '_MaterialStatePropertyWith' on toString() call.

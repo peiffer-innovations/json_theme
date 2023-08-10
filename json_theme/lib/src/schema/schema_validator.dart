@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_schema/json_schema.dart';
 import 'package:json_theme/json_theme_schemas.dart';
+import 'package:logging/logging.dart';
 
 /// Schema validator that can validate the JSON Theme objects while also being
 /// able to be extended to also perform validation against schemas that include
 /// JSON Theme objects.
 class SchemaValidator {
+  static final Logger _logger = Logger('SchemaValidator');
+
   /// Sets whether or not the validator is enabled globally or not.  Set to
   /// [false] to disable validation across the entire application.  This cannot
   /// be used to globally enable validation.  Rather it can be used only to
@@ -91,33 +94,38 @@ class SchemaValidator {
     if (schemaData == null) {
       throw Exception('Unable to locate schema: [$schemaId].');
     }
-    final jsonSchema = JsonSchema.create(
-      schemaData,
-      refProvider: refProvider,
-    );
+    try {
+      final jsonSchema = JsonSchema.create(
+        schemaData,
+        refProvider: refProvider,
+      );
 
-    var removed = value is Map
-        ? JsonClass.removeNull(Map<String, dynamic>.from(value))
-        : value;
+      var removed = value is Map
+          ? JsonClass.removeNull(Map<String, dynamic>.from(value))
+          : value;
 
-    if (removed == null && value is Map) {
-      removed = {};
-    }
-
-    final vResult = jsonSchema.validate(removed);
-    if (vResult.errors.isNotEmpty == true) {
-      result = false;
-      var errorStr =
-          'Value: ${json.encode(value)}\n\nSchema Error: $schemaId\n';
-      for (var error in vResult.errors) {
-        errorStr += ' * [${error.schemaPath}]: ${error.message}\n';
+      if (removed == null && value is Map) {
+        removed = {};
       }
 
-      FlutterError.reportError(
-        FlutterErrorDetails(
-          exception: Exception(errorStr),
-        ),
-      );
+      final vResult = jsonSchema.validate(removed);
+      if (vResult.errors.isNotEmpty == true) {
+        result = false;
+        var errorStr =
+            'Value: ${json.encode(value)}\n\nSchema Error: $schemaId\n';
+        for (var error in vResult.errors) {
+          errorStr += ' * [${error.schemaPath}]: ${error.message}\n';
+        }
+
+        FlutterError.reportError(
+          FlutterErrorDetails(
+            exception: Exception(errorStr),
+          ),
+        );
+      }
+    } catch (e, stack) {
+      result = false;
+      _logger.severe('Exception validating schema: [$schemaId]', e, stack);
     }
 
     return result;

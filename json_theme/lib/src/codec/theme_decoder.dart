@@ -1037,6 +1037,75 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the given value to a [BorderRadius].  The [value] may be a
+  /// [String], an [int], a [double], or a Map-like object.
+  ///
+  /// When the [value] is a [String], [int], or [double] then the value will be
+  /// parsed via [JsonClass.maybeParseDouble] and the result will be passed to
+  /// [BorderRadius.circular].
+  ///
+  /// If the [value] is a Map-like object then the expected structure depends on
+  /// on the value passed in for the "type" attribute.  The expected "type"
+  /// values must be one of:
+  ///  * `all`
+  ///  * `circular`
+  ///  * `horizontal`
+  ///  * `only`
+  ///  * `vertical`
+  ///
+  /// Type: `all` expects a structure:
+  /// ```json
+  /// {
+  ///   "radius": "<Radius>",
+  ///   "type": "all"
+  /// }
+  /// ```
+  ///
+  /// Type: `circular` expects a structure:
+  /// ```json
+  /// {
+  ///   "radius": "<double>",
+  ///   "type": "circular"
+  /// }
+  /// ```
+  ///
+  /// Type: `horizontal` expects a structure:
+  /// ```json
+  /// {
+  ///   "left": "<Radius>",
+  ///   "right": "<Radius>",
+  ///   "type": "horizontal"
+  /// }
+  /// ```
+  ///
+  /// Type: `only` expects a structure:
+  /// ```json
+  /// {
+  ///   "bottomLeft": "<Radius>",
+  ///   "bottomRight": "<Radius>",
+  ///   "topLeft": "<Radius>",
+  ///   "topRight": "<Radius>",
+  ///   "type": "only"
+  /// }
+  /// ```
+  ///
+  /// Type: `vertical` expects a structure:
+  /// ```json
+  /// {
+  ///   "bottom": "<Radius>",
+  ///   "top": "<Radius>",
+  ///   "type": "vertical"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderRadius]
+  static BorderRadius? decodeBorderRadiusGeometry(
+    dynamic value, {
+    bool validate = true,
+  }) =>
+      decodeBorderRadius(value, validate: validate);
+
   /// Decodes the given [value] to an [BorderSide].  This expects the given
   /// [value] to follow the structure below:
   ///
@@ -3807,6 +3876,33 @@ class ThemeDecoder {
 
     return result;
   }
+
+  /// Decodes the [value] into an [EdgeInsetsGeometry].
+  ///
+  /// If the value is a [String], [double], or [int] then this will parse the
+  /// number and pass it to [EdgeInsets.all].
+  ///
+  /// If the value is an array with two entities, this call
+  /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
+  /// the second as the vertical.
+  ///
+  /// If the value is an array with four entities, this call
+  /// [EdgeInsets.fromLTRB] passing each element in order.
+  ///
+  /// Finally, this may be a Map-like structure in the following JSON format:
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  static EdgeInsets? decodeEdgeInsets(
+    dynamic value, {
+    bool validate = true,
+  }) =>
+      decodeEdgeInsetsGeometry(value, validate: validate) as EdgeInsets?;
 
   /// Decodes the [value] into an [EdgeInsetsGeometry].
   ///
@@ -10967,7 +11063,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeEdgeInsetsGeometry]
+  ///  * [decodeEdgeInsets]
   ///  * [decodeSnackBarBehavior]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
@@ -11022,10 +11118,10 @@ class ThemeDecoder {
           validate: false,
         ),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
-        insetPadding: decodeEdgeInsetsGeometry(
+        insetPadding: decodeEdgeInsets(
           value['insetPadding'],
           validate: false,
-        ) as EdgeInsets?,
+        ),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,

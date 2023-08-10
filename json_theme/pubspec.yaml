@@ -17,6 +17,7 @@ dependencies:
   json_class: '^3.0.0'
   json_schema: '^5.1.2'
   json_theme_annotation: '^1.0.1'
+  logging: '^1.2.0'
   meta: '^1.9.1'
 
 dev_dependencies:

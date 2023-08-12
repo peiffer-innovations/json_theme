@@ -38,6 +38,7 @@ class SchemaValidator {
   static bool validate({
     bool debugOnly = true,
     required String schemaId,
+    bool throwException = false,
     required dynamic value,
     bool validate = true,
   }) {
@@ -53,6 +54,7 @@ class SchemaValidator {
           assert(() {
             result = _validate(
               schemaId: schemaId,
+              throwException: throwException,
               value: value,
             );
 
@@ -61,6 +63,7 @@ class SchemaValidator {
         } else {
           result = _validate(
             schemaId: schemaId,
+            throwException: throwException,
             value: value,
           );
         }
@@ -71,6 +74,7 @@ class SchemaValidator {
   }
 
   static bool _validate({
+    bool throwException = false,
     required String schemaId,
     required dynamic value,
   }) {
@@ -117,11 +121,15 @@ class SchemaValidator {
           errorStr += ' * [${error.schemaPath}]: ${error.message}\n';
         }
 
-        FlutterError.reportError(
-          FlutterErrorDetails(
-            exception: Exception(errorStr),
-          ),
-        );
+        if (throwException) {
+          throw Exception(errorStr);
+        } else {
+          FlutterError.reportError(
+            FlutterErrorDetails(
+              exception: Exception(errorStr),
+            ),
+          );
+        }
       }
     } catch (e, stack) {
       result = false;

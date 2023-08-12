@@ -1,3 +1,8 @@
+## [6.2.3] - August 12th, 2023
+
+* Improved error messaging
+
+
 ## [6.2.2] - August 9th, 2023
 
 * Minor bug fixes and improvements

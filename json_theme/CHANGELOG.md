@@ -1,3 +1,8 @@
+## [6.2.3+1] - August 29, 2023
+
+* Automated dependency updates
+
+
 ## [6.2.3] - August 12th, 2023
 
 * Improved error messaging
@@ -564,6 +569,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

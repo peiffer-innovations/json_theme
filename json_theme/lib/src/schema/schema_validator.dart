@@ -121,6 +121,7 @@ class SchemaValidator {
           errorStr += ' * [${error.schemaPath}]: ${error.message}\n';
         }
 
+        _logger.warning('Schema validation failed:\n$errorStr');
         if (throwException) {
           throw Exception(errorStr);
         } else {

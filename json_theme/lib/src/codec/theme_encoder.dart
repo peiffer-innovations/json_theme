@@ -2106,7 +2106,7 @@ class ThemeEncoder {
   }
 
   /// Encodes the given [value] to a JSON compatible [Map].  The returned result
-  /// will always have the following format:
+  /// will always have one of the following formats:
   ///
   /// ```json
   /// {
@@ -2116,7 +2116,7 @@ class ThemeEncoder {
   ///   "top": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeEdgeInsetsGeometry(EdgeInsets? value) {
+  static Map<String, dynamic>? encodeEdgeInsets(EdgeInsets? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2126,6 +2126,76 @@ class ThemeEncoder {
         'right': value.right,
         'top': value.top,
       };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON compatible [Map].  The returned result
+  /// will always have one of the following formats:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "end": "<double>",
+  ///   "start": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeEdgeInsetsDirectional(
+    EdgeInsetsDirectional? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        'bottom': value.bottom,
+        'end': value.end,
+        'start': value.start,
+        'top': value.top,
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON compatible [Map].  The returned result
+  /// will always have one of the following formats:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeEdgeInsets]
+  ///  * [encodeEdgeInsetsDirectional]
+  static Map<String, dynamic>? encodeEdgeInsetsGeometry(
+    EdgeInsetsGeometry? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value is EdgeInsets) {
+      result = encodeEdgeInsets(value);
+    } else if (value is EdgeInsetsDirectional) {
+      result = encodeEdgeInsetsDirectional(value);
+    } else if (value != null) {
+      throw Exception(
+        'Unknown type of EdgeInsets detected: [${value.runtimeType}]',
+      );
     }
 
     return _stripDynamicNull(result);

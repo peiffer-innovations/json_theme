@@ -57,6 +57,7 @@ class Schemas {
     DrawerThemeDataSchema.id: DrawerThemeDataSchema.schema,
     DropdownMenuThemeDataSchema.id: DropdownMenuThemeDataSchema.schema,
     EdgeInsetsSchema.id: EdgeInsetsSchema.schema,
+    EdgeInsetsDirectionalSchema.id: EdgeInsetsDirectionalSchema.schema,
     EdgeInsetsGeometrySchema.id: EdgeInsetsGeometrySchema.schema,
     ElevatedButtonThemeDataSchema.id: ElevatedButtonThemeDataSchema.schema,
     ExpansionTileThemeDataSchema.id: ExpansionTileThemeDataSchema.schema,

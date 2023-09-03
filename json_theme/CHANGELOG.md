@@ -1,3 +1,11 @@
+## [6.2.4] - September 3rd, 2023
+
+* Split into independent encoders and decoders for:
+    * `EdgeInsets`
+    * `EdgeInsetsDirectional`
+    * `EdgeInsetsGeometry`
+
+
 ## [6.2.3] - August 12th, 2023
 
 * Improved error messaging

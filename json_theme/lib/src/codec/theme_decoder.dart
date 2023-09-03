@@ -3920,8 +3920,61 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "bottom": "<double>",
+  ///   "end": "<double>",
+  ///   "start": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  static EdgeInsetsDirectional? decodeEdgeInsetsDirectional(
+    dynamic value, {
+    bool ltr = true,
+    bool validate = true,
+  }) {
+    EdgeInsetsDirectional? result;
+    final decoded = decodeEdgeInsetsGeometry(value, validate: validate);
+
+    if (decoded is EdgeInsets) {
+      result = EdgeInsetsDirectional.only(
+        bottom: decoded.bottom,
+        end: ltr ? decoded.right : decoded.left,
+        start: ltr ? decoded.left : decoded.right,
+        top: decoded.top,
+      );
+    } else if (decoded is EdgeInsetsDirectional) {
+      result = decoded;
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] into an [EdgeInsetsGeometry].
+  ///
+  /// If the value is a [String], [double], or [int] then this will parse the
+  /// number and pass it to [EdgeInsets.all].
+  ///
+  /// If the value is an array with two entities, this call
+  /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
+  /// the second as the vertical.
+  ///
+  /// If the value is an array with four entities, this call
+  /// [EdgeInsets.fromLTRB] passing each element in order.
+  ///
+  /// Finally, this may be a Map-like structure in one of the following JSON
+  /// formats:
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
   ///   "left": "<double>",
   ///   "right": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "end": "<double>",
+  ///   "start": "<double>",
   ///   "top": "<double>"
   /// }
   /// ```
@@ -3939,38 +3992,38 @@ class ThemeDecoder {
       result = value;
     } else if (value != null) {
       if (value is String || value is double || value is int) {
-        result = EdgeInsets.all(JsonClass.maybeParseDouble(value)!);
+        result = EdgeInsets.all(JsonClass.parseDouble(value));
       } else if (value is List) {
         assert(value.length == 2 || value.length == 4);
         // LR,TB
         if (value.length == 1) {
           result = EdgeInsets.all(
-            JsonClass.maybeParseDouble(value[0], 0)!,
+            JsonClass.maybeParseDouble(value[0]) ?? 0.0,
           );
         }
         // LR,TB
         else if (value.length == 2) {
           result = EdgeInsets.symmetric(
-            horizontal: JsonClass.maybeParseDouble(value[0], 0)!,
-            vertical: JsonClass.maybeParseDouble(value[1], 0)!,
+            horizontal: JsonClass.maybeParseDouble(value[0]) ?? 0.0,
+            vertical: JsonClass.maybeParseDouble(value[1]) ?? 0.0,
           );
         }
         // T,LR,B
         else if (value.length == 3) {
           result = EdgeInsets.fromLTRB(
-            JsonClass.maybeParseDouble(value[1])!,
-            JsonClass.maybeParseDouble(value[0])!,
-            JsonClass.maybeParseDouble(value[1])!,
-            JsonClass.maybeParseDouble(value[2])!,
+            JsonClass.maybeParseDouble(value[1]) ?? 0.0,
+            JsonClass.maybeParseDouble(value[0]) ?? 0.0,
+            JsonClass.maybeParseDouble(value[1]) ?? 0.0,
+            JsonClass.maybeParseDouble(value[2]) ?? 0.0,
           );
         }
         // L,T,R,B
         else if (value.length == 4) {
           result = EdgeInsets.fromLTRB(
-            JsonClass.maybeParseDouble(value[0])!,
-            JsonClass.maybeParseDouble(value[1])!,
-            JsonClass.maybeParseDouble(value[2])!,
-            JsonClass.maybeParseDouble(value[3])!,
+            JsonClass.maybeParseDouble(value[0]) ?? 0.0,
+            JsonClass.maybeParseDouble(value[1]) ?? 0.0,
+            JsonClass.maybeParseDouble(value[2]) ?? 0.0,
+            JsonClass.maybeParseDouble(value[3]) ?? 0.0,
           );
         }
       } else {
@@ -3979,12 +4032,24 @@ class ThemeDecoder {
           value: value,
           validate: validate,
         ));
-        result = EdgeInsets.only(
-          bottom: JsonClass.maybeParseDouble(value['bottom'], 0.0)!,
-          left: JsonClass.maybeParseDouble(value['left'], 0.0)!,
-          right: JsonClass.maybeParseDouble(value['right'], 0.0)!,
-          top: JsonClass.maybeParseDouble(value['top'], 0.0)!,
-        );
+        final end = JsonClass.maybeParseDouble(value['end']);
+        final start = JsonClass.maybeParseDouble(value['start']);
+
+        if (start != null || end != null) {
+          result = EdgeInsetsDirectional.only(
+            bottom: JsonClass.maybeParseDouble(value['bottom']) ?? 0.0,
+            end: end ?? 0.0,
+            start: start ?? 0.0,
+            top: JsonClass.maybeParseDouble(value['top']) ?? 0.0,
+          );
+        } else {
+          result = EdgeInsets.only(
+            bottom: JsonClass.maybeParseDouble(value['bottom']) ?? 0.0,
+            left: JsonClass.maybeParseDouble(value['left']) ?? 0.0,
+            right: JsonClass.maybeParseDouble(value['right']) ?? 0.0,
+            top: JsonClass.maybeParseDouble(value['top']) ?? 0.0,
+          );
+        }
       }
     }
 

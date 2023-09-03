@@ -106,6 +106,7 @@ export 'schemas/objects/dialog_theme_schema.dart';
 export 'schemas/objects/divider_theme_data_schema.dart';
 export 'schemas/objects/drawer_theme_data_schema.dart';
 export 'schemas/objects/dropdown_menu_theme_data_schema.dart';
+export 'schemas/objects/edge_insets_directional_schema.dart';
 export 'schemas/objects/edge_insets_geometry_schema.dart';
 export 'schemas/objects/edge_insets_schema.dart';
 export 'schemas/objects/elevated_button_theme_data_schema.dart';

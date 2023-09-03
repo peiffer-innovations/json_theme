@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
+import 'package:logging/logging.dart';
 
 import 'base64_image.dart';
 
@@ -21,6 +22,16 @@ const _kTextStyleJson = {
 };
 
 void main() {
+  Logger.root.onRecord.listen((record) {
+    debugPrint('${record.level.name}: ${record.time}: ${record.message}');
+    if (record.error != null) {
+      debugPrint('${record.error}');
+    }
+    if (record.stackTrace != null) {
+      debugPrint('${record.stackTrace}');
+    }
+  });
+
   test('Alignment', () {
     expect(ThemeDecoder.decodeAlignment(null), null);
     expect(ThemeEncoder.encodeAlignment(null), null);
@@ -2905,6 +2916,106 @@ void main() {
       expect(ThemeEncoder.encodeDropdownMenuThemeData(null), null);
     },
   );
+
+  test('EdgeInsets', () {
+    expect(ThemeDecoder.decodeEdgeInsets(null), null);
+    expect(ThemeEncoder.encodeEdgeInsets(null), null);
+
+    const entry = EdgeInsets.fromLTRB(
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+    );
+
+    expect(ThemeDecoder.decodeEdgeInsets(entry), entry);
+
+    final encoded = ThemeEncoder.encodeEdgeInsets(entry);
+    final decoded = ThemeDecoder.decodeEdgeInsets(encoded);
+
+    expect(encoded, {
+      'bottom': 4.0,
+      'left': 1.0,
+      'right': 3.0,
+      'top': 2.0,
+    });
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    expect(
+      ThemeDecoder.decodeEdgeInsets('16'),
+      const EdgeInsets.all(16.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsets(16),
+      const EdgeInsets.all(16.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsets(['1', 2]),
+      const EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsets(['1', 2, 3.0, '4.0']),
+      const EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
+    );
+  });
+
+  test('EdgeInsetsDirectional', () {
+    expect(ThemeDecoder.decodeEdgeInsetsDirectional(null), null);
+    expect(ThemeEncoder.encodeEdgeInsetsDirectional(null), null);
+
+    const entry = EdgeInsetsDirectional.fromSTEB(
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+    );
+
+    expect(ThemeDecoder.decodeEdgeInsetsDirectional(entry), entry);
+
+    final encoded = ThemeEncoder.encodeEdgeInsetsDirectional(entry);
+    final decoded = ThemeDecoder.decodeEdgeInsetsDirectional(encoded);
+
+    expect(encoded, {
+      'bottom': 4.0,
+      'end': 3.0,
+      'start': 1.0,
+      'top': 2.0,
+    });
+
+    expect(
+      decoded,
+      entry,
+    );
+
+    expect(
+      ThemeDecoder.decodeEdgeInsetsDirectional('16'),
+      const EdgeInsetsDirectional.all(16.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsetsDirectional(16),
+      const EdgeInsetsDirectional.all(16.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsetsDirectional(['1', 2]),
+      const EdgeInsetsDirectional.symmetric(horizontal: 1.0, vertical: 2.0),
+    );
+    expect(
+      ThemeDecoder.decodeEdgeInsetsDirectional(['1', 2, 3.0, '4.0']),
+      const EdgeInsetsDirectional.fromSTEB(1.0, 2.0, 3.0, 4.0),
+    );
+
+    expect(
+      ThemeDecoder.decodeEdgeInsetsDirectional(
+        ['1', 2, 3.0, '4.0'],
+        ltr: false,
+      ),
+      const EdgeInsetsDirectional.fromSTEB(3.0, 2.0, 1.0, 4.0),
+    );
+  });
 
   test('EdgeInsetsGeometry', () {
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(null), null);

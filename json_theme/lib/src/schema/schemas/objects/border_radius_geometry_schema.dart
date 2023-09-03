@@ -5,7 +5,7 @@ class BorderRadiusGeometrySchema {
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/border_radius_geometry.json';
 
   static final schema = {
-    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
     'title': 'BorderRadiusGeometry',
     'oneOf': [

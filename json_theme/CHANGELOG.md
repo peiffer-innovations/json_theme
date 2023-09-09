@@ -1,3 +1,8 @@
+## [6.2.5] - September 9th, 2023
+
+* Temporarialy switch to [json_schema2](https://pub.dev/packages/json_schema2) until [this issue](https://github.com/Workiva/json_schema/issues/172) is resolved.
+
+
 ## [6.2.4] - September 3rd, 2023
 
 * Split into independent encoders and decoders for:

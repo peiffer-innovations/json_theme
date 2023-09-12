@@ -1,6 +1,6 @@
-## [6.2.6] - September 12th, 2023
+## [6.2.6+1] - September 12th, 2023
 
-* Switching back to [json_schema2](https://pub.dev/packages/json_schema2)
+* Switching back to [json_schema](https://pub.dev/packages/json_schema)
 
 
 ## [6.2.5] - September 9th, 2023

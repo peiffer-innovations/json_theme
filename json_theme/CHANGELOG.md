@@ -1,3 +1,8 @@
+## [6.2.6] - September 12th, 2023
+
+* Switching back to [json_schema2](https://pub.dev/packages/json_schema2)
+
+
 ## [6.2.5] - September 9th, 2023
 
 * Temporarialy switch to [json_schema2](https://pub.dev/packages/json_schema2) until [this issue](https://github.com/Workiva/json_schema/issues/172) is resolved.

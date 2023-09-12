@@ -24,7 +24,7 @@ dev_dependencies:
   analyzer: '^6.2.0'
   build: '^2.4.1'
   build_runner: '^2.4.6'
-  code_builder: '^4.5.0'
+  code_builder: '^4.6.0'
   flutter_lints: '^2.0.2'
   flutter_test:
     sdk: 'flutter'

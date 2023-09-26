@@ -1,33 +1,35 @@
 name: 'json_theme_codegen'
 description: 'A library to generate the mapping of decoders to the class names they decode'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '1.1.1'
+version: '1.1.1+1'
 
-environment:
+environment: 
   sdk: '>=3.0.0 <4.0.0'
 
-analyzer:
-  exclude:
+analyzer: 
+  exclude: 
     - 'lib/generated/**'
     - 'lib/**/*.g.dart'
 
-dependencies:
+
+dependencies: 
   analyzer: '^6.2.0'
   build: '^2.4.1'
   build_runner: '^2.4.6'
-  code_builder: '^4.5.0'
+  code_builder: '^4.7.0'
   json_theme_annotation: '^1.0.1+1'
   recase: '^4.1.0'
   source_gen: '^1.4.0'
 
-dev_dependencies:
+dev_dependencies: 
   test: '^1.24.6'
 
-dependency_overrides:
-  json_theme_annotation:
+dependency_overrides: 
+  json_theme_annotation: 
     path: '../annotation'
 
-ignore_updates:
+
+ignore_updates: 
   - 'archive'
   - 'async'
   - 'boolean_selector'

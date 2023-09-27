@@ -1770,6 +1770,53 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [BoxHeightStyle].  Supported values are:
+  ///  * `includeLineSpacingBottom`
+  ///  * `includeLineSpacingMiddle`
+  ///  * `includeLineSpacingTop`
+  ///  * `max`
+  ///  * `strut`
+  ///  * `tight`
+  static BoxHeightStyle? decodeBoxHeightStyle(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    BoxHeightStyle? result;
+
+    if (value is BoxHeightStyle) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/box_height_style',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'includeLineSpacingBottom':
+          result = BoxHeightStyle.includeLineSpacingBottom;
+          break;
+        case 'includeLineSpacingMiddle':
+          result = BoxHeightStyle.includeLineSpacingMiddle;
+          break;
+        case 'includeLineSpacingTop':
+          result = BoxHeightStyle.includeLineSpacingTop;
+          break;
+        case 'max':
+          result = BoxHeightStyle.max;
+          break;
+        case 'strut':
+          result = BoxHeightStyle.strut;
+          break;
+        case 'tight':
+          result = BoxHeightStyle.tight;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] into a [BoxDecoration].  If the value is `null`
   /// then `null` will be returned.  Otherwise, this expects a Map like value
   /// that in JSON would look like:
@@ -1850,6 +1897,37 @@ class ThemeDecoder {
 
         case 'rectangle':
           result = BoxShape.rectangle;
+          break;
+      }
+    }
+
+    return result;
+  }
+
+  /// Decodes the [value] to a [BoxWidthStyle].  Supported values are:
+  ///  * `max`
+  ///  * `tight`
+  static BoxWidthStyle? decodeBoxWidthStyle(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    BoxWidthStyle? result;
+
+    if (value is BoxWidthStyle) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/box_width_style',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'max':
+          result = BoxWidthStyle.max;
+          break;
+        case 'tight':
+          result = BoxWidthStyle.tight;
           break;
       }
     }

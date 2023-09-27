@@ -1289,6 +1289,70 @@ void main() {
     expect(ThemeEncoder.encodeBoxFit(BoxFit.scaleDown), 'scaleDown');
   });
 
+  test('BoxHeightStyle', () {
+    expect(ThemeDecoder.decodeBoxHeightStyle(null), null);
+    expect(ThemeEncoder.encodeBoxHeightStyle(null), null);
+
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle(
+        BoxHeightStyle.max,
+      ),
+      BoxHeightStyle.max,
+    );
+
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingBottom'),
+      BoxHeightStyle.includeLineSpacingBottom,
+    );
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingMiddle'),
+      BoxHeightStyle.includeLineSpacingMiddle,
+    );
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingTop'),
+      BoxHeightStyle.includeLineSpacingTop,
+    );
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle('max'),
+      BoxHeightStyle.max,
+    );
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle('strut'),
+      BoxHeightStyle.strut,
+    );
+    expect(
+      ThemeDecoder.decodeBoxHeightStyle('tight'),
+      BoxHeightStyle.tight,
+    );
+
+    expect(
+      ThemeEncoder.encodeBoxHeightStyle(
+          BoxHeightStyle.includeLineSpacingBottom),
+      'includeLineSpacingBottom',
+    );
+    expect(
+      ThemeEncoder.encodeBoxHeightStyle(
+          BoxHeightStyle.includeLineSpacingMiddle),
+      'includeLineSpacingMiddle',
+    );
+    expect(
+      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.includeLineSpacingTop),
+      'includeLineSpacingTop',
+    );
+    expect(
+      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.max),
+      'max',
+    );
+    expect(
+      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.strut),
+      'strut',
+    );
+    expect(
+      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.tight),
+      'tight',
+    );
+  });
+
   test('BoxShadow', () {
     expect(ThemeDecoder.decodeBoxShadow(null), null);
     expect(ThemeEncoder.encodeBoxShadow(null), null);
@@ -1342,6 +1406,36 @@ void main() {
 
     expect(ThemeEncoder.encodeBoxShape(BoxShape.circle), 'circle');
     expect(ThemeEncoder.encodeBoxShape(BoxShape.rectangle), 'rectangle');
+  });
+
+  test('BoxWidthStyle', () {
+    expect(ThemeDecoder.decodeBoxWidthStyle(null), null);
+    expect(ThemeEncoder.encodeBoxWidthStyle(null), null);
+
+    expect(
+      ThemeDecoder.decodeBoxWidthStyle(
+        BoxWidthStyle.max,
+      ),
+      BoxWidthStyle.max,
+    );
+
+    expect(
+      ThemeDecoder.decodeBoxWidthStyle('max'),
+      BoxWidthStyle.max,
+    );
+    expect(
+      ThemeDecoder.decodeBoxWidthStyle('tight'),
+      BoxWidthStyle.tight,
+    );
+
+    expect(
+      ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.max),
+      'max',
+    );
+    expect(
+      ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.tight),
+      'tight',
+    );
   });
 
   test('Brightness', () {

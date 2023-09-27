@@ -1,3 +1,10 @@
+## [6.3.0] - September 27th, 2023
+
+* Added codecs for:
+    * `BoxHeightStyle`
+    * `BoxWidthStyle`
+
+
 ## [6.2.6+1] - September 12th, 2023
 
 * Switching back to [json_schema](https://pub.dev/packages/json_schema)

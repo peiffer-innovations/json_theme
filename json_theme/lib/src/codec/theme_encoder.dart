@@ -924,6 +924,42 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
+  /// Encodes the [value] to a `String`.  Supported values are:
+  ///  * `includeLineSpacingBottom`
+  ///  * `includeLineSpacingMiddle`
+  ///  * `includeLineSpacingTop`
+  ///  * `max`
+  ///  * `strut`
+  ///  * `tight`
+  static String? encodeBoxHeightStyle(BoxHeightStyle? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case BoxHeightStyle.includeLineSpacingBottom:
+          result = 'includeLineSpacingBottom';
+          break;
+        case BoxHeightStyle.includeLineSpacingMiddle:
+          result = 'includeLineSpacingMiddle';
+          break;
+        case BoxHeightStyle.includeLineSpacingTop:
+          result = 'includeLineSpacingTop';
+          break;
+        case BoxHeightStyle.max:
+          result = 'max';
+          break;
+        case BoxHeightStyle.strut:
+          result = 'strut';
+          break;
+        case BoxHeightStyle.tight:
+          result = 'tight';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] into a JSON compatible map.  This produces a Map
   /// in the following format:
   ///
@@ -975,6 +1011,26 @@ class ThemeEncoder {
     }
 
     return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] to a `String`.  Supported values are:
+  ///  * `max`
+  ///  * `tight`
+  static String? encodeBoxWidthStyle(BoxWidthStyle? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case BoxWidthStyle.max:
+          result = 'max';
+          break;
+        case BoxWidthStyle.tight:
+          result = 'tight';
+          break;
+      }
+    }
+
+    return result;
   }
 
   /// Encodes the given [value] to the String representation.  Supported values

@@ -1,3 +1,7 @@
+## [6.3.1] - October 6th, 2023
+
+* Fixed missing key for `filledButtonTheme` in `ThemeDecoder.dart`
+
 ## [6.3.0] - September 27th, 2023
 
 * Added codecs for:

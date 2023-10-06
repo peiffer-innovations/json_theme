@@ -10925,6 +10925,13 @@ void main() {
           ),
         ),
       ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(
+            const Color(0xff222222),
+          ),
+        ),
+      ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xeedddddd),
       ),
@@ -11220,6 +11227,21 @@ void main() {
         }
       },
       'elevatedButtonTheme': {
+        'style': {
+          'backgroundColor': {
+            'disabled': '#ff222222',
+            'dragged': '#ff222222',
+            'empty': '#ff222222',
+            'error': '#ff222222',
+            'focused': '#ff222222',
+            'hovered': '#ff222222',
+            'pressed': '#ff222222',
+            'scrolledUnder': '#ff222222',
+            'selected': '#ff222222'
+          }
+        }
+      },
+      'filledButtonTheme': {
         'style': {
           'backgroundColor': {
             'disabled': '#ff222222',

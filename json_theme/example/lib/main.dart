@@ -12,8 +12,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +23,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
   const RootPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
+  @override
+  State createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
   static const _themes = [
     'default',
     'big_red',
@@ -44,13 +49,15 @@ class RootPage extends StatelessWidget {
         ) ??
         ThemeData();
 
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => ThemePage(
-          theme: theme,
+    if (mounted) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => ThemePage(
+            theme: theme,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override

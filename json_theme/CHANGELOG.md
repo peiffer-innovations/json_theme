@@ -1,3 +1,8 @@
+## [6.3.1] - November 2nd, 2023
+
+* Updated [flutter_lints](https://pub.dev/packages/flutter_lints) to `3.0.0`
+
+
 ## [6.3.0] - September 27th, 2023
 
 * Added codecs for:

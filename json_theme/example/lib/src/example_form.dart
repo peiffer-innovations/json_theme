@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
 
 class ExampleForm extends StatefulWidget {
-  ExampleForm({
-    Key? key,
-  }) : super(key: key);
+  const ExampleForm({
+    super.key,
+  });
 
   @override
-  _ExampleFormState createState() => _ExampleFormState();
+  State createState() => _ExampleFormState();
 }
 
 class _ExampleFormState extends State<ExampleForm> {
@@ -511,7 +511,7 @@ class _ExampleFormState extends State<ExampleForm> {
   }
 
   List<String> _createCountryList() {
-    final str = '''Afghanistan
+    const str = '''Afghanistan
 Albania
 Algeria
 Andorra

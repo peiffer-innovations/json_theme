@@ -5107,6 +5107,17 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyBool(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyBool(null), null);
 
+    final stateMap = {
+      MaterialState.disabled: 'disabled',
+      MaterialState.dragged: 'dragged',
+      MaterialState.error: 'error',
+      MaterialState.focused: 'focused',
+      MaterialState.hovered: 'hovered',
+      MaterialState.pressed: 'pressed',
+      MaterialState.scrolledUnder: 'scrolledUnder',
+      MaterialState.selected: 'selected',
+    };
+
     final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
@@ -5146,12 +5157,12 @@ void main() {
     }
 
     bool? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : values[states.first];
+        states.isEmpty ? null : values[stateMap[states.first]!];
 
     final prop = MaterialStateProperty.resolveWith(func);
     final decoded = ThemeDecoder.decodeMaterialStatePropertyBool(prop);
     for (var entry in states.entries) {
-      final value = values[entry.value];
+      final value = values[stateMap[entry.value]!];
 
       expect(decoded!.resolve({entry.value}), value);
 
@@ -5259,6 +5270,16 @@ void main() {
     expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
 
+    final stateMap = {
+      MaterialState.disabled: 'disabled',
+      MaterialState.dragged: 'dragged',
+      MaterialState.error: 'error',
+      MaterialState.focused: 'focused',
+      MaterialState.hovered: 'hovered',
+      MaterialState.pressed: 'pressed',
+      MaterialState.scrolledUnder: 'scrolledUnder',
+      MaterialState.selected: 'selected',
+    };
     final states = {
       'disabled': MaterialState.disabled,
       'dragged': MaterialState.dragged,
@@ -5298,13 +5319,14 @@ void main() {
       expect(encoded![stateKey], colorStr);
     }
 
-    Color? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : ThemeDecoder.decodeColor(colors[states.first]);
+    Color? func(Set<MaterialState> states) => states.isEmpty
+        ? null
+        : ThemeDecoder.decodeColor(colors[stateMap[states.first]]);
 
     final prop = MaterialStateProperty.resolveWith(func);
     final decoded = ThemeDecoder.decodeMaterialStatePropertyColor(prop);
     for (var entry in states.entries) {
-      final colorStr = colors[entry.value];
+      final colorStr = colors[stateMap[entry.value]];
       final color = ThemeDecoder.decodeColor(colorStr);
 
       expect(decoded!.resolve({entry.value}), color);
@@ -5347,6 +5369,16 @@ void main() {
   test('MaterialStatePropertyDouble', () {
     expect(ThemeDecoder.decodeMaterialStatePropertyDouble(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyDouble(null), null);
+    final stateMap = {
+      MaterialState.disabled: 'disabled',
+      MaterialState.dragged: 'dragged',
+      MaterialState.error: 'error',
+      MaterialState.focused: 'focused',
+      MaterialState.hovered: 'hovered',
+      MaterialState.pressed: 'pressed',
+      MaterialState.scrolledUnder: 'scrolledUnder',
+      MaterialState.selected: 'selected',
+    };
 
     final states = {
       'disabled': MaterialState.disabled,
@@ -5388,12 +5420,12 @@ void main() {
     }
 
     double? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : values[states.first];
+        states.isEmpty ? null : values[stateMap[states.first]];
 
     final prop = MaterialStateProperty.resolveWith(func);
     final decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(prop);
     for (var entry in states.entries) {
-      final value = values[entry.value];
+      final value = values[stateMap[entry.value]];
 
       expect(decoded!.resolve({entry.value}), value);
 
@@ -5594,6 +5626,16 @@ void main() {
   test('MaterialStatePropertyMouseCursor', () {
     expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
+    final stateMap = {
+      MaterialState.disabled: 'disabled',
+      MaterialState.dragged: 'dragged',
+      MaterialState.error: 'error',
+      MaterialState.focused: 'focused',
+      MaterialState.hovered: 'hovered',
+      MaterialState.pressed: 'pressed',
+      MaterialState.scrolledUnder: 'scrolledUnder',
+      MaterialState.selected: 'selected',
+    };
 
     final states = {
       'disabled': MaterialState.disabled,
@@ -5637,13 +5679,13 @@ void main() {
 
     MouseCursor? func(Set<MaterialState> states) => states.isEmpty
         ? null
-        : ThemeDecoder.decodeMouseCursor(cursors[states.first]);
+        : ThemeDecoder.decodeMouseCursor(cursors[stateMap[states.first]]);
 
     final prop = MaterialStateProperty.resolveWith(func);
     final decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(prop);
     for (var entry in states.entries) {
-      final cursorStr = cursors[entry.value];
-      final cursor = ThemeDecoder.decodeColor(cursorStr);
+      final cursorStr = cursors[stateMap[entry.value]];
+      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
 
       expect(decoded!.resolve({entry.value}), cursor);
 

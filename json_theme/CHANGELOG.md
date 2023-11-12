@@ -1,3 +1,8 @@
+## [6.3.2] - November 12th, 2023
+
+* Fix for `filledButtonTheme` key (thanks [ajil-apx](https://github.com/ajil-apx))
+
+
 ## [6.3.1] - November 2nd, 2023
 
 * Updated [flutter_lints](https://pub.dev/packages/flutter_lints) to `3.0.0`

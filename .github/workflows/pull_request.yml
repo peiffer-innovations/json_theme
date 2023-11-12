@@ -21,4 +21,5 @@ jobs:
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
+          generate_code: 'true'
           path: json_theme

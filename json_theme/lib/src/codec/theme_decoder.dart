@@ -13344,7 +13344,7 @@ class ThemeDecoder {
         // extensions: @unencodable,
 
         filledButtonTheme: decodeFilledButtonThemeData(
-          value[''],
+          value['filledButtonTheme'],
           validate: false,
         ),
 

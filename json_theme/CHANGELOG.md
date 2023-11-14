@@ -1,3 +1,8 @@
+## [6.3.2+1] - November 14, 2023
+
+* Automated dependency updates
+
+
 ## [6.3.2] - November 12th, 2023
 
 * Fix for `filledButtonTheme` key (thanks [ajil-apx](https://github.com/ajil-apx))
@@ -599,6 +604,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

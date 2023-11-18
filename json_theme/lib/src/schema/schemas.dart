@@ -2,6 +2,7 @@ import 'all.dart';
 
 class Schemas {
   static final all = <String, Map<String, Object>>{
+    ActionIconThemeDataSchema.id: ActionIconThemeDataSchema.schema,
     AlignmentDirectionalSchema.id: AlignmentDirectionalSchema.schema,
     AlignmentGeometrySchema.id: AlignmentGeometrySchema.schema,
     AlignmentSchema.id: AlignmentSchema.schema,
@@ -169,6 +170,7 @@ class Schemas {
     ShowValueIndicatorSchema.id: ShowValueIndicatorSchema.schema,
     SizeSchema.id: SizeSchema.schema,
     SliderComponentShapeSchema.id: SliderComponentShapeSchema.schema,
+    SliderInteractionSchema.id: SliderInteractionSchema.schema,
     SliderThemeDataSchema.id: SliderThemeDataSchema.schema,
     SliderTickMarkShapeSchema.id: SliderTickMarkShapeSchema.schema,
     SliderTrackShapeSchema.id: SliderTrackShapeSchema.schema,
@@ -180,6 +182,7 @@ class Schemas {
     StrutStyleSchema.id: StrutStyleSchema.schema,
     SwitchThemeDataSchema.id: SwitchThemeDataSchema.schema,
     SystemUiOverlayStyleSchema.id: SystemUiOverlayStyleSchema.schema,
+    TabAlignmentSchema.id: TabAlignmentSchema.schema,
     TabBarIndicatorSizeSchema.id: TabBarIndicatorSizeSchema.schema,
     TabBarThemeSchema.id: TabBarThemeSchema.schema,
     TableBorderSchema.id: TableBorderSchema.schema,

@@ -13,6 +13,7 @@ class TabBarThemeSchema {
     'type': 'object',
     'properties': {
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dividerHeight': SchemaHelper.numberSchema,
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'indicatorSize': SchemaHelper.objectSchema(TabBarIndicatorSizeSchema.id),
       'labelPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
@@ -27,6 +28,7 @@ class TabBarThemeSchema {
       'splashFactory': SchemaHelper.objectSchema(
         InteractiveInkFeatureFactorySchema.id,
       ),
+      'tabAlignment': SchemaHelper.objectSchema(TabAlignmentSchema.id),
       'unselectedLabelColor': SchemaHelper.objectSchema(ColorSchema.id),
       'unselectedLabelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },

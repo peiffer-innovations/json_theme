@@ -18,6 +18,23 @@ import 'package:json_theme_annotation/json_theme_annotation.dart';
 class ThemeEncoder {
   const ThemeEncoder._();
 
+  static Map<String, dynamic>? encodeActionIconThemeData(
+    ActionIconThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        // 'backButtonIconBuilder': @unencodable
+        // 'closeButtonIconBuilder': @unencodable
+        // 'drawerButtonIconBuilder': @unencodable
+        // 'endDrawerButtonIconBuilder': @unencodable
+      };
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to either a String representation of the
   /// [Alignment] or a JSON map that follows the structure:
   ///
@@ -1401,6 +1418,7 @@ class ThemeEncoder {
   ///   "backgroundColor": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "checkmarkColor": "<Color>",
+  ///   "color": "<MaterialStateProperty<Color>>"
   ///   "deleteIconColor": "<Color>",
   ///   "disabledColor": "<Color>",
   ///   "elevation": "<double>",
@@ -1427,6 +1445,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeIconThemeData]
+  ///  * [encodeMaterialStateProperty<Color>]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeChipThemeData(ChipThemeData? value) {
@@ -1437,6 +1456,7 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'brightness': encodeBrightness(value.brightness),
         'checkmarkColor': encodeColor(value.checkmarkColor),
+        'color': encodeMaterialStatePropertyColor(value.color),
         'deleteIconColor': encodeColor(value.deleteIconColor),
         'disabledColor': encodeColor(value.disabledColor),
         'elevation': value.elevation,
@@ -1534,6 +1554,7 @@ class ThemeEncoder {
   ///   "outlineVariant": "<Color>",
   ///   "primary": "<Color>",
   ///   "primaryContainer": "<Color>",
+  ///   "scrim": "<Color>","
   ///   "secondary": "<Color>",
   ///   "secondaryContainer": "<Color>",
   ///   "shadow": "<Color>",
@@ -1575,6 +1596,7 @@ class ThemeEncoder {
         'outlineVariant': encodeColor(value.outlineVariant),
         'primary': encodeColor(value.primary),
         'primaryContainer': encodeColor(value.primaryContainer),
+        'scrim': encodeColor(value.scrim),
         'secondary': encodeColor(value.secondary),
         'secondaryContainer': encodeColor(value.secondaryContainer),
         'shadow': encodeColor(value.shadow),
@@ -1732,15 +1754,19 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "backgroundColor": "<Color>",
+  ///   "cancelButtonStyle": "<ButtonStyle>",
+  ///   "confirmButtonStyle": "<ButtonStyle>",
   ///   "dayBackgroundColor": "<MaterialStateProperty<Color>>",
   ///   "dayForegroundColor": "<MaterialStateProperty<Color>>",
   ///   "dayOverlayColor": "<MaterialStateProperty<Color>>",
   ///   "dayStyle: "<TextStyle>",
+  ///   "dividerColor": "<Color>",
   ///   "elevation": "<double>",
   ///   "headerBackgroundColor": "<Color>",
   ///   "headerForegroundColor": "<Color>",
   ///   "headerHeadlineStyle": "<TextStyle>",
   ///   "headerHelpStyle": "<TextStyle>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
   ///   "rangePickerBackgroundColor": "<Color>",
   ///   "rangePickerElevation": "<double>",
   ///   "rangePickerHeaderBackgroundColor": "<Color>",
@@ -1762,13 +1788,14 @@ class ThemeEncoder {
   ///   "yearBackgroundColor": "<MaterialStateProperty<Color>>",
   ///   "yearForegroundColor": "<MaterialStateProperty<Color>>",
   ///   "yearOverlayColor": "<MaterialStateProperty<Color>>",
-  ///   "yearStyle": "<TextStyle>",
+  ///   "yearStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeBorderSide]
   ///  * [encodeColor]
+  ///  * [encodeInputDecorationTheme]
   ///  * [encodeMaterialStatePropertyColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
@@ -1780,6 +1807,7 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'backgroundColor': encodeColor(value.backgroundColor),
+        'cancelButtonStyle': encodeButtonStyle(value.cancelButtonStyle),
         'dayBackgroundColor': encodeMaterialStatePropertyColor(
           value.dayBackgroundColor,
         ),
@@ -1790,11 +1818,15 @@ class ThemeEncoder {
           value.dayOverlayColor,
         ),
         'dayStyle': encodeTextStyle(value.dayStyle),
+        'dividerColor': encodeColor(value.dividerColor),
         'elevation': value.elevation,
         'headerBackgroundColor': encodeColor(value.headerBackgroundColor),
         'headerForegroundColor': encodeColor(value.headerForegroundColor),
         'headerHeadlineStyle': encodeTextStyle(value.headerHeadlineStyle),
         'headerHelpStyle': encodeTextStyle(value.headerHelpStyle),
+        'inputDecorationTheme': encodeInputDecorationTheme(
+          value.inputDecorationTheme,
+        ),
         'rangePickerBackgroundColor': encodeColor(
           value.rangePickerBackgroundColor,
         ),
@@ -3220,6 +3252,7 @@ class ThemeEncoder {
   ///   "focusedErrorBorder": "<InputBorder>",
   ///   "helperMaxLines": "<int>",
   ///   "helperStyle": "<TextStyle>",
+  ///   "hintFadeDuration": "<Duration>",
   ///   "hintStyle": "<TextStyle>",
   ///   "hoverColor": "<Color>",
   ///   "iconColor": "<Color>",
@@ -3274,6 +3307,7 @@ class ThemeEncoder {
         'focusedErrorBorder': encodeInputBorder(value.focusedErrorBorder),
         'helperMaxLines': value.helperMaxLines,
         'helperStyle': encodeTextStyle(value.helperStyle),
+        'hintFadeDuration': value.hintFadeDuration?.inMilliseconds,
         'hintStyle': encodeTextStyle(value.hintStyle),
         'hoverColor': encodeColor(value.hoverColor),
         'iconColor': encodeColor(value.iconColor),
@@ -5062,6 +5096,8 @@ class ThemeEncoder {
   ///   "color": "<Color>",
   ///   "elevation": "<double>",
   ///   "enableFeedback": "<bool>",
+  ///   "iconColor": "<Color>",
+  ///   "iconSize": "<double>",
   ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "position": "<PopupMenuPosition>",
@@ -5089,6 +5125,8 @@ class ThemeEncoder {
         'color': encodeColor(value.color),
         'elevation': value.elevation,
         'enableFeedback': value.enableFeedback,
+        'iconColor': encodeColor(value.iconColor),
+        'iconSize': value.iconSize,
         'labelTextStyle': encodeMaterialStatePropertyTextStyle(
           value.labelTextStyle,
         ),
@@ -5556,7 +5594,8 @@ class ThemeEncoder {
   ///   "shape": MaterialStateProperty<OutlinedBorder>,
   ///   "side": "<MaterialStateProperty<BorderSide>>",
   ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
-  ///   "textStyle": "<MaterialStateProperty<TextStyle>>"
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "textCapitalization": "<TextCapitalization>"
   /// }
   /// ```
   ///
@@ -5590,6 +5629,9 @@ class ThemeEncoder {
           value.surfaceTintColor,
         ),
         'textStyle': encodeMaterialStatePropertyTextStyle(value.textStyle),
+        'textCapitalization': encodeTextCapitalization(
+          value.textCapitalization,
+        ),
       };
     }
 
@@ -5874,12 +5916,46 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `slideOnly`
+  ///  * `slideThumb`
+  ///  * `tapAndSlide``
+  ///  * `tapOnly`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeSliderInteraction(
+    SliderInteraction? value,
+  ) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case SliderInteraction.slideOnly:
+          result = 'slideOnly';
+          break;
+        case SliderInteraction.slideThumb:
+          result = 'slideThumb';
+          break;
+        case SliderInteraction.tapAndSlide:
+          result = 'tapAndSlide';
+          break;
+        case SliderInteraction.tapOnly:
+          result = 'tapOnly';
+          break;
+      }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
   /// Encodes the given [value] to a JSON representation.
   ///
   /// ```json
   /// {
   ///   "activeTickMarkColor": "<Color>",
   ///   "activeTrackColor": "<Color>",
+  ///   "allowedInteraction": "<SliderInteraction>",
   ///   "disabledActiveTickMarkColor": "<Color>",
   ///   "disabledActiveTrackColor": "<Color>",
   ///   "disabledInactiveTickMarkColor": "<Color>",
@@ -5915,6 +5991,7 @@ class ThemeEncoder {
   ///  * [encodeMaterialStatePropertyMouseCursor]
   ///  * [encodeShowValueIndicator]
   ///  * [encodeSliderComponentShape]
+  ///  * [encodeSliderInteraction]
   ///  * [encodeSliderTickMarkShape]
   ///  * [encodeRangeSliderThumbShape]
   ///  * [encodeRangeSliderTickMarkShape]
@@ -6248,11 +6325,14 @@ class ThemeEncoder {
   ///   "thumbColor": "<MaterialStateProperty<Color>>",
   ///   "trackColor": "<MaterialStateProperty<Color>>",
   ///   "trackOutlineColor": "<MaterialStateProperty<Color>>"
+  ///   "trackOutlineWidth": "<MaterialStateProperty<double>>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeColor]
+  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeMaterialStatePropertyDouble]
   ///  * [encodeMaterialStatePropertyMouseCursor]
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeMouseCursor]
@@ -6282,6 +6362,9 @@ class ThemeEncoder {
         ),
         'trackOutlineColor': encodeMaterialStatePropertyColor(
           value.trackColor,
+        ),
+        'trackOutlineWidth': encodeMaterialStatePropertyDouble(
+          value.trackOutlineWidth,
         ),
       };
     }
@@ -6349,6 +6432,37 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `center`
+  ///  * `fill`
+  ///  * `start`
+  ///  * `startOffset`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeTabAlignment(TabAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case TabAlignment.center:
+          result = 'center';
+          break;
+        case TabAlignment.fill:
+          result = 'fill';
+          break;
+        case TabAlignment.start:
+          result = 'start';
+          break;
+        case TabAlignment.startOffset:
+          result = 'startOffset';
+          break;
+      }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `label`
   ///  * `tab`
   ///
@@ -6376,6 +6490,7 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "dividerColor": "<Color>",
+  ///   "dividerHeight": "<double>",
   ///   "indicatorColor": "<Color>",
   ///   "indicatorSize": "<TabBarIndicatorSize>",
   ///   "labelPadding": "<EdgeInsetsGeometry>",
@@ -6384,6 +6499,7 @@ class ThemeEncoder {
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "overlayColor": "<MaterialStateProperty<Color>>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "tabAlignment": "<TabAlignment>"
   ///   "unselectedLabelColor": "<Color>",
   ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
@@ -6395,6 +6511,7 @@ class ThemeEncoder {
   ///  * [encodeInteractiveInkFeatureFactory]
   ///  * [encodeMaterialStatePropertyMouseCursor]
   ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeTabAlignment]
   ///  * [encodeTabBarIndicatorSize]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeTabBarTheme(TabBarTheme? value) {
@@ -6403,6 +6520,7 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'dividerColor': encodeColor(value.dividerColor),
+        'dividerHeight': value.dividerHeight,
         'indicatorColor': encodeColor(value.dividerColor),
         'indicatorSize': encodeTabBarIndicatorSize(value.indicatorSize),
         'labelPadding':
@@ -6418,6 +6536,7 @@ class ThemeEncoder {
         'splashFactory': encodeInteractiveInkFeatureFactory(
           value.splashFactory,
         ),
+        'tabAlignment': encodeTabAlignment(value.tabAlignment),
         'unselectedLabelColor': encodeColor(value.unselectedLabelColor),
         'unselectedLabelStyle': encodeTextStyle(value.unselectedLabelStyle),
       };
@@ -7142,13 +7261,11 @@ class ThemeEncoder {
         'decorationThickness': value.decorationThickness,
         'fontFamily': value.fontFamily,
         'fontFamilyFallback': value.fontFamilyFallback,
-        'fontFeatures': value.fontFeatures == null
-            ? null
-            : value.fontFeatures!
-                .map(
-                  (value) => encodeFontFeature(value),
-                )
-                .toList(),
+        'fontFeatures': value.fontFeatures
+            ?.map(
+              (value) => encodeFontFeature(value),
+            )
+            .toList(),
         'fontSize': value.fontSize,
         'fontStyle': encodeFontStyle(value.fontStyle),
         'fontVariations': value.fontVariations
@@ -7165,13 +7282,11 @@ class ThemeEncoder {
         'letterSpacing': value.letterSpacing,
         'locale': encodeLocale(value.locale),
         'overflow': encodeTextOverflow(value.overflow),
-        'shadows': value.shadows == null
-            ? null
-            : value.shadows!
-                .map(
-                  (value) => encodeShadow(value),
-                )
-                .toList(),
+        'shadows': value.shadows
+            ?.map(
+              (value) => encodeShadow(value),
+            )
+            .toList(),
         'textBaseline': encodeTextBaseline(value.textBaseline),
         'wordSpacing': value.wordSpacing,
       };
@@ -7258,6 +7373,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "actionIconThemeData": "<ActionIconThemeData>",
   ///   "appBarTheme": "<AppBarTheme>",
   ///   "applyElevationOverlayColor": "<bool>",
   ///   "badgeTheme": "<BadgeThemeData>",
@@ -7347,6 +7463,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeActionIconThemeData]
   ///  * [encodeAppBarTheme]
   ///  * [encodeBadgeThemeData]
   ///  * [encodeBrightness]
@@ -7379,7 +7496,6 @@ class ThemeEncoder {
   ///  * [encodeMenuButtonThemeData]
   ///  * [encodeMenuThemeData]
   ///  * [encodeNavigationBarThemeData]
-  ///  * [encodeNavigationDrawerThemeData]
   ///  * [encodeNavigationRailThemeData]
   ///  * [encodeOutlinedButtonThemeData]
   ///  * [encodePopupMenuThemeData]
@@ -7403,6 +7519,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'actionIconTheme': encodeActionIconThemeData(value.actionIconTheme),
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
         'badgeTheme': encodeBadgeThemeData(value.badgeTheme),

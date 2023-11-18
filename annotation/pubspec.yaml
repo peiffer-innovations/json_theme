@@ -38,5 +38,6 @@ ignore_updates:
   - 'term_glyph'
   - 'test_api'
   - 'typed_data'
+  - 'uuid'
   - 'vector_math'
   - 'webdriver'

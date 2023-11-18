@@ -1,3 +1,8 @@
+## [6.4.0] - November 17th, 2023
+
+* Update for Flutter 3.16
+
+
 ## [6.3.2] - November 12th, 2023
 
 * Fix for `filledButtonTheme` key (thanks [ajil-apx](https://github.com/ajil-apx))

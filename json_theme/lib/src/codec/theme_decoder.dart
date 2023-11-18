@@ -31,6 +31,41 @@ class ThemeDecoder {
   static const _baseSchemaUrl =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme';
 
+  /// Decodes the given [value] to an [ActionIconThemeData].  This expects the
+  /// following JSON structure:
+  /// ```json
+  /// {
+  ///   "backButtonIconBuilder": "<Widget Function(BuildContext)>",
+  ///   "closeButtonIconBuilder": "<Widget Function(BuildContext)>",
+  ///   "drawerButtonIconBuilder": "<Widget Function(BuildContext)>",
+  ///   "endDrawerButtonIconBuilder": "<Widget Function(BuildContext)>"
+  /// }
+  static ActionIconThemeData? decodeActionIconThemeData(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    ActionIconThemeData? result;
+
+    if (value is ActionIconThemeData) {
+      result = value;
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/action_icon_theme_data',
+        value: value,
+        validate: validate,
+      ));
+
+      result = ActionIconThemeData(
+        backButtonIconBuilder: value['backButtonIconBuilder'],
+        closeButtonIconBuilder: value['closeButtonIconBuilder'],
+        drawerButtonIconBuilder: value['drawerButtonIconBuilder'],
+        endDrawerButtonIconBuilder: value['endDrawerButtonIconBuilder'],
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to an [Alignment].  If the given value is a
   /// `Map` then this expects the following JSON structure:
   /// ```json
@@ -412,6 +447,8 @@ class ThemeDecoder {
           validate: false,
         ),
         centerTitle: JsonClass.maybeParseBool(value['centerTitle']),
+        // Covered via backgroundColor
+        // color:
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         foregroundColor: decodeColor(
           value['foregroundColor'],
@@ -1626,11 +1663,11 @@ class ThemeDecoder {
       ));
       result = BoxConstraints(
         maxHeight:
-            JsonClass.maybeParseDouble(value['maxHeight'], double.infinity)!,
+            JsonClass.maybeParseDouble(value['maxHeight']) ?? double.infinity,
         maxWidth:
-            JsonClass.maybeParseDouble(value['maxWidth'], double.infinity)!,
-        minHeight: JsonClass.maybeParseDouble(value['minHeight'], 0)!,
-        minWidth: JsonClass.maybeParseDouble(value['minWidth'], 0)!,
+            JsonClass.maybeParseDouble(value['maxWidth']) ?? double.infinity,
+        minHeight: JsonClass.maybeParseDouble(value['minHeight']) ?? 0.0,
+        minWidth: JsonClass.maybeParseDouble(value['minWidth']) ?? 0.0,
       );
     }
 
@@ -1855,7 +1892,7 @@ class ThemeDecoder {
               validate: false,
             ) ??
             BlurStyle.normal,
-        blurRadius: JsonClass.maybeParseDouble(value['blurRadius'], 0)!,
+        blurRadius: JsonClass.maybeParseDouble(value['blurRadius']) ?? 0.0,
         color: decodeColor(
               value['color'],
               validate: false,
@@ -1866,7 +1903,7 @@ class ThemeDecoder {
               validate: false,
             ) ??
             Offset.zero,
-        spreadRadius: JsonClass.maybeParseDouble(value['spreadRadius'], 0)!,
+        spreadRadius: JsonClass.maybeParseDouble(value['spreadRadius']) ?? 0.0,
       );
     }
 
@@ -2539,6 +2576,7 @@ class ThemeDecoder {
   ///   "backgroundColor": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "checkmarkColor": "<Color>",
+  ///   "color": "<MaterialStateProperty<Color>>"
   ///   "deleteIconColor": "<Color>",
   ///   "disabledColor": "<Color>",
   ///   "elevation": "<double>",
@@ -2565,6 +2603,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeIconThemeData]
+  ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static ChipThemeData? decodeChipThemeData(
@@ -2585,13 +2624,17 @@ class ThemeDecoder {
         backgroundColor: decodeColor(
           value['backgroundColor'],
           validate: false,
-        )!,
+        ),
         brightness: decodeBrightness(
           value['brightness'],
           validate: false,
-        )!,
+        ),
         checkmarkColor: decodeColor(
           value['checkmarkColor'],
+          validate: false,
+        ),
+        color: decodeMaterialStatePropertyColor(
+          value['color'],
           validate: false,
         ),
         deleteIconColor: decodeColor(
@@ -2601,7 +2644,7 @@ class ThemeDecoder {
         disabledColor: decodeColor(
           value['disabledColor'],
           validate: false,
-        )!,
+        ),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         iconTheme: decodeIconThemeData(
           value['iconTheme'],
@@ -2614,24 +2657,24 @@ class ThemeDecoder {
         labelStyle: decodeTextStyle(
           value['labelStyle'],
           validate: false,
-        )!,
+        ),
         padding: decodeEdgeInsetsGeometry(
           value['padding'],
           validate: false,
-        )!,
+        ),
         pressElevation: JsonClass.maybeParseDouble(value['pressElevation']),
         secondaryLabelStyle: decodeTextStyle(
           value['secondaryLabelStyle'],
           validate: false,
-        )!,
+        ),
         secondarySelectedColor: decodeColor(
           value['secondarySelectedColor'],
           validate: false,
-        )!,
+        ),
         selectedColor: decodeColor(
           value['selectedColor'],
           validate: false,
-        )!,
+        ),
         shape: decodeShapeBorder(
           value['shape'],
           validate: false,
@@ -2857,6 +2900,7 @@ class ThemeDecoder {
   ///   "outlineVariant": "<Color>",
   ///   "primary": "<Color>",
   ///   "primaryContainer": "<Color>",
+  ///   "scrim": "<Color>",
   ///   "secondary": "<Color>",
   ///   "secondaryContainer": "<Color>",
   ///   "shadow": "<Color>",
@@ -2973,7 +3017,10 @@ class ThemeDecoder {
           value['primaryContainer'] ?? value['primaryVariant'],
           validate: false,
         ),
-        // primaryVariant: @deprecated
+        scrim: decodeColor(
+          value['scrim'],
+          validate: false,
+        ),
         secondary: decodeColor(
           value['secondary'],
           validate: false,
@@ -2982,7 +3029,6 @@ class ThemeDecoder {
           value['secondaryContainer'] ?? value['secondaryVariant'],
           validate: false,
         ),
-        // secondaryVariant: : @deprecated,
         shadow: decodeColor(
           value['shadow'],
           validate: false,
@@ -3259,15 +3305,19 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "backgroundColor": "<Color>",
+  ///   "cancelButtonStyle": "<ButtonStyle>",
+  ///   "confirmButtonStyle": "<ButtonStyle>",
   ///   "dayBackgroundColor": "<MaterialStateProperty<Color>>",
   ///   "dayForegroundColor": "<MaterialStateProperty<Color>>",
   ///   "dayOverlayColor": "<MaterialStateProperty<Color>>",
   ///   "dayStyle": "<TextStyle>",
+  ///   "dividerColor": "<Color>",
   ///   "elevation": "<double>",
   ///   "headerBackgroundColor": "<Color>",
   ///   "headerForegroundColor": "<Color>",
   ///   "headerHeadlineStyle": "<TextStyle>",
   ///   "headerHelpStyle": "<TextStyle>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
   ///   "rangePickerBackgroundColor": "<Color>",
   ///   "rangePickerElevation": "<double>",
   ///   "rangePickerHeaderBackgroundColor": "<Color>",
@@ -3289,7 +3339,7 @@ class ThemeDecoder {
   ///   "yearBackgroundColor": "<MaterialStateProperty<Color>>",
   ///   "yearForegroundColor": "<MaterialStateProperty<Color>>",
   ///   "yearOverlayColor": "<MaterialStateProperty<Color>>",
-  ///   "yearStyle": "<TextStyle>",
+  ///   "yearStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -3299,7 +3349,9 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeBorderSide]
+  ///  * [decodeButtonStyle]
   ///  * [decodeColor]
+  ///  * [decodeInputDecorationTheme]
   ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
@@ -3322,6 +3374,14 @@ class ThemeDecoder {
           value['backgroundColor'],
           validate: false,
         ),
+        cancelButtonStyle: decodeButtonStyle(
+          value['cancelButtonStyle'],
+          validate: false,
+        ),
+        confirmButtonStyle: decodeButtonStyle(
+          value['confirmButtonStyle'],
+          validate: false,
+        ),
         dayBackgroundColor: decodeMaterialStatePropertyColor(
           value['dayBackgroundColor'],
           validate: false,
@@ -3336,6 +3396,10 @@ class ThemeDecoder {
         ),
         dayStyle: decodeTextStyle(
           value['dayStyle'],
+          validate: false,
+        ),
+        dividerColor: decodeColor(
+          value['dividerColor'],
           validate: false,
         ),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
@@ -3353,6 +3417,10 @@ class ThemeDecoder {
         ),
         headerHelpStyle: decodeTextStyle(
           value['headerHelpStyle'],
+          validate: false,
+        ),
+        inputDecorationTheme: decodeInputDecorationTheme(
+          value['inputDecorationTheme'],
           validate: false,
         ),
         rangePickerBackgroundColor: decodeColor(
@@ -3508,6 +3576,8 @@ class ThemeDecoder {
           value['dataRowCursor'],
           validate: false,
         ),
+        // @deprecated
+        // dataRowHeight:
         dataRowMaxHeight: JsonClass.maybeParseDouble(
           value['dataRowMaxHeight'],
         ),
@@ -4982,7 +5052,7 @@ class ThemeDecoder {
       ));
       result = FontVariation(
         value['axis'],
-        JsonClass.maybeParseDouble(value['value'])!,
+        JsonClass.parseDouble(value['value']),
       );
     }
 
@@ -5724,6 +5794,7 @@ class ThemeDecoder {
   ///   "focusedErrorBorder": "<InputBorder>",
   ///   "helperMaxLines": "<int>",
   ///   "helperStyle": "<TextStyle>",
+  ///   "hintFadeDuration": "<Duration>",
   ///   "hintStyle": "<TextStyle>",
   ///   "hoverColor": "<Color>",
   ///   "iconColor": "<Color>",
@@ -5834,6 +5905,9 @@ class ThemeDecoder {
         helperStyle: decodeTextStyle(
           value['helperStyle'],
           validate: false,
+        ),
+        hintFadeDuration: JsonClass.maybeParseDurationFromMillis(
+          value['hintFadeDuration'],
         ),
         hintStyle: decodeTextStyle(
           value['hintStyle'],
@@ -9276,6 +9350,8 @@ class ThemeDecoder {
   ///   "color": "<Color>",
   ///   "elevation": "<double>",
   ///   "enableFeedback": "<bool>",
+  ///   "iconColor": "<Color>",
+  ///   "iconSize": "<double>",
   ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "position": "<PopupMenuPosition>",
@@ -9314,6 +9390,11 @@ class ThemeDecoder {
         ),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
+        iconColor: decodeColor(
+          value['iconColor'],
+          validate: false,
+        ),
+        iconSize: JsonClass.maybeParseDouble(value['iconSize']),
         labelTextStyle: decodeMaterialStatePropertyTextStyle(
           value['labelTextStyle'],
           validate: false,
@@ -10205,7 +10286,6 @@ class ThemeDecoder {
       result = ScrollbarThemeData(
         crossAxisMargin: JsonClass.maybeParseDouble(value['crossAxisMargin']),
         interactive: JsonClass.maybeParseBool(value['interactive']),
-        // isAlwaysShown: @deprecated,
         mainAxisMargin: JsonClass.maybeParseDouble(value['mainAxisMargin']),
         minThumbLength: JsonClass.maybeParseDouble(value['minThumbLength']),
         radius: decodeRadius(
@@ -10258,7 +10338,8 @@ class ThemeDecoder {
   ///   "shape": MaterialStateProperty<OutlinedBorder>,
   ///   "side": "<MaterialStateProperty<BorderSide>>",
   ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
-  ///   "textStyle": "<MaterialStateProperty<TextStyle>>"
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "textCapitalization": "<TextCapitalization>"
   /// }
   /// ```
   ///
@@ -10270,6 +10351,7 @@ class ThemeDecoder {
   ///  * [decodeMaterialStatePropertyEdgeInsetsGeometry]
   ///  * [decodeMaterialStatePropertyOutlinedBorder]
   ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodeTextCapitalization]
   static SearchBarThemeData? decodeSearchBarThemeData(
     dynamic value, {
     bool validate = true,
@@ -10324,6 +10406,10 @@ class ThemeDecoder {
         ),
         surfaceTintColor: decodeMaterialStatePropertyColor(
           value['surfaceTintColor'],
+          validate: false,
+        ),
+        textCapitalization: decodeTextCapitalization(
+          value['textCapitalization'],
           validate: false,
         ),
         textStyle: decodeMaterialStatePropertyTextStyle(
@@ -10786,6 +10872,56 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
+  ///  * `slideOnly`
+  ///  * `slideThumb`
+  ///  * `tapAndSlide``
+  ///  * `tapOnly`
+  static SliderInteraction? decodeSliderInteraction(
+    dynamic value, {
+    bool validate = false,
+  }) {
+    SliderInteraction? result;
+    if (value is SliderInteraction) {
+      result = value;
+    } else {
+      _checkSupported(
+        'SliderInteraction',
+        [
+          'slideOnly',
+          'slideThumb',
+          'tapAndSlide',
+          'tapOnly',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/slider_interaction',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'slideOnly':
+            result = SliderInteraction.slideOnly;
+            break;
+          case 'slideThumb':
+            result = SliderInteraction.slideThumb;
+            break;
+          case 'tapAndSlide':
+            result = SliderInteraction.tapAndSlide;
+            break;
+          case 'tapOnly':
+            result = SliderInteraction.tapOnly;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] to a [SliderThemeData].  This expects the
   /// [value] to have the following structure:
   ///
@@ -10793,6 +10929,7 @@ class ThemeDecoder {
   /// {
   ///   "activeTickMarkColor": "<Color>",
   ///   "activeTrackColor": "<Color>",
+  ///   "allowedInteraction": "<SliderInteraction>",
   ///   "disabledActiveTickMarkColor": "<Color>",
   ///   "disabledActiveTrackColor": "<Color>",
   ///   "disabledInactiveTickMarkColor": "<Color>",
@@ -10828,6 +10965,7 @@ class ThemeDecoder {
   ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeShowValueIndicator]
   ///  * [decodeSliderComponentShape]
+  ///  * [decodeSliderInteraction]
   ///  * [decodeSliderTickMarkShape]
   ///  * [decodeRangeSliderThumbShape]
   ///  * [decodeRangeSliderTickMarkShape]
@@ -10854,6 +10992,10 @@ class ThemeDecoder {
         ),
         activeTrackColor: decodeColor(
           value['activeTrackColor'],
+          validate: false,
+        ),
+        allowedInteraction: decodeSliderInteraction(
+          value['allowedInteraction'],
           validate: false,
         ),
         disabledActiveTickMarkColor: decodeColor(
@@ -11391,11 +11533,14 @@ class ThemeDecoder {
   ///   "thumbColor": "<MaterialStateProperty<Color>>",
   ///   "trackColor": "<MaterialStateProperty<Color>>",
   ///   "trackOutlineColor": "<MaterialStateProperty<Color>>"
+  ///   "trackOutlineWidth": "<MaterialStateProperty<double>>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeColor]
+  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeMaterialStatePropertyDouble]
   ///  * [decodeMaterialStatePropertyMouseCursor]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
@@ -11442,6 +11587,10 @@ class ThemeDecoder {
         ),
         trackOutlineColor: decodeMaterialStatePropertyColor(
           value['trackOutlineColor'],
+          validate: false,
+        ),
+        trackOutlineWidth: decodeMaterialStatePropertyDouble(
+          value['trackOutlineWidth'],
           validate: false,
         ),
       );
@@ -11530,6 +11679,59 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a [value] to a [TabAlignment].  Supported values are:
+  ///  * `center`
+  ///  * `fill`
+  ///  * `start`
+  ///  * `startOffset`
+  static TabAlignment? decodeTabAlignment(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TabAlignment? result;
+    if (value is TabAlignment) {
+      result = value;
+    } else {
+      _checkSupported(
+        'TabAlignment',
+        [
+          'center',
+          'fill',
+          'start',
+          'startOffset',
+        ],
+        value,
+      );
+
+      if (value != null) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/tab_alignment',
+          value: value,
+          validate: validate,
+        ));
+        switch (value) {
+          case 'center':
+            result = TabAlignment.center;
+            break;
+
+          case 'fill':
+            result = TabAlignment.fill;
+            break;
+
+          case 'start':
+            result = TabAlignment.start;
+            break;
+
+          case 'startOffset':
+            result = TabAlignment.startOffset;
+            break;
+        }
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes a [value] to a [TabBarIndicatorSize].  Supported values are:
   ///  * `label`
   ///  * `tab`
@@ -11577,6 +11779,7 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "dividerColor": "<Color>",
+  ///   "dividerHeight": "<double>",
   ///   "indicatorColor": "<Color>",
   ///   "indicatorSize": "<TabBarIndicatorSize>",
   ///   "labelPadding": "<EdgeInsetsGeometry>",
@@ -11585,6 +11788,7 @@ class ThemeDecoder {
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "overlayColor": "<MaterialStateProperty<Color>>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "tabAlignment": "<TabAlignment>"
   ///   "unselectedLabelColor": "<Color>",
   ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
@@ -11596,6 +11800,7 @@ class ThemeDecoder {
   ///  * [decodeInteractiveInkFeatureFactory]
   ///  * [decodeMaterialStatePropertyColor]
   ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeTabBarAlignment]
   ///  * [decodeTabBarIndicatorSize]
   ///  * [decodeTextStyle]
   static TabBarTheme? decodeTabBarTheme(
@@ -11621,6 +11826,7 @@ class ThemeDecoder {
           value['dividerColor'],
           validate: false,
         ),
+        dividerHeight: JsonClass.maybeParseDouble(value['dividerHeight']),
         // @unencodable
         // indicator
         indicatorColor: decodeColor(
@@ -11649,6 +11855,10 @@ class ThemeDecoder {
         ),
         overlayColor: decodeMaterialStatePropertyColor(
           value['overlayColor'],
+          validate: false,
+        ),
+        tabAlignment: decodeTabAlignment(
+          value['tabAlignment'],
           validate: false,
         ),
         splashFactory: decodeInteractiveInkFeatureFactory(
@@ -13050,6 +13260,7 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
+  ///   "actionIconTheme": "<ActionIconTheme>",
   ///   "appBarTheme": "<AppBarTheme>",
   ///   "applyElevationOverlayColor": "<bool>",
   ///   "badgeTheme": "<BadgeThemeData>",
@@ -13139,6 +13350,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
+  ///  * [decodeActionIconTheme]
   ///  * [decodeAppBarTheme]
   ///  * [decodeBadgeThemeData]
   ///  * [decodeBottomAppBarTheme]
@@ -13215,7 +13427,10 @@ class ThemeDecoder {
         // accentIconTheme: @deprecated
         // accentTextTheme: @deprecated
         // androidOverscrollIndicator: @deprecated
-
+        actionIconTheme: decodeActionIconThemeData(
+          value['actionIconThemeData'],
+          validate: false,
+        ),
         appBarTheme: decodeAppBarTheme(
           value['appBarTheme'],
           validate: false,

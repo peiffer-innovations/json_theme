@@ -29,6 +29,7 @@ class SwitchThemeDataSchema {
       'trackOutlineColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
+      'trackOutlineWidth': SchemaHelper.numberSchema,
     },
   };
 }

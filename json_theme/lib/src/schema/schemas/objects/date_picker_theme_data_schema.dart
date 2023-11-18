@@ -13,6 +13,8 @@ class DatePickerThemeDataSchema {
     'additionalProperties': false,
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'cancelButtonStyle': SchemaHelper.objectSchema(ButtonStyleSchema.id),
+      'confirmButtonStyle': SchemaHelper.objectSchema(ButtonStyleSchema.id),
       'dayBackgroundColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
@@ -23,6 +25,7 @@ class DatePickerThemeDataSchema {
         MaterialStatePropertyColorSchema.id,
       ),
       'dayStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'headerBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'headerForegroundColor': SchemaHelper.objectSchema(ColorSchema.id),

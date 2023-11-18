@@ -15,6 +15,9 @@ class SliderThemeDataSchema {
     'properties': {
       'activeTickMarkColor': SchemaHelper.objectSchema(ColorSchema.id),
       'activeTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'allowedInteraction': SchemaHelper.objectSchema(
+        SliderInteractionSchema.id,
+      ),
       'disabledActiveTickMarkColor': SchemaHelper.objectSchema(ColorSchema.id),
       'disabledActiveTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'disabledInactiveTickMarkColor': SchemaHelper.objectSchema(

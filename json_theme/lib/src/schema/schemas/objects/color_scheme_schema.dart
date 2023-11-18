@@ -34,6 +34,7 @@ class ColorSchemeSchema {
       'outlineVariant': SchemaHelper.objectSchema(ColorSchema.id),
       'primary': SchemaHelper.objectSchema(ColorSchema.id),
       'primaryContainer': SchemaHelper.objectSchema(ColorSchema.id),
+      'scrim': SchemaHelper.objectSchema(ColorSchema.id),
       'secondary': SchemaHelper.objectSchema(ColorSchema.id),
       'secondaryContainer': SchemaHelper.objectSchema(ColorSchema.id),
       'shadow': SchemaHelper.objectSchema(ColorSchema.id),

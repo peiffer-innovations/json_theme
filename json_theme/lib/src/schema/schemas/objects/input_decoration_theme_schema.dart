@@ -36,6 +36,7 @@ class InputDecorationThemeSchema {
       'focusedErrorBorder': SchemaHelper.objectSchema(InputBorderSchema.id),
       'helperMaxLines': SchemaHelper.numberSchema,
       'helperStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'hintFadeDuration': SchemaHelper.numberSchema,
       'hintStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'iconColor': SchemaHelper.objectSchema(ColorSchema.id),

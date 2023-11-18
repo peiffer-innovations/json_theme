@@ -39,6 +39,9 @@ class SearchBarThemeDataSchema {
       'surfaceTintColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
+      'textCapitalization': SchemaHelper.objectSchema(
+        TextCapitalizationSchema.id,
+      ),
       'textStyle': SchemaHelper.objectSchema(
         MaterialStatePropertyTextStyleSchema.id,
       ),

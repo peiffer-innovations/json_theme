@@ -1,3 +1,8 @@
+## [6.4.0+1] - January 2, 2024
+
+* Automated dependency updates
+
+
 ## [6.4.0] - November 17th, 2023
 
 * Update for Flutter 3.16
@@ -604,6 +609,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

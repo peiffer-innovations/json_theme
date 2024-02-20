@@ -45,6 +45,7 @@ class Enums {
     NavigationRailLabelTypeSchema.id,
     NavigationDestinationLabelBehaviorSchema.id,
     NotchedShapeSchema.id,
+    OverflowBoxFitSchema.id,
     PageTransitionsBuilderSchema.id,
     PanAxisSchema.id,
     PointerDeviceKindSchema.id,

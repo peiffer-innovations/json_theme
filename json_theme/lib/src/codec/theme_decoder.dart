@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
@@ -9093,6 +9093,46 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes the [value] to a [OverflowBoxFit].  Supported values are:
+  /// * `deferToChild`
+  /// * `max`
+  static OverflowBoxFit? decodeOverflowBoxFit(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    OverflowBoxFit? result;
+
+    if (value is OverflowBoxFit) {
+      result = value;
+    } else if (value != null) {
+      _checkSupported(
+        'OverflowBoxFit',
+        [
+          'deferToChild',
+          'max',
+        ],
+        value,
+      );
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/overflow_box_fit',
+        value: value,
+        validate: validate,
+      ));
+
+      switch (value) {
+        case 'deferToChild':
+          result = OverflowBoxFit.deferToChild;
+          break;
+
+        case 'max':
+          result = OverflowBoxFit.max;
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
   /// * `cupertino`
   /// * `fadeUpwards`
@@ -13422,11 +13462,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ThemeData(
-        // accentColor: @deprecated
-        // accentColorBrightness: @deprecated
-        // accentIconTheme: @deprecated
-        // accentTextTheme: @deprecated
-        // androidOverscrollIndicator: @deprecated
+        // adaptations: @unencodable,
         actionIconTheme: decodeActionIconThemeData(
           value['actionIconThemeData'],
           validate: false,
@@ -13438,7 +13474,6 @@ class ThemeDecoder {
         applyElevationOverlayColor: JsonClass.maybeParseBool(
           value['applyElevationOverlayColor'],
         ),
-        // backgroundColor: @deprecated,
         badgeTheme: decodeBadgeThemeData(
           value['badgeTheme'],
           validate: false,
@@ -13468,9 +13503,6 @@ class ThemeDecoder {
           value['buttonBarTheme'],
           validate: false,
         ),
-
-        // buttonColor: @deprecated
-
         buttonTheme: decodeButtonThemeData(
           value['buttonTheme'],
           validate: false,
@@ -13507,9 +13539,6 @@ class ThemeDecoder {
           value['cupertinoOverrideTheme'],
           validate: false,
         ),
-
-        // cursorColor: @deprecated
-
         datePickerTheme: decodeDatePickerThemeData(
           value['datePickerThemeData'],
           validate: false,
@@ -13554,21 +13583,15 @@ class ThemeDecoder {
           value['expansionTileTheme'],
           validate: false,
         ),
-
-        // errorColor: @deprecated,
         // extensions: @unencodable,
-
         filledButtonTheme: decodeFilledButtonThemeData(
           value['filledButtonTheme'],
           validate: false,
         ),
-
-        // fixTextFieldOutlineLabel: @deprecated
         floatingActionButtonTheme: decodeFloatingActionButtonThemeData(
           value['floatingActionButtonTheme'],
           validate: false,
         ),
-
         focusColor: decodeColor(
           value['focusColor'],
           validate: false,
@@ -13660,9 +13683,6 @@ class ThemeDecoder {
           value['primaryColor'],
           validate: false,
         ),
-
-        // primaryColorBrightness: @deprecated
-
         primaryColorDark: decodeColor(
           value['primaryColorDark'],
           validate: false,
@@ -13715,8 +13735,6 @@ class ThemeDecoder {
           value['segmentedButtonTheme'],
           validate: false,
         ),
-        // selectedRowColor: @deprecated
-
         shadowColor: decodeColor(
           value['shadowColor'],
           validate: false,
@@ -13749,10 +13767,6 @@ class ThemeDecoder {
           value['textButtonTheme'],
           validate: false,
         ),
-
-        // textSelectionColor: @deprecated,
-        // textSelectionHandleColor: @deprecated,
-
         textSelectionTheme: decodeTextSelectionThemeData(
           value['textSelectionTheme'],
           validate: false,
@@ -13783,9 +13797,6 @@ class ThemeDecoder {
           validate: false,
         ),
         useMaterial3: JsonClass.maybeParseBool(value['useMaterial3']),
-
-        // useTextSelectionTheme: @deprecated,
-
         visualDensity: decodeVisualDensity(
           value['visualDensity'],
           validate: false,

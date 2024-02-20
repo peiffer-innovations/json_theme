@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
@@ -4944,6 +4944,26 @@ class ThemeEncoder {
       };
     }
 
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] to a [String].  Supported values are:
+  /// * `deferToChild`
+  /// * `max`
+  static String? encodeOverflowBoxFit(OverflowBoxFit? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case OverflowBoxFit.deferToChild:
+          result = 'deferToChild';
+          break;
+
+        case OverflowBoxFit.max:
+          result = 'max';
+          break;
+      }
+    }
     return _stripDynamicNull(result);
   }
 

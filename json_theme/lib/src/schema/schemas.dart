@@ -139,6 +139,7 @@ class Schemas {
     OrdinalSortKeySchema.id: OrdinalSortKeySchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
+    OverflowBoxFitSchema.id: OverflowBoxFitSchema.schema,
     PanAxisSchema.id: PanAxisSchema.schema,
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,

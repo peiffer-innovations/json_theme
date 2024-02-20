@@ -1,6 +1,8 @@
-## [6.4.0+1] - February 20, 2024
+## [6.4.1] - February 20th, 2024
 
-* Automated dependency updates
+* Dependency updates
+* Added `OverflowBoxFit`
+* Update for Flutter 3.19
 
 
 ## [6.4.0] - November 17th, 2023

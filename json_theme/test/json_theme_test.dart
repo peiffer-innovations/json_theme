@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
@@ -7384,6 +7384,34 @@ void main() {
     expect(
       outlinedButtonThemeDatasAreEqual(decoded, entry),
       true,
+    );
+  });
+
+  test('OverflowBoxFit', () {
+    expect(ThemeDecoder.decodeOverflowBoxFit(null), null);
+    expect(ThemeEncoder.encodeOverflowBoxFit(null), null);
+
+    expect(
+      ThemeDecoder.decodeOverflowBoxFit(OverflowBoxFit.deferToChild),
+      OverflowBoxFit.deferToChild,
+    );
+
+    expect(
+      ThemeDecoder.decodeOverflowBoxFit('deferToChild'),
+      OverflowBoxFit.deferToChild,
+    );
+    expect(
+      ThemeDecoder.decodeOverflowBoxFit('max'),
+      OverflowBoxFit.max,
+    );
+
+    expect(
+      ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.deferToChild),
+      'deferToChild',
+    );
+    expect(
+      ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.max),
+      'max',
     );
   });
 

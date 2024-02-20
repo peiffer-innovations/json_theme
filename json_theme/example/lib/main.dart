@@ -40,6 +40,7 @@ class _RootPageState extends State<RootPage> {
   ];
 
   Future<void> _onThemeSelected(BuildContext context, String themeId) async {
+    final navigator = Navigator.of(context);
     final themeStr = await rootBundle.loadString('assets/themes/$themeId.json');
     final themeJson = json.decode(themeStr);
 
@@ -50,7 +51,7 @@ class _RootPageState extends State<RootPage> {
         ThemeData();
 
     if (mounted) {
-      await Navigator.of(context).push(
+      await navigator.push(
         MaterialPageRoute(
           builder: (BuildContext context) => ThemePage(
             theme: theme,

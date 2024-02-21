@@ -100,6 +100,7 @@ class Schemas {
     MainAxisSizeSchema.id: MainAxisSizeSchema.schema,
     MaterialBannerThemeDataSchema.id: MaterialBannerThemeDataSchema.schema,
     MaterialColorSchema.id: MaterialColorSchema.schema,
+    MaterialStateColorSchema.id: MaterialStateColorSchema.schema,
     MaterialStatePropertyBoolSchema.id: MaterialStatePropertyBoolSchema.schema,
     MaterialStatePropertyBorderSideSchema.id:
         MaterialStatePropertyBorderSideSchema.schema,

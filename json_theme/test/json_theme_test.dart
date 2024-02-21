@@ -5114,6 +5114,79 @@ void main() {
     expect(ThemeEncoder.encodeMaterialColor(decoded), encoded);
   });
 
+  test('MaterialStateColor', () {
+    expect(ThemeDecoder.decodeMaterialStateColor(null), null);
+    expect(ThemeEncoder.encodeMaterialStateColor(null), null);
+
+    final states = {
+      'disabled': MaterialState.disabled,
+      'dragged': MaterialState.dragged,
+      'error': MaterialState.error,
+      'focused': MaterialState.focused,
+      'hovered': MaterialState.hovered,
+      'pressed': MaterialState.pressed,
+      'scrolledUnder': MaterialState.scrolledUnder,
+      'selected': MaterialState.selected,
+    };
+
+    final colors = {
+      'disabled': '#ff111111',
+      'dragged': '#ff222222',
+      'error': '#ff333333',
+      'focused': '#ff444444',
+      'hovered': '#ff555555',
+      'pressed': '#ff666666',
+      'scrolledUnder': '#ff888888',
+      'selected': '#ff777777',
+      'empty': '#00000000',
+    };
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+
+      var decoded = ThemeDecoder.decodeMaterialStateColor(color);
+      expect(decoded!.resolve({state}), color);
+
+      decoded = ThemeDecoder.decodeMaterialStateColor(colorStr);
+      expect(decoded!.resolve({state}), color);
+
+      final encoded = ThemeEncoder.encodeMaterialStateColor(decoded);
+      expect(encoded![stateKey], colorStr);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+      final encodedColor = ThemeEncoder.encodeColor(color);
+
+      final decoded = ThemeDecoder.decodeMaterialStateColor(
+        encodedColor,
+      );
+
+      expect(decoded!.resolve({state}), color);
+
+      final encoded = ThemeEncoder.encodeMaterialStateColor(decoded);
+
+      expect(encoded![stateKey], colorStr);
+    }
+
+    /// Test if pressed takes precedence over hovered
+    final materialColor = ThemeDecoder.decodeMaterialStateColor(
+      colors,
+    );
+    final color = materialColor?.resolve({
+      states['pressed']!,
+    });
+    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
+  });
+
   test('MaterialStatePropertyBool', () {
     expect(ThemeDecoder.decodeMaterialStatePropertyBool(null), null);
     expect(ThemeEncoder.encodeMaterialStatePropertyBool(null), null);

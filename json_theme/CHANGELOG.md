@@ -1,7 +1,7 @@
 ## [6.4.1] - February 20th, 2024
 
 * Dependency updates
-* Added `OverflowBoxFit`
+* Added `MaterialStateColor`, `OverflowBoxFit`
 * Update for Flutter 3.19
 
 

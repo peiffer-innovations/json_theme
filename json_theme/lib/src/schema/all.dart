@@ -134,6 +134,7 @@ export 'schemas/objects/list_tile_theme_data_schema.dart';
 export 'schemas/objects/locale_schema.dart';
 export 'schemas/objects/material_banner_theme_data_schema.dart';
 export 'schemas/objects/material_color_schema.dart';
+export 'schemas/objects/material_state_color_schema.dart';
 export 'schemas/objects/material_state_property_bool_schema.dart';
 export 'schemas/objects/material_state_property_border_side_schema.dart';
 export 'schemas/objects/material_state_property_color_schema.dart';

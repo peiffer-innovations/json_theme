@@ -3639,6 +3639,50 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  static Map<String, dynamic>? encodeMaterialStateColor(
+    MaterialStateColor? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeColor(value.resolve({MaterialState.disabled})),
+        'dragged': encodeColor(value.resolve({MaterialState.dragged})),
+        'empty': encodeColor(value.resolve({})),
+        'error': encodeColor(value.resolve({MaterialState.error})),
+        'focused': encodeColor(value.resolve({MaterialState.focused})),
+        'hovered': encodeColor(value.resolve({MaterialState.hovered})),
+        'pressed': encodeColor(value.resolve({MaterialState.pressed})),
+        'scrolledUnder': encodeColor(value.resolve(
+          {MaterialState.scrolledUnder},
+        )),
+        'selected': encodeColor(value.resolve({MaterialState.selected})),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
   ///   "disabled": "<bool>",
   ///   "dragged": "<bool>",
   ///   "empty": "<bool>",

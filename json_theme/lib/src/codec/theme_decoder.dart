@@ -6456,6 +6456,110 @@ class ThemeDecoder {
     return result;
   }
 
+  /// Decodes a [value] into a [MaterialStateColor].  If the value is a
+  /// [String] then the value will be used for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// The "empty" will be used for when any other value is missing.
+  static MaterialStateColor? decodeMaterialStateColor(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    MaterialStateColor? result;
+
+    if (value is MaterialStateColor) {
+      result = value;
+    } else if (value is Color) {
+      result = MaterialStateColor.resolveWith((_) => value);
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/material_state_color',
+        value: value,
+        validate: validate,
+      ));
+
+      result = MaterialStateColor.resolveWith((states) {
+        Color? result;
+
+        if (value is String) {
+          result = decodeColor(value, validate: false);
+        } else if (value is Color) {
+          result = value;
+        } else if (states.contains(MaterialState.disabled)) {
+          result = decodeColor(
+            value['disabled'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.dragged)) {
+          result = decodeColor(
+            value['dragged'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.error)) {
+          result = decodeColor(
+            value['error'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.focused)) {
+          result = decodeColor(
+            value['focused'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.hovered)) {
+          result = decodeColor(
+            value['hovered'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.pressed)) {
+          result = decodeColor(
+            value['pressed'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.scrolledUnder)) {
+          result = decodeColor(
+            value['scrolledUnder'],
+            validate: false,
+          );
+        } else if (states.contains(MaterialState.selected)) {
+          result = decodeColor(
+            value['selected'],
+            validate: false,
+          );
+        }
+
+        result ??= decodeColor(
+          value['empty'],
+          validate: false,
+        );
+
+        if (result == null) {
+          throw Exception(
+            'Unable to decode required Color for MaterialStateColor for state: $states and no "empty" value exists.',
+          );
+        }
+
+        return result;
+      });
+    }
+    return result;
+  }
+
   /// Decodes a [value] into a [double] based [MaterialStateProperty].  This
   /// accepts a [double] or a [String] which will be resolved for all states.
   ///
@@ -13896,6 +14000,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeInputDecorationTheme]
+  ///  * [decodeMaterialStateColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static TimePickerThemeData? decodeTimePickerThemeData(
@@ -13930,7 +14035,7 @@ class ThemeDecoder {
           value['dayPeriodBorderSide'],
           validate: false,
         ),
-        dayPeriodColor: decodeColor(
+        dayPeriodColor: decodeMaterialStateColor(
           value['dayPeriodColor'],
           validate: false,
         ),

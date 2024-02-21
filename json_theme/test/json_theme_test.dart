@@ -12360,7 +12360,9 @@ void main() {
         style: BorderStyle.solid,
         width: 1.0,
       ),
-      dayPeriodColor: const Color(0xff000003),
+      dayPeriodColor: MaterialStateColor.resolveWith(
+        (_) => const Color(0xff000003),
+      ),
       dayPeriodShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(4.0),
       ),

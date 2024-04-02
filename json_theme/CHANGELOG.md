@@ -1,3 +1,8 @@
+## [6.4.1+1] - April 2, 2024
+
+* Automated dependency updates
+
+
 ## [6.4.1] - February 20th, 2024
 
 * Dependency updates
@@ -611,6 +616,7 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
+
 
 
 

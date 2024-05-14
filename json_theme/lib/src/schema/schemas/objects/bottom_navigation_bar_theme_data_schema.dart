@@ -16,7 +16,7 @@ class BottomNavigationBarThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'selectedIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'selectedItemColor': SchemaHelper.objectSchema(ColorSchema.id),

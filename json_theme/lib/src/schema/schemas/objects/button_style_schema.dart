@@ -15,7 +15,7 @@ class ButtonStyleSchema {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'animationDuration': SchemaHelper.numberSchema,
       'backgroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'elevation': {
         'anyOf': [
@@ -26,19 +26,19 @@ class ButtonStyleSchema {
             'type': 'string',
           },
           {
-            r'$ref': MaterialStatePropertyDoubleSchema.id,
+            r'$ref': WidgetStatePropertyDoubleSchema.id,
           },
         ],
       },
       'enableFeedback': SchemaHelper.boolSchema,
       'fixedSize': SchemaHelper.objectSchema(
-        MaterialStatePropertySizeSchema.id,
+        WidgetStatePropertySizeSchema.id,
       ),
       'foregroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'iconColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'iconSize': {
         'anyOf': [
@@ -49,39 +49,39 @@ class ButtonStyleSchema {
             'type': 'string',
           },
           {
-            r'$ref': MaterialStatePropertyDoubleSchema.id,
+            r'$ref': WidgetStatePropertyDoubleSchema.id,
           },
         ],
       },
       'maximumSize': SchemaHelper.objectSchema(
-        MaterialStatePropertySizeSchema.id,
+        WidgetStatePropertySizeSchema.id,
       ),
       'minimumSize': SchemaHelper.objectSchema(
-        MaterialStatePropertySizeSchema.id,
+        WidgetStatePropertySizeSchema.id,
       ),
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'overlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'padding': SchemaHelper.objectSchema(
-        MaterialStatePropertyEdgeInsetsGeometrySchema.id,
+        WidgetStatePropertyEdgeInsetsGeometrySchema.id,
       ),
       'shadowColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'shape': SchemaHelper.objectSchema(
-        MaterialStatePropertyOutlinedBorderSchema.id,
+        WidgetStatePropertyOutlinedBorderSchema.id,
       ),
       'side': SchemaHelper.objectSchema(
-        MaterialStatePropertyBorderSideSchema.id,
+        WidgetStatePropertyBorderSideSchema.id,
       ),
       'tapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
       'textStyle': SchemaHelper.objectSchema(
-        MaterialStatePropertyTextStyleSchema.id,
+        WidgetStatePropertyTextStyleSchema.id,
       ),
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },

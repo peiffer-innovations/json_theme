@@ -100,26 +100,6 @@ class Schemas {
     MainAxisSizeSchema.id: MainAxisSizeSchema.schema,
     MaterialBannerThemeDataSchema.id: MaterialBannerThemeDataSchema.schema,
     MaterialColorSchema.id: MaterialColorSchema.schema,
-    MaterialStateColorSchema.id: MaterialStateColorSchema.schema,
-    MaterialStatePropertyBoolSchema.id: MaterialStatePropertyBoolSchema.schema,
-    MaterialStatePropertyBorderSideSchema.id:
-        MaterialStatePropertyBorderSideSchema.schema,
-    MaterialStatePropertyColorSchema.id:
-        MaterialStatePropertyColorSchema.schema,
-    MaterialStatePropertyDoubleSchema.id:
-        MaterialStatePropertyDoubleSchema.schema,
-    MaterialStatePropertyEdgeInsetsGeometrySchema.id:
-        MaterialStatePropertyEdgeInsetsGeometrySchema.schema,
-    MaterialStatePropertyIconSchema.id: MaterialStatePropertyIconSchema.schema,
-    MaterialStatePropertyIconThemeDataSchema.id:
-        MaterialStatePropertyIconThemeDataSchema.schema,
-    MaterialStatePropertyMouseCursorSchema.id:
-        MaterialStatePropertyMouseCursorSchema.schema,
-    MaterialStatePropertyOutlinedBorderSchema.id:
-        MaterialStatePropertyOutlinedBorderSchema.schema,
-    MaterialStatePropertySizeSchema.id: MaterialStatePropertySizeSchema.schema,
-    MaterialStatePropertyTextStyleSchema.id:
-        MaterialStatePropertyTextStyleSchema.schema,
     MaterialTapTargetSizeSchema.id: MaterialTapTargetSizeSchema.schema,
     MaterialTypeSchema.id: MaterialTypeSchema.schema,
     Matrix4Schema.id: Matrix4Schema.schema,
@@ -217,6 +197,24 @@ class Schemas {
     TypographySchema.id: TypographySchema.schema,
     VerticalDirectionSchema.id: VerticalDirectionSchema.schema,
     VisualDensitySchema.id: VisualDensitySchema.schema,
+    WidgetStateColorSchema.id: WidgetStateColorSchema.schema,
+    WidgetStatePropertyBoolSchema.id: WidgetStatePropertyBoolSchema.schema,
+    WidgetStatePropertyBorderSideSchema.id:
+        WidgetStatePropertyBorderSideSchema.schema,
+    WidgetStatePropertyColorSchema.id: WidgetStatePropertyColorSchema.schema,
+    WidgetStatePropertyDoubleSchema.id: WidgetStatePropertyDoubleSchema.schema,
+    WidgetStatePropertyEdgeInsetsGeometrySchema.id:
+        WidgetStatePropertyEdgeInsetsGeometrySchema.schema,
+    WidgetStatePropertyIconSchema.id: WidgetStatePropertyIconSchema.schema,
+    WidgetStatePropertyIconThemeDataSchema.id:
+        WidgetStatePropertyIconThemeDataSchema.schema,
+    WidgetStatePropertyMouseCursorSchema.id:
+        WidgetStatePropertyMouseCursorSchema.schema,
+    WidgetStatePropertyOutlinedBorderSchema.id:
+        WidgetStatePropertyOutlinedBorderSchema.schema,
+    WidgetStatePropertySizeSchema.id: WidgetStatePropertySizeSchema.schema,
+    WidgetStatePropertyTextStyleSchema.id:
+        WidgetStatePropertyTextStyleSchema.schema,
     WrapAlignmentSchema.id: WrapAlignmentSchema.schema,
     WrapCrossAlignmentSchema.id: WrapCrossAlignmentSchema.schema,
   };

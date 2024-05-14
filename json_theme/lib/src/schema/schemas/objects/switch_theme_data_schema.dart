@@ -17,17 +17,17 @@ class SwitchThemeDataSchema {
       ),
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'overlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'splashRadius': SchemaHelper.numberSchema,
       'thumbColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'trackColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'trackOutlineColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'trackOutlineWidth': SchemaHelper.numberSchema,
     },

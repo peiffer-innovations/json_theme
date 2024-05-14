@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
-import '../model/map_material_state_property.dart';
+import '../model/map_widget_state_property.dart';
 import '../schema/schema_validator.dart';
 
 /// Decoder capable of converting JSON compatible values into Flutter Theme
@@ -1305,7 +1305,7 @@ class ThemeDecoder {
   ///   "elevation": "<double>",
   ///   "enableFeedback": "<bool>",
   ///   "landscapeLayout": "<BottomNavigationBarLandscapeLayout>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
   ///   "selectedIconTheme": "<IconThemeData>",
   ///   "selectedIconColor": "<Color>",
   ///   "selectedLabelStyle": "<TextStyle>",
@@ -1323,7 +1323,7 @@ class ThemeDecoder {
   ///  * [decodeBottomNavigationBarType]
   ///  * [decodeColor]
   ///  * [decodeIconThemeData]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeTextStyle]
   static BottomNavigationBarThemeData? decodeBottomNavigationBarThemeData(
     dynamic value, {
@@ -1345,7 +1345,7 @@ class ThemeDecoder {
           value['landscapeLayout'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
@@ -2119,47 +2119,47 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "alignment": "<AlignmentGeometry>",
-  ///   "animationDuration": "<MaterialStateProperty<double>>",
-  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
-  ///   "elevation": "<MaterialStateProperty<double>>",
+  ///   "animationDuration": "<WidgetStateProperty<double>>",
+  ///   "backgroundColor": "<WidgetStateProperty<Color>>",
+  ///   "elevation": "<WidgetStateProperty<double>>",
   ///   "enableFeedback": "<bool>",
-  ///   "fixedSize": "<MaterialStateProperty<double>>",
-  ///   "foregroundColor": "<MaterialStateProperty<Color>>",
-  ///   "iconColor": "<MaterialStateProperty<Color>>",
-  ///   "iconSize": "<MaterialStateProperty<double>>",
-  ///   "maximumSize": "<MaterialStateProperty<double>>",
-  ///   "minimumSize": "<MaterialStateProperty<Size>>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
-  ///   "padding": "<MaterialStateProperty<EdgeInsetsGeometry>>",
-  ///   "shadowColor": "<MaterialStateProperty<Color>>",
-  ///   "shape": "<MaterialStateProperty<OutlinedBorder>>",
-  ///   "side": "<MaterialStateProperty<BorderSide>>",
+  ///   "fixedSize": "<WidgetStateProperty<double>>",
+  ///   "foregroundColor": "<WidgetStateProperty<Color>>",
+  ///   "iconColor": "<WidgetStateProperty<Color>>",
+  ///   "iconSize": "<WidgetStateProperty<double>>",
+  ///   "maximumSize": "<WidgetStateProperty<double>>",
+  ///   "minimumSize": "<WidgetStateProperty<Size>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<WidgetStateProperty<Color>>",
+  ///   "padding": "<WidgetStateProperty<EdgeInsetsGeometry>>",
+  ///   "shadowColor": "<WidgetStateProperty<Color>>",
+  ///   "shape": "<WidgetStateProperty<OutlinedBorder>>",
+  ///   "side": "<WidgetStateProperty<BorderSide>>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
-  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "surfaceTintColor": "<WidgetStateProperty<Color>>",
   ///   "tapTargetSize": "<MaterialTapTargetSize>",
-  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "textStyle": "<WidgetStateProperty<TextStyle>>",
   ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
   /// This will use the properties passed through JSON to create the
-  /// [MaterialStateProperty] of each corresponding property by using
-  /// the [MaterialStateProperty.all] function with the value passed in.
+  /// [WidgetStateProperty] of each corresponding property by using
+  /// the [WidgetStateProperty.all] function with the value passed in.
   ///
   /// See also:
   ///  * [decodeBorderSide]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeInteractiveInkFeatureFactory]
-  ///  * [decodeMaterialStatePropertyBorderSide]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyDouble]
-  ///  * [decodeMaterialStatePropertyEdgeInsetsGeometry]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
-  ///  * [decodeMaterialStatePropertyOutlinedBorder]
-  ///  * [decodeMaterialStatePropertySize]
-  ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodeWidgetStatePropertyBorderSide]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyDouble]
+  ///  * [decodeWidgetStatePropertyEdgeInsetsGeometry]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyOutlinedBorder]
+  ///  * [decodeWidgetStatePropertySize]
+  ///  * [decodeWidgetStatePropertyTextStyle]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
   ///  * [decodeOutlinedBorder]
@@ -2189,60 +2189,60 @@ class ThemeDecoder {
         animationDuration: JsonClass.maybeParseDurationFromMillis(
           value['animationDuration'],
         ),
-        backgroundColor: decodeMaterialStatePropertyColor(
+        backgroundColor: decodeWidgetStatePropertyColor(
           value['backgroundColor'],
           validate: false,
         ),
-        elevation: decodeMaterialStatePropertyDouble(
+        elevation: decodeWidgetStatePropertyDouble(
           value['elevation'],
           validate: false,
         ),
         enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
-        fixedSize: decodeMaterialStatePropertySize(
+        fixedSize: decodeWidgetStatePropertySize(
           value['fixedSize'],
           validate: false,
         ),
-        foregroundColor: decodeMaterialStatePropertyColor(
+        foregroundColor: decodeWidgetStatePropertyColor(
           value['foregroundColor'],
           validate: false,
         ),
-        iconColor: decodeMaterialStatePropertyColor(
+        iconColor: decodeWidgetStatePropertyColor(
           value['iconColor'],
           validate: false,
         ),
-        iconSize: decodeMaterialStatePropertyDouble(
+        iconSize: decodeWidgetStatePropertyDouble(
           value['iconSize'],
           validate: false,
         ),
-        maximumSize: decodeMaterialStatePropertySize(
+        maximumSize: decodeWidgetStatePropertySize(
           value['maximumSize'],
           validate: false,
         ),
-        minimumSize: decodeMaterialStatePropertySize(
+        minimumSize: decodeWidgetStatePropertySize(
           value['minimumSize'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
-        overlayColor: decodeMaterialStatePropertyColor(
+        overlayColor: decodeWidgetStatePropertyColor(
           value['overlayColor'],
           validate: false,
         ),
-        padding: decodeMaterialStatePropertyEdgeInsetsGeometry(
+        padding: decodeWidgetStatePropertyEdgeInsetsGeometry(
           value['padding'],
           validate: false,
         ),
-        shadowColor: decodeMaterialStatePropertyColor(
+        shadowColor: decodeWidgetStatePropertyColor(
           value['shadowColor'],
           validate: false,
         ),
-        shape: decodeMaterialStatePropertyOutlinedBorder(
+        shape: decodeWidgetStatePropertyOutlinedBorder(
           value['shape'],
           validate: false,
         ),
-        side: decodeMaterialStatePropertyBorderSide(
+        side: decodeWidgetStatePropertyBorderSide(
           value['side'],
           validate: false,
         ),
@@ -2250,7 +2250,7 @@ class ThemeDecoder {
           value['splashFactory'],
           validate: false,
         ),
-        surfaceTintColor: decodeMaterialStatePropertyColor(
+        surfaceTintColor: decodeWidgetStatePropertyColor(
           value['surfaceTintColor'],
           validate: false,
         ),
@@ -2258,7 +2258,7 @@ class ThemeDecoder {
           value['tapTargetSize'],
           validate: false,
         ),
-        textStyle: decodeMaterialStatePropertyTextStyle(
+        textStyle: decodeWidgetStatePropertyTextStyle(
           value['textStyle'],
           validate: false,
         ),
@@ -2494,10 +2494,10 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "checkColor": "<Color>",
-  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "fillColor": "<WidgetStateProperty<Color>>",
   ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<WidgetStateProperty<Color>>",
   ///   "shape": "<OutlinedBorder>",
   ///   "side": "<BorderSide>",
   ///   "splashRadius": "<double>",
@@ -2508,8 +2508,8 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderSide]
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
   ///  * [decodeOutlinedBorder]
@@ -2529,11 +2529,11 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = CheckboxThemeData(
-        checkColor: decodeMaterialStatePropertyColor(
+        checkColor: decodeWidgetStatePropertyColor(
           value['checkColor'],
           validate: false,
         ),
-        fillColor: decodeMaterialStatePropertyColor(
+        fillColor: decodeWidgetStatePropertyColor(
           value['fillColor'],
           validate: false,
         ),
@@ -2541,11 +2541,11 @@ class ThemeDecoder {
           value['materialTapTargetSize'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
-        overlayColor: decodeMaterialStatePropertyColor(
+        overlayColor: decodeWidgetStatePropertyColor(
           value['overlayColor'],
           validate: false,
         ),
@@ -2576,7 +2576,7 @@ class ThemeDecoder {
   ///   "backgroundColor": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "checkmarkColor": "<Color>",
-  ///   "color": "<MaterialStateProperty<Color>>"
+  ///   "color": "<WidgetStateProperty<Color>>"
   ///   "deleteIconColor": "<Color>",
   ///   "disabledColor": "<Color>",
   ///   "elevation": "<double>",
@@ -2603,7 +2603,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeIconThemeData]
-  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static ChipThemeData? decodeChipThemeData(
@@ -2633,7 +2633,7 @@ class ThemeDecoder {
           value['checkmarkColor'],
           validate: false,
         ),
-        color: decodeMaterialStatePropertyColor(
+        color: decodeWidgetStatePropertyColor(
           value['color'],
           validate: false,
         ),
@@ -2905,7 +2905,7 @@ class ThemeDecoder {
   ///   "secondaryContainer": "<Color>",
   ///   "shadow": "<Color>",
   ///   "surface": "<Color>",
-  ///   "surfaceVariant": "<Color>",
+  ///   "surfaceContainerHighest": "<Color>",
   ///   "tertiary": "<Color>",
   ///   "tertiaryContainer": "<Color>"
   /// }
@@ -2929,10 +2929,6 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ColorScheme(
-        background: decodeColor(
-          value['background'],
-          validate: false,
-        )!,
         brightness: decodeBrightness(
           value['brightness'],
           validate: false,
@@ -2953,10 +2949,6 @@ class ThemeDecoder {
           value['inverseSurface'],
           validate: false,
         ),
-        onBackground: decodeColor(
-          value['onBackground'],
-          validate: false,
-        )!,
         onError: decodeColor(
           value['onError'],
           validate: false,
@@ -3041,8 +3033,8 @@ class ThemeDecoder {
           value['surfaceTint'],
           validate: false,
         ),
-        surfaceVariant: decodeColor(
-          value['surfaceVariant'],
+        surfaceContainerHighest: decodeColor(
+          value['surfaceContainerHighest'] ?? value['surfaceVariant'],
           validate: false,
         ),
         tertiary: decodeColor(
@@ -3307,9 +3299,9 @@ class ThemeDecoder {
   ///   "backgroundColor": "<Color>",
   ///   "cancelButtonStyle": "<ButtonStyle>",
   ///   "confirmButtonStyle": "<ButtonStyle>",
-  ///   "dayBackgroundColor": "<MaterialStateProperty<Color>>",
-  ///   "dayForegroundColor": "<MaterialStateProperty<Color>>",
-  ///   "dayOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "dayBackgroundColor": "<WidgetStateProperty<Color>>",
+  ///   "dayForegroundColor": "<WidgetStateProperty<Color>>",
+  ///   "dayOverlayColor": "<WidgetStateProperty<Color>>",
   ///   "dayStyle": "<TextStyle>",
   ///   "dividerColor": "<Color>",
   ///   "elevation": "<double>",
@@ -3328,31 +3320,31 @@ class ThemeDecoder {
   ///   "rangePickerShape": "<ShapeBorder>",
   ///   "rangePickerSurfaceTintColor": "<Color>",
   ///   "rangeSelectionBackgroundColor": "<Color>",
-  ///   "rangeSelectionOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "rangeSelectionOverlayColor": "<WidgetStateProperty<Color>>",
   ///   "shadowColor": "<Color>",
   ///   "shape": "<ShapeBorder>",
   ///   "surfaceTintColor": "<Color>",
-  ///   "todayBackgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "todayBackgroundColor": "<WidgetStateProperty<Color>>",
   ///   "todayBorder": "<ShapeBorder>",
-  ///   "todayForegroundColor": "<MaterialStateProperty<Color>>",
+  ///   "todayForegroundColor": "<WidgetStateProperty<Color>>",
   ///   "weekdayStyle": "<TextStyle>",
-  ///   "yearBackgroundColor": "<MaterialStateProperty<Color>>",
-  ///   "yearForegroundColor": "<MaterialStateProperty<Color>>",
-  ///   "yearOverlayColor": "<MaterialStateProperty<Color>>",
+  ///   "yearBackgroundColor": "<WidgetStateProperty<Color>>",
+  ///   "yearForegroundColor": "<WidgetStateProperty<Color>>",
+  ///   "yearOverlayColor": "<WidgetStateProperty<Color>>",
   ///   "yearStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// This will use the properties passed through JSON to create the
-  /// [MaterialStateProperty] of each corresponding property by using
-  /// the [MaterialStateProperty.all] function with the value passed in.
+  /// [WidgetStateProperty] of each corresponding property by using
+  /// the [WidgetStateProperty.all] function with the value passed in.
   ///
   /// See also:
   ///  * [decodeBorderSide]
   ///  * [decodeButtonStyle]
   ///  * [decodeColor]
   ///  * [decodeInputDecorationTheme]
-  ///  * [decodeMaterialStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static DatePickerThemeData? decodeDatePickerThemeData(
@@ -3382,15 +3374,15 @@ class ThemeDecoder {
           value['confirmButtonStyle'],
           validate: false,
         ),
-        dayBackgroundColor: decodeMaterialStatePropertyColor(
+        dayBackgroundColor: decodeWidgetStatePropertyColor(
           value['dayBackgroundColor'],
           validate: false,
         ),
-        dayForegroundColor: decodeMaterialStatePropertyColor(
+        dayForegroundColor: decodeWidgetStatePropertyColor(
           value['dayForegroundColor'],
           validate: false,
         ),
-        dayOverlayColor: decodeMaterialStatePropertyColor(
+        dayOverlayColor: decodeWidgetStatePropertyColor(
           value['dayOverlayColor'],
           validate: false,
         ),
@@ -3461,7 +3453,7 @@ class ThemeDecoder {
           value['rangeSelectionBackgroundColor'],
           validate: false,
         ),
-        rangeSelectionOverlayColor: decodeMaterialStatePropertyColor(
+        rangeSelectionOverlayColor: decodeWidgetStatePropertyColor(
           value['rangeSelectionOverlayColor'],
           validate: false,
         ),
@@ -3477,7 +3469,7 @@ class ThemeDecoder {
           value['surfaceTintColor'],
           validate: false,
         ),
-        todayBackgroundColor: decodeMaterialStatePropertyColor(
+        todayBackgroundColor: decodeWidgetStatePropertyColor(
           value['todayBackgroundColor'],
           validate: false,
         ),
@@ -3485,7 +3477,7 @@ class ThemeDecoder {
           value['todayBorder'],
           validate: false,
         ),
-        todayForegroundColor: decodeMaterialStatePropertyColor(
+        todayForegroundColor: decodeWidgetStatePropertyColor(
           value['todayForegroundColor'],
           validate: false,
         ),
@@ -3493,15 +3485,15 @@ class ThemeDecoder {
           value['weekdayStyle'],
           validate: false,
         ),
-        yearBackgroundColor: decodeMaterialStatePropertyColor(
+        yearBackgroundColor: decodeWidgetStatePropertyColor(
           value['yearBackgroundColor'],
           validate: false,
         ),
-        yearForegroundColor: decodeMaterialStatePropertyColor(
+        yearForegroundColor: decodeWidgetStatePropertyColor(
           value['yearForegroundColor'],
           validate: false,
         ),
-        yearOverlayColor: decodeMaterialStatePropertyColor(
+        yearOverlayColor: decodeWidgetStatePropertyColor(
           value['yearOverlayColor'],
           validate: false,
         ),
@@ -3522,15 +3514,15 @@ class ThemeDecoder {
   /// {
   ///   "checkboxHorizontalMargin": "<double>",
   ///   "columnSpacing": "<double>",
-  ///   "dataRowColor": "<MaterialStateProperty<Color>>",
-  ///   "dataRowCursor": "<MaterialStateProperty<MouseCursor>",
+  ///   "dataRowColor": "<WidgetStateProperty<Color>>",
+  ///   "dataRowCursor": "<WidgetStateProperty<MouseCursor>",
   ///   "dataRowMaxHeight": "<double>",
   ///   "dataRowMinHeight": "<double>",
   ///   "dataTextStyle": "<TextStyle,
   ///   "decoration": "<BoxDecoration>",
   ///   "dividerThickness": "<double>",
-  ///   "headingCellCursor": "<MaterialStateProperty<MouseCursor>",
-  ///   "headingRowColor": "<MaterialStateProperty<Color>>",
+  ///   "headingCellCursor": "<WidgetStateProperty<MouseCursor>",
+  ///   "headingRowColor": "<WidgetStateProperty<Color>>",
   ///   "headingRowHeight": "<double>",
   ///   "headingTextStyle": "<TextStyle>",
   ///   "horizontalMargin": "<double>"
@@ -3538,14 +3530,14 @@ class ThemeDecoder {
   /// ```
   ///
   /// This will use the properties passed through JSON to create the
-  /// [MaterialStateProperty] of each corresponding property by using
-  /// the [MaterialStateProperty.all] function with the value passed in.
+  /// [WidgetStateProperty] of each corresponding property by using
+  /// the [WidgetStateProperty.all] function with the value passed in.
   ///
   /// See also:
   ///  * [decodeBoxDecoration]
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeTextStyle]
   static DataTableThemeData? decodeDataTableThemeData(
     dynamic value, {
@@ -3568,11 +3560,11 @@ class ThemeDecoder {
         columnSpacing: JsonClass.maybeParseDouble(
           value['columnSpacing'],
         ),
-        dataRowColor: decodeMaterialStatePropertyColor(
+        dataRowColor: decodeWidgetStatePropertyColor(
           value['dataRowColor'],
           validate: false,
         ),
-        dataRowCursor: decodeMaterialStatePropertyMouseCursor(
+        dataRowCursor: decodeWidgetStatePropertyMouseCursor(
           value['dataRowCursor'],
           validate: false,
         ),
@@ -3595,11 +3587,11 @@ class ThemeDecoder {
         dividerThickness: JsonClass.maybeParseDouble(
           value['dividerThickness'],
         ),
-        headingCellCursor: decodeMaterialStatePropertyMouseCursor(
+        headingCellCursor: decodeWidgetStatePropertyMouseCursor(
           value['dataRowCursor'],
           validate: false,
         ),
-        headingRowColor: decodeMaterialStatePropertyColor(
+        headingRowColor: decodeWidgetStatePropertyColor(
           value['headingRowColor'],
           validate: false,
         ),
@@ -4666,7 +4658,7 @@ class ThemeDecoder {
   ///   "hoverElevation": "<double>",
   ///   "iconSize": "<double>",
   ///   "largeSizeConstraints": "<BoxConstraints>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
   ///   "shape": "<ShapeBorder>",
   ///   "sizeConstraints": "<BoxConstraints>",
   ///   "smallSizeConstraints": "<BoxConstraints>",
@@ -4677,7 +4669,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static FloatingActionButtonThemeData? decodeFloatingActionButtonThemeData(
@@ -4739,7 +4731,7 @@ class ThemeDecoder {
           value['largeSizeConstraints'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
@@ -6111,7 +6103,7 @@ class ThemeDecoder {
   ///   "leadingAndTrailingTextStyle": "<TextStyle>",
   ///   "minLeadingWidth": "<double>",
   ///   "minVerticalPadding": "<double>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
   ///   "selectedColor": "<Color>",
   ///   "selectedTileColor": "<Color>",
   ///   "shape": "<ShapeBorder>",
@@ -6156,7 +6148,7 @@ class ThemeDecoder {
         minLeadingWidth: JsonClass.maybeParseDouble(value['minLeadingWidth']),
         minVerticalPadding:
             JsonClass.maybeParseDouble(value['minVerticalPadding']),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
@@ -6456,1415 +6448,6 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes a [value] into a [MaterialStateColor].  If the value is a
-  /// [String] then the value will be used for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<Color>",
-  ///   "dragged": "<Color>",
-  ///   "empty": "<Color>",
-  ///   "error": "<Color>",
-  ///   "focused": "<Color>",
-  ///   "hovered": "<Color>",
-  ///   "pressed": "<Color>",
-  ///   "scrolledUnder": "<Color>",
-  ///   "selected": "<Color>"
-  /// }
-  /// ```
-  ///
-  /// The "empty" will be used for when any other value is missing.
-  static MaterialStateColor? decodeMaterialStateColor(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateColor? result;
-
-    if (value is MaterialStateColor) {
-      result = value;
-    } else if (value is Color) {
-      result = MaterialStateColor.resolveWith((_) => value);
-    } else if (value != null) {
-      assert(SchemaValidator.validate(
-        schemaId: '$_baseSchemaUrl/material_state_color',
-        value: value,
-        validate: validate,
-      ));
-
-      result = MaterialStateColor.resolveWith((states) {
-        Color? result;
-
-        if (value is String) {
-          result = decodeColor(value, validate: false);
-        } else if (value is Color) {
-          result = value;
-        } else if (states.contains(MaterialState.disabled)) {
-          result = decodeColor(
-            value['disabled'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.dragged)) {
-          result = decodeColor(
-            value['dragged'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.error)) {
-          result = decodeColor(
-            value['error'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.focused)) {
-          result = decodeColor(
-            value['focused'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.hovered)) {
-          result = decodeColor(
-            value['hovered'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.pressed)) {
-          result = decodeColor(
-            value['pressed'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.scrolledUnder)) {
-          result = decodeColor(
-            value['scrolledUnder'],
-            validate: false,
-          );
-        } else if (states.contains(MaterialState.selected)) {
-          result = decodeColor(
-            value['selected'],
-            validate: false,
-          );
-        }
-
-        result ??= decodeColor(
-          value['empty'],
-          validate: false,
-        );
-
-        if (result == null) {
-          throw Exception(
-            'Unable to decode required Color for MaterialStateColor for state: $states and no "empty" value exists.',
-          );
-        }
-
-        return result;
-      });
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [double] based [MaterialStateProperty].  This
-  /// accepts a [double] or a [String] which will be resolved for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<bool>",
-  ///   "dragged": "<bool>",
-  ///   "empty": "<bool>",
-  ///   "error": "<bool>",
-  ///   "focused": "<bool>",
-  ///   "hovered": "<bool>",
-  ///   "pressed": "<bool>",
-  ///   "scrolledUnder": "<bool>",
-  ///   "selected": "<bool>"
-  /// }
-  /// ```
-  static MaterialStateProperty<bool?>? decodeMaterialStatePropertyBool(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<bool?>? result;
-
-    if (value is MaterialStateProperty<bool?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is int || value is double || value is bool || value is String) {
-        result = MaterialStateProperty.all<bool?>(JsonClass.parseBool(value));
-      } else if (value is Map) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/material_state_property_bool',
-          value: value,
-          validate: validate,
-        ));
-
-        result = MapMaterialStateProperty.resolveWith((states) {
-          bool? result;
-          if (states.contains(MaterialState.disabled)) {
-            result = JsonClass.maybeParseBool(value['disabled']);
-          } else if (states.contains(MaterialState.dragged)) {
-            result = JsonClass.maybeParseBool(value['dragged']);
-          } else if (states.contains(MaterialState.error)) {
-            result = JsonClass.maybeParseBool(value['error']);
-          } else if (states.contains(MaterialState.focused)) {
-            result = JsonClass.maybeParseBool(value['focused']);
-          } else if (states.contains(MaterialState.hovered)) {
-            result = JsonClass.maybeParseBool(value['hovered']);
-          } else if (states.contains(MaterialState.pressed)) {
-            result = JsonClass.maybeParseBool(value['pressed']);
-          } else if (states.contains(MaterialState.scrolledUnder)) {
-            result = JsonClass.maybeParseBool(value['scrolledUnder']);
-          } else if (states.contains(MaterialState.selected)) {
-            result = JsonClass.maybeParseBool(value['selected']);
-          } else {
-            result = JsonClass.maybeParseBool(value['empty']);
-          }
-
-          return result;
-        });
-      } else {
-        result = MaterialStateProperty.all<bool?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [BorderSide] based [MaterialStateProperty].  This
-  /// accepts a [BorderSide] or a [String] which will be resolved for all
-  /// states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<BorderSide>",
-  ///   "dragged": "<BorderSide>",
-  ///   "empty": "<BorderSide>",
-  ///   "error": "<BorderSide>",
-  ///   "focused": "<BorderSide>",
-  ///   "hovered": "<BorderSide>",
-  ///   "pressed": "<BorderSide>",
-  ///   "scrolledUnder": "<BorderSide>",
-  ///   "selected": "<BorderSide>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeBorderSide]
-  static MaterialStateProperty<BorderSide?>?
-      decodeMaterialStatePropertyBorderSide(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<BorderSide?>? result;
-
-    if (value is MaterialStateProperty<BorderSide?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is BorderSide) {
-        result = MaterialStateProperty.all<BorderSide?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<BorderSide?>(
-          decodeBorderSide(
-            value,
-            validate: false,
-          ),
-        );
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<BorderSide?>(
-            decodeBorderSide(
-              value,
-              validate: false,
-            ),
-          );
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_state_property_border_side',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            BorderSide? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeBorderSide(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeBorderSide(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeBorderSide(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeBorderSide(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeBorderSide(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeBorderSide(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeBorderSide(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeBorderSide(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeBorderSide(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<BorderSide?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [Color] based [MaterialStateProperty].  This
-  /// accepts a [Color] or a [String] which will be resolved for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<Color>",
-  ///   "dragged": "<Color>",
-  ///   "empty": "<Color>",
-  ///   "error": "<Color>",
-  ///   "focused": "<Color>",
-  ///   "hovered": "<Color>",
-  ///   "pressed": "<Color>",
-  ///   "scrolledUnder": "<Color>",
-  ///   "selected": "<Color>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeColor]
-  static MaterialStateProperty<Color?>? decodeMaterialStatePropertyColor(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<Color?>? result;
-
-    if (value is MaterialStateProperty<Color?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is Color) {
-        result = MaterialStateProperty.all<Color?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<Color?>(decodeColor(
-          value,
-          validate: false,
-        ));
-      } else if (value is Map) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/material_state_property_color',
-          value: value,
-          validate: validate,
-        ));
-
-        result = MapMaterialStateProperty.resolveWith((states) {
-          Color? result;
-          if (states.contains(MaterialState.disabled)) {
-            result = decodeColor(
-              value['disabled'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.dragged)) {
-            result = decodeColor(
-              value['dragged'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.error)) {
-            result = decodeColor(
-              value['error'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.focused)) {
-            result = decodeColor(
-              value['focused'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.pressed)) {
-            result = decodeColor(
-              value['pressed'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.hovered)) {
-            result = decodeColor(
-              value['hovered'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.scrolledUnder)) {
-            result = decodeColor(
-              value['scrolledUnder'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.selected)) {
-            result = decodeColor(
-              value['selected'],
-              validate: false,
-            );
-          } else {
-            result = decodeColor(
-              value['empty'],
-              validate: false,
-            );
-          }
-
-          return result;
-        });
-      } else {
-        result = MaterialStateProperty.all<Color?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [double] based [MaterialStateProperty].  This
-  /// accepts a [double] or a [String] which will be resolved for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<double>",
-  ///   "dragged": "<double>",
-  ///   "empty": "<double>",
-  ///   "error": "<double>",
-  ///   "focused": "<double>",
-  ///   "hovered": "<double>",
-  ///   "pressed": "<double>",
-  ///   "scrolledUnder": "<double>",
-  ///   "selected": "<double>"
-  /// }
-  /// ```
-  static MaterialStateProperty<double?>? decodeMaterialStatePropertyDouble(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<double?>? result;
-
-    if (value is MaterialStateProperty<double?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is int) {
-        result = MaterialStateProperty.all<double?>(value.toDouble());
-      } else if (value is double) {
-        result = MaterialStateProperty.all<double?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<double?>(
-          JsonClass.maybeParseDouble(value),
-        );
-      } else if (value is Map) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/material_state_property_double',
-          value: value,
-          validate: validate,
-        ));
-
-        result = MapMaterialStateProperty.resolveWith((states) {
-          double? result;
-          if (states.contains(MaterialState.disabled)) {
-            result = JsonClass.maybeParseDouble(value['disabled']);
-          } else if (states.contains(MaterialState.dragged)) {
-            result = JsonClass.maybeParseDouble(value['dragged']);
-          } else if (states.contains(MaterialState.error)) {
-            result = JsonClass.maybeParseDouble(value['error']);
-          } else if (states.contains(MaterialState.focused)) {
-            result = JsonClass.maybeParseDouble(value['focused']);
-          } else if (states.contains(MaterialState.hovered)) {
-            result = JsonClass.maybeParseDouble(value['hovered']);
-          } else if (states.contains(MaterialState.pressed)) {
-            result = JsonClass.maybeParseDouble(value['pressed']);
-          } else if (states.contains(MaterialState.scrolledUnder)) {
-            result = JsonClass.maybeParseDouble(value['scrolledUnder']);
-          } else if (states.contains(MaterialState.selected)) {
-            result = JsonClass.maybeParseDouble(value['selected']);
-          } else {
-            result = JsonClass.maybeParseDouble(value['empty']);
-          }
-
-          return result;
-        });
-      } else {
-        result = MaterialStateProperty.all<double?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [EdgeInsetsGeometry] based
-  /// [MaterialStateProperty].
-  ///
-  /// If the value is a [String], [double], or [int] then this will parse the
-  /// number and pass it to [EdgeInsets.all] for each state.
-  ///
-  /// If the value is an array with two entities, this calls
-  /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
-  /// the second as the vertical.
-  ///
-  /// If the value is an array with four entities, this calls
-  /// [EdgeInsets.fromLTRB] passing each element in order.
-  ///
-  /// The value may be a [Map] in the following format:
-  /// ```json
-  /// {
-  ///   "bottom": "<double>",
-  ///   "left": "<double>",
-  ///   "right": "<double>",
-  ///   "top": "<double>"
-  /// }
-  /// ```
-  ///
-  /// Finally, the [value] may be a [Map] in the following format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<EdgeInsetsGeometry>",
-  ///   "dragged": "<EdgeInsetsGeometry>",
-  ///   "empty": "<EdgeInsetsGeometry>",
-  ///   "error": "<EdgeInsetsGeometry>",
-  ///   "focused": "<EdgeInsetsGeometry>",
-  ///   "hovered": "<EdgeInsetsGeometry>",
-  ///   "pressed": "<EdgeInsetsGeometry>",
-  ///   "scrolledUnder": "<EdgeInsetsGeometry>",
-  ///   "selected": "<EdgeInsetsGeometry>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeEdgeInsetsGeometry]
-  static MaterialStateProperty<EdgeInsetsGeometry?>?
-      decodeMaterialStatePropertyEdgeInsetsGeometry(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<EdgeInsetsGeometry?>? result;
-
-    if (value is MaterialStateProperty<EdgeInsetsGeometry?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is EdgeInsetsGeometry) {
-        result = MaterialStateProperty.all<EdgeInsetsGeometry?>(value);
-      } else if (value is String || value is List || value is int) {
-        result = MaterialStateProperty.all<EdgeInsetsGeometry?>(
-          decodeEdgeInsetsGeometry(
-            value,
-            validate: false,
-          ),
-        );
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<EdgeInsetsGeometry?>(
-            decodeEdgeInsetsGeometry(
-              value,
-              validate: false,
-            ),
-          );
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId:
-                '$_baseSchemaUrl/material_state_property_edge_insets_geometry',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            EdgeInsetsGeometry? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeEdgeInsetsGeometry(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeEdgeInsetsGeometry(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeEdgeInsetsGeometry(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeEdgeInsetsGeometry(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeEdgeInsetsGeometry(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeEdgeInsetsGeometry(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeEdgeInsetsGeometry(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeEdgeInsetsGeometry(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeEdgeInsetsGeometry(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<EdgeInsetsGeometry?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [Icon] based [MaterialStateProperty].  This
-  /// accepts a [Icon] or a [String] which will be resolved for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<Icon>",
-  ///   "dragged": "<Icon>",
-  ///   "empty": "<Icon>",
-  ///   "error": "<Icon>",
-  ///   "focused": "<Icon>",
-  ///   "hovered": "<Icon>",
-  ///   "pressed": "<Icon>",
-  ///   "scrolledUnder": "<Icon>",
-  ///   "selected": "<Icon>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeIconData]
-  static MaterialStateProperty<Icon?>? decodeMaterialStatePropertyIcon(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<Icon?>? result;
-
-    if (value is MaterialStateProperty<Icon?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is Icon) {
-        result = MaterialStateProperty.all<Icon?>(value);
-      } else if (value is IconData) {
-        result = MaterialStateProperty.all<Icon?>(Icon(value));
-      } else if (value is Map) {
-        assert(SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/material_state_property_icon',
-          value: value,
-          validate: validate,
-        ));
-
-        result = MapMaterialStateProperty.resolveWith((states) {
-          Icon? result;
-          if (states.contains(MaterialState.disabled)) {
-            result = decodeIcon(
-              value['disabled'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.dragged)) {
-            result = decodeIcon(
-              value['dragged'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.error)) {
-            result = decodeIcon(
-              value['error'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.focused)) {
-            result = decodeIcon(
-              value['focused'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.pressed)) {
-            result = decodeIcon(
-              value['pressed'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.hovered)) {
-            result = decodeIcon(
-              value['hovered'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.scrolledUnder)) {
-            result = decodeIcon(
-              value['scrolledUnder'],
-              validate: false,
-            );
-          } else if (states.contains(MaterialState.selected)) {
-            result = decodeIcon(
-              value['selected'],
-              validate: false,
-            );
-          } else {
-            result = decodeIcon(
-              value['empty'],
-              validate: false,
-            );
-          }
-
-          return result;
-        });
-      } else {
-        result = MaterialStateProperty.all<Icon?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [IconThemeData] based [MaterialStateProperty].
-  /// This accepts a [IconThemeData] or a [String] which will be resolved for
-  /// all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<IconThemeData>",
-  ///   "dragged": "<IconThemeData>",
-  ///   "empty": "<IconThemeData>",
-  ///   "error": "<IconThemeData>",
-  ///   "focused": "<IconThemeData>",
-  ///   "hovered": "<IconThemeData>",
-  ///   "pressed": "<IconThemeData>",
-  ///   "scrolledUnder": "<IconThemeData>",
-  ///   "selected": "<IconThemeData>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeIconThemeData]
-  static MaterialStateProperty<IconThemeData?>?
-      decodeMaterialStatePropertyIconThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<IconThemeData?>? result;
-
-    if (value is MaterialStateProperty<IconThemeData?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is IconThemeData) {
-        result = MaterialStateProperty.all<IconThemeData?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<IconThemeData?>(
-          decodeIconThemeData(
-            value,
-            validate: false,
-          ),
-        );
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<IconThemeData?>(
-            decodeIconThemeData(
-              value,
-              validate: false,
-            ),
-          );
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_state_property_icon_theme_data',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            IconThemeData? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeIconThemeData(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeIconThemeData(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeIconThemeData(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeIconThemeData(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeIconThemeData(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeIconThemeData(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeIconThemeData(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeIconThemeData(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeIconThemeData(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<IconThemeData?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [MouseCursor] based [MaterialStateProperty].
-  /// This accepts a [MouseCursor] or a [String] which will be resolved for all
-  /// states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<MouseCursor>",
-  ///   "dragged": "<MouseCursor>",
-  ///   "empty": "<MouseCursor>",
-  ///   "error": "<MouseCursor>",
-  ///   "focused": "<MouseCursor>",
-  ///   "hovered": "<MouseCursor>",
-  ///   "pressed": "<MouseCursor>",
-  ///   "scrolledUnder": "<MouseCursor>",
-  ///   "selected": "<MouseCursor>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeMouseCursor]
-  static MaterialStateProperty<MouseCursor?>?
-      decodeMaterialStatePropertyMouseCursor(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<MouseCursor?>? result;
-
-    if (value is MaterialStateProperty<MouseCursor?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is MouseCursor) {
-        result = MaterialStateProperty.all<MouseCursor?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<MouseCursor?>(decodeMouseCursor(
-          value,
-          validate: false,
-        ));
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<MouseCursor?>(
-            decodeMouseCursor(
-              value,
-              validate: false,
-            ),
-          );
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_state_property_mouse_cursor',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            MouseCursor? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeMouseCursor(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeMouseCursor(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeMouseCursor(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeMouseCursor(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeMouseCursor(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeMouseCursor(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeMouseCursor(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeMouseCursor(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeMouseCursor(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<MouseCursor?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [OutlinedBorder] based [MaterialStateProperty].
-  /// This accepts a [OutlinedBorder] or a [String] which will be resolved for
-  /// all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<OutlinedBorder>",
-  ///   "dragged": "<OutlinedBorder>",
-  ///   "empty": "<OutlinedBorder>",
-  ///   "error": "<OutlinedBorder>",
-  ///   "focused": "<OutlinedBorder>",
-  ///   "hovered": "<OutlinedBorder>",
-  ///   "pressed": "<OutlinedBorder>",
-  ///   "scrolledUnder": "<OutlinedBorder>",
-  ///   "selected": "<OutlinedBorder>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeOutlinedBorder]
-  static MaterialStateProperty<OutlinedBorder?>?
-      decodeMaterialStatePropertyOutlinedBorder(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<OutlinedBorder?>? result;
-
-    if (value is MaterialStateProperty<OutlinedBorder?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is OutlinedBorder) {
-        result = MaterialStateProperty.all<OutlinedBorder?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<OutlinedBorder?>(
-          decodeOutlinedBorder(
-            value,
-            validate: false,
-          ),
-        );
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<OutlinedBorder?>(
-            decodeOutlinedBorder(
-              value,
-              validate: false,
-            ),
-          );
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_state_property_outlined_border',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            OutlinedBorder? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeOutlinedBorder(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeOutlinedBorder(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeOutlinedBorder(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeOutlinedBorder(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeOutlinedBorder(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeOutlinedBorder(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeOutlinedBorder(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeOutlinedBorder(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeOutlinedBorder(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<OutlinedBorder?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [Size] based [MaterialStateProperty].  This
-  /// accepts a [Size] or a [String] which will be resolved for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<Size>",
-  ///   "dragged": "<Size>",
-  ///   "empty": "<Size>",
-  ///   "error": "<Size>",
-  ///   "focused": "<Size>",
-  ///   "hovered": "<Size>",
-  ///   "pressed": "<Size>",
-  ///   "scrolledUnder": "<Size>",
-  ///   "selected": "<Size>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeSize]
-  static MaterialStateProperty<Size?>? decodeMaterialStatePropertySize(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<Size?>? result;
-
-    if (value is MaterialStateProperty<Size?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is Size) {
-        result = MaterialStateProperty.all<Size?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<Size?>(decodeSize(
-          value,
-          validate: false,
-        ));
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<Size?>(decodeSize(
-            value,
-            validate: false,
-          ));
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_state_property_size',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            Size? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeSize(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeSize(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeSize(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeSize(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeSize(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeSize(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeSize(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeSize(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeSize(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<Size?>(value);
-      }
-    }
-    return result;
-  }
-
-  /// Decodes a [value] into a [TextStyle] based [MaterialStateProperty].  This
-  /// accepts a [TextStyle] or a [String] which will be resolved for all states.
-  ///
-  /// Alternatively, if the [value] is a [Map] then this expects the following
-  /// format:
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<TextStyle>",
-  ///   "dragged": "<TextStyle>",
-  ///   "empty": "<TextStyle>",
-  ///   "error": "<TextStyle>",
-  ///   "focused": "<TextStyle>",
-  ///   "hovered": "<TextStyle>",
-  ///   "pressed": "<TextStyle>",
-  ///   "scrolledUnder": "<TextStyle>",
-  ///   "selected": "<TextStyle>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeTextStyle]
-  static MaterialStateProperty<TextStyle?>?
-      decodeMaterialStatePropertyTextStyle(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    MaterialStateProperty<TextStyle?>? result;
-
-    if (value is MaterialStateProperty<TextStyle?>) {
-      result = value;
-    } else if (value != null) {
-      if (value is TextStyle) {
-        result = MaterialStateProperty.all<TextStyle?>(value);
-      } else if (value is String) {
-        result = MaterialStateProperty.all<TextStyle?>(decodeTextStyle(
-          value,
-          validate: false,
-        ));
-      } else if (value is Map) {
-        final testValues = [
-          'disabled',
-          'dragged',
-          'empty',
-          'error',
-          'focused',
-          'hovered',
-          'pressed',
-          'scrolledUnder',
-          'selected',
-        ];
-
-        var isMsp = false;
-        for (var key in value.keys) {
-          if (testValues.contains(key)) {
-            isMsp = true;
-            break;
-          }
-        }
-
-        if (isMsp != true) {
-          result = MaterialStateProperty.all<TextStyle?>(
-            decodeTextStyle(
-              value,
-              validate: false,
-            ),
-          );
-        } else {
-          assert(SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_state_property_text_style',
-            value: value,
-            validate: validate,
-          ));
-
-          result = MapMaterialStateProperty.resolveWith((states) {
-            TextStyle? result;
-            if (states.contains(MaterialState.disabled)) {
-              result = decodeTextStyle(
-                value['disabled'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.dragged)) {
-              result = decodeTextStyle(
-                value['dragged'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.error)) {
-              result = decodeTextStyle(
-                value['error'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.focused)) {
-              result = decodeTextStyle(
-                value['focused'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.hovered)) {
-              result = decodeTextStyle(
-                value['hovered'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.pressed)) {
-              result = decodeTextStyle(
-                value['pressed'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.scrolledUnder)) {
-              result = decodeTextStyle(
-                value['scrolledUnder'],
-                validate: false,
-              );
-            } else if (states.contains(MaterialState.selected)) {
-              result = decodeTextStyle(
-                value['selected'],
-                validate: false,
-              );
-            } else {
-              result = decodeTextStyle(
-                value['empty'],
-                validate: false,
-              );
-            }
-
-            return result;
-          });
-        }
-      } else {
-        result = MaterialStateProperty.all<TextStyle?>(value);
-      }
-    }
-    return result;
-  }
-
   /// Decodes the [value] to a [MaterialTargetTapSize].  Supported values are:
   ///  * `padded`
   ///  * `shrinkWrap`
@@ -8148,28 +6731,28 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "alignment": "<Alignment>",
-  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
-  ///   "elevation": "<MaterialStateProperty<double>>",
-  ///   "fixedSize": "<MaterialStateProperty<Size>>",
-  ///   "maximumSize": "<MaterialStateProperty<Size>>",
-  ///   "minimumSize": "<MaterialStateProperty<Size>>",
-  ///   "padding": "<MaterialStateProperty<EdgeInsets>>",
-  ///   "shadowColor": "<MaterialStateProperty<Color>>",
-  ///   "shape": "<MaterialStateProperty<OutlinedBorder>>",
-  ///   "side": "<MaterialStateProperty<BorderSide>>",
-  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
+  ///   "backgroundColor": "<WidgetStateProperty<Color>>",
+  ///   "elevation": "<WidgetStateProperty<double>>",
+  ///   "fixedSize": "<WidgetStateProperty<Size>>",
+  ///   "maximumSize": "<WidgetStateProperty<Size>>",
+  ///   "minimumSize": "<WidgetStateProperty<Size>>",
+  ///   "padding": "<WidgetStateProperty<EdgeInsets>>",
+  ///   "shadowColor": "<WidgetStateProperty<Color>>",
+  ///   "shape": "<WidgetStateProperty<OutlinedBorder>>",
+  ///   "side": "<WidgetStateProperty<BorderSide>>",
+  ///   "surfaceTintColor": "<WidgetStateProperty<Color>>",
   ///   "visualDensity": "<VisualDensity>",
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeAlignment]
-  ///  * [decodeMaterialStatePropertyBorderSide]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyDouble]
-  ///  * [decodeMaterialStatePropertyEdgeInsetsGeometry]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
-  ///  * [decodeMaterialStatePropertySize]
+  ///  * [decodeWidgetStatePropertyBorderSide]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyDouble]
+  ///  * [decodeWidgetStatePropertyEdgeInsetsGeometry]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertySize]
   ///  * [decodeVisualDensity]
   static MenuStyle? decodeMenuStyle(
     dynamic value, {
@@ -8191,45 +6774,45 @@ class ThemeDecoder {
           value['alignment'],
           validate: false,
         ),
-        backgroundColor: decodeMaterialStatePropertyColor(
+        backgroundColor: decodeWidgetStatePropertyColor(
           value['backgroundColor'],
           validate: false,
         ),
-        elevation: decodeMaterialStatePropertyDouble(
+        elevation: decodeWidgetStatePropertyDouble(
           value['elevation'],
           validate: false,
         ),
-        fixedSize: decodeMaterialStatePropertySize(value['fixedSize'],
-            validate: false),
-        maximumSize: decodeMaterialStatePropertySize(
+        fixedSize:
+            decodeWidgetStatePropertySize(value['fixedSize'], validate: false),
+        maximumSize: decodeWidgetStatePropertySize(
           value['maximumSize'],
           validate: false,
         ),
-        minimumSize: decodeMaterialStatePropertySize(
+        minimumSize: decodeWidgetStatePropertySize(
           value['minimumSize'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
-        padding: decodeMaterialStatePropertyEdgeInsetsGeometry(
+        padding: decodeWidgetStatePropertyEdgeInsetsGeometry(
           value['padding'],
           validate: false,
         ),
-        shadowColor: decodeMaterialStatePropertyColor(
+        shadowColor: decodeWidgetStatePropertyColor(
           value['shadowColor'],
           validate: false,
         ),
-        shape: decodeMaterialStatePropertyOutlinedBorder(
+        shape: decodeWidgetStatePropertyOutlinedBorder(
           value['shape'],
           validate: false,
         ),
-        side: decodeMaterialStatePropertyBorderSide(
+        side: decodeWidgetStatePropertyBorderSide(
           value['side'],
           validate: false,
         ),
-        surfaceTintColor: decodeMaterialStatePropertyColor(
+        surfaceTintColor: decodeWidgetStatePropertyColor(
           value['surfaceTintColor'],
           validate: false,
         ),
@@ -8369,11 +6952,11 @@ class ThemeDecoder {
             );
             switch (value['cursor']) {
               case 'clickable':
-                result = MaterialStateMouseCursor.clickable;
+                result = WidgetStateMouseCursor.clickable;
                 break;
 
               case 'textable':
-                result = MaterialStateMouseCursor.textable;
+                result = WidgetStateMouseCursor.textable;
                 break;
             }
             break;
@@ -8585,11 +7168,11 @@ class ThemeDecoder {
   ///   "backgroundColor": "<Color>",
   ///   "elevation": "<double>",
   ///   "height": "<double>",
-  ///   "iconTheme": "<MaterialStateProperty<IconThemeData>>",
+  ///   "iconTheme": "<WidgetStateProperty<IconThemeData>>",
   ///   "indicatorColor": "<Color>",
   ///   "indicatorShape": "<ShapeBorder>",
   ///   "labelBehavior": "<NavigationDestinationLabelBehavior>",
-  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "labelTextStyle": "<WidgetStateProperty<TextStyle>>",
   ///   "shadowColor": "<Color>",
   ///   "surfaceTintColor": "<Color>"
   /// }
@@ -8597,8 +7180,8 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyIconThemeData]
-  ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodeWidgetStatePropertyIconThemeData]
+  ///  * [decodeWidgetStatePropertyTextStyle]
   ///  * [decodeNavigationDestinationLabelBehavior]
   static NavigationBarThemeData? decodeNavigationBarThemeData(
     dynamic value, {
@@ -8621,7 +7204,7 @@ class ThemeDecoder {
         ),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         height: JsonClass.maybeParseDouble(value['height']),
-        iconTheme: decodeMaterialStatePropertyIconThemeData(
+        iconTheme: decodeWidgetStatePropertyIconThemeData(
           value['iconTheme'],
           validate: false,
         ),
@@ -8637,7 +7220,7 @@ class ThemeDecoder {
           value['labelBehavior'],
           validate: false,
         ),
-        labelTextStyle: decodeMaterialStatePropertyTextStyle(
+        labelTextStyle: decodeWidgetStatePropertyTextStyle(
           value['labelTextStyle'],
           validate: false,
         ),
@@ -8705,11 +7288,11 @@ class ThemeDecoder {
   /// {
   ///   "backgroundColor": "<Color>",
   ///   "elevation": "<double>",
-  ///   "iconTheme": "<MaterialStateProperty<IconThemeData>>",
+  ///   "iconTheme": "<WidgetStateProperty<IconThemeData>>",
   ///   "indicatorColor": "<Color>",
   ///   "indicatorShape": "<ShapeBorder>",
   ///   "indicatorSize": "<Size>",
-  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "labelTextStyle": "<WidgetStateProperty<TextStyle>>",
   ///   "shadowColor": "<Color>",
   ///   "surfaceTintColor": "<Color>",
   ///   "tileHeight": "<double>"
@@ -8718,7 +7301,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyIconThemeData]
+  ///  * [decodeWidgetStatePropertyIconThemeData]
   ///  * [decodeShapeBorder]
   static NavigationDrawerThemeData? decodeNavigationDrawerThemeData(
     dynamic value, {
@@ -8738,7 +7321,7 @@ class ThemeDecoder {
       result = NavigationDrawerThemeData(
         backgroundColor: decodeColor(value['backgroundColor'], validate: false),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
-        iconTheme: decodeMaterialStatePropertyIconThemeData(
+        iconTheme: decodeWidgetStatePropertyIconThemeData(
           value['iconTheme'],
           validate: false,
         ),
@@ -8754,7 +7337,7 @@ class ThemeDecoder {
           value['size'],
           validate: false,
         ),
-        labelTextStyle: decodeMaterialStatePropertyTextStyle(
+        labelTextStyle: decodeWidgetStatePropertyTextStyle(
           value['labelTextStyle'],
           validate: false,
         ),
@@ -9496,8 +8079,8 @@ class ThemeDecoder {
   ///   "enableFeedback": "<bool>",
   ///   "iconColor": "<Color>",
   ///   "iconSize": "<double>",
-  ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "labelTextStyle": "<WidgetStateProperty<TextStyle>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
   ///   "position": "<PopupMenuPosition>",
   ///   "shadowColor": "<Color>",
   ///   "shape": "<ShapeBorder>",
@@ -9508,8 +8091,8 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
-  ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyTextStyle]
   ///  * [decodePopupMenuPosition]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
@@ -9539,11 +8122,11 @@ class ThemeDecoder {
           validate: false,
         ),
         iconSize: JsonClass.maybeParseDouble(value['iconSize']),
-        labelTextStyle: decodeMaterialStatePropertyTextStyle(
+        labelTextStyle: decodeWidgetStatePropertyTextStyle(
           value['labelTextStyle'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
@@ -9632,10 +8215,10 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "fillColor": "<WidgetStateProperty<Color>>",
   ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<WidgetStateProperty<Color>>",
   ///   "splashRadius": "<double>",
   ///   "visualDensity": "<VisualDensity>"
   /// }
@@ -9643,8 +8226,8 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
   ///  * [decodeVisualDensity]
@@ -9664,7 +8247,7 @@ class ThemeDecoder {
       ));
 
       result = RadioThemeData(
-        fillColor: decodeMaterialStatePropertyColor(
+        fillColor: decodeWidgetStatePropertyColor(
           value['fillColor'],
           validate: false,
         ),
@@ -9672,11 +8255,11 @@ class ThemeDecoder {
           value['materialTapTargetSize'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
-        overlayColor: decodeMaterialStatePropertyColor(
+        overlayColor: decodeWidgetStatePropertyColor(
           value['overlayColor'],
           validate: false,
         ),
@@ -10399,19 +8982,19 @@ class ThemeDecoder {
   ///   "mainAxisMargin": "<double>",
   ///   "minThumbLength": "<double>",
   ///   "radius": "<Radius>",
-  ///   "thickness": "<MaterialStateProperty<double>>",
-  ///   "thumbColor": "<MaterialStateProperty<Color>>",
-  ///   "thumbVisibility": "<MaterialStateProperty<bool>>",
-  ///   "trackBorderColor": "<MaterialStateProperty<Color>>",
-  ///   "trackColor": "<MaterialStateProperty<Color>>",
-  ///   "trackVisibility": "<MaterialStateProperty<bool>>",
+  ///   "thickness": "<WidgetStateProperty<double>>",
+  ///   "thumbColor": "<WidgetStateProperty<Color>>",
+  ///   "thumbVisibility": "<WidgetStateProperty<bool>>",
+  ///   "trackBorderColor": "<WidgetStateProperty<Color>>",
+  ///   "trackColor": "<WidgetStateProperty<Color>>",
+  ///   "trackVisibility": "<WidgetStateProperty<bool>>",
   /// }
   /// ```
   ///
   /// See also:
-  ///  * [decodeMaterialStatePropertyBool]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyDouble]
+  ///  * [decodeWidgetStatePropertyBool]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyDouble]
   ///  * [decodeRadius]
   static ScrollbarThemeData? decodeScrollbarThemeData(
     dynamic value, {
@@ -10437,27 +9020,27 @@ class ThemeDecoder {
           validate: false,
         ),
         // showTrackOnHover: @deprecated
-        thickness: decodeMaterialStatePropertyDouble(
+        thickness: decodeWidgetStatePropertyDouble(
           value['thickness'],
           validate: false,
         ),
-        thumbColor: decodeMaterialStatePropertyColor(
+        thumbColor: decodeWidgetStatePropertyColor(
           value['thumbColor'],
           validate: false,
         ),
-        thumbVisibility: decodeMaterialStatePropertyBool(
+        thumbVisibility: decodeWidgetStatePropertyBool(
           value['thumbVisibility'],
           validate: false,
         ),
-        trackBorderColor: decodeMaterialStatePropertyColor(
+        trackBorderColor: decodeWidgetStatePropertyColor(
           value['trackBorderColor'],
           validate: false,
         ),
-        trackColor: decodeMaterialStatePropertyColor(
+        trackColor: decodeWidgetStatePropertyColor(
           value['trackColor'],
           validate: false,
         ),
-        trackVisibility: decodeMaterialStatePropertyBool(
+        trackVisibility: decodeWidgetStatePropertyBool(
           value['trackVisibility'],
           validate: false,
         ),
@@ -10472,29 +9055,29 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": "<MaterialStateProperty<Color>>",
+  ///   "backgroundColor": "<WidgetStateProperty<Color>>",
   ///   "constraints": "<BoxConstraints>",
-  ///   "elevation": "<MaterialStateProperty<double>>",
-  ///   "hintStyle": "<MaterialStateProperty<TextStyle>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
-  ///   "padding": "<MaterialStateProperty<EdgeInsetsGeometry>>",
-  ///   "shadowColor": "<MaterialStateProperty<Color>>",
-  ///   "shape": MaterialStateProperty<OutlinedBorder>,
-  ///   "side": "<MaterialStateProperty<BorderSide>>",
-  ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
-  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "elevation": "<WidgetStateProperty<double>>",
+  ///   "hintStyle": "<WidgetStateProperty<TextStyle>>",
+  ///   "overlayColor": "<WidgetStateProperty<Color>>",
+  ///   "padding": "<WidgetStateProperty<EdgeInsetsGeometry>>",
+  ///   "shadowColor": "<WidgetStateProperty<Color>>",
+  ///   "shape": WidgetStateProperty<OutlinedBorder>,
+  ///   "side": "<WidgetStateProperty<BorderSide>>",
+  ///   "surfaceTintColor": "<WidgetStateProperty<Color>>",
+  ///   "textStyle": "<WidgetStateProperty<TextStyle>>",
   ///   "textCapitalization": "<TextCapitalization>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeBoxConstraints]
-  ///  * [decodeMaterialStatePropertyBorderSide]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyDouble]
-  ///  * [decodeMaterialStatePropertyEdgeInsetsGeometry]
-  ///  * [decodeMaterialStatePropertyOutlinedBorder]
-  ///  * [decodeMaterialStatePropertyTextStyle]
+  ///  * [decodeWidgetStatePropertyBorderSide]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyDouble]
+  ///  * [decodeWidgetStatePropertyEdgeInsetsGeometry]
+  ///  * [decodeWidgetStatePropertyOutlinedBorder]
+  ///  * [decodeWidgetStatePropertyTextStyle]
   ///  * [decodeTextCapitalization]
   static SearchBarThemeData? decodeSearchBarThemeData(
     dynamic value, {
@@ -10512,7 +9095,7 @@ class ThemeDecoder {
       ));
 
       result = SearchBarThemeData(
-        backgroundColor: decodeMaterialStatePropertyColor(
+        backgroundColor: decodeWidgetStatePropertyColor(
           value['backgroundColor'],
           validate: false,
         ),
@@ -10520,35 +9103,35 @@ class ThemeDecoder {
           value['constraints'],
           validate: false,
         ),
-        elevation: decodeMaterialStatePropertyDouble(
+        elevation: decodeWidgetStatePropertyDouble(
           value['elevation'],
           validate: false,
         ),
-        hintStyle: decodeMaterialStatePropertyTextStyle(
+        hintStyle: decodeWidgetStatePropertyTextStyle(
           value['hintStyle'],
           validate: false,
         ),
-        overlayColor: decodeMaterialStatePropertyColor(
+        overlayColor: decodeWidgetStatePropertyColor(
           value['overlayColor'],
           validate: false,
         ),
-        padding: decodeMaterialStatePropertyEdgeInsetsGeometry(
+        padding: decodeWidgetStatePropertyEdgeInsetsGeometry(
           value['padding'],
           validate: false,
         ),
-        shadowColor: decodeMaterialStatePropertyColor(
+        shadowColor: decodeWidgetStatePropertyColor(
           value['shadowColor'],
           validate: false,
         ),
-        shape: decodeMaterialStatePropertyOutlinedBorder(
+        shape: decodeWidgetStatePropertyOutlinedBorder(
           value['shape'],
           validate: false,
         ),
-        side: decodeMaterialStatePropertyBorderSide(
+        side: decodeWidgetStatePropertyBorderSide(
           value['side'],
           validate: false,
         ),
-        surfaceTintColor: decodeMaterialStatePropertyColor(
+        surfaceTintColor: decodeWidgetStatePropertyColor(
           value['surfaceTintColor'],
           validate: false,
         ),
@@ -10556,7 +9139,7 @@ class ThemeDecoder {
           value['textCapitalization'],
           validate: false,
         ),
-        textStyle: decodeMaterialStatePropertyTextStyle(
+        textStyle: decodeWidgetStatePropertyTextStyle(
           value['textStyle'],
           validate: false,
         ),
@@ -11083,7 +9666,7 @@ class ThemeDecoder {
   ///   "inactiveTickMarkColor": "<Color>",
   ///   "inactiveTrackColor": "<Color>",
   ///   "minThumbSeparation": "<double>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
   ///   "overlappingShapeStrokeColor": "<Color>",
   ///   "overlayColor": "<Color>",
   ///   "overlayShape": "<SliderComponentShape>",
@@ -11106,7 +9689,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeShowValueIndicator]
   ///  * [decodeSliderComponentShape]
   ///  * [decodeSliderInteraction]
@@ -11176,7 +9759,7 @@ class ThemeDecoder {
         ),
         minThumbSeparation:
             JsonClass.maybeParseDouble(value['minThumbSeparation']),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
@@ -11671,21 +10254,21 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<WidgetStateProperty<Color>>",
   ///   "splashRadius": "<double>",
-  ///   "thumbColor": "<MaterialStateProperty<Color>>",
-  ///   "trackColor": "<MaterialStateProperty<Color>>",
-  ///   "trackOutlineColor": "<MaterialStateProperty<Color>>"
-  ///   "trackOutlineWidth": "<MaterialStateProperty<double>>"
+  ///   "thumbColor": "<WidgetStateProperty<Color>>",
+  ///   "trackColor": "<WidgetStateProperty<Color>>",
+  ///   "trackOutlineColor": "<WidgetStateProperty<Color>>"
+  ///   "trackOutlineWidth": "<WidgetStateProperty<double>>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [decodeColor]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyDouble]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyDouble]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
   static SwitchThemeData? decodeSwitchThemeData(
@@ -11708,32 +10291,32 @@ class ThemeDecoder {
           value['materialTapTargetSize'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
-        overlayColor: decodeMaterialStatePropertyColor(
+        overlayColor: decodeWidgetStatePropertyColor(
           value['overlayColor'],
           validate: false,
         ),
         splashRadius: JsonClass.maybeParseDouble(value['splashRadius']),
-        thumbColor: decodeMaterialStatePropertyColor(
+        thumbColor: decodeWidgetStatePropertyColor(
           value['thumbColor'],
           validate: false,
         ),
-        thumbIcon: decodeMaterialStatePropertyIcon(
+        thumbIcon: decodeWidgetStatePropertyIcon(
           value['thumbIcon'],
           validate: false,
         ),
-        trackColor: decodeMaterialStatePropertyColor(
+        trackColor: decodeWidgetStatePropertyColor(
           value['trackColor'],
           validate: false,
         ),
-        trackOutlineColor: decodeMaterialStatePropertyColor(
+        trackOutlineColor: decodeWidgetStatePropertyColor(
           value['trackOutlineColor'],
           validate: false,
         ),
-        trackOutlineWidth: decodeMaterialStatePropertyDouble(
+        trackOutlineWidth: decodeWidgetStatePropertyDouble(
           value['trackOutlineWidth'],
           validate: false,
         ),
@@ -11929,8 +10512,8 @@ class ThemeDecoder {
   ///   "labelPadding": "<EdgeInsetsGeometry>",
   ///   "labelColor": "<Color>",
   ///   "labelStyle": "<TextStyle>",
-  ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
+  ///   "overlayColor": "<WidgetStateProperty<Color>>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
   ///   "tabAlignment": "<TabAlignment>"
   ///   "unselectedLabelColor": "<Color>",
@@ -11942,8 +10525,8 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeInteractiveInkFeatureFactory]
-  ///  * [decodeMaterialStatePropertyColor]
-  ///  * [decodeMaterialStatePropertyMouseCursor]
+  ///  * [decodeWidgetStatePropertyColor]
+  ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeTabBarAlignment]
   ///  * [decodeTabBarIndicatorSize]
   ///  * [decodeTextStyle]
@@ -11993,11 +10576,11 @@ class ThemeDecoder {
           value['labelStyle'],
           validate: false,
         ),
-        mouseCursor: decodeMaterialStatePropertyMouseCursor(
+        mouseCursor: decodeWidgetStatePropertyMouseCursor(
           value['mouseCursor'],
           validate: false,
         ),
-        overlayColor: decodeMaterialStatePropertyColor(
+        overlayColor: decodeWidgetStatePropertyColor(
           value['overlayColor'],
           validate: false,
         ),
@@ -14000,7 +12583,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeInputDecorationTheme]
-  ///  * [decodeMaterialStateColor]
+  ///  * [decodeWidgetStateColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   static TimePickerThemeData? decodeTimePickerThemeData(
@@ -14035,7 +12618,7 @@ class ThemeDecoder {
           value['dayPeriodBorderSide'],
           validate: false,
         ),
-        dayPeriodColor: decodeMaterialStateColor(
+        dayPeriodColor: decodeWidgetStateColor(
           value['dayPeriodColor'],
           validate: false,
         ),
@@ -14486,6 +13069,1413 @@ class ThemeDecoder {
       }
     }
 
+    return result;
+  }
+
+  /// Decodes a [value] into a [WidgetStateColor].  If the value is a
+  /// [String] then the value will be used for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// The "empty" will be used for when any other value is missing.
+  static WidgetStateColor? decodeWidgetStateColor(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateColor? result;
+
+    if (value is WidgetStateColor) {
+      result = value;
+    } else if (value is Color) {
+      result = WidgetStateColor.resolveWith((_) => value);
+    } else if (value != null) {
+      assert(SchemaValidator.validate(
+        schemaId: '$_baseSchemaUrl/widget_state_color',
+        value: value,
+        validate: validate,
+      ));
+
+      result = WidgetStateColor.resolveWith((states) {
+        Color? result;
+
+        if (value is String) {
+          result = decodeColor(value, validate: false);
+        } else if (value is Color) {
+          result = value;
+        } else if (states.contains(WidgetState.disabled)) {
+          result = decodeColor(
+            value['disabled'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.dragged)) {
+          result = decodeColor(
+            value['dragged'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.error)) {
+          result = decodeColor(
+            value['error'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.focused)) {
+          result = decodeColor(
+            value['focused'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.hovered)) {
+          result = decodeColor(
+            value['hovered'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.pressed)) {
+          result = decodeColor(
+            value['pressed'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.scrolledUnder)) {
+          result = decodeColor(
+            value['scrolledUnder'],
+            validate: false,
+          );
+        } else if (states.contains(WidgetState.selected)) {
+          result = decodeColor(
+            value['selected'],
+            validate: false,
+          );
+        }
+
+        result ??= decodeColor(
+          value['empty'],
+          validate: false,
+        );
+
+        if (result == null) {
+          throw Exception(
+            'Unable to decode required Color for WidgetStateColor for state: $states and no "empty" value exists.',
+          );
+        }
+
+        return result;
+      });
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [double] based [WidgetStateProperty].  This
+  /// accepts a [double] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<bool>",
+  ///   "dragged": "<bool>",
+  ///   "empty": "<bool>",
+  ///   "error": "<bool>",
+  ///   "focused": "<bool>",
+  ///   "hovered": "<bool>",
+  ///   "pressed": "<bool>",
+  ///   "scrolledUnder": "<bool>",
+  ///   "selected": "<bool>"
+  /// }
+  /// ```
+  static WidgetStateProperty<bool?>? decodeWidgetStatePropertyBool(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<bool?>? result;
+
+    if (value is WidgetStateProperty<bool?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is int || value is double || value is bool || value is String) {
+        result = WidgetStateProperty.all<bool?>(JsonClass.parseBool(value));
+      } else if (value is Map) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/widget_state_property_bool',
+          value: value,
+          validate: validate,
+        ));
+
+        result = MapWidgetStateProperty.resolveWith((states) {
+          bool? result;
+          if (states.contains(WidgetState.disabled)) {
+            result = JsonClass.maybeParseBool(value['disabled']);
+          } else if (states.contains(WidgetState.dragged)) {
+            result = JsonClass.maybeParseBool(value['dragged']);
+          } else if (states.contains(WidgetState.error)) {
+            result = JsonClass.maybeParseBool(value['error']);
+          } else if (states.contains(WidgetState.focused)) {
+            result = JsonClass.maybeParseBool(value['focused']);
+          } else if (states.contains(WidgetState.hovered)) {
+            result = JsonClass.maybeParseBool(value['hovered']);
+          } else if (states.contains(WidgetState.pressed)) {
+            result = JsonClass.maybeParseBool(value['pressed']);
+          } else if (states.contains(WidgetState.scrolledUnder)) {
+            result = JsonClass.maybeParseBool(value['scrolledUnder']);
+          } else if (states.contains(WidgetState.selected)) {
+            result = JsonClass.maybeParseBool(value['selected']);
+          } else {
+            result = JsonClass.maybeParseBool(value['empty']);
+          }
+
+          return result;
+        });
+      } else {
+        result = WidgetStateProperty.all<bool?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [BorderSide] based [WidgetStateProperty].  This
+  /// accepts a [BorderSide] or a [String] which will be resolved for all
+  /// states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<BorderSide>",
+  ///   "dragged": "<BorderSide>",
+  ///   "empty": "<BorderSide>",
+  ///   "error": "<BorderSide>",
+  ///   "focused": "<BorderSide>",
+  ///   "hovered": "<BorderSide>",
+  ///   "pressed": "<BorderSide>",
+  ///   "scrolledUnder": "<BorderSide>",
+  ///   "selected": "<BorderSide>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeBorderSide]
+  static WidgetStateProperty<BorderSide?>? decodeWidgetStatePropertyBorderSide(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<BorderSide?>? result;
+
+    if (value is WidgetStateProperty<BorderSide?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is BorderSide) {
+        result = WidgetStateProperty.all<BorderSide?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<BorderSide?>(
+          decodeBorderSide(
+            value,
+            validate: false,
+          ),
+        );
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<BorderSide?>(
+            decodeBorderSide(
+              value,
+              validate: false,
+            ),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/widget_state_property_border_side',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            BorderSide? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeBorderSide(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeBorderSide(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeBorderSide(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeBorderSide(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeBorderSide(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeBorderSide(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeBorderSide(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeBorderSide(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeBorderSide(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<BorderSide?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [Color] based [WidgetStateProperty].  This
+  /// accepts a [Color] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeColor]
+  static WidgetStateProperty<Color?>? decodeWidgetStatePropertyColor(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<Color?>? result;
+
+    if (value is WidgetStateProperty<Color?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is Color) {
+        result = WidgetStateProperty.all<Color?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<Color?>(decodeColor(
+          value,
+          validate: false,
+        ));
+      } else if (value is Map) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/widget_state_property_color',
+          value: value,
+          validate: validate,
+        ));
+
+        result = MapWidgetStateProperty.resolveWith((states) {
+          Color? result;
+          if (states.contains(WidgetState.disabled)) {
+            result = decodeColor(
+              value['disabled'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.dragged)) {
+            result = decodeColor(
+              value['dragged'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.error)) {
+            result = decodeColor(
+              value['error'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.focused)) {
+            result = decodeColor(
+              value['focused'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.pressed)) {
+            result = decodeColor(
+              value['pressed'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.hovered)) {
+            result = decodeColor(
+              value['hovered'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.scrolledUnder)) {
+            result = decodeColor(
+              value['scrolledUnder'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.selected)) {
+            result = decodeColor(
+              value['selected'],
+              validate: false,
+            );
+          } else {
+            result = decodeColor(
+              value['empty'],
+              validate: false,
+            );
+          }
+
+          return result;
+        });
+      } else {
+        result = WidgetStateProperty.all<Color?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [double] based [WidgetStateProperty].  This
+  /// accepts a [double] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<double>",
+  ///   "dragged": "<double>",
+  ///   "empty": "<double>",
+  ///   "error": "<double>",
+  ///   "focused": "<double>",
+  ///   "hovered": "<double>",
+  ///   "pressed": "<double>",
+  ///   "scrolledUnder": "<double>",
+  ///   "selected": "<double>"
+  /// }
+  /// ```
+  static WidgetStateProperty<double?>? decodeWidgetStatePropertyDouble(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<double?>? result;
+
+    if (value is WidgetStateProperty<double?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is int) {
+        result = WidgetStateProperty.all<double?>(value.toDouble());
+      } else if (value is double) {
+        result = WidgetStateProperty.all<double?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<double?>(
+          JsonClass.maybeParseDouble(value),
+        );
+      } else if (value is Map) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/widget_state_property_double',
+          value: value,
+          validate: validate,
+        ));
+
+        result = MapWidgetStateProperty.resolveWith((states) {
+          double? result;
+          if (states.contains(WidgetState.disabled)) {
+            result = JsonClass.maybeParseDouble(value['disabled']);
+          } else if (states.contains(WidgetState.dragged)) {
+            result = JsonClass.maybeParseDouble(value['dragged']);
+          } else if (states.contains(WidgetState.error)) {
+            result = JsonClass.maybeParseDouble(value['error']);
+          } else if (states.contains(WidgetState.focused)) {
+            result = JsonClass.maybeParseDouble(value['focused']);
+          } else if (states.contains(WidgetState.hovered)) {
+            result = JsonClass.maybeParseDouble(value['hovered']);
+          } else if (states.contains(WidgetState.pressed)) {
+            result = JsonClass.maybeParseDouble(value['pressed']);
+          } else if (states.contains(WidgetState.scrolledUnder)) {
+            result = JsonClass.maybeParseDouble(value['scrolledUnder']);
+          } else if (states.contains(WidgetState.selected)) {
+            result = JsonClass.maybeParseDouble(value['selected']);
+          } else {
+            result = JsonClass.maybeParseDouble(value['empty']);
+          }
+
+          return result;
+        });
+      } else {
+        result = WidgetStateProperty.all<double?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [EdgeInsetsGeometry] based
+  /// [WidgetStateProperty].
+  ///
+  /// If the value is a [String], [double], or [int] then this will parse the
+  /// number and pass it to [EdgeInsets.all] for each state.
+  ///
+  /// If the value is an array with two entities, this calls
+  /// [EdgeInsets.symmetric] with the first element passed as the horizontal and
+  /// the second as the vertical.
+  ///
+  /// If the value is an array with four entities, this calls
+  /// [EdgeInsets.fromLTRB] passing each element in order.
+  ///
+  /// The value may be a [Map] in the following format:
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>"
+  /// }
+  /// ```
+  ///
+  /// Finally, the [value] may be a [Map] in the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<EdgeInsetsGeometry>",
+  ///   "dragged": "<EdgeInsetsGeometry>",
+  ///   "empty": "<EdgeInsetsGeometry>",
+  ///   "error": "<EdgeInsetsGeometry>",
+  ///   "focused": "<EdgeInsetsGeometry>",
+  ///   "hovered": "<EdgeInsetsGeometry>",
+  ///   "pressed": "<EdgeInsetsGeometry>",
+  ///   "scrolledUnder": "<EdgeInsetsGeometry>",
+  ///   "selected": "<EdgeInsetsGeometry>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeEdgeInsetsGeometry]
+  static WidgetStateProperty<EdgeInsetsGeometry?>?
+      decodeWidgetStatePropertyEdgeInsetsGeometry(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<EdgeInsetsGeometry?>? result;
+
+    if (value is WidgetStateProperty<EdgeInsetsGeometry?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is EdgeInsetsGeometry) {
+        result = WidgetStateProperty.all<EdgeInsetsGeometry?>(value);
+      } else if (value is String || value is List || value is int) {
+        result = WidgetStateProperty.all<EdgeInsetsGeometry?>(
+          decodeEdgeInsetsGeometry(
+            value,
+            validate: false,
+          ),
+        );
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<EdgeInsetsGeometry?>(
+            decodeEdgeInsetsGeometry(
+              value,
+              validate: false,
+            ),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId:
+                '$_baseSchemaUrl/widget_state_property_edge_insets_geometry',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            EdgeInsetsGeometry? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeEdgeInsetsGeometry(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeEdgeInsetsGeometry(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeEdgeInsetsGeometry(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeEdgeInsetsGeometry(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeEdgeInsetsGeometry(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeEdgeInsetsGeometry(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeEdgeInsetsGeometry(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeEdgeInsetsGeometry(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeEdgeInsetsGeometry(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<EdgeInsetsGeometry?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [Icon] based [WidgetStateProperty].  This
+  /// accepts a [Icon] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Icon>",
+  ///   "dragged": "<Icon>",
+  ///   "empty": "<Icon>",
+  ///   "error": "<Icon>",
+  ///   "focused": "<Icon>",
+  ///   "hovered": "<Icon>",
+  ///   "pressed": "<Icon>",
+  ///   "scrolledUnder": "<Icon>",
+  ///   "selected": "<Icon>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeIconData]
+  static WidgetStateProperty<Icon?>? decodeWidgetStatePropertyIcon(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<Icon?>? result;
+
+    if (value is WidgetStateProperty<Icon?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is Icon) {
+        result = WidgetStateProperty.all<Icon?>(value);
+      } else if (value is IconData) {
+        result = WidgetStateProperty.all<Icon?>(Icon(value));
+      } else if (value is Map) {
+        assert(SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/widget_state_property_icon',
+          value: value,
+          validate: validate,
+        ));
+
+        result = MapWidgetStateProperty.resolveWith((states) {
+          Icon? result;
+          if (states.contains(WidgetState.disabled)) {
+            result = decodeIcon(
+              value['disabled'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.dragged)) {
+            result = decodeIcon(
+              value['dragged'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.error)) {
+            result = decodeIcon(
+              value['error'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.focused)) {
+            result = decodeIcon(
+              value['focused'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.pressed)) {
+            result = decodeIcon(
+              value['pressed'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.hovered)) {
+            result = decodeIcon(
+              value['hovered'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.scrolledUnder)) {
+            result = decodeIcon(
+              value['scrolledUnder'],
+              validate: false,
+            );
+          } else if (states.contains(WidgetState.selected)) {
+            result = decodeIcon(
+              value['selected'],
+              validate: false,
+            );
+          } else {
+            result = decodeIcon(
+              value['empty'],
+              validate: false,
+            );
+          }
+
+          return result;
+        });
+      } else {
+        result = WidgetStateProperty.all<Icon?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [IconThemeData] based [WidgetStateProperty].
+  /// This accepts a [IconThemeData] or a [String] which will be resolved for
+  /// all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<IconThemeData>",
+  ///   "dragged": "<IconThemeData>",
+  ///   "empty": "<IconThemeData>",
+  ///   "error": "<IconThemeData>",
+  ///   "focused": "<IconThemeData>",
+  ///   "hovered": "<IconThemeData>",
+  ///   "pressed": "<IconThemeData>",
+  ///   "scrolledUnder": "<IconThemeData>",
+  ///   "selected": "<IconThemeData>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeIconThemeData]
+  static WidgetStateProperty<IconThemeData?>?
+      decodeWidgetStatePropertyIconThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<IconThemeData?>? result;
+
+    if (value is WidgetStateProperty<IconThemeData?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is IconThemeData) {
+        result = WidgetStateProperty.all<IconThemeData?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<IconThemeData?>(
+          decodeIconThemeData(
+            value,
+            validate: false,
+          ),
+        );
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<IconThemeData?>(
+            decodeIconThemeData(
+              value,
+              validate: false,
+            ),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/widget_state_property_icon_theme_data',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            IconThemeData? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeIconThemeData(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeIconThemeData(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeIconThemeData(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeIconThemeData(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeIconThemeData(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeIconThemeData(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeIconThemeData(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeIconThemeData(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeIconThemeData(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<IconThemeData?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [MouseCursor] based [WidgetStateProperty].
+  /// This accepts a [MouseCursor] or a [String] which will be resolved for all
+  /// states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<MouseCursor>",
+  ///   "dragged": "<MouseCursor>",
+  ///   "empty": "<MouseCursor>",
+  ///   "error": "<MouseCursor>",
+  ///   "focused": "<MouseCursor>",
+  ///   "hovered": "<MouseCursor>",
+  ///   "pressed": "<MouseCursor>",
+  ///   "scrolledUnder": "<MouseCursor>",
+  ///   "selected": "<MouseCursor>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeMouseCursor]
+  static WidgetStateProperty<MouseCursor?>?
+      decodeWidgetStatePropertyMouseCursor(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<MouseCursor?>? result;
+
+    if (value is WidgetStateProperty<MouseCursor?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is MouseCursor) {
+        result = WidgetStateProperty.all<MouseCursor?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<MouseCursor?>(decodeMouseCursor(
+          value,
+          validate: false,
+        ));
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<MouseCursor?>(
+            decodeMouseCursor(
+              value,
+              validate: false,
+            ),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/widget_state_property_mouse_cursor',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            MouseCursor? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeMouseCursor(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeMouseCursor(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeMouseCursor(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeMouseCursor(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeMouseCursor(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeMouseCursor(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeMouseCursor(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeMouseCursor(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeMouseCursor(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<MouseCursor?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [OutlinedBorder] based [WidgetStateProperty].
+  /// This accepts a [OutlinedBorder] or a [String] which will be resolved for
+  /// all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<OutlinedBorder>",
+  ///   "dragged": "<OutlinedBorder>",
+  ///   "empty": "<OutlinedBorder>",
+  ///   "error": "<OutlinedBorder>",
+  ///   "focused": "<OutlinedBorder>",
+  ///   "hovered": "<OutlinedBorder>",
+  ///   "pressed": "<OutlinedBorder>",
+  ///   "scrolledUnder": "<OutlinedBorder>",
+  ///   "selected": "<OutlinedBorder>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeOutlinedBorder]
+  static WidgetStateProperty<OutlinedBorder?>?
+      decodeWidgetStatePropertyOutlinedBorder(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<OutlinedBorder?>? result;
+
+    if (value is WidgetStateProperty<OutlinedBorder?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is OutlinedBorder) {
+        result = WidgetStateProperty.all<OutlinedBorder?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<OutlinedBorder?>(
+          decodeOutlinedBorder(
+            value,
+            validate: false,
+          ),
+        );
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<OutlinedBorder?>(
+            decodeOutlinedBorder(
+              value,
+              validate: false,
+            ),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/widget_state_property_outlined_border',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            OutlinedBorder? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeOutlinedBorder(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeOutlinedBorder(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeOutlinedBorder(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeOutlinedBorder(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeOutlinedBorder(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeOutlinedBorder(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeOutlinedBorder(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeOutlinedBorder(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeOutlinedBorder(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<OutlinedBorder?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [Size] based [WidgetStateProperty].  This
+  /// accepts a [Size] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Size>",
+  ///   "dragged": "<Size>",
+  ///   "empty": "<Size>",
+  ///   "error": "<Size>",
+  ///   "focused": "<Size>",
+  ///   "hovered": "<Size>",
+  ///   "pressed": "<Size>",
+  ///   "scrolledUnder": "<Size>",
+  ///   "selected": "<Size>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeSize]
+  static WidgetStateProperty<Size?>? decodeWidgetStatePropertySize(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<Size?>? result;
+
+    if (value is WidgetStateProperty<Size?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is Size) {
+        result = WidgetStateProperty.all<Size?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<Size?>(decodeSize(
+          value,
+          validate: false,
+        ));
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<Size?>(decodeSize(
+            value,
+            validate: false,
+          ));
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/widget_state_property_size',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            Size? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeSize(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeSize(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeSize(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeSize(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeSize(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeSize(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeSize(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeSize(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeSize(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<Size?>(value);
+      }
+    }
+    return result;
+  }
+
+  /// Decodes a [value] into a [TextStyle] based [WidgetStateProperty].  This
+  /// accepts a [TextStyle] or a [String] which will be resolved for all states.
+  ///
+  /// Alternatively, if the [value] is a [Map] then this expects the following
+  /// format:
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<TextStyle>",
+  ///   "dragged": "<TextStyle>",
+  ///   "empty": "<TextStyle>",
+  ///   "error": "<TextStyle>",
+  ///   "focused": "<TextStyle>",
+  ///   "hovered": "<TextStyle>",
+  ///   "pressed": "<TextStyle>",
+  ///   "scrolledUnder": "<TextStyle>",
+  ///   "selected": "<TextStyle>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [decodeTextStyle]
+  static WidgetStateProperty<TextStyle?>? decodeWidgetStatePropertyTextStyle(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    WidgetStateProperty<TextStyle?>? result;
+
+    if (value is WidgetStateProperty<TextStyle?>) {
+      result = value;
+    } else if (value != null) {
+      if (value is TextStyle) {
+        result = WidgetStateProperty.all<TextStyle?>(value);
+      } else if (value is String) {
+        result = WidgetStateProperty.all<TextStyle?>(decodeTextStyle(
+          value,
+          validate: false,
+        ));
+      } else if (value is Map) {
+        final testValues = [
+          'disabled',
+          'dragged',
+          'empty',
+          'error',
+          'focused',
+          'hovered',
+          'pressed',
+          'scrolledUnder',
+          'selected',
+        ];
+
+        var isMsp = false;
+        for (var key in value.keys) {
+          if (testValues.contains(key)) {
+            isMsp = true;
+            break;
+          }
+        }
+
+        if (isMsp != true) {
+          result = WidgetStateProperty.all<TextStyle?>(
+            decodeTextStyle(
+              value,
+              validate: false,
+            ),
+          );
+        } else {
+          assert(SchemaValidator.validate(
+            schemaId: '$_baseSchemaUrl/widget_state_property_text_style',
+            value: value,
+            validate: validate,
+          ));
+
+          result = MapWidgetStateProperty.resolveWith((states) {
+            TextStyle? result;
+            if (states.contains(WidgetState.disabled)) {
+              result = decodeTextStyle(
+                value['disabled'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.dragged)) {
+              result = decodeTextStyle(
+                value['dragged'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.error)) {
+              result = decodeTextStyle(
+                value['error'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.focused)) {
+              result = decodeTextStyle(
+                value['focused'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.hovered)) {
+              result = decodeTextStyle(
+                value['hovered'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.pressed)) {
+              result = decodeTextStyle(
+                value['pressed'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.scrolledUnder)) {
+              result = decodeTextStyle(
+                value['scrolledUnder'],
+                validate: false,
+              );
+            } else if (states.contains(WidgetState.selected)) {
+              result = decodeTextStyle(
+                value['selected'],
+                validate: false,
+              );
+            } else {
+              result = decodeTextStyle(
+                value['empty'],
+                validate: false,
+              );
+            }
+
+            return result;
+          });
+        }
+      } else {
+        result = WidgetStateProperty.all<TextStyle?>(value);
+      }
+    }
     return result;
   }
 

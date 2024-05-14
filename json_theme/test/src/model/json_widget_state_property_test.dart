@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:json_theme/src/model/json_material_state_property.dart';
+import 'package:json_theme/src/model/json_widget_state_property.dart';
 
-void main() => group('JsonMaterialStateProperty', () {
+void main() => group('JsonWidgetStateProperty', () {
       group('with empty map input', () {
-        const emptyMap = JsonMaterialStateProperty<int>({});
+        const emptyMap = JsonWidgetStateProperty<int>({});
         test(
           'should return null on resolve() call',
-          () => expect(emptyMap.resolve(MaterialState.values.toSet()), isNull),
+          () => expect(emptyMap.resolve(WidgetState.values.toSet()), isNull),
         );
 
         test(
@@ -23,11 +23,11 @@ void main() => group('JsonMaterialStateProperty', () {
 
       group('with non-empty map input', () {
         const map = {
-          MaterialState.disabled: true,
-          MaterialState.error: false,
+          WidgetState.disabled: true,
+          WidgetState.error: false,
           null: true
         };
-        const property = JsonMaterialStateProperty(map);
+        const property = JsonWidgetStateProperty(map);
         test(
           'should return null on empty (null) key in map',
           () => expect(property.resolve({}), isTrue),
@@ -36,9 +36,9 @@ void main() => group('JsonMaterialStateProperty', () {
           'should throw assertion error on resolve() call',
           () {
             expect(
-              property.resolve(MaterialState.values.toSet()),
+              property.resolve(WidgetState.values.toSet()),
               isNull,
-              reason: 'provides no value for ${MaterialState.values.first}',
+              reason: 'provides no value for ${WidgetState.values.first}',
             );
             expect(
               property.resolve({map.keys.first!}),
@@ -50,10 +50,10 @@ void main() => group('JsonMaterialStateProperty', () {
         );
 
         test(
-          'should return full JsonMaterialStateProperty object on toString()',
+          'should return full JsonWidgetStateProperty object on toString()',
           () => expect(
             property.toString(),
-            '''JsonMaterialStateProperty({MaterialState.disabled: true, MaterialState.error: false, null: true,})''',
+            '''JsonWidgetStateProperty({WidgetState.disabled: true, WidgetState.error: false, null: true,})''',
           ),
         );
       });

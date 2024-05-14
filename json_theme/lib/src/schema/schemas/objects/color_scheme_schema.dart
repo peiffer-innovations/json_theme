@@ -40,7 +40,7 @@ class ColorSchemeSchema {
       'shadow': SchemaHelper.objectSchema(ColorSchema.id),
       'surface': SchemaHelper.objectSchema(ColorSchema.id),
       'surfaceTint': SchemaHelper.objectSchema(ColorSchema.id),
-      'surfaceVariant': SchemaHelper.objectSchema(ColorSchema.id),
+      'JsonWidgetStateProperty': SchemaHelper.numberSchema,
       'tertiary': SchemaHelper.objectSchema(ColorSchema.id),
       'tertiaryContainer': SchemaHelper.objectSchema(ColorSchema.id)
     },

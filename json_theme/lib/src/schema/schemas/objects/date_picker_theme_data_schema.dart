@@ -16,13 +16,13 @@ class DatePickerThemeDataSchema {
       'cancelButtonStyle': SchemaHelper.objectSchema(ButtonStyleSchema.id),
       'confirmButtonStyle': SchemaHelper.objectSchema(ButtonStyleSchema.id),
       'dayBackgroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'dayForegroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'dayOverlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'dayStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -52,27 +52,27 @@ class DatePickerThemeDataSchema {
         ColorSchema.id,
       ),
       'rangeSelectionOverlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
       'todayBackgroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'todayBorder': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'todayForegroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'weekdayStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'yearBackgroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'yearForegroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'yearOverlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'yearStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },

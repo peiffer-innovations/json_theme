@@ -1,3 +1,8 @@
+## [6.5.0] - May 14th, 2024
+
+* Swapped MaterialStateProperty with WidgetStateProperty in preperation for other Flutter 3.22 work.
+
+
 ## [6.4.1+5] - April 30, 2024
 
 * Automated dependency updates

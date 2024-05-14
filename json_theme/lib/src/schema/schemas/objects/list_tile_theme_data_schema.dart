@@ -23,7 +23,7 @@ class ListTileThemeDataSchema {
       'minLeadingWidth': SchemaHelper.numberSchema,
       'minVerticalPadding': SchemaHelper.numberSchema,
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'selectedColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedTileColor': SchemaHelper.objectSchema(ColorSchema.id),

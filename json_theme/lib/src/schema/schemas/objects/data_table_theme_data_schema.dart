@@ -15,18 +15,18 @@ class DataTableThemeDataSchema {
       'checkboxHorizontalMargin': SchemaHelper.numberSchema,
       'columnSpacing': SchemaHelper.numberSchema,
       'dataRowCursor':
-          SchemaHelper.objectSchema(MaterialStatePropertyMouseCursorSchema.id),
+          SchemaHelper.objectSchema(WidgetStatePropertyMouseCursorSchema.id),
       'dataRowColor':
-          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+          SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
       'dataRowMaxHeight': SchemaHelper.numberSchema,
       'dataRowMinHeight': SchemaHelper.numberSchema,
       'dataTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
       'dividerThickness': SchemaHelper.numberSchema,
       'headingCellCursor':
-          SchemaHelper.objectSchema(MaterialStatePropertyMouseCursorSchema.id),
+          SchemaHelper.objectSchema(WidgetStatePropertyMouseCursorSchema.id),
       'headingRowColor':
-          SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+          SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
       'headingRowHeight': SchemaHelper.numberSchema,
       'headingTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'horizontalMargin': SchemaHelper.numberSchema,

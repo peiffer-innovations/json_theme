@@ -32,7 +32,7 @@ class SliderThemeDataSchema {
       'inactiveTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'minThumbSeparation': SchemaHelper.numberSchema,
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'overlappingShapeStrokeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'overlayColor': SchemaHelper.objectSchema(ColorSchema.id),

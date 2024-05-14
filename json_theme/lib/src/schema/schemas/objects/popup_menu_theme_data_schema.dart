@@ -19,10 +19,10 @@ class PopupMenuThemeDataSchema {
       'iconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'iconSize': SchemaHelper.numberSchema,
       'labelTextStyle': SchemaHelper.objectSchema(
-        MaterialStatePropertyTextStyleSchema.id,
+        WidgetStatePropertyTextStyleSchema.id,
       ),
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'position': SchemaHelper.objectSchema(PopupMenuPositionSchema.id),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),

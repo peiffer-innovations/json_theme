@@ -15,7 +15,7 @@ class ChipThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'brightness': SchemaHelper.objectSchema(BrightnessSchema.id),
       'checkmarkColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'color': SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id),
+      'color': SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
       'deleteIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,

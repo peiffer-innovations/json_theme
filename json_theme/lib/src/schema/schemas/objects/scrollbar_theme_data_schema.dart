@@ -26,24 +26,24 @@ class ScrollbarThemeDataSchema {
             'type': 'string',
           },
           {
-            r'$ref': MaterialStatePropertyDoubleSchema.id,
+            r'$ref': WidgetStatePropertyDoubleSchema.id,
           },
         ],
       },
       'thumbColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'thumbVisibility': SchemaHelper.objectSchema(
-        MaterialStatePropertyBoolSchema.id,
+        WidgetStatePropertyBoolSchema.id,
       ),
       'trackBorderColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'trackColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'trackVisibility': SchemaHelper.objectSchema(
-        MaterialStatePropertyBoolSchema.id,
+        WidgetStatePropertyBoolSchema.id,
       ),
     },
   };

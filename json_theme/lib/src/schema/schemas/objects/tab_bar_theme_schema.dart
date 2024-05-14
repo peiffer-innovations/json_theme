@@ -20,10 +20,10 @@ class TabBarThemeSchema {
       'labelColor': SchemaHelper.objectSchema(ColorSchema.id),
       'labelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'overlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'splashFactory': SchemaHelper.objectSchema(
         InteractiveInkFeatureFactorySchema.id,

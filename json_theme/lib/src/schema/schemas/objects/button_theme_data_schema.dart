@@ -31,7 +31,7 @@ class ButtonThemeDataSchema {
         InteractiveInkFeatureFactorySchema.id,
       ),
       'surfaceTintColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'textTheme': SchemaHelper.objectSchema(ButtonTextThemeSchema.id),
     },

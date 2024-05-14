@@ -1543,49 +1543,49 @@ void main() {
     final entry = ButtonStyle(
       alignment: Alignment.bottomCenter,
       animationDuration: const Duration(milliseconds: 1000),
-      backgroundColor: MaterialStateProperty.all(
+      backgroundColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
-      elevation: MaterialStateProperty.all(1.0),
+      elevation: WidgetStateProperty.all(1.0),
       enableFeedback: false,
-      fixedSize: MaterialStateProperty.all(
+      fixedSize: WidgetStateProperty.all(
         const Size(50.0, 50.0),
       ),
-      foregroundColor: MaterialStateProperty.all(
+      foregroundColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
-      iconColor: MaterialStateProperty.all(
+      iconColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
-      iconSize: MaterialStateProperty.all(
+      iconSize: WidgetStateProperty.all(
         12.0,
       ),
-      maximumSize: MaterialStateProperty.all(
+      maximumSize: WidgetStateProperty.all(
         const Size(10.0, 10.0),
       ),
-      minimumSize: MaterialStateProperty.all(
+      minimumSize: WidgetStateProperty.all(
         const Size(100.0, 100.0),
       ),
-      mouseCursor: MaterialStateProperty.all(
+      mouseCursor: WidgetStateProperty.all(
         MouseCursor.defer,
       ),
-      overlayColor: MaterialStateProperty.all(
+      overlayColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
-      padding: MaterialStateProperty.all(
+      padding: WidgetStateProperty.all(
         EdgeInsets.zero,
       ),
-      shadowColor: MaterialStateProperty.all(
+      shadowColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         const CircleBorder(),
       ),
-      side: MaterialStateProperty.all(
+      side: WidgetStateProperty.all(
         const BorderSide(),
       ),
       tapTargetSize: MaterialTapTargetSize.padded,
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         const TextStyle(),
       ),
       visualDensity: VisualDensity.standard,
@@ -1664,7 +1664,7 @@ void main() {
           'padding': [1, 2],
         }),
         ButtonStyle(
-          padding: MaterialStateProperty.all(
+          padding: WidgetStateProperty.all(
               const EdgeInsets.symmetric(horizontal: 1, vertical: 2)),
         ),
       ),
@@ -1678,7 +1678,7 @@ void main() {
         }),
         ButtonStyle(
           padding:
-              MaterialStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
+              WidgetStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
         ),
       ),
       true,
@@ -1688,7 +1688,7 @@ void main() {
       _buttonStylesAreEqual(
         ThemeDecoder.decodeButtonStyle({'padding': 1}),
         ButtonStyle(
-          padding: MaterialStateProperty.all(const EdgeInsets.all(1)),
+          padding: WidgetStateProperty.all(const EdgeInsets.all(1)),
         ),
       ),
       true,
@@ -1701,7 +1701,7 @@ void main() {
         }),
         ButtonStyle(
           padding:
-              MaterialStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
+              WidgetStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
         ),
       ),
       true,
@@ -1810,7 +1810,7 @@ void main() {
         'shadow': '#ffffffff',
         'surface': '#ff121212',
         'surfaceTint': '#ffbb86fc',
-        'surfaceVariant': '#ff121212',
+        'surfaceContainerHighest': '#ff121212',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
       },
@@ -1878,7 +1878,7 @@ void main() {
           'shadow': '#ff000000',
           'surface': '#ff121212',
           'surfaceTint': '#ffbb86fc',
-          'surfaceVariant': '#ff121212',
+          'surfaceContainerHighest': '#ff121212',
           'tertiary': '#ff03dac6',
           'tertiaryContainer': '#ff03dac6',
         },
@@ -1999,11 +1999,11 @@ void main() {
     expect(ThemeEncoder.encodeCheckboxThemeData(null), null);
 
     final entry = CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(_kColor),
-      fillColor: MaterialStateProperty.all(_kColor),
+      checkColor: WidgetStateProperty.all(_kColor),
+      fillColor: WidgetStateProperty.all(_kColor),
       materialTapTargetSize: MaterialTapTargetSize.padded,
-      mouseCursor: MaterialStateProperty.all(MouseCursor.uncontrolled),
-      overlayColor: MaterialStateProperty.all(_kColor),
+      mouseCursor: WidgetStateProperty.all(MouseCursor.uncontrolled),
+      overlayColor: WidgetStateProperty.all(_kColor),
       splashRadius: 2.0,
       visualDensity: VisualDensity.comfortable,
     );
@@ -2014,24 +2014,24 @@ void main() {
     final decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
 
     expect(
-      decoded!.checkColor!.resolve({MaterialState.error}),
-      entry.checkColor!.resolve({MaterialState.error}),
+      decoded!.checkColor!.resolve({WidgetState.error}),
+      entry.checkColor!.resolve({WidgetState.error}),
     );
     expect(
-      decoded.fillColor!.resolve({MaterialState.error}),
-      entry.fillColor!.resolve({MaterialState.error}),
+      decoded.fillColor!.resolve({WidgetState.error}),
+      entry.fillColor!.resolve({WidgetState.error}),
     );
     expect(
       decoded.materialTapTargetSize,
       entry.materialTapTargetSize,
     );
     expect(
-      decoded.mouseCursor!.resolve({MaterialState.error}),
-      entry.mouseCursor!.resolve({MaterialState.error}),
+      decoded.mouseCursor!.resolve({WidgetState.error}),
+      entry.mouseCursor!.resolve({WidgetState.error}),
     );
     expect(
-      decoded.overlayColor!.resolve({MaterialState.error}),
-      entry.overlayColor!.resolve({MaterialState.error}),
+      decoded.overlayColor!.resolve({WidgetState.error}),
+      entry.overlayColor!.resolve({WidgetState.error}),
     );
     expect(
       decoded.splashRadius,
@@ -2051,7 +2051,7 @@ void main() {
       backgroundColor: const Color(0xff111111),
       brightness: Brightness.light,
       checkmarkColor: const Color(0xff222222),
-      color: MaterialStateProperty.all(
+      color: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
       deleteIconColor: const Color(0xff333333),
@@ -2272,14 +2272,14 @@ void main() {
         'shadow': '#ff000000',
         'surface': '#ff121212',
         'surfaceTint': '#ffbb86fc',
-        'surfaceVariant': '#ff121212',
+        'surfaceContainerHighest': '#ff121212',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
       },
     );
     expect(
-      decoded!.background,
-      entry.background,
+      decoded!.surface,
+      entry.surface,
     );
   });
 
@@ -2605,18 +2605,17 @@ void main() {
     final entry = DataTableThemeData(
       checkboxHorizontalMargin: 24.0,
       columnSpacing: 1.0,
-      dataRowColor: MaterialStateProperty.all(
+      dataRowColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
-      dataRowCursor: const MaterialStatePropertyAll(SystemMouseCursors.basic),
+      dataRowCursor: const WidgetStatePropertyAll(SystemMouseCursors.basic),
       dataRowMaxHeight: 1.0,
       dataRowMinHeight: 1.0,
       dataTextStyle: const TextStyle(),
       decoration: const BoxDecoration(color: _kColor),
       dividerThickness: 1.0,
-      headingCellCursor:
-          const MaterialStatePropertyAll(SystemMouseCursors.click),
-      headingRowColor: MaterialStateProperty.all(
+      headingCellCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
+      headingRowColor: WidgetStateProperty.all(
         const Color(0xff555555),
       ),
       headingRowHeight: 1.0,
@@ -3172,7 +3171,7 @@ void main() {
 
     final entry = ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           const Color(0xff222222),
         ),
       ),
@@ -3269,49 +3268,49 @@ void main() {
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
         animationDuration: const Duration(milliseconds: 1000),
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        elevation: MaterialStateProperty.all(1.0),
+        elevation: WidgetStateProperty.all(1.0),
         enableFeedback: false,
-        fixedSize: MaterialStateProperty.all(
+        fixedSize: WidgetStateProperty.all(
           const Size(50.0, 50.0),
         ),
-        foregroundColor: MaterialStateProperty.all(
+        foregroundColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        iconColor: MaterialStateProperty.all(
+        iconColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        iconSize: MaterialStateProperty.all(
+        iconSize: WidgetStateProperty.all(
           12.0,
         ),
-        maximumSize: MaterialStateProperty.all(
+        maximumSize: WidgetStateProperty.all(
           const Size(10.0, 10.0),
         ),
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
           const Size(100.0, 100.0),
         ),
-        mouseCursor: MaterialStateProperty.all(
+        mouseCursor: WidgetStateProperty.all(
           MouseCursor.defer,
         ),
-        overlayColor: MaterialStateProperty.all(
+        overlayColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        padding: MaterialStateProperty.all(
+        padding: WidgetStateProperty.all(
           EdgeInsets.zero,
         ),
-        shadowColor: MaterialStateProperty.all(
+        shadowColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           const CircleBorder(),
         ),
-        side: MaterialStateProperty.all(
+        side: WidgetStateProperty.all(
           const BorderSide(),
         ),
         tapTargetSize: MaterialTapTargetSize.padded,
-        textStyle: MaterialStateProperty.all(
+        textStyle: WidgetStateProperty.all(
           const TextStyle(),
         ),
         visualDensity: VisualDensity.standard,
@@ -3491,7 +3490,7 @@ void main() {
     expect(
       ThemeEncoder.encodeFloatingActionButtonThemeData(
         FloatingActionButtonThemeData(
-          mouseCursor: MaterialStateProperty.all(SystemMouseCursors.basic),
+          mouseCursor: WidgetStateProperty.all(SystemMouseCursors.basic),
         ),
       ),
       {
@@ -4032,49 +4031,49 @@ void main() {
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
         animationDuration: const Duration(milliseconds: 1000),
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        elevation: MaterialStateProperty.all(1.0),
+        elevation: WidgetStateProperty.all(1.0),
         enableFeedback: false,
-        fixedSize: MaterialStateProperty.all(
+        fixedSize: WidgetStateProperty.all(
           const Size(50.0, 50.0),
         ),
-        foregroundColor: MaterialStateProperty.all(
+        foregroundColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        iconColor: MaterialStateProperty.all(
+        iconColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        iconSize: MaterialStateProperty.all(
+        iconSize: WidgetStateProperty.all(
           12.0,
         ),
-        maximumSize: MaterialStateProperty.all(
+        maximumSize: WidgetStateProperty.all(
           const Size(10.0, 10.0),
         ),
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
           const Size(100.0, 100.0),
         ),
-        mouseCursor: MaterialStateProperty.all(
+        mouseCursor: WidgetStateProperty.all(
           MouseCursor.defer,
         ),
-        overlayColor: MaterialStateProperty.all(
+        overlayColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        padding: MaterialStateProperty.all(
+        padding: WidgetStateProperty.all(
           EdgeInsets.zero,
         ),
-        shadowColor: MaterialStateProperty.all(
+        shadowColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           const CircleBorder(),
         ),
-        side: MaterialStateProperty.all(
+        side: WidgetStateProperty.all(
           const BorderSide(),
         ),
         tapTargetSize: MaterialTapTargetSize.padded,
-        textStyle: MaterialStateProperty.all(
+        textStyle: WidgetStateProperty.all(
           const TextStyle(),
         ),
         visualDensity: VisualDensity.standard,
@@ -5114,919 +5113,6 @@ void main() {
     expect(ThemeEncoder.encodeMaterialColor(decoded), encoded);
   });
 
-  test('MaterialStateColor', () {
-    expect(ThemeDecoder.decodeMaterialStateColor(null), null);
-    expect(ThemeEncoder.encodeMaterialStateColor(null), null);
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    final colors = {
-      'disabled': '#ff111111',
-      'dragged': '#ff222222',
-      'error': '#ff333333',
-      'focused': '#ff444444',
-      'hovered': '#ff555555',
-      'pressed': '#ff666666',
-      'scrolledUnder': '#ff888888',
-      'selected': '#ff777777',
-      'empty': '#00000000',
-    };
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
-
-      var decoded = ThemeDecoder.decodeMaterialStateColor(color);
-      expect(decoded!.resolve({state}), color);
-
-      decoded = ThemeDecoder.decodeMaterialStateColor(colorStr);
-      expect(decoded!.resolve({state}), color);
-
-      final encoded = ThemeEncoder.encodeMaterialStateColor(decoded);
-      expect(encoded![stateKey], colorStr);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
-      final encodedColor = ThemeEncoder.encodeColor(color);
-
-      final decoded = ThemeDecoder.decodeMaterialStateColor(
-        encodedColor,
-      );
-
-      expect(decoded!.resolve({state}), color);
-
-      final encoded = ThemeEncoder.encodeMaterialStateColor(decoded);
-
-      expect(encoded![stateKey], colorStr);
-    }
-
-    /// Test if pressed takes precedence over hovered
-    final materialColor = ThemeDecoder.decodeMaterialStateColor(
-      colors,
-    );
-    final color = materialColor?.resolve({
-      states['pressed']!,
-    });
-    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
-  });
-
-  test('MaterialStatePropertyBool', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyBool(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyBool(null), null);
-
-    final stateMap = {
-      MaterialState.disabled: 'disabled',
-      MaterialState.dragged: 'dragged',
-      MaterialState.error: 'error',
-      MaterialState.focused: 'focused',
-      MaterialState.hovered: 'hovered',
-      MaterialState.pressed: 'pressed',
-      MaterialState.scrolledUnder: 'scrolledUnder',
-      MaterialState.selected: 'selected',
-    };
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    final values = {
-      'disabled': true,
-      'dragged': true,
-      'error': true,
-      'focused': true,
-      'hovered': false,
-      'pressed': true,
-      'scrolledUnder': false,
-      'selected': false,
-    };
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final value = values[stateKey];
-
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
-      expect(decoded?.resolve({state}), value);
-
-      decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value.toString());
-      expect(decoded?.resolve({state}), value);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
-      expect(encoded![stateKey], value);
-    }
-
-    bool? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : values[stateMap[states.first]!];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyBool(prop);
-    for (var entry in states.entries) {
-      final value = values[stateMap[entry.value]!];
-
-      expect(decoded!.resolve({entry.value}), value);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
-
-      expect(encoded?[entry.key], value);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final value = values[stateKey];
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyBool(value);
-
-      expect(decoded!.resolve({state}), value);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyBool(decoded);
-
-      expect(encoded![stateKey], value);
-    }
-  });
-
-  test('MaterialStatePropertyBorderSide', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyBorderSide(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyBorderSide(null), null);
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    var count = 1.0;
-    final sides = <MaterialState, BorderSide>{};
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = BorderSide(
-        color: _kColor,
-        style: BorderStyle.solid,
-        width: ++count,
-      );
-      sides[state] = side;
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(side);
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
-
-      expect(encoded![stateKey]['width'], side.width);
-    }
-
-    BorderSide? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : sides[states.first];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(prop);
-    for (var entry in states.entries) {
-      final side = sides[entry.value];
-
-      expect(decoded!.resolve({entry.value}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
-
-      expect(encoded![entry.key]['width'], side!.width);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = BorderSide(
-        color: _kColor,
-        style: BorderStyle.solid,
-        width: ++count,
-      );
-      final encodedSide = ThemeEncoder.encodeBorderSide(side);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyBorderSide(
-        encodedSide,
-      );
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyBorderSide(decoded);
-
-      expect(encoded![stateKey]['width'], side.width);
-    }
-  });
-
-  test('MaterialStatePropertyColor', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
-
-    final stateMap = {
-      MaterialState.disabled: 'disabled',
-      MaterialState.dragged: 'dragged',
-      MaterialState.error: 'error',
-      MaterialState.focused: 'focused',
-      MaterialState.hovered: 'hovered',
-      MaterialState.pressed: 'pressed',
-      MaterialState.scrolledUnder: 'scrolledUnder',
-      MaterialState.selected: 'selected',
-    };
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    final colors = {
-      'disabled': '#ff111111',
-      'dragged': '#ff222222',
-      'error': '#ff333333',
-      'focused': '#ff444444',
-      'hovered': '#ff555555',
-      'pressed': '#ff666666',
-      'scrolledUnder': '#ff888888',
-      'selected': '#ff777777',
-    };
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
-
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyColor(color);
-      expect(decoded!.resolve({state}), color);
-
-      decoded = ThemeDecoder.decodeMaterialStatePropertyColor(colorStr);
-      expect(decoded!.resolve({state}), color);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
-      expect(encoded![stateKey], colorStr);
-    }
-
-    Color? func(Set<MaterialState> states) => states.isEmpty
-        ? null
-        : ThemeDecoder.decodeColor(colors[stateMap[states.first]]);
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyColor(prop);
-    for (var entry in states.entries) {
-      final colorStr = colors[stateMap[entry.value]];
-      final color = ThemeDecoder.decodeColor(colorStr);
-
-      expect(decoded!.resolve({entry.value}), color);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
-
-      expect(encoded?[entry.key], colorStr);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
-      final encodedColor = ThemeEncoder.encodeColor(color);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyColor(
-        encodedColor,
-      );
-
-      expect(decoded!.resolve({state}), color);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyColor(decoded);
-
-      expect(encoded![stateKey], colorStr);
-    }
-
-    /// Test if pressed takes precedence over hovered
-    final materialColor = ThemeDecoder.decodeMaterialStatePropertyColor(
-      colors,
-    );
-    final color = materialColor?.resolve({
-      states['hovered']!,
-      states['pressed']!,
-    });
-    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
-  });
-
-  test('MaterialStatePropertyDouble', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyDouble(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyDouble(null), null);
-    final stateMap = {
-      MaterialState.disabled: 'disabled',
-      MaterialState.dragged: 'dragged',
-      MaterialState.error: 'error',
-      MaterialState.focused: 'focused',
-      MaterialState.hovered: 'hovered',
-      MaterialState.pressed: 'pressed',
-      MaterialState.scrolledUnder: 'scrolledUnder',
-      MaterialState.selected: 'selected',
-    };
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    final values = {
-      'disabled': 1.0,
-      'dragged': 2.0,
-      'error': 3.0,
-      'focused': 4.0,
-      'hovered': 5.0,
-      'pressed': 6.0,
-      'scrolledUnder': 8.0,
-      'selected': 7.0,
-    };
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final value = values[stateKey];
-
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
-      expect(decoded!.resolve({state}), value);
-
-      decoded =
-          ThemeDecoder.decodeMaterialStatePropertyDouble(value.toString());
-      expect(decoded!.resolve({state}), value);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
-      expect(encoded![stateKey], value);
-    }
-
-    double? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : values[stateMap[states.first]];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(prop);
-    for (var entry in states.entries) {
-      final value = values[stateMap[entry.value]];
-
-      expect(decoded!.resolve({entry.value}), value);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
-
-      expect(encoded?[entry.key], value);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final value = values[stateKey];
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyDouble(value);
-
-      expect(decoded!.resolve({state}), value);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyDouble(decoded);
-
-      expect(encoded![stateKey], value);
-    }
-  });
-
-  test('MaterialStatePropertyEdgeInsetsGeometry', () {
-    expect(
-        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(null), null);
-    expect(
-        ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(null), null);
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    var count = 1.0;
-    final sides = <MaterialState, EdgeInsetsGeometry>{};
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = EdgeInsets.all(++count);
-      sides[state] = side;
-
-      final decoded =
-          ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(side);
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
-
-      expect(encoded![stateKey]['bottom'], side.bottom);
-    }
-
-    EdgeInsetsGeometry? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : sides[states.first];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded =
-        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(prop);
-    for (var entry in states.entries) {
-      final side = sides[entry.value];
-
-      expect(decoded!.resolve({entry.value}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
-
-      expect(encoded![entry.key]['bottom'], (side as EdgeInsets).bottom);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = EdgeInsets.all(++count);
-      final encodedSide = ThemeEncoder.encodeEdgeInsetsGeometry(side);
-
-      final decoded =
-          ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
-        encodedSide,
-      );
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry(decoded);
-
-      expect(encoded![stateKey]['bottom'], side.bottom);
-    }
-
-    final symmetricDecoded =
-        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry([1, 2]);
-    for (var state in states.values) {
-      expect(symmetricDecoded!.resolve({state}),
-          const EdgeInsets.symmetric(horizontal: 1, vertical: 2));
-    }
-
-    final ltrbDecoded =
-        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(
-            [1, 2, 3, 4]);
-    for (var state in states.values) {
-      expect(
-          ltrbDecoded!.resolve({state}), const EdgeInsets.fromLTRB(1, 2, 3, 4));
-    }
-
-    final allDecoded =
-        ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry(1);
-    for (var state in states.values) {
-      expect(allDecoded!.resolve({state}), const EdgeInsets.all(1));
-    }
-  });
-
-  test('MaterialStatePropertyIconThemeData', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyIconThemeData(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyIconThemeData(null), null);
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    final icons = <MaterialState, IconThemeData>{};
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      const icon = IconThemeData(
-        color: _kColor,
-        opacity: 0.5,
-        size: 12.0,
-      );
-      icons[state] = icon;
-
-      final decoded =
-          ThemeDecoder.decodeMaterialStatePropertyIconThemeData(icon);
-
-      expect(decoded!.resolve({state}), icon);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
-
-      expect(encoded![stateKey]['color'], _kColorStr);
-    }
-
-    IconThemeData? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : icons[states.first];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(prop);
-    for (var entry in states.entries) {
-      final icon = icons[entry.value];
-
-      expect(decoded!.resolve({entry.value}), icon);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertyIconThemeData(
-        decoded,
-      );
-
-      expect(encoded![entry.key]['color'], _kColorStr);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final icon = icons[state];
-      final encodedSide = ThemeEncoder.encodeIconThemeData(icon);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyIconThemeData(
-        encodedSide,
-      );
-
-      expect(decoded!.resolve({state}), icon);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyIconThemeData(decoded);
-
-      expect(encoded![stateKey]['color'], _kColorStr);
-    }
-  });
-
-  test('MaterialStatePropertyMouseCursor', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyColor(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyColor(null), null);
-    final stateMap = {
-      MaterialState.disabled: 'disabled',
-      MaterialState.dragged: 'dragged',
-      MaterialState.error: 'error',
-      MaterialState.focused: 'focused',
-      MaterialState.hovered: 'hovered',
-      MaterialState.pressed: 'pressed',
-      MaterialState.scrolledUnder: 'scrolledUnder',
-      MaterialState.selected: 'selected',
-    };
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    final cursors = {
-      'disabled': {'type': 'system', 'cursor': 'alias'},
-      'dragged': {'type': 'system', 'cursor': 'allScroll'},
-      'error': {'type': 'system', 'cursor': 'basic'},
-      'focused': {'type': 'system', 'cursor': 'cell'},
-      'hovered': {'type': 'system', 'cursor': 'click'},
-      'pressed': {'type': 'system', 'cursor': 'contextMenu'},
-      'scrolledUnder': {'type': 'system', 'cursor': 'grab'},
-      'selected': {'type': 'system', 'cursor': 'copy'},
-    };
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final cursorStr = cursors[stateKey];
-      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
-
-      var decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(cursor);
-      expect(decoded!.resolve({state}), cursor);
-
-      decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(cursorStr);
-      expect(decoded!.resolve({state}), cursor);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
-      expect(encoded![stateKey], cursorStr);
-    }
-
-    MouseCursor? func(Set<MaterialState> states) => states.isEmpty
-        ? null
-        : ThemeDecoder.decodeMouseCursor(cursors[stateMap[states.first]]);
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(prop);
-    for (var entry in states.entries) {
-      final cursorStr = cursors[stateMap[entry.value]];
-      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
-
-      expect(decoded!.resolve({entry.value}), cursor);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
-
-      expect(encoded?[entry.key], cursorStr);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final cursorStr = cursors[stateKey];
-      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
-      final encodedCursor = ThemeEncoder.encodeMouseCursor(cursor);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyMouseCursor(
-        encodedCursor,
-      );
-
-      expect(decoded!.resolve({state}), cursor);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyMouseCursor(decoded);
-
-      expect(encoded![stateKey], cursorStr);
-    }
-  });
-
-  test('MaterialStatePropertyOutlinedBorder', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(null), null);
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    var count = 1.0;
-    final sides = <MaterialState, OutlinedBorder>{};
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = RoundedRectangleBorder(
-        side: BorderSide(
-          color: Colors.black,
-          style: BorderStyle.solid,
-          width: ++count,
-        ),
-      );
-      sides[state] = side;
-
-      final decoded =
-          ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(side);
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
-
-      expect(encoded![stateKey]['side']['width'], side.side.width);
-    }
-
-    OutlinedBorder? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : sides[states.first];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded =
-        ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(prop);
-    for (var entry in states.entries) {
-      final side = sides[entry.value];
-
-      expect(decoded!.resolve({entry.value}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
-
-      expect(encoded![entry.key]['side']['width'], side!.side.width);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = sides[state];
-      final encodedSide = ThemeEncoder.encodeOutlinedBorder(side);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder(
-        encodedSide,
-      );
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder(decoded);
-
-      expect(encoded![stateKey]['side']['width'], side!.side.width);
-    }
-  });
-
-  test('MaterialStatePropertySize', () {
-    expect(
-      ThemeDecoder.decodeMaterialStatePropertySize(null),
-      null,
-    );
-    expect(
-      ThemeEncoder.encodeMaterialStatePropertySize(null),
-      null,
-    );
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    var count = 1.0;
-    final sides = <MaterialState, Size>{};
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = Size(
-        ++count,
-        ++count,
-      );
-      sides[state] = side;
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertySize(side);
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
-
-      expect(encoded![stateKey]['width'], side.width);
-    }
-
-    Size? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : sides[states.first];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertySize(prop);
-    for (var entry in states.entries) {
-      final side = sides[entry.value];
-
-      expect(decoded!.resolve({entry.value}), side);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
-
-      expect(encoded![entry.key]['width'], side!.width);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = sides[state];
-      final encodedSide = ThemeEncoder.encodeSize(side);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertySize(
-        encodedSide,
-      );
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded = ThemeEncoder.encodeMaterialStatePropertySize(decoded);
-
-      expect(encoded![stateKey]['width'], side!.width);
-    }
-  });
-
-  test('MaterialStatePropertyTextStyle', () {
-    expect(ThemeDecoder.decodeMaterialStatePropertyTextStyle(null), null);
-    expect(ThemeEncoder.encodeMaterialStatePropertyTextStyle(null), null);
-
-    final states = {
-      'disabled': MaterialState.disabled,
-      'dragged': MaterialState.dragged,
-      'error': MaterialState.error,
-      'focused': MaterialState.focused,
-      'hovered': MaterialState.hovered,
-      'pressed': MaterialState.pressed,
-      'scrolledUnder': MaterialState.scrolledUnder,
-      'selected': MaterialState.selected,
-    };
-
-    var count = 1.0;
-    final sides = <MaterialState, TextStyle>{};
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = TextStyle(fontSize: ++count);
-      sides[state] = side;
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(side);
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
-
-      expect(encoded![stateKey]['fontSize'], side.fontSize);
-    }
-
-    TextStyle? func(Set<MaterialState> states) =>
-        states.isEmpty ? null : sides[states.first];
-
-    final prop = MaterialStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(prop);
-    for (var entry in states.entries) {
-      final side = sides[entry.value];
-
-      expect(decoded!.resolve({entry.value}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
-
-      expect(encoded![entry.key]['fontSize'], side!.fontSize);
-    }
-
-    for (var entry in states.entries) {
-      final stateKey = entry.key;
-      final state = entry.value;
-
-      final side = sides[state];
-      final encodedSide = ThemeEncoder.encodeTextStyle(side);
-
-      final decoded = ThemeDecoder.decodeMaterialStatePropertyTextStyle(
-        encodedSide,
-      );
-
-      expect(decoded!.resolve({state}), side);
-
-      final encoded =
-          ThemeEncoder.encodeMaterialStatePropertyTextStyle(decoded);
-
-      expect(encoded![stateKey]['fontSize'], side!.fontSize);
-    }
-  });
-
   test('MaterialTapTargetSize', () {
     expect(ThemeDecoder.decodeMaterialTapTargetSize(null), null);
     expect(ThemeEncoder.encodeMaterialTapTargetSize(null), null);
@@ -6184,49 +5270,49 @@ void main() {
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
         animationDuration: const Duration(milliseconds: 1000),
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        elevation: MaterialStateProperty.all(1.0),
+        elevation: WidgetStateProperty.all(1.0),
         enableFeedback: false,
-        fixedSize: MaterialStateProperty.all(
+        fixedSize: WidgetStateProperty.all(
           const Size(50.0, 50.0),
         ),
-        foregroundColor: MaterialStateProperty.all(
+        foregroundColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        iconColor: MaterialStateProperty.all(
+        iconColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        iconSize: MaterialStateProperty.all(
+        iconSize: WidgetStateProperty.all(
           12.0,
         ),
-        maximumSize: MaterialStateProperty.all(
+        maximumSize: WidgetStateProperty.all(
           const Size(10.0, 10.0),
         ),
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
           const Size(100.0, 100.0),
         ),
-        mouseCursor: MaterialStateProperty.all(
+        mouseCursor: WidgetStateProperty.all(
           MouseCursor.defer,
         ),
-        overlayColor: MaterialStateProperty.all(
+        overlayColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        padding: MaterialStateProperty.all(
+        padding: WidgetStateProperty.all(
           EdgeInsets.zero,
         ),
-        shadowColor: MaterialStateProperty.all(
+        shadowColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
-        shape: MaterialStateProperty.all(
+        shape: WidgetStateProperty.all(
           const CircleBorder(),
         ),
-        side: MaterialStateProperty.all(
+        side: WidgetStateProperty.all(
           const BorderSide(),
         ),
         tapTargetSize: MaterialTapTargetSize.padded,
-        textStyle: MaterialStateProperty.all(
+        textStyle: WidgetStateProperty.all(
           const TextStyle(),
         ),
         visualDensity: VisualDensity.standard,
@@ -6349,14 +5435,14 @@ void main() {
         'cursor': 'clickable',
         'type': 'material',
       }),
-      MaterialStateMouseCursor.clickable,
+      WidgetStateMouseCursor.clickable,
     );
     expect(
       ThemeDecoder.decodeMouseCursor({
         'cursor': 'textable',
         'type': 'material',
       }),
-      MaterialStateMouseCursor.textable,
+      WidgetStateMouseCursor.textable,
     );
 
     expect(
@@ -6618,7 +5704,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeMouseCursor(
-        MaterialStateMouseCursor.clickable,
+        WidgetStateMouseCursor.clickable,
       ),
       {
         'cursor': 'clickable',
@@ -6627,7 +5713,7 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeMouseCursor(
-        MaterialStateMouseCursor.textable,
+        WidgetStateMouseCursor.textable,
       ),
       {
         'cursor': 'textable',
@@ -7420,7 +6506,7 @@ void main() {
 
     final entry = OutlinedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           const Color(0xff222222),
         ),
       ),
@@ -7817,10 +6903,10 @@ void main() {
     expect(ThemeEncoder.encodeRadioThemeData(null), null);
 
     final entry = RadioThemeData(
-      fillColor: MaterialStateProperty.all(_kColor),
+      fillColor: WidgetStateProperty.all(_kColor),
       materialTapTargetSize: MaterialTapTargetSize.padded,
-      mouseCursor: MaterialStateProperty.all(MouseCursor.uncontrolled),
-      overlayColor: MaterialStateProperty.all(_kColor),
+      mouseCursor: WidgetStateProperty.all(MouseCursor.uncontrolled),
+      overlayColor: WidgetStateProperty.all(_kColor),
       splashRadius: 2.0,
       visualDensity: VisualDensity.comfortable,
     );
@@ -7831,20 +6917,20 @@ void main() {
     final decoded = ThemeDecoder.decodeRadioThemeData(encoded);
 
     expect(
-      decoded!.fillColor!.resolve({MaterialState.error}),
-      entry.fillColor!.resolve({MaterialState.error}),
+      decoded!.fillColor!.resolve({WidgetState.error}),
+      entry.fillColor!.resolve({WidgetState.error}),
     );
     expect(
       decoded.materialTapTargetSize,
       entry.materialTapTargetSize,
     );
     expect(
-      decoded.mouseCursor!.resolve({MaterialState.error}),
-      entry.mouseCursor!.resolve({MaterialState.error}),
+      decoded.mouseCursor!.resolve({WidgetState.error}),
+      entry.mouseCursor!.resolve({WidgetState.error}),
     );
     expect(
-      decoded.overlayColor!.resolve({MaterialState.error}),
-      entry.overlayColor!.resolve({MaterialState.error}),
+      decoded.overlayColor!.resolve({WidgetState.error}),
+      entry.overlayColor!.resolve({WidgetState.error}),
     );
     expect(
       decoded.splashRadius,
@@ -8521,8 +7607,8 @@ void main() {
       mainAxisMargin: 2.0,
       minThumbLength: 3.0,
       radius: const Radius.circular(4.0),
-      thickness: MaterialStateProperty.all(5.0),
-      thumbVisibility: MaterialStateProperty.all(true),
+      thickness: WidgetStateProperty.all(5.0),
+      thumbVisibility: WidgetStateProperty.all(true),
     );
 
     expect(ThemeDecoder.decodeScrollbarThemeData(entry), entry);
@@ -8555,12 +7641,12 @@ void main() {
 
     expect(
       encoded['thickness']['error'],
-      entry.thickness!.resolve({MaterialState.error}),
+      entry.thickness!.resolve({WidgetState.error}),
     );
 
     expect(
       encoded['thumbVisibility']['error'],
-      entry.thumbVisibility!.resolve({MaterialState.error}),
+      entry.thumbVisibility!.resolve({WidgetState.error}),
     );
 
     final decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
@@ -8590,13 +7676,13 @@ void main() {
     );
 
     expect(
-      decoded.thickness!.resolve({MaterialState.error}),
-      entry.thickness!.resolve({MaterialState.error}),
+      decoded.thickness!.resolve({WidgetState.error}),
+      entry.thickness!.resolve({WidgetState.error}),
     );
 
     expect(
-      decoded.thumbVisibility!.resolve({MaterialState.error}),
-      entry.thumbVisibility!.resolve({MaterialState.error}),
+      decoded.thumbVisibility!.resolve({WidgetState.error}),
+      entry.thumbVisibility!.resolve({WidgetState.error}),
     );
   });
 
@@ -8605,18 +7691,18 @@ void main() {
     expect(ThemeEncoder.encodeSearchBarThemeData(null), null);
 
     final entry = SearchBarThemeData(
-      backgroundColor: MaterialStateProperty.all(_kColor),
+      backgroundColor: WidgetStateProperty.all(_kColor),
       constraints: const BoxConstraints(
         maxWidth: 200.0,
         minWidth: 100.0,
       ),
-      elevation: MaterialStateProperty.all(4.0),
-      hintStyle: MaterialStateProperty.all(_kTextStyle),
-      overlayColor: MaterialStateProperty.all(_kColor),
-      padding: MaterialStateProperty.all(const EdgeInsets.all(16.0)),
-      shadowColor: MaterialStateProperty.all(_kColor),
+      elevation: WidgetStateProperty.all(4.0),
+      hintStyle: WidgetStateProperty.all(_kTextStyle),
+      overlayColor: WidgetStateProperty.all(_kColor),
+      padding: WidgetStateProperty.all(const EdgeInsets.all(16.0)),
+      shadowColor: WidgetStateProperty.all(_kColor),
       textCapitalization: TextCapitalization.sentences,
-      textStyle: MaterialStateProperty.all(_kTextStyle),
+      textStyle: WidgetStateProperty.all(_kTextStyle),
     );
 
     expect(
@@ -9524,12 +8610,12 @@ void main() {
 
     final entry = SwitchThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      mouseCursor: MaterialStateProperty.all(MouseCursor.defer),
-      overlayColor: MaterialStateProperty.all(_kColor),
+      mouseCursor: WidgetStateProperty.all(MouseCursor.defer),
+      overlayColor: WidgetStateProperty.all(_kColor),
       splashRadius: 20.0,
-      thumbColor: MaterialStateProperty.all(_kColor),
-      trackColor: MaterialStateProperty.all(_kColor),
-      trackOutlineWidth: MaterialStateProperty.all(2.0),
+      thumbColor: WidgetStateProperty.all(_kColor),
+      trackColor: WidgetStateProperty.all(_kColor),
+      trackOutlineWidth: WidgetStateProperty.all(2.0),
     );
 
     final encoded = {
@@ -9620,7 +8706,7 @@ void main() {
     });
 
     expect(
-      theme!.thumbColor!.resolve({MaterialState.selected}),
+      theme!.thumbColor!.resolve({WidgetState.selected}),
       const Color(0xff2196f3),
     );
   });
@@ -10261,7 +9347,7 @@ void main() {
 
     final entry = TextButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
+        backgroundColor: WidgetStateProperty.all(
           const Color(0xff222222),
         ),
       ),
@@ -11124,7 +10210,7 @@ void main() {
       cardColor: const Color(0xffdddddd),
       cardTheme: const CardTheme(color: Color(0xffeeeeee)),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateProperty.all(const Color(0xff123456)),
+        fillColor: WidgetStateProperty.all(const Color(0xff123456)),
       ),
       chipTheme: ChipThemeData(
         backgroundColor: const Color(0xff111111),
@@ -11155,14 +10241,14 @@ void main() {
       ),
       dataTableTheme: DataTableThemeData(
         columnSpacing: 1.0,
-        dataRowColor: MaterialStateProperty.all(
+        dataRowColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
         dataRowMaxHeight: 1.0,
         dataRowMinHeight: 1.0,
         dataTextStyle: const TextStyle(),
         dividerThickness: 1.0,
-        headingRowColor: MaterialStateProperty.all(
+        headingRowColor: WidgetStateProperty.all(
           const Color(0xff555555),
         ),
         headingRowHeight: 1.0,
@@ -11184,14 +10270,14 @@ void main() {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
             const Color(0xff222222),
           ),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
             const Color(0xff222222),
           ),
         ),
@@ -11241,7 +10327,7 @@ void main() {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
             const Color(0xff222222),
           ),
         ),
@@ -11271,7 +10357,7 @@ void main() {
         bodyMedium: TextStyle(color: Color(0xccaaaaaa)),
       ),
       radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.all(const Color(0xff123456)),
+        fillColor: WidgetStateProperty.all(const Color(0xff123456)),
       ),
       scaffoldBackgroundColor: const Color(0xee666666),
       secondaryHeaderColor: const Color(0xccbbbbbb),
@@ -11283,12 +10369,12 @@ void main() {
       splashColor: const Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.all(const Color(0xff123456)),
+        thumbColor: WidgetStateProperty.all(const Color(0xff123456)),
       ),
       tabBarTheme: const TabBarTheme(labelColor: Color(0xccffffff)),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(
             const Color(0xff222222),
           ),
         ),
@@ -11435,7 +10521,7 @@ void main() {
         'shadow': '#ff000000',
         'surface': '#ff121212',
         'surfaceTint': '#ffbb86fc',
-        'surfaceVariant': '#ff121212',
+        'surfaceContainerHighest': '#ff121212',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6'
       },
@@ -12360,7 +11446,7 @@ void main() {
         style: BorderStyle.solid,
         width: 1.0,
       ),
-      dayPeriodColor: MaterialStateColor.resolveWith(
+      dayPeriodColor: WidgetStateColor.resolveWith(
         (_) => const Color(0xff000003),
       ),
       dayPeriodShape: RoundedRectangleBorder(
@@ -12760,6 +11846,908 @@ void main() {
       ThemeEncoder.encodeVisualDensity(VisualDensity.standard),
       'standard',
     );
+  });
+
+  test('WidgetStateColor', () {
+    expect(ThemeDecoder.decodeWidgetStateColor(null), null);
+    expect(ThemeEncoder.encodeWidgetStateColor(null), null);
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    final colors = {
+      'disabled': '#ff111111',
+      'dragged': '#ff222222',
+      'error': '#ff333333',
+      'focused': '#ff444444',
+      'hovered': '#ff555555',
+      'pressed': '#ff666666',
+      'scrolledUnder': '#ff888888',
+      'selected': '#ff777777',
+      'empty': '#00000000',
+    };
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+
+      var decoded = ThemeDecoder.decodeWidgetStateColor(color);
+      expect(decoded!.resolve({state}), color);
+
+      decoded = ThemeDecoder.decodeWidgetStateColor(colorStr);
+      expect(decoded!.resolve({state}), color);
+
+      final encoded = ThemeEncoder.encodeWidgetStateColor(decoded);
+      expect(encoded![stateKey], colorStr);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+      final encodedColor = ThemeEncoder.encodeColor(color);
+
+      final decoded = ThemeDecoder.decodeWidgetStateColor(
+        encodedColor,
+      );
+
+      expect(decoded!.resolve({state}), color);
+
+      final encoded = ThemeEncoder.encodeWidgetStateColor(decoded);
+
+      expect(encoded![stateKey], colorStr);
+    }
+
+    /// Test if pressed takes precedence over hovered
+    final materialColor = ThemeDecoder.decodeWidgetStateColor(
+      colors,
+    );
+    final color = materialColor?.resolve({
+      states['pressed']!,
+    });
+    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
+  });
+
+  test('WidgetStatePropertyBool', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyBool(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyBool(null), null);
+
+    final stateMap = {
+      WidgetState.disabled: 'disabled',
+      WidgetState.dragged: 'dragged',
+      WidgetState.error: 'error',
+      WidgetState.focused: 'focused',
+      WidgetState.hovered: 'hovered',
+      WidgetState.pressed: 'pressed',
+      WidgetState.scrolledUnder: 'scrolledUnder',
+      WidgetState.selected: 'selected',
+    };
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    final values = {
+      'disabled': true,
+      'dragged': true,
+      'error': true,
+      'focused': true,
+      'hovered': false,
+      'pressed': true,
+      'scrolledUnder': false,
+      'selected': false,
+    };
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final value = values[stateKey];
+
+      var decoded = ThemeDecoder.decodeWidgetStatePropertyBool(value);
+      expect(decoded?.resolve({state}), value);
+
+      decoded = ThemeDecoder.decodeWidgetStatePropertyBool(value.toString());
+      expect(decoded?.resolve({state}), value);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyBool(decoded);
+      expect(encoded![stateKey], value);
+    }
+
+    bool? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : values[stateMap[states.first]!];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyBool(prop);
+    for (var entry in states.entries) {
+      final value = values[stateMap[entry.value]!];
+
+      expect(decoded!.resolve({entry.value}), value);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyBool(decoded);
+
+      expect(encoded?[entry.key], value);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final value = values[stateKey];
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyBool(value);
+
+      expect(decoded!.resolve({state}), value);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyBool(decoded);
+
+      expect(encoded![stateKey], value);
+    }
+  });
+
+  test('WidgetStatePropertyBorderSide', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyBorderSide(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyBorderSide(null), null);
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    var count = 1.0;
+    final sides = <WidgetState, BorderSide>{};
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: ++count,
+      );
+      sides[state] = side;
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyBorderSide(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyBorderSide(decoded);
+
+      expect(encoded![stateKey]['width'], side.width);
+    }
+
+    BorderSide? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyBorderSide(prop);
+    for (var entry in states.entries) {
+      final side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyBorderSide(decoded);
+
+      expect(encoded![entry.key]['width'], side!.width);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = BorderSide(
+        color: _kColor,
+        style: BorderStyle.solid,
+        width: ++count,
+      );
+      final encodedSide = ThemeEncoder.encodeBorderSide(side);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyBorderSide(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyBorderSide(decoded);
+
+      expect(encoded![stateKey]['width'], side.width);
+    }
+  });
+
+  test('WidgetStatePropertyColor', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyColor(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyColor(null), null);
+
+    final stateMap = {
+      WidgetState.disabled: 'disabled',
+      WidgetState.dragged: 'dragged',
+      WidgetState.error: 'error',
+      WidgetState.focused: 'focused',
+      WidgetState.hovered: 'hovered',
+      WidgetState.pressed: 'pressed',
+      WidgetState.scrolledUnder: 'scrolledUnder',
+      WidgetState.selected: 'selected',
+    };
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    final colors = {
+      'disabled': '#ff111111',
+      'dragged': '#ff222222',
+      'error': '#ff333333',
+      'focused': '#ff444444',
+      'hovered': '#ff555555',
+      'pressed': '#ff666666',
+      'scrolledUnder': '#ff888888',
+      'selected': '#ff777777',
+    };
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+
+      var decoded = ThemeDecoder.decodeWidgetStatePropertyColor(color);
+      expect(decoded!.resolve({state}), color);
+
+      decoded = ThemeDecoder.decodeWidgetStatePropertyColor(colorStr);
+      expect(decoded!.resolve({state}), color);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyColor(decoded);
+      expect(encoded![stateKey], colorStr);
+    }
+
+    Color? func(Set<WidgetState> states) => states.isEmpty
+        ? null
+        : ThemeDecoder.decodeColor(colors[stateMap[states.first]]);
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(prop);
+    for (var entry in states.entries) {
+      final colorStr = colors[stateMap[entry.value]];
+      final color = ThemeDecoder.decodeColor(colorStr);
+
+      expect(decoded!.resolve({entry.value}), color);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyColor(decoded);
+
+      expect(encoded?[entry.key], colorStr);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final colorStr = colors[stateKey];
+      final color = ThemeDecoder.decodeColor(colorStr);
+      final encodedColor = ThemeEncoder.encodeColor(color);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(
+        encodedColor,
+      );
+
+      expect(decoded!.resolve({state}), color);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyColor(decoded);
+
+      expect(encoded![stateKey], colorStr);
+    }
+
+    /// Test if pressed takes precedence over hovered
+    final materialColor = ThemeDecoder.decodeWidgetStatePropertyColor(
+      colors,
+    );
+    final color = materialColor?.resolve({
+      states['hovered']!,
+      states['pressed']!,
+    });
+    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
+  });
+
+  test('WidgetStatePropertyDouble', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyDouble(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyDouble(null), null);
+    final stateMap = {
+      WidgetState.disabled: 'disabled',
+      WidgetState.dragged: 'dragged',
+      WidgetState.error: 'error',
+      WidgetState.focused: 'focused',
+      WidgetState.hovered: 'hovered',
+      WidgetState.pressed: 'pressed',
+      WidgetState.scrolledUnder: 'scrolledUnder',
+      WidgetState.selected: 'selected',
+    };
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    final values = {
+      'disabled': 1.0,
+      'dragged': 2.0,
+      'error': 3.0,
+      'focused': 4.0,
+      'hovered': 5.0,
+      'pressed': 6.0,
+      'scrolledUnder': 8.0,
+      'selected': 7.0,
+    };
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final value = values[stateKey];
+
+      var decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(value);
+      expect(decoded!.resolve({state}), value);
+
+      decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(value.toString());
+      expect(decoded!.resolve({state}), value);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyDouble(decoded);
+      expect(encoded![stateKey], value);
+    }
+
+    double? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : values[stateMap[states.first]];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(prop);
+    for (var entry in states.entries) {
+      final value = values[stateMap[entry.value]];
+
+      expect(decoded!.resolve({entry.value}), value);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyDouble(decoded);
+
+      expect(encoded?[entry.key], value);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final value = values[stateKey];
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(value);
+
+      expect(decoded!.resolve({state}), value);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyDouble(decoded);
+
+      expect(encoded![stateKey], value);
+    }
+  });
+
+  test('WidgetStatePropertyEdgeInsetsGeometry', () {
+    expect(
+        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(null), null);
+    expect(
+        ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(null), null);
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    var count = 1.0;
+    final sides = <WidgetState, EdgeInsetsGeometry>{};
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = EdgeInsets.all(++count);
+      sides[state] = side;
+
+      final decoded =
+          ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
+
+      expect(encoded![stateKey]['bottom'], side.bottom);
+    }
+
+    EdgeInsetsGeometry? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded =
+        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(prop);
+    for (var entry in states.entries) {
+      final side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
+
+      expect(encoded![entry.key]['bottom'], (side as EdgeInsets).bottom);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = EdgeInsets.all(++count);
+      final encodedSide = ThemeEncoder.encodeEdgeInsetsGeometry(side);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
+
+      expect(encoded![stateKey]['bottom'], side.bottom);
+    }
+
+    final symmetricDecoded =
+        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2]);
+    for (var state in states.values) {
+      expect(symmetricDecoded!.resolve({state}),
+          const EdgeInsets.symmetric(horizontal: 1, vertical: 2));
+    }
+
+    final ltrbDecoded =
+        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2, 3, 4]);
+    for (var state in states.values) {
+      expect(
+          ltrbDecoded!.resolve({state}), const EdgeInsets.fromLTRB(1, 2, 3, 4));
+    }
+
+    final allDecoded =
+        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(1);
+    for (var state in states.values) {
+      expect(allDecoded!.resolve({state}), const EdgeInsets.all(1));
+    }
+  });
+
+  test('WidgetStatePropertyIconThemeData', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyIconThemeData(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyIconThemeData(null), null);
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    final icons = <WidgetState, IconThemeData>{};
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      const icon = IconThemeData(
+        color: _kColor,
+        opacity: 0.5,
+        size: 12.0,
+      );
+      icons[state] = icon;
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(icon);
+
+      expect(decoded!.resolve({state}), icon);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyIconThemeData(decoded);
+
+      expect(encoded![stateKey]['color'], _kColorStr);
+    }
+
+    IconThemeData? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : icons[states.first];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(prop);
+    for (var entry in states.entries) {
+      final icon = icons[entry.value];
+
+      expect(decoded!.resolve({entry.value}), icon);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyIconThemeData(
+        decoded,
+      );
+
+      expect(encoded![entry.key]['color'], _kColorStr);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final icon = icons[state];
+      final encodedSide = ThemeEncoder.encodeIconThemeData(icon);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), icon);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyIconThemeData(decoded);
+
+      expect(encoded![stateKey]['color'], _kColorStr);
+    }
+  });
+
+  test('WidgetStatePropertyMouseCursor', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyColor(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyColor(null), null);
+    final stateMap = {
+      WidgetState.disabled: 'disabled',
+      WidgetState.dragged: 'dragged',
+      WidgetState.error: 'error',
+      WidgetState.focused: 'focused',
+      WidgetState.hovered: 'hovered',
+      WidgetState.pressed: 'pressed',
+      WidgetState.scrolledUnder: 'scrolledUnder',
+      WidgetState.selected: 'selected',
+    };
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    final cursors = {
+      'disabled': {'type': 'system', 'cursor': 'alias'},
+      'dragged': {'type': 'system', 'cursor': 'allScroll'},
+      'error': {'type': 'system', 'cursor': 'basic'},
+      'focused': {'type': 'system', 'cursor': 'cell'},
+      'hovered': {'type': 'system', 'cursor': 'click'},
+      'pressed': {'type': 'system', 'cursor': 'contextMenu'},
+      'scrolledUnder': {'type': 'system', 'cursor': 'grab'},
+      'selected': {'type': 'system', 'cursor': 'copy'},
+    };
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final cursorStr = cursors[stateKey];
+      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+
+      var decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(cursor);
+      expect(decoded!.resolve({state}), cursor);
+
+      decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(cursorStr);
+      expect(decoded!.resolve({state}), cursor);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyMouseCursor(decoded);
+      expect(encoded![stateKey], cursorStr);
+    }
+
+    MouseCursor? func(Set<WidgetState> states) => states.isEmpty
+        ? null
+        : ThemeDecoder.decodeMouseCursor(cursors[stateMap[states.first]]);
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(prop);
+    for (var entry in states.entries) {
+      final cursorStr = cursors[stateMap[entry.value]];
+      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+
+      expect(decoded!.resolve({entry.value}), cursor);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyMouseCursor(decoded);
+
+      expect(encoded?[entry.key], cursorStr);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final cursorStr = cursors[stateKey];
+      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+      final encodedCursor = ThemeEncoder.encodeMouseCursor(cursor);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(
+        encodedCursor,
+      );
+
+      expect(decoded!.resolve({state}), cursor);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyMouseCursor(decoded);
+
+      expect(encoded![stateKey], cursorStr);
+    }
+  });
+
+  test('WidgetStatePropertyOutlinedBorder', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(null), null);
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    var count = 1.0;
+    final sides = <WidgetState, OutlinedBorder>{};
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = RoundedRectangleBorder(
+        side: BorderSide(
+          color: Colors.black,
+          style: BorderStyle.solid,
+          width: ++count,
+        ),
+      );
+      sides[state] = side;
+
+      final decoded =
+          ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(decoded);
+
+      expect(encoded![stateKey]['side']['width'], side.side.width);
+    }
+
+    OutlinedBorder? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(prop);
+    for (var entry in states.entries) {
+      final side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(decoded);
+
+      expect(encoded![entry.key]['side']['width'], side!.side.width);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = sides[state];
+      final encodedSide = ThemeEncoder.encodeOutlinedBorder(side);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded =
+          ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(decoded);
+
+      expect(encoded![stateKey]['side']['width'], side!.side.width);
+    }
+  });
+
+  test('WidgetStatePropertySize', () {
+    expect(
+      ThemeDecoder.decodeWidgetStatePropertySize(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.encodeWidgetStatePropertySize(null),
+      null,
+    );
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    var count = 1.0;
+    final sides = <WidgetState, Size>{};
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = Size(
+        ++count,
+        ++count,
+      );
+      sides[state] = side;
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertySize(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertySize(decoded);
+
+      expect(encoded![stateKey]['width'], side.width);
+    }
+
+    Size? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertySize(prop);
+    for (var entry in states.entries) {
+      final side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertySize(decoded);
+
+      expect(encoded![entry.key]['width'], side!.width);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = sides[state];
+      final encodedSide = ThemeEncoder.encodeSize(side);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertySize(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertySize(decoded);
+
+      expect(encoded![stateKey]['width'], side!.width);
+    }
+  });
+
+  test('WidgetStatePropertyTextStyle', () {
+    expect(ThemeDecoder.decodeWidgetStatePropertyTextStyle(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertyTextStyle(null), null);
+
+    final states = {
+      'disabled': WidgetState.disabled,
+      'dragged': WidgetState.dragged,
+      'error': WidgetState.error,
+      'focused': WidgetState.focused,
+      'hovered': WidgetState.hovered,
+      'pressed': WidgetState.pressed,
+      'scrolledUnder': WidgetState.scrolledUnder,
+      'selected': WidgetState.selected,
+    };
+
+    var count = 1.0;
+    final sides = <WidgetState, TextStyle>{};
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = TextStyle(fontSize: ++count);
+      sides[state] = side;
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyTextStyle(side);
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyTextStyle(decoded);
+
+      expect(encoded![stateKey]['fontSize'], side.fontSize);
+    }
+
+    TextStyle? func(Set<WidgetState> states) =>
+        states.isEmpty ? null : sides[states.first];
+
+    final prop = WidgetStateProperty.resolveWith(func);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyTextStyle(prop);
+    for (var entry in states.entries) {
+      final side = sides[entry.value];
+
+      expect(decoded!.resolve({entry.value}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyTextStyle(decoded);
+
+      expect(encoded![entry.key]['fontSize'], side!.fontSize);
+    }
+
+    for (var entry in states.entries) {
+      final stateKey = entry.key;
+      final state = entry.value;
+
+      final side = sides[state];
+      final encodedSide = ThemeEncoder.encodeTextStyle(side);
+
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyTextStyle(
+        encodedSide,
+      );
+
+      expect(decoded!.resolve({state}), side);
+
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyTextStyle(decoded);
+
+      expect(encoded![stateKey]['fontSize'], side!.fontSize);
+    }
   });
 
   test('WrapAlignment', () {

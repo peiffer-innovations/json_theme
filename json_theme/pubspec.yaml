@@ -1,63 +1,58 @@
 name: 'json_theme'
 description: 'A library to dynamically generate a ThemeData object from a JSON file or dynamic map object'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '6.5.0+1'
+version: '6.5.0+2'
 
-environment:
+environment: 
   sdk: '>=3.2.0 <4.0.0'
 
-analyzer:
-  exclude:
+analyzer: 
+  exclude: 
     - 'lib/generated/**'
     - 'lib/**/*.g.dart'
 
-dependencies:
-  flutter:
+dependencies: 
+  flutter: 
     sdk: 'flutter'
-  json_class: '^3.0.0+13'
+  json_class: '^3.0.0+15'
   json_schema: '^5.1.7'
-  json_theme_annotation: '^1.0.3+6'
+  json_theme_annotation: '^1.0.3+9'
   logging: '^1.2.0'
   meta: '^1.12.0'
 
-dev_dependencies:
-  analyzer: '^6.4.1'
+dev_dependencies: 
+  analyzer: '^6.5.2'
   build: '^2.4.1'
-  build_runner: '^2.4.9'
+  build_runner: '^2.4.11'
   code_builder: '^4.10.0'
   flutter_lints: '^4.0.0'
-  flutter_test:
+  flutter_test: 
     sdk: 'flutter'
-  json_theme_codegen: '^1.1.2+13'
+  json_theme_codegen: '^1.1.2+16'
   recase: '^4.1.0'
   source_gen: '^1.5.0'
 
-permittedLicenses:
-  - Apache-2.0
-  - BSD-2-Clause
-  - BSD-3-Clause
-  - MIT
-  - MIT-Modern-Variant
-  - MPL-2.0
-  - Zlib
+permittedLicenses: 
+  - 'Apache-2.0'
+  - 'BSD-2-Clause'
+  - 'BSD-3-Clause'
+  - 'MIT'
+  - 'MIT-Modern-Variant'
+  - 'MPL-2.0'
+  - 'Zlib'
 
-# The [license_checker](https://pub.dev/packages/license_checker) package cannot
-# detect the built in Flutter packages because they aren't published to pub.dev
-# and do not have a LICENSE file in their respective folders.  So this section
-# informs the license_checker that all the built in Flutter packages all have
-# the same BSD-3-Clause license as Flutter itself. 
 packageLicenseOverride: 
-  flutter: BSD-3-Clause
-  flutter_driver: BSD-3-Clause
-  flutter_goldens: BSD-3-Clause
-  flutter_localizations: BSD-3-Clause
-  flutter_web_plugins: BSD-3-Clause
-  flutter_test: BSD-3-Clause
-  fuchsia_remote_debug_protocol: BSD-3-Clause
-  integration_test: BSD-3-Clause
-  rxdart: Apache-2.0
+  flutter: 'BSD-3-Clause'
+  flutter_driver: 'BSD-3-Clause'
+  flutter_goldens: 'BSD-3-Clause'
+  flutter_localizations: 'BSD-3-Clause'
+  flutter_web_plugins: 'BSD-3-Clause'
+  flutter_test: 'BSD-3-Clause'
+  fuchsia_remote_debug_protocol: 'BSD-3-Clause'
+  integration_test: 'BSD-3-Clause'
+  rxdart: 'Apache-2.0'
 
-ignore_updates:
+ignore_updates: 
   - 'archive'
   - 'async'
   - 'boolean_selector'

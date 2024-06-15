@@ -258,6 +258,10 @@ class ThemeEncoder {
         case AutovalidateMode.onUserInteraction:
           result = 'onUserInteraction';
           break;
+
+        case AutovalidateMode.onUnfocus:
+          result = 'onUnfocus';
+          break;
       }
     }
 

@@ -1,3 +1,8 @@
+## [6.5.0+2] - July 30, 2024
+
+* Automated dependency updates
+
+
 ## [6.5.0+1] - May 14th, 2024
 
 * Swapped MaterialStateProperty with WidgetStateProperty in preperation for other Flutter 3.22 work.
@@ -641,44 +646,3 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

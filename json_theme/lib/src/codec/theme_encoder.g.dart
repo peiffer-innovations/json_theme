@@ -5,6 +5,7 @@
 // **************************************************************************
 
 const kThemeEncoders = <String, String>{
+  'ActionIconThemeData': 'ThemeEncoder.encodeActionIconThemeData',
   'Alignment': 'ThemeEncoder.encodeAlignment',
   'AlignmentDirectional': 'ThemeEncoder.encodeAlignmentDirectional',
   'AlignmentGeometry': 'ThemeEncoder.encodeAlignmentGeometry',
@@ -99,24 +100,6 @@ const kThemeEncoders = <String, String>{
   'MainAxisSize': 'ThemeEncoder.encodeMainAxisSize',
   'MaterialBannerThemeData': 'ThemeEncoder.encodeMaterialBannerThemeData',
   'MaterialColor': 'ThemeEncoder.encodeMaterialColor',
-  'MaterialStateProperty<bool>': 'ThemeEncoder.encodeMaterialStatePropertyBool',
-  'MaterialStateProperty<BorderSide>':
-      'ThemeEncoder.encodeMaterialStatePropertyBorderSide',
-  'MaterialStateProperty<Color>':
-      'ThemeEncoder.encodeMaterialStatePropertyColor',
-  'MaterialStateProperty<double>':
-      'ThemeEncoder.encodeMaterialStatePropertyDouble',
-  'MaterialStateProperty<EdgeInsetsGeometry>':
-      'ThemeEncoder.encodeMaterialStatePropertyEdgeInsetsGeometry',
-  'MaterialStateProperty<IconThemeData>':
-      'ThemeEncoder.encodeMaterialStatePropertyIconThemeData',
-  'MaterialStateProperty<MouseCursor>':
-      'ThemeEncoder.encodeMaterialStatePropertyMouseCursor',
-  'MaterialStateProperty<OutlinedBorder>':
-      'ThemeEncoder.encodeMaterialStatePropertyOutlinedBorder',
-  'MaterialStateProperty<Size>': 'ThemeEncoder.encodeMaterialStatePropertySize',
-  'MaterialStateProperty<TextStyle>':
-      'ThemeEncoder.encodeMaterialStatePropertyTextStyle',
   'MaterialTapTargetSize': 'ThemeEncoder.encodeMaterialTapTargetSize',
   'MaterialType': 'ThemeEncoder.encodeMaterialType',
   'Matrix4': 'ThemeEncoder.encodeMatrix4',
@@ -136,6 +119,7 @@ const kThemeEncoders = <String, String>{
   'OrdinalSortKey': 'ThemeEncoder.encodeOrdinalSortKey',
   'OutlinedBorder': 'ThemeEncoder.encodeOutlinedBorder',
   'OutlinedButtonThemeData': 'ThemeEncoder.encodeOutlinedButtonThemeData',
+  'OverflowBoxFit': 'ThemeEncoder.encodeOverflowBoxFit',
   'PageTransitionsBuilder': 'ThemeEncoder.encodePageTransitionsBuilder',
   'PageTransitionsTheme': 'ThemeEncoder.encodePageTransitionsTheme',
   'PanAxis': 'ThemeEncoder.encodePanAxis',
@@ -166,6 +150,7 @@ const kThemeEncoders = <String, String>{
   'ShowValueIndicator': 'ThemeEncoder.encodeShowValueIndicator',
   'Size': 'ThemeEncoder.encodeSize',
   'SliderComponentShape': 'ThemeEncoder.encodeSliderComponentShape',
+  'SliderInteraction': 'ThemeEncoder.encodeSliderInteraction',
   'SliderThemeData': 'ThemeEncoder.encodeSliderThemeData',
   'SliderTickMarkShape': 'ThemeEncoder.encodeSliderTickMarkShape',
   'SliderTrackShape': 'ThemeEncoder.encodeSliderTrackShape',
@@ -177,6 +162,7 @@ const kThemeEncoders = <String, String>{
   'StrutStyle': 'ThemeEncoder.encodeStrutStyle',
   'SwitchThemeData': 'ThemeEncoder.encodeSwitchThemeData',
   'SystemUiOverlayStyle': 'ThemeEncoder.encodeSystemUiOverlayStyle',
+  'TabAlignment': 'ThemeEncoder.encodeTabAlignment',
   'TabBarIndicatorSize': 'ThemeEncoder.encodeTabBarIndicatorSize',
   'TabBarTheme': 'ThemeEncoder.encodeTabBarTheme',
   'TableBorder': 'ThemeEncoder.encodeTableBorder',
@@ -209,6 +195,23 @@ const kThemeEncoders = <String, String>{
   'Typography': 'ThemeEncoder.encodeTypography',
   'VerticalDirection': 'ThemeEncoder.encodeVerticalDirection',
   'VisualDensity': 'ThemeEncoder.encodeVisualDensity',
+  'WidgetStateColor': 'ThemeEncoder.encodeWidgetStateColor',
+  'WidgetStatePropertyBool': 'ThemeEncoder.encodeWidgetStatePropertyBool',
+  'WidgetStatePropertyBorderSide':
+      'ThemeEncoder.encodeWidgetStatePropertyBorderSide',
+  'WidgetStatePropertyColor': 'ThemeEncoder.encodeWidgetStatePropertyColor',
+  'WidgetStatePropertyDouble': 'ThemeEncoder.encodeWidgetStatePropertyDouble',
+  'WidgetStatePropertyEdgeInsetsGeometry':
+      'ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry',
+  'WidgetStatePropertyIconThemeData':
+      'ThemeEncoder.encodeWidgetStatePropertyIconThemeData',
+  'WidgetStatePropertyMouseCursor':
+      'ThemeEncoder.encodeWidgetStatePropertyMouseCursor',
+  'WidgetStatePropertyOutlinedBorder':
+      'ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder',
+  'WidgetStatePropertySize': 'ThemeEncoder.encodeWidgetStatePropertySize',
+  'WidgetStatePropertyTextStyle':
+      'ThemeEncoder.encodeWidgetStatePropertyTextStyle',
   'WrapAlignment': 'ThemeEncoder.encodeWrapAlignment',
   'WrapCrossAlignment': 'ThemeEncoder.encodeWrapCrossAlignment',
 };

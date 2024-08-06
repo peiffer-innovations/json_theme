@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 
 class ThemePage extends StatelessWidget {
   ThemePage({
-    Key? key,
+    super.key,
     ThemeData? theme,
-  })  : theme = theme ?? ThemeData(),
-        super(key: key);
+  }) : theme = theme ?? ThemeData();
 
   final ThemeData theme;
 
@@ -19,7 +18,7 @@ class ThemePage extends StatelessWidget {
           appBar: AppBar(
             title: const Text('Themed Page'),
           ),
-          body: SingleChildScrollView(
+          body: const SingleChildScrollView(
             child: ExampleForm(),
           ),
         ),

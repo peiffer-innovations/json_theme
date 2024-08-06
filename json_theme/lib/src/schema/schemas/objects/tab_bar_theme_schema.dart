@@ -13,20 +13,22 @@ class TabBarThemeSchema {
     'type': 'object',
     'properties': {
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dividerHeight': SchemaHelper.numberSchema,
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'indicatorSize': SchemaHelper.objectSchema(TabBarIndicatorSizeSchema.id),
       'labelPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'labelColor': SchemaHelper.objectSchema(ColorSchema.id),
       'labelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'overlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'splashFactory': SchemaHelper.objectSchema(
         InteractiveInkFeatureFactorySchema.id,
       ),
+      'tabAlignment': SchemaHelper.objectSchema(TabAlignmentSchema.id),
       'unselectedLabelColor': SchemaHelper.objectSchema(ColorSchema.id),
       'unselectedLabelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },

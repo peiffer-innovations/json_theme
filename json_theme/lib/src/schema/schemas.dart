@@ -2,6 +2,7 @@ import 'all.dart';
 
 class Schemas {
   static final all = <String, Map<String, Object>>{
+    ActionIconThemeDataSchema.id: ActionIconThemeDataSchema.schema,
     AlignmentDirectionalSchema.id: AlignmentDirectionalSchema.schema,
     AlignmentGeometrySchema.id: AlignmentGeometrySchema.schema,
     AlignmentSchema.id: AlignmentSchema.schema,
@@ -99,25 +100,6 @@ class Schemas {
     MainAxisSizeSchema.id: MainAxisSizeSchema.schema,
     MaterialBannerThemeDataSchema.id: MaterialBannerThemeDataSchema.schema,
     MaterialColorSchema.id: MaterialColorSchema.schema,
-    MaterialStatePropertyBoolSchema.id: MaterialStatePropertyBoolSchema.schema,
-    MaterialStatePropertyBorderSideSchema.id:
-        MaterialStatePropertyBorderSideSchema.schema,
-    MaterialStatePropertyColorSchema.id:
-        MaterialStatePropertyColorSchema.schema,
-    MaterialStatePropertyDoubleSchema.id:
-        MaterialStatePropertyDoubleSchema.schema,
-    MaterialStatePropertyEdgeInsetsGeometrySchema.id:
-        MaterialStatePropertyEdgeInsetsGeometrySchema.schema,
-    MaterialStatePropertyIconSchema.id: MaterialStatePropertyIconSchema.schema,
-    MaterialStatePropertyIconThemeDataSchema.id:
-        MaterialStatePropertyIconThemeDataSchema.schema,
-    MaterialStatePropertyMouseCursorSchema.id:
-        MaterialStatePropertyMouseCursorSchema.schema,
-    MaterialStatePropertyOutlinedBorderSchema.id:
-        MaterialStatePropertyOutlinedBorderSchema.schema,
-    MaterialStatePropertySizeSchema.id: MaterialStatePropertySizeSchema.schema,
-    MaterialStatePropertyTextStyleSchema.id:
-        MaterialStatePropertyTextStyleSchema.schema,
     MaterialTapTargetSizeSchema.id: MaterialTapTargetSizeSchema.schema,
     MaterialTypeSchema.id: MaterialTypeSchema.schema,
     Matrix4Schema.id: Matrix4Schema.schema,
@@ -138,6 +120,7 @@ class Schemas {
     OrdinalSortKeySchema.id: OrdinalSortKeySchema.schema,
     OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
     OutlinedButtonThemeDataSchema.id: OutlinedButtonThemeDataSchema.schema,
+    OverflowBoxFitSchema.id: OverflowBoxFitSchema.schema,
     PanAxisSchema.id: PanAxisSchema.schema,
     PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
     PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
@@ -169,6 +152,7 @@ class Schemas {
     ShowValueIndicatorSchema.id: ShowValueIndicatorSchema.schema,
     SizeSchema.id: SizeSchema.schema,
     SliderComponentShapeSchema.id: SliderComponentShapeSchema.schema,
+    SliderInteractionSchema.id: SliderInteractionSchema.schema,
     SliderThemeDataSchema.id: SliderThemeDataSchema.schema,
     SliderTickMarkShapeSchema.id: SliderTickMarkShapeSchema.schema,
     SliderTrackShapeSchema.id: SliderTrackShapeSchema.schema,
@@ -180,6 +164,7 @@ class Schemas {
     StrutStyleSchema.id: StrutStyleSchema.schema,
     SwitchThemeDataSchema.id: SwitchThemeDataSchema.schema,
     SystemUiOverlayStyleSchema.id: SystemUiOverlayStyleSchema.schema,
+    TabAlignmentSchema.id: TabAlignmentSchema.schema,
     TabBarIndicatorSizeSchema.id: TabBarIndicatorSizeSchema.schema,
     TabBarThemeSchema.id: TabBarThemeSchema.schema,
     TableBorderSchema.id: TableBorderSchema.schema,
@@ -212,6 +197,24 @@ class Schemas {
     TypographySchema.id: TypographySchema.schema,
     VerticalDirectionSchema.id: VerticalDirectionSchema.schema,
     VisualDensitySchema.id: VisualDensitySchema.schema,
+    WidgetStateColorSchema.id: WidgetStateColorSchema.schema,
+    WidgetStatePropertyBoolSchema.id: WidgetStatePropertyBoolSchema.schema,
+    WidgetStatePropertyBorderSideSchema.id:
+        WidgetStatePropertyBorderSideSchema.schema,
+    WidgetStatePropertyColorSchema.id: WidgetStatePropertyColorSchema.schema,
+    WidgetStatePropertyDoubleSchema.id: WidgetStatePropertyDoubleSchema.schema,
+    WidgetStatePropertyEdgeInsetsGeometrySchema.id:
+        WidgetStatePropertyEdgeInsetsGeometrySchema.schema,
+    WidgetStatePropertyIconSchema.id: WidgetStatePropertyIconSchema.schema,
+    WidgetStatePropertyIconThemeDataSchema.id:
+        WidgetStatePropertyIconThemeDataSchema.schema,
+    WidgetStatePropertyMouseCursorSchema.id:
+        WidgetStatePropertyMouseCursorSchema.schema,
+    WidgetStatePropertyOutlinedBorderSchema.id:
+        WidgetStatePropertyOutlinedBorderSchema.schema,
+    WidgetStatePropertySizeSchema.id: WidgetStatePropertySizeSchema.schema,
+    WidgetStatePropertyTextStyleSchema.id:
+        WidgetStatePropertyTextStyleSchema.schema,
     WrapAlignmentSchema.id: WrapAlignmentSchema.schema,
     WrapCrossAlignmentSchema.id: WrapCrossAlignmentSchema.schema,
   };

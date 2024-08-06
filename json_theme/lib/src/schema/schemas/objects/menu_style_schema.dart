@@ -14,34 +14,34 @@ class MenuStyleSchema {
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'backgroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'elevation': SchemaHelper.objectSchema(
-        MaterialStatePropertyDoubleSchema.id,
+        WidgetStatePropertyDoubleSchema.id,
       ),
       'fixedSize': SchemaHelper.objectSchema(
-        MaterialStatePropertySizeSchema.id,
+        WidgetStatePropertySizeSchema.id,
       ),
       'maximumSize': SchemaHelper.objectSchema(
-        MaterialStatePropertySizeSchema.id,
+        WidgetStatePropertySizeSchema.id,
       ),
       'minimumSize': SchemaHelper.objectSchema(
-        MaterialStatePropertySizeSchema.id,
+        WidgetStatePropertySizeSchema.id,
       ),
       'padding': SchemaHelper.objectSchema(
-        MaterialStatePropertyEdgeInsetsGeometrySchema.id,
+        WidgetStatePropertyEdgeInsetsGeometrySchema.id,
       ),
       'shadowColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'shape': SchemaHelper.objectSchema(
-        MaterialStatePropertyOutlinedBorderSchema.id,
+        WidgetStatePropertyOutlinedBorderSchema.id,
       ),
       'side': SchemaHelper.objectSchema(
-        MaterialStatePropertyBorderSideSchema.id,
+        WidgetStatePropertyBorderSideSchema.id,
       ),
       'surfaceTintColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },

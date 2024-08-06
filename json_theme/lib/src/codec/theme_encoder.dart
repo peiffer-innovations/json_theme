@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
@@ -17,6 +17,23 @@ import 'package:json_theme_annotation/json_theme_annotation.dart';
 @JsonThemeCodec('encode')
 class ThemeEncoder {
   const ThemeEncoder._();
+
+  static Map<String, dynamic>? encodeActionIconThemeData(
+    ActionIconThemeData? value,
+  ) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = <String, dynamic>{
+        // 'backButtonIconBuilder': @unencodable
+        // 'closeButtonIconBuilder': @unencodable
+        // 'drawerButtonIconBuilder': @unencodable
+        // 'endDrawerButtonIconBuilder': @unencodable
+      };
+    }
+
+    return result;
+  }
 
   /// Encodes the given [value] to either a String representation of the
   /// [Alignment] or a JSON map that follows the structure:
@@ -1155,7 +1172,7 @@ class ThemeEncoder {
   /// }
   /// ```
   ///
-  /// This won't maintain the [MaterialStateProperty] of each corresponding
+  /// This won't maintain the [WidgetStateProperty] of each corresponding
   /// property, instead will resolve them by using an empty set of states,
   /// returning and encoding the resolved object.
   ///
@@ -1164,14 +1181,14 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeInteractiveInkSplashFactory]
-  ///  * [encodeMaterialStatePropertyBorderSide]
-  ///  * [encodeMaterialStatePropertyColor]
-  ///  * [encodeMaterialStatePropertyDouble]
-  ///  * [encodeMaterialStatePropertyEdgeInsetsGeometry]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
-  ///  * [encodeMaterialStatePropertyOutlinedBorder]
-  ///  * [encodeMaterialStatePropertySize]
-  ///  * [encodeMaterialStatePropertyTextStyle]
+  ///  * [encodeWidgetStatePropertyBorderSide]
+  ///  * [encodeWidgetStatePropertyColor]
+  ///  * [encodeWidgetStatePropertyDouble]
+  ///  * [encodeWidgetStatePropertyEdgeInsetsGeometry]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyOutlinedBorder]
+  ///  * [encodeWidgetStatePropertySize]
+  ///  * [encodeWidgetStatePropertyTextStyle]
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeMouseCursor]
   ///  * [encodeOutlinedBorder]
@@ -1187,37 +1204,37 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'alignment': encodeAlignmentGeometry(value.alignment),
         'animationDuration': value.animationDuration?.inMilliseconds,
-        'backgroundColor': encodeMaterialStatePropertyColor(
+        'backgroundColor': encodeWidgetStatePropertyColor(
           value.backgroundColor,
         ),
-        'elevation': encodeMaterialStatePropertyDouble(value.elevation),
+        'elevation': encodeWidgetStatePropertyDouble(value.elevation),
         'enableFeedback': value.enableFeedback,
-        'fixedSize': encodeMaterialStatePropertySize(value.fixedSize),
-        'foregroundColor': encodeMaterialStatePropertyColor(
+        'fixedSize': encodeWidgetStatePropertySize(value.fixedSize),
+        'foregroundColor': encodeWidgetStatePropertyColor(
           value.foregroundColor,
         ),
-        'iconColor': encodeMaterialStatePropertyColor(value.iconColor),
-        'iconSize': encodeMaterialStatePropertyDouble(value.iconSize),
-        'maximumSize': encodeMaterialStatePropertySize(value.maximumSize),
-        'minimumSize': encodeMaterialStatePropertySize(value.minimumSize),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'iconColor': encodeWidgetStatePropertyColor(value.iconColor),
+        'iconSize': encodeWidgetStatePropertyDouble(value.iconSize),
+        'maximumSize': encodeWidgetStatePropertySize(value.maximumSize),
+        'minimumSize': encodeWidgetStatePropertySize(value.minimumSize),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
-        'overlayColor': encodeMaterialStatePropertyColor(value.overlayColor),
-        'padding': encodeMaterialStatePropertyEdgeInsetsGeometry(value.padding),
-        'shadowColor': encodeMaterialStatePropertyColor(value.shadowColor),
-        'shape': encodeMaterialStatePropertyOutlinedBorder(value.shape),
-        'side': encodeMaterialStatePropertyBorderSide(value.side),
+        'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
+        'padding': encodeWidgetStatePropertyEdgeInsetsGeometry(value.padding),
+        'shadowColor': encodeWidgetStatePropertyColor(value.shadowColor),
+        'shape': encodeWidgetStatePropertyOutlinedBorder(value.shape),
+        'side': encodeWidgetStatePropertyBorderSide(value.side),
         'splashFactory': encodeInteractiveInkFeatureFactory(
           value.splashFactory,
         ),
-        'surfaceTintColor': encodeMaterialStatePropertyColor(
+        'surfaceTintColor': encodeWidgetStatePropertyColor(
           value.surfaceTintColor,
         ),
         'tapTargetSize': encodeMaterialTapTargetSize(
           value.tapTargetSize,
         ),
-        'textStyle': encodeMaterialStatePropertyTextStyle(value.textStyle),
+        'textStyle': encodeWidgetStatePropertyTextStyle(value.textStyle),
         'visualDensity': encodeVisualDensity(
           value.visualDensity,
         ),
@@ -1369,19 +1386,19 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'checkColor': encodeMaterialStatePropertyColor(
+        'checkColor': encodeWidgetStatePropertyColor(
           value.checkColor,
         ),
-        'fillColor': encodeMaterialStatePropertyColor(
+        'fillColor': encodeWidgetStatePropertyColor(
           value.fillColor,
         ),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
-        'overlayColor': encodeMaterialStatePropertyColor(
+        'overlayColor': encodeWidgetStatePropertyColor(
           value.overlayColor,
         ),
         'shape': encodeOutlinedBorder(value.shape),
@@ -1401,6 +1418,7 @@ class ThemeEncoder {
   ///   "backgroundColor": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "checkmarkColor": "<Color>",
+  ///   "color": "<MaterialStateProperty<Color>>"
   ///   "deleteIconColor": "<Color>",
   ///   "disabledColor": "<Color>",
   ///   "elevation": "<double>",
@@ -1427,6 +1445,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeIconThemeData]
+  ///  * [encodeWidgetStateProperty<Color>]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeChipThemeData(ChipThemeData? value) {
@@ -1437,6 +1456,7 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'brightness': encodeBrightness(value.brightness),
         'checkmarkColor': encodeColor(value.checkmarkColor),
+        'color': encodeWidgetStatePropertyColor(value.color),
         'deleteIconColor': encodeColor(value.deleteIconColor),
         'disabledColor': encodeColor(value.disabledColor),
         'elevation': value.elevation,
@@ -1534,12 +1554,13 @@ class ThemeEncoder {
   ///   "outlineVariant": "<Color>",
   ///   "primary": "<Color>",
   ///   "primaryContainer": "<Color>",
+  ///   "scrim": "<Color>","
   ///   "secondary": "<Color>",
   ///   "secondaryContainer": "<Color>",
   ///   "shadow": "<Color>",
   ///   "surface": "<Color>",
   ///   "surfaceTint": "<Color>",
-  ///   "surfaceVariant": "<Color>",
+  ///   "surfaceContainerHighest": "<Color>",
   ///   "tertiary": "<Color>",
   ///   "tertiaryContainer": "<Color>"
   /// }
@@ -1553,13 +1574,13 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'background': encodeColor(value.background),
+        'background': encodeColor(value.surface),
         'brightness': encodeBrightness(value.brightness),
         'error': encodeColor(value.error),
         'errorContainer': encodeColor(value.errorContainer),
         'inversePrimary': encodeColor(value.inversePrimary),
         'inverseSurface': encodeColor(value.inverseSurface),
-        'onBackground': encodeColor(value.onBackground),
+        'onBackground': encodeColor(value.onSurface),
         'onError': encodeColor(value.onError),
         'onErrorContainer': encodeColor(value.onErrorContainer),
         'onInverseSurface': encodeColor(value.onInverseSurface),
@@ -1575,12 +1596,13 @@ class ThemeEncoder {
         'outlineVariant': encodeColor(value.outlineVariant),
         'primary': encodeColor(value.primary),
         'primaryContainer': encodeColor(value.primaryContainer),
+        'scrim': encodeColor(value.scrim),
         'secondary': encodeColor(value.secondary),
         'secondaryContainer': encodeColor(value.secondaryContainer),
         'shadow': encodeColor(value.shadow),
         'surface': encodeColor(value.surface),
+        'surfaceContainerHighest': encodeColor(value.surfaceContainerHighest),
         'surfaceTint': encodeColor(value.surfaceTint),
-        'surfaceVariant': encodeColor(value.surfaceVariant),
         'tertiary': encodeColor(value.tertiary),
         'tertiaryContainer': encodeColor(value.tertiaryContainer),
       };
@@ -1732,15 +1754,19 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "backgroundColor": "<Color>",
+  ///   "cancelButtonStyle": "<ButtonStyle>",
+  ///   "confirmButtonStyle": "<ButtonStyle>",
   ///   "dayBackgroundColor": "<MaterialStateProperty<Color>>",
   ///   "dayForegroundColor": "<MaterialStateProperty<Color>>",
   ///   "dayOverlayColor": "<MaterialStateProperty<Color>>",
   ///   "dayStyle: "<TextStyle>",
+  ///   "dividerColor": "<Color>",
   ///   "elevation": "<double>",
   ///   "headerBackgroundColor": "<Color>",
   ///   "headerForegroundColor": "<Color>",
   ///   "headerHeadlineStyle": "<TextStyle>",
   ///   "headerHelpStyle": "<TextStyle>",
+  ///   "inputDecorationTheme": "<InputDecorationTheme>",
   ///   "rangePickerBackgroundColor": "<Color>",
   ///   "rangePickerElevation": "<double>",
   ///   "rangePickerHeaderBackgroundColor": "<Color>",
@@ -1762,14 +1788,15 @@ class ThemeEncoder {
   ///   "yearBackgroundColor": "<MaterialStateProperty<Color>>",
   ///   "yearForegroundColor": "<MaterialStateProperty<Color>>",
   ///   "yearOverlayColor": "<MaterialStateProperty<Color>>",
-  ///   "yearStyle": "<TextStyle>",
+  ///   "yearStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeBorderSide]
   ///  * [encodeColor]
-  ///  * [encodeMaterialStatePropertyColor]
+  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeWidgetStatePropertyColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeDatePickerThemeData(
@@ -1780,21 +1807,26 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'backgroundColor': encodeColor(value.backgroundColor),
-        'dayBackgroundColor': encodeMaterialStatePropertyColor(
+        'cancelButtonStyle': encodeButtonStyle(value.cancelButtonStyle),
+        'dayBackgroundColor': encodeWidgetStatePropertyColor(
           value.dayBackgroundColor,
         ),
-        'dayForegroundColor': encodeMaterialStatePropertyColor(
+        'dayForegroundColor': encodeWidgetStatePropertyColor(
           value.dayForegroundColor,
         ),
-        'dayOverlayColor': encodeMaterialStatePropertyColor(
+        'dayOverlayColor': encodeWidgetStatePropertyColor(
           value.dayOverlayColor,
         ),
         'dayStyle': encodeTextStyle(value.dayStyle),
+        'dividerColor': encodeColor(value.dividerColor),
         'elevation': value.elevation,
         'headerBackgroundColor': encodeColor(value.headerBackgroundColor),
         'headerForegroundColor': encodeColor(value.headerForegroundColor),
         'headerHeadlineStyle': encodeTextStyle(value.headerHeadlineStyle),
         'headerHelpStyle': encodeTextStyle(value.headerHelpStyle),
+        'inputDecorationTheme': encodeInputDecorationTheme(
+          value.inputDecorationTheme,
+        ),
         'rangePickerBackgroundColor': encodeColor(
           value.rangePickerBackgroundColor,
         ),
@@ -1819,27 +1851,27 @@ class ThemeEncoder {
         'rangeSelectionBackgroundColor': encodeColor(
           value.rangeSelectionBackgroundColor,
         ),
-        'rangeSelectionOverlayColor': encodeMaterialStatePropertyColor(
+        'rangeSelectionOverlayColor': encodeWidgetStatePropertyColor(
           value.rangeSelectionOverlayColor,
         ),
         'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
         'surfaceTintColor': encodeColor(value.surfaceTintColor),
-        'todayBackgroundColor': encodeMaterialStatePropertyColor(
+        'todayBackgroundColor': encodeWidgetStatePropertyColor(
           value.todayBackgroundColor,
         ),
         'todayBorder': encodeBorderSide(value.todayBorder),
-        'todayForegroundColor': encodeMaterialStatePropertyColor(
+        'todayForegroundColor': encodeWidgetStatePropertyColor(
           value.todayForegroundColor,
         ),
         'weekdayStyle': encodeTextStyle(value.weekdayStyle),
-        'yearBackgroundColor': encodeMaterialStatePropertyColor(
+        'yearBackgroundColor': encodeWidgetStatePropertyColor(
           value.yearBackgroundColor,
         ),
-        'yearForegroundColor': encodeMaterialStatePropertyColor(
+        'yearForegroundColor': encodeWidgetStatePropertyColor(
           value.yearForegroundColor,
         ),
-        'yearOverlayColor': encodeMaterialStatePropertyColor(
+        'yearOverlayColor': encodeWidgetStatePropertyColor(
           value.yearOverlayColor,
         ),
         'yearStyle': encodeTextStyle(value.yearStyle),
@@ -1870,7 +1902,7 @@ class ThemeEncoder {
   /// }
   /// ```
   ///
-  /// This won't maintain the [MaterialStateProperty] of each corresponding
+  /// This won't maintain the [WidgetStateProperty] of each corresponding
   /// property, instead will resolve them by using an empty set of states,
   /// returning and encoding the resolved object.
   ///
@@ -1886,10 +1918,10 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'checkboxHorizontalMargin': value.checkboxHorizontalMargin,
         'columnSpacing': value.columnSpacing,
-        'dataRowColor': encodeMaterialStatePropertyColor(
+        'dataRowColor': encodeWidgetStatePropertyColor(
           value.dataRowColor,
         ),
-        'dataRowCursor': encodeMaterialStatePropertyMouseCursor(
+        'dataRowCursor': encodeWidgetStatePropertyMouseCursor(
           value.dataRowCursor,
         ),
         'dataRowMaxHeight': value.dataRowMaxHeight,
@@ -1903,10 +1935,10 @@ class ThemeEncoder {
               : value.decoration as BoxDecoration,
         ),
         'dividerThickness': value.dividerThickness,
-        'headingCellCursor': encodeMaterialStatePropertyMouseCursor(
+        'headingCellCursor': encodeWidgetStatePropertyMouseCursor(
           value.headingCellCursor,
         ),
-        'headingRowColor': encodeMaterialStatePropertyColor(
+        'headingRowColor': encodeWidgetStatePropertyColor(
           value.headingRowColor,
         ),
         'headingRowHeight': value.headingRowHeight,
@@ -2526,7 +2558,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBoxConstraints]
   ///  * [encodeColor]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeFloatingActionButtonThemeData(
@@ -2558,7 +2590,7 @@ class ThemeEncoder {
         'largeSizeConstraints': encodeBoxConstraints(
           value.largeSizeConstraints,
         ),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
         'shape': encodeShapeBorder(value.shape),
@@ -3220,6 +3252,7 @@ class ThemeEncoder {
   ///   "focusedErrorBorder": "<InputBorder>",
   ///   "helperMaxLines": "<int>",
   ///   "helperStyle": "<TextStyle>",
+  ///   "hintFadeDuration": "<Duration>",
   ///   "hintStyle": "<TextStyle>",
   ///   "hoverColor": "<Color>",
   ///   "iconColor": "<Color>",
@@ -3274,6 +3307,7 @@ class ThemeEncoder {
         'focusedErrorBorder': encodeInputBorder(value.focusedErrorBorder),
         'helperMaxLines': value.helperMaxLines,
         'helperStyle': encodeTextStyle(value.helperStyle),
+        'hintFadeDuration': value.hintFadeDuration?.inMilliseconds,
         'hintStyle': encodeTextStyle(value.hintStyle),
         'hoverColor': encodeColor(value.hoverColor),
         'iconColor': encodeColor(value.iconColor),
@@ -3421,7 +3455,7 @@ class ThemeEncoder {
         ),
         'minLeadingWidth': value.minLeadingWidth,
         'minVerticalPadding': value.minVerticalPadding,
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
         'selectedColor': encodeColor(value.selectedColor),
@@ -3594,459 +3628,6 @@ class ThemeEncoder {
           '800': encodeColor(value.shade800),
           '900': encodeColor(value.shade900),
         },
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<bool>",
-  ///   "dragged": "<bool>",
-  ///   "empty": "<bool>",
-  ///   "error": "<bool>",
-  ///   "focused": "<bool>",
-  ///   "hovered": "<bool>",
-  ///   "pressed": "<bool>",
-  ///   "scrolledUnder": "<bool>",
-  ///   "selected": "<bool>"
-  /// }
-  /// ```
-  static Map<String, dynamic>? encodeMaterialStatePropertyBool(
-    MaterialStateProperty<bool?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': value.resolve({MaterialState.disabled}),
-        'dragged': value.resolve({MaterialState.dragged}),
-        'empty': value.resolve({}),
-        'error': value.resolve({MaterialState.error}),
-        'focused': value.resolve({MaterialState.focused}),
-        'hovered': value.resolve({MaterialState.hovered}),
-        'pressed': value.resolve({MaterialState.pressed}),
-        'scrolledUnder': value.resolve({MaterialState.scrolledUnder}),
-        'selected': value.resolve({MaterialState.selected}),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<BorderSide>",
-  ///   "dragged": "<BorderSide>",
-  ///   "empty": "<BorderSide>",
-  ///   "error": "<BorderSide>",
-  ///   "focused": "<BorderSide>",
-  ///   "hovered": "<BorderSide>",
-  ///   "pressed": "<BorderSide>",
-  ///   "scrolledUnder": "<BorderSide>",
-  ///   "selected": "<BorderSide>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeMaterialStatePropertyBorderSide(
-    MaterialStateProperty<BorderSide?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeBorderSide(value.resolve({MaterialState.disabled})),
-        'dragged': encodeBorderSide(value.resolve({MaterialState.dragged})),
-        'empty': encodeBorderSide(value.resolve({})),
-        'error': encodeBorderSide(value.resolve({MaterialState.error})),
-        'focused': encodeBorderSide(value.resolve({MaterialState.focused})),
-        'hovered': encodeBorderSide(value.resolve({MaterialState.hovered})),
-        'pressed': encodeBorderSide(value.resolve({MaterialState.pressed})),
-        'scrolledUnder': encodeBorderSide(value.resolve(
-          {MaterialState.scrolledUnder},
-        )),
-        'selected': encodeBorderSide(value.resolve({MaterialState.selected})),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<Color>",
-  ///   "dragged": "<Color>",
-  ///   "empty": "<Color>",
-  ///   "error": "<Color>",
-  ///   "focused": "<Color>",
-  ///   "hovered": "<Color>",
-  ///   "pressed": "<Color>",
-  ///   "scrolledUnder": "<Color>",
-  ///   "selected": "<Color>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeColor]
-  static Map<String, dynamic>? encodeMaterialStatePropertyColor(
-    MaterialStateProperty<Color?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeColor(value.resolve({MaterialState.disabled})),
-        'dragged': encodeColor(value.resolve({MaterialState.dragged})),
-        'empty': encodeColor(value.resolve({})),
-        'error': encodeColor(value.resolve({MaterialState.error})),
-        'focused': encodeColor(value.resolve({MaterialState.focused})),
-        'hovered': encodeColor(value.resolve({MaterialState.hovered})),
-        'pressed': encodeColor(value.resolve({MaterialState.pressed})),
-        'scrolledUnder': encodeColor(value.resolve(
-          {MaterialState.scrolledUnder},
-        )),
-        'selected': encodeColor(value.resolve({MaterialState.selected})),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<double>",
-  ///   "dragged": "<double>",
-  ///   "empty": "<double>",
-  ///   "error": "<double>",
-  ///   "focused": "<double>",
-  ///   "hovered": "<double>",
-  ///   "pressed": "<double>",
-  ///   "scrolledUnder": "<double>",
-  ///   "selected": "<double>"
-  /// }
-  /// ```
-  static Map<String, dynamic>? encodeMaterialStatePropertyDouble(
-    MaterialStateProperty<double?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': value.resolve({MaterialState.disabled}),
-        'dragged': value.resolve({MaterialState.dragged}),
-        'empty': value.resolve({}),
-        'error': value.resolve({MaterialState.error}),
-        'focused': value.resolve({MaterialState.focused}),
-        'hovered': value.resolve({MaterialState.hovered}),
-        'pressed': value.resolve({MaterialState.pressed}),
-        'scrolledUnder': value.resolve({MaterialState.scrolledUnder}),
-        'selected': value.resolve({MaterialState.selected}),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<EdgeInsetsGeometry>",
-  ///   "dragged": "<EdgeInsetsGeometry>",
-  ///   "empty": "<EdgeInsetsGeometry>",
-  ///   "error": "<EdgeInsetsGeometry>",
-  ///   "focused": "<EdgeInsetsGeometry>",
-  ///   "hovered": "<EdgeInsetsGeometry>",
-  ///   "pressed": "<EdgeInsetsGeometry>",
-  ///   "scrolledUnder": "<EdgeInsetsGeometry>",
-  ///   "selected": "<EdgeInsetsGeometry>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeEdgeInsetsGeometry]
-  static Map<String, dynamic>? encodeMaterialStatePropertyEdgeInsetsGeometry(
-    MaterialStateProperty<EdgeInsetsGeometry?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.disabled}) as EdgeInsets?,
-        ),
-        'dragged': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.dragged}) as EdgeInsets?,
-        ),
-        'empty': encodeEdgeInsetsGeometry(
-          value.resolve({}) as EdgeInsets?,
-        ),
-        'error': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.error}) as EdgeInsets?,
-        ),
-        'focused': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.focused}) as EdgeInsets?,
-        ),
-        'hovered': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.hovered}) as EdgeInsets?,
-        ),
-        'pressed': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.pressed}) as EdgeInsets?,
-        ),
-        'scrolledUnder': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.scrolledUnder}) as EdgeInsets?,
-        ),
-        'selected': encodeEdgeInsetsGeometry(
-          value.resolve({MaterialState.selected}) as EdgeInsets?,
-        ),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<IconThemeData>",
-  ///   "dragged": "<IconThemeData>",
-  ///   "empty": "<IconThemeData>",
-  ///   "error": "<IconThemeData>",
-  ///   "focused": "<IconThemeData>",
-  ///   "hovered": "<IconThemeData>",
-  ///   "pressed": "<IconThemeData>",
-  ///   "scrolledUnder": "<IconThemeData>",
-  ///   "selected": "<IconThemeData>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeIconThemeData]
-  static Map<String, dynamic>? encodeMaterialStatePropertyIconThemeData(
-    MaterialStateProperty<IconThemeData?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeIconThemeData(
-          value.resolve({MaterialState.disabled}),
-        ),
-        'dragged': encodeIconThemeData(value.resolve({MaterialState.dragged})),
-        'empty': encodeIconThemeData(value.resolve({})),
-        'error': encodeIconThemeData(value.resolve({MaterialState.error})),
-        'focused': encodeIconThemeData(value.resolve({MaterialState.focused})),
-        'hovered': encodeIconThemeData(value.resolve({MaterialState.hovered})),
-        'pressed': encodeIconThemeData(value.resolve({MaterialState.pressed})),
-        'scrolledUnder': encodeIconThemeData(
-          value.resolve({MaterialState.selected}),
-        ),
-        'selected': encodeIconThemeData(
-          value.resolve({MaterialState.selected}),
-        ),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<MouseCursor>",
-  ///   "dragged": "<MouseCursor>",
-  ///   "empty": "<MouseCursor>",
-  ///   "error": "<MouseCursor>",
-  ///   "focused": "<MouseCursor>",
-  ///   "hovered": "<MouseCursor>",
-  ///   "pressed": "<MouseCursor>",
-  ///   "scrolledUnder": "<MouseCursor>",
-  ///   "selected": "<MouseCursor>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeMouseCursor]
-  static Map<String, dynamic>? encodeMaterialStatePropertyMouseCursor(
-    MaterialStateProperty<MouseCursor?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeMouseCursor(value.resolve({MaterialState.disabled})),
-        'dragged': encodeMouseCursor(value.resolve({MaterialState.dragged})),
-        'empty': encodeMouseCursor(value.resolve({})),
-        'error': encodeMouseCursor(value.resolve({MaterialState.error})),
-        'focused': encodeMouseCursor(value.resolve({MaterialState.focused})),
-        'hovered': encodeMouseCursor(value.resolve({MaterialState.hovered})),
-        'pressed': encodeMouseCursor(value.resolve({MaterialState.pressed})),
-        'scrolledUnder': encodeMouseCursor(value.resolve(
-          {MaterialState.scrolledUnder},
-        )),
-        'selected': encodeMouseCursor(value.resolve({MaterialState.selected})),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<OutlinedBorder>",
-  ///   "dragged": "<OutlinedBorder>",
-  ///   "empty": "<OutlinedBorder>",
-  ///   "error": "<OutlinedBorder>",
-  ///   "focused": "<OutlinedBorder>",
-  ///   "hovered": "<OutlinedBorder>",
-  ///   "pressed": "<OutlinedBorder>",
-  ///   "scrolledUnder": "<OutlinedBorder>",
-  ///   "selected": "<OutlinedBorder>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeOutlinedBorder]
-  static Map<String, dynamic>? encodeMaterialStatePropertyOutlinedBorder(
-    MaterialStateProperty<OutlinedBorder?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeOutlinedBorder(
-          value.resolve({MaterialState.disabled}),
-        ),
-        'dragged': encodeOutlinedBorder(value.resolve({MaterialState.dragged})),
-        'empty': encodeOutlinedBorder(value.resolve({})),
-        'error': encodeOutlinedBorder(value.resolve({MaterialState.error})),
-        'focused': encodeOutlinedBorder(value.resolve({MaterialState.focused})),
-        'hovered': encodeOutlinedBorder(value.resolve({MaterialState.hovered})),
-        'pressed': encodeOutlinedBorder(value.resolve({MaterialState.pressed})),
-        'scrolledUnder': encodeOutlinedBorder(
-          value.resolve({MaterialState.scrolledUnder}),
-        ),
-        'selected': encodeOutlinedBorder(
-          value.resolve({MaterialState.selected}),
-        ),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<Size>",
-  ///   "dragged": "<Size>",
-  ///   "empty": "<Size>",
-  ///   "error": "<Size>",
-  ///   "focused": "<Size>",
-  ///   "hovered": "<Size>",
-  ///   "pressed": "<Size>",
-  ///   "scrolledUnder": "<Size>",
-  ///   "selected": "<Size>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeSize]
-  static Map<String, dynamic>? encodeMaterialStatePropertySize(
-    MaterialStateProperty<Size?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeSize(value.resolve({MaterialState.disabled})),
-        'dragged': encodeSize(value.resolve({MaterialState.dragged})),
-        'empty': encodeSize(value.resolve({})),
-        'error': encodeSize(value.resolve({MaterialState.error})),
-        'focused': encodeSize(value.resolve({MaterialState.focused})),
-        'hovered': encodeSize(value.resolve({MaterialState.hovered})),
-        'pressed': encodeSize(value.resolve({MaterialState.pressed})),
-        'scrolledUnder':
-            encodeSize(value.resolve({MaterialState.scrolledUnder})),
-        'selected': encodeSize(value.resolve({MaterialState.selected})),
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the [value] into a JSON representation.
-  ///
-  ///
-  /// ```json
-  /// {
-  ///   "disabled": "<TextStyle>",
-  ///   "dragged": "<TextStyle>",
-  ///   "empty": "<TextStyle>",
-  ///   "error": "<TextStyle>",
-  ///   "focused": "<TextStyle>",
-  ///   "hovered": "<TextStyle>",
-  ///   "pressed": "<TextStyle>",
-  ///   "scrolledUnder": "<TextStyle>",
-  ///   "selected": "<TextStyle>",
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeMaterialStatePropertyTextStyle(
-    MaterialStateProperty<TextStyle?>? value, {
-    bool validate = true,
-  }) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = {
-        'disabled': encodeTextStyle(value.resolve({MaterialState.disabled})),
-        'dragged': encodeTextStyle(value.resolve({MaterialState.dragged})),
-        'empty': encodeTextStyle(value.resolve({})),
-        'error': encodeTextStyle(value.resolve({MaterialState.error})),
-        'focused': encodeTextStyle(value.resolve({MaterialState.focused})),
-        'hovered': encodeTextStyle(value.resolve({MaterialState.hovered})),
-        'pressed': encodeTextStyle(value.resolve({MaterialState.pressed})),
-        'scrolledUnder': encodeTextStyle(value.resolve(
-          {MaterialState.scrolledUnder},
-        )),
-        'selected': encodeTextStyle(value.resolve({MaterialState.selected})),
       };
     }
 
@@ -4257,12 +3838,12 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeAlignment]
-  ///  * [encodeMaterialStatePropertyBorderSide]
-  ///  * [encodeMaterialStatePropertyColor]
-  ///  * [encodeMaterialStatePropertyDouble]
-  ///  * [encodeMaterialStatePropertyEdgeInsetsGeometry]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
-  ///  * [encodeMaterialStatePropertySize]
+  ///  * [encodeWidgetStatePropertyBorderSide]
+  ///  * [encodeWidgetStatePropertyColor]
+  ///  * [encodeWidgetStatePropertyDouble]
+  ///  * [encodeWidgetStatePropertyEdgeInsetsGeometry]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertySize]
   ///  * [encodeVisualDensity]
   static Map<String, dynamic>? encodeMenuStyle(MenuStyle? value) {
     Map<String, dynamic>? result;
@@ -4270,21 +3851,21 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'alignment': encodeAlignmentGeometry(value.alignment),
-        'backgroundColor': encodeMaterialStatePropertyColor(
+        'backgroundColor': encodeWidgetStatePropertyColor(
           value.backgroundColor,
         ),
-        'elevation': encodeMaterialStatePropertyDouble(value.elevation),
-        'fixedSize': encodeMaterialStatePropertySize(value.fixedSize),
-        'maximumSize': encodeMaterialStatePropertySize(value.maximumSize),
-        'minimumSize': encodeMaterialStatePropertySize(value.minimumSize),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'elevation': encodeWidgetStatePropertyDouble(value.elevation),
+        'fixedSize': encodeWidgetStatePropertySize(value.fixedSize),
+        'maximumSize': encodeWidgetStatePropertySize(value.maximumSize),
+        'minimumSize': encodeWidgetStatePropertySize(value.minimumSize),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
-        'padding': encodeMaterialStatePropertyEdgeInsetsGeometry(value.padding),
-        'shadowColor': encodeMaterialStatePropertyColor(value.shadowColor),
-        'shape': encodeMaterialStatePropertyOutlinedBorder(value.shape),
-        'side': encodeMaterialStatePropertyBorderSide(value.side),
-        'surfaceTintColor': encodeMaterialStatePropertyColor(
+        'padding': encodeWidgetStatePropertyEdgeInsetsGeometry(value.padding),
+        'shadowColor': encodeWidgetStatePropertyColor(value.shadowColor),
+        'shape': encodeWidgetStatePropertyOutlinedBorder(value.shape),
+        'side': encodeWidgetStatePropertyBorderSide(value.side),
+        'surfaceTintColor': encodeWidgetStatePropertyColor(
           value.surfaceTintColor,
         ),
         'visualDensity': encodeVisualDensity(value.visualDensity),
@@ -4370,12 +3951,12 @@ class ThemeEncoder {
         result = {
           'type': 'uncontrolled',
         };
-      } else if (MaterialStateMouseCursor.clickable == value) {
+      } else if (WidgetStateMouseCursor.clickable == value) {
         result = {
           'cursor': 'clickable',
           'type': 'material',
         };
-      } else if (MaterialStateMouseCursor.textable == value) {
+      } else if (WidgetStateMouseCursor.textable == value) {
         result = {
           'cursor': 'textable',
           'type': 'material',
@@ -4585,8 +4166,8 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  ///  * [encodeMaterialStatePropertyIconThemeData]
-  ///  * [encodeMaterialStatePropertyTextStyle]
+  ///  * [encodeWidgetStatePropertyIconThemeData]
+  ///  * [encodeWidgetStatePropertyTextStyle]
   ///  * [encodeNavigationDestinationLabelBehavior]
   static Map<String, dynamic>? encodeNavigationBarThemeData(
     NavigationBarThemeData? value,
@@ -4598,7 +4179,7 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'elevation': value.elevation,
         'height': value.height,
-        'iconTheme': encodeMaterialStatePropertyIconThemeData(
+        'iconTheme': encodeWidgetStatePropertyIconThemeData(
           value.iconTheme,
         ),
         'indicatorColor': encodeColor(value.indicatorColor),
@@ -4606,7 +4187,7 @@ class ThemeEncoder {
         'labelBehavior': encodeNavigationDestinationLabelBehavior(
           value.labelBehavior,
         ),
-        'labelTextStyle': encodeMaterialStatePropertyTextStyle(
+        'labelTextStyle': encodeWidgetStatePropertyTextStyle(
           value.labelTextStyle,
         ),
         'shadowColor': encodeColor(value.shadowColor),
@@ -4914,6 +4495,26 @@ class ThemeEncoder {
   }
 
   /// Encodes the [value] to a [String].  Supported values are:
+  /// * `deferToChild`
+  /// * `max`
+  static String? encodeOverflowBoxFit(OverflowBoxFit? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case OverflowBoxFit.deferToChild:
+          result = 'deferToChild';
+          break;
+
+        case OverflowBoxFit.max:
+          result = 'max';
+          break;
+      }
+    }
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] to a [String].  Supported values are:
   /// * `cupertino`
   /// * `fadeUpwards`
   /// * `openUpwards`
@@ -5062,6 +4663,8 @@ class ThemeEncoder {
   ///   "color": "<Color>",
   ///   "elevation": "<double>",
   ///   "enableFeedback": "<bool>",
+  ///   "iconColor": "<Color>",
+  ///   "iconSize": "<double>",
   ///   "labelTextStyle": "<MaterialStateProperty<TextStyle>>",
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "position": "<PopupMenuPosition>",
@@ -5074,8 +4677,8 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
-  ///  * [encodeMaterialStatePropertyTextStyle]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyTextStyle]
   ///  * [encodePopupMenuPosition]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
@@ -5089,10 +4692,12 @@ class ThemeEncoder {
         'color': encodeColor(value.color),
         'elevation': value.elevation,
         'enableFeedback': value.enableFeedback,
-        'labelTextStyle': encodeMaterialStatePropertyTextStyle(
+        'iconColor': encodeColor(value.iconColor),
+        'iconSize': value.iconSize,
+        'labelTextStyle': encodeWidgetStatePropertyTextStyle(
           value.labelTextStyle,
         ),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
         'position': encodePopupMenuPosition(value.position),
@@ -5164,16 +4769,16 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'fillColor': encodeMaterialStatePropertyColor(
+        'fillColor': encodeWidgetStatePropertyColor(
           value.fillColor,
         ),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
-        'overlayColor': encodeMaterialStatePropertyColor(
+        'overlayColor': encodeWidgetStatePropertyColor(
           value.overlayColor,
         ),
         'splashRadius': value.splashRadius,
@@ -5505,9 +5110,9 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
-  ///  * [encodeMaterialStatePropertyBool]
-  ///  * [encodeMaterialStatePropertyColor]
-  ///  * [encodeMaterialStatePropertyDouble]
+  ///  * [encodeWidgetStatePropertyBool]
+  ///  * [encodeWidgetStatePropertyColor]
+  ///  * [encodeWidgetStatePropertyDouble]
   ///  * [encodeRadius]
   static Map<String, dynamic>? encodeScrollbarThemeData(
     ScrollbarThemeData? value,
@@ -5521,18 +5126,18 @@ class ThemeEncoder {
         'mainAxisMargin': value.mainAxisMargin,
         'minThumbLength': value.minThumbLength,
         'radius': encodeRadius(value.radius),
-        'thickness': encodeMaterialStatePropertyDouble(
+        'thickness': encodeWidgetStatePropertyDouble(
           value.thickness,
         ),
-        'thumbColor': encodeMaterialStatePropertyColor(value.thumbColor),
-        'thumbVisibility': encodeMaterialStatePropertyBool(
+        'thumbColor': encodeWidgetStatePropertyColor(value.thumbColor),
+        'thumbVisibility': encodeWidgetStatePropertyBool(
           value.thumbVisibility,
         ),
-        'trackBorderColor': encodeMaterialStatePropertyColor(
+        'trackBorderColor': encodeWidgetStatePropertyColor(
           value.trackBorderColor,
         ),
-        'trackColor': encodeMaterialStatePropertyColor(value.trackColor),
-        'trackVisibility': encodeMaterialStatePropertyBool(
+        'trackColor': encodeWidgetStatePropertyColor(value.trackColor),
+        'trackVisibility': encodeWidgetStatePropertyBool(
           value.trackVisibility,
         ),
       };
@@ -5556,18 +5161,19 @@ class ThemeEncoder {
   ///   "shape": MaterialStateProperty<OutlinedBorder>,
   ///   "side": "<MaterialStateProperty<BorderSide>>",
   ///   "surfaceTintColor": "<MaterialStateProperty<Color>>",
-  ///   "textStyle": "<MaterialStateProperty<TextStyle>>"
+  ///   "textStyle": "<MaterialStateProperty<TextStyle>>",
+  ///   "textCapitalization": "<TextCapitalization>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeBoxConstraints]
-  ///  * [encodeMaterialStatePropertyBorderSide]
-  ///  * [encodeMaterialStatePropertyColor]
-  ///  * [encodeMaterialStatePropertyDouble]
-  ///  * [encodeMaterialStatePropertyEdgeInsetsGeometry]
-  ///  * [encodeMaterialStatePropertyOutlinedBorder]
-  ///  * [encodeMaterialStatePropertyTextStyle]
+  ///  * [encodeWidgetStatePropertyBorderSide]
+  ///  * [encodeWidgetStatePropertyColor]
+  ///  * [encodeWidgetStatePropertyDouble]
+  ///  * [encodeWidgetStatePropertyEdgeInsetsGeometry]
+  ///  * [encodeWidgetStatePropertyOutlinedBorder]
+  ///  * [encodeWidgetStatePropertyTextStyle]
   static Map<String, dynamic>? encodeSearchBarThemeData(
     SearchBarThemeData? value,
   ) {
@@ -5575,21 +5181,24 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'backgroundColor': encodeMaterialStatePropertyColor(
+        'backgroundColor': encodeWidgetStatePropertyColor(
           value.backgroundColor,
         ),
         'constraints': encodeBoxConstraints(value.constraints),
-        'elevation': encodeMaterialStatePropertyDouble(value.elevation),
-        'hintStyle': encodeMaterialStatePropertyTextStyle(value.hintStyle),
-        'overlayColor': encodeMaterialStatePropertyColor(value.overlayColor),
-        'padding': encodeMaterialStatePropertyEdgeInsetsGeometry(value.padding),
-        'shadowColor': encodeMaterialStatePropertyColor(value.shadowColor),
-        'shape': encodeMaterialStatePropertyOutlinedBorder(value.shape),
-        'side': encodeMaterialStatePropertyBorderSide(value.side),
-        'surfaceTintColor': encodeMaterialStatePropertyColor(
+        'elevation': encodeWidgetStatePropertyDouble(value.elevation),
+        'hintStyle': encodeWidgetStatePropertyTextStyle(value.hintStyle),
+        'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
+        'padding': encodeWidgetStatePropertyEdgeInsetsGeometry(value.padding),
+        'shadowColor': encodeWidgetStatePropertyColor(value.shadowColor),
+        'shape': encodeWidgetStatePropertyOutlinedBorder(value.shape),
+        'side': encodeWidgetStatePropertyBorderSide(value.side),
+        'surfaceTintColor': encodeWidgetStatePropertyColor(
           value.surfaceTintColor,
         ),
-        'textStyle': encodeMaterialStatePropertyTextStyle(value.textStyle),
+        'textStyle': encodeWidgetStatePropertyTextStyle(value.textStyle),
+        'textCapitalization': encodeTextCapitalization(
+          value.textCapitalization,
+        ),
       };
     }
 
@@ -5874,12 +5483,46 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `slideOnly`
+  ///  * `slideThumb`
+  ///  * `tapAndSlide``
+  ///  * `tapOnly`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeSliderInteraction(
+    SliderInteraction? value,
+  ) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case SliderInteraction.slideOnly:
+          result = 'slideOnly';
+          break;
+        case SliderInteraction.slideThumb:
+          result = 'slideThumb';
+          break;
+        case SliderInteraction.tapAndSlide:
+          result = 'tapAndSlide';
+          break;
+        case SliderInteraction.tapOnly:
+          result = 'tapOnly';
+          break;
+      }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
   /// Encodes the given [value] to a JSON representation.
   ///
   /// ```json
   /// {
   ///   "activeTickMarkColor": "<Color>",
   ///   "activeTrackColor": "<Color>",
+  ///   "allowedInteraction": "<SliderInteraction>",
   ///   "disabledActiveTickMarkColor": "<Color>",
   ///   "disabledActiveTrackColor": "<Color>",
   ///   "disabledInactiveTickMarkColor": "<Color>",
@@ -5912,9 +5555,10 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeShowValueIndicator]
   ///  * [encodeSliderComponentShape]
+  ///  * [encodeSliderInteraction]
   ///  * [encodeSliderTickMarkShape]
   ///  * [encodeRangeSliderThumbShape]
   ///  * [encodeRangeSliderTickMarkShape]
@@ -5944,7 +5588,7 @@ class ThemeEncoder {
         'inactiveTickMarkColor': encodeColor(value.inactiveTickMarkColor),
         'inactiveTrackColor': encodeColor(value.inactiveTrackColor),
         'minThumbSeparation': (value.minThumbSeparation),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
         'overlappingShapeStrokeColor': encodeColor(
@@ -6248,12 +5892,15 @@ class ThemeEncoder {
   ///   "thumbColor": "<MaterialStateProperty<Color>>",
   ///   "trackColor": "<MaterialStateProperty<Color>>",
   ///   "trackOutlineColor": "<MaterialStateProperty<Color>>"
+  ///   "trackOutlineWidth": "<MaterialStateProperty<double>>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [encodeColor]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyColor]
+  ///  * [encodeWidgetStatePropertyDouble]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeMouseCursor]
   static Map<String, dynamic>? encodeSwitchThemeData(
@@ -6267,21 +5914,24 @@ class ThemeEncoder {
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
-        'overlayColor': encodeMaterialStatePropertyColor(
+        'overlayColor': encodeWidgetStatePropertyColor(
           value.overlayColor,
         ),
         'splashRadius': value.splashRadius,
-        'thumbColor': encodeMaterialStatePropertyColor(
+        'thumbColor': encodeWidgetStatePropertyColor(
           value.thumbColor,
         ),
-        'trackColor': encodeMaterialStatePropertyColor(
+        'trackColor': encodeWidgetStatePropertyColor(
           value.trackColor,
         ),
-        'trackOutlineColor': encodeMaterialStatePropertyColor(
+        'trackOutlineColor': encodeWidgetStatePropertyColor(
           value.trackColor,
+        ),
+        'trackOutlineWidth': encodeWidgetStatePropertyDouble(
+          value.trackOutlineWidth,
         ),
       };
     }
@@ -6349,6 +5999,37 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `center`
+  ///  * `fill`
+  ///  * `start`
+  ///  * `startOffset`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  static String? encodeTabAlignment(TabAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case TabAlignment.center:
+          result = 'center';
+          break;
+        case TabAlignment.fill:
+          result = 'fill';
+          break;
+        case TabAlignment.start:
+          result = 'start';
+          break;
+        case TabAlignment.startOffset:
+          result = 'startOffset';
+          break;
+      }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
   ///  * `label`
   ///  * `tab`
   ///
@@ -6376,6 +6057,7 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "dividerColor": "<Color>",
+  ///   "dividerHeight": "<double>",
   ///   "indicatorColor": "<Color>",
   ///   "indicatorSize": "<TabBarIndicatorSize>",
   ///   "labelPadding": "<EdgeInsetsGeometry>",
@@ -6384,6 +6066,7 @@ class ThemeEncoder {
   ///   "mouseCursor": "<MaterialStateProperty<MouseCursor>>",
   ///   "overlayColor": "<MaterialStateProperty<Color>>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
+  ///   "tabAlignment": "<TabAlignment>"
   ///   "unselectedLabelColor": "<Color>",
   ///   "unselectedLabelStyle": "<TextStyle>",
   /// }
@@ -6393,8 +6076,9 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeInteractiveInkFeatureFactory]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
-  ///  * [encodeMaterialStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeTabAlignment]
   ///  * [encodeTabBarIndicatorSize]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeTabBarTheme(TabBarTheme? value) {
@@ -6403,21 +6087,23 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'dividerColor': encodeColor(value.dividerColor),
+        'dividerHeight': value.dividerHeight,
         'indicatorColor': encodeColor(value.dividerColor),
         'indicatorSize': encodeTabBarIndicatorSize(value.indicatorSize),
         'labelPadding':
             encodeEdgeInsetsGeometry(value.labelPadding as EdgeInsets?),
         'labelColor': encodeColor(value.labelColor),
         'labelStyle': encodeTextStyle(value.labelStyle),
-        'mouseCursor': encodeMaterialStatePropertyMouseCursor(
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
           value.mouseCursor,
         ),
-        'overlayColor': encodeMaterialStatePropertyColor(
+        'overlayColor': encodeWidgetStatePropertyColor(
           value.overlayColor,
         ),
         'splashFactory': encodeInteractiveInkFeatureFactory(
           value.splashFactory,
         ),
+        'tabAlignment': encodeTabAlignment(value.tabAlignment),
         'unselectedLabelColor': encodeColor(value.unselectedLabelColor),
         'unselectedLabelStyle': encodeTextStyle(value.unselectedLabelStyle),
       };
@@ -7142,13 +6828,11 @@ class ThemeEncoder {
         'decorationThickness': value.decorationThickness,
         'fontFamily': value.fontFamily,
         'fontFamilyFallback': value.fontFamilyFallback,
-        'fontFeatures': value.fontFeatures == null
-            ? null
-            : value.fontFeatures!
-                .map(
-                  (value) => encodeFontFeature(value),
-                )
-                .toList(),
+        'fontFeatures': value.fontFeatures
+            ?.map(
+              (value) => encodeFontFeature(value),
+            )
+            .toList(),
         'fontSize': value.fontSize,
         'fontStyle': encodeFontStyle(value.fontStyle),
         'fontVariations': value.fontVariations
@@ -7165,13 +6849,11 @@ class ThemeEncoder {
         'letterSpacing': value.letterSpacing,
         'locale': encodeLocale(value.locale),
         'overflow': encodeTextOverflow(value.overflow),
-        'shadows': value.shadows == null
-            ? null
-            : value.shadows!
-                .map(
-                  (value) => encodeShadow(value),
-                )
-                .toList(),
+        'shadows': value.shadows
+            ?.map(
+              (value) => encodeShadow(value),
+            )
+            .toList(),
         'textBaseline': encodeTextBaseline(value.textBaseline),
         'wordSpacing': value.wordSpacing,
       };
@@ -7258,6 +6940,7 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "actionIconThemeData": "<ActionIconThemeData>",
   ///   "appBarTheme": "<AppBarTheme>",
   ///   "applyElevationOverlayColor": "<bool>",
   ///   "badgeTheme": "<BadgeThemeData>",
@@ -7347,6 +7030,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeActionIconThemeData]
   ///  * [encodeAppBarTheme]
   ///  * [encodeBadgeThemeData]
   ///  * [encodeBrightness]
@@ -7379,7 +7063,6 @@ class ThemeEncoder {
   ///  * [encodeMenuButtonThemeData]
   ///  * [encodeMenuThemeData]
   ///  * [encodeNavigationBarThemeData]
-  ///  * [encodeNavigationDrawerThemeData]
   ///  * [encodeNavigationRailThemeData]
   ///  * [encodeOutlinedButtonThemeData]
   ///  * [encodePopupMenuThemeData]
@@ -7403,6 +7086,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'actionIconTheme': encodeActionIconThemeData(value.actionIconTheme),
         'appBarTheme': encodeAppBarTheme(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
         'badgeTheme': encodeBadgeThemeData(value.badgeTheme),
@@ -7815,6 +7499,502 @@ class ThemeEncoder {
       } else if (value == VisualDensity.standard) {
         result = 'standard';
       }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  static Map<String, dynamic>? encodeWidgetStateColor(
+    WidgetStateColor? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeColor(value.resolve({WidgetState.disabled})),
+        'dragged': encodeColor(value.resolve({WidgetState.dragged})),
+        'empty': encodeColor(value.resolve({})),
+        'error': encodeColor(value.resolve({WidgetState.error})),
+        'focused': encodeColor(value.resolve({WidgetState.focused})),
+        'hovered': encodeColor(value.resolve({WidgetState.hovered})),
+        'pressed': encodeColor(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeColor(value.resolve(
+          {WidgetState.scrolledUnder},
+        )),
+        'selected': encodeColor(value.resolve({WidgetState.selected})),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<bool>",
+  ///   "dragged": "<bool>",
+  ///   "empty": "<bool>",
+  ///   "error": "<bool>",
+  ///   "focused": "<bool>",
+  ///   "hovered": "<bool>",
+  ///   "pressed": "<bool>",
+  ///   "scrolledUnder": "<bool>",
+  ///   "selected": "<bool>"
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeWidgetStatePropertyBool(
+    WidgetStateProperty<bool?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': value.resolve({WidgetState.disabled}),
+        'dragged': value.resolve({WidgetState.dragged}),
+        'empty': value.resolve({}),
+        'error': value.resolve({WidgetState.error}),
+        'focused': value.resolve({WidgetState.focused}),
+        'hovered': value.resolve({WidgetState.hovered}),
+        'pressed': value.resolve({WidgetState.pressed}),
+        'scrolledUnder': value.resolve({WidgetState.scrolledUnder}),
+        'selected': value.resolve({WidgetState.selected}),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<BorderSide>",
+  ///   "dragged": "<BorderSide>",
+  ///   "empty": "<BorderSide>",
+  ///   "error": "<BorderSide>",
+  ///   "focused": "<BorderSide>",
+  ///   "hovered": "<BorderSide>",
+  ///   "pressed": "<BorderSide>",
+  ///   "scrolledUnder": "<BorderSide>",
+  ///   "selected": "<BorderSide>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeBorderSide]
+  static Map<String, dynamic>? encodeWidgetStatePropertyBorderSide(
+    WidgetStateProperty<BorderSide?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeBorderSide(value.resolve({WidgetState.disabled})),
+        'dragged': encodeBorderSide(value.resolve({WidgetState.dragged})),
+        'empty': encodeBorderSide(value.resolve({})),
+        'error': encodeBorderSide(value.resolve({WidgetState.error})),
+        'focused': encodeBorderSide(value.resolve({WidgetState.focused})),
+        'hovered': encodeBorderSide(value.resolve({WidgetState.hovered})),
+        'pressed': encodeBorderSide(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeBorderSide(value.resolve(
+          {WidgetState.scrolledUnder},
+        )),
+        'selected': encodeBorderSide(value.resolve({WidgetState.selected})),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Color>",
+  ///   "dragged": "<Color>",
+  ///   "empty": "<Color>",
+  ///   "error": "<Color>",
+  ///   "focused": "<Color>",
+  ///   "hovered": "<Color>",
+  ///   "pressed": "<Color>",
+  ///   "scrolledUnder": "<Color>",
+  ///   "selected": "<Color>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeColor]
+  static Map<String, dynamic>? encodeWidgetStatePropertyColor(
+    WidgetStateProperty<Color?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeColor(value.resolve({WidgetState.disabled})),
+        'dragged': encodeColor(value.resolve({WidgetState.dragged})),
+        'empty': encodeColor(value.resolve({})),
+        'error': encodeColor(value.resolve({WidgetState.error})),
+        'focused': encodeColor(value.resolve({WidgetState.focused})),
+        'hovered': encodeColor(value.resolve({WidgetState.hovered})),
+        'pressed': encodeColor(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeColor(value.resolve(
+          {WidgetState.scrolledUnder},
+        )),
+        'selected': encodeColor(value.resolve({WidgetState.selected})),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<double>",
+  ///   "dragged": "<double>",
+  ///   "empty": "<double>",
+  ///   "error": "<double>",
+  ///   "focused": "<double>",
+  ///   "hovered": "<double>",
+  ///   "pressed": "<double>",
+  ///   "scrolledUnder": "<double>",
+  ///   "selected": "<double>"
+  /// }
+  /// ```
+  static Map<String, dynamic>? encodeWidgetStatePropertyDouble(
+    WidgetStateProperty<double?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': value.resolve({WidgetState.disabled}),
+        'dragged': value.resolve({WidgetState.dragged}),
+        'empty': value.resolve({}),
+        'error': value.resolve({WidgetState.error}),
+        'focused': value.resolve({WidgetState.focused}),
+        'hovered': value.resolve({WidgetState.hovered}),
+        'pressed': value.resolve({WidgetState.pressed}),
+        'scrolledUnder': value.resolve({WidgetState.scrolledUnder}),
+        'selected': value.resolve({WidgetState.selected}),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<EdgeInsetsGeometry>",
+  ///   "dragged": "<EdgeInsetsGeometry>",
+  ///   "empty": "<EdgeInsetsGeometry>",
+  ///   "error": "<EdgeInsetsGeometry>",
+  ///   "focused": "<EdgeInsetsGeometry>",
+  ///   "hovered": "<EdgeInsetsGeometry>",
+  ///   "pressed": "<EdgeInsetsGeometry>",
+  ///   "scrolledUnder": "<EdgeInsetsGeometry>",
+  ///   "selected": "<EdgeInsetsGeometry>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeEdgeInsetsGeometry]
+  static Map<String, dynamic>? encodeWidgetStatePropertyEdgeInsetsGeometry(
+    WidgetStateProperty<EdgeInsetsGeometry?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.disabled}) as EdgeInsets?,
+        ),
+        'dragged': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.dragged}) as EdgeInsets?,
+        ),
+        'empty': encodeEdgeInsetsGeometry(
+          value.resolve({}) as EdgeInsets?,
+        ),
+        'error': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.error}) as EdgeInsets?,
+        ),
+        'focused': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.focused}) as EdgeInsets?,
+        ),
+        'hovered': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.hovered}) as EdgeInsets?,
+        ),
+        'pressed': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.pressed}) as EdgeInsets?,
+        ),
+        'scrolledUnder': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.scrolledUnder}) as EdgeInsets?,
+        ),
+        'selected': encodeEdgeInsetsGeometry(
+          value.resolve({WidgetState.selected}) as EdgeInsets?,
+        ),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<IconThemeData>",
+  ///   "dragged": "<IconThemeData>",
+  ///   "empty": "<IconThemeData>",
+  ///   "error": "<IconThemeData>",
+  ///   "focused": "<IconThemeData>",
+  ///   "hovered": "<IconThemeData>",
+  ///   "pressed": "<IconThemeData>",
+  ///   "scrolledUnder": "<IconThemeData>",
+  ///   "selected": "<IconThemeData>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeIconThemeData]
+  static Map<String, dynamic>? encodeWidgetStatePropertyIconThemeData(
+    WidgetStateProperty<IconThemeData?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeIconThemeData(
+          value.resolve({WidgetState.disabled}),
+        ),
+        'dragged': encodeIconThemeData(value.resolve({WidgetState.dragged})),
+        'empty': encodeIconThemeData(value.resolve({})),
+        'error': encodeIconThemeData(value.resolve({WidgetState.error})),
+        'focused': encodeIconThemeData(value.resolve({WidgetState.focused})),
+        'hovered': encodeIconThemeData(value.resolve({WidgetState.hovered})),
+        'pressed': encodeIconThemeData(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeIconThemeData(
+          value.resolve({WidgetState.selected}),
+        ),
+        'selected': encodeIconThemeData(
+          value.resolve({WidgetState.selected}),
+        ),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<MouseCursor>",
+  ///   "dragged": "<MouseCursor>",
+  ///   "empty": "<MouseCursor>",
+  ///   "error": "<MouseCursor>",
+  ///   "focused": "<MouseCursor>",
+  ///   "hovered": "<MouseCursor>",
+  ///   "pressed": "<MouseCursor>",
+  ///   "scrolledUnder": "<MouseCursor>",
+  ///   "selected": "<MouseCursor>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeMouseCursor]
+  static Map<String, dynamic>? encodeWidgetStatePropertyMouseCursor(
+    WidgetStateProperty<MouseCursor?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeMouseCursor(value.resolve({WidgetState.disabled})),
+        'dragged': encodeMouseCursor(value.resolve({WidgetState.dragged})),
+        'empty': encodeMouseCursor(value.resolve({})),
+        'error': encodeMouseCursor(value.resolve({WidgetState.error})),
+        'focused': encodeMouseCursor(value.resolve({WidgetState.focused})),
+        'hovered': encodeMouseCursor(value.resolve({WidgetState.hovered})),
+        'pressed': encodeMouseCursor(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeMouseCursor(value.resolve(
+          {WidgetState.scrolledUnder},
+        )),
+        'selected': encodeMouseCursor(value.resolve({WidgetState.selected})),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<OutlinedBorder>",
+  ///   "dragged": "<OutlinedBorder>",
+  ///   "empty": "<OutlinedBorder>",
+  ///   "error": "<OutlinedBorder>",
+  ///   "focused": "<OutlinedBorder>",
+  ///   "hovered": "<OutlinedBorder>",
+  ///   "pressed": "<OutlinedBorder>",
+  ///   "scrolledUnder": "<OutlinedBorder>",
+  ///   "selected": "<OutlinedBorder>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeOutlinedBorder]
+  static Map<String, dynamic>? encodeWidgetStatePropertyOutlinedBorder(
+    WidgetStateProperty<OutlinedBorder?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeOutlinedBorder(
+          value.resolve({WidgetState.disabled}),
+        ),
+        'dragged': encodeOutlinedBorder(value.resolve({WidgetState.dragged})),
+        'empty': encodeOutlinedBorder(value.resolve({})),
+        'error': encodeOutlinedBorder(value.resolve({WidgetState.error})),
+        'focused': encodeOutlinedBorder(value.resolve({WidgetState.focused})),
+        'hovered': encodeOutlinedBorder(value.resolve({WidgetState.hovered})),
+        'pressed': encodeOutlinedBorder(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeOutlinedBorder(
+          value.resolve({WidgetState.scrolledUnder}),
+        ),
+        'selected': encodeOutlinedBorder(
+          value.resolve({WidgetState.selected}),
+        ),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<Size>",
+  ///   "dragged": "<Size>",
+  ///   "empty": "<Size>",
+  ///   "error": "<Size>",
+  ///   "focused": "<Size>",
+  ///   "hovered": "<Size>",
+  ///   "pressed": "<Size>",
+  ///   "scrolledUnder": "<Size>",
+  ///   "selected": "<Size>"
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeSize]
+  static Map<String, dynamic>? encodeWidgetStatePropertySize(
+    WidgetStateProperty<Size?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeSize(value.resolve({WidgetState.disabled})),
+        'dragged': encodeSize(value.resolve({WidgetState.dragged})),
+        'empty': encodeSize(value.resolve({})),
+        'error': encodeSize(value.resolve({WidgetState.error})),
+        'focused': encodeSize(value.resolve({WidgetState.focused})),
+        'hovered': encodeSize(value.resolve({WidgetState.hovered})),
+        'pressed': encodeSize(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeSize(value.resolve({WidgetState.scrolledUnder})),
+        'selected': encodeSize(value.resolve({WidgetState.selected})),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the [value] into a JSON representation.
+  ///
+  ///
+  /// ```json
+  /// {
+  ///   "disabled": "<TextStyle>",
+  ///   "dragged": "<TextStyle>",
+  ///   "empty": "<TextStyle>",
+  ///   "error": "<TextStyle>",
+  ///   "focused": "<TextStyle>",
+  ///   "hovered": "<TextStyle>",
+  ///   "pressed": "<TextStyle>",
+  ///   "scrolledUnder": "<TextStyle>",
+  ///   "selected": "<TextStyle>",
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [encodeTextStyle]
+  static Map<String, dynamic>? encodeWidgetStatePropertyTextStyle(
+    WidgetStateProperty<TextStyle?>? value, {
+    bool validate = true,
+  }) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'disabled': encodeTextStyle(value.resolve({WidgetState.disabled})),
+        'dragged': encodeTextStyle(value.resolve({WidgetState.dragged})),
+        'empty': encodeTextStyle(value.resolve({})),
+        'error': encodeTextStyle(value.resolve({WidgetState.error})),
+        'focused': encodeTextStyle(value.resolve({WidgetState.focused})),
+        'hovered': encodeTextStyle(value.resolve({WidgetState.hovered})),
+        'pressed': encodeTextStyle(value.resolve({WidgetState.pressed})),
+        'scrolledUnder': encodeTextStyle(value.resolve(
+          {WidgetState.scrolledUnder},
+        )),
+        'selected': encodeTextStyle(value.resolve({WidgetState.selected})),
+      };
     }
 
     return _stripDynamicNull(result);

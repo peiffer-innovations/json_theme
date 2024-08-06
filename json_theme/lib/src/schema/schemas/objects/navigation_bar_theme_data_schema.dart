@@ -17,7 +17,7 @@ class NavigationBarThemeDataSchema {
       'elevation': SchemaHelper.numberSchema,
       'height': SchemaHelper.numberSchema,
       'iconTheme': SchemaHelper.objectSchema(
-        MaterialStatePropertyIconThemeDataSchema.id,
+        WidgetStatePropertyIconThemeDataSchema.id,
       ),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'indicatorShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
@@ -25,7 +25,7 @@ class NavigationBarThemeDataSchema {
         NavigationDestinationLabelBehaviorSchema.id,
       ),
       'labelTextStyle': SchemaHelper.objectSchema(
-        MaterialStatePropertyTextStyleSchema.id,
+        WidgetStatePropertyTextStyleSchema.id,
       ),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),

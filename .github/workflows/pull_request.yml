@@ -1,6 +1,7 @@
-name: Flutter Pull Request Checker
+name: Pull Request Checker
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
 
@@ -9,16 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
+      - uses: actions/checkout@v4
+
+      - name: Validate annotation
+        uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           path: annotation
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
+          skip_sarif: true
+
+      - name: Validate annotation
+        uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           path: codegen
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
+          skip_sarif: true
+
+      - name: Validate annotation
+        uses: peiffer-innovations/actions-flutter-validate@v2
         with:
+          generate_code: true
           path: json_theme
+          

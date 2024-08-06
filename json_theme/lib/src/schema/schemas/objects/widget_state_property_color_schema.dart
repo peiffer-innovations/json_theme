@@ -1,15 +1,13 @@
 import 'package:json_theme/json_theme_schemas.dart';
 
-class MaterialStatePropertyColorSchema {
+class WidgetStatePropertyColorSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/material_state_property_color.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/widget_state_property_color.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/MaterialStateProperty-class.html',
-    'title': 'MaterialStatePropertyColor',
+    'title': 'WidgetStatePropertyColor',
     'type': 'object',
     'properties': {
       'disabled': SchemaHelper.objectSchema(ColorSchema.id),

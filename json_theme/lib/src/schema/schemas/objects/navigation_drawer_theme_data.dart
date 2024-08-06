@@ -15,13 +15,13 @@ class NavigationDrawerThemeDataSchema {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'iconTheme': SchemaHelper.objectSchema(
-        MaterialStatePropertyIconThemeDataSchema.id,
+        WidgetStatePropertyIconThemeDataSchema.id,
       ),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'indicatorShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'indicatorSize': SchemaHelper.objectSchema(SizeSchema.id),
       'labelTextStyle': SchemaHelper.objectSchema(
-        MaterialStatePropertyTextStyleSchema.id,
+        WidgetStatePropertyTextStyleSchema.id,
       ),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),

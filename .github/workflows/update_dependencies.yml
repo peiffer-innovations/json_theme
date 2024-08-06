@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Dependencies
-        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.18
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
           paths: annotation
@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Dependencies
-        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.18
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
           paths: codegen
@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - name: Dependencies
-        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.18
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
           paths: json_theme,json_theme/example

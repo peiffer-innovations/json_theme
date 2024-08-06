@@ -13,34 +13,37 @@ class SearchBarThemeDataSchema {
     'additionalProperties': false,
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'elevation': SchemaHelper.objectSchema(
-        MaterialStatePropertyDoubleSchema.id,
+        WidgetStatePropertyDoubleSchema.id,
       ),
       'hintStyle': SchemaHelper.objectSchema(
-        MaterialStatePropertyTextStyleSchema.id,
+        WidgetStatePropertyTextStyleSchema.id,
       ),
       'overlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'padding': SchemaHelper.objectSchema(
-          MaterialStatePropertyEdgeInsetsGeometrySchema.id),
+          WidgetStatePropertyEdgeInsetsGeometrySchema.id),
       'shadowColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
       ),
       'shape': SchemaHelper.objectSchema(
-        MaterialStatePropertyOutlinedBorderSchema.id,
+        WidgetStatePropertyOutlinedBorderSchema.id,
       ),
       'side': SchemaHelper.objectSchema(
-        MaterialStatePropertyBorderSideSchema.id,
+        WidgetStatePropertyBorderSideSchema.id,
       ),
       'surfaceTintColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
+        WidgetStatePropertyColorSchema.id,
+      ),
+      'textCapitalization': SchemaHelper.objectSchema(
+        TextCapitalizationSchema.id,
       ),
       'textStyle': SchemaHelper.objectSchema(
-        MaterialStatePropertyTextStyleSchema.id,
+        WidgetStatePropertyTextStyleSchema.id,
       ),
     }
   };

@@ -33,7 +33,7 @@ class FloatingActionButtonThemeDataSchema {
         BoxConstraintsSchema.id,
       ),
       'mouseCursor': SchemaHelper.objectSchema(
-        MaterialStatePropertyMouseCursorSchema.id,
+        WidgetStatePropertyMouseCursorSchema.id,
       ),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'sizeConstraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),

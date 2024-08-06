@@ -5,6 +5,7 @@
 // **************************************************************************
 
 const kThemeDecoders = <String, String>{
+  'ActionIconThemeData': 'ThemeDecoder.decodeActionIconThemeData',
   'Alignment': 'ThemeDecoder.decodeAlignment',
   'AlignmentDirectional': 'ThemeDecoder.decodeAlignmentDirectional',
   'AlignmentGeometry': 'ThemeDecoder.decodeAlignmentGeometry',
@@ -101,25 +102,6 @@ const kThemeDecoders = <String, String>{
   'MainAxisSize': 'ThemeDecoder.decodeMainAxisSize',
   'MaterialBannerThemeData': 'ThemeDecoder.decodeMaterialBannerThemeData',
   'MaterialColor': 'ThemeDecoder.decodeMaterialColor',
-  'MaterialStateProperty<bool>': 'ThemeDecoder.decodeMaterialStatePropertyBool',
-  'MaterialStateProperty<BorderSide>':
-      'ThemeDecoder.decodeMaterialStatePropertyBorderSide',
-  'MaterialStateProperty<Color>':
-      'ThemeDecoder.decodeMaterialStatePropertyColor',
-  'MaterialStateProperty<double>':
-      'ThemeDecoder.decodeMaterialStatePropertyDouble',
-  'MaterialStateProperty<EdgeInsetsGeometry>':
-      'ThemeDecoder.decodeMaterialStatePropertyEdgeInsetsGeometry',
-  'MaterialStateProperty<Icon>': 'ThemeDecoder.decodeMaterialStatePropertyIcon',
-  'MaterialStateProperty<IconThemeData>':
-      'ThemeDecoder.decodeMaterialStatePropertyIconThemeData',
-  'MaterialStateProperty<MouseCursor>':
-      'ThemeDecoder.decodeMaterialStatePropertyMouseCursor',
-  'MaterialStateProperty<OutlinedBorder>':
-      'ThemeDecoder.decodeMaterialStatePropertyOutlinedBorder',
-  'MaterialStateProperty<Size>': 'ThemeDecoder.decodeMaterialStatePropertySize',
-  'MaterialStateProperty<TextStyle>':
-      'ThemeDecoder.decodeMaterialStatePropertyTextStyle',
   'MaterialTapTargetSize': 'ThemeDecoder.decodeMaterialTapTargetSize',
   'MaterialType': 'ThemeDecoder.decodeMaterialType',
   'Matrix4': 'ThemeDecoder.decodeMatrix4',
@@ -140,6 +122,7 @@ const kThemeDecoders = <String, String>{
   'OrdinalSortKey': 'ThemeDecoder.decodeOrdinalSortKey',
   'OutlinedBorder': 'ThemeDecoder.decodeOutlinedBorder',
   'OutlinedButtonThemeData': 'ThemeDecoder.decodeOutlinedButtonThemeData',
+  'OverflowBoxFit': 'ThemeDecoder.decodeOverflowBoxFit',
   'PageTransitionsBuilder': 'ThemeDecoder.decodePageTransitionsBuilder',
   'PageTransitionsTheme': 'ThemeDecoder.decodePageTransitionsTheme',
   'PanAxis': 'ThemeDecoder.decodePanAxis',
@@ -170,6 +153,7 @@ const kThemeDecoders = <String, String>{
   'ShowValueIndicator': 'ThemeDecoder.decodeShowValueIndicator',
   'Size': 'ThemeDecoder.decodeSize',
   'SliderComponentShape': 'ThemeDecoder.decodeSliderComponentShape',
+  'SliderInteraction': 'ThemeDecoder.decodeSliderInteraction',
   'SliderThemeData': 'ThemeDecoder.decodeSliderThemeData',
   'SliderTickMarkShape': 'ThemeDecoder.decodeSliderTickMarkShape',
   'SliderTrackShape': 'ThemeDecoder.decodeSliderTrackShape',
@@ -181,6 +165,7 @@ const kThemeDecoders = <String, String>{
   'StrutStyle': 'ThemeDecoder.decodeStrutStyle',
   'SwitchThemeData': 'ThemeDecoder.decodeSwitchThemeData',
   'SystemUiOverlayStyle': 'ThemeDecoder.decodeSystemUiOverlayStyle',
+  'TabAlignment': 'ThemeDecoder.decodeTabAlignment',
   'TabBarIndicatorSize': 'ThemeDecoder.decodeTabBarIndicatorSize',
   'TabBarTheme': 'ThemeDecoder.decodeTabBarTheme',
   'TableBorder': 'ThemeDecoder.decodeTableBorder',
@@ -213,6 +198,24 @@ const kThemeDecoders = <String, String>{
   'Typography': 'ThemeDecoder.decodeTypography',
   'VerticalDirection': 'ThemeDecoder.decodeVerticalDirection',
   'VisualDensity': 'ThemeDecoder.decodeVisualDensity',
+  'WidgetStateColor': 'ThemeDecoder.decodeWidgetStateColor',
+  'WidgetStatePropertyBool': 'ThemeDecoder.decodeWidgetStatePropertyBool',
+  'WidgetStatePropertyBorderSide':
+      'ThemeDecoder.decodeWidgetStatePropertyBorderSide',
+  'WidgetStatePropertyColor': 'ThemeDecoder.decodeWidgetStatePropertyColor',
+  'WidgetStatePropertyDouble': 'ThemeDecoder.decodeWidgetStatePropertyDouble',
+  'WidgetStatePropertyEdgeInsetsGeometry':
+      'ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry',
+  'WidgetStatePropertyIcon': 'ThemeDecoder.decodeWidgetStatePropertyIcon',
+  'WidgetStatePropertyIconThemeData':
+      'ThemeDecoder.decodeWidgetStatePropertyIconThemeData',
+  'WidgetStatePropertyMouseCursor':
+      'ThemeDecoder.decodeWidgetStatePropertyMouseCursor',
+  'WidgetStatePropertyOutlinedBorder':
+      'ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder',
+  'WidgetStatePropertySize': 'ThemeDecoder.decodeWidgetStatePropertySize',
+  'WidgetStatePropertyTextStyle':
+      'ThemeDecoder.decodeWidgetStatePropertyTextStyle',
   'WrapAlignment': 'ThemeDecoder.decodeWrapAlignment',
   'WrapCrossAlignment': 'ThemeDecoder.decodeWrapCrossAlignment',
 };

@@ -2907,7 +2907,27 @@ class ThemeDecoder {
   ///   "surface": "<Color>",
   ///   "surfaceContainerHighest": "<Color>",
   ///   "tertiary": "<Color>",
-  ///   "tertiaryContainer": "<Color>"
+  ///   "tertiaryContainer": "<Color>",
+  ///   "onBackground": "<Color>",
+  ///   "onPrimaryFixed": "<Color>",
+  ///   "onSecondaryFixed": "<Color>",
+  ///   "onPrimaryFixedVariant": "<Color>",
+  ///   "onSecondaryFixedVariant": "<Color>",
+  ///   "surfaceBright": "<Color>",
+  ///   "surfaceContainer": "<Color>",
+  ///   "surfaceContainerHigh": "<Color>",
+  ///   "surfaceVariant": "<Color>",
+  ///   "surfaceContainerLow": "<Color>",
+  ///   "surfaceContainerLowest": "<Color>",
+  ///   "surfaceDim": "<Color>",
+  ///   "onTertiaryFixed": "<Color>",
+  ///   "onTertiaryFixedVariant": "<Color>",
+  ///   "primaryFixed": "<Color>",
+  ///   "primaryFixedDim": "<Color>",
+  ///   "secondaryFixed": "<Color>",
+  ///   "secondaryFixedDim": "<Color>",
+  ///   "tertiaryFixed": "<Color>",
+  ///   "tertiaryFixedDim": "<Color>",
   /// }
   /// ```
   ///
@@ -3043,6 +3063,90 @@ class ThemeDecoder {
         ),
         tertiaryContainer: decodeColor(
           value['tertiaryContainer'],
+          validate: false,
+        ),
+        background: decodeColor(
+          value['background'],
+          validate: false,
+        ),
+        onBackground: decodeColor(
+          value['onBackground'],
+          validate: false,
+        ),
+        onPrimaryFixed: decodeColor(
+          value['onPrimaryFixed'],
+          validate: false,
+        ),
+        onSecondaryFixed: decodeColor(
+          value['onSecondaryFixed'],
+          validate: false,
+        ),
+        onPrimaryFixedVariant: decodeColor(
+          value['onPrimaryFixedVariant'],
+          validate: false,
+        ),
+        onSecondaryFixedVariant: decodeColor(
+          value['onSecondaryFixedVariant'],
+          validate: false,
+        ),
+        surfaceBright: decodeColor(
+          value['surfaceBright'],
+          validate: false,
+        ),
+        surfaceContainer: decodeColor(
+          value['surfaceContainer'],
+          validate: false,
+        ),
+        surfaceContainerHigh: decodeColor(
+          value['surfaceContainerHigh'],
+          validate: false,
+        ),
+        surfaceVariant: decodeColor(
+          value['surfaceVariant'],
+          validate: false,
+        ),
+        surfaceContainerLow: decodeColor(
+          value['surfaceContainerLow'],
+          validate: false,
+        ),
+        surfaceContainerLowest: decodeColor(
+          value['surfaceContainerLowest'],
+          validate: false,
+        ),
+        surfaceDim: decodeColor(
+          value['surfaceDim'],
+          validate: false,
+        ),
+        onTertiaryFixed: decodeColor(
+          value['onTertiaryFixed'],
+          validate: false,
+        ),
+        onTertiaryFixedVariant: decodeColor(
+          value['onTertiaryFixedVariant'],
+          validate: false,
+        ),
+        primaryFixed: decodeColor(
+          value['primaryFixed'],
+          validate: false,
+        ),
+        primaryFixedDim: decodeColor(
+          value['primaryFixedDim'],
+          validate: false,
+        ),
+        secondaryFixed: decodeColor(
+          value['secondaryFixed'],
+          validate: false,
+        ),
+        secondaryFixedDim: decodeColor(
+          value['secondaryFixedDim'],
+          validate: false,
+        ),
+        tertiaryFixed: decodeColor(
+          value['tertiaryFixed'],
+          validate: false,
+        ),
+        tertiaryFixedDim: decodeColor(
+          value['tertiaryFixedDim'],
           validate: false,
         ),
       );

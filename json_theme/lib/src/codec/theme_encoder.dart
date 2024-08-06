@@ -1574,13 +1574,13 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'background': encodeColor(value.surface),
+        'background': encodeColor(value.background),
         'brightness': encodeBrightness(value.brightness),
         'error': encodeColor(value.error),
         'errorContainer': encodeColor(value.errorContainer),
         'inversePrimary': encodeColor(value.inversePrimary),
         'inverseSurface': encodeColor(value.inverseSurface),
-        'onBackground': encodeColor(value.onSurface),
+        'onBackground': encodeColor(value.onBackground),
         'onError': encodeColor(value.onError),
         'onErrorContainer': encodeColor(value.onErrorContainer),
         'onInverseSurface': encodeColor(value.onInverseSurface),
@@ -1605,6 +1605,25 @@ class ThemeEncoder {
         'surfaceTint': encodeColor(value.surfaceTint),
         'tertiary': encodeColor(value.tertiary),
         'tertiaryContainer': encodeColor(value.tertiaryContainer),
+        'onPrimaryFixed': encodeColor(value.onPrimaryFixed),
+        'onSecondaryFixed': encodeColor(value.onSecondaryFixed),
+        'onPrimaryFixedVariant': encodeColor(value.onPrimaryFixedVariant),
+        'onSecondaryFixedVariant': encodeColor(value.onSecondaryFixedVariant),
+        'surfaceBright': encodeColor(value.surfaceBright),
+        'surfaceContainer': encodeColor(value.surfaceContainer),
+        'surfaceContainerHigh': encodeColor(value.surfaceContainerHigh),
+        'surfaceVariant': encodeColor(value.surfaceVariant),
+        'surfaceContainerLow': encodeColor(value.surfaceContainerLow),
+        'surfaceContainerLowest': encodeColor(value.surfaceContainerLowest),
+        'surfaceDim': encodeColor(value.surfaceDim),
+        'onTertiaryFixed': encodeColor(value.onTertiaryFixed),
+        'onTertiaryFixedVariant': encodeColor(value.onTertiaryFixedVariant),
+        'primaryFixed': encodeColor(value.primaryFixed),
+        'primaryFixedDim': encodeColor(value.primaryFixedDim),
+        'secondaryFixed': encodeColor(value.secondaryFixed),
+        'secondaryFixedDim': encodeColor(value.secondaryFixedDim),
+        'tertiaryFixed': encodeColor(value.tertiaryFixed),
+        'tertiaryFixedDim': encodeColor(value.tertiaryFixedDim),
       };
     }
 

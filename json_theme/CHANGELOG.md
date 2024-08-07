@@ -1,4 +1,4 @@
-## [6.5.0+1] - May 14th, 2024
+## [6.5.1+1] - August 7th, 2024
 
 * Add missing case AutovalidateMode.onUnfocus in encoder
 

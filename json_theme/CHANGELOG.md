@@ -1,3 +1,8 @@
+## [6.5.1+1] - August 7th, 2024
+
+* Add missing case AutovalidateMode.onUnfocus in encoder
+
+
 ## [6.5.0+1] - May 14th, 2024
 
 * Swapped MaterialStateProperty with WidgetStateProperty in preperation for other Flutter 3.22 work.

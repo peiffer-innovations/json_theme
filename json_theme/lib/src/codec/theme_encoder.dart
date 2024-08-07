@@ -242,6 +242,7 @@ class ThemeEncoder {
   /// * `always`
   /// * `disabled`
   /// * `onUserInteraction`
+  /// * `onUnfocus`
   static String? encodeAutovalidateMode(AutovalidateMode? value) {
     String? result;
 
@@ -257,6 +258,10 @@ class ThemeEncoder {
 
         case AutovalidateMode.onUserInteraction:
           result = 'onUserInteraction';
+          break;
+
+        case AutovalidateMode.onUnfocus:
+          result = 'onUnfocus';
           break;
       }
     }

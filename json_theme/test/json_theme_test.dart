@@ -520,6 +520,10 @@ void main() {
       ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.onUserInteraction),
       'onUserInteraction',
     );
+    expect(
+      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.onUnfocus),
+      'onUnfocus',
+    );
   });
 
   test('Axis', () {

@@ -242,23 +242,11 @@ class ThemeEncoder {
   /// * `always`
   /// * `disabled`
   /// * `onUserInteraction`
-  static String? encodeAutovalidateMode(AutovalidateMode? value) {
+   static String? encodeAutovalidateMode(AutovalidateMode? value) {
     String? result;
 
     if (value != null) {
-      switch (value) {
-        case AutovalidateMode.always:
-          result = 'always';
-          break;
-
-        case AutovalidateMode.disabled:
-          result = 'disabled';
-          break;
-
-        case AutovalidateMode.onUserInteraction:
-          result = 'onUserInteraction';
-          break;
-      }
+      result = value.name;
     }
 
     return _stripDynamicNull(result);

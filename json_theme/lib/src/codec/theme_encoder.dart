@@ -238,32 +238,12 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
-  /// Encodes the given [value] to a [String].  Supported values are:
-  /// * `always`
-  /// * `disabled`
-  /// * `onUserInteraction`
-  /// * `onUnfocus`
+  /// Encodes the given [value] to a [String].
   static String? encodeAutovalidateMode(AutovalidateMode? value) {
     String? result;
 
     if (value != null) {
-      switch (value) {
-        case AutovalidateMode.always:
-          result = 'always';
-          break;
-
-        case AutovalidateMode.disabled:
-          result = 'disabled';
-          break;
-
-        case AutovalidateMode.onUserInteraction:
-          result = 'onUserInteraction';
-          break;
-
-        case AutovalidateMode.onUnfocus:
-          result = 'onUnfocus';
-          break;
-      }
+      return value.name;
     }
 
     return _stripDynamicNull(result);

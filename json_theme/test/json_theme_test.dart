@@ -495,35 +495,11 @@ void main() {
       AutovalidateMode.always,
     );
 
-    expect(
-      ThemeDecoder.decodeAutovalidateMode('always'),
-      AutovalidateMode.always,
-    );
-    expect(
-      ThemeDecoder.decodeAutovalidateMode('disabled'),
-      AutovalidateMode.disabled,
-    );
-    expect(
-      ThemeDecoder.decodeAutovalidateMode('onUserInteraction'),
-      AutovalidateMode.onUserInteraction,
-    );
-
-    expect(
-      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.always),
-      'always',
-    );
-    expect(
-      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.disabled),
-      'disabled',
-    );
-    expect(
-      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.onUserInteraction),
-      'onUserInteraction',
-    );
-    expect(
-      ThemeEncoder.encodeAutovalidateMode(AutovalidateMode.onUnfocus),
-      'onUnfocus',
-    );
+    // Test each values from AutovalidateMode enum
+    for (var value in AutovalidateMode.values) {
+      expect(ThemeDecoder.decodeAutovalidateMode(value.name), value);
+      expect(ThemeEncoder.encodeAutovalidateMode(value), value.name);
+    }
   });
 
   test('Axis', () {

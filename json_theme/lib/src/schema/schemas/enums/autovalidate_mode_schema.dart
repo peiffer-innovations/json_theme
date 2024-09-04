@@ -15,6 +15,7 @@ class AutovalidateModeSchema {
       'always',
       'disabled',
       'onUserInteraction',
+      'onUnfocus',
     ]),
   };
 }

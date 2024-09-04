@@ -1218,7 +1218,7 @@ void main() {
         },
         'image': {
           'alignment': 'center',
-          'filterQuality': 'low',
+          'filterQuality': 'medium',
           'image': {
             'bytes': base64Image,
             'scale': 1.0,
@@ -1440,6 +1440,7 @@ void main() {
     expect(ThemeDecoder.decodeButtonBarThemeData(null), null);
     expect(ThemeEncoder.encodeButtonBarThemeData(null), null);
 
+    // ignore: deprecated_member_use
     const entry = ButtonBarThemeData(
       alignment: MainAxisAlignment.spaceEvenly,
       buttonAlignedDropdown: true,
@@ -10184,6 +10185,7 @@ void main() {
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Color(0xff000000),
       ),
+      // ignore: deprecated_member_use
       buttonBarTheme: const ButtonBarThemeData(buttonHeight: 3.0),
       buttonTheme: const ButtonThemeData(buttonColor: Color(0xffbbbbbb)),
       canvasColor: const Color(0xffcccccc),

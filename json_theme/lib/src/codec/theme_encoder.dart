@@ -1106,6 +1106,7 @@ class ThemeEncoder {
   ///  * [encodeMainAxisSize]
   ///  * [encodeVerticalDirection]
   static Map<String, dynamic>? encodeButtonBarThemeData(
+    // ignore: deprecated_member_use
     ButtonBarThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -7082,6 +7083,7 @@ class ThemeEncoder {
         ),
         'bottomSheetTheme': encodeBottomSheetThemeData(value.bottomSheetTheme),
         'brightness': encodeBrightness(value.brightness),
+        // ignore: deprecated_member_use
         'buttonBarTheme': encodeButtonBarThemeData(value.buttonBarTheme),
         'buttonTheme': encodeButtonThemeData(value.buttonTheme),
         'canvasColor': encodeColor(value.canvasColor),

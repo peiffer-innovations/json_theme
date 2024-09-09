@@ -1,7 +1,7 @@
 name: 'json_theme'
 description: 'A library to dynamically generate a ThemeData object from a JSON file or dynamic map object'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '6.5.1+2'
+version: '6.5.2'
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -45,8 +45,8 @@ permittedLicenses:
 # detect the built in Flutter packages because they aren't published to pub.dev
 # and do not have a LICENSE file in their respective folders.  So this section
 # informs the license_checker that all the built in Flutter packages all have
-# the same BSD-3-Clause license as Flutter itself. 
-packageLicenseOverride: 
+# the same BSD-3-Clause license as Flutter itself.
+packageLicenseOverride:
   flutter: BSD-3-Clause
   flutter_driver: BSD-3-Clause
   flutter_goldens: BSD-3-Clause

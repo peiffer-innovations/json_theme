@@ -1,6 +1,12 @@
+## [6.5.2] - September 9th, 2024
+
+* Updated the `ColorScheme` with the latest values from Flutter 3.22
+
+
 ## [6.5.1+2] - September 4th, 2024
 
 * Fix unit tests and ignore deprecated member of 'ButonBarThemeData' which is deprecated since v3.21.0-10.0.pre.
+
 
 ## [6.5.1+1] - August 7th, 2024
 

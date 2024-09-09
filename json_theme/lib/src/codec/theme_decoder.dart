@@ -512,6 +512,7 @@ class ThemeDecoder {
           'always',
           'disabled',
           'onUserInteraction',
+          'onUnfocus',
         ],
         value,
       );
@@ -522,17 +523,9 @@ class ThemeDecoder {
           value: value,
           validate: validate,
         ));
-        switch (value) {
-          case 'always':
-            result = AutovalidateMode.always;
-            break;
-          case 'disabled':
-            result = AutovalidateMode.disabled;
-            break;
-          case 'onUserInteraction':
-            result = AutovalidateMode.onUserInteraction;
-            break;
-        }
+
+        result = AutovalidateMode.values
+            .firstWhere((e) => e.toString() == 'AutovalidateMode.$value');
       }
     }
 
@@ -2040,6 +2033,7 @@ class ThemeDecoder {
     return result;
   }
 
+  // ignore: deprecated_member_use
   /// Decodes the given [value] to an [ButtonBarThemeData].  This expects the
   /// given [value] to follow the structure below:
   ///
@@ -2064,12 +2058,15 @@ class ThemeDecoder {
   ///  * [decodeMainAxisAlignment]
   ///  * [decodeMainAxisSize]
   ///  * [decodeVerticalDirection]
+  // ignore: deprecated_member_use
   static ButtonBarThemeData? decodeButtonBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
+    // ignore: deprecated_member_use
     ButtonBarThemeData? result;
 
+    // ignore: deprecated_member_use
     if (value is ButtonBarThemeData) {
       result = value;
     } else if (value != null) {
@@ -2078,6 +2075,7 @@ class ThemeDecoder {
         value: value,
         validate: validate,
       ));
+      // ignore: deprecated_member_use
       result = ButtonBarThemeData(
         alignment: decodeMainAxisAlignment(
           value['alignment'],
@@ -12186,6 +12184,7 @@ class ThemeDecoder {
           value['brightness'],
           validate: false,
         ),
+        // ignore: deprecated_member_use
         buttonBarTheme: decodeButtonBarThemeData(
           value['buttonBarTheme'],
           validate: false,

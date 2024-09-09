@@ -1,3 +1,8 @@
+## [6.5.3] - September 9, 2024
+
+* Fix for [issue 205](https://github.com/peiffer-innovations/json_theme/issues/205)
+
+
 ## [6.5.2+1] - September 9, 2024
 
 * Automated dependency updates

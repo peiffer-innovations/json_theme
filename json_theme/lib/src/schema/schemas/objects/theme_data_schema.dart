@@ -51,6 +51,9 @@ class ThemeDataSchema {
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
       'drawerTheme': SchemaHelper.objectSchema(DrawerThemeDataSchema.id),
+      'dropdownMenuTheme': SchemaHelper.objectSchema(
+        DropdownMenuThemeDataSchema.id,
+      ),
       'elevatedButtonTheme': SchemaHelper.objectSchema(
         ElevatedButtonThemeDataSchema.id,
       ),

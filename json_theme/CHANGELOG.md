@@ -1,3 +1,8 @@
+## [6.5.2+1] - September 9, 2024
+
+* Automated dependency updates
+
+
 ## [6.5.2] - September 9th, 2024
 
 * Updated the `ColorScheme` with the latest values from Flutter 3.22
@@ -656,44 +661,3 @@
 * ~~**TODO**: Documentation~~
 * ~~**TODO**: Example App~~
 * ~~**TODO**: Unit Tests~~
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

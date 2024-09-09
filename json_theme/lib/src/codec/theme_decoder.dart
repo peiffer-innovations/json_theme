@@ -2871,41 +2871,57 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [CardTheme].  This expects the given
+  /// Decodes the given [value] to an [ColorScheme].  This expects the given
   /// [value] to follow the structure below:
   ///
   /// ```json
   /// {
-  ///   "background": "<Color>",
   ///   "brightness": "<Brightness>",
   ///   "error": "<Color>",
   ///   "errorContainer": "<Color>",
   ///   "inversePrimary": "<Color>",
   ///   "inverseSurface": "<Color>",
-  ///   "onBackground": "<Color>",
   ///   "onError": "<Color>",
   ///   "onErrorContainer": "<Color>",
   ///   "onInverseSurface": "<Color>",
+  ///   "onPrimaryFixed": "<Color>",
   ///   "onPrimary": "<Color>",
   ///   "onPrimaryContainer": "<Color>",
+  ///   "onPrimaryFixedVariant": "<Color>",
   ///   "onSecondary": "<Color>",
   ///   "onSecondaryContainer": "<Color>",
+  ///   "onSecondaryFixed": "<Color>",
+  ///   "onSecondaryFixedVariant": "<Color>",
   ///   "onSurface": "<Color>",
   ///   "onSurfaceVariant": "<Color>",
   ///   "onTertiary": "<Color>",
   ///   "onTertiaryContainer": "<Color>",
+  ///   "onTertiaryFixed": "<Color>",
+  ///   "onTertiaryFixedVariant": "<Color>",
   ///   "outline": "<Color>",
   ///   "outlineVariant": "<Color>",
   ///   "primary": "<Color>",
   ///   "primaryContainer": "<Color>",
+  ///   "primaryFixed": "<Color>",
+  ///   "primaryFixedDim": "<Color>",
   ///   "scrim": "<Color>",
   ///   "secondary": "<Color>",
   ///   "secondaryContainer": "<Color>",
+  ///   "secondaryFixed": "<Color>",
+  ///   "secondaryFixedDim": "<Color>",
   ///   "shadow": "<Color>",
   ///   "surface": "<Color>",
+  ///   "surfaceBright": "<Color>",
+  ///   "surfaceContainer": "<Color>",
   ///   "surfaceContainerHighest": "<Color>",
+  ///   "surfaceContainerHigh": "<Color>",
+  ///   "surfaceContainerLow": "<Color>",
+  ///   "surfaceContainerLowest": "<Color>",
+  ///   "surfaceDim": "<Color>",
   ///   "tertiary": "<Color>",
-  ///   "tertiaryContainer": "<Color>"
+  ///   "tertiaryContainer": "<Color>",
+  ///   "tertiaryFixed": "<Color>",
+  ///   "tertiaryFixedDim": "<Color>"
   /// }
   /// ```
   ///
@@ -2927,6 +2943,7 @@ class ThemeDecoder {
         validate: validate,
       ));
       result = ColorScheme(
+        // background:
         brightness: decodeBrightness(
           value['brightness'],
           validate: false,
@@ -2947,6 +2964,7 @@ class ThemeDecoder {
           value['inverseSurface'],
           validate: false,
         ),
+        //onBackground:
         onError: decodeColor(
           value['onError'],
           validate: false,
@@ -2963,16 +2981,33 @@ class ThemeDecoder {
           value['onPrimary'],
           validate: false,
         )!,
+        onPrimaryFixed: decodeColor(
+          value['onPrimary'],
+          validate: false,
+        ),
         onPrimaryContainer: decodeColor(
           value['onPrimaryContainer'],
           validate: false,
         ),
+        onPrimaryFixedVariant: decodeColor(
+          value['onPrimaryFixedVariant'],
+          validate: false,
+        ),
+
         onSecondary: decodeColor(
           value['onSecondary'],
           validate: false,
         )!,
         onSecondaryContainer: decodeColor(
           value['onSecondaryContainer'],
+          validate: false,
+        ),
+        onSecondaryFixed: decodeColor(
+          value['onSecondaryFixed'],
+          validate: false,
+        ),
+        onSecondaryFixedVariant: decodeColor(
+          value['onSecondaryFixedVariant'],
           validate: false,
         ),
         onSurface: decodeColor(
@@ -2991,6 +3026,14 @@ class ThemeDecoder {
           value['onTertiaryContainer'],
           validate: false,
         ),
+        onTertiaryFixed: decodeColor(
+          value['onTertiaryFixed'],
+          validate: false,
+        ),
+        onTertiaryFixedVariant: decodeColor(
+          value['onTertiaryFixedVariant'],
+          validate: false,
+        ),
         outline: decodeColor(
           value['outline'],
           validate: false,
@@ -3007,6 +3050,14 @@ class ThemeDecoder {
           value['primaryContainer'] ?? value['primaryVariant'],
           validate: false,
         ),
+        primaryFixed: decodeColor(
+          value['primaryFixed'],
+          validate: false,
+        ),
+        primaryFixedDim: decodeColor(
+          value['primaryFixedDim'],
+          validate: false,
+        ),
         scrim: decodeColor(
           value['scrim'],
           validate: false,
@@ -3019,6 +3070,30 @@ class ThemeDecoder {
           value['secondaryContainer'] ?? value['secondaryVariant'],
           validate: false,
         ),
+        secondaryFixed: decodeColor(
+          value['secondaryFixed'],
+          validate: false,
+        ),
+        secondaryFixedDim: decodeColor(
+          value['secondaryFixedDim'],
+          validate: false,
+        ),
+        surfaceContainer: decodeColor(
+          value['surfaceContainer'],
+          validate: false,
+        ),
+        surfaceContainerHigh: decodeColor(
+          value['surfaceContainerHigh'],
+          validate: false,
+        ),
+        surfaceContainerLow: decodeColor(
+          value['surfaceContainerLow'],
+          validate: false,
+        ),
+        surfaceContainerLowest: decodeColor(
+          value['surfaceContainerLowest'],
+          validate: false,
+        ),
         shadow: decodeColor(
           value['shadow'],
           validate: false,
@@ -3027,6 +3102,14 @@ class ThemeDecoder {
           value['surface'],
           validate: false,
         )!,
+        surfaceBright: decodeColor(
+          value['surfaceBright'],
+          validate: false,
+        ),
+        surfaceDim: decodeColor(
+          value['surfaceDim'],
+          validate: false,
+        ),
         surfaceTint: decodeColor(
           value['surfaceTint'],
           validate: false,
@@ -3035,12 +3118,21 @@ class ThemeDecoder {
           value['surfaceContainerHighest'] ?? value['surfaceVariant'],
           validate: false,
         ),
+        // surfaceVariant
         tertiary: decodeColor(
           value['tertiary'],
           validate: false,
         ),
         tertiaryContainer: decodeColor(
           value['tertiaryContainer'],
+          validate: false,
+        ),
+        tertiaryFixed: decodeColor(
+          value['tertiaryFixed'],
+          validate: false,
+        ),
+        tertiaryFixedDim: decodeColor(
+          value['tertiaryFixedDim'],
           validate: false,
         ),
       );

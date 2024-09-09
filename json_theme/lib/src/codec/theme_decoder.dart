@@ -496,6 +496,7 @@ class ThemeDecoder {
   /// Decodes the given [value] to an [AutovalidateMode].  Supported values are:
   /// * `always`
   /// * `disabled`
+  /// * `onUnfocus`
   /// * `onUserInteraction`
   static AutovalidateMode? decodeAutovalidateMode(
     dynamic value, {
@@ -511,8 +512,8 @@ class ThemeDecoder {
         [
           'always',
           'disabled',
-          'onUserInteraction',
           'onUnfocus',
+          'onUserInteraction',
         ],
         value,
       );

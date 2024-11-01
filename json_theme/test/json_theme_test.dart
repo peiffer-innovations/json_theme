@@ -1968,7 +1968,9 @@ void main() {
       'y': 12.0,
     };
 
-    final encoded = ThemeEncoder.encodeCardTheme(entry);
+    final encoded = ThemeEncoder.encodeCardTheme(
+      entry.data,
+    );
     final decoded = ThemeDecoder.decodeCardTheme(encoded);
 
     expect(encoded, {
@@ -2860,7 +2862,9 @@ void main() {
 
     expect(ThemeDecoder.decodeDialogTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDialogTheme(entry);
+    final encoded = ThemeEncoder.encodeDialogTheme(
+      entry.data,
+    );
     final decoded = ThemeDecoder.decodeDialogTheme(encoded);
 
     expect(
@@ -8913,7 +8917,9 @@ void main() {
 
     expect(ThemeDecoder.decodeTabBarTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTabBarTheme(entry);
+    final encoded = ThemeEncoder.encodeTabBarTheme(
+      entry.data,
+    );
     final decoded = ThemeDecoder.decodeTabBarTheme(encoded);
 
     expect(

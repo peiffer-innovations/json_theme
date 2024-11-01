@@ -1321,7 +1321,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeCardTheme(CardTheme? value) {
+  static Map<String, dynamic>? encodeCardTheme(CardThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2057,7 +2057,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDialogTheme(DialogTheme? value) {
+  static Map<String, dynamic>? encodeDialogTheme(DialogThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6093,7 +6093,7 @@ class ThemeEncoder {
   ///  * [encodeTabAlignment]
   ///  * [encodeTabBarIndicatorSize]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTabBarTheme(TabBarTheme? value) {
+  static Map<String, dynamic>? encodeTabBarTheme(TabBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {

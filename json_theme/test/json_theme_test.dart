@@ -1946,7 +1946,7 @@ void main() {
 
   test('CardTheme', () {
     expect(ThemeDecoder.decodeCardTheme(null), null);
-    expect(ThemeEncoder.encodeCardTheme(null), null);
+    expect(ThemeEncoder.encodeCardThemeData(null), null);
 
     final entry = CardTheme(
       clipBehavior: Clip.hardEdge,
@@ -1968,7 +1968,7 @@ void main() {
       'y': 12.0,
     };
 
-    final encoded = ThemeEncoder.encodeCardTheme(
+    final encoded = ThemeEncoder.encodeCardThemeData(
       entry.data,
     );
     final decoded = ThemeDecoder.decodeCardTheme(encoded);

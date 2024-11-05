@@ -1321,7 +1321,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeCardTheme(CardThemeData? value) {
+  static Map<String, dynamic>? encodeCardThemeData(CardThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7050,7 +7050,7 @@ class ThemeEncoder {
   ///  * [encodeBottomSheetThemeData]
   ///  * [encodeButtonBarThemeData]
   ///  * [encodeButtonThemeData]
-  ///  * [encodeCardTheme]
+  ///  * [encodeCardThemeData]
   ///  * [encodeCheckboxThemeData]
   ///  * [encodeChipThemeData]
   ///  * [encodeColor]
@@ -7114,7 +7114,7 @@ class ThemeEncoder {
         'buttonTheme': encodeButtonThemeData(value.buttonTheme),
         'canvasColor': encodeColor(value.canvasColor),
         'cardColor': encodeColor(value.cardColor),
-        'cardTheme': encodeCardTheme(value.cardTheme),
+        'cardTheme': encodeCardThemeData(value.cardTheme),
         'checkboxTheme': encodeCheckboxThemeData(value.checkboxTheme),
         'chipTheme': encodeChipThemeData(value.chipTheme),
         'colorScheme': encodeColorScheme(value.colorScheme),

@@ -2,6 +2,11 @@
 
 * Add support to flutter 3.27
 
+## [6.5.3+5] - November 5, 2024
+
+* Automated dependency updates
+
+
 ## [6.5.3+4] - October 22, 2024
 
 * Automated dependency updates

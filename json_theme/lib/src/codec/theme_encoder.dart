@@ -2057,7 +2057,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDialogTheme(DialogThemeData? value) {
+  static Map<String, dynamic>? encodeDialogThemeData(DialogThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6093,7 +6093,7 @@ class ThemeEncoder {
   ///  * [encodeTabAlignment]
   ///  * [encodeTabBarIndicatorSize]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTabBarTheme(TabBarThemeData? value) {
+  static Map<String, dynamic>? encodeTabBarThemeData(TabBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7125,7 +7125,7 @@ class ThemeEncoder {
         'datePickerThemeData': encodeDatePickerThemeData(value.datePickerTheme),
         'dataTableTheme': encodeDataTableThemeData(value.dataTableTheme),
         'dialogBackgroundColor': encodeColor(value.dialogBackgroundColor),
-        'dialogTheme': encodeDialogTheme(value.dialogTheme),
+        'dialogTheme': encodeDialogThemeData(value.dialogTheme),
         'disabledColor': encodeColor(value.disabledColor),
         'dividerColor': encodeColor(value.dividerColor),
         'dividerTheme': encodeDividerThemeData(value.dividerTheme),
@@ -7187,7 +7187,7 @@ class ThemeEncoder {
         'splashFactory':
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'switchTheme': encodeSwitchThemeData(value.switchTheme),
-        'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
+        'tabBarTheme': encodeTabBarThemeData(value.tabBarTheme),
         'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
         'textSelectionTheme': encodeTextSelectionThemeData(
           value.textSelectionTheme,

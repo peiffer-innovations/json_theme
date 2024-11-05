@@ -1,4 +1,4 @@
-## [6.5.4] - UPDATE THIS
+## [7.0.0-dev.1] - UPDATE THIS
 
 * Add support to flutter 3.27
 

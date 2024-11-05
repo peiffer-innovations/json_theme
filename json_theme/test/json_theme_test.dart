@@ -2847,7 +2847,7 @@ void main() {
 
   test('DialogTheme', () {
     expect(ThemeDecoder.decodeDialogTheme(null), null);
-    expect(ThemeEncoder.encodeDialogTheme(null), null);
+    expect(ThemeEncoder.encodeDialogThemeData(null), null);
 
     const entry = DialogTheme(
       actionsPadding: EdgeInsets.all(8.0),
@@ -2862,7 +2862,7 @@ void main() {
 
     expect(ThemeDecoder.decodeDialogTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDialogTheme(
+    final encoded = ThemeEncoder.encodeDialogThemeData(
       entry.data,
     );
     final decoded = ThemeDecoder.decodeDialogTheme(encoded);
@@ -8897,7 +8897,7 @@ void main() {
 
   test('TabBarTheme', () {
     expect(ThemeDecoder.decodeTabBarTheme(null), null);
-    expect(ThemeEncoder.encodeTabBarTheme(null), null);
+    expect(ThemeEncoder.encodeTabBarThemeData(null), null);
 
     try {
       ThemeDecoder.decodeTabBarTheme({'indicator': 'foo'});
@@ -8917,7 +8917,7 @@ void main() {
 
     expect(ThemeDecoder.decodeTabBarTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTabBarTheme(
+    final encoded = ThemeEncoder.encodeTabBarThemeData(
       entry.data,
     );
     final decoded = ThemeDecoder.decodeTabBarTheme(encoded);

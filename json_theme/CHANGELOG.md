@@ -1,3 +1,7 @@
+## [6.5.3+7] - November 12, 2024
+
+* Version build_runner files in git
+
 ## [6.5.3+6] - November 12, 2024
 
 * Automated dependency updates

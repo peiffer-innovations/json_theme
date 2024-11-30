@@ -1,3 +1,9 @@
+## [6.5.4] - November 30th, 2024
+
+* Updated dependency on example for `intl`.
+* Updated `json_class` dependency due to `intl`.
+
+
 ## [6.5.3+6] - November 12, 2024
 
 * Automated dependency updates

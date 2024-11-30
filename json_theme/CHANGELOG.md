@@ -1,3 +1,8 @@
+## [6.5.3+7] - November 30th, 2024
+
+* Updated dependency on example for `intl`.
+
+
 ## [6.5.3+6] - November 12, 2024
 
 * Automated dependency updates

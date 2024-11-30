@@ -9,9 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: 'flutter'
-  form_validation: '^3.1.1+8'
+  form_validation: '^3.2.0'
   google_fonts: '^6.2.1'
-  intl: '^0.20.0'
+  intl: '>=0.19.0<1.0.0'
   json_theme:
     path: '../'
   meta: '^1.12.0'

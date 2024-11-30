@@ -1321,7 +1321,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeCardTheme(CardTheme? value) {
+  static Map<String, dynamic>? encodeCardThemeData(CardThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2057,7 +2057,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDialogTheme(DialogTheme? value) {
+  static Map<String, dynamic>? encodeDialogThemeData(DialogThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6093,7 +6093,7 @@ class ThemeEncoder {
   ///  * [encodeTabAlignment]
   ///  * [encodeTabBarIndicatorSize]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTabBarTheme(TabBarTheme? value) {
+  static Map<String, dynamic>? encodeTabBarThemeData(TabBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7050,14 +7050,14 @@ class ThemeEncoder {
   ///  * [encodeBottomSheetThemeData]
   ///  * [encodeButtonBarThemeData]
   ///  * [encodeButtonThemeData]
-  ///  * [encodeCardTheme]
+  ///  * [encodeCardThemeData]
   ///  * [encodeCheckboxThemeData]
   ///  * [encodeChipThemeData]
   ///  * [encodeColor]
   ///  * [encodeColorScheme]
   ///  * [encodeDatePickerThemeData]
   ///  * [encodeDataTableThemeData]
-  ///  * [encodeDialogTheme]
+  ///  * [encodeDialogThemeData]
   ///  * [encodeDividerThemeData]
   ///  * [encodeDrawerThemeData]
   ///  * [encodeElevatedButtonThemeData]
@@ -7085,7 +7085,7 @@ class ThemeEncoder {
   ///  * [encodeSliderThemeData]
   ///  * [encodeSnackBarThemeData]
   ///  * [encodeSwitchThemeData]
-  ///  * [encodeTabBarTheme]
+  ///  * [encodeTabBarThemeData]
   ///  * [encodeTargetPlatform]
   ///  * [encodeTextButtonThemeData]
   ///  * [encodeTextSelectionThemeData]
@@ -7114,7 +7114,7 @@ class ThemeEncoder {
         'buttonTheme': encodeButtonThemeData(value.buttonTheme),
         'canvasColor': encodeColor(value.canvasColor),
         'cardColor': encodeColor(value.cardColor),
-        'cardTheme': encodeCardTheme(value.cardTheme),
+        'cardTheme': encodeCardThemeData(value.cardTheme),
         'checkboxTheme': encodeCheckboxThemeData(value.checkboxTheme),
         'chipTheme': encodeChipThemeData(value.chipTheme),
         'colorScheme': encodeColorScheme(value.colorScheme),
@@ -7125,7 +7125,7 @@ class ThemeEncoder {
         'datePickerThemeData': encodeDatePickerThemeData(value.datePickerTheme),
         'dataTableTheme': encodeDataTableThemeData(value.dataTableTheme),
         'dialogBackgroundColor': encodeColor(value.dialogBackgroundColor),
-        'dialogTheme': encodeDialogTheme(value.dialogTheme),
+        'dialogTheme': encodeDialogThemeData(value.dialogTheme),
         'disabledColor': encodeColor(value.disabledColor),
         'dividerColor': encodeColor(value.dividerColor),
         'dividerTheme': encodeDividerThemeData(value.dividerTheme),
@@ -7187,7 +7187,7 @@ class ThemeEncoder {
         'splashFactory':
             encodeInteractiveInkFeatureFactory(value.splashFactory),
         'switchTheme': encodeSwitchThemeData(value.switchTheme),
-        'tabBarTheme': encodeTabBarTheme(value.tabBarTheme),
+        'tabBarTheme': encodeTabBarThemeData(value.tabBarTheme),
         'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
         'textSelectionTheme': encodeTextSelectionThemeData(
           value.textSelectionTheme,

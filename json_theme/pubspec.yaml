@@ -14,9 +14,9 @@ analyzer:
 dependencies:
   flutter:
     sdk: 'flutter'
-  json_class: '^3.0.0+16'
+  json_class: '^3.0.1'
   json_schema: '^5.2.0'
-  json_theme_annotation: '^1.0.3+11'
+  json_theme_annotation: '^1.0.3+13'
   logging: '^1.3.0'
   meta: '^1.12.0'
 

@@ -22,6 +22,7 @@ class SnackBarThemeDataSchema {
       'disabledActionBackgroundColor':
           SchemaHelper.objectSchema(ColorSchema.id),
       'disabledActionTextColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'dismissDirection': SchemaHelper.objectSchema(DismissDirectionSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'insetPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),

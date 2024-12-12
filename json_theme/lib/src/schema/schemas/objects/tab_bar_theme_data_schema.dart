@@ -1,20 +1,20 @@
 import 'package:json_theme/json_theme_schemas.dart';
 
-class TabBarThemeSchema {
+class TabBarThemeDataSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/tab_bar_theme.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/tab_bar_theme_data.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/TabBarTheme-class.html',
-    'title': 'TabBarTheme',
+    'title': 'TabBarThemeDataS',
     'type': 'object',
     'properties': {
-      'data': SchemaHelper.objectSchema(TabBarThemeDataSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerHeight': SchemaHelper.numberSchema,
+      'indicatorAnimation': SchemaHelper.objectSchema(
+        TabIndicatorAnimationSchema.id,
+      ),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'indicatorSize': SchemaHelper.objectSchema(TabBarIndicatorSizeSchema.id),
       'labelPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),

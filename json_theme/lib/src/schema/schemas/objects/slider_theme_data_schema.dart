@@ -63,6 +63,7 @@ class SliderThemeDataSchema {
       'valueIndicatorShape': SchemaHelper.objectSchema(
         SliderComponentShapeSchema.id,
       ),
+      'valueIndicatorStrokeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'valueIndicatorTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };

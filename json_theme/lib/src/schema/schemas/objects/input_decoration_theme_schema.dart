@@ -44,8 +44,14 @@ class InputDecorationThemeSchema {
       'labelStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'outlineBorder': SchemaHelper.objectSchema(BorderSideSchema.id),
       'prefixIconColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'prefixIconConstraints': SchemaHelper.objectSchema(
+        BoxConstraintsSchema.id,
+      ),
       'prefixStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'suffixIconColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'suffixIconConstraints': SchemaHelper.objectSchema(
+        BoxConstraintsSchema.id,
+      ),
       'suffixStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };

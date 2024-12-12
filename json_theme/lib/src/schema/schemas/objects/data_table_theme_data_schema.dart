@@ -25,6 +25,9 @@ class DataTableThemeDataSchema {
       'dividerThickness': SchemaHelper.numberSchema,
       'headingCellCursor':
           SchemaHelper.objectSchema(WidgetStatePropertyMouseCursorSchema.id),
+      'headingRowAlignment': SchemaHelper.objectSchema(
+        MainAxisAlignmentSchema.id,
+      ),
       'headingRowColor':
           SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
       'headingRowHeight': SchemaHelper.numberSchema,

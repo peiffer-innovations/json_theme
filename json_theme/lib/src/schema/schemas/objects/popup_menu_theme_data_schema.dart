@@ -21,6 +21,7 @@ class PopupMenuThemeDataSchema {
       'labelTextStyle': SchemaHelper.objectSchema(
         WidgetStatePropertyTextStyleSchema.id,
       ),
+      'menuPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'mouseCursor': SchemaHelper.objectSchema(
         WidgetStatePropertyMouseCursorSchema.id,
       ),

@@ -27,6 +27,9 @@ class NavigationBarThemeDataSchema {
       'labelTextStyle': SchemaHelper.objectSchema(
         WidgetStatePropertyTextStyleSchema.id,
       ),
+      'overlayColor': SchemaHelper.objectSchema(
+        WidgetStatePropertyColorSchema.id,
+      ),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
     },

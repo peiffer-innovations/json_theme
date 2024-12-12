@@ -12,6 +12,7 @@ class CupertinoTextThemeDataSchema {
     'title': 'CupertinoTextThemeData',
     'type': 'object',
     'properties': {
+      'actionSmallTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'actionTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'dateTimePickerTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'navActionTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),

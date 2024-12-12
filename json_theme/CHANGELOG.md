@@ -1,4 +1,4 @@
-## [7.0.0-dev.1] - November 30th, 2024
+## [7.0.0] - December 12th, 2024
 
 * Add support to flutter 3.27
 

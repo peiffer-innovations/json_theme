@@ -5482,7 +5482,7 @@ void main() {
     expect(ThemeDecoder.decodeMaterialColor(null), null);
     expect(ThemeEncoder.encodeMaterialColor(null), null);
 
-    final entry = MaterialColor(_kColor.value, const {
+    final entry = MaterialColor(colorToInt(_kColor)!, const {
       50: _kColor,
       100: _kColor,
       200: _kColor,

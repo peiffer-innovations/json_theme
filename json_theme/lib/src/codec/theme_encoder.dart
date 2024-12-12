@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:json_theme/json_theme.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 /// Encoder capable of converting Flutter Theme related classes and enums into
@@ -3857,7 +3858,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'primary': encodeColor(Color(value.value)),
+        'primary': encodeColor(Color(colorToInt(value)!)),
         'swatches': {
           '50': encodeColor(value.shade50),
           '100': encodeColor(value.shade100),

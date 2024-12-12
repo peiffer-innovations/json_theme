@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
+import 'package:json_theme/json_theme.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 import '../model/map_widget_state_property.dart';
-import '../schema/schema_validator.dart';
 
 /// Decoder capable of converting JSON compatible values into Flutter Theme
 /// related classes and enums.
@@ -6939,11 +6939,10 @@ class ThemeDecoder {
       );
 
       result = MaterialColor(
-        decodeColor(
+        colorToInt(decodeColor(
           value['primary'],
           validate: false,
-        )!
-            .value,
+        )!)!,
         swatches,
       );
     }

@@ -1946,7 +1946,7 @@ void main() {
 
   test('CardTheme', () {
     expect(ThemeDecoder.decodeCardTheme(null), null);
-    expect(ThemeEncoder.encodeCardTheme(null), null);
+    expect(ThemeEncoder.encodeCardThemeData(null), null);
 
     final entry = CardTheme(
       clipBehavior: Clip.hardEdge,
@@ -1968,7 +1968,9 @@ void main() {
       'y': 12.0,
     };
 
-    final encoded = ThemeEncoder.encodeCardTheme(entry);
+    final encoded = ThemeEncoder.encodeCardThemeData(
+      entry.data,
+    );
     final decoded = ThemeDecoder.decodeCardTheme(encoded);
 
     expect(encoded, {
@@ -2845,7 +2847,7 @@ void main() {
 
   test('DialogTheme', () {
     expect(ThemeDecoder.decodeDialogTheme(null), null);
-    expect(ThemeEncoder.encodeDialogTheme(null), null);
+    expect(ThemeEncoder.encodeDialogThemeData(null), null);
 
     const entry = DialogTheme(
       actionsPadding: EdgeInsets.all(8.0),
@@ -2860,7 +2862,9 @@ void main() {
 
     expect(ThemeDecoder.decodeDialogTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDialogTheme(entry);
+    final encoded = ThemeEncoder.encodeDialogThemeData(
+      entry.data,
+    );
     final decoded = ThemeDecoder.decodeDialogTheme(encoded);
 
     expect(
@@ -8893,7 +8897,7 @@ void main() {
 
   test('TabBarTheme', () {
     expect(ThemeDecoder.decodeTabBarTheme(null), null);
-    expect(ThemeEncoder.encodeTabBarTheme(null), null);
+    expect(ThemeEncoder.encodeTabBarThemeData(null), null);
 
     try {
       ThemeDecoder.decodeTabBarTheme({'indicator': 'foo'});
@@ -8913,7 +8917,9 @@ void main() {
 
     expect(ThemeDecoder.decodeTabBarTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTabBarTheme(entry);
+    final encoded = ThemeEncoder.encodeTabBarThemeData(
+      entry.data,
+    );
     final decoded = ThemeDecoder.decodeTabBarTheme(encoded);
 
     expect(

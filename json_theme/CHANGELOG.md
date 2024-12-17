@@ -1,3 +1,8 @@
+## [7.0.0+1] - December 17, 2024
+
+* Automated dependency updates
+
+
 ## [7.0.0] - December 12th, 2024
 
 * Add support to flutter 3.27

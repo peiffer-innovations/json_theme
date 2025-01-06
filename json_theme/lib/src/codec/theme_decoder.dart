@@ -3645,7 +3645,7 @@ class ThemeDecoder {
           validate: false,
         ),
         locale: decodeLocale(
-          value,
+          value['locale'],
           validate: false,
         ),
         rangePickerBackgroundColor: decodeColor(

@@ -3034,6 +3034,9 @@ class ThemeDecoder {
   ///   "surfaceContainerLow": "<Color>",
   ///   "surfaceContainerLowest": "<Color>",
   ///   "surfaceDim": "<Color>",
+  ///   "surfaceVariant": "<Color>",
+  ///   "background": "<Color>",
+  ///   "onBackground": "<Color>",
   ///   "tertiary": "<Color>",
   ///   "tertiaryContainer": "<Color>",
   ///   "tertiaryFixed": "<Color>",
@@ -3240,6 +3243,18 @@ class ThemeDecoder {
         ),
         tertiaryContainer: decodeColor(
           value['tertiaryContainer'],
+          validate: false,
+        ),
+        background: decodeColor(
+          value['background'],
+          validate: false,
+        ),
+        onBackground: decodeColor(
+          value['onBackground'],
+          validate: false,
+        ),
+        surfaceVariant: decodeColor(
+          value['surfaceVariant'],
           validate: false,
         ),
         tertiaryFixed: decodeColor(
@@ -3632,7 +3647,7 @@ class ThemeDecoder {
           validate: false,
         ),
         locale: decodeLocale(
-          value,
+          value['locale'],
           validate: false,
         ),
         rangePickerBackgroundColor: decodeColor(

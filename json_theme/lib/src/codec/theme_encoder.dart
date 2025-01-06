@@ -1631,11 +1631,13 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
+        'background': encodeColor(value.background),
         'brightness': encodeBrightness(value.brightness),
         'error': encodeColor(value.error),
         'errorContainer': encodeColor(value.errorContainer),
         'inversePrimary': encodeColor(value.inversePrimary),
         'inverseSurface': encodeColor(value.inverseSurface),
+        'onBackground': encodeColor(value.onBackground),
         'onError': encodeColor(value.onError),
         'onErrorContainer': encodeColor(value.onErrorContainer),
         'onInverseSurface': encodeColor(value.onInverseSurface),
@@ -1675,8 +1677,9 @@ class ThemeEncoder {
         'surfaceDim': encodeColor(value.surfaceDim),
         'tertiary': encodeColor(value.tertiary),
         'tertiaryContainer': encodeColor(value.tertiaryContainer),
+        'surfaceVariant': encodeColor(value.surfaceVariant),
         'tertiaryFixed': encodeColor(value.tertiaryFixed),
-        'tertiaryFixedDim': encodeColor(value.tertiaryFixedDim)
+        'tertiaryFixedDim': encodeColor(value.tertiaryFixedDim),
       };
     }
 

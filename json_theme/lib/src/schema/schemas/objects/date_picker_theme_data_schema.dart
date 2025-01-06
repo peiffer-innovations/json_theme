@@ -24,6 +24,9 @@ class DatePickerThemeDataSchema {
       'dayOverlayColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
+      'dayShape': SchemaHelper.objectSchema(
+        WidgetStatePropertyOutlinedBorderSchema.id,
+      ),
       'dayStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
@@ -31,6 +34,7 @@ class DatePickerThemeDataSchema {
       'headerForegroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'headerHeadlineStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'headerHelpStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'locale': SchemaHelper.objectSchema(LocaleSchema.id),
       'rangePickerBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'rangePickerElevation': SchemaHelper.numberSchema,
       'rangePickerHeaderBackgroundColor': SchemaHelper.objectSchema(

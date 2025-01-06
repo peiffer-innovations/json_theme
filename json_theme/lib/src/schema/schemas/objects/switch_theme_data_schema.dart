@@ -19,6 +19,7 @@ class SwitchThemeDataSchema {
       'overlayColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
+      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'splashRadius': SchemaHelper.numberSchema,
       'thumbColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,

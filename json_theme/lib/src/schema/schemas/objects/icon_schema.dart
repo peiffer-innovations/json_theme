@@ -15,6 +15,8 @@ class IconSchema {
       'icon',
     ],
     'properties': {
+      'applyTextScaling': SchemaHelper.boolSchema,
+      'blendMode': SchemaHelper.objectSchema(BlendModeSchema.id),
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'fill': SchemaHelper.numberSchema,
       'grade': SchemaHelper.numberSchema,

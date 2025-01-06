@@ -14,6 +14,7 @@ class AutovalidateModeSchema {
     'oneOf': SchemaHelper.enumSchema([
       'always',
       'disabled',
+      'onUnfocus',
       'onUserInteraction',
     ]),
   };

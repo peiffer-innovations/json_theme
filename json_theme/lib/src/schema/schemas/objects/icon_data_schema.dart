@@ -17,6 +17,17 @@ class IconDataSchema {
     'properties': {
       'codePoint': SchemaHelper.numberSchema,
       'fontFamily': SchemaHelper.stringSchema,
+      'fontFamilyFallback': {
+        'anyOf': [
+          {
+            'type': 'string',
+          },
+          {
+            'type': 'array',
+            'items': {'type': 'string'},
+          },
+        ],
+      },
       'fontPackage': SchemaHelper.stringSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
     },

@@ -13,6 +13,9 @@ class ListTileThemeDataSchema {
     'type': 'object',
     'properties': {
       'contentPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      'controlAffinity': SchemaHelper.objectSchema(
+        ListTileControlAffinitySchema.id,
+      ),
       'dense': SchemaHelper.boolSchema,
       'enableFeedback': SchemaHelper.boolSchema,
       'horizontalTitleGap': SchemaHelper.numberSchema,
@@ -21,6 +24,7 @@ class ListTileThemeDataSchema {
         TextStyleSchema.id,
       ),
       'minLeadingWidth': SchemaHelper.numberSchema,
+      'minTileHeight': SchemaHelper.numberSchema,
       'minVerticalPadding': SchemaHelper.numberSchema,
       'mouseCursor': SchemaHelper.objectSchema(
         WidgetStatePropertyMouseCursorSchema.id,

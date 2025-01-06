@@ -36,6 +36,12 @@ class TimePickerThemeDataSchema {
       ),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'timeSelectorSeparatorColor': SchemaHelper.objectSchema(
+        WidgetStatePropertyColorSchema.id,
+      ),
+      'timeSelectorSeparatorTextStyle': SchemaHelper.objectSchema(
+        WidgetStatePropertyTextStyleSchema.id,
+      ),
     },
   };
 }

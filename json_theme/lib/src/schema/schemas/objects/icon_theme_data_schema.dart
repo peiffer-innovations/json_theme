@@ -12,6 +12,7 @@ class IconThemeDataSchema {
     'title': 'IconThemeData',
     'type': 'object',
     'properties': {
+      'applyTextScaling': SchemaHelper.boolSchema,
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'fill': SchemaHelper.numberSchema,
       'grade': SchemaHelper.numberSchema,

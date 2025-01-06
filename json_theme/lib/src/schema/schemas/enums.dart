@@ -5,6 +5,7 @@ class Enums {
   static List<String> all = [
     AlignmentDirectionalSchema.id,
     AndroidOverscrollIndicatorSchema.id,
+    AnimationStyleSchema.id,
     AxisSchema.id,
     AutovalidateModeSchema.id,
     BlendModeSchema.id,
@@ -23,6 +24,7 @@ class Enums {
     CrossAxisAlignmentSchema.id,
     CrossFadeStateSchema.id,
     DecorationPositionSchema.id,
+    DismissDirectionSchema.id,
     DragStartBehaviorSchema.id,
     FilterQualitySchema.id,
     FlexFitSchema.id,

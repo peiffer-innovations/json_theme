@@ -20,6 +20,9 @@ class ExpansionTileThemeDataSchema {
       'collapsedShape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'collapsedTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'expandedAlignment': SchemaHelper.objectSchema(AlignmentSchema.id),
+      'expansionAnimationStyle': SchemaHelper.objectSchema(
+        AnimationStyleSchema.id,
+      ),
       'iconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'textColor': SchemaHelper.objectSchema(ColorSchema.id),

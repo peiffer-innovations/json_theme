@@ -1,6 +1,83 @@
-## [6.5.0+2] - May 14th, 2024
+## [7.0.0+2] - December 31, 2024
 
-- Support all ColorScheme color properties from flutter 3.22
+* Automated dependency updates
+
+
+## [7.0.0+1] - December 17, 2024
+
+* Automated dependency updates
+
+
+## [7.0.0] - December 12th, 2024
+
+* Add support to flutter 3.27
+
+
+## [6.5.4+1] - December 10, 2024
+
+* Automated dependency updates
+
+
+## [6.5.4] - November 30th, 2024
+
+* Updated dependency on example for `intl`.
+* Updated `json_class` dependency due to `intl`.
+
+
+## [6.5.3+6] - November 12, 2024
+
+* Automated dependency updates
+
+
+## [6.5.3+5] - November 5, 2024
+
+* Automated dependency updates
+
+
+## [6.5.3+4] - October 22, 2024
+
+* Automated dependency updates
+
+
+## [6.5.3+3] - October 15, 2024
+
+* Automated dependency updates
+
+
+## [6.5.3+2] - October 8, 2024
+
+* Automated dependency updates
+
+
+## [6.5.3+1] - October 1, 2024
+
+* Automated dependency updates
+
+
+## [6.5.3] - September 9, 2024
+
+* Fix for [issue 205](https://github.com/peiffer-innovations/json_theme/issues/205)
+
+
+## [6.5.2+1] - September 9, 2024
+
+* Automated dependency updates
+
+
+## [6.5.2] - September 9th, 2024
+
+* Updated the `ColorScheme` with the latest values from Flutter 3.22
+
+
+## [6.5.1+2] - September 4th, 2024
+
+* Fix unit tests and ignore deprecated member of 'ButonBarThemeData' which is deprecated since v3.21.0-10.0.pre.
+
+
+## [6.5.1+1] - August 7th, 2024
+
+* Add missing case AutovalidateMode.onUnfocus in encoder
+
 
 ## [6.5.0+1] - May 14th, 2024
 
@@ -528,7 +605,7 @@
 
 ## [0.1.0] - June 2nd, 2020
 
-- Initial release
-- ~~**TODO**: Documentation~~
-- ~~**TODO**: Example App~~
-- ~~**TODO**: Unit Tests~~
+* Initial release
+* ~~**TODO**: Documentation~~
+* ~~**TODO**: Example App~~
+* ~~**TODO**: Unit Tests~~

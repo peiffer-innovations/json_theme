@@ -1,3 +1,8 @@
+## [7.0.0+3] - January 06, 2025
+
+* Fixed missing `locale` key
+* Added deprecated theme properties to keep the package backward compatible
+
 ## [7.0.0+2] - December 31, 2024
 
 * Automated dependency updates

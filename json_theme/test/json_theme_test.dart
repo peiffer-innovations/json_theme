@@ -10819,13 +10819,6 @@ void main() {
           ),
         ),
       ),
-      filledButtonTheme: FilledButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-            const Color(0xff222222),
-          ),
-        ),
-      ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Color(0xeedddddd),
       ),

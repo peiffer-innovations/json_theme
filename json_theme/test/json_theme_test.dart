@@ -16,10 +16,7 @@ import 'base64_image.dart';
 const _kColor = Color(0x00123456);
 const _kColorStr = '#00123456';
 const _kTextStyle = TextStyle(color: _kColor);
-const _kTextStyleJson = {
-  'color': _kColorStr,
-  'inherit': true,
-};
+const _kTextStyleJson = {'color': _kColorStr, 'inherit': true};
 
 void main() {
   Logger.root.onRecord.listen((record) {
@@ -37,108 +34,48 @@ void main() {
     expect(ThemeEncoder.encodeAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeAlignment(
-        Alignment.bottomCenter,
-      ),
+      ThemeDecoder.decodeAlignment(Alignment.bottomCenter),
       Alignment.bottomCenter,
     );
 
     expect(
-      ThemeDecoder.decodeAlignment(
-        {
-          'x': 0.2,
-          'y': 0.4,
-        },
-      ),
+      ThemeDecoder.decodeAlignment({'x': 0.2, 'y': 0.4}),
       const Alignment(0.2, 0.4),
     );
-    expect(
-      ThemeEncoder.encodeAlignment(
-        const Alignment(0.2, 0.4),
-      ),
-      {
-        'x': 0.2,
-        'y': 0.4,
-      },
-    );
+    expect(ThemeEncoder.encodeAlignment(const Alignment(0.2, 0.4)), {
+      'x': 0.2,
+      'y': 0.4,
+    });
 
     expect(
       ThemeDecoder.decodeAlignment('bottomCenter'),
       Alignment.bottomCenter,
     );
-    expect(
-      ThemeDecoder.decodeAlignment('bottomLeft'),
-      Alignment.bottomLeft,
-    );
-    expect(
-      ThemeDecoder.decodeAlignment('bottomRight'),
-      Alignment.bottomRight,
-    );
+    expect(ThemeDecoder.decodeAlignment('bottomLeft'), Alignment.bottomLeft);
+    expect(ThemeDecoder.decodeAlignment('bottomRight'), Alignment.bottomRight);
 
-    expect(
-      ThemeDecoder.decodeAlignment('center'),
-      Alignment.center,
-    );
-    expect(
-      ThemeDecoder.decodeAlignment('centerLeft'),
-      Alignment.centerLeft,
-    );
-    expect(
-      ThemeDecoder.decodeAlignment('centerRight'),
-      Alignment.centerRight,
-    );
+    expect(ThemeDecoder.decodeAlignment('center'), Alignment.center);
+    expect(ThemeDecoder.decodeAlignment('centerLeft'), Alignment.centerLeft);
+    expect(ThemeDecoder.decodeAlignment('centerRight'), Alignment.centerRight);
 
-    expect(
-      ThemeDecoder.decodeAlignment('topCenter'),
-      Alignment.topCenter,
-    );
-    expect(
-      ThemeDecoder.decodeAlignment('topLeft'),
-      Alignment.topLeft,
-    );
-    expect(
-      ThemeDecoder.decodeAlignment('topRight'),
-      Alignment.topRight,
-    );
+    expect(ThemeDecoder.decodeAlignment('topCenter'), Alignment.topCenter);
+    expect(ThemeDecoder.decodeAlignment('topLeft'), Alignment.topLeft);
+    expect(ThemeDecoder.decodeAlignment('topRight'), Alignment.topRight);
 
     expect(
       ThemeEncoder.encodeAlignment(Alignment.bottomCenter),
       'bottomCenter',
     );
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.bottomLeft),
-      'bottomLeft',
-    );
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.bottomRight),
-      'bottomRight',
-    );
+    expect(ThemeEncoder.encodeAlignment(Alignment.bottomLeft), 'bottomLeft');
+    expect(ThemeEncoder.encodeAlignment(Alignment.bottomRight), 'bottomRight');
 
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.center),
-      'center',
-    );
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.centerLeft),
-      'centerLeft',
-    );
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.centerRight),
-      'centerRight',
-    );
+    expect(ThemeEncoder.encodeAlignment(Alignment.center), 'center');
+    expect(ThemeEncoder.encodeAlignment(Alignment.centerLeft), 'centerLeft');
+    expect(ThemeEncoder.encodeAlignment(Alignment.centerRight), 'centerRight');
 
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.topCenter),
-      'topCenter',
-    );
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.topLeft),
-      'topLeft',
-    );
-    expect(
-      ThemeEncoder.encodeAlignment(Alignment.topRight),
-      'topRight',
-    );
+    expect(ThemeEncoder.encodeAlignment(Alignment.topCenter), 'topCenter');
+    expect(ThemeEncoder.encodeAlignment(Alignment.topLeft), 'topLeft');
+    expect(ThemeEncoder.encodeAlignment(Alignment.topRight), 'topRight');
   });
 
   test('AlignmentDirectional', () {
@@ -193,7 +130,8 @@ void main() {
 
     expect(
       ThemeEncoder.encodeAlignmentDirectional(
-          AlignmentDirectional.bottomCenter),
+        AlignmentDirectional.bottomCenter,
+      ),
       'bottomCenter',
     );
     expect(
@@ -237,30 +175,18 @@ void main() {
     expect(ThemeEncoder.encodeAlignmentGeometry(null), null);
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry(
-        Alignment.bottomCenter,
-      ),
+      ThemeDecoder.decodeAlignmentGeometry(Alignment.bottomCenter),
       Alignment.bottomCenter,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry(
-        {
-          'x': 0.2,
-          'y': 0.4,
-        },
-      ),
+      ThemeDecoder.decodeAlignmentGeometry({'x': 0.2, 'y': 0.4}),
       const Alignment(0.2, 0.4),
     );
-    expect(
-      ThemeEncoder.encodeAlignmentGeometry(
-        const Alignment(0.2, 0.4),
-      ),
-      {
-        'x': 0.2,
-        'y': 0.4,
-      },
-    );
+    expect(ThemeEncoder.encodeAlignmentGeometry(const Alignment(0.2, 0.4)), {
+      'x': 0.2,
+      'y': 0.4,
+    });
 
     expect(
       ThemeDecoder.decodeAlignmentGeometry('bottomCenter'),
@@ -275,10 +201,7 @@ void main() {
       Alignment.bottomRight,
     );
 
-    expect(
-      ThemeDecoder.decodeAlignmentGeometry('center'),
-      Alignment.center,
-    );
+    expect(ThemeDecoder.decodeAlignmentGeometry('center'), Alignment.center);
     expect(
       ThemeDecoder.decodeAlignmentGeometry('centerLeft'),
       Alignment.centerLeft,
@@ -292,10 +215,7 @@ void main() {
       ThemeDecoder.decodeAlignmentGeometry('topCenter'),
       Alignment.topCenter,
     );
-    expect(
-      ThemeDecoder.decodeAlignmentGeometry('topLeft'),
-      Alignment.topLeft,
-    );
+    expect(ThemeDecoder.decodeAlignmentGeometry('topLeft'), Alignment.topLeft);
     expect(
       ThemeDecoder.decodeAlignmentGeometry('topRight'),
       Alignment.topRight,
@@ -314,10 +234,7 @@ void main() {
       'bottomRight',
     );
 
-    expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.center),
-      'center',
-    );
+    expect(ThemeEncoder.encodeAlignmentGeometry(Alignment.center), 'center');
     expect(
       ThemeEncoder.encodeAlignmentGeometry(Alignment.centerLeft),
       'centerLeft',
@@ -331,19 +248,14 @@ void main() {
       ThemeEncoder.encodeAlignmentGeometry(Alignment.topCenter),
       'topCenter',
     );
-    expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.topLeft),
-      'topLeft',
-    );
+    expect(ThemeEncoder.encodeAlignmentGeometry(Alignment.topLeft), 'topLeft');
     expect(
       ThemeEncoder.encodeAlignmentGeometry(Alignment.topRight),
       'topRight',
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry(
-        AlignmentDirectional.bottomCenter,
-      ),
+      ThemeDecoder.decodeAlignmentGeometry(AlignmentDirectional.bottomCenter),
       AlignmentDirectional.bottomCenter,
     );
 
@@ -434,12 +346,14 @@ void main() {
 
     expect(
       ThemeEncoder.encodeAndroidOverscrollIndicator(
-          AndroidOverscrollIndicator.glow),
+        AndroidOverscrollIndicator.glow,
+      ),
       'glow',
     );
     expect(
       ThemeEncoder.encodeAndroidOverscrollIndicator(
-          AndroidOverscrollIndicator.stretch),
+        AndroidOverscrollIndicator.stretch,
+      ),
       'stretch',
     );
   });
@@ -449,9 +363,7 @@ void main() {
     expect(ThemeEncoder.encodeAnimationStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeAnimationStyle(
-        AnimationStyle.noAnimation,
-      ),
+      ThemeDecoder.decodeAnimationStyle(AnimationStyle.noAnimation),
       AnimationStyle.noAnimation,
     );
 
@@ -471,6 +383,7 @@ void main() {
     expect(ThemeEncoder.encodeAppBarTheme(null), null);
 
     const entry = AppBarTheme(
+      actionsPadding: EdgeInsets.all(8.0),
       color: _kColor,
       centerTitle: true,
       elevation: 6.0,
@@ -487,23 +400,24 @@ void main() {
 
     expect(
       json.encode(encoded),
-      json.encode(
-        {
-          'backgroundColor': _kColorStr,
-          'centerTitle': true,
-          'elevation': 6.0,
-          'foregroundColor': _kColorStr,
-          'shadowColor': _kColorStr,
-          'systemOverlayStyle': 'dark',
-          'toolbarHeight': 64.0,
+      json.encode({
+        'actionsPadding': {
+          'bottom': 8.0,
+          'left': 8.0,
+          'right': 8.0,
+          'top': 8.0,
         },
-      ),
+        'backgroundColor': _kColorStr,
+        'centerTitle': true,
+        'elevation': 6.0,
+        'foregroundColor': _kColorStr,
+        'shadowColor': _kColorStr,
+        'systemOverlayStyle': 'dark',
+        'toolbarHeight': 64.0,
+      }),
     );
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('AutovalidateMode', () {
@@ -511,9 +425,7 @@ void main() {
     expect(ThemeEncoder.encodeAutovalidateMode(null), null);
 
     expect(
-      ThemeDecoder.decodeAutovalidateMode(
-        AutovalidateMode.always,
-      ),
+      ThemeDecoder.decodeAutovalidateMode(AutovalidateMode.always),
       AutovalidateMode.always,
     );
 
@@ -528,12 +440,7 @@ void main() {
     expect(ThemeDecoder.decodeAxis(null), null);
     expect(ThemeEncoder.encodeAxis(null), null);
 
-    expect(
-      ThemeDecoder.decodeAxis(
-        Axis.horizontal,
-      ),
-      Axis.horizontal,
-    );
+    expect(ThemeDecoder.decodeAxis(Axis.horizontal), Axis.horizontal);
 
     expect(ThemeDecoder.decodeAxis('horizontal'), Axis.horizontal);
     expect(ThemeDecoder.decodeAxis('vertical'), Axis.vertical);
@@ -554,15 +461,10 @@ void main() {
       padding: EdgeInsets.all(16.0),
       smallSize: 10.0,
       textColor: _kColor,
-      textStyle: TextStyle(
-        fontWeight: FontWeight.w400,
-      ),
+      textStyle: TextStyle(fontWeight: FontWeight.w400),
     );
 
-    expect(
-      ThemeDecoder.decodeBadgeThemeData(entry),
-      entry,
-    );
+    expect(ThemeDecoder.decodeBadgeThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeBadgeThemeData(entry);
 
@@ -570,34 +472,18 @@ void main() {
       'alignment': 'bottomCenter',
       'backgroundColor': _kColorStr,
       'largeSize': 20.0,
-      'offset': {
-        'dx': 10.0,
-        'dy': 20.0,
-      },
-      'padding': {
-        'bottom': 16.0,
-        'left': 16.0,
-        'right': 16.0,
-        'top': 16.0,
-      },
+      'offset': {'dx': 10.0, 'dy': 20.0},
+      'padding': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
       'smallSize': 10.0,
       'textColor': _kColorStr,
-      'textStyle': {
-        'fontWeight': 'w400',
-        'inherit': true,
-      }
+      'textStyle': {'fontWeight': 'w400', 'inherit': true},
     });
   });
   test('BlendMode', () {
     expect(ThemeDecoder.decodeBlendMode(null), null);
     expect(ThemeEncoder.encodeBlendMode(null), null);
 
-    expect(
-      ThemeDecoder.decodeBlendMode(
-        BlendMode.clear,
-      ),
-      BlendMode.clear,
-    );
+    expect(ThemeDecoder.decodeBlendMode(BlendMode.clear), BlendMode.clear);
 
     expect(ThemeDecoder.decodeBlendMode('clear'), BlendMode.clear);
     expect(ThemeDecoder.decodeBlendMode('color'), BlendMode.color);
@@ -686,27 +572,17 @@ void main() {
     final encoded = ThemeEncoder.encodeBorderRadius(entry);
     final decoded = ThemeDecoder.decodeBorderRadius(encoded);
 
-    const corner = {
-      'type': 'elliptical',
-      'x': 16.0,
-      'y': 16.0,
-    };
+    const corner = {'type': 'elliptical', 'x': 16.0, 'y': 16.0};
 
-    expect(
-      encoded,
-      {
-        'bottomLeft': corner,
-        'bottomRight': corner,
-        'topLeft': corner,
-        'topRight': corner,
-        'type': 'only',
-      },
-    );
+    expect(encoded, {
+      'bottomLeft': corner,
+      'bottomRight': corner,
+      'topLeft': corner,
+      'topRight': corner,
+      'type': 'only',
+    });
 
-    expect(
-      entry,
-      decoded,
-    );
+    expect(entry, decoded);
 
     expect(ThemeDecoder.decodeBorderRadius(16), BorderRadius.circular(16));
   });
@@ -727,32 +603,21 @@ void main() {
     final encoded = ThemeEncoder.encodeBorderSide(entry);
     final decoded = ThemeDecoder.decodeBorderSide(encoded);
 
-    expect(
-      encoded,
-      {
-        'color': _kColorStr,
-        'strokeAlign': 3.0,
-        'style': 'solid',
-        'width': 5.0,
-      },
-    );
+    expect(encoded, {
+      'color': _kColorStr,
+      'strokeAlign': 3.0,
+      'style': 'solid',
+      'width': 5.0,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('BorderStyle', () {
     expect(ThemeDecoder.decodeBorderStyle(null), null);
     expect(ThemeEncoder.encodeBorderStyle(null), null);
 
-    expect(
-      ThemeDecoder.decodeBorderStyle(
-        BorderStyle.none,
-      ),
-      BorderStyle.none,
-    );
+    expect(ThemeDecoder.decodeBorderStyle(BorderStyle.none), BorderStyle.none);
 
     expect(ThemeDecoder.decodeBorderStyle('none'), BorderStyle.none);
     expect(ThemeDecoder.decodeBorderStyle('solid'), BorderStyle.solid);
@@ -784,31 +649,17 @@ void main() {
       'color': _kColorStr,
       'elevation': 8.0,
       'height': 20.0,
-      'padding': {
-        'bottom': 16.0,
-        'left': 16.0,
-        'right': 16.0,
-        'top': 16.0,
-      },
+      'padding': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
       'shadowColor': _kColorStr,
       'shape': 'circular',
       'surfaceTintColor': _kColorStr,
     });
 
-    expect(
-      decoded.color,
-      entry.color,
-    );
+    expect(decoded.color, entry.color);
 
-    expect(
-      decoded.elevation,
-      entry.elevation,
-    );
+    expect(decoded.elevation, entry.elevation);
 
-    expect(
-      decoded.shape?.runtimeType,
-      entry.shape?.runtimeType,
-    );
+    expect(decoded.shape?.runtimeType, entry.shape?.runtimeType);
   });
 
   test('BottomNavigationBarLandscapeLayout', () {
@@ -881,31 +732,18 @@ void main() {
     expect(encoded, {
       'backgroundColor': '#ff111111',
       'elevation': 1.0,
-      'selectedIconTheme': {
-        'opacity': 0.2,
-      },
+      'selectedIconTheme': {'opacity': 0.2},
       'selectedItemColor': '#ff222222',
-      'selectedLabelStyle': {
-        'fontSize': 3.0,
-        'inherit': true,
-      },
+      'selectedLabelStyle': {'fontSize': 3.0, 'inherit': true},
       'showSelectedLabels': true,
       'showUnselectedLabels': true,
       'type': 'fixed',
-      'unselectedIconTheme': {
-        'opacity': 0.4,
-      },
+      'unselectedIconTheme': {'opacity': 0.4},
       'unselectedItemColor': '#ff333333',
-      'unselectedLabelStyle': {
-        'fontSize': 5.0,
-        'inherit': true,
-      },
+      'unselectedLabelStyle': {'fontSize': 5.0, 'inherit': true},
     });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('BottomNavigationBarType', () {
@@ -913,9 +751,7 @@ void main() {
     expect(ThemeEncoder.encodeBottomNavigationBarType(null), null);
 
     expect(
-      ThemeDecoder.decodeBottomNavigationBarType(
-        BottomNavigationBarType.fixed,
-      ),
+      ThemeDecoder.decodeBottomNavigationBarType(BottomNavigationBarType.fixed),
       BottomNavigationBarType.fixed,
     );
 
@@ -929,9 +765,7 @@ void main() {
     );
 
     expect(
-      ThemeEncoder.encodeBottomNavigationBarType(
-        BottomNavigationBarType.fixed,
-      ),
+      ThemeEncoder.encodeBottomNavigationBarType(BottomNavigationBarType.fixed),
       'fixed',
     );
     expect(
@@ -969,43 +803,36 @@ void main() {
     final encoded = ThemeEncoder.encodeBottomSheetThemeData(entry);
     final decoded = ThemeDecoder.decodeBottomSheetThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#ff111111',
-        'clipBehavior': 'antiAlias',
-        'constraints': {
-          'maxHeight': 40.0,
-          'minHeight': 0.0,
-          'minWidth': 0.0,
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'clipBehavior': 'antiAlias',
+      'constraints': {'maxHeight': 40.0, 'minHeight': 0.0, 'minWidth': 0.0},
+      'dragHandleColor': _kColorStr,
+      'dragHandleSize': {'height': 2.0, 'width': 20.0},
+      'elevation': 12.0,
+      'modalBackgroundColor': '#ff222222',
+      'modalBarrierColor': '#ff333333',
+      'modalElevation': 18.0,
+      'shadowColor': _kColorStr,
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
+          'bottomRight': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
+          'topLeft': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
+          'topRight': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
+          'type': 'only',
         },
-        'dragHandleColor': _kColorStr,
-        'dragHandleSize': {'height': 2.0, 'width': 20.0},
-        'elevation': 12.0,
-        'modalBackgroundColor': '#ff222222',
-        'modalBarrierColor': '#ff333333',
-        'modalElevation': 18.0,
-        'shadowColor': _kColorStr,
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
-            'bottomRight': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
-            'topLeft': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
-            'topRight': {'type': 'elliptical', 'x': 16.0, 'y': 16.0},
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
         },
-        'showDragHandle': true,
-        'surfaceTintColor': _kColorStr,
+        'type': 'rounded',
       },
-    );
+      'showDragHandle': true,
+      'surfaceTintColor': _kColorStr,
+    });
 
     expect(
       ThemeEncoder.encodeBottomSheetThemeData(decoded),
@@ -1056,10 +883,7 @@ void main() {
       },
     });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     expect(
       ThemeDecoder.decodeBoxBorder({
@@ -1091,28 +915,19 @@ void main() {
     final encoded = ThemeEncoder.encodeBoxConstraints(entry);
     final decoded = ThemeDecoder.decodeBoxConstraints(encoded);
 
-    expect(
-      encoded,
-      {
-        'maxHeight': 1000.0,
-        'maxWidth': 1001.0,
-        'minHeight': 100.0,
-        'minWidth': 101.0,
-      },
-    );
+    expect(encoded, {
+      'maxHeight': 1000.0,
+      'maxWidth': 1001.0,
+      'minHeight': 100.0,
+      'minWidth': 101.0,
+    });
 
-    expect(
-      ThemeEncoder.encodeBoxConstraints(const BoxConstraints()),
-      {
-        'minHeight': 0.0,
-        'minWidth': 0.0,
-      },
-    );
+    expect(ThemeEncoder.encodeBoxConstraints(const BoxConstraints()), {
+      'minHeight': 0.0,
+      'minWidth': 0.0,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('BoxDecoration', () {
@@ -1124,25 +939,14 @@ void main() {
       border: Border.all(color: _kColor),
       borderRadius: BorderRadius.circular(1.0),
       boxShadow: const [
-        BoxShadow(
-          blurStyle: BlurStyle.inner,
-          color: Color(0xff111111),
-        ),
-        BoxShadow(
-          blurStyle: BlurStyle.normal,
-          color: Color(0xff222222),
-        )
+        BoxShadow(blurStyle: BlurStyle.inner, color: Color(0xff111111)),
+        BoxShadow(blurStyle: BlurStyle.normal, color: Color(0xff222222)),
       ],
       color: const Color(0xff333333),
       gradient: const RadialGradient(
-        colors: [
-          Color(0xff444444),
-          Color(0xff555555),
-        ],
+        colors: [Color(0xff444444), Color(0xff555555)],
       ),
-      image: DecorationImage(
-        image: MemoryImage(base64Decode(base64Image)),
-      ),
+      image: DecorationImage(image: MemoryImage(base64Decode(base64Image))),
       shape: BoxShape.circle,
     );
 
@@ -1151,128 +955,88 @@ void main() {
     final encoded = ThemeEncoder.encodeBoxDecoration(entry);
     final decoded = ThemeDecoder.decodeBoxDecoration(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundBlendMode': 'colorBurn',
-        'border': {
-          'bottom': {
-            'color': _kColorStr,
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'left': {
-            'color': _kColorStr,
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'right': {
-            'color': _kColorStr,
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'top': {
-            'color': _kColorStr,
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
+    expect(encoded, {
+      'backgroundBlendMode': 'colorBurn',
+      'border': {
+        'bottom': {
+          'color': _kColorStr,
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
         },
-        'borderRadius': {
-          'bottomLeft': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'bottomRight': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'topLeft': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'topRight': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'type': 'only',
+        'left': {
+          'color': _kColorStr,
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
         },
-        'boxShadow': [
-          {
-            'blurStyle': 'inner',
-            'blurRadius': 0.0,
-            'color': '#ff111111',
-            'offset': {
-              'dx': 0.0,
-              'dy': 0.0,
-            },
-            'spreadRadius': 0.0,
-          },
-          {
-            'blurStyle': 'normal',
-            'blurRadius': 0.0,
-            'color': '#ff222222',
-            'offset': {
-              'dx': 0.0,
-              'dy': 0.0,
-            },
-            'spreadRadius': 0.0,
-          }
-        ],
-        'color': '#ff333333',
-        'gradient': {
-          'center': 'center',
-          'colors': [
-            '#ff444444',
-            '#ff555555',
-          ],
-          'focalRadius': 0.0,
-          'radius': 0.5,
-          'tileMode': 'clamp',
-          'type': 'radial'
+        'right': {
+          'color': _kColorStr,
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
         },
-        'image': {
-          'alignment': 'center',
-          'filterQuality': 'medium',
-          'image': {
-            'bytes': base64Image,
-            'scale': 1.0,
-            'type': 'memory',
-          },
-          'invertColors': false,
-          'isAntiAlias': false,
-          'matchTextDirection': false,
-          'opacity': 1.0,
-          'repeat': 'noRepeat',
-          'scale': 1.0,
+        'top': {
+          'color': _kColorStr,
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
         },
-        'shape': 'circle',
       },
-    );
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'bottomRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'topLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'topRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'type': 'only',
+      },
+      'boxShadow': [
+        {
+          'blurStyle': 'inner',
+          'blurRadius': 0.0,
+          'color': '#ff111111',
+          'offset': {'dx': 0.0, 'dy': 0.0},
+          'spreadRadius': 0.0,
+        },
+        {
+          'blurStyle': 'normal',
+          'blurRadius': 0.0,
+          'color': '#ff222222',
+          'offset': {'dx': 0.0, 'dy': 0.0},
+          'spreadRadius': 0.0,
+        },
+      ],
+      'color': '#ff333333',
+      'gradient': {
+        'center': 'center',
+        'colors': ['#ff444444', '#ff555555'],
+        'focalRadius': 0.0,
+        'radius': 0.5,
+        'tileMode': 'clamp',
+        'type': 'radial',
+      },
+      'image': {
+        'alignment': 'center',
+        'filterQuality': 'medium',
+        'image': {'bytes': base64Image, 'scale': 1.0, 'type': 'memory'},
+        'invertColors': false,
+        'isAntiAlias': false,
+        'matchTextDirection': false,
+        'opacity': 1.0,
+        'repeat': 'noRepeat',
+        'scale': 1.0,
+      },
+      'shape': 'circle',
+    });
 
-    expect(
-      ThemeEncoder.encodeBoxDecoration(decoded),
-      encoded,
-    );
+    expect(ThemeEncoder.encodeBoxDecoration(decoded), encoded);
   });
 
   test('BoxFit', () {
     expect(ThemeDecoder.decodeBoxFit(null), null);
     expect(ThemeEncoder.encodeBoxFit(null), null);
 
-    expect(
-      ThemeDecoder.decodeBoxFit(
-        BoxFit.contain,
-      ),
-      BoxFit.contain,
-    );
+    expect(ThemeDecoder.decodeBoxFit(BoxFit.contain), BoxFit.contain);
 
     expect(ThemeDecoder.decodeBoxFit('contain'), BoxFit.contain);
     expect(ThemeDecoder.decodeBoxFit('cover'), BoxFit.cover);
@@ -1296,9 +1060,7 @@ void main() {
     expect(ThemeEncoder.encodeBoxHeightStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeBoxHeightStyle(
-        BoxHeightStyle.max,
-      ),
+      ThemeDecoder.decodeBoxHeightStyle(BoxHeightStyle.max),
       BoxHeightStyle.max,
     );
 
@@ -1314,45 +1076,29 @@ void main() {
       ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingTop'),
       BoxHeightStyle.includeLineSpacingTop,
     );
-    expect(
-      ThemeDecoder.decodeBoxHeightStyle('max'),
-      BoxHeightStyle.max,
-    );
-    expect(
-      ThemeDecoder.decodeBoxHeightStyle('strut'),
-      BoxHeightStyle.strut,
-    );
-    expect(
-      ThemeDecoder.decodeBoxHeightStyle('tight'),
-      BoxHeightStyle.tight,
-    );
+    expect(ThemeDecoder.decodeBoxHeightStyle('max'), BoxHeightStyle.max);
+    expect(ThemeDecoder.decodeBoxHeightStyle('strut'), BoxHeightStyle.strut);
+    expect(ThemeDecoder.decodeBoxHeightStyle('tight'), BoxHeightStyle.tight);
 
     expect(
       ThemeEncoder.encodeBoxHeightStyle(
-          BoxHeightStyle.includeLineSpacingBottom),
+        BoxHeightStyle.includeLineSpacingBottom,
+      ),
       'includeLineSpacingBottom',
     );
     expect(
       ThemeEncoder.encodeBoxHeightStyle(
-          BoxHeightStyle.includeLineSpacingMiddle),
+        BoxHeightStyle.includeLineSpacingMiddle,
+      ),
       'includeLineSpacingMiddle',
     );
     expect(
       ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.includeLineSpacingTop),
       'includeLineSpacingTop',
     );
-    expect(
-      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.max),
-      'max',
-    );
-    expect(
-      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.strut),
-      'strut',
-    );
-    expect(
-      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.tight),
-      'tight',
-    );
+    expect(ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.max), 'max');
+    expect(ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.strut), 'strut');
+    expect(ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.tight), 'tight');
   });
 
   test('BoxShadow', () {
@@ -1372,36 +1118,22 @@ void main() {
     final encoded = ThemeEncoder.encodeBoxShadow(entry);
     final decoded = ThemeDecoder.decodeBoxShadow(encoded);
 
-    expect(
-      encoded,
-      {
-        'blurRadius': entry.blurRadius,
-        'blurStyle': 'outer',
-        'color': _kColorStr,
-        'offset': {
-          'dx': 2.0,
-          'dy': 3.0,
-        },
-        'spreadRadius': entry.spreadRadius,
-      },
-    );
+    expect(encoded, {
+      'blurRadius': entry.blurRadius,
+      'blurStyle': 'outer',
+      'color': _kColorStr,
+      'offset': {'dx': 2.0, 'dy': 3.0},
+      'spreadRadius': entry.spreadRadius,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('BoxShape', () {
     expect(ThemeDecoder.decodeBoxShape(null), null);
     expect(ThemeEncoder.encodeBoxShape(null), null);
 
-    expect(
-      ThemeDecoder.decodeBoxShape(
-        BoxShape.circle,
-      ),
-      BoxShape.circle,
-    );
+    expect(ThemeDecoder.decodeBoxShape(BoxShape.circle), BoxShape.circle);
 
     expect(ThemeDecoder.decodeBoxShape('circle'), BoxShape.circle);
     expect(ThemeDecoder.decodeBoxShape('rectangle'), BoxShape.rectangle);
@@ -1415,41 +1147,22 @@ void main() {
     expect(ThemeEncoder.encodeBoxWidthStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeBoxWidthStyle(
-        BoxWidthStyle.max,
-      ),
+      ThemeDecoder.decodeBoxWidthStyle(BoxWidthStyle.max),
       BoxWidthStyle.max,
     );
 
-    expect(
-      ThemeDecoder.decodeBoxWidthStyle('max'),
-      BoxWidthStyle.max,
-    );
-    expect(
-      ThemeDecoder.decodeBoxWidthStyle('tight'),
-      BoxWidthStyle.tight,
-    );
+    expect(ThemeDecoder.decodeBoxWidthStyle('max'), BoxWidthStyle.max);
+    expect(ThemeDecoder.decodeBoxWidthStyle('tight'), BoxWidthStyle.tight);
 
-    expect(
-      ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.max),
-      'max',
-    );
-    expect(
-      ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.tight),
-      'tight',
-    );
+    expect(ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.max), 'max');
+    expect(ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.tight), 'tight');
   });
 
   test('Brightness', () {
     expect(ThemeDecoder.decodeBrightness(null), null);
     expect(ThemeEncoder.encodeBrightness(null), null);
 
-    expect(
-      ThemeDecoder.decodeBrightness(
-        Brightness.dark,
-      ),
-      Brightness.dark,
-    );
+    expect(ThemeDecoder.decodeBrightness(Brightness.dark), Brightness.dark);
 
     expect(ThemeEncoder.encodeBrightness(Brightness.dark), 'dark');
     expect(ThemeEncoder.encodeBrightness(Brightness.light), 'light');
@@ -1480,30 +1193,24 @@ void main() {
     final encoded = ThemeEncoder.encodeButtonBarThemeData(entry);
     final decoded = ThemeDecoder.decodeButtonBarThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'alignment': 'spaceEvenly',
-        'buttonAlignedDropdown': true,
-        'buttonHeight': 16.0,
-        'buttonMinWidth': 17.0,
-        'buttonPadding': {
-          'bottom': 18.0,
-          'left': 18.0,
-          'right': 18.0,
-          'top': 18.0,
-        },
-        'buttonTextTheme': 'accent',
-        'layoutBehavior': 'padded',
-        'mainAxisSize': 'min',
-        'overflowDirection': 'down',
+    expect(encoded, {
+      'alignment': 'spaceEvenly',
+      'buttonAlignedDropdown': true,
+      'buttonHeight': 16.0,
+      'buttonMinWidth': 17.0,
+      'buttonPadding': {
+        'bottom': 18.0,
+        'left': 18.0,
+        'right': 18.0,
+        'top': 18.0,
       },
-    );
+      'buttonTextTheme': 'accent',
+      'layoutBehavior': 'padded',
+      'mainAxisSize': 'min',
+      'overflowDirection': 'down',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('ButtonBarLayoutBehavior', () {
@@ -1534,7 +1241,8 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeButtonBarLayoutBehavior(
-          ButtonBarLayoutBehavior.padded),
+        ButtonBarLayoutBehavior.padded,
+      ),
       'padded',
     );
   });
@@ -1546,51 +1254,24 @@ void main() {
     final entry = ButtonStyle(
       alignment: Alignment.bottomCenter,
       animationDuration: const Duration(milliseconds: 1000),
-      backgroundColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
+      backgroundColor: WidgetStateProperty.all(const Color(0xff555555)),
       elevation: WidgetStateProperty.all(1.0),
       enableFeedback: false,
-      fixedSize: WidgetStateProperty.all(
-        const Size(50.0, 50.0),
-      ),
-      foregroundColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
-      iconColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
-      iconSize: WidgetStateProperty.all(
-        12.0,
-      ),
-      maximumSize: WidgetStateProperty.all(
-        const Size(10.0, 10.0),
-      ),
-      minimumSize: WidgetStateProperty.all(
-        const Size(100.0, 100.0),
-      ),
-      mouseCursor: WidgetStateProperty.all(
-        MouseCursor.defer,
-      ),
-      overlayColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
-      padding: WidgetStateProperty.all(
-        EdgeInsets.zero,
-      ),
-      shadowColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
-      shape: WidgetStateProperty.all(
-        const CircleBorder(),
-      ),
-      side: WidgetStateProperty.all(
-        const BorderSide(),
-      ),
+      fixedSize: WidgetStateProperty.all(const Size(50.0, 50.0)),
+      foregroundColor: WidgetStateProperty.all(const Color(0xff555555)),
+      iconAlignment: IconAlignment.start,
+      iconColor: WidgetStateProperty.all(const Color(0xff555555)),
+      iconSize: WidgetStateProperty.all(12.0),
+      maximumSize: WidgetStateProperty.all(const Size(10.0, 10.0)),
+      minimumSize: WidgetStateProperty.all(const Size(100.0, 100.0)),
+      mouseCursor: WidgetStateProperty.all(MouseCursor.defer),
+      overlayColor: WidgetStateProperty.all(const Color(0xff555555)),
+      padding: WidgetStateProperty.all(EdgeInsets.zero),
+      shadowColor: WidgetStateProperty.all(const Color(0xff555555)),
+      shape: WidgetStateProperty.all(const CircleBorder()),
+      side: WidgetStateProperty.all(const BorderSide()),
       tapTargetSize: MaterialTapTargetSize.padded,
-      textStyle: WidgetStateProperty.all(
-        const TextStyle(),
-      ),
+      textStyle: WidgetStateProperty.all(const TextStyle()),
       visualDensity: VisualDensity.standard,
     );
 
@@ -1599,67 +1280,49 @@ void main() {
     final encoded = ThemeEncoder.encodeButtonStyle(entry);
     final decoded = ThemeDecoder.decodeButtonStyle(encoded);
 
-    expect(
-      encoded,
-      {
-        'alignment': 'bottomCenter',
-        'animationDuration': 1000,
-        'backgroundColor': _materializeState('#ff555555'),
-        'elevation': _materializeState(1.0),
-        'enableFeedback': false,
-        'fixedSize': _materializeState({
-          'height': 50.0,
-          'width': 50.0,
-        }),
-        'foregroundColor': _materializeState('#ff555555'),
-        'iconColor': _materializeState('#ff555555'),
-        'iconSize': _materializeState(12.0),
-        'maximumSize': _materializeState({
-          'height': 10.0,
-          'width': 10.0,
-        }),
-        'minimumSize': _materializeState({
-          'height': 100.0,
-          'width': 100.0,
-        }),
-        'mouseCursor': _materializeState({
-          'type': 'defer',
-        }),
-        'overlayColor': _materializeState('#ff555555'),
-        'padding': _materializeState({
-          'bottom': 0.0,
-          'left': 0.0,
-          'right': 0.0,
-          'top': 0.0,
-        }),
-        'shadowColor': _materializeState('#ff555555'),
-        'shape': _materializeState({
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'circle'
-        }),
-        'side': _materializeState({
+    expect(encoded, {
+      'alignment': 'bottomCenter',
+      'animationDuration': 1000,
+      'backgroundColor': _materializeState('#ff555555'),
+      'elevation': _materializeState(1.0),
+      'enableFeedback': false,
+      'fixedSize': _materializeState({'height': 50.0, 'width': 50.0}),
+      'foregroundColor': _materializeState('#ff555555'),
+      'iconAlignment': 'start',
+      'iconColor': _materializeState('#ff555555'),
+      'iconSize': _materializeState(12.0),
+      'maximumSize': _materializeState({'height': 10.0, 'width': 10.0}),
+      'minimumSize': _materializeState({'height': 100.0, 'width': 100.0}),
+      'mouseCursor': _materializeState({'type': 'defer'}),
+      'overlayColor': _materializeState('#ff555555'),
+      'padding': _materializeState({
+        'bottom': 0.0,
+        'left': 0.0,
+        'right': 0.0,
+        'top': 0.0,
+      }),
+      'shadowColor': _materializeState('#ff555555'),
+      'shape': _materializeState({
+        'side': {
           'color': '#ff000000',
           'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        }),
-        'tapTargetSize': 'padded',
-        'textStyle': _materializeState({
-          'inherit': true,
-        }),
-        'visualDensity': 'standard',
-      },
-    );
+          'style': 'none',
+          'width': 0.0,
+        },
+        'type': 'circle',
+      }),
+      'side': _materializeState({
+        'color': '#ff000000',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
+      }),
+      'tapTargetSize': 'padded',
+      'textStyle': _materializeState({'inherit': true}),
+      'visualDensity': 'standard',
+    });
 
-    expect(
-      _buttonStylesAreEqual(decoded, entry),
-      true,
-    );
+    expect(_buttonStylesAreEqual(decoded, entry), true);
 
     expect(
       _buttonStylesAreEqual(
@@ -1668,7 +1331,8 @@ void main() {
         }),
         ButtonStyle(
           padding: WidgetStateProperty.all(
-              const EdgeInsets.symmetric(horizontal: 1, vertical: 2)),
+            const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
+          ),
         ),
       ),
       true,
@@ -1680,8 +1344,9 @@ void main() {
           'padding': [1, 2, 3, 4],
         }),
         ButtonStyle(
-          padding:
-              WidgetStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.fromLTRB(1, 2, 3, 4),
+          ),
         ),
       ),
       true,
@@ -1690,9 +1355,7 @@ void main() {
     expect(
       _buttonStylesAreEqual(
         ThemeDecoder.decodeButtonStyle({'padding': 1}),
-        ButtonStyle(
-          padding: WidgetStateProperty.all(const EdgeInsets.all(1)),
-        ),
+        ButtonStyle(padding: WidgetStateProperty.all(const EdgeInsets.all(1))),
       ),
       true,
     );
@@ -1703,8 +1366,9 @@ void main() {
           'padding': {'left': 1, 'top': 2, 'right': 3, 'bottom': 4},
         }),
         ButtonStyle(
-          padding:
-              WidgetStateProperty.all(const EdgeInsets.fromLTRB(1, 2, 3, 4)),
+          padding: WidgetStateProperty.all(
+            const EdgeInsets.fromLTRB(1, 2, 3, 4),
+          ),
         ),
       ),
       true,
@@ -1716,9 +1380,7 @@ void main() {
     expect(ThemeEncoder.encodeButtonTextTheme(null), null);
 
     expect(
-      ThemeDecoder.decodeButtonTextTheme(
-        ButtonTextTheme.accent,
-      ),
+      ThemeDecoder.decodeButtonTextTheme(ButtonTextTheme.accent),
       ButtonTextTheme.accent,
     );
 
@@ -1840,17 +1502,9 @@ void main() {
       'layoutBehavior': 'padded',
       'materialTapTargetSize': 'padded',
       'minWidth': 10.0,
-      'padding': {
-        'bottom': 18.0,
-        'left': 18.0,
-        'right': 18.0,
-        'top': 18.0,
-      },
+      'padding': {'bottom': 18.0, 'left': 18.0, 'right': 18.0, 'top': 18.0},
       'shape': {
-        'borderRadius': {
-          'radius': 20.0,
-          'type': 'circular',
-        },
+        'borderRadius': {'radius': 20.0, 'type': 'circular'},
         'side': {
           'color': '#ff666666',
           'strokeAlign': -1.0,
@@ -1863,554 +1517,9 @@ void main() {
       'textTheme': 'accent',
     });
 
-    expect(
-      encoded,
-      {
-        'alignedDropdown': true,
-        'colorScheme': {
-          'brightness': 'dark',
-          'error': '#ffcf6679',
-          'errorContainer': '#ffcf6679',
-          'inversePrimary': '#ff000000',
-          'inverseSurface': '#ffffffff',
-          'onError': '#ff000000',
-          'onErrorContainer': '#ff000000',
-          'onInverseSurface': '#ff121212',
-          'onPrimaryFixed': '#ff000000',
-          'onPrimary': '#ff000000',
-          'onPrimaryContainer': '#ff000000',
-          'onPrimaryFixedVariant': '#ff000000',
-          'onSecondary': '#ff000000',
-          'onSecondaryContainer': '#ff000000',
-          'onSecondaryFixed': '#ff000000',
-          'onSecondaryFixedVariant': '#ff000000',
-          'onSurface': '#ffffffff',
-          'onSurfaceVariant': '#ffffffff',
-          'onTertiary': '#ff000000',
-          'onTertiaryContainer': '#ff000000',
-          'onTertiaryFixed': '#ff000000',
-          'onTertiaryFixedVariant': '#ff000000',
-          'outline': '#ffffffff',
-          'outlineVariant': '#ffffffff',
-          'primary': '#ffbb86fc',
-          'primaryContainer': '#ffbb86fc',
-          'primaryFixed': '#ffbb86fc',
-          'primaryFixedDim': '#ffbb86fc',
-          'scrim': '#ff000000',
-          'secondary': '#ff03dac6',
-          'secondaryContainer': '#ff03dac6',
-          'surfaceBright': '#ff121212',
-          'surfaceContainer': '#ff121212',
-          'surfaceContainerHigh': '#ff121212',
-          'surfaceContainerHighest': '#ff121212',
-          'secondaryFixed': '#ff03dac6',
-          'secondaryFixedDim': '#ff03dac6',
-          'shadow': '#ff000000',
-          'surface': '#ff121212',
-          'surfaceContainerLow': '#ff121212',
-          'surfaceContainerLowest': '#ff121212',
-          'surfaceDim': '#ff121212',
-          'tertiary': '#ff03dac6',
-          'tertiaryContainer': '#ff03dac6',
-          'tertiaryFixed': '#ff03dac6',
-          'tertiaryFixedDim': '#ff03dac6'
-        },
-        'height': 16.0,
-        'layoutBehavior': 'padded',
-        'minWidth': 10.0,
-        'padding': {
-          'bottom': 18.0,
-          'left': 18.0,
-          'right': 18.0,
-          'top': 18.0,
-        },
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 20.0,
-              'y': 20.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 20.0,
-              'y': 20.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 20.0,
-              'y': 20.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 20.0,
-              'y': 20.0,
-            },
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff666666',
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 2.0,
-          },
-          'type': 'rounded'
-        },
-        'textTheme': 'accent'
-      },
-    );
-
-    expect(
-      decoded!.alignedDropdown,
-      entry.alignedDropdown,
-    );
-  });
-
-  test('CardTheme', () {
-    expect(ThemeDecoder.decodeCardTheme(null), null);
-    expect(ThemeEncoder.encodeCardTheme(null), null);
-
-    const corner = {
-      'type': 'elliptical',
-      'x': 12.0,
-      'y': 12.0,
-    };
-
-    var entry = ThemeDecoder.decodeCardTheme({
-      'clipBehavior': 'hardEdge',
-      'color': '#ff111111',
-      'elevation': 3.0,
-      'margin': {
-        'bottom': 10.0,
-        'left': 10.0,
-        'right': 10.0,
-        'top': 10.0,
-      },
-      'shadowColor': '#ff222222',
-      'shape': {
-        'borderRadius': {
-          'bottomLeft': corner,
-          'bottomRight': corner,
-          'topLeft': corner,
-          'topRight': corner,
-          'type': 'only'
-        },
-        'side': {
-          'color': '#ff000000',
-          'strokeAlign': -1.0,
-          'style': 'none',
-          'width': 0.0,
-        },
-        'type': 'rounded'
-      }
-    });
-
-    expect(ThemeDecoder.decodeCardTheme(entry), entry);
-
-    var encoded = ThemeEncoder.encodeCardTheme(entry);
-
     expect(encoded, {
-      'data': {
-        'clipBehavior': 'hardEdge',
-        'color': '#ff111111',
-        'elevation': 3.0,
-        'margin': {
-          'bottom': 10.0,
-          'left': 10.0,
-          'right': 10.0,
-          'top': 10.0,
-        },
-        'shadowColor': '#ff222222',
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': corner,
-            'bottomRight': corner,
-            'topLeft': corner,
-            'topRight': corner,
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
-        }
-      }
-    });
-
-    entry = CardTheme(
-      data: CardThemeData(
-        clipBehavior: Clip.hardEdge,
-        color: const Color(0xff111111),
-        elevation: 3.0,
-        margin: const EdgeInsets.all(10.0),
-        shadowColor: const Color(0xff222222),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-          side: BorderSide.none,
-        ),
-      ),
-    );
-
-    expect(ThemeDecoder.decodeCardTheme(entry), entry);
-
-    encoded = ThemeEncoder.encodeCardTheme(entry);
-
-    expect(encoded, {
-      'data': {
-        'clipBehavior': 'hardEdge',
-        'color': '#ff111111',
-        'elevation': 3.0,
-        'margin': {
-          'bottom': 10.0,
-          'left': 10.0,
-          'right': 10.0,
-          'top': 10.0,
-        },
-        'shadowColor': '#ff222222',
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': corner,
-            'bottomRight': corner,
-            'topLeft': corner,
-            'topRight': corner,
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
-        }
-      }
-    });
-  });
-
-  test('CardThemeData', () {
-    expect(ThemeDecoder.decodeCardThemeData(null), null);
-    expect(ThemeEncoder.encodeCardThemeData(null), null);
-
-    final entry = CardThemeData(
-      clipBehavior: Clip.hardEdge,
-      color: const Color(0xff111111),
-      elevation: 3.0,
-      margin: const EdgeInsets.all(10.0),
-      shadowColor: const Color(0xff222222),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-        side: BorderSide.none,
-      ),
-    );
-
-    expect(ThemeDecoder.decodeCardThemeData(entry), entry);
-
-    const corner = {
-      'type': 'elliptical',
-      'x': 12.0,
-      'y': 12.0,
-    };
-
-    final encoded = ThemeEncoder.encodeCardThemeData(entry);
-    final decoded = ThemeDecoder.decodeCardThemeData(encoded);
-
-    expect(encoded, {
-      'clipBehavior': 'hardEdge',
-      'color': '#ff111111',
-      'elevation': 3.0,
-      'margin': {
-        'bottom': 10.0,
-        'left': 10.0,
-        'right': 10.0,
-        'top': 10.0,
-      },
-      'shadowColor': '#ff222222',
-      'shape': {
-        'borderRadius': {
-          'bottomLeft': corner,
-          'bottomRight': corner,
-          'topLeft': corner,
-          'topRight': corner,
-          'type': 'only'
-        },
-        'side': {
-          'color': '#ff000000',
-          'strokeAlign': -1.0,
-          'style': 'none',
-          'width': 0.0,
-        },
-        'type': 'rounded'
-      }
-    });
-
-    expect(
-      decoded,
-      entry,
-    );
-  });
-  test('CheckboxThemeData', () {
-    expect(ThemeDecoder.decodeCheckboxThemeData(null), null);
-    expect(ThemeEncoder.encodeCheckboxThemeData(null), null);
-
-    final entry = CheckboxThemeData(
-      checkColor: WidgetStateProperty.all(_kColor),
-      fillColor: WidgetStateProperty.all(_kColor),
-      materialTapTargetSize: MaterialTapTargetSize.padded,
-      mouseCursor: WidgetStateProperty.all(MouseCursor.uncontrolled),
-      overlayColor: WidgetStateProperty.all(_kColor),
-      splashRadius: 2.0,
-      visualDensity: VisualDensity.comfortable,
-    );
-
-    expect(ThemeDecoder.decodeCheckboxThemeData(entry), entry);
-
-    final encoded = ThemeEncoder.encodeCheckboxThemeData(entry);
-    final decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
-
-    expect(
-      decoded!.checkColor!.resolve({WidgetState.error}),
-      entry.checkColor!.resolve({WidgetState.error}),
-    );
-    expect(
-      decoded.fillColor!.resolve({WidgetState.error}),
-      entry.fillColor!.resolve({WidgetState.error}),
-    );
-    expect(
-      decoded.materialTapTargetSize,
-      entry.materialTapTargetSize,
-    );
-    expect(
-      decoded.mouseCursor!.resolve({WidgetState.error}),
-      entry.mouseCursor!.resolve({WidgetState.error}),
-    );
-    expect(
-      decoded.overlayColor!.resolve({WidgetState.error}),
-      entry.overlayColor!.resolve({WidgetState.error}),
-    );
-    expect(
-      decoded.splashRadius,
-      entry.splashRadius,
-    );
-    expect(
-      decoded.visualDensity,
-      entry.visualDensity,
-    );
-  });
-
-  test('ChipThemeData', () {
-    expect(ThemeDecoder.decodeChipThemeData(null), null);
-    expect(ThemeEncoder.encodeChipThemeData(null), null);
-
-    final entry = ChipThemeData(
-      avatarBoxConstraints: BoxConstraints(minWidth: 10),
-      backgroundColor: const Color(0xff111111),
-      brightness: Brightness.light,
-      checkmarkColor: const Color(0xff222222),
-      color: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
-      deleteIconBoxConstraints: BoxConstraints(minWidth: 20),
-      deleteIconColor: const Color(0xff333333),
-      disabledColor: const Color(0xff444444),
-      elevation: 2.0,
-      iconTheme: const IconThemeData(color: _kColor),
-      labelPadding: const EdgeInsets.all(4.0),
-      labelStyle: const TextStyle(color: Color(0xff555555)),
-      padding: const EdgeInsets.all(8.0),
-      pressElevation: 1.0,
-      secondaryLabelStyle: const TextStyle(
-        color: _kColor,
-      ),
-      secondarySelectedColor: const Color(0xff666666),
-      selectedColor: _kColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      selectedShadowColor: const Color(0xff777777),
-      shadowColor: const Color(0xff888888),
-      showCheckmark: true,
-      side: const BorderSide(width: 2.0),
-      surfaceTintColor: _kColor,
-    );
-
-    expect(ThemeDecoder.decodeChipThemeData(entry), entry);
-
-    final encoded = ThemeEncoder.encodeChipThemeData(entry);
-
-    expect(
-      encoded,
-      {
-        'avatarBoxConstraints': {
-          'minHeight': 0.0,
-          'minWidth': 10.0,
-        },
-        'backgroundColor': '#ff111111',
-        'brightness': 'light',
-        'checkmarkColor': '#ff222222',
-        'color': _materializeState('#ff555555'),
-        'deleteIconBoxConstraints': {
-          'minHeight': 0.0,
-          'minWidth': 20.0,
-        },
-        'deleteIconColor': '#ff333333',
-        'disabledColor': '#ff444444',
-        'elevation': 2.0,
-        'iconTheme': {
-          'color': _kColorStr,
-        },
-        'labelPadding': {
-          'bottom': 4.0,
-          'left': 4.0,
-          'right': 4.0,
-          'top': 4.0,
-        },
-        'labelStyle': {'color': '#ff555555', 'inherit': true},
-        'padding': {
-          'bottom': 8.0,
-          'left': 8.0,
-          'right': 8.0,
-          'top': 8.0,
-        },
-        'pressElevation': 1.0,
-        'secondaryLabelStyle': {
-          'color': '#00123456',
-          'inherit': true,
-        },
-        'secondarySelectedColor': '#ff666666',
-        'selectedColor': '#00123456',
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 10.0,
-              'y': 10.0,
-            },
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
-        },
-        'selectedShadowColor': '#ff777777',
-        'shadowColor': '#ff888888',
-        'showCheckmark': true,
-        'side': {
-          'color': '#ff000000',
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 2.0,
-        },
-        'surfaceTintColor': _kColorStr,
-      },
-    );
-
-    // The equality on these doesn't work because they aren't fully identical
-    // in the framework as of Flutter 3.16
-    //
-    // expect(
-    //   decoded,
-    //   entry,
-    // );
-  });
-
-  test('Clip', () {
-    expect(ThemeDecoder.decodeClip(null), null);
-    expect(ThemeEncoder.encodeClip(null), null);
-
-    expect(
-      ThemeDecoder.decodeClip(
-        Clip.antiAlias,
-      ),
-      Clip.antiAlias,
-    );
-
-    expect(ThemeDecoder.decodeClip('antiAlias'), Clip.antiAlias);
-    expect(
-      ThemeDecoder.decodeClip('antiAliasWithSaveLayer'),
-      Clip.antiAliasWithSaveLayer,
-    );
-    expect(ThemeDecoder.decodeClip('hardEdge'), Clip.hardEdge);
-    expect(ThemeDecoder.decodeClip('none'), Clip.none);
-
-    expect(ThemeEncoder.encodeClip(Clip.antiAlias), 'antiAlias');
-    expect(
-      ThemeEncoder.encodeClip(Clip.antiAliasWithSaveLayer),
-      'antiAliasWithSaveLayer',
-    );
-    expect(ThemeEncoder.encodeClip(Clip.hardEdge), 'hardEdge');
-    expect(ThemeEncoder.encodeClip(Clip.none), 'none');
-  });
-
-  test('Color', () {
-    expect(ThemeDecoder.decodeColor(null), null);
-    expect(ThemeEncoder.encodeColor(null), null);
-
-    const entry = _kColor;
-
-    expect(ThemeDecoder.decodeColor(entry), entry);
-
-    final encoded = ThemeEncoder.encodeColor(entry);
-    final decoded = ThemeDecoder.decodeColor(encoded);
-
-    expect(encoded, _kColorStr);
-
-    expect(
-      decoded,
-      entry,
-    );
-
-    expect(ThemeDecoder.decodeColor('ddd'), const Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('#ddd'), const Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('DDD'), const Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('#DDD'), const Color(0xffdddddd));
-
-    expect(ThemeDecoder.decodeColor('dadada'), const Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('#dadada'), const Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('DADADA'), const Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('#DADADA'), const Color(0xffdadada));
-
-    expect(ThemeDecoder.decodeColor('dadadada'), const Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('#dadadada'), const Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('DADADADA'), const Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('#DADADADA'), const Color(0xdadadada));
-  });
-
-  test('ColorScheme', () {
-    expect(ThemeDecoder.decodeColorScheme(null), null);
-    expect(ThemeEncoder.encodeColorScheme(null), null);
-
-    const entry = ColorScheme.dark();
-
-    expect(ThemeDecoder.decodeColorScheme(entry), entry);
-
-    final encoded = ThemeEncoder.encodeColorScheme(entry);
-    final decoded = ThemeDecoder.decodeColorScheme(encoded);
-
-    expect(
-      encoded,
-      {
+      'alignedDropdown': true,
+      'colorScheme': {
         'brightness': 'dark',
         'error': '#ffcf6679',
         'errorContainer': '#ffcf6679',
@@ -2458,11 +1567,429 @@ void main() {
         'tertiaryFixed': '#ff03dac6',
         'tertiaryFixedDim': '#ff03dac6',
       },
+      'height': 16.0,
+      'layoutBehavior': 'padded',
+      'minWidth': 10.0,
+      'padding': {'bottom': 18.0, 'left': 18.0, 'right': 18.0, 'top': 18.0},
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 20.0, 'y': 20.0},
+          'bottomRight': {'type': 'elliptical', 'x': 20.0, 'y': 20.0},
+          'topLeft': {'type': 'elliptical', 'x': 20.0, 'y': 20.0},
+          'topRight': {'type': 'elliptical', 'x': 20.0, 'y': 20.0},
+          'type': 'only',
+        },
+        'side': {
+          'color': '#ff666666',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 2.0,
+        },
+        'type': 'rounded',
+      },
+      'textTheme': 'accent',
+    });
+
+    expect(decoded!.alignedDropdown, entry.alignedDropdown);
+  });
+
+  test('CardTheme', () {
+    expect(ThemeDecoder.decodeCardTheme(null), null);
+    expect(ThemeEncoder.encodeCardTheme(null), null);
+
+    const corner = {'type': 'elliptical', 'x': 12.0, 'y': 12.0};
+
+    var entry = ThemeDecoder.decodeCardTheme({
+      'clipBehavior': 'hardEdge',
+      'color': '#ff111111',
+      'elevation': 3.0,
+      'margin': {'bottom': 10.0, 'left': 10.0, 'right': 10.0, 'top': 10.0},
+      'shadowColor': '#ff222222',
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': corner,
+          'bottomRight': corner,
+          'topLeft': corner,
+          'topRight': corner,
+          'type': 'only',
+        },
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
+        'type': 'rounded',
+      },
+    });
+
+    expect(ThemeDecoder.decodeCardTheme(entry), entry);
+
+    var encoded = ThemeEncoder.encodeCardTheme(entry);
+
+    expect(encoded, {
+      'data': {
+        'clipBehavior': 'hardEdge',
+        'color': '#ff111111',
+        'elevation': 3.0,
+        'margin': {'bottom': 10.0, 'left': 10.0, 'right': 10.0, 'top': 10.0},
+        'shadowColor': '#ff222222',
+        'shape': {
+          'borderRadius': {
+            'bottomLeft': corner,
+            'bottomRight': corner,
+            'topLeft': corner,
+            'topRight': corner,
+            'type': 'only',
+          },
+          'side': {
+            'color': '#ff000000',
+            'strokeAlign': -1.0,
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'rounded',
+        },
+      },
+    });
+
+    entry = CardTheme(
+      data: CardThemeData(
+        clipBehavior: Clip.hardEdge,
+        color: const Color(0xff111111),
+        elevation: 3.0,
+        margin: const EdgeInsets.all(10.0),
+        shadowColor: const Color(0xff222222),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+          side: BorderSide.none,
+        ),
+      ),
+    );
+
+    expect(ThemeDecoder.decodeCardTheme(entry), entry);
+
+    encoded = ThemeEncoder.encodeCardTheme(entry);
+
+    expect(encoded, {
+      'data': {
+        'clipBehavior': 'hardEdge',
+        'color': '#ff111111',
+        'elevation': 3.0,
+        'margin': {'bottom': 10.0, 'left': 10.0, 'right': 10.0, 'top': 10.0},
+        'shadowColor': '#ff222222',
+        'shape': {
+          'borderRadius': {
+            'bottomLeft': corner,
+            'bottomRight': corner,
+            'topLeft': corner,
+            'topRight': corner,
+            'type': 'only',
+          },
+          'side': {
+            'color': '#ff000000',
+            'strokeAlign': -1.0,
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'rounded',
+        },
+      },
+    });
+  });
+
+  test('CardThemeData', () {
+    expect(ThemeDecoder.decodeCardThemeData(null), null);
+    expect(ThemeEncoder.encodeCardThemeData(null), null);
+
+    final entry = CardThemeData(
+      clipBehavior: Clip.hardEdge,
+      color: const Color(0xff111111),
+      elevation: 3.0,
+      margin: const EdgeInsets.all(10.0),
+      shadowColor: const Color(0xff222222),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide.none,
+      ),
+    );
+
+    expect(ThemeDecoder.decodeCardThemeData(entry), entry);
+
+    const corner = {'type': 'elliptical', 'x': 12.0, 'y': 12.0};
+
+    final encoded = ThemeEncoder.encodeCardThemeData(entry);
+    final decoded = ThemeDecoder.decodeCardThemeData(encoded);
+
+    expect(encoded, {
+      'clipBehavior': 'hardEdge',
+      'color': '#ff111111',
+      'elevation': 3.0,
+      'margin': {'bottom': 10.0, 'left': 10.0, 'right': 10.0, 'top': 10.0},
+      'shadowColor': '#ff222222',
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': corner,
+          'bottomRight': corner,
+          'topLeft': corner,
+          'topRight': corner,
+          'type': 'only',
+        },
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
+        'type': 'rounded',
+      },
+    });
+
+    expect(decoded, entry);
+  });
+  test('CheckboxThemeData', () {
+    expect(ThemeDecoder.decodeCheckboxThemeData(null), null);
+    expect(ThemeEncoder.encodeCheckboxThemeData(null), null);
+
+    final entry = CheckboxThemeData(
+      checkColor: WidgetStateProperty.all(_kColor),
+      fillColor: WidgetStateProperty.all(_kColor),
+      materialTapTargetSize: MaterialTapTargetSize.padded,
+      mouseCursor: WidgetStateProperty.all(MouseCursor.uncontrolled),
+      overlayColor: WidgetStateProperty.all(_kColor),
+      splashRadius: 2.0,
+      visualDensity: VisualDensity.comfortable,
+    );
+
+    expect(ThemeDecoder.decodeCheckboxThemeData(entry), entry);
+
+    final encoded = ThemeEncoder.encodeCheckboxThemeData(entry);
+    final decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
+
+    expect(
+      decoded!.checkColor!.resolve({WidgetState.error}),
+      entry.checkColor!.resolve({WidgetState.error}),
     );
     expect(
-      decoded!.surface,
-      entry.surface,
+      decoded.fillColor!.resolve({WidgetState.error}),
+      entry.fillColor!.resolve({WidgetState.error}),
     );
+    expect(decoded.materialTapTargetSize, entry.materialTapTargetSize);
+    expect(
+      decoded.mouseCursor!.resolve({WidgetState.error}),
+      entry.mouseCursor!.resolve({WidgetState.error}),
+    );
+    expect(
+      decoded.overlayColor!.resolve({WidgetState.error}),
+      entry.overlayColor!.resolve({WidgetState.error}),
+    );
+    expect(decoded.splashRadius, entry.splashRadius);
+    expect(decoded.visualDensity, entry.visualDensity);
+  });
+
+  test('ChipThemeData', () {
+    expect(ThemeDecoder.decodeChipThemeData(null), null);
+    expect(ThemeEncoder.encodeChipThemeData(null), null);
+
+    final entry = ChipThemeData(
+      avatarBoxConstraints: BoxConstraints(minWidth: 10),
+      backgroundColor: const Color(0xff111111),
+      brightness: Brightness.light,
+      checkmarkColor: const Color(0xff222222),
+      color: WidgetStateProperty.all(const Color(0xff555555)),
+      deleteIconBoxConstraints: BoxConstraints(minWidth: 20),
+      deleteIconColor: const Color(0xff333333),
+      disabledColor: const Color(0xff444444),
+      elevation: 2.0,
+      iconTheme: const IconThemeData(color: _kColor),
+      labelPadding: const EdgeInsets.all(4.0),
+      labelStyle: const TextStyle(color: Color(0xff555555)),
+      padding: const EdgeInsets.all(8.0),
+      pressElevation: 1.0,
+      secondaryLabelStyle: const TextStyle(color: _kColor),
+      secondarySelectedColor: const Color(0xff666666),
+      selectedColor: _kColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      selectedShadowColor: const Color(0xff777777),
+      shadowColor: const Color(0xff888888),
+      showCheckmark: true,
+      side: const BorderSide(width: 2.0),
+      surfaceTintColor: _kColor,
+    );
+
+    expect(ThemeDecoder.decodeChipThemeData(entry), entry);
+
+    final encoded = ThemeEncoder.encodeChipThemeData(entry);
+
+    expect(encoded, {
+      'avatarBoxConstraints': {'minHeight': 0.0, 'minWidth': 10.0},
+      'backgroundColor': '#ff111111',
+      'brightness': 'light',
+      'checkmarkColor': '#ff222222',
+      'color': _materializeState('#ff555555'),
+      'deleteIconBoxConstraints': {'minHeight': 0.0, 'minWidth': 20.0},
+      'deleteIconColor': '#ff333333',
+      'disabledColor': '#ff444444',
+      'elevation': 2.0,
+      'iconTheme': {'color': _kColorStr},
+      'labelPadding': {'bottom': 4.0, 'left': 4.0, 'right': 4.0, 'top': 4.0},
+      'labelStyle': {'color': '#ff555555', 'inherit': true},
+      'padding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
+      'pressElevation': 1.0,
+      'secondaryLabelStyle': {'color': '#00123456', 'inherit': true},
+      'secondarySelectedColor': '#ff666666',
+      'selectedColor': '#00123456',
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+          'bottomRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+          'topLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+          'topRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
+          'type': 'only',
+        },
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
+        'type': 'rounded',
+      },
+      'selectedShadowColor': '#ff777777',
+      'shadowColor': '#ff888888',
+      'showCheckmark': true,
+      'side': {
+        'color': '#ff000000',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 2.0,
+      },
+      'surfaceTintColor': _kColorStr,
+    });
+
+    // The equality on these doesn't work because they aren't fully identical
+    // in the framework as of Flutter 3.16
+    //
+    // expect(
+    //   decoded,
+    //   entry,
+    // );
+  });
+
+  test('Clip', () {
+    expect(ThemeDecoder.decodeClip(null), null);
+    expect(ThemeEncoder.encodeClip(null), null);
+
+    expect(ThemeDecoder.decodeClip(Clip.antiAlias), Clip.antiAlias);
+
+    expect(ThemeDecoder.decodeClip('antiAlias'), Clip.antiAlias);
+    expect(
+      ThemeDecoder.decodeClip('antiAliasWithSaveLayer'),
+      Clip.antiAliasWithSaveLayer,
+    );
+    expect(ThemeDecoder.decodeClip('hardEdge'), Clip.hardEdge);
+    expect(ThemeDecoder.decodeClip('none'), Clip.none);
+
+    expect(ThemeEncoder.encodeClip(Clip.antiAlias), 'antiAlias');
+    expect(
+      ThemeEncoder.encodeClip(Clip.antiAliasWithSaveLayer),
+      'antiAliasWithSaveLayer',
+    );
+    expect(ThemeEncoder.encodeClip(Clip.hardEdge), 'hardEdge');
+    expect(ThemeEncoder.encodeClip(Clip.none), 'none');
+  });
+
+  test('Color', () {
+    expect(ThemeDecoder.decodeColor(null), null);
+    expect(ThemeEncoder.encodeColor(null), null);
+
+    const entry = _kColor;
+
+    expect(ThemeDecoder.decodeColor(entry), entry);
+
+    final encoded = ThemeEncoder.encodeColor(entry);
+    final decoded = ThemeDecoder.decodeColor(encoded);
+
+    expect(encoded, _kColorStr);
+
+    expect(decoded, entry);
+
+    expect(ThemeDecoder.decodeColor('ddd'), const Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('#ddd'), const Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('DDD'), const Color(0xffdddddd));
+    expect(ThemeDecoder.decodeColor('#DDD'), const Color(0xffdddddd));
+
+    expect(ThemeDecoder.decodeColor('dadada'), const Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('#dadada'), const Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('DADADA'), const Color(0xffdadada));
+    expect(ThemeDecoder.decodeColor('#DADADA'), const Color(0xffdadada));
+
+    expect(ThemeDecoder.decodeColor('dadadada'), const Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('#dadadada'), const Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('DADADADA'), const Color(0xdadadada));
+    expect(ThemeDecoder.decodeColor('#DADADADA'), const Color(0xdadadada));
+  });
+
+  test('ColorScheme', () {
+    expect(ThemeDecoder.decodeColorScheme(null), null);
+    expect(ThemeEncoder.encodeColorScheme(null), null);
+
+    const entry = ColorScheme.dark();
+
+    expect(ThemeDecoder.decodeColorScheme(entry), entry);
+
+    final encoded = ThemeEncoder.encodeColorScheme(entry);
+    final decoded = ThemeDecoder.decodeColorScheme(encoded);
+
+    expect(encoded, {
+      'brightness': 'dark',
+      'error': '#ffcf6679',
+      'errorContainer': '#ffcf6679',
+      'inversePrimary': '#ff000000',
+      'inverseSurface': '#ffffffff',
+      'onError': '#ff000000',
+      'onErrorContainer': '#ff000000',
+      'onInverseSurface': '#ff121212',
+      'onPrimaryFixed': '#ff000000',
+      'onPrimary': '#ff000000',
+      'onPrimaryContainer': '#ff000000',
+      'onPrimaryFixedVariant': '#ff000000',
+      'onSecondary': '#ff000000',
+      'onSecondaryContainer': '#ff000000',
+      'onSecondaryFixed': '#ff000000',
+      'onSecondaryFixedVariant': '#ff000000',
+      'onSurface': '#ffffffff',
+      'onSurfaceVariant': '#ffffffff',
+      'onTertiary': '#ff000000',
+      'onTertiaryContainer': '#ff000000',
+      'onTertiaryFixed': '#ff000000',
+      'onTertiaryFixedVariant': '#ff000000',
+      'outline': '#ffffffff',
+      'outlineVariant': '#ffffffff',
+      'primary': '#ffbb86fc',
+      'primaryContainer': '#ffbb86fc',
+      'primaryFixed': '#ffbb86fc',
+      'primaryFixedDim': '#ffbb86fc',
+      'scrim': '#ff000000',
+      'secondary': '#ff03dac6',
+      'secondaryContainer': '#ff03dac6',
+      'surfaceBright': '#ff121212',
+      'surfaceContainer': '#ff121212',
+      'surfaceContainerHigh': '#ff121212',
+      'surfaceContainerHighest': '#ff121212',
+      'secondaryFixed': '#ff03dac6',
+      'secondaryFixedDim': '#ff03dac6',
+      'shadow': '#ff000000',
+      'surface': '#ff121212',
+      'surfaceContainerLow': '#ff121212',
+      'surfaceContainerLowest': '#ff121212',
+      'surfaceDim': '#ff121212',
+      'tertiary': '#ff03dac6',
+      'tertiaryContainer': '#ff03dac6',
+      'tertiaryFixed': '#ff03dac6',
+      'tertiaryFixedDim': '#ff03dac6',
+    });
+    expect(decoded!.surface, entry.surface);
   });
 
   test('CrossAxisAlignment', () {
@@ -2470,9 +1997,7 @@ void main() {
     expect(ThemeEncoder.encodeCrossAxisAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment(
-        CrossAxisAlignment.baseline,
-      ),
+      ThemeDecoder.decodeCrossAxisAlignment(CrossAxisAlignment.baseline),
       CrossAxisAlignment.baseline,
     );
 
@@ -2524,9 +2049,7 @@ void main() {
     expect(ThemeEncoder.encodeCrossFadeState(null), null);
 
     expect(
-      ThemeDecoder.decodeCrossFadeState(
-        CrossFadeState.showFirst,
-      ),
+      ThemeDecoder.decodeCrossFadeState(CrossFadeState.showFirst),
       CrossFadeState.showFirst,
     );
 
@@ -2569,72 +2092,41 @@ void main() {
     expect(ThemeDecoder.decodeCupertinoTextThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeCupertinoTextThemeData(entry);
-    final decoded = ThemeDecoder.decodeCupertinoTextThemeData(
-      {
-        'actionSmallTextStyle': _kTextStyleJson,
-        'actionTextStyle': _kTextStyleJson,
-        'dateTimePickerTextStyle': _kTextStyleJson,
-        'navActionTextStyle': _kTextStyleJson,
-        'navLargeTitleTextStyle': _kTextStyleJson,
-        'navTitleTextStyle': _kTextStyleJson,
-        'pickerTextStyle': _kTextStyleJson,
-        'primaryColor': _kColorStr,
-        'tabLabelTextStyle': _kTextStyleJson,
-        'textStyle': _kTextStyleJson,
-      },
-    )!;
+    final decoded =
+        ThemeDecoder.decodeCupertinoTextThemeData({
+          'actionSmallTextStyle': _kTextStyleJson,
+          'actionTextStyle': _kTextStyleJson,
+          'dateTimePickerTextStyle': _kTextStyleJson,
+          'navActionTextStyle': _kTextStyleJson,
+          'navLargeTitleTextStyle': _kTextStyleJson,
+          'navTitleTextStyle': _kTextStyleJson,
+          'pickerTextStyle': _kTextStyleJson,
+          'primaryColor': _kColorStr,
+          'tabLabelTextStyle': _kTextStyleJson,
+          'textStyle': _kTextStyleJson,
+        })!;
 
-    expect(
-      encoded,
-      {
-        'actionSmallTextStyle': _kTextStyleJson,
-        'actionTextStyle': _kTextStyleJson,
-        'dateTimePickerTextStyle': _kTextStyleJson,
-        'navActionTextStyle': _kTextStyleJson,
-        'navLargeTitleTextStyle': _kTextStyleJson,
-        'navTitleTextStyle': _kTextStyleJson,
-        'pickerTextStyle': _kTextStyleJson,
-        'tabLabelTextStyle': _kTextStyleJson,
-        'textStyle': _kTextStyleJson,
-      },
-    );
+    expect(encoded, {
+      'actionSmallTextStyle': _kTextStyleJson,
+      'actionTextStyle': _kTextStyleJson,
+      'dateTimePickerTextStyle': _kTextStyleJson,
+      'navActionTextStyle': _kTextStyleJson,
+      'navLargeTitleTextStyle': _kTextStyleJson,
+      'navTitleTextStyle': _kTextStyleJson,
+      'pickerTextStyle': _kTextStyleJson,
+      'tabLabelTextStyle': _kTextStyleJson,
+      'textStyle': _kTextStyleJson,
+    });
 
-    expect(
-      decoded.actionSmallTextStyle,
-      entry.actionSmallTextStyle,
-    );
-    expect(
-      decoded.actionTextStyle,
-      entry.actionTextStyle,
-    );
-    expect(
-      decoded.dateTimePickerTextStyle,
-      entry.dateTimePickerTextStyle,
-    );
-    expect(
-      decoded.navActionTextStyle,
-      entry.navActionTextStyle,
-    );
-    expect(
-      decoded.navLargeTitleTextStyle,
-      entry.navLargeTitleTextStyle,
-    );
-    expect(
-      decoded.navTitleTextStyle,
-      entry.navTitleTextStyle,
-    );
-    expect(
-      decoded.pickerTextStyle,
-      entry.pickerTextStyle,
-    );
-    expect(
-      decoded.tabLabelTextStyle,
-      entry.tabLabelTextStyle,
-    );
-    expect(
-      decoded.textStyle,
-      entry.textStyle,
-    );
+    expect(decoded.actionSmallTextStyle, entry.actionSmallTextStyle);
+    expect(decoded.actionTextStyle, entry.actionTextStyle);
+    expect(decoded.dateTimePickerTextStyle, entry.dateTimePickerTextStyle);
+    expect(decoded.navActionTextStyle, entry.navActionTextStyle);
+    expect(decoded.navLargeTitleTextStyle, entry.navLargeTitleTextStyle);
+    expect(decoded.navTitleTextStyle, entry.navTitleTextStyle);
+    expect(decoded.pickerTextStyle, entry.pickerTextStyle);
+    expect(decoded.tabLabelTextStyle, entry.tabLabelTextStyle);
+    expect(decoded.textStyle, entry.textStyle);
   });
 
   test('CupertinoThemeData', () {
@@ -2680,72 +2172,30 @@ void main() {
           'fontFamily': 'CupertinoSystemText',
           'fontSize': 15.0,
           'inherit': false,
-          'letterSpacing': -0.23
+          'letterSpacing': -0.23,
         },
-        'actionTextStyle': {
-          'color': '#11111111',
-          'inherit': true,
-        },
-        'dateTimePickerTextStyle': {
-          'color': '#22222222',
-          'inherit': true,
-        },
-        'navActionTextStyle': {
-          'color': '#33333333',
-          'inherit': true,
-        },
-        'navLargeTitleTextStyle': {
-          'color': '#44444444',
-          'inherit': true,
-        },
-        'navTitleTextStyle': {
-          'color': '#55555555',
-          'inherit': true,
-        },
-        'pickerTextStyle': {
-          'color': '#66666666',
-          'inherit': true,
-        },
-        'tabLabelTextStyle': {
-          'color': '#77777777',
-          'inherit': true,
-        },
-        'textStyle': {
-          'color': '#88888888',
-          'inherit': true,
-        },
+        'actionTextStyle': {'color': '#11111111', 'inherit': true},
+        'dateTimePickerTextStyle': {'color': '#22222222', 'inherit': true},
+        'navActionTextStyle': {'color': '#33333333', 'inherit': true},
+        'navLargeTitleTextStyle': {'color': '#44444444', 'inherit': true},
+        'navTitleTextStyle': {'color': '#55555555', 'inherit': true},
+        'pickerTextStyle': {'color': '#66666666', 'inherit': true},
+        'tabLabelTextStyle': {'color': '#77777777', 'inherit': true},
+        'textStyle': {'color': '#88888888', 'inherit': true},
       },
     });
 
-    expect(
-      decoded.barBackgroundColor,
-      entry.barBackgroundColor,
-    );
+    expect(decoded.barBackgroundColor, entry.barBackgroundColor);
 
-    expect(
-      decoded.brightness,
-      entry.brightness,
-    );
+    expect(decoded.brightness, entry.brightness);
 
-    expect(
-      decoded.primaryColor,
-      entry.primaryColor,
-    );
+    expect(decoded.primaryColor, entry.primaryColor);
 
-    expect(
-      decoded.primaryContrastingColor,
-      entry.primaryContrastingColor,
-    );
+    expect(decoded.primaryContrastingColor, entry.primaryContrastingColor);
 
-    expect(
-      decoded.scaffoldBackgroundColor,
-      entry.scaffoldBackgroundColor,
-    );
+    expect(decoded.scaffoldBackgroundColor, entry.scaffoldBackgroundColor);
 
-    expect(
-      decoded.textTheme.actionTextStyle,
-      entry.textTheme.actionTextStyle,
-    );
+    expect(decoded.textTheme.actionTextStyle, entry.textTheme.actionTextStyle);
 
     expect(
       decoded.textTheme.dateTimePickerTextStyle,
@@ -2763,35 +2213,25 @@ void main() {
       decoded.textTheme.navTitleTextStyle,
       entry.textTheme.navTitleTextStyle,
     );
-    expect(
-      decoded.textTheme.pickerTextStyle,
-      entry.textTheme.pickerTextStyle,
-    );
+    expect(decoded.textTheme.pickerTextStyle, entry.textTheme.pickerTextStyle);
     expect(
       decoded.textTheme.tabLabelTextStyle,
       entry.textTheme.tabLabelTextStyle,
     );
-    expect(
-      decoded.textTheme.textStyle,
-      entry.textTheme.textStyle,
-    );
+    expect(decoded.textTheme.textStyle, entry.textTheme.textStyle);
   });
 
   test('DatePickerThemeData', () {
     expect(ThemeDecoder.decodeDatePickerThemeData(null), null);
     expect(ThemeEncoder.encodeDatePickerThemeData(null), null);
 
-    const entry = DatePickerThemeData(
-      backgroundColor: _kColor,
-    );
+    const entry = DatePickerThemeData(backgroundColor: _kColor);
 
     expect(ThemeDecoder.decodeDatePickerThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeDatePickerThemeData(entry);
 
-    expect(encoded, {
-      'backgroundColor': _kColorStr,
-    });
+    expect(encoded, {'backgroundColor': _kColorStr});
   });
 
   test('DataTableThemeData', () {
@@ -2801,9 +2241,7 @@ void main() {
     final entry = DataTableThemeData(
       checkboxHorizontalMargin: 24.0,
       columnSpacing: 1.0,
-      dataRowColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
+      dataRowColor: WidgetStateProperty.all(const Color(0xff555555)),
       dataRowCursor: const WidgetStatePropertyAll(SystemMouseCursors.basic),
       dataRowMaxHeight: 1.0,
       dataRowMinHeight: 1.0,
@@ -2812,9 +2250,7 @@ void main() {
       dividerThickness: 1.0,
       headingCellCursor: const WidgetStatePropertyAll(SystemMouseCursors.click),
       headingRowAlignment: MainAxisAlignment.center,
-      headingRowColor: WidgetStateProperty.all(
-        const Color(0xff555555),
-      ),
+      headingRowColor: WidgetStateProperty.all(const Color(0xff555555)),
       headingRowHeight: 1.0,
       headingTextStyle: const TextStyle(),
       horizontalMargin: 1.0,
@@ -2825,53 +2261,43 @@ void main() {
     final encoded = ThemeEncoder.encodeDataTableThemeData(entry);
     final decoded = ThemeDecoder.decodeDataTableThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'checkboxHorizontalMargin': 24.0,
-        'columnSpacing': 1.0,
-        'dataRowColor': _materializeState('#ff555555'),
-        'dataRowCursor': {
-          'disabled': {'cursor': 'basic', 'type': 'system'},
-          'dragged': {'cursor': 'basic', 'type': 'system'},
-          'empty': {'cursor': 'basic', 'type': 'system'},
-          'error': {'cursor': 'basic', 'type': 'system'},
-          'focused': {'cursor': 'basic', 'type': 'system'},
-          'hovered': {'cursor': 'basic', 'type': 'system'},
-          'pressed': {'cursor': 'basic', 'type': 'system'},
-          'scrolledUnder': {'cursor': 'basic', 'type': 'system'},
-          'selected': {'cursor': 'basic', 'type': 'system'}
-        },
-        'dataRowMaxHeight': 1.0,
-        'dataRowMinHeight': 1.0,
-        'dataTextStyle': {
-          'inherit': true,
-        },
-        'decoration': {
-          'color': _kColorStr,
-          'shape': 'rectangle',
-        },
-        'dividerThickness': 1.0,
-        'headingCellCursor': {
-          'disabled': {'cursor': 'click', 'type': 'system'},
-          'dragged': {'cursor': 'click', 'type': 'system'},
-          'empty': {'cursor': 'click', 'type': 'system'},
-          'error': {'cursor': 'click', 'type': 'system'},
-          'focused': {'cursor': 'click', 'type': 'system'},
-          'hovered': {'cursor': 'click', 'type': 'system'},
-          'pressed': {'cursor': 'click', 'type': 'system'},
-          'scrolledUnder': {'cursor': 'click', 'type': 'system'},
-          'selected': {'cursor': 'click', 'type': 'system'}
-        },
-        'headingRowAlignment': 'center',
-        'headingRowColor': _materializeState('#ff555555'),
-        'headingRowHeight': 1.0,
-        'headingTextStyle': {
-          'inherit': true,
-        },
-        'horizontalMargin': 1.0,
+    expect(encoded, {
+      'checkboxHorizontalMargin': 24.0,
+      'columnSpacing': 1.0,
+      'dataRowColor': _materializeState('#ff555555'),
+      'dataRowCursor': {
+        'disabled': {'cursor': 'basic', 'type': 'system'},
+        'dragged': {'cursor': 'basic', 'type': 'system'},
+        'empty': {'cursor': 'basic', 'type': 'system'},
+        'error': {'cursor': 'basic', 'type': 'system'},
+        'focused': {'cursor': 'basic', 'type': 'system'},
+        'hovered': {'cursor': 'basic', 'type': 'system'},
+        'pressed': {'cursor': 'basic', 'type': 'system'},
+        'scrolledUnder': {'cursor': 'basic', 'type': 'system'},
+        'selected': {'cursor': 'basic', 'type': 'system'},
       },
-    );
+      'dataRowMaxHeight': 1.0,
+      'dataRowMinHeight': 1.0,
+      'dataTextStyle': {'inherit': true},
+      'decoration': {'color': _kColorStr, 'shape': 'rectangle'},
+      'dividerThickness': 1.0,
+      'headingCellCursor': {
+        'disabled': {'cursor': 'click', 'type': 'system'},
+        'dragged': {'cursor': 'click', 'type': 'system'},
+        'empty': {'cursor': 'click', 'type': 'system'},
+        'error': {'cursor': 'click', 'type': 'system'},
+        'focused': {'cursor': 'click', 'type': 'system'},
+        'hovered': {'cursor': 'click', 'type': 'system'},
+        'pressed': {'cursor': 'click', 'type': 'system'},
+        'scrolledUnder': {'cursor': 'click', 'type': 'system'},
+        'selected': {'cursor': 'click', 'type': 'system'},
+      },
+      'headingRowAlignment': 'center',
+      'headingRowColor': _materializeState('#ff555555'),
+      'headingRowHeight': 1.0,
+      'headingTextStyle': {'inherit': true},
+      'horizontalMargin': 1.0,
+    });
 
     bool? dataTableThemeDataAreEqual(Object? first, Object second) {
       bool? result;
@@ -2881,7 +2307,8 @@ void main() {
       } else if (first is! DataTableThemeData) {
         result = false;
       } else if (second is DataTableThemeData) {
-        result = first.columnSpacing == second.columnSpacing &&
+        result =
+            first.columnSpacing == second.columnSpacing &&
             first.dataRowColor?.resolve({}) ==
                 second.dataRowColor?.resolve({}) &&
             first.dataRowMaxHeight == second.dataRowMaxHeight &&
@@ -2898,10 +2325,7 @@ void main() {
       return result;
     }
 
-    expect(
-      dataTableThemeDataAreEqual(decoded, entry),
-      true,
-    );
+    expect(dataTableThemeDataAreEqual(decoded, entry), true);
   });
 
   test('DecorationImage', () {
@@ -2938,11 +2362,7 @@ void main() {
       },
       'filterQuality': 'high',
       'fit': 'contain',
-      'image': {
-        'bytes': base64Image,
-        'scale': 1.0,
-        'type': 'memory',
-      },
+      'image': {'bytes': base64Image, 'scale': 1.0, 'type': 'memory'},
       'invertColors': true,
       'isAntiAlias': true,
       'matchTextDirection': true,
@@ -2951,48 +2371,33 @@ void main() {
       'scale': 2.0,
     });
 
-    expect(
-      ThemeEncoder.encodeDecorationImage(decoded),
-      {
-        'alignment': 'bottomCenter',
-        'centerSlice': {
-          'bottom': 0.0,
-          'left': 0.0,
-          'right': 0.0,
-          'top': 0.0,
-          'type': 'ltrb',
-        },
-        'filterQuality': 'high',
-        'fit': 'contain',
-        'image': {
-          'bytes': base64Image,
-          'scale': 1.0,
-          'type': 'memory',
-        },
-        'invertColors': true,
-        'matchTextDirection': true,
-        'isAntiAlias': true,
-        'opacity': 0.5,
-        'repeat': 'repeat',
-        'scale': 2.0,
+    expect(ThemeEncoder.encodeDecorationImage(decoded), {
+      'alignment': 'bottomCenter',
+      'centerSlice': {
+        'bottom': 0.0,
+        'left': 0.0,
+        'right': 0.0,
+        'top': 0.0,
+        'type': 'ltrb',
       },
-    );
+      'filterQuality': 'high',
+      'fit': 'contain',
+      'image': {'bytes': base64Image, 'scale': 1.0, 'type': 'memory'},
+      'invertColors': true,
+      'matchTextDirection': true,
+      'isAntiAlias': true,
+      'opacity': 0.5,
+      'repeat': 'repeat',
+      'scale': 2.0,
+    });
   });
 
   test('DecorationPosition', () {
-    expect(
-      ThemeDecoder.decodeDecorationPosition(null),
-      null,
-    );
-    expect(
-      ThemeEncoder.encodeDecorationPosition(null),
-      null,
-    );
+    expect(ThemeDecoder.decodeDecorationPosition(null), null);
+    expect(ThemeEncoder.encodeDecorationPosition(null), null);
 
     expect(
-      ThemeDecoder.decodeDecorationPosition(
-        DecorationPosition.background,
-      ),
+      ThemeDecoder.decodeDecorationPosition(DecorationPosition.background),
       DecorationPosition.background,
     );
 
@@ -3035,58 +2440,39 @@ void main() {
 
     final encoded = ThemeEncoder.encodeDialogTheme(entry);
 
-    expect(
-      encoded,
-      {
-        'data': {
-          'actionsPadding': {
-            'bottom': 8.0,
-            'left': 8.0,
-            'right': 8.0,
-            'top': 8.0,
-          },
-          'alignment': 'bottomLeft',
-          'backgroundColor': _kColorStr,
-          'clipBehavior': 'hardEdge',
-          'contentTextStyle': _kTextStyleJson,
-          'elevation': 1.0,
-          'shadowColor': _kColorStr,
-          'shape': {
-            'borderRadius': {
-              'bottomLeft': {
-                'type': 'elliptical',
-                'x': 0.0,
-                'y': 0.0,
-              },
-              'bottomRight': {
-                'type': 'elliptical',
-                'x': 0.0,
-                'y': 0.0,
-              },
-              'topLeft': {
-                'type': 'elliptical',
-                'x': 0.0,
-                'y': 0.0,
-              },
-              'topRight': {
-                'type': 'elliptical',
-                'x': 0.0,
-                'y': 0.0,
-              },
-              'type': 'only'
-            },
-            'side': {
-              'color': '#ff000000',
-              'strokeAlign': -1,
-              'style': 'none',
-              'width': 0.0,
-            },
-            'type': 'rounded'
-          },
-          'surfaceTintColor': _kColorStr,
+    expect(encoded, {
+      'data': {
+        'actionsPadding': {
+          'bottom': 8.0,
+          'left': 8.0,
+          'right': 8.0,
+          'top': 8.0,
         },
+        'alignment': 'bottomLeft',
+        'backgroundColor': _kColorStr,
+        'clipBehavior': 'hardEdge',
+        'contentTextStyle': _kTextStyleJson,
+        'elevation': 1.0,
+        'shadowColor': _kColorStr,
+        'shape': {
+          'borderRadius': {
+            'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+            'type': 'only',
+          },
+          'side': {
+            'color': '#ff000000',
+            'strokeAlign': -1,
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'rounded',
+        },
+        'surfaceTintColor': _kColorStr,
       },
-    );
+    });
   });
 
   test('DialogThemeData', () {
@@ -3110,61 +2496,34 @@ void main() {
     final encoded = ThemeEncoder.encodeDialogThemeData(entry);
     final decoded = ThemeDecoder.decodeDialogThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'actionsPadding': {
-          'bottom': 8.0,
-          'left': 8.0,
-          'right': 8.0,
-          'top': 8.0,
+    expect(encoded, {
+      'actionsPadding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
+      'alignment': 'bottomLeft',
+      'backgroundColor': _kColorStr,
+      'clipBehavior': 'hardEdge',
+      'contentTextStyle': _kTextStyleJson,
+      'elevation': 1.0,
+      'shadowColor': _kColorStr,
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'type': 'only',
         },
-        'alignment': 'bottomLeft',
-        'backgroundColor': _kColorStr,
-        'clipBehavior': 'hardEdge',
-        'contentTextStyle': _kTextStyleJson,
-        'elevation': 1.0,
-        'shadowColor': _kColorStr,
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1,
+          'style': 'none',
+          'width': 0.0,
         },
-        'surfaceTintColor': _kColorStr,
+        'type': 'rounded',
       },
-    );
+      'surfaceTintColor': _kColorStr,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('DismissDirection', () {
@@ -3172,16 +2531,11 @@ void main() {
     expect(ThemeEncoder.encodeDismissDirection(null), null);
 
     expect(
-      ThemeDecoder.decodeDismissDirection(
-        DismissDirection.down,
-      ),
+      ThemeDecoder.decodeDismissDirection(DismissDirection.down),
       DismissDirection.down,
     );
 
-    expect(
-      ThemeDecoder.decodeDismissDirection('down'),
-      DismissDirection.down,
-    );
+    expect(ThemeDecoder.decodeDismissDirection('down'), DismissDirection.down);
     expect(
       ThemeDecoder.decodeDismissDirection('endToStart'),
       DismissDirection.endToStart,
@@ -3190,27 +2544,18 @@ void main() {
       ThemeDecoder.decodeDismissDirection('horizontal'),
       DismissDirection.horizontal,
     );
-    expect(
-      ThemeDecoder.decodeDismissDirection('none'),
-      DismissDirection.none,
-    );
+    expect(ThemeDecoder.decodeDismissDirection('none'), DismissDirection.none);
     expect(
       ThemeDecoder.decodeDismissDirection('startToEnd'),
       DismissDirection.startToEnd,
     );
-    expect(
-      ThemeDecoder.decodeDismissDirection('up'),
-      DismissDirection.up,
-    );
+    expect(ThemeDecoder.decodeDismissDirection('up'), DismissDirection.up);
     expect(
       ThemeDecoder.decodeDismissDirection('vertical'),
       DismissDirection.vertical,
     );
 
-    expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.down),
-      'down',
-    );
+    expect(ThemeEncoder.encodeDismissDirection(DismissDirection.down), 'down');
     expect(
       ThemeEncoder.encodeDismissDirection(DismissDirection.endToStart),
       'endToStart',
@@ -3219,18 +2564,12 @@ void main() {
       ThemeEncoder.encodeDismissDirection(DismissDirection.horizontal),
       'horizontal',
     );
-    expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.none),
-      'none',
-    );
+    expect(ThemeEncoder.encodeDismissDirection(DismissDirection.none), 'none');
     expect(
       ThemeEncoder.encodeDismissDirection(DismissDirection.startToEnd),
       'startToEnd',
     );
-    expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.up),
-      'up',
-    );
+    expect(ThemeEncoder.encodeDismissDirection(DismissDirection.up), 'up');
     expect(
       ThemeEncoder.encodeDismissDirection(DismissDirection.vertical),
       'vertical',
@@ -3254,21 +2593,15 @@ void main() {
     final encoded = ThemeEncoder.encodeDividerThemeData(entry);
     final decoded = ThemeDecoder.decodeDividerThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'color': _kColorStr,
-        'endIndent': 1.0,
-        'indent': 2.0,
-        'space': 3.0,
-        'thickness': 4.0,
-      },
-    );
+    expect(encoded, {
+      'color': _kColorStr,
+      'endIndent': 1.0,
+      'indent': 2.0,
+      'space': 3.0,
+      'thickness': 4.0,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('DragStartBehavior', () {
@@ -3276,9 +2609,7 @@ void main() {
     expect(ThemeEncoder.encodeDragStartBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeDragStartBehavior(
-        DragStartBehavior.down,
-      ),
+      ThemeDecoder.decodeDragStartBehavior(DragStartBehavior.down),
       DragStartBehavior.down,
     );
 
@@ -3308,14 +2639,10 @@ void main() {
     const entry = DrawerThemeData(
       backgroundColor: Color(0xff111111),
       elevation: 5,
-      endShape: CircleBorder(
-        side: BorderSide.none,
-      ),
+      endShape: CircleBorder(side: BorderSide.none),
       scrimColor: Color(0xff222222),
       shadowColor: _kColor,
-      shape: CircleBorder(
-        side: BorderSide.none,
-      ),
+      shape: CircleBorder(side: BorderSide.none),
       surfaceTintColor: _kColor,
     );
 
@@ -3324,81 +2651,56 @@ void main() {
     final encoded = ThemeEncoder.encodeDrawerThemeData(entry);
     final decoded = ThemeDecoder.decodeDrawerThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#ff111111',
-        'elevation': 5.0,
-        'endShape': {
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'circle'
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'elevation': 5.0,
+      'endShape': {
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
         },
-        'scrimColor': '#ff222222',
-        'shadowColor': _kColorStr,
-        'shape': {
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'circle'
-        },
-        'surfaceTintColor': _kColorStr,
+        'type': 'circle',
       },
-    );
+      'scrimColor': '#ff222222',
+      'shadowColor': _kColorStr,
+      'shape': {
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
+        },
+        'type': 'circle',
+      },
+      'surfaceTintColor': _kColorStr,
+    });
     expect(decoded, entry);
   });
 
-  test(
-    'DropdownMenuThemeData',
-    () {
-      expect(ThemeDecoder.decodeDropdownMenuThemeData(null), null);
-      expect(ThemeEncoder.encodeDropdownMenuThemeData(null), null);
-    },
-  );
+  test('DropdownMenuThemeData', () {
+    expect(ThemeDecoder.decodeDropdownMenuThemeData(null), null);
+    expect(ThemeEncoder.encodeDropdownMenuThemeData(null), null);
+  });
 
   test('EdgeInsets', () {
     expect(ThemeDecoder.decodeEdgeInsets(null), null);
     expect(ThemeEncoder.encodeEdgeInsets(null), null);
 
-    const entry = EdgeInsets.fromLTRB(
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-    );
+    const entry = EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0);
 
     expect(ThemeDecoder.decodeEdgeInsets(entry), entry);
 
     final encoded = ThemeEncoder.encodeEdgeInsets(entry);
     final decoded = ThemeDecoder.decodeEdgeInsets(encoded);
 
-    expect(encoded, {
-      'bottom': 4.0,
-      'left': 1.0,
-      'right': 3.0,
-      'top': 2.0,
-    });
+    expect(encoded, {'bottom': 4.0, 'left': 1.0, 'right': 3.0, 'top': 2.0});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
-    expect(
-      ThemeDecoder.decodeEdgeInsets('16'),
-      const EdgeInsets.all(16.0),
-    );
-    expect(
-      ThemeDecoder.decodeEdgeInsets(16),
-      const EdgeInsets.all(16.0),
-    );
+    expect(ThemeDecoder.decodeEdgeInsets('16'), const EdgeInsets.all(16.0));
+    expect(ThemeDecoder.decodeEdgeInsets(16), const EdgeInsets.all(16.0));
     expect(
       ThemeDecoder.decodeEdgeInsets(['1', 2]),
       const EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
@@ -3413,29 +2715,16 @@ void main() {
     expect(ThemeDecoder.decodeEdgeInsetsDirectional(null), null);
     expect(ThemeEncoder.encodeEdgeInsetsDirectional(null), null);
 
-    const entry = EdgeInsetsDirectional.fromSTEB(
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-    );
+    const entry = EdgeInsetsDirectional.fromSTEB(1.0, 2.0, 3.0, 4.0);
 
     expect(ThemeDecoder.decodeEdgeInsetsDirectional(entry), entry);
 
     final encoded = ThemeEncoder.encodeEdgeInsetsDirectional(entry);
     final decoded = ThemeDecoder.decodeEdgeInsetsDirectional(encoded);
 
-    expect(encoded, {
-      'bottom': 4.0,
-      'end': 3.0,
-      'start': 1.0,
-      'top': 2.0,
-    });
+    expect(encoded, {'bottom': 4.0, 'end': 3.0, 'start': 1.0, 'top': 2.0});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     expect(
       ThemeDecoder.decodeEdgeInsetsDirectional('16'),
@@ -3455,10 +2744,12 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeEdgeInsetsDirectional(
-        ['1', 2, 3.0, '4.0'],
-        ltr: false,
-      ),
+      ThemeDecoder.decodeEdgeInsetsDirectional([
+        '1',
+        2,
+        3.0,
+        '4.0',
+      ], ltr: false),
       const EdgeInsetsDirectional.fromSTEB(3.0, 2.0, 1.0, 4.0),
     );
   });
@@ -3467,29 +2758,16 @@ void main() {
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(null), null);
     expect(ThemeEncoder.encodeEdgeInsetsGeometry(null), null);
 
-    const entry = EdgeInsets.fromLTRB(
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-    );
+    const entry = EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0);
 
     expect(ThemeDecoder.decodeEdgeInsetsGeometry(entry), entry);
 
     final encoded = ThemeEncoder.encodeEdgeInsetsGeometry(entry);
     final decoded = ThemeDecoder.decodeEdgeInsetsGeometry(encoded);
 
-    expect(encoded, {
-      'bottom': 4.0,
-      'left': 1.0,
-      'right': 3.0,
-      'top': 2.0,
-    });
+    expect(encoded, {'bottom': 4.0, 'left': 1.0, 'right': 3.0, 'top': 2.0});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     expect(
       ThemeDecoder.decodeEdgeInsetsGeometry('16'),
@@ -3515,9 +2793,7 @@ void main() {
 
     final entry = ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(
-          const Color(0xff222222),
-        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
       ),
     );
 
@@ -3526,14 +2802,9 @@ void main() {
     final encoded = ThemeEncoder.encodeElevatedButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeElevatedButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'style': {
-          'backgroundColor': _materializeState('#ff222222'),
-        },
-      },
-    );
+    expect(encoded, {
+      'style': {'backgroundColor': _materializeState('#ff222222')},
+    });
 
     bool? elevatedButtonThemeDatasAreEqual(Object? first, Object second) {
       bool? result;
@@ -3549,10 +2820,7 @@ void main() {
       return result;
     }
 
-    expect(
-      elevatedButtonThemeDatasAreEqual(decoded, entry),
-      true,
-    );
+    expect(elevatedButtonThemeDatasAreEqual(decoded, entry), true);
   });
 
   test('ExpansionTileThemeData', () {
@@ -3578,30 +2846,17 @@ void main() {
     );
     final decoded = ThemeDecoder.decodeExpansionTileThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#ff111111',
-        'childrenPadding': {
-          'bottom': 8.0,
-          'left': 8.0,
-          'right': 8.0,
-          'top': 8.0,
-        },
-        'collapsedBackgroundColor': '#ff222222',
-        'collapsedIconColor': '#ff333333',
-        'expandedAlignment': 'bottomCenter',
-        'expansionAnimationStyle': 'noAnimation',
-        'iconColor': '#ff444444',
-        'textColor': '#ff555555',
-        'tilePadding': {
-          'bottom': 8.0,
-          'left': 8.0,
-          'right': 8.0,
-          'top': 8.0,
-        },
-      },
-    );
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'childrenPadding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
+      'collapsedBackgroundColor': '#ff222222',
+      'collapsedIconColor': '#ff333333',
+      'expandedAlignment': 'bottomCenter',
+      'expansionAnimationStyle': 'noAnimation',
+      'iconColor': '#ff444444',
+      'textColor': '#ff555555',
+      'tilePadding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
+    });
 
     expect(entry, decoded);
   });
@@ -3614,51 +2869,23 @@ void main() {
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
         animationDuration: const Duration(milliseconds: 1000),
-        backgroundColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xff555555)),
         elevation: WidgetStateProperty.all(1.0),
         enableFeedback: false,
-        fixedSize: WidgetStateProperty.all(
-          const Size(50.0, 50.0),
-        ),
-        foregroundColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        iconColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        iconSize: WidgetStateProperty.all(
-          12.0,
-        ),
-        maximumSize: WidgetStateProperty.all(
-          const Size(10.0, 10.0),
-        ),
-        minimumSize: WidgetStateProperty.all(
-          const Size(100.0, 100.0),
-        ),
-        mouseCursor: WidgetStateProperty.all(
-          MouseCursor.defer,
-        ),
-        overlayColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.zero,
-        ),
-        shadowColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        shape: WidgetStateProperty.all(
-          const CircleBorder(),
-        ),
-        side: WidgetStateProperty.all(
-          const BorderSide(),
-        ),
+        fixedSize: WidgetStateProperty.all(const Size(50.0, 50.0)),
+        foregroundColor: WidgetStateProperty.all(const Color(0xff555555)),
+        iconColor: WidgetStateProperty.all(const Color(0xff555555)),
+        iconSize: WidgetStateProperty.all(12.0),
+        maximumSize: WidgetStateProperty.all(const Size(10.0, 10.0)),
+        minimumSize: WidgetStateProperty.all(const Size(100.0, 100.0)),
+        mouseCursor: WidgetStateProperty.all(MouseCursor.defer),
+        overlayColor: WidgetStateProperty.all(const Color(0xff555555)),
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        shadowColor: WidgetStateProperty.all(const Color(0xff555555)),
+        shape: WidgetStateProperty.all(const CircleBorder()),
+        side: WidgetStateProperty.all(const BorderSide()),
         tapTargetSize: MaterialTapTargetSize.padded,
-        textStyle: WidgetStateProperty.all(
-          const TextStyle(),
-        ),
+        textStyle: WidgetStateProperty.all(const TextStyle()),
         visualDensity: VisualDensity.standard,
       ),
     );
@@ -3668,69 +2895,50 @@ void main() {
     final encoded = ThemeEncoder.encodeFilledButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeFilledButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'style': {
-          'alignment': 'bottomCenter',
-          'animationDuration': 1000,
-          'backgroundColor': _materializeState('#ff555555'),
-          'elevation': _materializeState(1.0),
-          'enableFeedback': false,
-          'fixedSize': _materializeState({
-            'height': 50.0,
-            'width': 50.0,
-          }),
-          'foregroundColor': _materializeState('#ff555555'),
-          'iconColor': _materializeState('#ff555555'),
-          'iconSize': _materializeState(12.0),
-          'maximumSize': _materializeState({
-            'height': 10.0,
-            'width': 10.0,
-          }),
-          'minimumSize': _materializeState({
-            'height': 100.0,
-            'width': 100.0,
-          }),
-          'mouseCursor': _materializeState({
-            'type': 'defer',
-          }),
-          'overlayColor': _materializeState('#ff555555'),
-          'padding': _materializeState({
-            'bottom': 0.0,
-            'left': 0.0,
-            'right': 0.0,
-            'top': 0.0,
-          }),
-          'shadowColor': _materializeState('#ff555555'),
-          'shape': _materializeState({
-            'side': {
-              'color': '#ff000000',
-              'strokeAlign': -1.0,
-              'style': 'none',
-              'width': 0.0,
-            },
-            'type': 'circle'
-          }),
-          'side': _materializeState({
+    expect(encoded, {
+      'style': {
+        'alignment': 'bottomCenter',
+        'animationDuration': 1000,
+        'backgroundColor': _materializeState('#ff555555'),
+        'elevation': _materializeState(1.0),
+        'enableFeedback': false,
+        'fixedSize': _materializeState({'height': 50.0, 'width': 50.0}),
+        'foregroundColor': _materializeState('#ff555555'),
+        'iconColor': _materializeState('#ff555555'),
+        'iconSize': _materializeState(12.0),
+        'maximumSize': _materializeState({'height': 10.0, 'width': 10.0}),
+        'minimumSize': _materializeState({'height': 100.0, 'width': 100.0}),
+        'mouseCursor': _materializeState({'type': 'defer'}),
+        'overlayColor': _materializeState('#ff555555'),
+        'padding': _materializeState({
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 0.0,
+        }),
+        'shadowColor': _materializeState('#ff555555'),
+        'shape': _materializeState({
+          'side': {
             'color': '#ff000000',
             'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          }),
-          'tapTargetSize': 'padded',
-          'textStyle': _materializeState({
-            'inherit': true,
-          }),
-          'visualDensity': 'standard',
-        },
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle',
+        }),
+        'side': _materializeState({
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        }),
+        'tapTargetSize': 'padded',
+        'textStyle': _materializeState({'inherit': true}),
+        'visualDensity': 'standard',
       },
-    );
+    });
 
-    expect(
-      _buttonStylesAreEqual(decoded!.style, entry.style),
-      true,
-    );
+    expect(_buttonStylesAreEqual(decoded!.style, entry.style), true);
   });
 
   test('FilterQuality', () {
@@ -3738,9 +2946,7 @@ void main() {
     expect(ThemeEncoder.encodeFilterQuality(null), null);
 
     expect(
-      ThemeDecoder.decodeFilterQuality(
-        FilterQuality.high,
-      ),
+      ThemeDecoder.decodeFilterQuality(FilterQuality.high),
       FilterQuality.high,
     );
 
@@ -3759,12 +2965,7 @@ void main() {
     expect(ThemeDecoder.decodeFlexFit(null), null);
     expect(ThemeEncoder.encodeFlexFit(null), null);
 
-    expect(
-      ThemeDecoder.decodeFlexFit(
-        FlexFit.loose,
-      ),
-      FlexFit.loose,
-    );
+    expect(ThemeDecoder.decodeFlexFit(FlexFit.loose), FlexFit.loose);
 
     expect(ThemeDecoder.decodeFlexFit('loose'), FlexFit.loose);
     expect(ThemeDecoder.decodeFlexFit('tight'), FlexFit.tight);
@@ -3785,12 +2986,23 @@ void main() {
     );
 
     expect(
+      ThemeDecoder.decodeFloatingActionButtonAnimator('noAnimation'),
+      FloatingActionButtonAnimator.noAnimation,
+    );
+    expect(
       ThemeDecoder.decodeFloatingActionButtonAnimator('scaling'),
       FloatingActionButtonAnimator.scaling,
     );
     expect(
       ThemeEncoder.encodeFloatingActionButtonAnimator(
-          FloatingActionButtonAnimator.scaling),
+        FloatingActionButtonAnimator.noAnimation,
+      ),
+      'noAnimation',
+    );
+    expect(
+      ThemeEncoder.encodeFloatingActionButtonAnimator(
+        FloatingActionButtonAnimator.scaling,
+      ),
       'scaling',
     );
   });
@@ -3849,7 +3061,7 @@ void main() {
           'hovered': {'cursor': 'basic', 'type': 'system'},
           'pressed': {'cursor': 'basic', 'type': 'system'},
           'scrolledUnder': {'cursor': 'basic', 'type': 'system'},
-          'selected': {'cursor': 'basic', 'type': 'system'}
+          'selected': {'cursor': 'basic', 'type': 'system'},
         },
       },
     );
@@ -3861,10 +3073,7 @@ void main() {
       enableFeedback: true,
       extendedIconLabelSpacing: 1.0,
       extendedPadding: EdgeInsets.only(top: 2.0),
-      extendedSizeConstraints: BoxConstraints(
-        minHeight: 3.0,
-        minWidth: 4.0,
-      ),
+      extendedSizeConstraints: BoxConstraints(minHeight: 3.0, minWidth: 4.0),
       extendedTextStyle: TextStyle(color: _kColor),
       focusColor: Color(0xff222222),
       focusElevation: 3.0,
@@ -3872,19 +3081,10 @@ void main() {
       highlightElevation: 4.0,
       hoverColor: Color(0xff444444),
       hoverElevation: 5.0,
-      largeSizeConstraints: BoxConstraints(
-        minHeight: 5.0,
-        minWidth: 6.0,
-      ),
+      largeSizeConstraints: BoxConstraints(minHeight: 5.0, minWidth: 6.0),
       shape: RoundedRectangleBorder(),
-      sizeConstraints: BoxConstraints(
-        minHeight: 7.0,
-        minWidth: 8.0,
-      ),
-      smallSizeConstraints: BoxConstraints(
-        minHeight: 9.0,
-        minWidth: 10.0,
-      ),
+      sizeConstraints: BoxConstraints(minHeight: 7.0, minWidth: 8.0),
+      smallSizeConstraints: BoxConstraints(minHeight: 9.0, minWidth: 10.0),
       splashColor: Color(0xff555555),
     );
 
@@ -3893,86 +3093,44 @@ void main() {
     final encoded = ThemeEncoder.encodeFloatingActionButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeFloatingActionButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#ff111111',
-        'disabledElevation': 1.0,
-        'elevation': 2.0,
-        'enableFeedback': true,
-        'extendedIconLabelSpacing': 1.0,
-        'extendedPadding': {
-          'bottom': 0.0,
-          'left': 0.0,
-          'right': 0.0,
-          'top': 2.0,
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'disabledElevation': 1.0,
+      'elevation': 2.0,
+      'enableFeedback': true,
+      'extendedIconLabelSpacing': 1.0,
+      'extendedPadding': {'bottom': 0.0, 'left': 0.0, 'right': 0.0, 'top': 2.0},
+      'extendedSizeConstraints': {'minHeight': 3.0, 'minWidth': 4.0},
+      'extendedTextStyle': {'color': _kColorStr, 'inherit': true},
+      'focusColor': '#ff222222',
+      'focusElevation': 3.0,
+      'foregroundColor': '#ff333333',
+      'highlightElevation': 4.0,
+      'hoverColor': '#ff444444',
+      'hoverElevation': 5.0,
+      'largeSizeConstraints': {'minHeight': 5.0, 'minWidth': 6.0},
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'type': 'only',
         },
-        'extendedSizeConstraints': {
-          'minHeight': 3.0,
-          'minWidth': 4.0,
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
         },
-        'extendedTextStyle': {
-          'color': _kColorStr,
-          'inherit': true,
-        },
-        'focusColor': '#ff222222',
-        'focusElevation': 3.0,
-        'foregroundColor': '#ff333333',
-        'highlightElevation': 4.0,
-        'hoverColor': '#ff444444',
-        'hoverElevation': 5.0,
-        'largeSizeConstraints': {
-          'minHeight': 5.0,
-          'minWidth': 6.0,
-        },
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
-        },
-        'sizeConstraints': {
-          'minHeight': 7.0,
-          'minWidth': 8.0,
-        },
-        'smallSizeConstraints': {
-          'minHeight': 9.0,
-          'minWidth': 10.0,
-        },
-        'splashColor': '#ff555555'
+        'type': 'rounded',
       },
-    );
+      'sizeConstraints': {'minHeight': 7.0, 'minWidth': 8.0},
+      'smallSizeConstraints': {'minHeight': 9.0, 'minWidth': 10.0},
+      'splashColor': '#ff555555',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('FloatingLabelAlignment', () {
@@ -3980,9 +3138,7 @@ void main() {
     expect(ThemeEncoder.encodeFloatingLabelAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeFloatingLabelAlignment(
-        FloatingLabelAlignment.center,
-      ),
+      ThemeDecoder.decodeFloatingLabelAlignment(FloatingLabelAlignment.center),
       FloatingLabelAlignment.center,
     );
 
@@ -4010,9 +3166,7 @@ void main() {
     expect(ThemeEncoder.encodeFloatingLabelBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeFloatingLabelBehavior(
-        FloatingLabelBehavior.always,
-      ),
+      ThemeDecoder.decodeFloatingLabelBehavior(FloatingLabelBehavior.always),
       FloatingLabelBehavior.always,
     );
 
@@ -4054,30 +3208,16 @@ void main() {
     final encoded = ThemeEncoder.encodeFontFeature(entry);
     final decoded = ThemeDecoder.decodeFontFeature(encoded);
 
-    expect(
-      encoded,
-      {
-        'feature': 'fooo',
-        'value': 2,
-      },
-    );
+    expect(encoded, {'feature': 'fooo', 'value': 2});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('FontStyle', () {
     expect(ThemeDecoder.decodeFontStyle(null), null);
     expect(ThemeEncoder.encodeFontStyle(null), null);
 
-    expect(
-      ThemeDecoder.decodeFontStyle(
-        FontStyle.italic,
-      ),
-      FontStyle.italic,
-    );
+    expect(ThemeDecoder.decodeFontStyle(FontStyle.italic), FontStyle.italic);
 
     expect(ThemeDecoder.decodeFontStyle('italic'), FontStyle.italic);
     expect(ThemeDecoder.decodeFontStyle('normal'), FontStyle.normal);
@@ -4125,13 +3265,7 @@ void main() {
     final encoded = ThemeEncoder.encodeFontVariation(entry);
     final decoded = ThemeDecoder.decodeFontVariation(encoded);
 
-    expect(
-      encoded,
-      {
-        'axis': 'slnt',
-        'value': 20.0,
-      },
-    );
+    expect(encoded, {'axis': 'slnt', 'value': 20.0});
 
     expect(entry, decoded);
   });
@@ -4154,23 +3288,17 @@ void main() {
     var encoded = ThemeEncoder.encodeGradient(entry);
     var decoded = ThemeDecoder.decodeGradient(encoded);
 
-    expect(
-      encoded,
-      {
-        'colors': ['#ff111111', '#ff222222'],
-        'begin': 'topLeft',
-        'end': 'bottomRight',
-        'stops': [1.0, 2.0, 3.0],
-        'tileMode': 'clamp',
-        'transform': {'radians': 4.0},
-        'type': 'linear',
-      },
-    );
+    expect(encoded, {
+      'colors': ['#ff111111', '#ff222222'],
+      'begin': 'topLeft',
+      'end': 'bottomRight',
+      'stops': [1.0, 2.0, 3.0],
+      'tileMode': 'clamp',
+      'transform': {'radians': 4.0},
+      'type': 'linear',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = const RadialGradient(
       center: Alignment.bottomCenter,
@@ -4186,25 +3314,19 @@ void main() {
     encoded = ThemeEncoder.encodeGradient(entry);
     decoded = ThemeDecoder.decodeGradient(encoded);
 
-    expect(
-      encoded,
-      {
-        'center': 'bottomCenter',
-        'colors': ['#ff111111', '#ff222222'],
-        'focal': 'topCenter',
-        'focalRadius': 5.0,
-        'radius': 6.0,
-        'stops': [1.0, 2.0, 3.0],
-        'tileMode': 'clamp',
-        'transform': {'radians': 4.0},
-        'type': 'radial',
-      },
-    );
+    expect(encoded, {
+      'center': 'bottomCenter',
+      'colors': ['#ff111111', '#ff222222'],
+      'focal': 'topCenter',
+      'focalRadius': 5.0,
+      'radius': 6.0,
+      'stops': [1.0, 2.0, 3.0],
+      'tileMode': 'clamp',
+      'transform': {'radians': 4.0},
+      'type': 'radial',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = const SweepGradient(
       center: Alignment.bottomCenter,
@@ -4219,24 +3341,18 @@ void main() {
     encoded = ThemeEncoder.encodeGradient(entry);
     decoded = ThemeDecoder.decodeGradient(encoded);
 
-    expect(
-      encoded,
-      {
-        'center': 'bottomCenter',
-        'colors': ['#ff111111', '#ff222222'],
-        'endAngle': 5.0,
-        'startAngle': 6.0,
-        'stops': [1.0, 2.0, 3.0],
-        'tileMode': 'clamp',
-        'transform': {'radians': 4.0},
-        'type': 'sweep',
-      },
-    );
+    expect(encoded, {
+      'center': 'bottomCenter',
+      'colors': ['#ff111111', '#ff222222'],
+      'endAngle': 5.0,
+      'startAngle': 6.0,
+      'stops': [1.0, 2.0, 3.0],
+      'tileMode': 'clamp',
+      'transform': {'radians': 4.0},
+      'type': 'sweep',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('GradientTransform', () {
@@ -4250,22 +3366,11 @@ void main() {
     final encoded = ThemeEncoder.encodeGradientTransform(entry);
     final decoded = ThemeDecoder.decodeGradientTransform(encoded)!;
 
-    expect(
-      encoded,
-      {
-        'radians': 10.0,
-      },
-    );
+    expect(encoded, {'radians': 10.0});
 
-    expect(
-      decoded.runtimeType,
-      entry.runtimeType,
-    );
+    expect(decoded.runtimeType, entry.runtimeType);
 
-    expect(
-      (decoded as GradientRotation).radians,
-      entry.radians,
-    );
+    expect((decoded as GradientRotation).radians, entry.radians);
   });
 
   test('HitTestBehavior', () {
@@ -4273,9 +3378,7 @@ void main() {
     expect(ThemeEncoder.encodeHitTestBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeHitTestBehavior(
-        HitTestBehavior.deferToChild,
-      ),
+      ThemeDecoder.decodeHitTestBehavior(HitTestBehavior.deferToChild),
       HitTestBehavior.deferToChild,
     );
 
@@ -4317,17 +3420,14 @@ void main() {
       matchTextDirection: true,
     );
 
-    expect(
-      {
-        'icon': {
-          'codePoint': 2,
-          'fontFamily': 'foo',
-          'fontPackage': 'bar',
-          'matchTextDirection': true,
-        }
+    expect({
+      'icon': {
+        'codePoint': 2,
+        'fontFamily': 'foo',
+        'fontPackage': 'bar',
+        'matchTextDirection': true,
       },
-      ThemeEncoder.encodeIcon(const Icon(data)),
-    );
+    }, ThemeEncoder.encodeIcon(const Icon(data)));
     const entry = Icon(
       data,
       applyTextScaling: false,
@@ -4346,31 +3446,40 @@ void main() {
     final encoded = ThemeEncoder.encodeIcon(entry);
     final decoded = ThemeDecoder.decodeIcon(encoded);
 
-    expect(
-      encoded,
-      {
-        'applyTextScaling': false,
-        'blendMode': 'colorBurn',
-        'color': _kColorStr,
-        'fill': 0.1,
-        'grade': 0.2,
-        'icon': {
-          'codePoint': 2,
-          'fontFamily': 'foo',
-          'fontPackage': 'bar',
-          'matchTextDirection': true,
-        },
-        'opticalSize': 0.3,
-        'size': 12.0,
-        'textDirection': 'ltr',
-        'weight': 400.0,
+    expect(encoded, {
+      'applyTextScaling': false,
+      'blendMode': 'colorBurn',
+      'color': _kColorStr,
+      'fill': 0.1,
+      'grade': 0.2,
+      'icon': {
+        'codePoint': 2,
+        'fontFamily': 'foo',
+        'fontPackage': 'bar',
+        'matchTextDirection': true,
       },
-    );
+      'opticalSize': 0.3,
+      'size': 12.0,
+      'textDirection': 'ltr',
+      'weight': 400.0,
+    });
+
+    expect(decoded.toString(), entry.toString());
+  });
+
+  test('IconAlignment', () {
+    expect(ThemeDecoder.decodeIconAlignment(null), null);
+    expect(ThemeEncoder.encodeIconAlignment(null), null);
 
     expect(
-      decoded.toString(),
-      entry.toString(),
+      ThemeDecoder.decodeIconAlignment(IconAlignment.end),
+      IconAlignment.end,
     );
+    expect(ThemeDecoder.decodeIconAlignment('end'), IconAlignment.end);
+    expect(ThemeDecoder.decodeIconAlignment('start'), IconAlignment.start);
+
+    expect(ThemeEncoder.encodeIconAlignment(IconAlignment.end), 'end');
+    expect(ThemeEncoder.encodeIconAlignment(IconAlignment.start), 'start');
   });
 
   test('IconButtonThemeData', () {
@@ -4381,51 +3490,23 @@ void main() {
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
         animationDuration: const Duration(milliseconds: 1000),
-        backgroundColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xff555555)),
         elevation: WidgetStateProperty.all(1.0),
         enableFeedback: false,
-        fixedSize: WidgetStateProperty.all(
-          const Size(50.0, 50.0),
-        ),
-        foregroundColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        iconColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        iconSize: WidgetStateProperty.all(
-          12.0,
-        ),
-        maximumSize: WidgetStateProperty.all(
-          const Size(10.0, 10.0),
-        ),
-        minimumSize: WidgetStateProperty.all(
-          const Size(100.0, 100.0),
-        ),
-        mouseCursor: WidgetStateProperty.all(
-          MouseCursor.defer,
-        ),
-        overlayColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.zero,
-        ),
-        shadowColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        shape: WidgetStateProperty.all(
-          const CircleBorder(),
-        ),
-        side: WidgetStateProperty.all(
-          const BorderSide(),
-        ),
+        fixedSize: WidgetStateProperty.all(const Size(50.0, 50.0)),
+        foregroundColor: WidgetStateProperty.all(const Color(0xff555555)),
+        iconColor: WidgetStateProperty.all(const Color(0xff555555)),
+        iconSize: WidgetStateProperty.all(12.0),
+        maximumSize: WidgetStateProperty.all(const Size(10.0, 10.0)),
+        minimumSize: WidgetStateProperty.all(const Size(100.0, 100.0)),
+        mouseCursor: WidgetStateProperty.all(MouseCursor.defer),
+        overlayColor: WidgetStateProperty.all(const Color(0xff555555)),
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        shadowColor: WidgetStateProperty.all(const Color(0xff555555)),
+        shape: WidgetStateProperty.all(const CircleBorder()),
+        side: WidgetStateProperty.all(const BorderSide()),
         tapTargetSize: MaterialTapTargetSize.padded,
-        textStyle: WidgetStateProperty.all(
-          const TextStyle(),
-        ),
+        textStyle: WidgetStateProperty.all(const TextStyle()),
         visualDensity: VisualDensity.standard,
       ),
     );
@@ -4435,69 +3516,50 @@ void main() {
     final encoded = ThemeEncoder.encodeIconButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeIconButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'style': {
-          'alignment': 'bottomCenter',
-          'animationDuration': 1000,
-          'backgroundColor': _materializeState('#ff555555'),
-          'elevation': _materializeState(1.0),
-          'enableFeedback': false,
-          'fixedSize': _materializeState({
-            'height': 50.0,
-            'width': 50.0,
-          }),
-          'foregroundColor': _materializeState('#ff555555'),
-          'iconColor': _materializeState('#ff555555'),
-          'iconSize': _materializeState(12.0),
-          'maximumSize': _materializeState({
-            'height': 10.0,
-            'width': 10.0,
-          }),
-          'minimumSize': _materializeState({
-            'height': 100.0,
-            'width': 100.0,
-          }),
-          'mouseCursor': _materializeState({
-            'type': 'defer',
-          }),
-          'overlayColor': _materializeState('#ff555555'),
-          'padding': _materializeState({
-            'bottom': 0.0,
-            'left': 0.0,
-            'right': 0.0,
-            'top': 0.0,
-          }),
-          'shadowColor': _materializeState('#ff555555'),
-          'shape': _materializeState({
-            'side': {
-              'color': '#ff000000',
-              'strokeAlign': -1.0,
-              'style': 'none',
-              'width': 0.0,
-            },
-            'type': 'circle'
-          }),
-          'side': _materializeState({
+    expect(encoded, {
+      'style': {
+        'alignment': 'bottomCenter',
+        'animationDuration': 1000,
+        'backgroundColor': _materializeState('#ff555555'),
+        'elevation': _materializeState(1.0),
+        'enableFeedback': false,
+        'fixedSize': _materializeState({'height': 50.0, 'width': 50.0}),
+        'foregroundColor': _materializeState('#ff555555'),
+        'iconColor': _materializeState('#ff555555'),
+        'iconSize': _materializeState(12.0),
+        'maximumSize': _materializeState({'height': 10.0, 'width': 10.0}),
+        'minimumSize': _materializeState({'height': 100.0, 'width': 100.0}),
+        'mouseCursor': _materializeState({'type': 'defer'}),
+        'overlayColor': _materializeState('#ff555555'),
+        'padding': _materializeState({
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 0.0,
+        }),
+        'shadowColor': _materializeState('#ff555555'),
+        'shape': _materializeState({
+          'side': {
             'color': '#ff000000',
             'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          }),
-          'tapTargetSize': 'padded',
-          'textStyle': _materializeState({
-            'inherit': true,
-          }),
-          'visualDensity': 'standard',
-        },
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle',
+        }),
+        'side': _materializeState({
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        }),
+        'tapTargetSize': 'padded',
+        'textStyle': _materializeState({'inherit': true}),
+        'visualDensity': 'standard',
       },
-    );
+    });
 
-    expect(
-      _buttonStylesAreEqual(decoded!.style, entry.style),
-      true,
-    );
+    expect(_buttonStylesAreEqual(decoded!.style, entry.style), true);
   });
 
   test('IconData', () {
@@ -4517,21 +3579,15 @@ void main() {
     final encoded = ThemeEncoder.encodeIconData(entry);
     final decoded = ThemeDecoder.decodeIconData(encoded);
 
-    expect(
-      encoded,
-      {
-        'codePoint': 2,
-        'fontFamily': 'foo',
-        'fontFamilyFallback': ['baz', 'baaaz'],
-        'fontPackage': 'bar',
-        'matchTextDirection': true,
-      },
-    );
+    expect(encoded, {
+      'codePoint': 2,
+      'fontFamily': 'foo',
+      'fontFamilyFallback': ['baz', 'baaaz'],
+      'fontPackage': 'bar',
+      'matchTextDirection': true,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('IconThemeData', () {
@@ -4554,24 +3610,18 @@ void main() {
     final encoded = ThemeEncoder.encodeIconThemeData(entry);
     final decoded = ThemeDecoder.decodeIconThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'applyTextScaling': false,
-        'color': _kColorStr,
-        'fill': 0.5,
-        'grade': 3.0,
-        'opacity': 1.0,
-        'opticalSize': 4.0,
-        'size': 10.0,
-        'weight': 5.0,
-      },
-    );
+    expect(encoded, {
+      'applyTextScaling': false,
+      'color': _kColorStr,
+      'fill': 0.5,
+      'grade': 3.0,
+      'opacity': 1.0,
+      'opticalSize': 4.0,
+      'size': 10.0,
+      'weight': 5.0,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('ImageProvider', () {
@@ -4579,16 +3629,8 @@ void main() {
     expect(ThemeEncoder.encodeImageProvider(null), null);
 
     final images = [
-      {
-        'assetName': 'asset',
-        'package': 'package',
-        'type': 'asset',
-      },
-      {
-        'bytes': base64Image,
-        'scale': 2.0,
-        'type': 'memory',
-      },
+      {'assetName': 'asset', 'package': 'package', 'type': 'asset'},
+      {'bytes': base64Image, 'scale': 2.0, 'type': 'memory'},
       {
         'headers': {'foo': 'bar'},
         'scale': 3.0,
@@ -4609,9 +3651,7 @@ void main() {
     expect(ThemeEncoder.encodeImageRepeat(null), null);
 
     expect(
-      ThemeDecoder.decodeImageRepeat(
-        ImageRepeat.noRepeat,
-      ),
+      ThemeDecoder.decodeImageRepeat(ImageRepeat.noRepeat),
       ImageRepeat.noRepeat,
     );
 
@@ -4644,47 +3684,25 @@ void main() {
     final encoded = ThemeEncoder.encodeInputBorder(entry);
     final decoded = ThemeDecoder.decodeInputBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {
-            'type': 'elliptical',
-            'x': 4.0,
-            'y': 4.0,
-          },
-          'bottomRight': {
-            'type': 'elliptical',
-            'x': 4.0,
-            'y': 4.0,
-          },
-          'topLeft': {
-            'type': 'elliptical',
-            'x': 4.0,
-            'y': 4.0,
-          },
-          'topRight': {
-            'type': 'elliptical',
-            'x': 4.0,
-            'y': 4.0,
-          },
-          'type': 'only'
-        },
-        'borderSide': {
-          'color': '#00123456',
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 3.0,
-        },
-        'gapPadding': 1.0,
-        'type': 'outline'
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'bottomRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'type': 'only',
       },
-    );
+      'borderSide': {
+        'color': '#00123456',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 3.0,
+      },
+      'gapPadding': 1.0,
+      'type': 'outline',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     const entry2 = UnderlineInputBorder(
       borderSide: BorderSide(
@@ -4697,46 +3715,24 @@ void main() {
     final encoded2 = ThemeEncoder.encodeInputBorder(entry2);
     final decoded2 = ThemeDecoder.decodeInputBorder(encoded2);
 
-    expect(
-      encoded2,
-      {
-        'borderRadius': {
-          'bottomLeft': {
-            'type': 'elliptical',
-            'x': 0.0,
-            'y': 0.0,
-          },
-          'bottomRight': {
-            'type': 'elliptical',
-            'x': 0.0,
-            'y': 0.0,
-          },
-          'topLeft': {
-            'type': 'elliptical',
-            'x': 4.0,
-            'y': 4.0,
-          },
-          'topRight': {
-            'type': 'elliptical',
-            'x': 4.0,
-            'y': 4.0,
-          },
-          'type': 'only'
-        },
-        'borderSide': {
-          'color': '#00123456',
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 3.0,
-        },
-        'type': 'underline'
+    expect(encoded2, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+        'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+        'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'type': 'only',
       },
-    );
+      'borderSide': {
+        'color': '#00123456',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 3.0,
+      },
+      'type': 'underline',
+    });
 
-    expect(
-      decoded2,
-      entry2,
-    );
+    expect(decoded2, entry2);
   });
 
   test('InputDecorationTheme', () {
@@ -4752,10 +3748,7 @@ void main() {
       ),
       alignLabelWithHint: true,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(1.0)),
-      constraints: const BoxConstraints(
-        minHeight: 2.0,
-        minWidth: 1.0,
-      ),
+      constraints: const BoxConstraints(minHeight: 2.0, minWidth: 1.0),
       contentPadding: const EdgeInsets.all(10.0),
       counterStyle: const TextStyle(color: Color(0xff111111)),
       disabledBorder: OutlineInputBorder(
@@ -4764,9 +3757,7 @@ void main() {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(3.0),
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4.0),
-      ),
+      errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(4.0)),
       errorMaxLines: 1,
       errorStyle: const TextStyle(color: Color(0xff222222)),
       fillColor: const Color(0xff333333),
@@ -4796,17 +3787,11 @@ void main() {
         style: BorderStyle.solid,
         width: 2.0,
       ),
-      prefixIconConstraints: BoxConstraints(
-        minHeight: 1.0,
-        minWidth: 2.0,
-      ),
+      prefixIconConstraints: BoxConstraints(minHeight: 1.0, minWidth: 2.0),
       prefixIconColor: const Color(0xff334433),
       prefixStyle: const TextStyle(color: Color(0xff999999)),
       suffixIconColor: const Color(0xff445544),
-      suffixIconConstraints: BoxConstraints(
-        minHeight: 10.0,
-        minWidth: 20.0,
-      ),
+      suffixIconConstraints: BoxConstraints(minHeight: 10.0, minWidth: 20.0),
       suffixStyle: const TextStyle(color: Color(0xff000000)),
     );
 
@@ -4815,291 +3800,156 @@ void main() {
     final encoded = ThemeEncoder.encodeInputDecorationTheme(entry);
     final decoded = ThemeDecoder.decodeInputDecorationTheme(encoded);
 
-    expect(
-      encoded,
-      {
-        'activeIndicatorBorder': {
-          'color': _kColorStr,
-          'strokeAlign': -2.0,
-          'style': 'solid',
-          'width': 2.0,
-        },
-        'alignLabelWithHint': true,
-        'border': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 1.0,
-              'y': 1.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 1.0,
-              'y': 1.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 1.0,
-              'y': 1.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 1.0,
-              'y': 1.0,
-            },
-            'type': 'only'
-          },
-          'borderSide': {
-            'color': '#ff000000',
-            'style': 'solid',
-            'strokeAlign': -1.0,
-            'width': 1.0,
-          },
-          'gapPadding': 4.0,
-          'type': 'outline'
-        },
-        'constraints': {
-          'minHeight': 2.0,
-          'minWidth': 1.0,
-        },
-        'contentPadding': {
-          'bottom': 10.0,
-          'left': 10.0,
-          'right': 10.0,
-          'top': 10.0
-        },
-        'counterStyle': {
-          'color': '#ff111111',
-          'inherit': true,
-        },
-        'disabledBorder': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 2.0,
-              'y': 2.0,
-            },
-            'type': 'only'
-          },
-          'borderSide': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'gapPadding': 4.0,
-          'type': 'outline'
-        },
-        'enabledBorder': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'type': 'only'
-          },
-          'borderSide': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'gapPadding': 4.0,
-          'type': 'outline'
-        },
-        'errorBorder': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'type': 'only'
-          },
-          'borderSide': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'gapPadding': 4.0,
-          'type': 'outline'
-        },
-        'errorMaxLines': 1,
-        'errorStyle': {
-          'color': '#ff222222',
-          'inherit': true,
-        },
-        'fillColor': '#ff333333',
-        'filled': true,
-        'floatingLabelAlignment': 'center',
-        'floatingLabelBehavior': 'always',
-        'floatingLabelStyle': {
-          'color': '#00000000',
-          'inherit': true,
-        },
-        'focusColor': '#ff444444',
-        'focusedBorder': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 3.0,
-              'y': 3.0,
-            },
-            'type': 'only'
-          },
-          'borderSide': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'gapPadding': 4.0,
-          'type': 'outline'
-        },
-        'focusedErrorBorder': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 4.0,
-              'y': 4.0,
-            },
-            'type': 'only'
-          },
-          'borderSide': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          },
-          'gapPadding': 4.0,
-          'type': 'outline'
-        },
-        'helperMaxLines': 2,
-        'helperStyle': {
-          'color': '#ff555555',
-          'inherit': true,
-        },
-        'hintFadeDuration': 500,
-        'hintStyle': {
-          'color': '#ff666666',
-          'inherit': true,
-        },
-        'hoverColor': '#ff777777',
-        'iconColor': '#ff223322',
-        'isCollapsed': true,
-        'isDense': true,
-        'labelStyle': {
-          'color': '#ff888888',
-          'inherit': true,
-        },
-        'outlineBorder': {
-          'color': _kColorStr,
-          'strokeAlign': -3.0,
-          'style': 'solid',
-          'width': 2.0,
-        },
-        'prefixIconColor': '#ff334433',
-        'prefixIconConstraints': {
-          'minHeight': 1.0,
-          'minWidth': 2.0,
-        },
-        'prefixStyle': {
-          'color': '#ff999999',
-          'inherit': true,
-        },
-        'suffixIconColor': '#ff445544',
-        'suffixIconConstraints': {
-          'minHeight': 10.0,
-          'minWidth': 20.0,
-        },
-        'suffixStyle': {
-          'color': '#ff000000',
-          'inherit': true,
-        }
+    expect(encoded, {
+      'activeIndicatorBorder': {
+        'color': _kColorStr,
+        'strokeAlign': -2.0,
+        'style': 'solid',
+        'width': 2.0,
       },
-    );
+      'alignLabelWithHint': true,
+      'border': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+          'bottomRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+          'topLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+          'topRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+          'type': 'only',
+        },
+        'borderSide': {
+          'color': '#ff000000',
+          'style': 'solid',
+          'strokeAlign': -1.0,
+          'width': 1.0,
+        },
+        'gapPadding': 4.0,
+        'type': 'outline',
+      },
+      'constraints': {'minHeight': 2.0, 'minWidth': 1.0},
+      'contentPadding': {
+        'bottom': 10.0,
+        'left': 10.0,
+        'right': 10.0,
+        'top': 10.0,
+      },
+      'counterStyle': {'color': '#ff111111', 'inherit': true},
+      'disabledBorder': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+          'type': 'only',
+        },
+        'borderSide': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'gapPadding': 4.0,
+        'type': 'outline',
+      },
+      'enabledBorder': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'bottomRight': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'topLeft': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'topRight': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'type': 'only',
+        },
+        'borderSide': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'gapPadding': 4.0,
+        'type': 'outline',
+      },
+      'errorBorder': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'bottomRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'type': 'only',
+        },
+        'borderSide': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'gapPadding': 4.0,
+        'type': 'outline',
+      },
+      'errorMaxLines': 1,
+      'errorStyle': {'color': '#ff222222', 'inherit': true},
+      'fillColor': '#ff333333',
+      'filled': true,
+      'floatingLabelAlignment': 'center',
+      'floatingLabelBehavior': 'always',
+      'floatingLabelStyle': {'color': '#00000000', 'inherit': true},
+      'focusColor': '#ff444444',
+      'focusedBorder': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'bottomRight': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'topLeft': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'topRight': {'type': 'elliptical', 'x': 3.0, 'y': 3.0},
+          'type': 'only',
+        },
+        'borderSide': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'gapPadding': 4.0,
+        'type': 'outline',
+      },
+      'focusedErrorBorder': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'bottomRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+          'type': 'only',
+        },
+        'borderSide': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        },
+        'gapPadding': 4.0,
+        'type': 'outline',
+      },
+      'helperMaxLines': 2,
+      'helperStyle': {'color': '#ff555555', 'inherit': true},
+      'hintFadeDuration': 500,
+      'hintStyle': {'color': '#ff666666', 'inherit': true},
+      'hoverColor': '#ff777777',
+      'iconColor': '#ff223322',
+      'isCollapsed': true,
+      'isDense': true,
+      'labelStyle': {'color': '#ff888888', 'inherit': true},
+      'outlineBorder': {
+        'color': _kColorStr,
+        'strokeAlign': -3.0,
+        'style': 'solid',
+        'width': 2.0,
+      },
+      'prefixIconColor': '#ff334433',
+      'prefixIconConstraints': {'minHeight': 1.0, 'minWidth': 2.0},
+      'prefixStyle': {'color': '#ff999999', 'inherit': true},
+      'suffixIconColor': '#ff445544',
+      'suffixIconConstraints': {'minHeight': 10.0, 'minWidth': 20.0},
+      'suffixStyle': {'color': '#ff000000', 'inherit': true},
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('InteractiveInkFeatureFactory', () {
@@ -5107,9 +3957,7 @@ void main() {
     expect(ThemeEncoder.encodeInteractiveInkFeatureFactory(null), null);
 
     expect(
-      ThemeDecoder.decodeInteractiveInkFeatureFactory(
-        InkSplash.splashFactory,
-      ),
+      ThemeDecoder.decodeInteractiveInkFeatureFactory(InkSplash.splashFactory),
       InkSplash.splashFactory,
     );
 
@@ -5145,32 +3993,39 @@ void main() {
     expect(ThemeEncoder.encodeListTileControlAffinity(null), null);
 
     expect(
-      ThemeDecoder.decodeListTileStyle(
-        ListTileStyle.drawer,
-      ),
+      ThemeDecoder.decodeListTileStyle(ListTileStyle.drawer),
       ListTileStyle.drawer,
     );
 
-    expect(ThemeDecoder.decodeListTileControlAffinity('leading'),
-        ListTileControlAffinity.leading);
-    expect(ThemeDecoder.decodeListTileControlAffinity('platform'),
-        ListTileControlAffinity.platform);
-    expect(ThemeDecoder.decodeListTileControlAffinity('trailing'),
-        ListTileControlAffinity.trailing);
+    expect(
+      ThemeDecoder.decodeListTileControlAffinity('leading'),
+      ListTileControlAffinity.leading,
+    );
+    expect(
+      ThemeDecoder.decodeListTileControlAffinity('platform'),
+      ListTileControlAffinity.platform,
+    );
+    expect(
+      ThemeDecoder.decodeListTileControlAffinity('trailing'),
+      ListTileControlAffinity.trailing,
+    );
 
     expect(
       ThemeEncoder.encodeListTileControlAffinity(
-          ListTileControlAffinity.leading),
+        ListTileControlAffinity.leading,
+      ),
       'leading',
     );
     expect(
       ThemeEncoder.encodeListTileControlAffinity(
-          ListTileControlAffinity.platform),
+        ListTileControlAffinity.platform,
+      ),
       'platform',
     );
     expect(
       ThemeEncoder.encodeListTileControlAffinity(
-          ListTileControlAffinity.trailing),
+        ListTileControlAffinity.trailing,
+      ),
       'trailing',
     );
   });
@@ -5180,9 +4035,7 @@ void main() {
     expect(ThemeEncoder.encodeListTileStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeListTileStyle(
-        ListTileStyle.drawer,
-      ),
+      ThemeDecoder.decodeListTileStyle(ListTileStyle.drawer),
       ListTileStyle.drawer,
     );
 
@@ -5198,9 +4051,7 @@ void main() {
     expect(ThemeEncoder.encodeListTileTitleAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment(
-        ListTileTitleAlignment.bottom,
-      ),
+      ThemeDecoder.decodeListTileTitleAlignment(ListTileTitleAlignment.bottom),
       ListTileTitleAlignment.bottom,
     );
 
@@ -5235,12 +4086,14 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeListTileTitleAlignment(
-          ListTileTitleAlignment.threeLine),
+        ListTileTitleAlignment.threeLine,
+      ),
       'threeLine',
     );
     expect(
       ThemeEncoder.encodeListTileTitleAlignment(
-          ListTileTitleAlignment.titleHeight),
+        ListTileTitleAlignment.titleHeight,
+      ),
       'titleHeight',
     );
     expect(
@@ -5254,12 +4107,7 @@ void main() {
     expect(ThemeEncoder.encodeListTileThemeData(null), null);
 
     const entry = ListTileThemeData(
-      contentPadding: EdgeInsets.fromLTRB(
-        1,
-        2,
-        3,
-        4,
-      ),
+      contentPadding: EdgeInsets.fromLTRB(1, 2, 3, 4),
       controlAffinity: ListTileControlAffinity.trailing,
       dense: true,
       enableFeedback: false,
@@ -5279,46 +4127,38 @@ void main() {
     final decoded = ThemeDecoder.decodeListTileThemeData(entry);
     final encoded = ThemeEncoder.encodeListTileThemeData(decoded);
 
-    expect(
-      encoded,
-      {
-        'contentPadding': {
-          'left': 1,
-          'top': 2,
-          'right': 3,
-          'bottom': 4,
+    expect(encoded, {
+      'contentPadding': {'left': 1, 'top': 2, 'right': 3, 'bottom': 4},
+      'controlAffinity': 'trailing',
+      'dense': true,
+      'enableFeedback': false,
+      'horizontalTitleGap': 5,
+      'iconColor': '#ff111111',
+      'minLeadingWidth': 6,
+      'minTileHeight': 10.0,
+      'minVerticalPadding': 7,
+      'selectedColor': '#ff222222',
+      'selectedTileColor': '#ff333333',
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'type': 'only',
         },
-        'controlAffinity': 'trailing',
-        'dense': true,
-        'enableFeedback': false,
-        'horizontalTitleGap': 5,
-        'iconColor': '#ff111111',
-        'minLeadingWidth': 6,
-        'minTileHeight': 10.0,
-        'minVerticalPadding': 7,
-        'selectedColor': '#ff222222',
-        'selectedTileColor': '#ff333333',
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
-            'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
-            'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
-            'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rectangle',
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
         },
-        'style': 'drawer',
-        'textColor': '#ff444444',
-        'tileColor': '#ff555555',
+        'type': 'rectangle',
       },
-    );
+      'style': 'drawer',
+      'textColor': '#ff444444',
+      'tileColor': '#ff555555',
+    });
 
     expect(decoded, entry);
   });
@@ -5334,18 +4174,9 @@ void main() {
     final encoded = ThemeEncoder.encodeLocale(entry);
     final decoded = ThemeDecoder.decodeLocale(encoded);
 
-    expect(
-      encoded,
-      {
-        'countryCode': 'US',
-        'languageCode': 'en',
-      },
-    );
+    expect(encoded, {'countryCode': 'US', 'languageCode': 'en'});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('MainAxisAlignment', () {
@@ -5353,9 +4184,7 @@ void main() {
     expect(ThemeEncoder.encodeMainAxisAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeMainAxisAlignment(
-        MainAxisAlignment.center,
-      ),
+      ThemeDecoder.decodeMainAxisAlignment(MainAxisAlignment.center),
       MainAxisAlignment.center,
     );
 
@@ -5363,10 +4192,7 @@ void main() {
       ThemeDecoder.decodeMainAxisAlignment('center'),
       MainAxisAlignment.center,
     );
-    expect(
-      ThemeDecoder.decodeMainAxisAlignment('end'),
-      MainAxisAlignment.end,
-    );
+    expect(ThemeDecoder.decodeMainAxisAlignment('end'), MainAxisAlignment.end);
     expect(
       ThemeDecoder.decodeMainAxisAlignment('spaceAround'),
       MainAxisAlignment.spaceAround,
@@ -5388,10 +4214,7 @@ void main() {
       ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.center),
       'center',
     );
-    expect(
-      ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.end),
-      'end',
-    );
+    expect(ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.end), 'end');
     expect(
       ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.spaceAround),
       'spaceAround',
@@ -5414,12 +4237,7 @@ void main() {
     expect(ThemeDecoder.decodeMainAxisSize(null), null);
     expect(ThemeEncoder.encodeMainAxisSize(null), null);
 
-    expect(
-      ThemeDecoder.decodeMainAxisSize(
-        MainAxisSize.max,
-      ),
-      MainAxisSize.max,
-    );
+    expect(ThemeDecoder.decodeMainAxisSize(MainAxisSize.max), MainAxisSize.max);
 
     expect(ThemeDecoder.decodeMainAxisSize('max'), MainAxisSize.max);
     expect(ThemeDecoder.decodeMainAxisSize('min'), MainAxisSize.min);
@@ -5448,34 +4266,18 @@ void main() {
     final encoded = ThemeEncoder.encodeMaterialBannerThemeData(entry);
     final decoded = ThemeDecoder.decodeMaterialBannerThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': _kColorStr,
-        'contentTextStyle': _kTextStyleJson,
-        'dividerColor': '#ff111111',
-        'elevation': 5.5,
-        'leadingPadding': {
-          'bottom': 1.0,
-          'left': 1.0,
-          'right': 1.0,
-          'top': 1.0,
-        },
-        'padding': {
-          'bottom': 2.0,
-          'left': 2.0,
-          'right': 2.0,
-          'top': 2.0,
-        },
-        'shadowColor': '#ff222222',
-        'surfaceTintColor': '#ff333333',
-      },
-    );
+    expect(encoded, {
+      'backgroundColor': _kColorStr,
+      'contentTextStyle': _kTextStyleJson,
+      'dividerColor': '#ff111111',
+      'elevation': 5.5,
+      'leadingPadding': {'bottom': 1.0, 'left': 1.0, 'right': 1.0, 'top': 1.0},
+      'padding': {'bottom': 2.0, 'left': 2.0, 'right': 2.0, 'top': 2.0},
+      'shadowColor': '#ff222222',
+      'surfaceTintColor': '#ff333333',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('MaterialColor', () {
@@ -5500,24 +4302,21 @@ void main() {
     final encoded = ThemeEncoder.encodeMaterialColor(entry);
     final decoded = ThemeDecoder.decodeMaterialColor(encoded);
 
-    expect(
-      encoded,
-      {
-        'primary': _kColorStr,
-        'swatches': {
-          '50': _kColorStr,
-          '100': _kColorStr,
-          '200': _kColorStr,
-          '300': _kColorStr,
-          '400': _kColorStr,
-          '500': _kColorStr,
-          '600': _kColorStr,
-          '700': _kColorStr,
-          '800': _kColorStr,
-          '900': _kColorStr,
-        }
+    expect(encoded, {
+      'primary': _kColorStr,
+      'swatches': {
+        '50': _kColorStr,
+        '100': _kColorStr,
+        '200': _kColorStr,
+        '300': _kColorStr,
+        '400': _kColorStr,
+        '500': _kColorStr,
+        '600': _kColorStr,
+        '700': _kColorStr,
+        '800': _kColorStr,
+        '900': _kColorStr,
       },
-    );
+    });
 
     expect(ThemeEncoder.encodeMaterialColor(decoded), encoded);
   });
@@ -5527,9 +4326,7 @@ void main() {
     expect(ThemeEncoder.encodeMaterialTapTargetSize(null), null);
 
     expect(
-      ThemeDecoder.decodeMaterialTapTargetSize(
-        MaterialTapTargetSize.padded,
-      ),
+      ThemeDecoder.decodeMaterialTapTargetSize(MaterialTapTargetSize.padded),
       MaterialTapTargetSize.padded,
     );
 
@@ -5559,9 +4356,7 @@ void main() {
     expect(ThemeEncoder.encodeMaterialType(null), null);
 
     expect(
-      ThemeDecoder.decodeMaterialType(
-        MaterialType.button,
-      ),
+      ThemeDecoder.decodeMaterialType(MaterialType.button),
       MaterialType.button,
     );
 
@@ -5612,32 +4407,9 @@ void main() {
     final encoded = ThemeEncoder.encodeMatrix4(entry);
     final decoded = ThemeDecoder.decodeMatrix4(encoded);
 
-    expect(
-      encoded,
-      [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-      ],
-    );
+    expect(encoded, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('MaxLengthEnforcement', () {
@@ -5658,15 +4430,17 @@ void main() {
     );
 
     expect(
-        ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.enforced),
-        'enforced');
+      ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.enforced),
+      'enforced',
+    );
     expect(
       ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.none),
       'none',
     );
     expect(
       ThemeEncoder.encodeMaxLengthEnforcement(
-          MaxLengthEnforcement.truncateAfterCompositionEnds),
+        MaxLengthEnforcement.truncateAfterCompositionEnds,
+      ),
       'truncateAfterCompositionEnds',
     );
   });
@@ -5679,51 +4453,23 @@ void main() {
       style: ButtonStyle(
         alignment: Alignment.bottomCenter,
         animationDuration: const Duration(milliseconds: 1000),
-        backgroundColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xff555555)),
         elevation: WidgetStateProperty.all(1.0),
         enableFeedback: false,
-        fixedSize: WidgetStateProperty.all(
-          const Size(50.0, 50.0),
-        ),
-        foregroundColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        iconColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        iconSize: WidgetStateProperty.all(
-          12.0,
-        ),
-        maximumSize: WidgetStateProperty.all(
-          const Size(10.0, 10.0),
-        ),
-        minimumSize: WidgetStateProperty.all(
-          const Size(100.0, 100.0),
-        ),
-        mouseCursor: WidgetStateProperty.all(
-          MouseCursor.defer,
-        ),
-        overlayColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.zero,
-        ),
-        shadowColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
-        shape: WidgetStateProperty.all(
-          const CircleBorder(),
-        ),
-        side: WidgetStateProperty.all(
-          const BorderSide(),
-        ),
+        fixedSize: WidgetStateProperty.all(const Size(50.0, 50.0)),
+        foregroundColor: WidgetStateProperty.all(const Color(0xff555555)),
+        iconColor: WidgetStateProperty.all(const Color(0xff555555)),
+        iconSize: WidgetStateProperty.all(12.0),
+        maximumSize: WidgetStateProperty.all(const Size(10.0, 10.0)),
+        minimumSize: WidgetStateProperty.all(const Size(100.0, 100.0)),
+        mouseCursor: WidgetStateProperty.all(MouseCursor.defer),
+        overlayColor: WidgetStateProperty.all(const Color(0xff555555)),
+        padding: WidgetStateProperty.all(EdgeInsets.zero),
+        shadowColor: WidgetStateProperty.all(const Color(0xff555555)),
+        shape: WidgetStateProperty.all(const CircleBorder()),
+        side: WidgetStateProperty.all(const BorderSide()),
         tapTargetSize: MaterialTapTargetSize.padded,
-        textStyle: WidgetStateProperty.all(
-          const TextStyle(),
-        ),
+        textStyle: WidgetStateProperty.all(const TextStyle()),
         visualDensity: VisualDensity.standard,
       ),
     );
@@ -5733,93 +4479,64 @@ void main() {
     final encoded = ThemeEncoder.encodeMenuButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeMenuButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'style': {
-          'alignment': 'bottomCenter',
-          'animationDuration': 1000,
-          'backgroundColor': _materializeState('#ff555555'),
-          'elevation': _materializeState(1.0),
-          'enableFeedback': false,
-          'fixedSize': _materializeState({
-            'height': 50.0,
-            'width': 50.0,
-          }),
-          'foregroundColor': _materializeState('#ff555555'),
-          'iconColor': _materializeState('#ff555555'),
-          'iconSize': _materializeState(12.0),
-          'maximumSize': _materializeState({
-            'height': 10.0,
-            'width': 10.0,
-          }),
-          'minimumSize': _materializeState({
-            'height': 100.0,
-            'width': 100.0,
-          }),
-          'mouseCursor': _materializeState({
-            'type': 'defer',
-          }),
-          'overlayColor': _materializeState('#ff555555'),
-          'padding': _materializeState({
-            'bottom': 0.0,
-            'left': 0.0,
-            'right': 0.0,
-            'top': 0.0,
-          }),
-          'shadowColor': _materializeState('#ff555555'),
-          'shape': _materializeState({
-            'side': {
-              'color': '#ff000000',
-              'strokeAlign': -1.0,
-              'style': 'none',
-              'width': 0.0,
-            },
-            'type': 'circle'
-          }),
-          'side': _materializeState({
+    expect(encoded, {
+      'style': {
+        'alignment': 'bottomCenter',
+        'animationDuration': 1000,
+        'backgroundColor': _materializeState('#ff555555'),
+        'elevation': _materializeState(1.0),
+        'enableFeedback': false,
+        'fixedSize': _materializeState({'height': 50.0, 'width': 50.0}),
+        'foregroundColor': _materializeState('#ff555555'),
+        'iconColor': _materializeState('#ff555555'),
+        'iconSize': _materializeState(12.0),
+        'maximumSize': _materializeState({'height': 10.0, 'width': 10.0}),
+        'minimumSize': _materializeState({'height': 100.0, 'width': 100.0}),
+        'mouseCursor': _materializeState({'type': 'defer'}),
+        'overlayColor': _materializeState('#ff555555'),
+        'padding': _materializeState({
+          'bottom': 0.0,
+          'left': 0.0,
+          'right': 0.0,
+          'top': 0.0,
+        }),
+        'shadowColor': _materializeState('#ff555555'),
+        'shape': _materializeState({
+          'side': {
             'color': '#ff000000',
             'strokeAlign': -1.0,
-            'style': 'solid',
-            'width': 1.0,
-          }),
-          'tapTargetSize': 'padded',
-          'textStyle': _materializeState({
-            'inherit': true,
-          }),
-          'visualDensity': 'standard',
-        },
+            'style': 'none',
+            'width': 0.0,
+          },
+          'type': 'circle',
+        }),
+        'side': _materializeState({
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'solid',
+          'width': 1.0,
+        }),
+        'tapTargetSize': 'padded',
+        'textStyle': _materializeState({'inherit': true}),
+        'visualDensity': 'standard',
       },
-    );
+    });
 
-    expect(
-      _buttonStylesAreEqual(decoded!.style, entry.style),
-      true,
-    );
+    expect(_buttonStylesAreEqual(decoded!.style, entry.style), true);
   });
 
   test('MenuStyle', () {
     expect(ThemeDecoder.decodeMenuStyle(null), null);
     expect(ThemeEncoder.encodeMenuStyle(null), null);
 
-    const entry = MenuStyle(
-      alignment: Alignment.center,
-    );
+    const entry = MenuStyle(alignment: Alignment.center);
 
-    expect(
-      ThemeDecoder.decodeMenuStyle(entry),
-      entry,
-    );
+    expect(ThemeDecoder.decodeMenuStyle(entry), entry);
 
     final encoded = ThemeEncoder.encodeMenuStyle(entry);
     final decoded = ThemeDecoder.decodeMenuStyle(encoded);
 
-    expect(
-      encoded,
-      {
-        'alignment': 'center',
-      },
-    );
+    expect(encoded, {'alignment': 'center'});
 
     expect(entry, decoded);
   });
@@ -5829,9 +4546,7 @@ void main() {
     expect(ThemeEncoder.encodeMouseCursor(null), null);
 
     expect(
-      ThemeDecoder.decodeMouseCursor(
-        MouseCursor.defer,
-      ),
+      ThemeDecoder.decodeMouseCursor(MouseCursor.defer),
       MouseCursor.defer,
     );
 
@@ -5855,38 +4570,23 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'alias',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'alias', 'type': 'system'}),
       SystemMouseCursors.alias,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'allScroll',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'allScroll', 'type': 'system'}),
       SystemMouseCursors.allScroll,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'basic',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'basic', 'type': 'system'}),
       SystemMouseCursors.basic,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'cell',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'cell', 'type': 'system'}),
       SystemMouseCursors.cell,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'click',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'click', 'type': 'system'}),
       SystemMouseCursors.click,
     );
     expect(
@@ -5897,10 +4597,7 @@ void main() {
       SystemMouseCursors.contextMenu,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'copy',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'copy', 'type': 'system'}),
       SystemMouseCursors.copy,
     );
     expect(
@@ -5911,66 +4608,39 @@ void main() {
       SystemMouseCursors.disappearing,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'forbidden',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'forbidden', 'type': 'system'}),
       SystemMouseCursors.forbidden,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'grab',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'grab', 'type': 'system'}),
       SystemMouseCursors.grab,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'grabbing',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'grabbing', 'type': 'system'}),
       SystemMouseCursors.grabbing,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'help',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'help', 'type': 'system'}),
       SystemMouseCursors.help,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'move',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'move', 'type': 'system'}),
       SystemMouseCursors.move,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'noDrop',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'noDrop', 'type': 'system'}),
       SystemMouseCursors.noDrop,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'none',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'none', 'type': 'system'}),
       SystemMouseCursors.none,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'precise',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'precise', 'type': 'system'}),
       SystemMouseCursors.precise,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'progress',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'progress', 'type': 'system'}),
       SystemMouseCursors.progress,
     );
     expect(
@@ -6016,17 +4686,11 @@ void main() {
       SystemMouseCursors.resizeRight,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'resizeRow',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'resizeRow', 'type': 'system'}),
       SystemMouseCursors.resizeRow,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'resizeUp',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'resizeUp', 'type': 'system'}),
       SystemMouseCursors.resizeUp,
     );
     expect(
@@ -6065,10 +4729,7 @@ void main() {
       SystemMouseCursors.resizeUpRightDownLeft,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'text',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'text', 'type': 'system'}),
       SystemMouseCursors.text,
     );
     expect(
@@ -6079,24 +4740,15 @@ void main() {
       SystemMouseCursors.verticalText,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'wait',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'wait', 'type': 'system'}),
       SystemMouseCursors.wait,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'zoomIn',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'zoomIn', 'type': 'system'}),
       SystemMouseCursors.zoomIn,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
-        'cursor': 'zoomOut',
-        'type': 'system',
-      }),
+      ThemeDecoder.decodeMouseCursor({'cursor': 'zoomOut', 'type': 'system'}),
       SystemMouseCursors.zoomOut,
     );
 
@@ -6105,353 +4757,162 @@ void main() {
       MouseCursor.uncontrolled,
     );
 
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        MouseCursor.defer,
-      ),
-      {'type': 'defer'},
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        WidgetStateMouseCursor.clickable,
-      ),
-      {
-        'cursor': 'clickable',
-        'type': 'material',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        WidgetStateMouseCursor.textable,
-      ),
-      {
-        'cursor': 'textable',
-        'type': 'material',
-      },
-    );
+    expect(ThemeEncoder.encodeMouseCursor(MouseCursor.defer), {
+      'type': 'defer',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(WidgetStateMouseCursor.clickable), {
+      'cursor': 'clickable',
+      'type': 'material',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(WidgetStateMouseCursor.textable), {
+      'cursor': 'textable',
+      'type': 'material',
+    });
 
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.alias), {
+      'cursor': 'alias',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.allScroll), {
+      'cursor': 'allScroll',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.basic), {
+      'cursor': 'basic',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.cell), {
+      'cursor': 'cell',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.click), {
+      'cursor': 'click',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.contextMenu), {
+      'cursor': 'contextMenu',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.copy), {
+      'cursor': 'copy',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.disappearing), {
+      'cursor': 'disappearing',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.forbidden), {
+      'cursor': 'forbidden',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.grab), {
+      'cursor': 'grab',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.grabbing), {
+      'cursor': 'grabbing',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.help), {
+      'cursor': 'help',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.move), {
+      'cursor': 'move',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.noDrop), {
+      'cursor': 'noDrop',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.none), {
+      'cursor': 'none',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.precise), {
+      'cursor': 'precise',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.progress), {
+      'cursor': 'progress',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeColumn), {
+      'cursor': 'resizeColumn',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeDown), {
+      'cursor': 'resizeDown',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeDownLeft), {
+      'cursor': 'resizeDownLeft',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeDownRight), {
+      'cursor': 'resizeDownRight',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeLeft), {
+      'cursor': 'resizeLeft',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeRight), {
+      'cursor': 'resizeRight',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeRow), {
+      'cursor': 'resizeRow',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUp), {
+      'cursor': 'resizeUp',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpDown), {
+      'cursor': 'resizeUpDown',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpLeft), {
+      'cursor': 'resizeUpLeft',
+      'type': 'system',
+    });
     expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.alias,
-      ),
-      {
-        'cursor': 'alias',
-        'type': 'system',
-      },
+      ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpLeftDownRight),
+      {'cursor': 'resizeUpLeftDownRight', 'type': 'system'},
     );
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpRight), {
+      'cursor': 'resizeUpRight',
+      'type': 'system',
+    });
     expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.allScroll,
-      ),
-      {
-        'cursor': 'allScroll',
-        'type': 'system',
-      },
+      ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpRightDownLeft),
+      {'cursor': 'resizeUpRightDownLeft', 'type': 'system'},
     );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.basic,
-      ),
-      {
-        'cursor': 'basic',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.cell,
-      ),
-      {
-        'cursor': 'cell',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.click,
-      ),
-      {
-        'cursor': 'click',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.contextMenu,
-      ),
-      {
-        'cursor': 'contextMenu',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.copy,
-      ),
-      {
-        'cursor': 'copy',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.disappearing,
-      ),
-      {
-        'cursor': 'disappearing',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.forbidden,
-      ),
-      {
-        'cursor': 'forbidden',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.grab,
-      ),
-      {
-        'cursor': 'grab',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.grabbing,
-      ),
-      {
-        'cursor': 'grabbing',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.help,
-      ),
-      {
-        'cursor': 'help',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.move,
-      ),
-      {
-        'cursor': 'move',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.noDrop,
-      ),
-      {
-        'cursor': 'noDrop',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.none,
-      ),
-      {
-        'cursor': 'none',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.precise,
-      ),
-      {
-        'cursor': 'precise',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.progress,
-      ),
-      {
-        'cursor': 'progress',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeColumn,
-      ),
-      {
-        'cursor': 'resizeColumn',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeDown,
-      ),
-      {
-        'cursor': 'resizeDown',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeDownLeft,
-      ),
-      {
-        'cursor': 'resizeDownLeft',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeDownRight,
-      ),
-      {
-        'cursor': 'resizeDownRight',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeLeft,
-      ),
-      {
-        'cursor': 'resizeLeft',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeRight,
-      ),
-      {
-        'cursor': 'resizeRight',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeRow,
-      ),
-      {
-        'cursor': 'resizeRow',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeUp,
-      ),
-      {
-        'cursor': 'resizeUp',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeUpDown,
-      ),
-      {
-        'cursor': 'resizeUpDown',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeUpLeft,
-      ),
-      {
-        'cursor': 'resizeUpLeft',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeUpLeftDownRight,
-      ),
-      {
-        'cursor': 'resizeUpLeftDownRight',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeUpRight,
-      ),
-      {
-        'cursor': 'resizeUpRight',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.resizeUpRightDownLeft,
-      ),
-      {
-        'cursor': 'resizeUpRightDownLeft',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.text,
-      ),
-      {
-        'cursor': 'text',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.verticalText,
-      ),
-      {
-        'cursor': 'verticalText',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.wait,
-      ),
-      {
-        'cursor': 'wait',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.zoomIn,
-      ),
-      {
-        'cursor': 'zoomIn',
-        'type': 'system',
-      },
-    );
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        SystemMouseCursors.zoomOut,
-      ),
-      {
-        'cursor': 'zoomOut',
-        'type': 'system',
-      },
-    );
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.text), {
+      'cursor': 'text',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.verticalText), {
+      'cursor': 'verticalText',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.wait), {
+      'cursor': 'wait',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.zoomIn), {
+      'cursor': 'zoomIn',
+      'type': 'system',
+    });
+    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.zoomOut), {
+      'cursor': 'zoomOut',
+      'type': 'system',
+    });
 
-    expect(
-      ThemeEncoder.encodeMouseCursor(
-        MouseCursor.uncontrolled,
-      ),
-      {'type': 'uncontrolled'},
-    );
+    expect(ThemeEncoder.encodeMouseCursor(MouseCursor.uncontrolled), {
+      'type': 'uncontrolled',
+    });
   });
 
   test('NavigationDestinationLabelBehavior', () {
@@ -6466,21 +4927,15 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
-        'alwaysHide',
-      ),
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior('alwaysHide'),
       NavigationDestinationLabelBehavior.alwaysHide,
     );
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
-        'alwaysShow',
-      ),
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior('alwaysShow'),
       NavigationDestinationLabelBehavior.alwaysShow,
     );
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
-        'onlyShowSelected',
-      ),
+      ThemeDecoder.decodeNavigationDestinationLabelBehavior('onlyShowSelected'),
       NavigationDestinationLabelBehavior.onlyShowSelected,
     );
 
@@ -6498,7 +4953,8 @@ void main() {
     );
     expect(
       ThemeEncoder.encodeNavigationDestinationLabelBehavior(
-          NavigationDestinationLabelBehavior.onlyShowSelected),
+        NavigationDestinationLabelBehavior.onlyShowSelected,
+      ),
       'onlyShowSelected',
     );
   });
@@ -6508,9 +4964,7 @@ void main() {
     expect(ThemeEncoder.encodeNavigationRailLabelType(null), null);
 
     expect(
-      ThemeDecoder.decodeNavigationRailLabelType(
-        NavigationRailLabelType.all,
-      ),
+      ThemeDecoder.decodeNavigationRailLabelType(NavigationRailLabelType.all),
       NavigationRailLabelType.all,
     );
 
@@ -6553,9 +5007,8 @@ void main() {
       height: 12.0,
       indicatorColor: Color(0xff222222),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-      overlayColor: WidgetStateProperty.all(
-        Color(0xff222222),
-      ),
+      labelPadding: EdgeInsets.all(8.0),
+      overlayColor: WidgetStateProperty.all(Color(0xff222222)),
       shadowColor: Color(0xff333333),
       surfaceTintColor: Color(0xff444444),
     );
@@ -6569,6 +5022,7 @@ void main() {
       'height': 12.0,
       'indicatorColor': '#ff222222',
       'labelBehavior': 'onlyShowSelected',
+      'labelPadding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
       'overlayColor': _materializeState('#ff222222'),
       'shadowColor': '#ff333333',
       'surfaceTintColor': '#ff444444',
@@ -6606,40 +5060,24 @@ void main() {
     final encoded = ThemeEncoder.encodeNavigationRailThemeData(entry);
     final decoded = ThemeDecoder.decodeNavigationRailThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#ff111111',
-        'elevation': 1.0,
-        'groupAlignment': 2.0,
-        'indicatorColor': '#ff666666',
-        'labelType': 'all',
-        'selectedIconTheme': {
-          'color': '#ff222222',
-          'opacity': 0.5,
-          'size': 4.0
-        },
-        'selectedLabelTextStyle': {
-          'color': '#ff333333',
-          'inherit': true,
-        },
-        'unselectedIconTheme': {
-          'color': '#ff444444',
-          'opacity': 0.6,
-          'size': 6.0
-        },
-        'unselectedLabelTextStyle': {
-          'color': '#ff555555',
-          'inherit': true,
-        },
-        'useIndicator': true,
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'elevation': 1.0,
+      'groupAlignment': 2.0,
+      'indicatorColor': '#ff666666',
+      'labelType': 'all',
+      'selectedIconTheme': {'color': '#ff222222', 'opacity': 0.5, 'size': 4.0},
+      'selectedLabelTextStyle': {'color': '#ff333333', 'inherit': true},
+      'unselectedIconTheme': {
+        'color': '#ff444444',
+        'opacity': 0.6,
+        'size': 6.0,
       },
-    );
+      'unselectedLabelTextStyle': {'color': '#ff555555', 'inherit': true},
+      'useIndicator': true,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('NotchedShape', () {
@@ -6647,10 +5085,7 @@ void main() {
     expect(ThemeEncoder.encodeNotchedShape(null), null);
 
     const entry = CircularNotchedRectangle();
-    expect(
-      ThemeDecoder.decodeNotchedShape(entry),
-      entry,
-    );
+    expect(ThemeDecoder.decodeNotchedShape(entry), entry);
     expect(
       ThemeDecoder.decodeNotchedShape('circular')?.runtimeType,
       const CircularNotchedRectangle().runtimeType,
@@ -6665,60 +5100,33 @@ void main() {
     expect(ThemeDecoder.decodeOrdinalSortKey(null), null);
     expect(ThemeEncoder.encodeOrdinalSortKey(null), null);
 
-    const entry = OrdinalSortKey(
-      1.0,
-      name: 'foo',
-    );
+    const entry = OrdinalSortKey(1.0, name: 'foo');
 
     expect(ThemeDecoder.decodeOrdinalSortKey(entry), entry);
 
     final encoded = ThemeEncoder.encodeOrdinalSortKey(entry);
     final decoded = ThemeDecoder.decodeOrdinalSortKey(encoded);
 
-    expect(
-      encoded,
-      {
-        'name': 'foo',
-        'order': 1.0,
-      },
-    );
+    expect(encoded, {'name': 'foo', 'order': 1.0});
 
-    expect(
-      decoded!.name,
-      entry.name,
-    );
-    expect(
-      decoded.order,
-      entry.order,
-    );
+    expect(decoded!.name, entry.name);
+    expect(decoded.order, entry.order);
   });
 
   test('Offset', () {
     expect(ThemeDecoder.decodeOffset(null), null);
     expect(ThemeEncoder.encodeOffset(null), null);
 
-    const entry = Offset(
-      1.0,
-      2.0,
-    );
+    const entry = Offset(1.0, 2.0);
 
     expect(ThemeDecoder.decodeOffset(entry), entry);
 
     final encoded = ThemeEncoder.encodeOffset(entry);
     final decoded = ThemeDecoder.decodeOffset(encoded);
 
-    expect(
-      encoded,
-      {
-        'dx': 1.0,
-        'dy': 2.0,
-      },
-    );
+    expect(encoded, {'dx': 1.0, 'dy': 2.0});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('OutlinedBorder', () {
@@ -6739,59 +5147,43 @@ void main() {
     var encoded = ThemeEncoder.encodeOutlinedBorder(entry);
     var decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'type': 'only'
-        },
-        'side': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'beveled',
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'type': 'only',
       },
-    );
+      'side': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
+      },
+      'type': 'beveled',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = const CircleBorder(
-      side: BorderSide(
-        color: _kColor,
-        width: 1.0,
-        style: BorderStyle.solid,
-      ),
+      side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
     encoded = ThemeEncoder.encodeOutlinedBorder(entry);
     decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'side': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'circle',
+    expect(encoded, {
+      'side': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
       },
-    );
+      'type': 'circle',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = ContinuousRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
@@ -6805,30 +5197,24 @@ void main() {
     encoded = ThemeEncoder.encodeOutlinedBorder(entry);
     decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'type': 'only'
-        },
-        'side': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'rectangle',
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'type': 'only',
       },
-    );
+      'side': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
+      },
+      'type': 'rectangle',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
@@ -6842,75 +5228,43 @@ void main() {
     encoded = ThemeEncoder.encodeOutlinedBorder(entry);
     decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'bottomRight': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'topLeft': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'topRight': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'type': 'only'
-        },
-        'side': {
-          'color': '#00123456',
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'rounded'
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'type': 'only',
       },
-    );
+      'side': {
+        'color': '#00123456',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
+      },
+      'type': 'rounded',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = const StadiumBorder(
-      side: BorderSide(
-        color: _kColor,
-        width: 1.0,
-        style: BorderStyle.solid,
-      ),
+      side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
     encoded = ThemeEncoder.encodeOutlinedBorder(entry);
     decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'side': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'stadium',
+    expect(encoded, {
+      'side': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
       },
-    );
+      'type': 'stadium',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('OutlinedButtonThemeData', () {
@@ -6919,9 +5273,7 @@ void main() {
 
     final entry = OutlinedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(
-          const Color(0xff222222),
-        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
       ),
     );
 
@@ -6930,14 +5282,9 @@ void main() {
     final encoded = ThemeEncoder.encodeOutlinedButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeOutlinedButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'style': {
-          'backgroundColor': _materializeState('#ff222222'),
-        },
-      },
-    );
+    expect(encoded, {
+      'style': {'backgroundColor': _materializeState('#ff222222')},
+    });
 
     bool? outlinedButtonThemeDatasAreEqual(Object? first, Object second) {
       bool? result;
@@ -6953,10 +5300,7 @@ void main() {
       return result;
     }
 
-    expect(
-      outlinedButtonThemeDatasAreEqual(decoded, entry),
-      true,
-    );
+    expect(outlinedButtonThemeDatasAreEqual(decoded, entry), true);
   });
 
   test('OverflowBoxFit', () {
@@ -6972,19 +5316,13 @@ void main() {
       ThemeDecoder.decodeOverflowBoxFit('deferToChild'),
       OverflowBoxFit.deferToChild,
     );
-    expect(
-      ThemeDecoder.decodeOverflowBoxFit('max'),
-      OverflowBoxFit.max,
-    );
+    expect(ThemeDecoder.decodeOverflowBoxFit('max'), OverflowBoxFit.max);
 
     expect(
       ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.deferToChild),
       'deferToChild',
     );
-    expect(
-      ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.max),
-      'max',
-    );
+    expect(ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.max), 'max');
   });
 
   test('PageTransitionsBuilder', () {
@@ -7049,17 +5387,14 @@ void main() {
       PageTransitionsTheme(builders: builders),
     );
 
-    expect(
-      encoded,
-      {
-        'builders': {
-          'fuchsia': 'cupertino',
-          'linux': 'fadeUpwards',
-          'macOS': 'openUpwards',
-          'windows': 'zoom',
-        },
+    expect(encoded, {
+      'builders': {
+        'fuchsia': 'cupertino',
+        'linux': 'fadeUpwards',
+        'macOS': 'openUpwards',
+        'windows': 'zoom',
       },
-    );
+    });
 
     final decoded = ThemeDecoder.decodePageTransitionsTheme(encoded);
     for (var entry in builders.entries) {
@@ -7074,43 +5409,16 @@ void main() {
     expect(ThemeDecoder.decodePanAxis(null), null);
     expect(ThemeEncoder.encodePanAxis(null), null);
 
-    expect(
-      ThemeDecoder.decodePanAxis(PanAxis.aligned),
-      PanAxis.aligned,
-    );
-    expect(
-      ThemeDecoder.decodePanAxis('aligned'),
-      PanAxis.aligned,
-    );
-    expect(
-      ThemeDecoder.decodePanAxis('free'),
-      PanAxis.free,
-    );
-    expect(
-      ThemeDecoder.decodePanAxis('horizontal'),
-      PanAxis.horizontal,
-    );
-    expect(
-      ThemeDecoder.decodePanAxis('vertical'),
-      PanAxis.vertical,
-    );
+    expect(ThemeDecoder.decodePanAxis(PanAxis.aligned), PanAxis.aligned);
+    expect(ThemeDecoder.decodePanAxis('aligned'), PanAxis.aligned);
+    expect(ThemeDecoder.decodePanAxis('free'), PanAxis.free);
+    expect(ThemeDecoder.decodePanAxis('horizontal'), PanAxis.horizontal);
+    expect(ThemeDecoder.decodePanAxis('vertical'), PanAxis.vertical);
 
-    expect(
-      ThemeEncoder.encodePanAxis(PanAxis.aligned),
-      'aligned',
-    );
-    expect(
-      ThemeEncoder.encodePanAxis(PanAxis.free),
-      'free',
-    );
-    expect(
-      ThemeEncoder.encodePanAxis(PanAxis.horizontal),
-      'horizontal',
-    );
-    expect(
-      ThemeEncoder.encodePanAxis(PanAxis.vertical),
-      'vertical',
-    );
+    expect(ThemeEncoder.encodePanAxis(PanAxis.aligned), 'aligned');
+    expect(ThemeEncoder.encodePanAxis(PanAxis.free), 'free');
+    expect(ThemeEncoder.encodePanAxis(PanAxis.horizontal), 'horizontal');
+    expect(ThemeEncoder.encodePanAxis(PanAxis.vertical), 'vertical');
   });
 
   test('PointerDeviceKind', () {
@@ -7222,66 +5530,36 @@ void main() {
     final encoded = ThemeEncoder.encodePopupMenuThemeData(entry);
     final decoded = ThemeDecoder.decodePopupMenuThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'color': '#00123456',
-        'elevation': 1.0,
-        'enableFeedback': true,
-        'iconColor': _kColorStr,
-        'iconSize': 16.0,
-        'menuPadding': {
-          'bottom': 0.0,
-          'left': 0.0,
-          'right': 0.0,
-          'top': 20.0,
+    expect(encoded, {
+      'color': '#00123456',
+      'elevation': 1.0,
+      'enableFeedback': true,
+      'iconColor': _kColorStr,
+      'iconSize': 16.0,
+      'menuPadding': {'bottom': 0.0, 'left': 0.0, 'right': 0.0, 'top': 20.0},
+      'position': 'over',
+      'shadowColor': '#ff111111',
+      'shape': {
+        'borderRadius': {
+          'bottomLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
+          'type': 'only',
         },
-        'position': 'over',
-        'shadowColor': '#ff111111',
-        'shape': {
-          'borderRadius': {
-            'bottomLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'bottomRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topLeft': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'topRight': {
-              'type': 'elliptical',
-              'x': 0.0,
-              'y': 0.0,
-            },
-            'type': 'only'
-          },
-          'side': {
-            'color': '#ff000000',
-            'strokeAlign': -1.0,
-            'style': 'none',
-            'width': 0.0,
-          },
-          'type': 'rounded'
+        'side': {
+          'color': '#ff000000',
+          'strokeAlign': -1.0,
+          'style': 'none',
+          'width': 0.0,
         },
-        'surfaceTintColor': '#ff222222',
-        'textStyle': {
-          'color': '#00123456',
-          'inherit': true,
-        }
+        'type': 'rounded',
       },
-    );
+      'surfaceTintColor': '#ff222222',
+      'textStyle': {'color': '#00123456', 'inherit': true},
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('ProgressIndicatorThemeData', () {
@@ -7294,6 +5572,7 @@ void main() {
       linearMinHeight: 16.0,
       linearTrackColor: _kColor,
       refreshBackgroundColor: _kColor,
+      strokeCap: StrokeCap.butt,
     );
 
     expect(ThemeDecoder.decodeProgressIndicatorThemeData(entry), entry);
@@ -7301,21 +5580,16 @@ void main() {
     final encoded = ThemeEncoder.encodeProgressIndicatorThemeData(entry);
     final decoded = ThemeDecoder.decodeProgressIndicatorThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'circularTrackColor': _kColorStr,
-        'color': _kColorStr,
-        'linearMinHeight': 16.0,
-        'linearTrackColor': _kColorStr,
-        'refreshBackgroundColor': _kColorStr,
-      },
-    );
+    expect(encoded, {
+      'circularTrackColor': _kColorStr,
+      'color': _kColorStr,
+      'linearMinHeight': 16.0,
+      'linearTrackColor': _kColorStr,
+      'refreshBackgroundColor': _kColorStr,
+      'strokeCap': 'butt',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('RadioThemeData', () {
@@ -7340,10 +5614,7 @@ void main() {
       decoded!.fillColor!.resolve({WidgetState.error}),
       entry.fillColor!.resolve({WidgetState.error}),
     );
-    expect(
-      decoded.materialTapTargetSize,
-      entry.materialTapTargetSize,
-    );
+    expect(decoded.materialTapTargetSize, entry.materialTapTargetSize);
     expect(
       decoded.mouseCursor!.resolve({WidgetState.error}),
       entry.mouseCursor!.resolve({WidgetState.error}),
@@ -7352,14 +5623,8 @@ void main() {
       decoded.overlayColor!.resolve({WidgetState.error}),
       entry.overlayColor!.resolve({WidgetState.error}),
     );
-    expect(
-      decoded.splashRadius,
-      entry.splashRadius,
-    );
-    expect(
-      decoded.visualDensity,
-      entry.visualDensity,
-    );
+    expect(decoded.splashRadius, entry.splashRadius);
+    expect(decoded.visualDensity, entry.visualDensity);
   });
   test('Radius', () {
     expect(ThemeDecoder.decodeRadius(null), null);
@@ -7372,41 +5637,19 @@ void main() {
     final encoded = ThemeEncoder.encodeRadius(entry);
     final decoded = ThemeDecoder.decodeRadius(encoded);
 
-    expect(
-      encoded,
-      {
-        'type': 'elliptical',
-        'x': 1.0,
-        'y': 1.0,
-      },
-    );
+    expect(encoded, {'type': 'elliptical', 'x': 1.0, 'y': 1.0});
+
+    expect(decoded, entry);
 
     expect(
-      decoded,
-      entry,
-    );
-
-    expect(
-      ThemeDecoder.decodeRadius({
-        'radius': 4.0,
-        'type': 'circular',
-      }),
+      ThemeDecoder.decodeRadius({'radius': 4.0, 'type': 'circular'}),
       const Radius.circular(4.0),
     );
     expect(
-      ThemeDecoder.decodeRadius({
-        'type': 'elliptical',
-        'x': 1.0,
-        'y': 2.0,
-      }),
+      ThemeDecoder.decodeRadius({'type': 'elliptical', 'x': 1.0, 'y': 2.0}),
       const Radius.elliptical(1.0, 2.0),
     );
-    expect(
-      ThemeDecoder.decodeRadius({
-        'type': 'zero',
-      }),
-      Radius.zero,
-    );
+    expect(ThemeDecoder.decodeRadius({'type': 'zero'}), Radius.zero);
 
     expect(ThemeDecoder.decodeRadius(16), const Radius.circular(16));
   });
@@ -7425,57 +5668,39 @@ void main() {
     expect(ThemeDecoder.decodeRangeSliderThumbShape(entry), entry);
 
     final encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
-    final decoded = ThemeDecoder.decodeRangeSliderThumbShape(encoded)
-        as RoundRangeSliderThumbShape;
+    final decoded =
+        ThemeDecoder.decodeRangeSliderThumbShape(encoded)
+            as RoundRangeSliderThumbShape;
 
-    expect(
-      encoded,
-      {
-        'disabledThumbRadius': 1.0,
-        'elevation': 3.0,
-        'enabledThumbRadius': 2.0,
-        'pressedElevation': 4.0,
-        'type': 'round',
-      },
-    );
+    expect(encoded, {
+      'disabledThumbRadius': 1.0,
+      'elevation': 3.0,
+      'enabledThumbRadius': 2.0,
+      'pressedElevation': 4.0,
+      'type': 'round',
+    });
 
-    expect(
-      decoded.disabledThumbRadius,
-      entry.disabledThumbRadius,
-    );
+    expect(decoded.disabledThumbRadius, entry.disabledThumbRadius);
 
-    expect(
-      decoded.enabledThumbRadius,
-      entry.enabledThumbRadius,
-    );
+    expect(decoded.enabledThumbRadius, entry.enabledThumbRadius);
   });
 
   test('RangeSliderTickMarkShape', () {
     expect(ThemeDecoder.decodeRangeSliderTickMarkShape(null), null);
     expect(ThemeEncoder.encodeRangeSliderTickMarkShape(null), null);
 
-    const entry = RoundRangeSliderTickMarkShape(
-      tickMarkRadius: 1.0,
-    );
+    const entry = RoundRangeSliderTickMarkShape(tickMarkRadius: 1.0);
 
     expect(ThemeDecoder.decodeRangeSliderTickMarkShape(entry), entry);
 
     final encoded = ThemeEncoder.encodeRangeSliderTickMarkShape(entry);
-    final decoded = ThemeDecoder.decodeRangeSliderTickMarkShape(encoded)
-        as RoundRangeSliderTickMarkShape;
+    final decoded =
+        ThemeDecoder.decodeRangeSliderTickMarkShape(encoded)
+            as RoundRangeSliderTickMarkShape;
 
-    expect(
-      encoded,
-      {
-        'tickMarkRadius': 1.0,
-        'type': 'round',
-      },
-    );
+    expect(encoded, {'tickMarkRadius': 1.0, 'type': 'round'});
 
-    expect(
-      decoded.tickMarkRadius,
-      entry.tickMarkRadius,
-    );
+    expect(decoded.tickMarkRadius, entry.tickMarkRadius);
   });
 
   test('RangeSliderTrackShape', () {
@@ -7497,16 +5722,11 @@ void main() {
       'rounded',
     );
     expect(
-      ThemeDecoder.decodeRangeSliderTrackShape(
-        'rounded',
-      ).runtimeType,
+      ThemeDecoder.decodeRangeSliderTrackShape('rounded').runtimeType,
       const RoundedRectRangeSliderTrackShape().runtimeType,
     );
 
-    expect(
-      decoded?.runtimeType,
-      entry.runtimeType,
-    );
+    expect(decoded?.runtimeType, entry.runtimeType);
   });
 
   test('RangeSliderValueIndicatorShape', () {
@@ -7520,31 +5740,20 @@ void main() {
     final encoded = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry);
     final decoded = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded);
 
-    expect(
-      encoded,
-      'paddle',
-    );
+    expect(encoded, 'paddle');
 
-    expect(
-      decoded.runtimeType,
-      entry.runtimeType,
-    );
+    expect(decoded.runtimeType, entry.runtimeType);
 
     const entry2 = RectangularRangeSliderValueIndicatorShape();
 
     final encoded2 = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry2);
-    final decoded2 =
-        ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded2);
-
-    expect(
+    final decoded2 = ThemeDecoder.decodeRangeSliderValueIndicatorShape(
       encoded2,
-      'rectangular',
     );
 
-    expect(
-      decoded2.runtimeType,
-      entry2.runtimeType,
-    );
+    expect(encoded2, 'rectangular');
+
+    expect(decoded2.runtimeType, entry2.runtimeType);
   });
 
   test('Rect', () {
@@ -7566,48 +5775,27 @@ void main() {
       'type': 'ltrb',
     });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     expect(
       ThemeDecoder.decodeRect({
-        'center': {
-          'dx': 1.0,
-          'dy': 2.0,
-        },
+        'center': {'dx': 1.0, 'dy': 2.0},
         'height': 3.0,
         'width': 4.0,
         'type': 'center',
       }),
-      Rect.fromCenter(
-        center: const Offset(1.0, 2.0),
-        height: 3.0,
-        width: 4.0,
-      ),
+      Rect.fromCenter(center: const Offset(1.0, 2.0), height: 3.0, width: 4.0),
     );
 
     expect(
       ThemeDecoder.decodeRect({
-        'center': {
-          'dx': 1.0,
-          'dy': 2.0,
-        },
+        'center': {'dx': 1.0, 'dy': 2.0},
         'radius': 3.0,
         'type': 'circle',
       }),
-      Rect.fromCircle(
-        center: const Offset(1.0, 2.0),
-        radius: 3.0,
-      ),
+      Rect.fromCircle(center: const Offset(1.0, 2.0), radius: 3.0),
     );
-    expect(
-      ThemeDecoder.decodeRect({
-        'type': 'largest',
-      }),
-      Rect.largest,
-    );
+    expect(ThemeDecoder.decodeRect({'type': 'largest'}), Rect.largest);
     expect(
       ThemeDecoder.decodeRect({
         'bottom': 4.0,
@@ -7616,12 +5804,7 @@ void main() {
         'top': 2.0,
         'type': 'ltrb',
       }),
-      const Rect.fromLTRB(
-        1.0,
-        2.0,
-        3.0,
-        4.0,
-      ),
+      const Rect.fromLTRB(1.0, 2.0, 3.0, 4.0),
     );
     expect(
       ThemeDecoder.decodeRect({
@@ -7631,42 +5814,17 @@ void main() {
         'type': 'ltwh',
         'width': 3.0,
       }),
-      const Rect.fromLTWH(
-        1.0,
-        2.0,
-        3.0,
-        4.0,
-      ),
+      const Rect.fromLTWH(1.0, 2.0, 3.0, 4.0),
     );
     expect(
       ThemeDecoder.decodeRect({
-        'a': {
-          'dx': 1.0,
-          'dy': 2.0,
-        },
-        'b': {
-          'dx': 3.0,
-          'dy': 4.0,
-        },
+        'a': {'dx': 1.0, 'dy': 2.0},
+        'b': {'dx': 3.0, 'dy': 4.0},
         'type': 'points',
       }),
-      Rect.fromPoints(
-        const Offset(
-          1.0,
-          2.0,
-        ),
-        const Offset(
-          3.0,
-          4.0,
-        ),
-      ),
+      Rect.fromPoints(const Offset(1.0, 2.0), const Offset(3.0, 4.0)),
     );
-    expect(
-      ThemeDecoder.decodeRect({
-        'type': 'zero',
-      }),
-      Rect.zero,
-    );
+    expect(ThemeDecoder.decodeRect({'type': 'zero'}), Rect.zero);
   });
 
   test('ScrollBehavior', () {
@@ -7685,10 +5843,7 @@ void main() {
     expect(ThemeEncoder.encodeScrollPhysics(null), null);
 
     const entry = AlwaysScrollableScrollPhysics();
-    expect(
-      ThemeDecoder.decodeScrollPhysics(entry),
-      entry,
-    );
+    expect(ThemeDecoder.decodeScrollPhysics(entry), entry);
     expect(
       ThemeDecoder.decodeScrollPhysics({'type': 'always'}).runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
@@ -7714,132 +5869,103 @@ void main() {
       const PageScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'rangeMaintaining'})
-          .runtimeType,
+      ThemeDecoder.decodeScrollPhysics({
+        'type': 'rangeMaintaining',
+      }).runtimeType,
       const RangeMaintainingScrollPhysics().runtimeType,
     );
 
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
-        'type': 'always'
-      })!
-          .parent
-          .runtimeType,
+        'type': 'always',
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'bouncing',
-      })!
-          .parent
-          .runtimeType,
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'clamping',
-      })!
-          .parent
-          .runtimeType,
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'fixedExtent',
-      })!
-          .parent
-          .runtimeType,
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'never',
-      })!
-          .parent
-          .runtimeType,
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'page',
-      })!
-          .parent
-          .runtimeType,
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
       ThemeDecoder.decodeScrollPhysics({
         'parent': {'type': 'always'},
         'type': 'rangeMaintaining',
-      })!
-          .parent
-          .runtimeType,
+      })!.parent.runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
 
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
-          const AlwaysScrollableScrollPhysics(),
-        ),
+        ThemeEncoder.encodeScrollPhysics(const AlwaysScrollableScrollPhysics()),
       ),
-      {
-        'type': 'always',
-      },
+      {'type': 'always'},
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(const BouncingScrollPhysics()),
       ),
-      {
-        'type': 'bouncing',
-      },
+      {'type': 'bouncing'},
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(const ClampingScrollPhysics()),
       ),
-      {
-        'type': 'clamping',
-      },
+      {'type': 'clamping'},
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(const FixedExtentScrollPhysics()),
       ),
-      {
-        'type': 'fixedExtent',
-      },
+      {'type': 'fixedExtent'},
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(const NeverScrollableScrollPhysics()),
       ),
-      {
-        'type': 'never',
-      },
+      {'type': 'never'},
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(const PageScrollPhysics()),
       ),
-      {
-        'type': 'page',
-      },
+      {'type': 'page'},
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(const RangeMaintainingScrollPhysics()),
       ),
-      {
-        'type': 'rangeMaintaining',
-      },
+      {'type': 'rangeMaintaining'},
     );
 
     expect(
@@ -7852,15 +5978,13 @@ void main() {
       ),
       {
         'parent': {'type': 'always'},
-        'type': 'always'
+        'type': 'always',
       },
     );
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
+          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
       {
@@ -7871,9 +5995,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          const ClampingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
+          const ClampingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
       {
@@ -7910,9 +6032,7 @@ void main() {
     expect(
       JsonClass.removeNull(
         ThemeEncoder.encodeScrollPhysics(
-          const PageScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
+          const PageScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
       {
@@ -7947,15 +6067,11 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
-        'manual',
-      ),
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior('manual'),
       ScrollViewKeyboardDismissBehavior.manual,
     );
     expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
-        'onDrag',
-      ),
+      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior('onDrag'),
       ScrollViewKeyboardDismissBehavior.onDrag,
     );
 
@@ -8034,30 +6150,15 @@ void main() {
     expect(ThemeDecoder.decodeScrollbarThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeScrollbarThemeData(entry);
-    expect(
-      encoded!['crossAxisMargin'],
-      entry.crossAxisMargin,
-    );
+    expect(encoded!['crossAxisMargin'], entry.crossAxisMargin);
 
-    expect(
-      encoded['interactive'],
-      entry.interactive,
-    );
+    expect(encoded['interactive'], entry.interactive);
 
-    expect(
-      encoded['mainAxisMargin'],
-      entry.mainAxisMargin,
-    );
+    expect(encoded['mainAxisMargin'], entry.mainAxisMargin);
 
-    expect(
-      encoded['minThumbLength'],
-      entry.minThumbLength,
-    );
+    expect(encoded['minThumbLength'], entry.minThumbLength);
 
-    expect(
-      encoded['radius'],
-      ThemeEncoder.encodeRadius(entry.radius),
-    );
+    expect(encoded['radius'], ThemeEncoder.encodeRadius(entry.radius));
 
     expect(
       encoded['thickness']['error'],
@@ -8070,30 +6171,15 @@ void main() {
     );
 
     final decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
-    expect(
-      decoded!.crossAxisMargin,
-      entry.crossAxisMargin,
-    );
+    expect(decoded!.crossAxisMargin, entry.crossAxisMargin);
 
-    expect(
-      decoded.interactive,
-      entry.interactive,
-    );
+    expect(decoded.interactive, entry.interactive);
 
-    expect(
-      decoded.mainAxisMargin,
-      entry.mainAxisMargin,
-    );
+    expect(decoded.mainAxisMargin, entry.mainAxisMargin);
 
-    expect(
-      decoded.minThumbLength,
-      entry.minThumbLength,
-    );
+    expect(decoded.minThumbLength, entry.minThumbLength);
 
-    expect(
-      decoded.radius,
-      entry.radius,
-    );
+    expect(decoded.radius, entry.radius);
 
     expect(
       decoded.thickness!.resolve({WidgetState.error}),
@@ -8112,10 +6198,7 @@ void main() {
 
     final entry = SearchBarThemeData(
       backgroundColor: WidgetStateProperty.all(_kColor),
-      constraints: const BoxConstraints(
-        maxWidth: 200.0,
-        minWidth: 100.0,
-      ),
+      constraints: const BoxConstraints(maxWidth: 200.0, minWidth: 100.0),
       elevation: WidgetStateProperty.all(4.0),
       hintStyle: WidgetStateProperty.all(_kTextStyle),
       overlayColor: WidgetStateProperty.all(_kColor),
@@ -8125,107 +6208,96 @@ void main() {
       textStyle: WidgetStateProperty.all(_kTextStyle),
     );
 
-    expect(
-      ThemeDecoder.decodeSearchBarThemeData(entry),
-      entry,
-    );
+    expect(ThemeDecoder.decodeSearchBarThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeSearchBarThemeData(entry);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': {
-          'disabled': '#00123456',
-          'dragged': '#00123456',
-          'empty': '#00123456',
-          'error': '#00123456',
-          'focused': '#00123456',
-          'hovered': '#00123456',
-          'pressed': '#00123456',
-          'scrolledUnder': '#00123456',
-          'selected': '#00123456'
-        },
-        'constraints': {'maxWidth': 200.0, 'minHeight': 0.0, 'minWidth': 100.0},
-        'elevation': {
-          'disabled': 4.0,
-          'dragged': 4.0,
-          'empty': 4.0,
-          'error': 4.0,
-          'focused': 4.0,
-          'hovered': 4.0,
-          'pressed': 4.0,
-          'scrolledUnder': 4.0,
-          'selected': 4.0
-        },
-        'hintStyle': {
-          'disabled': {'color': '#00123456', 'inherit': true},
-          'dragged': {'color': '#00123456', 'inherit': true},
-          'empty': {'color': '#00123456', 'inherit': true},
-          'error': {'color': '#00123456', 'inherit': true},
-          'focused': {'color': '#00123456', 'inherit': true},
-          'hovered': {'color': '#00123456', 'inherit': true},
-          'pressed': {'color': '#00123456', 'inherit': true},
-          'scrolledUnder': {'color': '#00123456', 'inherit': true},
-          'selected': {'color': '#00123456', 'inherit': true}
-        },
-        'overlayColor': {
-          'disabled': '#00123456',
-          'dragged': '#00123456',
-          'empty': '#00123456',
-          'error': '#00123456',
-          'focused': '#00123456',
-          'hovered': '#00123456',
-          'pressed': '#00123456',
-          'scrolledUnder': '#00123456',
-          'selected': '#00123456'
-        },
-        'padding': {
-          'disabled': {
-            'bottom': 16.0,
-            'left': 16.0,
-            'right': 16.0,
-            'top': 16.0
-          },
-          'dragged': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
-          'empty': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
-          'error': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
-          'focused': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
-          'hovered': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
-          'pressed': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
-          'scrolledUnder': {
-            'bottom': 16.0,
-            'left': 16.0,
-            'right': 16.0,
-            'top': 16.0
-          },
-          'selected': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0}
-        },
-        'shadowColor': {
-          'disabled': '#00123456',
-          'dragged': '#00123456',
-          'empty': '#00123456',
-          'error': '#00123456',
-          'focused': '#00123456',
-          'hovered': '#00123456',
-          'pressed': '#00123456',
-          'scrolledUnder': '#00123456',
-          'selected': '#00123456'
-        },
-        'textCapitalization': 'sentences',
-        'textStyle': {
-          'disabled': {'color': '#00123456', 'inherit': true},
-          'dragged': {'color': '#00123456', 'inherit': true},
-          'empty': {'color': '#00123456', 'inherit': true},
-          'error': {'color': '#00123456', 'inherit': true},
-          'focused': {'color': '#00123456', 'inherit': true},
-          'hovered': {'color': '#00123456', 'inherit': true},
-          'pressed': {'color': '#00123456', 'inherit': true},
-          'scrolledUnder': {'color': '#00123456', 'inherit': true},
-          'selected': {'color': '#00123456', 'inherit': true}
-        },
+    expect(encoded, {
+      'backgroundColor': {
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456',
       },
-    );
+      'constraints': {'maxWidth': 200.0, 'minHeight': 0.0, 'minWidth': 100.0},
+      'elevation': {
+        'disabled': 4.0,
+        'dragged': 4.0,
+        'empty': 4.0,
+        'error': 4.0,
+        'focused': 4.0,
+        'hovered': 4.0,
+        'pressed': 4.0,
+        'scrolledUnder': 4.0,
+        'selected': 4.0,
+      },
+      'hintStyle': {
+        'disabled': {'color': '#00123456', 'inherit': true},
+        'dragged': {'color': '#00123456', 'inherit': true},
+        'empty': {'color': '#00123456', 'inherit': true},
+        'error': {'color': '#00123456', 'inherit': true},
+        'focused': {'color': '#00123456', 'inherit': true},
+        'hovered': {'color': '#00123456', 'inherit': true},
+        'pressed': {'color': '#00123456', 'inherit': true},
+        'scrolledUnder': {'color': '#00123456', 'inherit': true},
+        'selected': {'color': '#00123456', 'inherit': true},
+      },
+      'overlayColor': {
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456',
+      },
+      'padding': {
+        'disabled': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'dragged': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'empty': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'error': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'focused': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'hovered': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'pressed': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+        'scrolledUnder': {
+          'bottom': 16.0,
+          'left': 16.0,
+          'right': 16.0,
+          'top': 16.0,
+        },
+        'selected': {'bottom': 16.0, 'left': 16.0, 'right': 16.0, 'top': 16.0},
+      },
+      'shadowColor': {
+        'disabled': '#00123456',
+        'dragged': '#00123456',
+        'empty': '#00123456',
+        'error': '#00123456',
+        'focused': '#00123456',
+        'hovered': '#00123456',
+        'pressed': '#00123456',
+        'scrolledUnder': '#00123456',
+        'selected': '#00123456',
+      },
+      'textCapitalization': 'sentences',
+      'textStyle': {
+        'disabled': {'color': '#00123456', 'inherit': true},
+        'dragged': {'color': '#00123456', 'inherit': true},
+        'empty': {'color': '#00123456', 'inherit': true},
+        'error': {'color': '#00123456', 'inherit': true},
+        'focused': {'color': '#00123456', 'inherit': true},
+        'hovered': {'color': '#00123456', 'inherit': true},
+        'pressed': {'color': '#00123456', 'inherit': true},
+        'scrolledUnder': {'color': '#00123456', 'inherit': true},
+        'selected': {'color': '#00123456', 'inherit': true},
+      },
+    });
   });
 
   test('SearchViewThemeData', () {
@@ -8234,14 +6306,15 @@ void main() {
 
     const entry = SearchViewThemeData(
       backgroundColor: _kColor,
-      constraints: BoxConstraints(
-        maxWidth: 200.0,
-        minWidth: 100.0,
-      ),
+      barPadding: EdgeInsets.all(6.0),
+      constraints: BoxConstraints(maxWidth: 200.0, minWidth: 100.0),
       dividerColor: _kColor,
       elevation: 4.0,
+      headerHeight: 11.0,
       headerHintStyle: _kTextStyle,
       headerTextStyle: _kTextStyle,
+      padding: EdgeInsets.all(8.0),
+      shrinkWrap: true,
       surfaceTintColor: _kColor,
     );
 
@@ -8250,23 +6323,21 @@ void main() {
     final encoded = ThemeEncoder.encodeSearchViewThemeData(entry);
     final decoded = ThemeDecoder.decodeSearchViewThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#00123456',
-        'constraints': {'maxWidth': 200.0, 'minHeight': 0.0, 'minWidth': 100.0},
-        'dividerColor': '#00123456',
-        'elevation': 4.0,
-        'headerHintStyle': {'color': '#00123456', 'inherit': true},
-        'headerTextStyle': {'color': '#00123456', 'inherit': true},
-        'surfaceTintColor': '#00123456'
-      },
-    );
+    expect(encoded, {
+      'backgroundColor': '#00123456',
+      'barPadding': {'bottom': 6.0, 'left': 6.0, 'right': 6.0, 'top': 6.0},
+      'constraints': {'maxWidth': 200.0, 'minHeight': 0.0, 'minWidth': 100.0},
+      'dividerColor': '#00123456',
+      'elevation': 4.0,
+      'headerHeight': 11.0,
+      'headerHintStyle': {'color': '#00123456', 'inherit': true},
+      'headerTextStyle': {'color': '#00123456', 'inherit': true},
+      'padding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
+      'shrinkWrap': true,
+      'surfaceTintColor': '#00123456',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('SegmentedButton', () {
@@ -8281,30 +6352,19 @@ void main() {
     final encoded = ThemeEncoder.encodeSegmentedButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeSegmentedButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'selectedIcon': {
-          'icon': {
-            'codePoint': 984246,
-            'fontFamily': 'MaterialIcons',
-            'matchTextDirection': false
-          }
-        },
-        'style': {
-          'enableFeedback': false,
+    expect(encoded, {
+      'selectedIcon': {
+        'icon': {
+          'codePoint': 984246,
+          'fontFamily': 'MaterialIcons',
+          'matchTextDirection': false,
         },
       },
-    );
+      'style': {'enableFeedback': false},
+    });
 
-    expect(
-      entry.selectedIcon.toString(),
-      decoded?.selectedIcon.toString(),
-    );
-    expect(
-      entry.style,
-      decoded?.style,
-    );
+    expect(entry.selectedIcon.toString(), decoded?.selectedIcon.toString());
+    expect(entry.style, decoded?.style);
   });
 
   test('SemanticsTag', () {
@@ -8318,17 +6378,9 @@ void main() {
     final encoded = ThemeEncoder.encodeSemanticsTag(entry);
     final decoded = ThemeDecoder.decodeSemanticsTag(encoded);
 
-    expect(
-      encoded,
-      {
-        'name': 'foo',
-      },
-    );
+    expect(encoded, {'name': 'foo'});
 
-    expect(
-      decoded!.name,
-      entry.name,
-    );
+    expect(decoded!.name, entry.name);
   });
 
   test('Shadow', () {
@@ -8338,10 +6390,7 @@ void main() {
     const entry = Shadow(
       color: _kColor,
       blurRadius: 1.0,
-      offset: Offset(
-        2.0,
-        3.0,
-      ),
+      offset: Offset(2.0, 3.0),
     );
 
     expect(ThemeDecoder.decodeShadow(entry), entry);
@@ -8349,22 +6398,13 @@ void main() {
     final encoded = ThemeEncoder.encodeShadow(entry);
     final decoded = ThemeDecoder.decodeShadow(encoded);
 
-    expect(
-      encoded,
-      {
-        'blurRadius': 1.0,
-        'color': _kColorStr,
-        'offset': {
-          'dx': 2.0,
-          'dy': 3.0,
-        },
-      },
-    );
+    expect(encoded, {
+      'blurRadius': 1.0,
+      'color': _kColorStr,
+      'offset': {'dx': 2.0, 'dy': 3.0},
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('ShapeBorder', () {
@@ -8372,11 +6412,7 @@ void main() {
     expect(ThemeEncoder.encodeShapeBorder(null), null);
 
     ShapeBorder entry = const CircleBorder(
-      side: BorderSide(
-        color: _kColor,
-        width: 1.0,
-        style: BorderStyle.solid,
-      ),
+      side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
     expect(ThemeDecoder.decodeShapeBorder(entry), entry);
@@ -8384,23 +6420,17 @@ void main() {
     var encoded = ThemeEncoder.encodeShapeBorder(entry);
     var decoded = ThemeDecoder.decodeShapeBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'side': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'circle',
+    expect(encoded, {
+      'side': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
       },
-    );
+      'type': 'circle',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = ContinuousRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
@@ -8414,30 +6444,24 @@ void main() {
     encoded = ThemeEncoder.encodeShapeBorder(entry);
     decoded = ThemeDecoder.decodeShapeBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-          'type': 'only'
-        },
-        'side': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'rectangle',
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'type': 'only',
       },
-    );
+      'side': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
+      },
+      'type': 'rectangle',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
@@ -8451,75 +6475,43 @@ void main() {
     encoded = ThemeEncoder.encodeShapeBorder(entry);
     decoded = ThemeDecoder.decodeShapeBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'bottomRight': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'topLeft': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'topRight': {
-            'type': 'elliptical',
-            'x': 2.0,
-            'y': 2.0,
-          },
-          'type': 'only'
-        },
-        'side': {
-          'color': '#00123456',
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'rounded'
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
+        'type': 'only',
       },
-    );
+      'side': {
+        'color': '#00123456',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
+      },
+      'type': 'rounded',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
 
     entry = const StadiumBorder(
-      side: BorderSide(
-        color: _kColor,
-        width: 1.0,
-        style: BorderStyle.solid,
-      ),
+      side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
     encoded = ThemeEncoder.encodeShapeBorder(entry);
     decoded = ThemeDecoder.decodeShapeBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'side': {
-          'color': '#00123456',
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 1.0,
-        },
-        'type': 'stadium'
+    expect(encoded, {
+      'side': {
+        'color': '#00123456',
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 1.0,
       },
-    );
+      'type': 'stadium',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('ShowValueIndicator', () {
@@ -8527,9 +6519,7 @@ void main() {
     expect(ThemeEncoder.encodeShowValueIndicator(null), null);
 
     expect(
-      ThemeDecoder.decodeShowValueIndicator(
-        ShowValueIndicator.always,
-      ),
+      ThemeDecoder.decodeShowValueIndicator(ShowValueIndicator.always),
       ShowValueIndicator.always,
     );
 
@@ -8581,18 +6571,9 @@ void main() {
     final encoded = ThemeEncoder.encodeSize(entry);
     final decoded = ThemeDecoder.decodeSize(encoded);
 
-    expect(
-      encoded,
-      {
-        'height': 0.0,
-        'width': 0.0,
-      },
-    );
+    expect(encoded, {'height': 0.0, 'width': 0.0});
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('SliderComponentShape', () {
@@ -8600,9 +6581,7 @@ void main() {
     expect(ThemeEncoder.encodeSliderComponentShape(null), null);
 
     expect(
-      ThemeDecoder.decodeSliderComponentShape(
-        SliderComponentShape.noOverlay,
-      ),
+      ThemeDecoder.decodeSliderComponentShape(SliderComponentShape.noOverlay),
       SliderComponentShape.noOverlay,
     );
 
@@ -8630,9 +6609,7 @@ void main() {
     expect(ThemeEncoder.encodeSliderInteraction(null), null);
 
     expect(
-      ThemeDecoder.decodeSliderInteraction(
-        SliderInteraction.slideOnly,
-      ),
+      ThemeDecoder.decodeSliderInteraction(SliderInteraction.slideOnly),
       SliderInteraction.slideOnly,
     );
 
@@ -8690,6 +6667,7 @@ void main() {
       overlappingShapeStrokeColor: const Color(0xff000000),
       overlayColor: const Color(0xffaaaaaa),
       overlayShape: SliderComponentShape.noOverlay,
+      padding: EdgeInsets.all(5.0),
       rangeThumbShape: const RoundRangeSliderThumbShape(),
       rangeTrackShape: const RectangularRangeSliderTrackShape(),
       rangeValueIndicatorShape: const PaddleRangeSliderValueIndicatorShape(),
@@ -8697,6 +6675,7 @@ void main() {
       showValueIndicator: ShowValueIndicator.always,
       thumbColor: const Color(0xffbbbbbb),
       thumbShape: SliderComponentShape.noOverlay,
+      trackGap: 11.0,
       trackHeight: 10.0,
       trackShape: const RectangularSliderTrackShape(),
       valueIndicatorColor: const Color(0xffcccccc),
@@ -8710,53 +6689,44 @@ void main() {
     final encoded = ThemeEncoder.encodeSliderThemeData(entry);
     final decoded = ThemeDecoder.decodeSliderThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'activeTickMarkColor': '#ff111111',
-        'activeTrackColor': '#ff222222',
-        'disabledActiveTickMarkColor': '#ff333333',
-        'disabledActiveTrackColor': '#ff444444',
-        'disabledInactiveTickMarkColor': '#ff555555',
-        'disabledInactiveTrackColor': '#ff666666',
-        'disabledSecondaryActiveTrackColor': '#ff676767',
-        'disabledThumbColor': '#ff777777',
-        'inactiveTickMarkColor': '#ff888888',
-        'inactiveTrackColor': '#ff999999',
-        'minThumbSeparation': 5.0,
-        'overlappingShapeStrokeColor': '#ff000000',
-        'overlayColor': '#ffaaaaaa',
-        'overlayShape': 'noOverlay',
-        'rangeThumbShape': {
-          'elevation': 1.0,
-          'enabledThumbRadius': 10.0,
-          'pressedElevation': 6.0,
-          'type': 'round',
-        },
-        'rangeTrackShape': 'rectangular',
-        'rangeValueIndicatorShape': 'paddle',
-        'secondaryActiveTrackColor': '#ffababab',
-        'showValueIndicator': 'always',
-        'thumbColor': '#ffbbbbbb',
-        'thumbShape': 'noOverlay',
-        'trackHeight': 10.0,
-        'trackShape': {
-          'type': 'rectangular',
-        },
-        'valueIndicatorColor': '#ffcccccc',
-        'valueIndicatorShape': 'noOverlay',
-        'valueIndicatorStrokeColor': '#ffcccccc',
-        'valueIndicatorTextStyle': {
-          'color': '#00123456',
-          'inherit': true,
-        },
+    expect(encoded, {
+      'activeTickMarkColor': '#ff111111',
+      'activeTrackColor': '#ff222222',
+      'disabledActiveTickMarkColor': '#ff333333',
+      'disabledActiveTrackColor': '#ff444444',
+      'disabledInactiveTickMarkColor': '#ff555555',
+      'disabledInactiveTrackColor': '#ff666666',
+      'disabledSecondaryActiveTrackColor': '#ff676767',
+      'disabledThumbColor': '#ff777777',
+      'inactiveTickMarkColor': '#ff888888',
+      'inactiveTrackColor': '#ff999999',
+      'minThumbSeparation': 5.0,
+      'overlappingShapeStrokeColor': '#ff000000',
+      'overlayColor': '#ffaaaaaa',
+      'overlayShape': 'noOverlay',
+      'padding': {'bottom': 5.0, 'left': 5.0, 'right': 5.0, 'top': 5.0},
+      'rangeThumbShape': {
+        'elevation': 1.0,
+        'enabledThumbRadius': 10.0,
+        'pressedElevation': 6.0,
+        'type': 'round',
       },
-    );
+      'rangeTrackShape': 'rectangular',
+      'rangeValueIndicatorShape': 'paddle',
+      'secondaryActiveTrackColor': '#ffababab',
+      'showValueIndicator': 'always',
+      'thumbColor': '#ffbbbbbb',
+      'thumbShape': 'noOverlay',
+      'trackGap': 11.0,
+      'trackHeight': 10.0,
+      'trackShape': {'type': 'rectangular'},
+      'valueIndicatorColor': '#ffcccccc',
+      'valueIndicatorShape': 'noOverlay',
+      'valueIndicatorStrokeColor': '#ffcccccc',
+      'valueIndicatorTextStyle': {'color': '#00123456', 'inherit': true},
+    });
 
-    expect(
-      ThemeEncoder.encodeSliderThemeData(decoded),
-      encoded,
-    );
+    expect(ThemeEncoder.encodeSliderThemeData(decoded), encoded);
   });
 
   test('SliderTickMarkShape', () {
@@ -8764,9 +6734,7 @@ void main() {
     expect(ThemeEncoder.encodeSliderTickMarkShape(null), null);
 
     expect(
-      ThemeDecoder.decodeSliderTickMarkShape(
-        SliderTickMarkShape.noTickMark,
-      ),
+      ThemeDecoder.decodeSliderTickMarkShape(SliderTickMarkShape.noTickMark),
       SliderTickMarkShape.noTickMark,
     );
 
@@ -8792,34 +6760,18 @@ void main() {
     var encoded = ThemeEncoder.encodeSliderTrackShape(entry);
     var decoded = ThemeDecoder.decodeSliderTrackShape(encoded);
 
-    expect(
-      encoded,
-      {
-        'type': 'rectangular',
-      },
-    );
+    expect(encoded, {'type': 'rectangular'});
 
-    expect(
-      decoded?.runtimeType,
-      entry.runtimeType,
-    );
+    expect(decoded?.runtimeType, entry.runtimeType);
 
     entry = const RoundedRectSliderTrackShape();
 
     encoded = ThemeEncoder.encodeSliderTrackShape(entry);
     decoded = ThemeDecoder.decodeSliderTrackShape(encoded);
 
-    expect(
-      encoded,
-      {
-        'type': 'rounded',
-      },
-    );
+    expect(encoded, {'type': 'rounded'});
 
-    expect(
-      decoded?.runtimeType,
-      entry.runtimeType,
-    );
+    expect(decoded?.runtimeType, entry.runtimeType);
   });
 
   test('SnackBarBehavior', () {
@@ -8827,9 +6779,7 @@ void main() {
     expect(ThemeEncoder.encodeSnackBarBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeSnackBarBehavior(
-        SnackBarBehavior.fixed,
-      ),
+      ThemeDecoder.decodeSnackBarBehavior(SnackBarBehavior.fixed),
       SnackBarBehavior.fixed,
     );
 
@@ -8887,23 +6837,20 @@ void main() {
           'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
           'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
           'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
-          'type': 'only'
+          'type': 'only',
         },
         'side': {
           'color': '#ff000000',
           'strokeAlign': -1.0,
           'style': 'none',
-          'width': 0.0
+          'width': 0.0,
         },
-        'type': 'rounded'
+        'type': 'rounded',
       },
-      'width': 12.0
+      'width': 12.0,
     });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('SmartDashesType', () {
@@ -8911,9 +6858,7 @@ void main() {
     expect(ThemeEncoder.encodeSmartDashesType(null), null);
 
     expect(
-      ThemeDecoder.decodeSmartDashesType(
-        SmartDashesType.disabled,
-      ),
+      ThemeDecoder.decodeSmartDashesType(SmartDashesType.disabled),
       SmartDashesType.disabled,
     );
 
@@ -8926,8 +6871,10 @@ void main() {
       SmartDashesType.enabled,
     );
 
-    expect(ThemeEncoder.encodeSmartDashesType(SmartDashesType.disabled),
-        'disabled');
+    expect(
+      ThemeEncoder.encodeSmartDashesType(SmartDashesType.disabled),
+      'disabled',
+    );
     expect(
       ThemeEncoder.encodeSmartDashesType(SmartDashesType.enabled),
       'enabled',
@@ -8939,9 +6886,7 @@ void main() {
     expect(ThemeEncoder.encodeSmartQuotesType(null), null);
 
     expect(
-      ThemeDecoder.decodeSmartQuotesType(
-        SmartQuotesType.disabled,
-      ),
+      ThemeDecoder.decodeSmartQuotesType(SmartQuotesType.disabled),
       SmartQuotesType.disabled,
     );
 
@@ -8954,8 +6899,10 @@ void main() {
       SmartQuotesType.enabled,
     );
 
-    expect(ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.disabled),
-        'disabled');
+    expect(
+      ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.disabled),
+      'disabled',
+    );
     expect(
       ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.enabled),
       'enabled',
@@ -8965,12 +6912,7 @@ void main() {
     expect(ThemeDecoder.decodeStackFit(null), null);
     expect(ThemeEncoder.encodeStackFit(null), null);
 
-    expect(
-      ThemeDecoder.decodeStackFit(
-        StackFit.expand,
-      ),
-      StackFit.expand,
-    );
+    expect(ThemeDecoder.decodeStackFit(StackFit.expand), StackFit.expand);
 
     expect(ThemeDecoder.decodeStackFit('expand'), StackFit.expand);
     expect(ThemeDecoder.decodeStackFit('loose'), StackFit.loose);
@@ -8979,6 +6921,21 @@ void main() {
     expect(ThemeEncoder.encodeStackFit(StackFit.expand), 'expand');
     expect(ThemeEncoder.encodeStackFit(StackFit.loose), 'loose');
     expect(ThemeEncoder.encodeStackFit(StackFit.passthrough), 'passthrough');
+  });
+
+  test('StrokeCap', () {
+    expect(ThemeDecoder.decodeStrokeCap(null), null);
+    expect(ThemeEncoder.encodeStrokeCap(null), null);
+
+    expect(ThemeDecoder.decodeStrokeCap(StrokeCap.butt), StrokeCap.butt);
+
+    expect(ThemeDecoder.decodeStrokeCap('butt'), StrokeCap.butt);
+    expect(ThemeDecoder.decodeStrokeCap('round'), StrokeCap.round);
+    expect(ThemeDecoder.decodeStrokeCap('square'), StrokeCap.square);
+
+    expect(ThemeEncoder.encodeStrokeCap(StrokeCap.butt), 'butt');
+    expect(ThemeEncoder.encodeStrokeCap(StrokeCap.round), 'round');
+    expect(ThemeEncoder.encodeStrokeCap(StrokeCap.square), 'square');
   });
 
   test('StrutStyle', () {
@@ -9003,29 +6960,23 @@ void main() {
     final encoded = ThemeEncoder.encodeStrutStyle(entry);
     final decoded = ThemeDecoder.decodeStrutStyle(encoded);
 
-    expect(
-      encoded,
-      {
-        'fontFamily': 'packages/bar/foo',
-        'fontFamilyFallback': [
-          'packages/bar/a',
-          'packages/bar/b',
-          'packages/bar/c',
-        ],
-        'fontSize': 1.0,
-        'fontStyle': 'italic',
-        'fontWeight': 'w200',
-        'forceStrutHeight': true,
-        'height': 2.0,
-        'leading': 3.0,
-        'leadingDistribution': 'even',
-      },
-    );
+    expect(encoded, {
+      'fontFamily': 'packages/bar/foo',
+      'fontFamilyFallback': [
+        'packages/bar/a',
+        'packages/bar/b',
+        'packages/bar/c',
+      ],
+      'fontSize': 1.0,
+      'fontStyle': 'italic',
+      'fontWeight': 'w200',
+      'forceStrutHeight': true,
+      'height': 2.0,
+      'leading': 3.0,
+      'leadingDistribution': 'even',
+    });
 
-    expect(
-      ThemeEncoder.encodeStrutStyle(decoded),
-      encoded,
-    );
+    expect(ThemeEncoder.encodeStrutStyle(decoded), encoded);
   });
 
   test('SwitchThemeData', () {
@@ -9067,12 +7018,7 @@ void main() {
         'scrolledUnder': '#00123456',
         'selected': '#00123456',
       },
-      'padding': {
-        'bottom': 8.0,
-        'left': 8.0,
-        'right': 8.0,
-        'top': 8.0,
-      },
+      'padding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
       'splashRadius': 20.0,
       'thumbColor': {
         'disabled': '#00123456',
@@ -9132,8 +7078,8 @@ void main() {
         'focused': '#fff44336',
         'hovered': '#fff44336',
         'pressed': '#fff44336',
-        'selected': '#ff2196f3'
-      }
+        'selected': '#ff2196f3',
+      },
     });
 
     expect(
@@ -9147,9 +7093,7 @@ void main() {
     expect(ThemeEncoder.encodeSystemUiOverlayStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeSystemUiOverlayStyle(
-        SystemUiOverlayStyle.dark,
-      ),
+      ThemeDecoder.decodeSystemUiOverlayStyle(SystemUiOverlayStyle.dark),
       SystemUiOverlayStyle.dark,
     );
 
@@ -9225,41 +7169,21 @@ void main() {
     expect(ThemeEncoder.encodeTabAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeTabAlignment(
-        TabAlignment.center,
-      ),
+      ThemeDecoder.decodeTabAlignment(TabAlignment.center),
       TabAlignment.center,
     );
 
-    expect(
-      ThemeDecoder.decodeTabAlignment('center'),
-      TabAlignment.center,
-    );
-    expect(
-      ThemeDecoder.decodeTabAlignment('fill'),
-      TabAlignment.fill,
-    );
-    expect(
-      ThemeDecoder.decodeTabAlignment('start'),
-      TabAlignment.start,
-    );
+    expect(ThemeDecoder.decodeTabAlignment('center'), TabAlignment.center);
+    expect(ThemeDecoder.decodeTabAlignment('fill'), TabAlignment.fill);
+    expect(ThemeDecoder.decodeTabAlignment('start'), TabAlignment.start);
     expect(
       ThemeDecoder.decodeTabAlignment('startOffset'),
       TabAlignment.startOffset,
     );
 
-    expect(
-      ThemeEncoder.encodeTabAlignment(TabAlignment.center),
-      'center',
-    );
-    expect(
-      ThemeEncoder.encodeTabAlignment(TabAlignment.fill),
-      'fill',
-    );
-    expect(
-      ThemeEncoder.encodeTabAlignment(TabAlignment.start),
-      'start',
-    );
+    expect(ThemeEncoder.encodeTabAlignment(TabAlignment.center), 'center');
+    expect(ThemeEncoder.encodeTabAlignment(TabAlignment.fill), 'fill');
+    expect(ThemeEncoder.encodeTabAlignment(TabAlignment.start), 'start');
     expect(
       ThemeEncoder.encodeTabAlignment(TabAlignment.startOffset),
       'startOffset',
@@ -9271,9 +7195,7 @@ void main() {
     expect(ThemeEncoder.encodeTabBarIndicatorSize(null), null);
 
     expect(
-      ThemeDecoder.decodeTabBarIndicatorSize(
-        TabBarIndicatorSize.label,
-      ),
+      ThemeDecoder.decodeTabBarIndicatorSize(TabBarIndicatorSize.label),
       TabBarIndicatorSize.label,
     );
 
@@ -9321,28 +7243,17 @@ void main() {
 
     final encoded = ThemeEncoder.encodeTabBarTheme(entry);
 
-    expect(
-      encoded,
-      {
-        'data': {
-          'indicatorSize': 'label',
-          'labelColor': '#ff111111',
-          'labelPadding': {
-            'bottom': 1.0,
-            'left': 1.0,
-            'right': 1.0,
-            'top': 1.0,
-          },
-          'labelStyle': _kTextStyleJson,
-          'textScaler': 'noScaling',
-          'unselectedLabelColor': '#ff222222',
-          'unselectedLabelStyle': {
-            'color': '#ff333333',
-            'inherit': true,
-          },
-        },
+    expect(encoded, {
+      'data': {
+        'indicatorSize': 'label',
+        'labelColor': '#ff111111',
+        'labelPadding': {'bottom': 1.0, 'left': 1.0, 'right': 1.0, 'top': 1.0},
+        'labelStyle': _kTextStyleJson,
+        'textScaler': 'noScaling',
+        'unselectedLabelColor': '#ff222222',
+        'unselectedLabelStyle': {'color': '#ff333333', 'inherit': true},
       },
-    );
+    });
   });
 
   test('TabBarThemeData', () {
@@ -9356,11 +7267,12 @@ void main() {
       // pass
     }
 
-    const entry = TabBarThemeData(
+    final entry = TabBarThemeData(
       indicatorSize: TabBarIndicatorSize.label,
       labelColor: Color(0xff111111),
       labelPadding: EdgeInsets.all(1.0),
       labelStyle: _kTextStyle,
+      splashBorderRadius: BorderRadius.circular(4.0),
       textScaler: TextScaler.noScaling,
       unselectedLabelColor: Color(0xff222222),
       unselectedLabelStyle: TextStyle(color: Color(0xff333333)),
@@ -9368,36 +7280,27 @@ void main() {
 
     expect(ThemeDecoder.decodeTabBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTabBarThemeData(
-      entry,
-    );
+    final encoded = ThemeEncoder.encodeTabBarThemeData(entry);
     final decoded = ThemeDecoder.decodeTabBarThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'indicatorSize': 'label',
-        'labelColor': '#ff111111',
-        'labelPadding': {
-          'bottom': 1.0,
-          'left': 1.0,
-          'right': 1.0,
-          'top': 1.0,
-        },
-        'labelStyle': _kTextStyleJson,
-        'textScaler': 'noScaling',
-        'unselectedLabelColor': '#ff222222',
-        'unselectedLabelStyle': {
-          'color': '#ff333333',
-          'inherit': true,
-        },
+    expect(encoded, {
+      'indicatorSize': 'label',
+      'labelColor': '#ff111111',
+      'labelPadding': {'bottom': 1.0, 'left': 1.0, 'right': 1.0, 'top': 1.0},
+      'labelStyle': _kTextStyleJson,
+      'splashBorderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'bottomRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
+        'type': 'only',
       },
-    );
+      'textScaler': 'noScaling',
+      'unselectedLabelColor': '#ff222222',
+      'unselectedLabelStyle': {'color': '#ff333333', 'inherit': true},
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TabIndicatorAnimation', () {
@@ -9405,9 +7308,7 @@ void main() {
     expect(ThemeEncoder.encodeTabIndicatorAnimation(null), null);
 
     expect(
-      ThemeDecoder.decodeTabIndicatorAnimation(
-        TabIndicatorAnimation.elastic,
-      ),
+      ThemeDecoder.decodeTabIndicatorAnimation(TabIndicatorAnimation.elastic),
       TabIndicatorAnimation.elastic,
     );
 
@@ -9473,75 +7374,53 @@ void main() {
     final encoded = ThemeEncoder.encodeTableBorder(entry);
     final decoded = ThemeDecoder.decodeTableBorder(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderRadius': {
-          'bottomLeft': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'bottomRight': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'topLeft': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'topRight': {
-            'type': 'elliptical',
-            'x': 1.0,
-            'y': 1.0,
-          },
-          'type': 'only',
-        },
-        'bottom': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 2.0,
-        },
-        'horizontalInside': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 3.0,
-        },
-        'left': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 4.0,
-        },
-        'right': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 5.0,
-        },
-        'top': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 6.0,
-        },
-        'verticalInside': {
-          'color': _kColorStr,
-          'strokeAlign': -1.0,
-          'style': 'solid',
-          'width': 7.0,
-        },
+    expect(encoded, {
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'bottomRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'topLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'topRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'type': 'only',
       },
-    );
+      'bottom': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 2.0,
+      },
+      'horizontalInside': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 3.0,
+      },
+      'left': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 4.0,
+      },
+      'right': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 5.0,
+      },
+      'top': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 6.0,
+      },
+      'verticalInside': {
+        'color': _kColorStr,
+        'strokeAlign': -1.0,
+        'style': 'solid',
+        'width': 7.0,
+      },
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TableColumnWidth', () {
@@ -9557,47 +7436,33 @@ void main() {
         'type': 'fixed',
         'value': 1.0,
       }).toString(),
-      const FixedColumnWidth(
-        1.0,
-      ).toString(),
+      const FixedColumnWidth(1.0).toString(),
     );
     expect(
       ThemeDecoder.decodeTableColumnWidth({
         'type': 'flex',
         'value': 2.0,
       }).toString(),
-      const FlexColumnWidth(
-        2.0,
-      ).toString(),
+      const FlexColumnWidth(2.0).toString(),
     );
     expect(
       ThemeDecoder.decodeTableColumnWidth({
         'type': 'fraction',
         'value': 3.0,
       }).toString(),
-      const FractionColumnWidth(
-        3.0,
-      ).toString(),
+      const FractionColumnWidth(3.0).toString(),
     );
     expect(
       ThemeDecoder.decodeTableColumnWidth({
         'type': 'intrinsic',
         'value': 4.0,
       }).toString(),
-      const IntrinsicColumnWidth(
-        flex: 4.0,
-      ).toString(),
+      const IntrinsicColumnWidth(flex: 4.0).toString(),
     );
     expect(
       ThemeDecoder.decodeTableColumnWidth({
-        'a': {
-          'type': 'fixed',
-          'value': 5.0,
-        },
-        'b': {
-          'type': 'fixed',
-          'value': 6.0,
-        },
+        'a': {'type': 'fixed', 'value': 5.0},
+        'b': {'type': 'fixed', 'value': 6.0},
         'type': 'max',
       }).toString(),
       const MaxColumnWidth(
@@ -9607,14 +7472,8 @@ void main() {
     );
     expect(
       ThemeDecoder.decodeTableColumnWidth({
-        'a': {
-          'type': 'fixed',
-          'value': 5.0,
-        },
-        'b': {
-          'type': 'fixed',
-          'value': 6.0,
-        },
+        'a': {'type': 'fixed', 'value': 5.0},
+        'b': {'type': 'fixed', 'value': 6.0},
         'type': 'min',
       }).toString(),
       const MinColumnWidth(
@@ -9623,77 +7482,41 @@ void main() {
       ).toString(),
     );
 
+    expect(ThemeEncoder.encodeTableColumnWidth(const FixedColumnWidth(1.0)), {
+      'type': 'fixed',
+      'value': 1.0,
+    });
+    expect(ThemeEncoder.encodeTableColumnWidth(const FlexColumnWidth(2.0)), {
+      'type': 'flex',
+      'value': 2.0,
+    });
     expect(
-      ThemeEncoder.encodeTableColumnWidth(
-        const FixedColumnWidth(1.0),
-      ),
-      {
-        'type': 'fixed',
-        'value': 1.0,
-      },
-    );
-    expect(
-      ThemeEncoder.encodeTableColumnWidth(
-        const FlexColumnWidth(2.0),
-      ),
-      {
-        'type': 'flex',
-        'value': 2.0,
-      },
-    );
-    expect(
-      ThemeEncoder.encodeTableColumnWidth(
-        const FractionColumnWidth(3.0),
-      ),
-      {
-        'type': 'fraction',
-        'value': 3.0,
-      },
+      ThemeEncoder.encodeTableColumnWidth(const FractionColumnWidth(3.0)),
+      {'type': 'fraction', 'value': 3.0},
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
         const IntrinsicColumnWidth(flex: 4.0),
       ),
-      {
-        'type': 'intrinsic',
-        'value': 4.0,
-      },
+      {'type': 'intrinsic', 'value': 4.0},
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        const MaxColumnWidth(
-          FixedColumnWidth(5.0),
-          FixedColumnWidth(6.0),
-        ),
+        const MaxColumnWidth(FixedColumnWidth(5.0), FixedColumnWidth(6.0)),
       ),
       {
-        'a': {
-          'type': 'fixed',
-          'value': 5.0,
-        },
-        'b': {
-          'type': 'fixed',
-          'value': 6.0,
-        },
+        'a': {'type': 'fixed', 'value': 5.0},
+        'b': {'type': 'fixed', 'value': 6.0},
         'type': 'max',
       },
     );
     expect(
       ThemeEncoder.encodeTableColumnWidth(
-        const MinColumnWidth(
-          FixedColumnWidth(5.0),
-          FixedColumnWidth(6.0),
-        ),
+        const MinColumnWidth(FixedColumnWidth(5.0), FixedColumnWidth(6.0)),
       ),
       {
-        'a': {
-          'type': 'fixed',
-          'value': 5.0,
-        },
-        'b': {
-          'type': 'fixed',
-          'value': 6.0,
-        },
+        'a': {'type': 'fixed', 'value': 5.0},
+        'b': {'type': 'fixed', 'value': 6.0},
         'type': 'min',
       },
     );
@@ -9704,9 +7527,7 @@ void main() {
     expect(ThemeEncoder.encodeTargetPlatform(null), null);
 
     expect(
-      ThemeDecoder.decodeTargetPlatform(
-        TargetPlatform.android,
-      ),
+      ThemeDecoder.decodeTargetPlatform(TargetPlatform.android),
       TargetPlatform.android,
     );
 
@@ -9718,18 +7539,9 @@ void main() {
       ThemeDecoder.decodeTargetPlatform('fuchsia'),
       TargetPlatform.fuchsia,
     );
-    expect(
-      ThemeDecoder.decodeTargetPlatform('iOS'),
-      TargetPlatform.iOS,
-    );
-    expect(
-      ThemeDecoder.decodeTargetPlatform('linux'),
-      TargetPlatform.linux,
-    );
-    expect(
-      ThemeDecoder.decodeTargetPlatform('macOS'),
-      TargetPlatform.macOS,
-    );
+    expect(ThemeDecoder.decodeTargetPlatform('iOS'), TargetPlatform.iOS);
+    expect(ThemeDecoder.decodeTargetPlatform('linux'), TargetPlatform.linux);
+    expect(ThemeDecoder.decodeTargetPlatform('macOS'), TargetPlatform.macOS);
     expect(
       ThemeDecoder.decodeTargetPlatform('windows'),
       TargetPlatform.windows,
@@ -9743,18 +7555,9 @@ void main() {
       ThemeEncoder.encodeTargetPlatform(TargetPlatform.fuchsia),
       'fuchsia',
     );
-    expect(
-      ThemeEncoder.encodeTargetPlatform(TargetPlatform.iOS),
-      'iOS',
-    );
-    expect(
-      ThemeEncoder.encodeTargetPlatform(TargetPlatform.linux),
-      'linux',
-    );
-    expect(
-      ThemeEncoder.encodeTargetPlatform(TargetPlatform.macOS),
-      'macOS',
-    );
+    expect(ThemeEncoder.encodeTargetPlatform(TargetPlatform.iOS), 'iOS');
+    expect(ThemeEncoder.encodeTargetPlatform(TargetPlatform.linux), 'linux');
+    expect(ThemeEncoder.encodeTargetPlatform(TargetPlatform.macOS), 'macOS');
     expect(
       ThemeEncoder.encodeTargetPlatform(TargetPlatform.windows),
       'windows',
@@ -9765,12 +7568,7 @@ void main() {
     expect(ThemeDecoder.decodeTextAlign(null), null);
     expect(ThemeEncoder.encodeTextAlign(null), null);
 
-    expect(
-      ThemeDecoder.decodeTextAlign(
-        TextAlign.center,
-      ),
-      TextAlign.center,
-    );
+    expect(ThemeDecoder.decodeTextAlign(TextAlign.center), TextAlign.center);
 
     expect(ThemeDecoder.decodeTextAlign('center'), TextAlign.center);
     expect(ThemeDecoder.decodeTextAlign('end'), TextAlign.end);
@@ -9792,9 +7590,7 @@ void main() {
     expect(ThemeEncoder.encodeTextAlignVertical(null), null);
 
     expect(
-      ThemeDecoder.decodeTextAlignVertical(
-        TextAlignVertical.bottom,
-      ),
+      ThemeDecoder.decodeTextAlignVertical(TextAlignVertical.bottom),
       TextAlignVertical.bottom,
     );
 
@@ -9806,10 +7602,7 @@ void main() {
       ThemeDecoder.decodeTextAlignVertical('center'),
       TextAlignVertical.center,
     );
-    expect(
-      ThemeDecoder.decodeTextAlignVertical('top'),
-      TextAlignVertical.top,
-    );
+    expect(ThemeDecoder.decodeTextAlignVertical('top'), TextAlignVertical.top);
 
     expect(
       ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.bottom),
@@ -9819,10 +7612,7 @@ void main() {
       ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.center),
       'center',
     );
-    expect(
-      ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.top),
-      'top',
-    );
+    expect(ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.top), 'top');
   });
 
   test('TextBaseline', () {
@@ -9830,9 +7620,7 @@ void main() {
     expect(ThemeEncoder.encodeTextBaseline(null), null);
 
     expect(
-      ThemeDecoder.decodeTextBaseline(
-        TextBaseline.alphabetic,
-      ),
+      ThemeDecoder.decodeTextBaseline(TextBaseline.alphabetic),
       TextBaseline.alphabetic,
     );
 
@@ -9861,9 +7649,7 @@ void main() {
 
     final entry = TextButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(
-          const Color(0xff222222),
-        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
       ),
     );
 
@@ -9872,14 +7658,9 @@ void main() {
     final encoded = ThemeEncoder.encodeTextButtonThemeData(entry);
     final decoded = ThemeDecoder.decodeTextButtonThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'style': {
-          'backgroundColor': _materializeState('#ff222222'),
-        },
-      },
-    );
+    expect(encoded, {
+      'style': {'backgroundColor': _materializeState('#ff222222')},
+    });
 
     bool? textButtonThemeDatasAreEqual(Object? first, Object second) {
       bool? result;
@@ -9895,10 +7676,7 @@ void main() {
       return result;
     }
 
-    expect(
-      textButtonThemeDatasAreEqual(decoded, entry),
-      true,
-    );
+    expect(textButtonThemeDatasAreEqual(decoded, entry), true);
   });
 
   test('TextCapitalization', () {
@@ -9906,9 +7684,7 @@ void main() {
     expect(ThemeEncoder.encodeTextCapitalization(null), null);
 
     expect(
-      ThemeDecoder.decodeTextCapitalization(
-        TextCapitalization.characters,
-      ),
+      ThemeDecoder.decodeTextCapitalization(TextCapitalization.characters),
       TextCapitalization.characters,
     );
 
@@ -9952,9 +7728,7 @@ void main() {
     expect(ThemeEncoder.encodeTextDecoration(null), null);
 
     expect(
-      ThemeDecoder.decodeTextDecoration(
-        TextDecoration.lineThrough,
-      ),
+      ThemeDecoder.decodeTextDecoration(TextDecoration.lineThrough),
       TextDecoration.lineThrough,
     );
 
@@ -9962,10 +7736,7 @@ void main() {
       ThemeDecoder.decodeTextDecoration('lineThrough'),
       TextDecoration.lineThrough,
     );
-    expect(
-      ThemeDecoder.decodeTextDecoration('none'),
-      TextDecoration.none,
-    );
+    expect(ThemeDecoder.decodeTextDecoration('none'), TextDecoration.none);
     expect(
       ThemeDecoder.decodeTextDecoration('overline'),
       TextDecoration.overline,
@@ -9979,10 +7750,7 @@ void main() {
       ThemeEncoder.encodeTextDecoration(TextDecoration.lineThrough),
       'lineThrough',
     );
-    expect(
-      ThemeEncoder.encodeTextDecoration(TextDecoration.none),
-      'none',
-    );
+    expect(ThemeEncoder.encodeTextDecoration(TextDecoration.none), 'none');
     expect(
       ThemeEncoder.encodeTextDecoration(TextDecoration.overline),
       'overline',
@@ -9998,9 +7766,7 @@ void main() {
     expect(ThemeEncoder.encodeTextDecorationStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeTextDecorationStyle(
-        TextDecorationStyle.dashed,
-      ),
+      ThemeDecoder.decodeTextDecorationStyle(TextDecorationStyle.dashed),
       TextDecorationStyle.dashed,
     );
 
@@ -10052,29 +7818,15 @@ void main() {
     expect(ThemeEncoder.encodeTextDirection(null), null);
 
     expect(
-      ThemeDecoder.decodeTextDirection(
-        TextDirection.ltr,
-      ),
+      ThemeDecoder.decodeTextDirection(TextDirection.ltr),
       TextDirection.ltr,
     );
 
-    expect(
-      ThemeDecoder.decodeTextDirection('ltr'),
-      TextDirection.ltr,
-    );
-    expect(
-      ThemeDecoder.decodeTextDirection('rtl'),
-      TextDirection.rtl,
-    );
+    expect(ThemeDecoder.decodeTextDirection('ltr'), TextDirection.ltr);
+    expect(ThemeDecoder.decodeTextDirection('rtl'), TextDirection.rtl);
 
-    expect(
-      ThemeEncoder.encodeTextDirection(TextDirection.ltr),
-      'ltr',
-    );
-    expect(
-      ThemeEncoder.encodeTextDirection(TextDirection.rtl),
-      'rtl',
-    );
+    expect(ThemeEncoder.encodeTextDirection(TextDirection.ltr), 'ltr');
+    expect(ThemeEncoder.encodeTextDirection(TextDirection.rtl), 'rtl');
   });
 
   test('TextHeightBehavior', () {
@@ -10092,19 +7844,13 @@ void main() {
     final encoded = ThemeEncoder.encodeTextHeightBehavior(entry);
     final decoded = ThemeDecoder.decodeTextHeightBehavior(encoded);
 
-    expect(
-      encoded,
-      {
-        'applyHeightToFirstAscent': true,
-        'applyHeightToLastDescent': true,
-        'leadingDistribution': 'even',
-      },
-    );
+    expect(encoded, {
+      'applyHeightToFirstAscent': true,
+      'applyHeightToLastDescent': true,
+      'leadingDistribution': 'even',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TextInputAction', () {
@@ -10112,9 +7858,7 @@ void main() {
     expect(ThemeEncoder.encodeTextInputAction(null), null);
 
     expect(
-      ThemeDecoder.decodeTextInputAction(
-        TextInputAction.continueAction,
-      ),
+      ThemeDecoder.decodeTextInputAction(TextInputAction.continueAction),
       TextInputAction.continueAction,
     );
 
@@ -10122,50 +7866,29 @@ void main() {
       ThemeDecoder.decodeTextInputAction('continueAction'),
       TextInputAction.continueAction,
     );
-    expect(
-      ThemeDecoder.decodeTextInputAction('done'),
-      TextInputAction.done,
-    );
+    expect(ThemeDecoder.decodeTextInputAction('done'), TextInputAction.done);
     expect(
       ThemeDecoder.decodeTextInputAction('emergencyCall'),
       TextInputAction.emergencyCall,
     );
-    expect(
-      ThemeDecoder.decodeTextInputAction('go'),
-      TextInputAction.go,
-    );
-    expect(
-      ThemeDecoder.decodeTextInputAction('join'),
-      TextInputAction.join,
-    );
+    expect(ThemeDecoder.decodeTextInputAction('go'), TextInputAction.go);
+    expect(ThemeDecoder.decodeTextInputAction('join'), TextInputAction.join);
     expect(
       ThemeDecoder.decodeTextInputAction('newline'),
       TextInputAction.newline,
     );
-    expect(
-      ThemeDecoder.decodeTextInputAction('next'),
-      TextInputAction.next,
-    );
-    expect(
-      ThemeDecoder.decodeTextInputAction('none'),
-      TextInputAction.none,
-    );
+    expect(ThemeDecoder.decodeTextInputAction('next'), TextInputAction.next);
+    expect(ThemeDecoder.decodeTextInputAction('none'), TextInputAction.none);
     expect(
       ThemeDecoder.decodeTextInputAction('previous'),
       TextInputAction.previous,
     );
-    expect(
-      ThemeDecoder.decodeTextInputAction('route'),
-      TextInputAction.route,
-    );
+    expect(ThemeDecoder.decodeTextInputAction('route'), TextInputAction.route);
     expect(
       ThemeDecoder.decodeTextInputAction('search'),
       TextInputAction.search,
     );
-    expect(
-      ThemeDecoder.decodeTextInputAction('send'),
-      TextInputAction.send,
-    );
+    expect(ThemeDecoder.decodeTextInputAction('send'), TextInputAction.send);
     expect(
       ThemeDecoder.decodeTextInputAction('unspecified'),
       TextInputAction.unspecified,
@@ -10175,50 +7898,29 @@ void main() {
       ThemeEncoder.encodeTextInputAction(TextInputAction.continueAction),
       'continueAction',
     );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.done),
-      'done',
-    );
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.done), 'done');
     expect(
       ThemeEncoder.encodeTextInputAction(TextInputAction.emergencyCall),
       'emergencyCall',
     );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.go),
-      'go',
-    );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.join),
-      'join',
-    );
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.go), 'go');
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.join), 'join');
     expect(
       ThemeEncoder.encodeTextInputAction(TextInputAction.newline),
       'newline',
     );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.next),
-      'next',
-    );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.none),
-      'none',
-    );
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.next), 'next');
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.none), 'none');
     expect(
       ThemeEncoder.encodeTextInputAction(TextInputAction.previous),
       'previous',
     );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.route),
-      'route',
-    );
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.route), 'route');
     expect(
       ThemeEncoder.encodeTextInputAction(TextInputAction.search),
       'search',
     );
-    expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.send),
-      'send',
-    );
+    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.send), 'send');
     expect(
       ThemeEncoder.encodeTextInputAction(TextInputAction.unspecified),
       'unspecified',
@@ -10230,9 +7932,7 @@ void main() {
     expect(ThemeEncoder.encodeTextInputType(null), null);
 
     expect(
-      ThemeDecoder.decodeTextInputType(
-        TextInputType.datetime,
-      ),
+      ThemeDecoder.decodeTextInputType(TextInputType.datetime),
       TextInputType.datetime,
     );
 
@@ -10248,37 +7948,24 @@ void main() {
       ThemeDecoder.decodeTextInputType('multiline'),
       TextInputType.multiline,
     );
-    expect(
-      ThemeDecoder.decodeTextInputType('name'),
-      TextInputType.name,
-    );
-    expect(
-      ThemeDecoder.decodeTextInputType('none'),
-      TextInputType.none,
-    );
-    expect(
-      ThemeDecoder.decodeTextInputType('number'),
-      TextInputType.number,
-    );
-    expect(
-      ThemeDecoder.decodeTextInputType('phone'),
-      TextInputType.phone,
-    );
+    expect(ThemeDecoder.decodeTextInputType('name'), TextInputType.name);
+    expect(ThemeDecoder.decodeTextInputType('none'), TextInputType.none);
+    expect(ThemeDecoder.decodeTextInputType('number'), TextInputType.number);
+    expect(ThemeDecoder.decodeTextInputType('phone'), TextInputType.phone);
     expect(
       ThemeDecoder.decodeTextInputType('streetAddress'),
       TextInputType.streetAddress,
     );
-    expect(
-      ThemeDecoder.decodeTextInputType('text'),
-      TextInputType.text,
-    );
-    expect(
-      ThemeDecoder.decodeTextInputType('url'),
-      TextInputType.url,
-    );
+    expect(ThemeDecoder.decodeTextInputType('text'), TextInputType.text);
+    expect(ThemeDecoder.decodeTextInputType('twitter'), TextInputType.twitter);
+    expect(ThemeDecoder.decodeTextInputType('url'), TextInputType.url);
     expect(
       ThemeDecoder.decodeTextInputType('visiblePassword'),
       TextInputType.visiblePassword,
+    );
+    expect(
+      ThemeDecoder.decodeTextInputType('webSearch'),
+      TextInputType.webSearch,
     );
 
     expect(
@@ -10293,37 +7980,24 @@ void main() {
       ThemeEncoder.encodeTextInputType(TextInputType.multiline),
       'multiline',
     );
-    expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.name),
-      'name',
-    );
-    expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.none),
-      'none',
-    );
-    expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.number),
-      'number',
-    );
-    expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.phone),
-      'phone',
-    );
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.name), 'name');
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.none), 'none');
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.number), 'number');
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.phone), 'phone');
     expect(
       ThemeEncoder.encodeTextInputType(TextInputType.streetAddress),
       'streetAddress',
     );
-    expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.text),
-      'text',
-    );
-    expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.url),
-      'url',
-    );
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.text), 'text');
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.twitter), 'twitter');
+    expect(ThemeEncoder.encodeTextInputType(TextInputType.url), 'url');
     expect(
       ThemeEncoder.encodeTextInputType(TextInputType.visiblePassword),
       'visiblePassword',
+    );
+    expect(
+      ThemeEncoder.encodeTextInputType(TextInputType.webSearch),
+      'webSearch',
     );
   });
 
@@ -10332,9 +8006,7 @@ void main() {
     expect(ThemeEncoder.encodeTextLeadingDistribution(null), null);
 
     expect(
-      ThemeDecoder.decodeTextLeadingDistribution(
-        TextLeadingDistribution.even,
-      ),
+      ThemeDecoder.decodeTextLeadingDistribution(TextLeadingDistribution.even),
       TextLeadingDistribution.even,
     );
 
@@ -10364,9 +8036,7 @@ void main() {
     expect(ThemeEncoder.encodeTextOverflow(null), null);
 
     expect(
-      ThemeDecoder.decodeTextOverflow(
-        TextOverflow.clip,
-      ),
+      ThemeDecoder.decodeTextOverflow(TextOverflow.clip),
       TextOverflow.clip,
     );
 
@@ -10386,21 +8056,13 @@ void main() {
     expect(ThemeEncoder.encodeTextScaler(null), null);
 
     expect(
-      ThemeDecoder.decodeTextScaler(
-        TextScaler.noScaling,
-      ),
+      ThemeDecoder.decodeTextScaler(TextScaler.noScaling),
       TextScaler.noScaling,
     );
 
-    expect(
-      ThemeDecoder.decodeTextScaler('noScaling'),
-      TextScaler.noScaling,
-    );
+    expect(ThemeDecoder.decodeTextScaler('noScaling'), TextScaler.noScaling);
 
-    expect(
-      ThemeEncoder.encodeTextScaler(TextScaler.noScaling),
-      'noScaling',
-    );
+    expect(ThemeEncoder.encodeTextScaler(TextScaler.noScaling), 'noScaling');
   });
 
   test('TextSelectionThemeData', () {
@@ -10418,19 +8080,13 @@ void main() {
     final encoded = ThemeEncoder.encodeTextSelectionThemeData(entry);
     final decoded = ThemeDecoder.decodeTextSelectionThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'cursorColor': '#ff222222',
-        'selectionColor': '#ff222222',
-        'selectionHandleColor': '#ff222222',
-      },
-    );
+    expect(encoded, {
+      'cursorColor': '#ff222222',
+      'selectionColor': '#ff222222',
+      'selectionHandleColor': '#ff222222',
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TextSpan', () {
@@ -10440,52 +8096,29 @@ void main() {
     const entry = TextSpan(
       children: [
         TextSpan(text: 'Hello'),
-        TextSpan(
-          text: 'World',
-          style: TextStyle(fontSize: 24.0),
-        ),
+        TextSpan(text: 'World', style: TextStyle(fontSize: 24.0)),
       ],
       mouseCursor: SystemMouseCursors.copy,
-      style: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.w100,
-      ),
+      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w100),
     );
     final encoded = ThemeEncoder.encodeTextSpan(entry);
     final decoded = ThemeDecoder.decodeTextSpan(encoded);
 
-    expect(
-      encoded,
-      {
-        'children': [
-          {
-            'mouseCursor': {
-              'type': 'defer',
-            },
-            'text': 'Hello',
-          },
-          {
-            'mouseCursor': {
-              'type': 'defer',
-            },
-            'text': 'World',
-            'style': {
-              'fontSize': 24.0,
-              'inherit': true,
-            }
-          },
-        ],
-        'mouseCursor': {
-          'cursor': 'copy',
-          'type': 'system',
+    expect(encoded, {
+      'children': [
+        {
+          'mouseCursor': {'type': 'defer'},
+          'text': 'Hello',
         },
-        'style': {
-          'fontSize': 20.0,
-          'fontWeight': 'w100',
-          'inherit': true,
+        {
+          'mouseCursor': {'type': 'defer'},
+          'text': 'World',
+          'style': {'fontSize': 24.0, 'inherit': true},
         },
-      },
-    );
+      ],
+      'mouseCursor': {'cursor': 'copy', 'type': 'system'},
+      'style': {'fontSize': 20.0, 'fontWeight': 'w100', 'inherit': true},
+    });
 
     expect(decoded, entry);
 
@@ -10524,10 +8157,7 @@ void main() {
         Shadow(
           blurRadius: 6.0,
           color: Color(0xff444444),
-          offset: Offset(
-            6.0,
-            7.0,
-          ),
+          offset: Offset(6.0, 7.0),
         ),
       ],
       textBaseline: TextBaseline.alphabetic,
@@ -10539,55 +8169,40 @@ void main() {
     final encoded = ThemeEncoder.encodeTextStyle(entry);
     final decoded = ThemeDecoder.decodeTextStyle(encoded);
 
-    expect(
-      encoded,
-      {
-        'backgroundColor': '#ff111111',
-        'color': '#ff222222',
-        'decoration': 'lineThrough',
-        'decorationColor': '#ff333333',
-        'decorationStyle': 'solid',
-        'decorationThickness': 1.0,
-        'fontFamily': 'packages/bar/foo',
-        'fontFamilyFallback': ['packages/bar/bar'],
-        'fontFeatures': [
-          {
-            'feature': 'fooo',
-            'value': 2,
-          }
-        ],
-        'fontVariations': [
-          {
-            'axis': 'slnt',
-            'value': 20.0,
-          },
-        ],
-        'fontWeight': 'w100',
-        'fontSize': 3.0,
-        'fontStyle': 'italic',
-        'height': 4.0,
-        'inherit': false,
-        'leadingDistribution': 'even',
-        'letterSpacing': 5.0,
-        'locale': {
-          'countryCode': 'US',
-          'languageCode': 'en',
+    expect(encoded, {
+      'backgroundColor': '#ff111111',
+      'color': '#ff222222',
+      'decoration': 'lineThrough',
+      'decorationColor': '#ff333333',
+      'decorationStyle': 'solid',
+      'decorationThickness': 1.0,
+      'fontFamily': 'packages/bar/foo',
+      'fontFamilyFallback': ['packages/bar/bar'],
+      'fontFeatures': [
+        {'feature': 'fooo', 'value': 2},
+      ],
+      'fontVariations': [
+        {'axis': 'slnt', 'value': 20.0},
+      ],
+      'fontWeight': 'w100',
+      'fontSize': 3.0,
+      'fontStyle': 'italic',
+      'height': 4.0,
+      'inherit': false,
+      'leadingDistribution': 'even',
+      'letterSpacing': 5.0,
+      'locale': {'countryCode': 'US', 'languageCode': 'en'},
+      'overflow': 'ellipsis',
+      'shadows': [
+        {
+          'blurRadius': 6.0,
+          'color': '#ff444444',
+          'offset': {'dx': 6.0, 'dy': 7.0},
         },
-        'overflow': 'ellipsis',
-        'shadows': [
-          {
-            'blurRadius': 6.0,
-            'color': '#ff444444',
-            'offset': {
-              'dx': 6.0,
-              'dy': 7.0,
-            },
-          }
-        ],
-        'textBaseline': 'alphabetic',
-        'wordSpacing': 8.0
-      },
-    );
+      ],
+      'textBaseline': 'alphabetic',
+      'wordSpacing': 8.0,
+    });
 
     expect(decoded!.color, entry.color);
   });
@@ -10619,76 +8234,25 @@ void main() {
     final encoded = ThemeEncoder.encodeTextTheme(entry);
     final decoded = ThemeDecoder.decodeTextTheme(encoded);
 
-    expect(
-      encoded,
-      {
-        'bodyLarge': {
-          'color': '#ff111111',
-          'inherit': true,
-        },
-        'bodyMedium': {
-          'color': '#ff222222',
-          'inherit': true,
-        },
-        'bodySmall': {
-          'color': '#ff333333',
-          'inherit': true,
-        },
-        'displayLarge': {
-          'color': '#ff444444',
-          'inherit': true,
-        },
-        'displayMedium': {
-          'color': '#ff555555',
-          'inherit': true,
-        },
-        'displaySmall': {
-          'color': '#ff666666',
-          'inherit': true,
-        },
-        'headlineLarge': {
-          'color': '#ff777777',
-          'inherit': true,
-        },
-        'headlineMedium': {
-          'color': '#ff888888',
-          'inherit': true,
-        },
-        'headlineSmall': {
-          'color': '#ff999999',
-          'inherit': true,
-        },
-        'labelLarge': {
-          'color': '#ff000000',
-          'inherit': true,
-        },
-        'labelMedium': {
-          'color': '#ffaaaaaa',
-          'inherit': true,
-        },
-        'labelSmall': {
-          'color': '#ffbbbbbb',
-          'inherit': true,
-        },
-        'titleLarge': {
-          'color': '#ffcccccc',
-          'inherit': true,
-        },
-        'titleMedium': {
-          'color': '#ffdddddd',
-          'inherit': true,
-        },
-        'titleSmall': {
-          'color': '#ffeeeeee',
-          'inherit': true,
-        },
-      },
-    );
+    expect(encoded, {
+      'bodyLarge': {'color': '#ff111111', 'inherit': true},
+      'bodyMedium': {'color': '#ff222222', 'inherit': true},
+      'bodySmall': {'color': '#ff333333', 'inherit': true},
+      'displayLarge': {'color': '#ff444444', 'inherit': true},
+      'displayMedium': {'color': '#ff555555', 'inherit': true},
+      'displaySmall': {'color': '#ff666666', 'inherit': true},
+      'headlineLarge': {'color': '#ff777777', 'inherit': true},
+      'headlineMedium': {'color': '#ff888888', 'inherit': true},
+      'headlineSmall': {'color': '#ff999999', 'inherit': true},
+      'labelLarge': {'color': '#ff000000', 'inherit': true},
+      'labelMedium': {'color': '#ffaaaaaa', 'inherit': true},
+      'labelSmall': {'color': '#ffbbbbbb', 'inherit': true},
+      'titleLarge': {'color': '#ffcccccc', 'inherit': true},
+      'titleMedium': {'color': '#ffdddddd', 'inherit': true},
+      'titleSmall': {'color': '#ffeeeeee', 'inherit': true},
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TextWidthBasis', () {
@@ -10696,9 +8260,7 @@ void main() {
     expect(ThemeEncoder.encodeTextWidthBasis(null), null);
 
     expect(
-      ThemeDecoder.decodeTextWidthBasis(
-        TextWidthBasis.longestLine,
-      ),
+      ThemeDecoder.decodeTextWidthBasis(TextWidthBasis.longestLine),
       TextWidthBasis.longestLine,
     );
 
@@ -10706,19 +8268,13 @@ void main() {
       ThemeDecoder.decodeTextWidthBasis('longestLine'),
       TextWidthBasis.longestLine,
     );
-    expect(
-      ThemeDecoder.decodeTextWidthBasis('parent'),
-      TextWidthBasis.parent,
-    );
+    expect(ThemeDecoder.decodeTextWidthBasis('parent'), TextWidthBasis.parent);
 
     expect(
       ThemeEncoder.encodeTextWidthBasis(TextWidthBasis.longestLine),
       'longestLine',
     );
-    expect(
-      ThemeEncoder.encodeTextWidthBasis(TextWidthBasis.parent),
-      'parent',
-    );
+    expect(ThemeEncoder.encodeTextWidthBasis(TextWidthBasis.parent), 'parent');
   });
 
   test('ThemeData', () {
@@ -10728,8 +8284,9 @@ void main() {
     final entry = ThemeData(
       appBarTheme: const AppBarTheme(color: Color(0xff444444)),
       applyElevationOverlayColor: true,
-      bannerTheme:
-          const MaterialBannerThemeData(backgroundColor: Color(0xff666666)),
+      bannerTheme: const MaterialBannerThemeData(
+        backgroundColor: Color(0xff666666),
+      ),
       bottomAppBarTheme: const BottomAppBarTheme(
         color: Color(0xff888888),
         shape: CircularNotchedRectangle(),
@@ -10740,8 +8297,6 @@ void main() {
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Color(0xff000000),
       ),
-      // ignore: deprecated_member_use
-      buttonBarTheme: const ButtonBarThemeData(buttonHeight: 3.0),
       buttonTheme: const ButtonThemeData(buttonColor: Color(0xffbbbbbb)),
       canvasColor: const Color(0xffcccccc),
       cardColor: const Color(0xffdddddd),
@@ -10760,9 +8315,7 @@ void main() {
         labelStyle: const TextStyle(color: Color(0xff555555)),
         padding: const EdgeInsets.all(8.0),
         pressElevation: 1.0,
-        secondaryLabelStyle: const TextStyle(
-          color: _kColor,
-        ),
+        secondaryLabelStyle: const TextStyle(color: _kColor),
         secondarySelectedColor: const Color(0xff666666),
         selectedColor: _kColor,
         shape: RoundedRectangleBorder(
@@ -10778,21 +8331,16 @@ void main() {
       ),
       dataTableTheme: DataTableThemeData(
         columnSpacing: 1.0,
-        dataRowColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
+        dataRowColor: WidgetStateProperty.all(const Color(0xff555555)),
         dataRowMaxHeight: 1.0,
         dataRowMinHeight: 1.0,
         dataTextStyle: const TextStyle(),
         dividerThickness: 1.0,
-        headingRowColor: WidgetStateProperty.all(
-          const Color(0xff555555),
-        ),
+        headingRowColor: WidgetStateProperty.all(const Color(0xff555555)),
         headingRowHeight: 1.0,
         headingTextStyle: const TextStyle(),
         horizontalMargin: 1.0,
       ),
-      dialogBackgroundColor: const Color(0xee888888),
       dialogTheme: const DialogTheme(backgroundColor: Color(0xee999999)),
       disabledColor: const Color(0xee000000),
       dividerColor: const Color(0xeeaaaaaa),
@@ -10801,22 +8349,16 @@ void main() {
         backgroundColor: Color(0xff111111),
         elevation: 5,
         scrimColor: Color(0xff222222),
-        shape: CircleBorder(
-          side: BorderSide.none,
-        ),
+        shape: CircleBorder(side: BorderSide.none),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(
-            const Color(0xff222222),
-          ),
+          backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(
-            const Color(0xff222222),
-          ),
+          backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
         ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -10833,12 +8375,7 @@ void main() {
         focusColor: Color(0xdd555555),
       ),
       listTileTheme: const ListTileThemeData(
-        contentPadding: EdgeInsets.fromLTRB(
-          1,
-          2,
-          3,
-          4,
-        ),
+        contentPadding: EdgeInsets.fromLTRB(1, 2, 3, 4),
         dense: true,
         enableFeedback: false,
         horizontalTitleGap: 5,
@@ -10864,9 +8401,7 @@ void main() {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(
-            const Color(0xff222222),
-          ),
+          backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
         ),
       ),
       platform: TargetPlatform.android,
@@ -10875,21 +8410,18 @@ void main() {
       primaryColorDark: const Color(0xdd999999),
       primaryColorLight: const Color(0xdd000000),
       primaryIconTheme: const IconThemeData(color: Color(0xddaaaaaa)),
-      primarySwatch: const MaterialColor(
-        0xcc000000,
-        {
-          50: Color(0xcc111111),
-          100: Color(0xcc222222),
-          200: Color(0xcc333333),
-          300: Color(0xcc444444),
-          400: Color(0xcc555555),
-          500: Color(0xcc666666),
-          600: Color(0xcc777777),
-          700: Color(0xcc888888),
-          800: Color(0xcc999999),
-          900: Color(0xcc000000),
-        },
-      ),
+      primarySwatch: const MaterialColor(0xcc000000, {
+        50: Color(0xcc111111),
+        100: Color(0xcc222222),
+        200: Color(0xcc333333),
+        300: Color(0xcc444444),
+        400: Color(0xcc555555),
+        500: Color(0xcc666666),
+        600: Color(0xcc777777),
+        700: Color(0xcc888888),
+        800: Color(0xcc999999),
+        900: Color(0xcc000000),
+      }),
       primaryTextTheme: const TextTheme(
         bodyMedium: TextStyle(color: Color(0xccaaaaaa)),
       ),
@@ -10899,10 +8431,12 @@ void main() {
       scaffoldBackgroundColor: const Color(0xee666666),
       secondaryHeaderColor: const Color(0xccbbbbbb),
       shadowColor: const Color(0xcccccccc),
-      sliderTheme:
-          const SliderThemeData(activeTickMarkColor: Color(0xccdddddd)),
-      snackBarTheme:
-          const SnackBarThemeData(actionTextColor: Color(0xcceeeeee)),
+      sliderTheme: const SliderThemeData(
+        activeTickMarkColor: Color(0xccdddddd),
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        actionTextColor: Color(0xcceeeeee),
+      ),
       splashColor: const Color(0xee444444),
       splashFactory: InkSplash.splashFactory,
       switchTheme: SwitchThemeData(
@@ -10911,9 +8445,7 @@ void main() {
       tabBarTheme: const TabBarTheme(labelColor: Color(0xccffffff)),
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: WidgetStateProperty.all(
-            const Color(0xff222222),
-          ),
+          backgroundColor: WidgetStateProperty.all(const Color(0xff222222)),
         ),
       ),
       textSelectionTheme: const TextSelectionThemeData(
@@ -10922,9 +8454,7 @@ void main() {
         selectionHandleColor: Color(0xff222222),
       ),
       textTheme: const TextTheme(
-        bodyMedium: TextStyle(
-          color: Color(0xee555555),
-        ),
+        bodyMedium: TextStyle(color: Color(0xee555555)),
       ),
       timePickerTheme: const TimePickerThemeData(
         backgroundColor: Color(0x11111111),
@@ -10951,12 +8481,11 @@ void main() {
       'bottomAppBarTheme': {
         'color': '#ff888888',
         'shape': 'circular',
-        'surfaceTintColor': '#ff888888'
+        'surfaceTintColor': '#ff888888',
       },
       'bottomNavigationBarTheme': {'backgroundColor': '#ff999999'},
       'bottomSheetTheme': {'backgroundColor': '#ff000000'},
       'brightness': 'dark',
-      'buttonBarTheme': {'buttonHeight': 3.0},
       'buttonTheme': {
         'alignedDropdown': false,
         'height': 36.0,
@@ -10969,17 +8498,17 @@ void main() {
             'bottomRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
             'topLeft': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
             'topRight': {'type': 'elliptical', 'x': 2.0, 'y': 2.0},
-            'type': 'only'
+            'type': 'only',
           },
           'side': {
             'color': '#ff000000',
             'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0
+            'width': 0.0,
           },
-          'type': 'rounded'
+          'type': 'rounded',
         },
-        'textTheme': 'normal'
+        'textTheme': 'normal',
       },
       'canvasColor': '#ffcccccc',
       'cardColor': '#ffdddddd',
@@ -10994,8 +8523,8 @@ void main() {
           'hovered': '#ff123456',
           'pressed': '#ff123456',
           'scrolledUnder': '#ff123456',
-          'selected': '#ff123456'
-        }
+          'selected': '#ff123456',
+        },
       },
       'chipTheme': {
         'backgroundColor': '#ff111111',
@@ -11017,19 +8546,19 @@ void main() {
             'bottomRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
             'topLeft': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
             'topRight': {'type': 'elliptical', 'x': 10.0, 'y': 10.0},
-            'type': 'only'
+            'type': 'only',
           },
           'side': {
             'color': '#ff000000',
             'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0
+            'width': 0.0,
           },
-          'type': 'rounded'
+          'type': 'rounded',
         },
         'selectedShadowColor': '#ff777777',
         'shadowColor': '#ff888888',
-        'showCheckmark': true
+        'showCheckmark': true,
       },
       'colorScheme': {
         'brightness': 'dark',
@@ -11091,7 +8620,7 @@ void main() {
           'hovered': '#ff555555',
           'pressed': '#ff555555',
           'scrolledUnder': '#ff555555',
-          'selected': '#ff555555'
+          'selected': '#ff555555',
         },
         'dataRowMaxHeight': 1.0,
         'dataRowMinHeight': 1.0,
@@ -11106,13 +8635,13 @@ void main() {
           'hovered': '#ff555555',
           'pressed': '#ff555555',
           'scrolledUnder': '#ff555555',
-          'selected': '#ff555555'
+          'selected': '#ff555555',
         },
         'headingRowHeight': 1.0,
         'headingTextStyle': {'inherit': true},
-        'horizontalMargin': 1.0
+        'horizontalMargin': 1.0,
       },
-      'dialogBackgroundColor': '#ee888888',
+      'dialogBackgroundColor': '#ff121212',
       'dialogTheme': {'backgroundColor': '#ee999999'},
       'disabledColor': '#ee000000',
       'dividerColor': '#eeaaaaaa',
@@ -11126,10 +8655,10 @@ void main() {
             'color': '#ff000000',
             'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0
+            'width': 0.0,
           },
-          'type': 'circle'
-        }
+          'type': 'circle',
+        },
       },
       'elevatedButtonTheme': {
         'style': {
@@ -11142,9 +8671,9 @@ void main() {
             'hovered': '#ff222222',
             'pressed': '#ff222222',
             'scrolledUnder': '#ff222222',
-            'selected': '#ff222222'
-          }
-        }
+            'selected': '#ff222222',
+          },
+        },
       },
       'filledButtonTheme': {
         'style': {
@@ -11157,9 +8686,9 @@ void main() {
             'hovered': '#ff222222',
             'pressed': '#ff222222',
             'scrolledUnder': '#ff222222',
-            'selected': '#ff222222'
-          }
-        }
+            'selected': '#ff222222',
+          },
+        },
       },
       'floatingActionButtonTheme': {'backgroundColor': '#eedddddd'},
       'focusColor': '#ee333333',
@@ -11175,14 +8704,14 @@ void main() {
         'floatingLabelBehavior': 'auto',
         'focusColor': '#dd555555',
         'isCollapsed': false,
-        'isDense': false
+        'isDense': false,
       },
       'listTileTheme': {
         'contentPadding': {
           'bottom': 4.0,
           'left': 1.0,
           'right': 3.0,
-          'top': 2.0
+          'top': 2.0,
         },
         'dense': true,
         'enableFeedback': false,
@@ -11198,26 +8727,26 @@ void main() {
             'bottomRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
             'topLeft': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
             'topRight': {'type': 'elliptical', 'x': 0.0, 'y': 0.0},
-            'type': 'only'
+            'type': 'only',
           },
           'side': {
             'color': '#ff000000',
             'strokeAlign': -1.0,
             'style': 'none',
-            'width': 0.0
+            'width': 0.0,
           },
-          'type': 'rectangle'
+          'type': 'rectangle',
         },
         'style': 'drawer',
         'textColor': '#ff444444',
-        'tileColor': '#ff555555'
+        'tileColor': '#ff555555',
       },
       'materialTapTargetSize': 'padded',
       'navigationBarTheme': {
         'backgroundColor': '#ff111111',
         'height': 12.0,
         'indicatorColor': '#ff222222',
-        'labelBehavior': 'onlyShowSelected'
+        'labelBehavior': 'onlyShowSelected',
       },
       'navigationRailTheme': {'backgroundColor': '#dd666666'},
       'outlinedButtonTheme': {
@@ -11231,9 +8760,9 @@ void main() {
             'hovered': '#ff222222',
             'pressed': '#ff222222',
             'scrolledUnder': '#ff222222',
-            'selected': '#ff222222'
-          }
-        }
+            'selected': '#ff222222',
+          },
+        },
       },
       'platform': 'android',
       'popupMenuTheme': {'color': '#dd777777'},
@@ -11246,92 +8775,92 @@ void main() {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodyMedium': {
           'color': '#ccaaaaaa',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'displayLarge': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'displayMedium': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'displaySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headlineLarge': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headlineMedium': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headlineSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'labelLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'labelMedium': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'labelSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'titleLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'titleMedium': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'titleSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
-        }
+          'inherit': true,
+        },
       },
       'radioTheme': {
         'fillColor': {
@@ -11343,8 +8872,8 @@ void main() {
           'hovered': '#ff123456',
           'pressed': '#ff123456',
           'scrolledUnder': '#ff123456',
-          'selected': '#ff123456'
-        }
+          'selected': '#ff123456',
+        },
       },
       'scaffoldBackgroundColor': '#ee666666',
       'secondaryHeaderColor': '#ccbbbbbb',
@@ -11363,8 +8892,8 @@ void main() {
           'hovered': '#ff123456',
           'pressed': '#ff123456',
           'scrolledUnder': '#ff123456',
-          'selected': '#ff123456'
-        }
+          'selected': '#ff123456',
+        },
       },
       'tabBarTheme': {'labelColor': '#ccffffff'},
       'textButtonTheme': {
@@ -11378,106 +8907,106 @@ void main() {
             'hovered': '#ff222222',
             'pressed': '#ff222222',
             'scrolledUnder': '#ff222222',
-            'selected': '#ff222222'
-          }
-        }
+            'selected': '#ff222222',
+          },
+        },
       },
       'textSelectionTheme': {
         'cursorColor': '#ff222222',
         'selectionColor': '#ff222222',
-        'selectionHandleColor': '#ff222222'
+        'selectionHandleColor': '#ff222222',
       },
       'textTheme': {
         'bodyLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodyMedium': {
           'color': '#ee555555',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'bodySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'displayLarge': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'displayMedium': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'displaySmall': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headlineLarge': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headlineMedium': {
           'color': '#b3ffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'headlineSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'labelLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'labelMedium': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'labelSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'titleLarge': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'titleMedium': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
+          'inherit': true,
         },
         'titleSmall': {
           'color': '#ffffffff',
           'decoration': 'none',
           'fontFamily': 'foo',
-          'inherit': true
-        }
+          'inherit': true,
+        },
       },
       'toggleButtonsTheme': {'color': '#bb222222'},
       'tooltipTheme': {'height': 19.0},
@@ -11487,184 +9016,184 @@ void main() {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'bodyMedium': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'bodySmall': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'displayLarge': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'displayMedium': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'displaySmall': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headlineLarge': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headlineMedium': {
             'color': '#8a000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headlineSmall': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'labelLarge': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'labelMedium': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'labelSmall': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'titleLarge': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'titleMedium': {
             'color': '#dd000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'titleSmall': {
             'color': '#ff000000',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
-          }
+            'inherit': true,
+          },
         },
         'dense': {
           'bodyLarge': {
             'fontSize': 17.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'bodyMedium': {
             'fontSize': 15.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'bodySmall': {
             'fontSize': 13.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'displayLarge': {
             'fontSize': 96.0,
             'fontWeight': 'w100',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'displayMedium': {
             'fontSize': 60.0,
             'fontWeight': 'w100',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'displaySmall': {
             'fontSize': 48.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headlineLarge': {
             'fontSize': 40.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headlineMedium': {
             'fontSize': 34.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'headlineSmall': {
             'fontSize': 24.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'labelLarge': {
             'fontSize': 15.0,
             'fontWeight': 'w500',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'labelMedium': {
             'fontSize': 12.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'labelSmall': {
             'fontSize': 11.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'titleLarge': {
             'fontSize': 21.0,
             'fontWeight': 'w500',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'titleMedium': {
             'fontSize': 17.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'ideographic'
+            'textBaseline': 'ideographic',
           },
           'titleSmall': {
             'fontSize': 15.0,
             'fontWeight': 'w500',
             'inherit': false,
-            'textBaseline': 'ideographic'
-          }
+            'textBaseline': 'ideographic',
+          },
         },
         'englishLike': {
           'bodyLarge': {
@@ -11672,295 +9201,295 @@ void main() {
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'bodyMedium': {
             'fontSize': 14.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'bodySmall': {
             'fontSize': 12.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.4,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'displayLarge': {
             'fontSize': 96.0,
             'fontWeight': 'w300',
             'inherit': false,
             'letterSpacing': -1.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'displayMedium': {
             'fontSize': 60.0,
             'fontWeight': 'w300',
             'inherit': false,
             'letterSpacing': -0.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'displaySmall': {
             'fontSize': 48.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.0,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headlineLarge': {
             'fontSize': 40.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headlineMedium': {
             'fontSize': 34.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.25,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headlineSmall': {
             'fontSize': 24.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.0,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'labelLarge': {
             'fontSize': 14.0,
             'fontWeight': 'w500',
             'inherit': false,
             'letterSpacing': 1.25,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'labelMedium': {
             'fontSize': 11.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 1.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'labelSmall': {
             'fontSize': 10.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 1.5,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'titleLarge': {
             'fontSize': 20.0,
             'fontWeight': 'w500',
             'inherit': false,
             'letterSpacing': 0.15,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'titleMedium': {
             'fontSize': 16.0,
             'fontWeight': 'w400',
             'inherit': false,
             'letterSpacing': 0.15,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'titleSmall': {
             'fontSize': 14.0,
             'fontWeight': 'w500',
             'inherit': false,
             'letterSpacing': 0.1,
-            'textBaseline': 'alphabetic'
-          }
+            'textBaseline': 'alphabetic',
+          },
         },
         'tall': {
           'bodyLarge': {
             'fontSize': 17.0,
             'fontWeight': 'w700',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'bodyMedium': {
             'fontSize': 15.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'bodySmall': {
             'fontSize': 13.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'displayLarge': {
             'fontSize': 96.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'displayMedium': {
             'fontSize': 60.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'displaySmall': {
             'fontSize': 48.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headlineLarge': {
             'fontSize': 40.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headlineMedium': {
             'fontSize': 34.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'headlineSmall': {
             'fontSize': 24.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'labelLarge': {
             'fontSize': 15.0,
             'fontWeight': 'w700',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'labelMedium': {
             'fontSize': 12.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'labelSmall': {
             'fontSize': 11.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'titleLarge': {
             'fontSize': 21.0,
             'fontWeight': 'w700',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'titleMedium': {
             'fontSize': 17.0,
             'fontWeight': 'w400',
             'inherit': false,
-            'textBaseline': 'alphabetic'
+            'textBaseline': 'alphabetic',
           },
           'titleSmall': {
             'fontSize': 15.0,
             'fontWeight': 'w500',
             'inherit': false,
-            'textBaseline': 'alphabetic'
-          }
+            'textBaseline': 'alphabetic',
+          },
         },
         'white': {
           'bodyLarge': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'bodyMedium': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'bodySmall': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'displayLarge': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'displayMedium': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'displaySmall': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headlineLarge': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headlineMedium': {
             'color': '#b3ffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'headlineSmall': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'labelLarge': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'labelMedium': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'labelSmall': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'titleLarge': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'titleMedium': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
+            'inherit': true,
           },
           'titleSmall': {
             'color': '#ffffffff',
             'decoration': 'none',
             'fontFamily': 'Roboto',
-            'inherit': true
-          }
-        }
+            'inherit': true,
+          },
+        },
       },
       'unselectedWidgetColor': '#bb444444',
       'useMaterial3': true,
-      'visualDensity': 'comfortable'
+      'visualDensity': 'comfortable',
     };
 
     expect(encoded, jsonMap);
@@ -11973,12 +9502,7 @@ void main() {
     expect(ThemeDecoder.decodeTileMode(null), null);
     expect(ThemeEncoder.encodeTileMode(null), null);
 
-    expect(
-      ThemeDecoder.decodeTileMode(
-        TileMode.clamp,
-      ),
-      TileMode.clamp,
-    );
+    expect(ThemeDecoder.decodeTileMode(TileMode.clamp), TileMode.clamp);
 
     expect(ThemeDecoder.decodeTileMode('clamp'), TileMode.clamp);
     expect(ThemeDecoder.decodeTileMode('mirror'), TileMode.mirror);
@@ -12019,8 +9543,9 @@ void main() {
       ),
       hourMinuteTextColor: const Color(0xff000010),
       hourMinuteTextStyle: const TextStyle(fontSize: 3.0),
-      inputDecorationTheme:
-          const InputDecorationTheme(fillColor: Color(0xff000011)),
+      inputDecorationTheme: const InputDecorationTheme(
+        fillColor: Color(0xff000011),
+      ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
     );
 
@@ -12044,7 +9569,7 @@ void main() {
           'bottomRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
           'topLeft': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
           'topRight': {'type': 'elliptical', 'x': 4.0, 'y': 4.0},
-          'type': 'only'
+          'type': 'only',
         },
         'side': {
           'color': '#ff000000',
@@ -12055,18 +9580,12 @@ void main() {
         'type': 'rounded',
       },
       'dayPeriodTextColor': '#ff000004',
-      'dayPeriodTextStyle': {
-        'fontSize': 1.0,
-        'inherit': true,
-      },
+      'dayPeriodTextStyle': {'fontSize': 1.0, 'inherit': true},
       'dialBackgroundColor': '#ff000005',
       'dialHandColor': '#ff000006',
       'dialTextColor': '#ff000007',
       'entryModeIconColor': '#ff000008',
-      'helpTextStyle': {
-        'fontSize': 2.0,
-        'inherit': true,
-      },
+      'helpTextStyle': {'fontSize': 2.0, 'inherit': true},
       'hourMinuteColor': '#ff000009',
       'hourMinuteShape': {
         'borderRadius': {
@@ -12074,7 +9593,7 @@ void main() {
           'bottomRight': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
           'topLeft': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
           'topRight': {'type': 'elliptical', 'x': 5.0, 'y': 5.0},
-          'type': 'only'
+          'type': 'only',
         },
         'side': {
           'color': '#ff000000',
@@ -12085,10 +9604,7 @@ void main() {
         'type': 'rounded',
       },
       'hourMinuteTextColor': '#ff000010',
-      'hourMinuteTextStyle': {
-        'fontSize': 3.0,
-        'inherit': true,
-      },
+      'hourMinuteTextStyle': {'fontSize': 3.0, 'inherit': true},
       'inputDecorationTheme': {
         'alignLabelWithHint': false,
         'fillColor': '#ff000011',
@@ -12104,7 +9620,7 @@ void main() {
           'bottomRight': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
           'topLeft': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
           'topRight': {'type': 'elliptical', 'x': 6.0, 'y': 6.0},
-          'type': 'only'
+          'type': 'only',
         },
         'side': {
           'color': '#ff000000',
@@ -12116,10 +9632,7 @@ void main() {
       },
     });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('ToggleButtonsThemeData', () {
@@ -12154,42 +9667,36 @@ void main() {
     final encoded = ThemeEncoder.encodeToggleButtonsThemeData(entry);
     final decoded = ThemeDecoder.decodeToggleButtonsThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'borderColor': '#ff111111',
-        'borderRadius': {
-          'bottomLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
-          'bottomRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
-          'topLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
-          'topRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
-          'type': 'only'
-        },
-        'borderWidth': 2.0,
-        'color': '#ff222222',
-        'constraints': {
-          'maxHeight': 30.0,
-          'maxWidth': 40.0,
-          'minHeight': 5.0,
-          'minWidth': 6.0
-        },
-        'disabledBorderColor': '#ff333333',
-        'disabledColor': '#ff444444',
-        'fillColor': '#ff555555',
-        'focusColor': '#ff666666',
-        'highlightColor': '#ff777777',
-        'hoverColor': '#ff888888',
-        'selectedBorderColor': '#ff999999',
-        'selectedColor': '#ff000000',
-        'splashColor': '#ffaaaaaa',
-        'textStyle': {'color': '#ffbbbbbb', 'inherit': true}
+    expect(encoded, {
+      'borderColor': '#ff111111',
+      'borderRadius': {
+        'bottomLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'bottomRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'topLeft': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'topRight': {'type': 'elliptical', 'x': 1.0, 'y': 1.0},
+        'type': 'only',
       },
-    );
+      'borderWidth': 2.0,
+      'color': '#ff222222',
+      'constraints': {
+        'maxHeight': 30.0,
+        'maxWidth': 40.0,
+        'minHeight': 5.0,
+        'minWidth': 6.0,
+      },
+      'disabledBorderColor': '#ff333333',
+      'disabledColor': '#ff444444',
+      'fillColor': '#ff555555',
+      'focusColor': '#ff666666',
+      'highlightColor': '#ff777777',
+      'hoverColor': '#ff888888',
+      'selectedBorderColor': '#ff999999',
+      'selectedColor': '#ff000000',
+      'splashColor': '#ffaaaaaa',
+      'textStyle': {'color': '#ffbbbbbb', 'inherit': true},
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TooltipThemeData', () {
@@ -12199,6 +9706,7 @@ void main() {
     const entry = TooltipThemeData(
       enableFeedback: true,
       excludeFromSemantics: true,
+      exitDuration: Duration(milliseconds: 100),
       height: 1.0,
       margin: EdgeInsets.all(2.0),
       padding: EdgeInsets.all(3.0),
@@ -12216,38 +9724,23 @@ void main() {
     final encoded = ThemeEncoder.encodeTooltipThemeData(entry);
     final decoded = ThemeDecoder.decodeTooltipThemeData(encoded);
 
-    expect(
-      encoded,
-      {
-        'enableFeedback': true,
-        'excludeFromSemantics': true,
-        'height': 1.0,
-        'margin': {
-          'bottom': 2.0,
-          'left': 2.0,
-          'right': 2.0,
-          'top': 2.0,
-        },
-        'padding': {
-          'bottom': 3.0,
-          'left': 3.0,
-          'right': 3.0,
-          'top': 3.0,
-        },
-        'preferBelow': true,
-        'showDuration': 4,
-        'textAlign': 'center',
-        'textStyle': {'color': '#00123456', 'inherit': true},
-        'triggerMode': 'longPress',
-        'verticalOffset': 5.0,
-        'waitDuration': 6
-      },
-    );
+    expect(encoded, {
+      'enableFeedback': true,
+      'excludeFromSemantics': true,
+      'exitDuration': 100,
+      'height': 1.0,
+      'margin': {'bottom': 2.0, 'left': 2.0, 'right': 2.0, 'top': 2.0},
+      'padding': {'bottom': 3.0, 'left': 3.0, 'right': 3.0, 'top': 3.0},
+      'preferBelow': true,
+      'showDuration': 4,
+      'textAlign': 'center',
+      'textStyle': {'color': '#00123456', 'inherit': true},
+      'triggerMode': 'longPress',
+      'verticalOffset': 5.0,
+      'waitDuration': 6,
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
 
   test('TooltipTriggerMode', () {
@@ -12293,8 +9786,9 @@ void main() {
     final entry = Typography.material2018(
       black: const TextTheme(bodyLarge: TextStyle(color: Color(0xff111111))),
       dense: const TextTheme(bodyLarge: TextStyle(color: Color(0xff222222))),
-      englishLike:
-          const TextTheme(bodyLarge: TextStyle(color: Color(0xff333333))),
+      englishLike: const TextTheme(
+        bodyLarge: TextStyle(color: Color(0xff333333)),
+      ),
       tall: const TextTheme(bodyLarge: TextStyle(color: Color(0xff444444))),
       white: const TextTheme(bodyLarge: TextStyle(color: Color(0xff555555))),
     );
@@ -12304,40 +9798,32 @@ void main() {
     final encoded = ThemeEncoder.encodeTypography(entry);
     final decoded = ThemeDecoder.decodeTypography(encoded);
 
-    expect(
-      encoded,
-      {
-        'black': {
-          'bodyLarge': {'color': '#ff111111', 'inherit': true}
-        },
-        'dense': {
-          'bodyLarge': {'color': '#ff222222', 'inherit': true}
-        },
-        'englishLike': {
-          'bodyLarge': {'color': '#ff333333', 'inherit': true}
-        },
-        'tall': {
-          'bodyLarge': {'color': '#ff444444', 'inherit': true}
-        },
-        'white': {
-          'bodyLarge': {'color': '#ff555555', 'inherit': true}
-        }
+    expect(encoded, {
+      'black': {
+        'bodyLarge': {'color': '#ff111111', 'inherit': true},
       },
-    );
+      'dense': {
+        'bodyLarge': {'color': '#ff222222', 'inherit': true},
+      },
+      'englishLike': {
+        'bodyLarge': {'color': '#ff333333', 'inherit': true},
+      },
+      'tall': {
+        'bodyLarge': {'color': '#ff444444', 'inherit': true},
+      },
+      'white': {
+        'bodyLarge': {'color': '#ff555555', 'inherit': true},
+      },
+    });
 
-    expect(
-      decoded,
-      entry,
-    );
+    expect(decoded, entry);
   });
   test('VerticalDirection', () {
     expect(ThemeDecoder.decodeVerticalDirection(null), null);
     expect(ThemeEncoder.encodeVerticalDirection(null), null);
 
     expect(
-      ThemeDecoder.decodeVerticalDirection(
-        VerticalDirection.down,
-      ),
+      ThemeDecoder.decodeVerticalDirection(VerticalDirection.down),
       VerticalDirection.down,
     );
 
@@ -12345,19 +9831,13 @@ void main() {
       ThemeDecoder.decodeVerticalDirection('down'),
       VerticalDirection.down,
     );
-    expect(
-      ThemeDecoder.decodeVerticalDirection('up'),
-      VerticalDirection.up,
-    );
+    expect(ThemeDecoder.decodeVerticalDirection('up'), VerticalDirection.up);
 
     expect(
       ThemeEncoder.encodeVerticalDirection(VerticalDirection.down),
       'down',
     );
-    expect(
-      ThemeEncoder.encodeVerticalDirection(VerticalDirection.up),
-      'up',
-    );
+    expect(ThemeEncoder.encodeVerticalDirection(VerticalDirection.up), 'up');
   });
 
   test('VisualDensity', () {
@@ -12365,9 +9845,7 @@ void main() {
     expect(ThemeEncoder.encodeVisualDensity(null), null);
 
     expect(
-      ThemeDecoder.decodeVisualDensity(
-        VisualDensity.adaptivePlatformDensity,
-      ),
+      ThemeDecoder.decodeVisualDensity(VisualDensity.adaptivePlatformDensity),
       VisualDensity.adaptivePlatformDensity,
     );
 
@@ -12379,10 +9857,7 @@ void main() {
       ThemeDecoder.decodeVisualDensity('comfortable'),
       VisualDensity.comfortable,
     );
-    expect(
-      ThemeDecoder.decodeVisualDensity('compact'),
-      VisualDensity.compact,
-    );
+    expect(ThemeDecoder.decodeVisualDensity('compact'), VisualDensity.compact);
     expect(
       ThemeDecoder.decodeVisualDensity('standard'),
       VisualDensity.standard,
@@ -12392,10 +9867,7 @@ void main() {
       ThemeEncoder.encodeVisualDensity(VisualDensity.comfortable),
       'comfortable',
     );
-    expect(
-      ThemeEncoder.encodeVisualDensity(VisualDensity.compact),
-      'compact',
-    );
+    expect(ThemeEncoder.encodeVisualDensity(VisualDensity.compact), 'compact');
     expect(
       ThemeEncoder.encodeVisualDensity(VisualDensity.standard),
       'standard',
@@ -12454,9 +9926,7 @@ void main() {
       final color = ThemeDecoder.decodeColor(colorStr);
       final encodedColor = ThemeEncoder.encodeColor(color);
 
-      final decoded = ThemeDecoder.decodeWidgetStateColor(
-        encodedColor,
-      );
+      final decoded = ThemeDecoder.decodeWidgetStateColor(encodedColor);
 
       expect(decoded!.resolve({state}), color);
 
@@ -12466,12 +9936,8 @@ void main() {
     }
 
     /// Test if pressed takes precedence over hovered
-    final materialColor = ThemeDecoder.decodeWidgetStateColor(
-      colors,
-    );
-    final color = materialColor?.resolve({
-      states['pressed']!,
-    });
+    final materialColor = ThemeDecoder.decodeWidgetStateColor(colors);
+    final color = materialColor?.resolve({states['pressed']!});
     expect(ThemeEncoder.encodeColor(color), colors['pressed']);
   });
 
@@ -12688,9 +10154,10 @@ void main() {
       expect(encoded![stateKey], colorStr);
     }
 
-    Color? func(Set<WidgetState> states) => states.isEmpty
-        ? null
-        : ThemeDecoder.decodeColor(colors[stateMap[states.first]]);
+    Color? func(Set<WidgetState> states) =>
+        states.isEmpty
+            ? null
+            : ThemeDecoder.decodeColor(colors[stateMap[states.first]]);
 
     final prop = WidgetStateProperty.resolveWith(func);
     final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(prop);
@@ -12713,9 +10180,7 @@ void main() {
       final color = ThemeDecoder.decodeColor(colorStr);
       final encodedColor = ThemeEncoder.encodeColor(color);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(
-        encodedColor,
-      );
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(encodedColor);
 
       expect(decoded!.resolve({state}), color);
 
@@ -12725,9 +10190,7 @@ void main() {
     }
 
     /// Test if pressed takes precedence over hovered
-    final materialColor = ThemeDecoder.decodeWidgetStatePropertyColor(
-      colors,
-    );
+    final materialColor = ThemeDecoder.decodeWidgetStatePropertyColor(colors);
     final color = materialColor?.resolve({
       states['hovered']!,
       states['pressed']!,
@@ -12820,9 +10283,13 @@ void main() {
 
   test('WidgetStatePropertyEdgeInsetsGeometry', () {
     expect(
-        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(null), null);
+      ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(null),
+      null,
+    );
     expect(
-        ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(null), null);
+      ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(null),
+      null,
+    );
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -12845,13 +10312,15 @@ void main() {
       final side = EdgeInsets.all(++count);
       sides[state] = side;
 
-      final decoded =
-          ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(side);
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
+        side,
+      );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(
+        decoded,
+      );
 
       expect(encoded![stateKey]['bottom'], side.bottom);
     }
@@ -12860,15 +10329,17 @@ void main() {
         states.isEmpty ? null : sides[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded =
-        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(prop);
+    final decoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
+      prop,
+    );
     for (var entry in states.entries) {
       final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(
+        decoded,
+      );
 
       expect(encoded![entry.key]['bottom'], (side as EdgeInsets).bottom);
     }
@@ -12886,8 +10357,9 @@ void main() {
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(
+        decoded,
+      );
 
       expect(encoded![stateKey]['bottom'], side.bottom);
     }
@@ -12895,19 +10367,24 @@ void main() {
     final symmetricDecoded =
         ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2]);
     for (var state in states.values) {
-      expect(symmetricDecoded!.resolve({state}),
-          const EdgeInsets.symmetric(horizontal: 1, vertical: 2));
+      expect(
+        symmetricDecoded!.resolve({state}),
+        const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
+      );
     }
 
     final ltrbDecoded =
         ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2, 3, 4]);
     for (var state in states.values) {
       expect(
-          ltrbDecoded!.resolve({state}), const EdgeInsets.fromLTRB(1, 2, 3, 4));
+        ltrbDecoded!.resolve({state}),
+        const EdgeInsets.fromLTRB(1, 2, 3, 4),
+      );
     }
 
-    final allDecoded =
-        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(1);
+    final allDecoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
+      1,
+    );
     for (var state in states.values) {
       expect(allDecoded!.resolve({state}), const EdgeInsets.all(1));
     }
@@ -12934,19 +10411,16 @@ void main() {
       final stateKey = entry.key;
       final state = entry.value;
 
-      const icon = IconThemeData(
-        color: _kColor,
-        opacity: 0.5,
-        size: 12.0,
-      );
+      const icon = IconThemeData(color: _kColor, opacity: 0.5, size: 12.0);
       icons[state] = icon;
 
       final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(icon);
 
       expect(decoded!.resolve({state}), icon);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyIconThemeData(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyIconThemeData(
+        decoded,
+      );
 
       expect(encoded![stateKey]['color'], _kColorStr);
     }
@@ -12981,8 +10455,9 @@ void main() {
 
       expect(decoded!.resolve({state}), icon);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyIconThemeData(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyIconThemeData(
+        decoded,
+      );
 
       expect(encoded![stateKey]['color'], _kColorStr);
     }
@@ -13037,14 +10512,16 @@ void main() {
       decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(cursorStr);
       expect(decoded!.resolve({state}), cursor);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyMouseCursor(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyMouseCursor(
+        decoded,
+      );
       expect(encoded![stateKey], cursorStr);
     }
 
-    MouseCursor? func(Set<WidgetState> states) => states.isEmpty
-        ? null
-        : ThemeDecoder.decodeMouseCursor(cursors[stateMap[states.first]]);
+    MouseCursor? func(Set<WidgetState> states) =>
+        states.isEmpty
+            ? null
+            : ThemeDecoder.decodeMouseCursor(cursors[stateMap[states.first]]);
 
     final prop = WidgetStateProperty.resolveWith(func);
     final decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(prop);
@@ -13054,8 +10531,9 @@ void main() {
 
       expect(decoded!.resolve({entry.value}), cursor);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyMouseCursor(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyMouseCursor(
+        decoded,
+      );
 
       expect(encoded?[entry.key], cursorStr);
     }
@@ -13074,8 +10552,9 @@ void main() {
 
       expect(decoded!.resolve({state}), cursor);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyMouseCursor(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyMouseCursor(
+        decoded,
+      );
 
       expect(encoded![stateKey], cursorStr);
     }
@@ -13112,13 +10591,15 @@ void main() {
       );
       sides[state] = side;
 
-      final decoded =
-          ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(side);
+      final decoded = ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(
+        side,
+      );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(
+        decoded,
+      );
 
       expect(encoded![stateKey]['side']['width'], side.side.width);
     }
@@ -13133,8 +10614,9 @@ void main() {
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(
+        decoded,
+      );
 
       expect(encoded![entry.key]['side']['width'], side!.side.width);
     }
@@ -13152,22 +10634,17 @@ void main() {
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded =
-          ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(decoded);
+      final encoded = ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(
+        decoded,
+      );
 
       expect(encoded![stateKey]['side']['width'], side!.side.width);
     }
   });
 
   test('WidgetStatePropertySize', () {
-    expect(
-      ThemeDecoder.decodeWidgetStatePropertySize(null),
-      null,
-    );
-    expect(
-      ThemeEncoder.encodeWidgetStatePropertySize(null),
-      null,
-    );
+    expect(ThemeDecoder.decodeWidgetStatePropertySize(null), null);
+    expect(ThemeEncoder.encodeWidgetStatePropertySize(null), null);
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -13187,10 +10664,7 @@ void main() {
       final stateKey = entry.key;
       final state = entry.value;
 
-      final side = Size(
-        ++count,
-        ++count,
-      );
+      final side = Size(++count, ++count);
       sides[state] = side;
 
       final decoded = ThemeDecoder.decodeWidgetStatePropertySize(side);
@@ -13224,9 +10698,7 @@ void main() {
       final side = sides[state];
       final encodedSide = ThemeEncoder.encodeSize(side);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertySize(
-        encodedSide,
-      );
+      final decoded = ThemeDecoder.decodeWidgetStatePropertySize(encodedSide);
 
       expect(decoded!.resolve({state}), side);
 
@@ -13309,20 +10781,12 @@ void main() {
     expect(ThemeEncoder.encodeWrapAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeWrapAlignment(
-        WrapAlignment.start,
-      ),
+      ThemeDecoder.decodeWrapAlignment(WrapAlignment.start),
       WrapAlignment.start,
     );
 
-    expect(
-      ThemeDecoder.decodeWrapAlignment('center'),
-      WrapAlignment.center,
-    );
-    expect(
-      ThemeDecoder.decodeWrapAlignment('end'),
-      WrapAlignment.end,
-    );
+    expect(ThemeDecoder.decodeWrapAlignment('center'), WrapAlignment.center);
+    expect(ThemeDecoder.decodeWrapAlignment('end'), WrapAlignment.end);
     expect(
       ThemeDecoder.decodeWrapAlignment('spaceAround'),
       WrapAlignment.spaceAround,
@@ -13335,19 +10799,10 @@ void main() {
       ThemeDecoder.decodeWrapAlignment('spaceEvenly'),
       WrapAlignment.spaceEvenly,
     );
-    expect(
-      ThemeDecoder.decodeWrapAlignment('start'),
-      WrapAlignment.start,
-    );
+    expect(ThemeDecoder.decodeWrapAlignment('start'), WrapAlignment.start);
 
-    expect(
-      ThemeEncoder.encodeWrapAlignment(WrapAlignment.center),
-      'center',
-    );
-    expect(
-      ThemeEncoder.encodeWrapAlignment(WrapAlignment.end),
-      'end',
-    );
+    expect(ThemeEncoder.encodeWrapAlignment(WrapAlignment.center), 'center');
+    expect(ThemeEncoder.encodeWrapAlignment(WrapAlignment.end), 'end');
     expect(
       ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceAround),
       'spaceAround',
@@ -13360,10 +10815,7 @@ void main() {
       ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceEvenly),
       'spaceEvenly',
     );
-    expect(
-      ThemeEncoder.encodeWrapAlignment(WrapAlignment.start),
-      'start',
-    );
+    expect(ThemeEncoder.encodeWrapAlignment(WrapAlignment.start), 'start');
   });
 
   test('WrapCrossAlignment', () {
@@ -13371,9 +10823,7 @@ void main() {
     expect(ThemeEncoder.encodeWrapCrossAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeWrapAlignment(
-        WrapAlignment.start,
-      ),
+      ThemeDecoder.decodeWrapAlignment(WrapAlignment.start),
       WrapAlignment.start,
     );
 
@@ -13413,7 +10863,8 @@ bool? _buttonStylesAreEqual(ButtonStyle? first, ButtonStyle? second) {
   } else if (first is! ButtonStyle) {
     result = false;
   } else if (second is ButtonStyle) {
-    result = first.alignment == second.alignment &&
+    result =
+        first.alignment == second.alignment &&
         first.animationDuration == second.animationDuration &&
         first.backgroundColor?.resolve({}) ==
             second.backgroundColor?.resolve({}) &&
@@ -13437,13 +10888,13 @@ bool? _buttonStylesAreEqual(ButtonStyle? first, ButtonStyle? second) {
 }
 
 Map<String, dynamic> _materializeState(value) => {
-      'disabled': value,
-      'dragged': value,
-      'empty': value,
-      'error': value,
-      'focused': value,
-      'hovered': value,
-      'pressed': value,
-      'scrolledUnder': value,
-      'selected': value,
-    };
+  'disabled': value,
+  'dragged': value,
+  'empty': value,
+  'error': value,
+  'focused': value,
+  'hovered': value,
+  'pressed': value,
+  'scrolledUnder': value,
+  'selected': value,
+};

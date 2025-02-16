@@ -11,9 +11,7 @@ class OrdinalSortKeySchema {
         'https://api.flutter.dev/flutter/semantics/OrdinalSortKey-class.html',
     'title': 'OrdinalSortKey',
     'type': 'object',
-    'required': [
-      'order',
-    ],
+    'required': ['order'],
     'properties': {
       'name': SchemaHelper.stringSchema,
       'order': SchemaHelper.numberSchema,

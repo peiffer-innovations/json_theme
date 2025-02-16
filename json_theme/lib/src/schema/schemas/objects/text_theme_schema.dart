@@ -50,7 +50,7 @@ class TextThemeSchema {
           'subtitle1': SchemaHelper.objectSchema(TextStyleSchema.id),
           'subtitle2': SchemaHelper.objectSchema(TextStyleSchema.id),
         },
-      }
+      },
     ],
   };
 }

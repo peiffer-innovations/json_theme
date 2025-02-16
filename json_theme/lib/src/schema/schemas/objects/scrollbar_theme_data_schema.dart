@@ -19,15 +19,9 @@ class ScrollbarThemeDataSchema {
       'radius': SchemaHelper.objectSchema(RadiusSchema.id),
       'thickness': {
         'anyOf': [
-          {
-            'type': 'number',
-          },
-          {
-            'type': 'string',
-          },
-          {
-            r'$ref': WidgetStatePropertyDoubleSchema.id,
-          },
+          {'type': 'number'},
+          {'type': 'string'},
+          {r'$ref': WidgetStatePropertyDoubleSchema.id},
         ],
       },
       'thumbColor': SchemaHelper.objectSchema(

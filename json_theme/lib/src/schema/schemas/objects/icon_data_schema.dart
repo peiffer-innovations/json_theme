@@ -10,18 +10,13 @@ class IconDataSchema {
     r'$comment': 'https://api.flutter.dev/flutter/widgets/IconData-class.html',
     'title': 'IconData',
     'type': 'object',
-    'required': [
-      'codePoint',
-      'fontFamily',
-    ],
+    'required': ['codePoint', 'fontFamily'],
     'properties': {
       'codePoint': SchemaHelper.numberSchema,
       'fontFamily': SchemaHelper.stringSchema,
       'fontFamilyFallback': {
         'anyOf': [
-          {
-            'type': 'string',
-          },
+          {'type': 'string'},
           {
             'type': 'array',
             'items': {'type': 'string'},

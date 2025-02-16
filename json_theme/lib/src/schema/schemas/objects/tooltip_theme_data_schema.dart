@@ -14,6 +14,7 @@ class TooltipThemeDataSchema {
     'properties': {
       'enableFeedback': SchemaHelper.boolSchema,
       'excludeFromSemantics': SchemaHelper.boolSchema,
+      'exitDuration': SchemaHelper.numberSchema,
       'height': SchemaHelper.numberSchema,
       'margin': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),

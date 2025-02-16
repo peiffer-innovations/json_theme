@@ -24,6 +24,7 @@ class NavigationBarThemeDataSchema {
       'labelBehavior': SchemaHelper.objectSchema(
         NavigationDestinationLabelBehaviorSchema.id,
       ),
+      'labelPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'labelTextStyle': SchemaHelper.objectSchema(
         WidgetStatePropertyTextStyleSchema.id,
       ),

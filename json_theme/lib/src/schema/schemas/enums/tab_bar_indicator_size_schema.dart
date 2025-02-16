@@ -11,9 +11,6 @@ class TabBarIndicatorSizeSchema {
         'https://api.flutter.dev/flutter/material/TabBarIndicatorSize-class.html',
     'title': 'TabBarIndicatorSize',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'label',
-      'tab',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['label', 'tab']),
   };
 }

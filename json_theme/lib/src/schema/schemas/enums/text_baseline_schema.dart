@@ -11,9 +11,6 @@ class TextBaselineSchema {
         'https://api.flutter.dev/flutter/dart-ui/TextBaseline-class.html',
     'title': 'TextBaseline',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'alphabetic',
-      'ideographic',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['alphabetic', 'ideographic']),
   };
 }

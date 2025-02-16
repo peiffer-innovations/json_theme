@@ -11,25 +11,23 @@ class SystemUiOverlayStyleSchema {
         'https://api.flutter.dev/flutter/services/SystemUiOverlayStyle-class.html',
     'title': 'SystemUiOverlayStyle',
     'oneOf': [
-      ...SchemaHelper.enumSchema(
-        [
-          'dark',
-          'light',
-        ],
-      ),
+      ...SchemaHelper.enumSchema(['dark', 'light']),
       {
         'type': 'object',
         'properties': {
           'statusBarBrightness': SchemaHelper.objectSchema(BrightnessSchema.id),
           'statusBarColor': SchemaHelper.objectSchema(ColorSchema.id),
-          'statusBarIconBrightness':
-              SchemaHelper.objectSchema(BrightnessSchema.id),
+          'statusBarIconBrightness': SchemaHelper.objectSchema(
+            BrightnessSchema.id,
+          ),
           'systemNavigationBarColor': SchemaHelper.objectSchema(ColorSchema.id),
           'systemNavigationBarContrastEnforced': SchemaHelper.boolSchema,
-          'systemNavigationBarDividerColor':
-              SchemaHelper.objectSchema(ColorSchema.id),
-          'systemNavigationBarIconBrightness':
-              SchemaHelper.objectSchema(BrightnessSchema.id),
+          'systemNavigationBarDividerColor': SchemaHelper.objectSchema(
+            ColorSchema.id,
+          ),
+          'systemNavigationBarIconBrightness': SchemaHelper.objectSchema(
+            BrightnessSchema.id,
+          ),
           'systemStatusBarContrastEnforced': SchemaHelper.boolSchema,
         },
       },

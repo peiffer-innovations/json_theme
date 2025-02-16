@@ -14,54 +14,39 @@ class RadiusSchema {
       {
         'type': 'object',
         'additionalProperties': false,
-        'required': [
-          'radius',
-          'type',
-        ],
+        'required': ['radius', 'type'],
         'properties': {
           'radius': SchemaHelper.numberSchema,
           'type': {
             'type': 'string',
-            'enum': [
-              'circular',
-            ],
+            'enum': ['circular'],
           },
         },
       },
       {
         'type': 'object',
         'additionalProperties': false,
-        'required': [
-          'x',
-          'y',
-          'type',
-        ],
+        'required': ['x', 'y', 'type'],
         'properties': {
           'x': SchemaHelper.numberSchema,
           'y': SchemaHelper.numberSchema,
           'type': {
             'type': 'string',
-            'enum': [
-              'elliptical',
-            ],
+            'enum': ['elliptical'],
           },
         },
       },
       {
         'type': 'object',
         'additionalProperties': false,
-        'required': [
-          'type',
-        ],
+        'required': ['type'],
         'properties': {
           'type': {
             'type': 'string',
-            'enum': [
-              'zero',
-            ],
+            'enum': ['zero'],
           },
         },
-      }
+      },
     ],
   };
 }

@@ -11,9 +11,6 @@ class TextWidthBasisSchema {
         'https://api.flutter.dev/flutter/painting/TextWidthBasis-class.html',
     'title': 'TextWidthBasis',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'longestLine',
-      'parent',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['longestLine', 'parent']),
   };
 }

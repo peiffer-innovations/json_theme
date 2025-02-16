@@ -11,11 +11,6 @@ class ScrollbarOrientationSchema {
         'https://api.flutter.dev/flutter/widgets/ScrollbarOrientation.html',
     'type': 'string',
     'title': 'ScrollbarOrientation',
-    'oneOf': SchemaHelper.enumSchema([
-      'bottom',
-      'left',
-      'right',
-      'top',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['bottom', 'left', 'right', 'top']),
   };
 }

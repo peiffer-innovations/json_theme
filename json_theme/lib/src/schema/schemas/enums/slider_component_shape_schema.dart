@@ -11,9 +11,6 @@ class SliderComponentShapeSchema {
         'https://api.flutter.dev/flutter/material/SliderComponentShape-class.html',
     'type': 'string',
     'title': 'SliderComponentShape',
-    'oneOf': SchemaHelper.enumSchema([
-      'noOverlay',
-      'noThumb',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['noOverlay', 'noThumb']),
   };
 }

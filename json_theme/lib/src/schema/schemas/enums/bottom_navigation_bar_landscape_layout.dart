@@ -11,10 +11,6 @@ class BottomNavigationBarLandscapeLayoutSchema {
         'https://api.flutter.dev/flutter/material/BottomNavigationBarLandscapeLayout-class.html',
     'type': 'string',
     'title': 'BottomNavigationBarLandscapeLayout',
-    'oneOf': SchemaHelper.enumSchema([
-      'centered',
-      'linear',
-      'spread',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['centered', 'linear', 'spread']),
   };
 }

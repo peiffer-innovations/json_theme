@@ -9,57 +9,39 @@ class BorderRadiusGeometrySchema {
     r'$id': id,
     'title': 'BorderRadiusGeometry',
     'oneOf': [
-      {
-        'type': 'string',
-      },
-      {
-        'type': 'number',
-      },
+      {'type': 'string'},
+      {'type': 'number'},
       {
         'type': 'object',
         'oneOf': [
           {
-            'required': [
-              'radius',
-              'type',
-            ],
+            'required': ['radius', 'type'],
             'properties': {
               'radius': SchemaHelper.objectSchema(RadiusSchema.id),
               'type': {
                 'type': 'string',
-                'enum': [
-                  'all',
-                ]
+                'enum': ['all'],
               },
             },
           },
           {
-            'required': [
-              'radius',
-              'type',
-            ],
+            'required': ['radius', 'type'],
             'properties': {
               'radius': SchemaHelper.numberSchema,
               'type': {
                 'type': 'string',
-                'enum': [
-                  'circular',
-                ],
+                'enum': ['circular'],
               },
             },
           },
           {
-            'required': [
-              'type',
-            ],
+            'required': ['type'],
             'properties': {
               'left': SchemaHelper.objectSchema(RadiusSchema.id),
               'right': SchemaHelper.objectSchema(RadiusSchema.id),
               'type': {
                 'type': 'string',
-                'enum': [
-                  'horizontal',
-                ],
+                'enum': ['horizontal'],
               },
             },
           },
@@ -72,24 +54,18 @@ class BorderRadiusGeometrySchema {
               'topRight': SchemaHelper.objectSchema(RadiusSchema.id),
               'type': {
                 'type': 'string',
-                'enum': [
-                  'only',
-                ]
+                'enum': ['only'],
               },
             },
           },
           {
-            'required': [
-              'type',
-            ],
+            'required': ['type'],
             'properties': {
               'bottom': SchemaHelper.objectSchema(RadiusSchema.id),
               'top': SchemaHelper.objectSchema(RadiusSchema.id),
               'type': {
                 'type': 'string',
-                'enum': [
-                  'vertical',
-                ]
+                'enum': ['vertical'],
               },
             },
           },

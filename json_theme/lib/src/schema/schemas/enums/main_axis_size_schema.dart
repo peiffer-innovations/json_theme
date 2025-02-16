@@ -11,9 +11,6 @@ class MainAxisSizeSchema {
         'https://api.flutter.dev/flutter/rendering/MainAxisSize-class.html',
     'title': 'MainAxisSize',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'max',
-      'min',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['max', 'min']),
   };
 }

@@ -11,9 +11,6 @@ class MaterialTapTargetSizeSchema {
         'https://api.flutter.dev/flutter/material/MaterialTapTargetSize-class.html',
     'title': 'MaterialTapTargetSize',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'padded',
-      'shrinkWrap',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['padded', 'shrinkWrap']),
   };
 }

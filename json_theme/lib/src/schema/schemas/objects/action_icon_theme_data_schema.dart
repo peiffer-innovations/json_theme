@@ -16,7 +16,7 @@ class ActionIconThemeDataSchema {
       'backButtonIconBuilder': SchemaHelper.stringSchema,
       'closeButtonIconBuilder': SchemaHelper.stringSchema,
       'drawerButtonIconBuilder': SchemaHelper.stringSchema,
-      'endDrawerButtonIconBuilder': SchemaHelper.stringSchema
+      'endDrawerButtonIconBuilder': SchemaHelper.stringSchema,
     },
   };
 }

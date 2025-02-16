@@ -21,8 +21,7 @@ class MapWidgetStateProperty<R extends Object, T extends R?>
   /// Copied from [WidgetStateProperty].
   static WidgetStateProperty<T> resolveWith<R extends Object, T extends R?>(
     WidgetPropertyResolver<T> callback,
-  ) =>
-      MapWidgetStateProperty<R, T>(callback);
+  ) => MapWidgetStateProperty<R, T>(callback);
 
   @override
   T resolve(Set<WidgetState> states) => _resolve(states);

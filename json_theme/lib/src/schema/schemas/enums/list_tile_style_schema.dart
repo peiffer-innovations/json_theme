@@ -11,9 +11,6 @@ class ListTileStyleSchema {
         'https://api.flutter.dev/flutter/material/ListTileStyle-class.html',
     'title': 'ListTileStyle',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'list',
-      'drawer',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['list', 'drawer']),
   };
 }

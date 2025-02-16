@@ -19,8 +19,9 @@ class SnackBarThemeDataSchema {
       'behavior': SchemaHelper.objectSchema(SnackBarBehaviorSchema.id),
       'closeIconColor': SchemaHelper.objectSchema(ColorSchema.id),
       'contentTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
-      'disabledActionBackgroundColor':
-          SchemaHelper.objectSchema(ColorSchema.id),
+      'disabledActionBackgroundColor': SchemaHelper.objectSchema(
+        ColorSchema.id,
+      ),
       'disabledActionTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dismissDirection': SchemaHelper.objectSchema(DismissDirectionSchema.id),
       'elevation': SchemaHelper.numberSchema,

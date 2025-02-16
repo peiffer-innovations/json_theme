@@ -12,19 +12,11 @@ class RectSchema {
     'type': 'object',
     'oneOf': [
       {
-        'required': [
-          'center',
-          'height',
-          'width',
-          'type',
-        ],
+        'required': ['center', 'height', 'width', 'type'],
         'properties': {
           'center': {
             'type': 'object',
-            'required': [
-              'dx',
-              'dy',
-            ],
+            'required': ['dx', 'dy'],
             'additionaProperties': false,
             'properties': {
               'dx': SchemaHelper.numberSchema,
@@ -35,26 +27,17 @@ class RectSchema {
           'width': SchemaHelper.numberSchema,
           'type': {
             'type': 'string',
-            'enum': [
-              'center',
-            ],
+            'enum': ['center'],
           },
         },
       },
       {
-        'required': [
-          'center',
-          'radius',
-          'type',
-        ],
+        'required': ['center', 'radius', 'type'],
         'properties': {
           'center': {
             'type': 'object',
             'additionalProperties': false,
-            'required': [
-              'dx',
-              'dy',
-            ],
+            'required': ['dx', 'dy'],
             'properties': {
               'dx': SchemaHelper.numberSchema,
               'dy': SchemaHelper.numberSchema,
@@ -62,33 +45,21 @@ class RectSchema {
           },
           'type': {
             'type': 'string',
-            'enum': [
-              'circle',
-            ],
+            'enum': ['circle'],
           },
         },
       },
       {
-        'required': [
-          'type',
-        ],
+        'required': ['type'],
         'properties': {
           'type': {
             'type': 'string',
-            'enum': [
-              'largest',
-            ],
+            'enum': ['largest'],
           },
         },
       },
       {
-        'required': [
-          'bottom',
-          'left',
-          'right',
-          'top',
-          'type',
-        ],
+        'required': ['bottom', 'left', 'right', 'top', 'type'],
         'properties': {
           'bottom': SchemaHelper.numberSchema,
           'left': SchemaHelper.numberSchema,
@@ -96,20 +67,12 @@ class RectSchema {
           'top': SchemaHelper.numberSchema,
           'type': {
             'type': 'string',
-            'enum': [
-              'ltrb',
-            ],
+            'enum': ['ltrb'],
           },
         },
       },
       {
-        'required': [
-          'height',
-          'left',
-          'top',
-          'width',
-          'type',
-        ],
+        'required': ['height', 'left', 'top', 'width', 'type'],
         'properties': {
           'height': SchemaHelper.numberSchema,
           'left': SchemaHelper.numberSchema,
@@ -117,9 +80,7 @@ class RectSchema {
           'width': SchemaHelper.numberSchema,
           'type': {
             'type': 'string',
-            'enum': [
-              'ltwh',
-            ],
+            'enum': ['ltwh'],
           },
         },
       },
@@ -129,10 +90,7 @@ class RectSchema {
           'a': {
             'type': 'object',
             'additionalProperties': false,
-            'required': [
-              'dx',
-              'dy',
-            ],
+            'required': ['dx', 'dy'],
             'properties': {
               'dx': SchemaHelper.numberSchema,
               'dy': SchemaHelper.numberSchema,
@@ -141,10 +99,7 @@ class RectSchema {
           'b': {
             'type': 'object',
             'additionalProperties': false,
-            'required': [
-              'dx',
-              'dy',
-            ],
+            'required': ['dx', 'dy'],
             'properties': {
               'dx': SchemaHelper.numberSchema,
               'dy': SchemaHelper.numberSchema,
@@ -152,22 +107,16 @@ class RectSchema {
           },
           'type': {
             'type': 'string',
-            'enum': [
-              'points',
-            ],
+            'enum': ['points'],
           },
         },
       },
       {
-        'required': [
-          'type',
-        ],
+        'required': ['type'],
         'properties': {
           'type': {
             'type': 'string',
-            'enum': [
-              'zero',
-            ],
+            'enum': ['zero'],
           },
         },
       },

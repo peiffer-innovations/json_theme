@@ -11,9 +11,6 @@ class PopupMenuPositionSchema {
         'https://api.flutter.dev/flutter/material/PopupMenuPosition.html',
     'title': 'PopupMenuPosition',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'over',
-      'under',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['over', 'under']),
   };
 }

@@ -26,16 +26,15 @@ class SearchBarThemeDataSchema {
         WidgetStatePropertyColorSchema.id,
       ),
       'padding': SchemaHelper.objectSchema(
-          WidgetStatePropertyEdgeInsetsGeometrySchema.id),
+        WidgetStatePropertyEdgeInsetsGeometrySchema.id,
+      ),
       'shadowColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
       'shape': SchemaHelper.objectSchema(
         WidgetStatePropertyOutlinedBorderSchema.id,
       ),
-      'side': SchemaHelper.objectSchema(
-        WidgetStatePropertyBorderSideSchema.id,
-      ),
+      'side': SchemaHelper.objectSchema(WidgetStatePropertyBorderSideSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
@@ -45,6 +44,6 @@ class SearchBarThemeDataSchema {
       'textStyle': SchemaHelper.objectSchema(
         WidgetStatePropertyTextStyleSchema.id,
       ),
-    }
+    },
   };
 }

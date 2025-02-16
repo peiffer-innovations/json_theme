@@ -11,8 +11,6 @@ class OutlinedButtonThemeDataSchema {
         'https://api.flutter.dev/flutter/material/OutlinedButtonThemeData-class.html',
     'title': 'OutlinedButtonThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(ButtonStyleSchema.id)},
   };
 }

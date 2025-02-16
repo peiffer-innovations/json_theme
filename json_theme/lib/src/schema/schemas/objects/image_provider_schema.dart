@@ -12,9 +12,7 @@ class ImageProviderSchema {
     'title': 'ImageProvider',
     'type': 'object',
     'additionalProperties': false,
-    'required': [
-      'type',
-    ],
+    'required': ['type'],
     'properties': {
       'assetName': SchemaHelper.stringSchema,
       'bytes': SchemaHelper.stringSchema,
@@ -24,11 +22,7 @@ class ImageProviderSchema {
       'url': SchemaHelper.stringSchema,
       'type': {
         'type': 'string',
-        'enum': [
-          'asset',
-          'memory',
-          'network',
-        ],
+        'enum': ['asset', 'memory', 'network'],
       },
     },
   };

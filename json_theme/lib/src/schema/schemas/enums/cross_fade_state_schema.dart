@@ -11,9 +11,6 @@ class CrossFadeStateSchema {
         'https://api.flutter.dev/flutter/widgets/CrossFadeState-class.html',
     'type': 'string',
     'title': 'CrossFadeState',
-    'oneOf': SchemaHelper.enumSchema([
-      'showFirst',
-      'showSecond',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['showFirst', 'showSecond']),
   };
 }

@@ -11,9 +11,6 @@ class ScrollViewKeyboardDismissBehaviorSchema {
         'https://api.flutter.dev/flutter/widgets/ScrollViewKeyboardDismissBehavior-class.html',
     'type': 'string',
     'title': 'ScrollViewKeyboardDismissBehavior',
-    'oneOf': SchemaHelper.enumSchema([
-      'manual',
-      'onDrag',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['manual', 'onDrag']),
   };
 }

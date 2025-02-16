@@ -9,9 +9,6 @@ class TabIndicatorAnimationSchema {
     r'$id': id,
     'type': 'string',
     'title': 'TabIndicatorAnimationSchema',
-    'oneOf': SchemaHelper.enumSchema([
-      'elastic',
-      'linear',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['elastic', 'linear']),
   };
 }

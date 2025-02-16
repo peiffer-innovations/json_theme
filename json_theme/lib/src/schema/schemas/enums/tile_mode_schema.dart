@@ -10,10 +10,6 @@ class TileModeSchema {
     r'$comment': 'https://api.flutter.dev/flutter/dart-ui/TileMode-class.html',
     'title': 'TileMode',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'clamp',
-      'mirror',
-      'repeated',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['clamp', 'mirror', 'repeated']),
   };
 }

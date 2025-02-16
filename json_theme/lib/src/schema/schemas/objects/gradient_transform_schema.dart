@@ -11,8 +11,6 @@ class GradientTransformSchema {
         'https://api.flutter.dev/flutter/painting/GradientTransform-class.html',
     'title': 'GradientTransform',
     'type': 'object',
-    'properties': {
-      'radians': SchemaHelper.numberSchema,
-    },
+    'properties': {'radians': SchemaHelper.numberSchema},
   };
 }

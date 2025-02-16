@@ -11,9 +11,6 @@ class SmartQuotesTypeSchema {
         'https://api.flutter.dev/flutter/services/SmartQuotesType-class.html',
     'title': 'SmartQuotesType',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'disabled',
-      'enabled',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['disabled', 'enabled']),
   };
 }

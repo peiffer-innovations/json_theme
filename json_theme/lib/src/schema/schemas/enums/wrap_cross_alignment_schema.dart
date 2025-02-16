@@ -11,10 +11,6 @@ class WrapCrossAlignmentSchema {
         'https://api.flutter.dev/flutter/rendering/WrapCrossAlignment-class.html',
     'title': 'WrapCrossAlignment',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'center',
-      'end',
-      'start',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['center', 'end', 'start']),
   };
 }

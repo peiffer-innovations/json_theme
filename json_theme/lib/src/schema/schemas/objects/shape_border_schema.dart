@@ -16,12 +16,7 @@ class ShapeBorderSchema {
       'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
       'type': {
         'type': 'string',
-        'enum': [
-          'circle',
-          'rectangle',
-          'rounded',
-          'stadium',
-        ],
+        'enum': ['circle', 'rectangle', 'rounded', 'stadium'],
       },
     },
   };

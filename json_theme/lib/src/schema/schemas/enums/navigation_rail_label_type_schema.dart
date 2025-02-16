@@ -11,10 +11,6 @@ class NavigationRailLabelTypeSchema {
         'https://api.flutter.dev/flutter/material/NavigationRailLabelType-class.html',
     'title': 'NavigationRailLabelType',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'all',
-      'none',
-      'selected',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['all', 'none', 'selected']),
   };
 }

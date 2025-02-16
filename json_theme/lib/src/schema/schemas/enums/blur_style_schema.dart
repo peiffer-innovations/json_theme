@@ -11,11 +11,6 @@ class BlurStyleSchema {
         'https://api.flutter.dev/flutter/painting/BoxShadow/blurStyle.html',
     'type': 'string',
     'title': 'BlurStyle',
-    'oneOf': SchemaHelper.enumSchema([
-      'inner',
-      'normal',
-      'outer',
-      'solid',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['inner', 'normal', 'outer', 'solid']),
   };
 }

@@ -11,11 +11,6 @@ class TextOverflowSchema {
         'https://api.flutter.dev/flutter/rendering/TextOverflow-class.html',
     'title': 'TextOverflow',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'clip',
-      'ellipsis',
-      'fade',
-      'visible',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['clip', 'ellipsis', 'fade', 'visible']),
   };
 }

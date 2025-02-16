@@ -11,10 +11,6 @@ class HitTestBehaviorSchema {
         'https://api.flutter.dev/flutter/rendering/HitTestBehavior-class.html',
     'type': 'string',
     'title': 'HitTestBehavior',
-    'oneOf': SchemaHelper.enumSchema([
-      'deferToChild',
-      'opaque',
-      'translucent',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['deferToChild', 'opaque', 'translucent']),
   };
 }

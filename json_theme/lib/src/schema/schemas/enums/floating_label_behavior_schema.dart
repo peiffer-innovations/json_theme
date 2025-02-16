@@ -11,10 +11,6 @@ class FloatingLabelBehaviorSchema {
         'https://api.flutter.dev/flutter/material/FloatingLabelBehavior-class.html',
     'type': 'string',
     'title': 'FloatingLabelBehavior',
-    'oneOf': SchemaHelper.enumSchema([
-      'always',
-      'auto',
-      'never',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['always', 'auto', 'never']),
   };
 }

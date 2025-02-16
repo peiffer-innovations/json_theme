@@ -11,9 +11,6 @@ class BottomNavigationBarTypeSchema {
         'https://api.flutter.dev/flutter/material/BottomNavigationBarType-class.html',
     'type': 'string',
     'title': 'BottomNavigationBarType',
-    'oneOf': SchemaHelper.enumSchema([
-      'fixed',
-      'shifting',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['fixed', 'shifting']),
   };
 }

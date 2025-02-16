@@ -11,9 +11,6 @@ class SmartDashesTypeSchema {
         'https://api.flutter.dev/flutter/services/SmartDashesType-class.html',
     'title': 'SmartDashesType',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'disabled',
-      'enabled',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['disabled', 'enabled']),
   };
 }

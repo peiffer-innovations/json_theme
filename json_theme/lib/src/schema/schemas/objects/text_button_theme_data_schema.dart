@@ -11,8 +11,6 @@ class TextButtonThemeDataSchema {
         'https://api.flutter.dev/flutter/material/TextButtonThemeData-class.html',
     'title': 'TextButtonThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(ButtonStyleSchema.id)},
   };
 }

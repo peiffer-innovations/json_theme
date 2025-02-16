@@ -21,8 +21,10 @@ class TextInputTypeSchema {
       'phone',
       'streetAddress',
       'text',
+      'twitter',
       'url',
       'visiblePassword',
+      'webSearch',
     ]),
   };
 }

@@ -11,9 +11,6 @@ class RangeSliderValueIndicatorShapeSchema {
         'https://api.flutter.dev/flutter/material/RangeSliderValueIndicatorShape-class.html',
     'title': 'RangeSliderValueIndicatorShape',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'paddle',
-      'rectangular',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['paddle', 'rectangular']),
   };
 }

@@ -16,13 +16,7 @@ class OutlinedBorderSchema {
       'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
       'type': {
         'type': 'string',
-        'enum': [
-          'beveled',
-          'circle',
-          'rectangle',
-          'rounded',
-          'stadium',
-        ],
+        'enum': ['beveled', 'circle', 'rectangle', 'rounded', 'stadium'],
       },
     },
   };

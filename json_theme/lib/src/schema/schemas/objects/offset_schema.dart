@@ -10,10 +10,7 @@ class OffsetSchema {
     r'$comment': 'https://api.flutter.dev/flutter/dart-ui/Offset-class.html',
     'title': 'Offset',
     'type': 'object',
-    'required': [
-      'dx',
-      'dy',
-    ],
+    'required': ['dx', 'dy'],
     'properties': {
       'dx': SchemaHelper.numberSchema,
       'dy': SchemaHelper.numberSchema,

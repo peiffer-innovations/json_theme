@@ -11,11 +11,7 @@ class SemanticsTagSchema {
         'https://api.flutter.dev/flutter/semantics/SemanticsTag-class.html',
     'title': 'SemanticsTag',
     'type': 'object',
-    'required': [
-      'name',
-    ],
-    'properties': {
-      'name': SchemaHelper.stringSchema,
-    },
+    'required': ['name'],
+    'properties': {'name': SchemaHelper.stringSchema},
   };
 }

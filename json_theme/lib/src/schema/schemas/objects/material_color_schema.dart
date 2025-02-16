@@ -11,10 +11,7 @@ class MaterialColorSchema {
         'https://api.flutter.dev/flutter/material/MaterialColor-class.html',
     'title': 'MaterialColor',
     'type': 'object',
-    'required': [
-      'primary',
-      'swatches',
-    ],
+    'required': ['primary', 'swatches'],
     'properties': {
       'primary': SchemaHelper.objectSchema(ColorSchema.id),
       'swatches': {

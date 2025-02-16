@@ -10,9 +10,6 @@ class FlexFitSchema {
     r'$comment': 'https://api.flutter.dev/flutter/rendering/FlexFit-class.html',
     'type': 'string',
     'title': 'FlexFit',
-    'oneOf': SchemaHelper.enumSchema([
-      'loose',
-      'tight',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['loose', 'tight']),
   };
 }

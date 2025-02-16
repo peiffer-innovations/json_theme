@@ -16,7 +16,7 @@ class DropdownMenuThemeDataSchema {
         InputDecorationThemeSchema.id,
       ),
       'menuStyle': SchemaHelper.objectSchema(MenuStyleSchema.id),
-      'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id)
+      'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
     },
   };
 }

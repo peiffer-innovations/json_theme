@@ -11,19 +11,14 @@ class InputBorderSchema {
         'https://api.flutter.dev/flutter/material/InputBorder-class.html',
     'title': 'InputBorder',
     'type': 'object',
-    'required': [
-      'type',
-    ],
+    'required': ['type'],
     'properties': {
       'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
       'borderSide': SchemaHelper.objectSchema(BorderSideSchema.id),
       'gapPadding': SchemaHelper.numberSchema,
       'type': {
         'type': 'string',
-        'enum': [
-          'outline',
-          'underline',
-        ],
+        'enum': ['outline', 'underline'],
       },
     },
   };

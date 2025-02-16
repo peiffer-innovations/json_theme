@@ -9,19 +9,13 @@ class EdgeInsetsDirectionalSchema {
     r'$id': id,
     'title': 'EdgeInsetsDirectional',
     'oneOf': [
-      {
-        'type': 'string',
-      },
-      {
-        'type': 'number',
-      },
+      {'type': 'string'},
+      {'type': 'number'},
       {
         'type': 'array',
         'array': [
-          {
-            'type': 'number',
-          },
-        ]
+          {'type': 'number'},
+        ],
       },
       {
         'type': 'object',

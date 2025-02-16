@@ -11,8 +11,6 @@ class SliderTickMarkShapeSchema {
         'https://api.flutter.dev/flutter/material/SliderTickMarkShape-class.html',
     'title': 'SliderTickMarkShape',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'noTickMark',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['noTickMark']),
   };
 }

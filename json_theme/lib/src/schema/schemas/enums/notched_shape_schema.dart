@@ -11,8 +11,6 @@ class NotchedShapeSchema {
         'https://api.flutter.dev/flutter/painting/NotchedShape-class.html',
     'title': 'NotchedShape',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'circular',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['circular']),
   };
 }

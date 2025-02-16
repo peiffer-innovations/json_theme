@@ -26,6 +26,7 @@ class TabBarThemeSchema {
       'overlayColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
+      'spashBorderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
       'splashFactory': SchemaHelper.objectSchema(
         InteractiveInkFeatureFactorySchema.id,
       ),

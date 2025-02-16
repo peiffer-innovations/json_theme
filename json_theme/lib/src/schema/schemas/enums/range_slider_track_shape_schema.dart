@@ -11,9 +11,6 @@ class RangeSliderTrackShapeSchema {
         'https://api.flutter.dev/flutter/material/RangeSliderTrackShape-class.html',
     'title': 'RangeSliderTrackShape',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'rectangular',
-      'rounded',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['rectangular', 'rounded']),
   };
 }

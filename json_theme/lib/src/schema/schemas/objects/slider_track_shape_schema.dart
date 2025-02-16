@@ -9,17 +9,12 @@ class SliderTrackShapeSchema {
         'https://api.flutter.dev/flutter/material/SliderTrackShape-class.html',
     'title': 'SliderTrackShape',
     'type': 'object',
-    'required': [
-      'type',
-    ],
+    'required': ['type'],
     'properties': {
       'type': {
         'type': 'string',
-        'enum': [
-          'rectangular',
-          'rounded',
-        ]
-      }
+        'enum': ['rectangular', 'rounded'],
+      },
     },
   };
 }

@@ -11,8 +11,6 @@ class MenuThemeDataSchema {
         'https://api.flutter.dev/flutter/material/MenuThemeData-class.html',
     'title': 'MenuThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(MenuStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(MenuStyleSchema.id)},
   };
 }

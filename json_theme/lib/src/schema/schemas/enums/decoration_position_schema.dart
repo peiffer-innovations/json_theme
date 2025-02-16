@@ -11,9 +11,6 @@ class DecorationPositionSchema {
         'https://api.flutter.dev/flutter/rendering/DecorationPosition-class.html',
     'type': 'string',
     'title': 'DecorationPosition',
-    'oneOf': SchemaHelper.enumSchema([
-      'background',
-      'foreground',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['background', 'foreground']),
   };
 }

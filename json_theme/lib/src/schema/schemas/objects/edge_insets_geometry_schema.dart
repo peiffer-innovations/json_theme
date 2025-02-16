@@ -11,12 +11,8 @@ class EdgeInsetsGeometrySchema {
         'https://api.flutter.dev/flutter/painting/EdgeInsetsGeometry-class.html',
     'title': 'EdgeInsetsGeometry',
     'anyOf': [
-      {
-        r'$ref': EdgeInsetsSchema.id,
-      },
-      {
-        r'$ref': EdgeInsetsDirectionalSchema.id,
-      },
+      {r'$ref': EdgeInsetsSchema.id},
+      {r'$ref': EdgeInsetsDirectionalSchema.id},
     ],
   };
 }

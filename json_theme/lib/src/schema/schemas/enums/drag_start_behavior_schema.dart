@@ -11,9 +11,6 @@ class DragStartBehaviorSchema {
         'https://api.flutter.dev/flutter/gestures/DragStartBehavior-class.html',
     'type': 'string',
     'title': 'DragStartBehavior',
-    'oneOf': SchemaHelper.enumSchema([
-      'down',
-      'start',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['down', 'start']),
   };
 }

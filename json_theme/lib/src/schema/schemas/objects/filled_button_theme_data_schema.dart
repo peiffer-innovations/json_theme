@@ -11,8 +11,6 @@ class FilledButtonThemeDataSchema {
         'https://api.flutter.dev/flutter/material/FilledButtonThemeData-class.html',
     'title': 'FilledButtonThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(ButtonStyleSchema.id)},
   };
 }

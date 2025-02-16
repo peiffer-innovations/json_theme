@@ -11,9 +11,6 @@ class TextLeadingDistributionSchema {
         'https://api.flutter.dev/flutter/painting/TextLeadingDistribution-class.html',
     'type': 'string',
     'title': 'TextLeadingDistribution',
-    'oneOf': SchemaHelper.enumSchema([
-      'even',
-      'proportional',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['even', 'proportional']),
   };
 }

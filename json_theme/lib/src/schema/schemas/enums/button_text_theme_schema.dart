@@ -11,10 +11,6 @@ class ButtonTextThemeSchema {
         'https://api.flutter.dev/flutter/material/ButtonTextTheme-class.html',
     'type': 'string',
     'title': 'ButtonTextTheme',
-    'oneOf': SchemaHelper.enumSchema([
-      'accent',
-      'normal',
-      'primary',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['accent', 'normal', 'primary']),
   };
 }

@@ -14,22 +14,26 @@ class DataTableThemeDataSchema {
     'properties': {
       'checkboxHorizontalMargin': SchemaHelper.numberSchema,
       'columnSpacing': SchemaHelper.numberSchema,
-      'dataRowCursor':
-          SchemaHelper.objectSchema(WidgetStatePropertyMouseCursorSchema.id),
-      'dataRowColor':
-          SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
+      'dataRowCursor': SchemaHelper.objectSchema(
+        WidgetStatePropertyMouseCursorSchema.id,
+      ),
+      'dataRowColor': SchemaHelper.objectSchema(
+        WidgetStatePropertyColorSchema.id,
+      ),
       'dataRowMaxHeight': SchemaHelper.numberSchema,
       'dataRowMinHeight': SchemaHelper.numberSchema,
       'dataTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
       'dividerThickness': SchemaHelper.numberSchema,
-      'headingCellCursor':
-          SchemaHelper.objectSchema(WidgetStatePropertyMouseCursorSchema.id),
+      'headingCellCursor': SchemaHelper.objectSchema(
+        WidgetStatePropertyMouseCursorSchema.id,
+      ),
       'headingRowAlignment': SchemaHelper.objectSchema(
         MainAxisAlignmentSchema.id,
       ),
-      'headingRowColor':
-          SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
+      'headingRowColor': SchemaHelper.objectSchema(
+        WidgetStatePropertyColorSchema.id,
+      ),
       'headingRowHeight': SchemaHelper.numberSchema,
       'headingTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'horizontalMargin': SchemaHelper.numberSchema,

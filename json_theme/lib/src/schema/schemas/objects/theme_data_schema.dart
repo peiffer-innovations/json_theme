@@ -70,9 +70,7 @@ class ThemeDataSchema {
       'fontFamily': SchemaHelper.stringSchema,
       'fontFamilyFallback': {
         'type': 'array',
-        'items': {
-          'type': 'string',
-        },
+        'items': {'type': 'string'},
       },
       'highlightColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hintColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -85,9 +83,7 @@ class ThemeDataSchema {
       'inputDecorationTheme': SchemaHelper.objectSchema(
         InputDecorationThemeSchema.id,
       ),
-      'listTileTheme': SchemaHelper.objectSchema(
-        ListTileThemeDataSchema.id,
-      ),
+      'listTileTheme': SchemaHelper.objectSchema(ListTileThemeDataSchema.id),
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),

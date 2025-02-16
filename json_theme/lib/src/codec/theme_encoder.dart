@@ -90,10 +90,7 @@ class ThemeEncoder {
           value.y == Alignment.topRight.y) {
         result = 'topRight';
       } else {
-        result = {
-          'x': value.x,
-          'y': value.y,
-        };
+        result = {'x': value.x, 'y': value.y};
       }
     }
 
@@ -187,9 +184,7 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to a [String].  Supported values are:
   /// * `noAnimation`
-  static String? encodeAnimationStyle(
-    AnimationStyle? value,
-  ) {
+  static String? encodeAnimationStyle(AnimationStyle? value) {
     String? result;
 
     if (value != null) {
@@ -206,6 +201,7 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "actionsIconTheme": "<IconThemeData>",
+  ///   "actionsPadding": "<EdgeInsetsGeometry>",
   ///   "backgroundColor": "<Color>",
   ///   "centerTitle": "<bool>",
   ///   "elevation": "<double>",
@@ -225,6 +221,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBrightness]
   ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeIconThemeData]
   ///  * [encodeSystemUiOverlayStyle]
   ///  * [encodeToolbarTextStyle]
@@ -234,6 +231,7 @@ class ThemeEncoder {
     if (value != null) {
       result = <String, dynamic>{
         'actionsIconTheme': encodeIconThemeData(value.actionsIconTheme),
+        'actionsPadding': encodeEdgeInsetsGeometry(value.actionsPadding),
         'backgroundColor': encodeColor(value.backgroundColor),
         'centerTitle': value.centerTitle,
         'elevation': value.elevation,
@@ -1130,8 +1128,9 @@ class ThemeEncoder {
         'buttonAlignedDropdown': value.buttonAlignedDropdown,
         'buttonHeight': value.buttonHeight,
         'buttonMinWidth': value.buttonMinWidth,
-        'buttonPadding':
-            encodeEdgeInsetsGeometry(value.buttonPadding as EdgeInsets?),
+        'buttonPadding': encodeEdgeInsetsGeometry(
+          value.buttonPadding as EdgeInsets?,
+        ),
         'buttonTextTheme': encodeButtonTextTheme(value.buttonTextTheme),
         'layoutBehavior': encodeButtonBarLayoutBehavior(value.layoutBehavior),
         'mainAxisSize': encodeMainAxisSize(value.mainAxisSize),
@@ -1153,6 +1152,7 @@ class ThemeEncoder {
   ///   "enableFeedback": "<bool>",
   ///   "fixedSize": "<WidgetStateProperty<double>>",
   ///   "foregroundColor": "<WidgetStateProperty<Color>>",
+  ///   "iconAlignment": "<IconAlignment>",
   ///   "iconColor": "<WidgetStateProperty<Color>>",
   ///   "iconSize": "<WidgetStateProperty<double>>",
   ///   "maximumSize": "<WidgetStateProperty<double>>",
@@ -1179,6 +1179,7 @@ class ThemeEncoder {
   ///  * [encodeBorderSide]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeIconAlignment]
   ///  * [encodeInteractiveInkSplashFactory]
   ///  * [encodeWidgetStatePropertyBorderSide]
   ///  * [encodeWidgetStatePropertyColor]
@@ -1194,9 +1195,7 @@ class ThemeEncoder {
   ///  * [encodeSize]
   ///  * [encodeTextStyle]
   ///  * [encodeVisualDensity]
-  static Map<String, dynamic>? encodeButtonStyle(
-    ButtonStyle? value,
-  ) {
+  static Map<String, dynamic>? encodeButtonStyle(ButtonStyle? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1212,13 +1211,12 @@ class ThemeEncoder {
         'foregroundColor': encodeWidgetStatePropertyColor(
           value.foregroundColor,
         ),
+        'iconAlignment': encodeIconAlignment(value.iconAlignment),
         'iconColor': encodeWidgetStatePropertyColor(value.iconColor),
         'iconSize': encodeWidgetStatePropertyDouble(value.iconSize),
         'maximumSize': encodeWidgetStatePropertySize(value.maximumSize),
         'minimumSize': encodeWidgetStatePropertySize(value.minimumSize),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
         'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
         'padding': encodeWidgetStatePropertyEdgeInsetsGeometry(value.padding),
         'shadowColor': encodeWidgetStatePropertyColor(value.shadowColor),
@@ -1230,13 +1228,9 @@ class ThemeEncoder {
         'surfaceTintColor': encodeWidgetStatePropertyColor(
           value.surfaceTintColor,
         ),
-        'tapTargetSize': encodeMaterialTapTargetSize(
-          value.tapTargetSize,
-        ),
+        'tapTargetSize': encodeMaterialTapTargetSize(value.tapTargetSize),
         'textStyle': encodeWidgetStatePropertyTextStyle(value.textStyle),
-        'visualDensity': encodeVisualDensity(
-          value.visualDensity,
-        ),
+        'visualDensity': encodeVisualDensity(value.visualDensity),
       };
     }
 
@@ -1342,9 +1336,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = <String, dynamic>{
-        'data': encodeCardThemeData(value.data),
-      };
+      result = <String, dynamic>{'data': encodeCardThemeData(value.data)};
     }
 
     return _stripDynamicNull(result);
@@ -1416,21 +1408,13 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'checkColor': encodeWidgetStatePropertyColor(
-          value.checkColor,
-        ),
-        'fillColor': encodeWidgetStatePropertyColor(
-          value.fillColor,
-        ),
+        'checkColor': encodeWidgetStatePropertyColor(value.checkColor),
+        'fillColor': encodeWidgetStatePropertyColor(value.fillColor),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
-        'overlayColor': encodeWidgetStatePropertyColor(
-          value.overlayColor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
+        'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
         'shape': encodeOutlinedBorder(value.shape),
         'side': encodeBorderSide(value.side),
         'splashRadius': value.splashRadius,
@@ -1560,7 +1544,8 @@ class ThemeEncoder {
     String? result;
 
     if (value != null) {
-      final hex = (value.a * 255).toInt().toRadixString(16).padLeft(2, '0') +
+      final hex =
+          (value.a * 255).toInt().toRadixString(16).padLeft(2, '0') +
           (value.r * 255).toInt().toRadixString(16).padLeft(2, '0') +
           (value.g * 255).toInt().toRadixString(16).padLeft(2, '0') +
           (value.b * 255).toInt().toRadixString(16).padLeft(2, '0');
@@ -1676,7 +1661,7 @@ class ThemeEncoder {
         'tertiary': encodeColor(value.tertiary),
         'tertiaryContainer': encodeColor(value.tertiaryContainer),
         'tertiaryFixed': encodeColor(value.tertiaryFixed),
-        'tertiaryFixedDim': encodeColor(value.tertiaryFixedDim)
+        'tertiaryFixedDim': encodeColor(value.tertiaryFixedDim),
       };
     }
 
@@ -1997,17 +1982,13 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'checkboxHorizontalMargin': value.checkboxHorizontalMargin,
         'columnSpacing': value.columnSpacing,
-        'dataRowColor': encodeWidgetStatePropertyColor(
-          value.dataRowColor,
-        ),
+        'dataRowColor': encodeWidgetStatePropertyColor(value.dataRowColor),
         'dataRowCursor': encodeWidgetStatePropertyMouseCursor(
           value.dataRowCursor,
         ),
         'dataRowMaxHeight': value.dataRowMaxHeight,
         'dataRowMinHeight': value.dataRowMinHeight,
-        'dataTextStyle': encodeTextStyle(
-          value.dataTextStyle,
-        ),
+        'dataTextStyle': encodeTextStyle(value.dataTextStyle),
         'decoration': encodeBoxDecoration(
           value.decoration is! BoxDecoration
               ? null
@@ -2024,9 +2005,7 @@ class ThemeEncoder {
           value.headingRowColor,
         ),
         'headingRowHeight': value.headingRowHeight,
-        'headingTextStyle': encodeTextStyle(
-          value.headingTextStyle,
-        ),
+        'headingTextStyle': encodeTextStyle(value.headingTextStyle),
         'horizontalMargin': value.horizontalMargin,
       };
     }
@@ -2154,7 +2133,7 @@ class ThemeEncoder {
           'shape': encodeShapeBorder(data.shape),
           'surfaceTintColor': encodeColor(data.shadowColor),
           'titleTextStyle': encodeTextStyle(data.titleTextStyle),
-        }
+        },
       };
     }
 
@@ -2496,9 +2475,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = <String, dynamic>{
-        'style': encodeButtonStyle(value.style),
-      };
+      result = <String, dynamic>{'style': encodeButtonStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -2576,9 +2553,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'style': encodeButtonStyle(value.style),
-      };
+      result = {'style': encodeButtonStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -2640,15 +2615,22 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
+  ///  * `noAnimation`
   ///  * `scaling`
   static String? encodeFloatingActionButtonAnimator(
     FloatingActionButtonAnimator? value,
   ) {
-    assert(value == null || value == FloatingActionButtonAnimator.scaling);
+    assert(
+      value == null ||
+          value == FloatingActionButtonAnimator.noAnimation ||
+          value == FloatingActionButtonAnimator.scaling,
+    );
     String? result;
 
     if (value != null) {
-      if (value == FloatingActionButtonAnimator.scaling) {
+      if (value == FloatingActionButtonAnimator.noAnimation) {
+        result = 'noAnimation';
+      } else if (value == FloatingActionButtonAnimator.scaling) {
         result = 'scaling';
       }
     }
@@ -2786,9 +2768,7 @@ class ThemeEncoder {
         'largeSizeConstraints': encodeBoxConstraints(
           value.largeSizeConstraints,
         ),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
         'shape': encodeShapeBorder(value.shape),
         'sizeConstraints': encodeBoxConstraints(value.sizeConstraints),
         'smallSizeConstraints': encodeBoxConstraints(
@@ -2975,10 +2955,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'axis': value.axis,
-        'value': value.value,
-      };
+      result = {'axis': value.axis, 'value': value.value};
     }
 
     return _stripDynamicNull(result);
@@ -3040,10 +3017,12 @@ class ThemeEncoder {
   ///  * [encodeGradientTransform]
   ///  * [encodeTileMode]
   static Map<String, dynamic>? encodeGradient(Gradient? value) {
-    assert(value == null ||
-        value is LinearGradient ||
-        value is RadialGradient ||
-        value is SweepGradient);
+    assert(
+      value == null ||
+          value is LinearGradient ||
+          value is RadialGradient ||
+          value is SweepGradient,
+    );
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3109,14 +3088,13 @@ class ThemeEncoder {
   /// }
   /// ```
   static Map<String, dynamic>? encodeGradientTransform(
-      GradientTransform? value) {
+    GradientTransform? value,
+  ) {
     assert(value == null || value is GradientRotation);
     Map<String, dynamic>? result;
 
     if (value != null && value is GradientRotation) {
-      result = {
-        'radians': value.radians,
-      };
+      result = {'radians': value.radians};
     }
 
     return _stripDynamicNull(result);
@@ -3190,6 +3168,28 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `end`
+  ///  * `start`
+  static String? encodeIconAlignment(IconAlignment? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case IconAlignment.end:
+          result = 'end';
+          break;
+
+        case IconAlignment.start:
+          result = 'start';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// encodes the given [value] to an JSON map
   ///
   /// ```json
@@ -3206,9 +3206,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'style': encodeButtonStyle(value.style),
-      };
+      result = {'style': encodeButtonStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -3322,7 +3320,8 @@ class ThemeEncoder {
 
     if (value != null) {
       assert(
-          value is AssetImage || value is MemoryImage || value is NetworkImage);
+        value is AssetImage || value is MemoryImage || value is NetworkImage,
+      );
       if (value is AssetImage) {
         result = <String, dynamic>{
           'assetName': value.assetName,
@@ -3406,9 +3405,11 @@ class ThemeEncoder {
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
   static Map<String, dynamic>? encodeInputBorder(InputBorder? value) {
-    assert(value == null ||
-        value is OutlineInputBorder ||
-        value is UnderlineInputBorder);
+    assert(
+      value == null ||
+          value is OutlineInputBorder ||
+          value is UnderlineInputBorder,
+    );
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3492,8 +3493,9 @@ class ThemeEncoder {
         'alignLabelWithHint': value.alignLabelWithHint,
         'border': encodeInputBorder(value.border),
         'constraints': encodeBoxConstraints(value.constraints),
-        'contentPadding':
-            encodeEdgeInsetsGeometry(value.contentPadding as EdgeInsets?),
+        'contentPadding': encodeEdgeInsetsGeometry(
+          value.contentPadding as EdgeInsets?,
+        ),
         'counterStyle': encodeTextStyle(value.counterStyle),
         'disabledBorder': encodeInputBorder(value.disabledBorder),
         'enabledBorder': encodeInputBorder(value.enabledBorder),
@@ -3552,10 +3554,12 @@ class ThemeEncoder {
     final rippleType = InkRipple.splashFactory.runtimeType;
     final sparkleType = InkSparkle.splashFactory.runtimeType;
 
-    assert(value == null ||
-        value.runtimeType == splashType ||
-        value.runtimeType == rippleType ||
-        value.runtimeType == sparkleType);
+    assert(
+      value == null ||
+          value.runtimeType == splashType ||
+          value.runtimeType == rippleType ||
+          value.runtimeType == sparkleType,
+    );
     String? result;
 
     if (value != null) {
@@ -3679,7 +3683,8 @@ class ThemeEncoder {
   /// }
   /// ```
   static Map<String, dynamic>? encodeListTileThemeData(
-      ListTileThemeData? value) {
+    ListTileThemeData? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3698,9 +3703,7 @@ class ThemeEncoder {
         'minLeadingWidth': value.minLeadingWidth,
         'minTileHeight': value.minTileHeight,
         'minVerticalPadding': value.minVerticalPadding,
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
         'selectedColor': encodeColor(value.selectedColor),
         'selectedTileColor': encodeColor(value.selectedTileColor),
         'shape': encodeShapeBorder(value.shape),
@@ -4026,11 +4029,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'style': encodeMenuStyle(
-          value.style,
-        ),
-      };
+      result = {'style': encodeMenuStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -4052,9 +4051,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'style': encodeButtonStyle(value.style),
-      };
+      result = {'style': encodeButtonStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -4101,9 +4098,7 @@ class ThemeEncoder {
         'fixedSize': encodeWidgetStatePropertySize(value.fixedSize),
         'maximumSize': encodeWidgetStatePropertySize(value.maximumSize),
         'minimumSize': encodeWidgetStatePropertySize(value.minimumSize),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
         'padding': encodeWidgetStatePropertyEdgeInsetsGeometry(value.padding),
         'shadowColor': encodeWidgetStatePropertyColor(value.shadowColor),
         'shape': encodeWidgetStatePropertyOutlinedBorder(value.shape),
@@ -4132,9 +4127,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'style': encodeMenuStyle(value.style),
-      };
+      result = {'style': encodeMenuStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -4187,203 +4180,85 @@ class ThemeEncoder {
 
     if (value != null) {
       if (value == MouseCursor.defer) {
-        result = {
-          'type': 'defer',
-        };
+        result = {'type': 'defer'};
       } else if (value == MouseCursor.uncontrolled) {
-        result = {
-          'type': 'uncontrolled',
-        };
+        result = {'type': 'uncontrolled'};
       } else if (WidgetStateMouseCursor.clickable == value) {
-        result = {
-          'cursor': 'clickable',
-          'type': 'material',
-        };
+        result = {'cursor': 'clickable', 'type': 'material'};
       } else if (WidgetStateMouseCursor.textable == value) {
-        result = {
-          'cursor': 'textable',
-          'type': 'material',
-        };
+        result = {'cursor': 'textable', 'type': 'material'};
       } else if (SystemMouseCursors.alias == value) {
-        result = {
-          'cursor': 'alias',
-          'type': 'system',
-        };
+        result = {'cursor': 'alias', 'type': 'system'};
       } else if (SystemMouseCursors.allScroll == value) {
-        result = {
-          'cursor': 'allScroll',
-          'type': 'system',
-        };
+        result = {'cursor': 'allScroll', 'type': 'system'};
       } else if (SystemMouseCursors.basic == value) {
-        result = {
-          'cursor': 'basic',
-          'type': 'system',
-        };
+        result = {'cursor': 'basic', 'type': 'system'};
       } else if (SystemMouseCursors.cell == value) {
-        result = {
-          'cursor': 'cell',
-          'type': 'system',
-        };
+        result = {'cursor': 'cell', 'type': 'system'};
       } else if (SystemMouseCursors.click == value) {
-        result = {
-          'cursor': 'click',
-          'type': 'system',
-        };
+        result = {'cursor': 'click', 'type': 'system'};
       } else if (SystemMouseCursors.contextMenu == value) {
-        result = {
-          'cursor': 'contextMenu',
-          'type': 'system',
-        };
+        result = {'cursor': 'contextMenu', 'type': 'system'};
       } else if (SystemMouseCursors.copy == value) {
-        result = {
-          'cursor': 'copy',
-          'type': 'system',
-        };
+        result = {'cursor': 'copy', 'type': 'system'};
       } else if (SystemMouseCursors.disappearing == value) {
-        result = {
-          'cursor': 'disappearing',
-          'type': 'system',
-        };
+        result = {'cursor': 'disappearing', 'type': 'system'};
       } else if (SystemMouseCursors.forbidden == value) {
-        result = {
-          'cursor': 'forbidden',
-          'type': 'system',
-        };
+        result = {'cursor': 'forbidden', 'type': 'system'};
       } else if (SystemMouseCursors.grab == value) {
-        result = {
-          'cursor': 'grab',
-          'type': 'system',
-        };
+        result = {'cursor': 'grab', 'type': 'system'};
       } else if (SystemMouseCursors.grabbing == value) {
-        result = {
-          'cursor': 'grabbing',
-          'type': 'system',
-        };
+        result = {'cursor': 'grabbing', 'type': 'system'};
       } else if (SystemMouseCursors.help == value) {
-        result = {
-          'cursor': 'help',
-          'type': 'system',
-        };
+        result = {'cursor': 'help', 'type': 'system'};
       } else if (SystemMouseCursors.move == value) {
-        result = {
-          'cursor': 'move',
-          'type': 'system',
-        };
+        result = {'cursor': 'move', 'type': 'system'};
       } else if (SystemMouseCursors.noDrop == value) {
-        result = {
-          'cursor': 'noDrop',
-          'type': 'system',
-        };
+        result = {'cursor': 'noDrop', 'type': 'system'};
       } else if (SystemMouseCursors.none == value) {
-        result = {
-          'cursor': 'none',
-          'type': 'system',
-        };
+        result = {'cursor': 'none', 'type': 'system'};
       } else if (SystemMouseCursors.precise == value) {
-        result = {
-          'cursor': 'precise',
-          'type': 'system',
-        };
+        result = {'cursor': 'precise', 'type': 'system'};
       } else if (SystemMouseCursors.progress == value) {
-        result = {
-          'cursor': 'progress',
-          'type': 'system',
-        };
+        result = {'cursor': 'progress', 'type': 'system'};
       } else if (SystemMouseCursors.resizeColumn == value) {
-        result = {
-          'cursor': 'resizeColumn',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeColumn', 'type': 'system'};
       } else if (SystemMouseCursors.resizeDown == value) {
-        result = {
-          'cursor': 'resizeDown',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeDown', 'type': 'system'};
       } else if (SystemMouseCursors.resizeDownLeft == value) {
-        result = {
-          'cursor': 'resizeDownLeft',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeDownLeft', 'type': 'system'};
       } else if (SystemMouseCursors.resizeDownRight == value) {
-        result = {
-          'cursor': 'resizeDownRight',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeDownRight', 'type': 'system'};
       } else if (SystemMouseCursors.resizeLeft == value) {
-        result = {
-          'cursor': 'resizeLeft',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeLeft', 'type': 'system'};
       } else if (SystemMouseCursors.resizeLeftRight == value) {
-        result = {
-          'cursor': 'resizeLeftRight',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeLeftRight', 'type': 'system'};
       } else if (SystemMouseCursors.resizeRight == value) {
-        result = {
-          'cursor': 'resizeRight',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeRight', 'type': 'system'};
       } else if (SystemMouseCursors.resizeRow == value) {
-        result = {
-          'cursor': 'resizeRow',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeRow', 'type': 'system'};
       } else if (SystemMouseCursors.resizeUp == value) {
-        result = {
-          'cursor': 'resizeUp',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeUp', 'type': 'system'};
       } else if (SystemMouseCursors.resizeUpDown == value) {
-        result = {
-          'cursor': 'resizeUpDown',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeUpDown', 'type': 'system'};
       } else if (SystemMouseCursors.resizeUpLeft == value) {
-        result = {
-          'cursor': 'resizeUpLeft',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeUpLeft', 'type': 'system'};
       } else if (SystemMouseCursors.resizeUpLeftDownRight == value) {
-        result = {
-          'cursor': 'resizeUpLeftDownRight',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeUpLeftDownRight', 'type': 'system'};
       } else if (SystemMouseCursors.resizeUpRight == value) {
-        result = {
-          'cursor': 'resizeUpRight',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeUpRight', 'type': 'system'};
       } else if (SystemMouseCursors.resizeUpRightDownLeft == value) {
-        result = {
-          'cursor': 'resizeUpRightDownLeft',
-          'type': 'system',
-        };
+        result = {'cursor': 'resizeUpRightDownLeft', 'type': 'system'};
       } else if (SystemMouseCursors.text == value) {
-        result = {
-          'cursor': 'text',
-          'type': 'system',
-        };
+        result = {'cursor': 'text', 'type': 'system'};
       } else if (SystemMouseCursors.verticalText == value) {
-        result = {
-          'cursor': 'verticalText',
-          'type': 'system',
-        };
+        result = {'cursor': 'verticalText', 'type': 'system'};
       } else if (SystemMouseCursors.wait == value) {
-        result = {
-          'cursor': 'wait',
-          'type': 'system',
-        };
+        result = {'cursor': 'wait', 'type': 'system'};
       } else if (SystemMouseCursors.zoomIn == value) {
-        result = {
-          'cursor': 'zoomIn',
-          'type': 'system',
-        };
+        result = {'cursor': 'zoomIn', 'type': 'system'};
       } else if (SystemMouseCursors.zoomOut == value) {
-        result = {
-          'cursor': 'zoomOut',
-          'type': 'system',
-        };
+        result = {'cursor': 'zoomOut', 'type': 'system'};
       }
     }
 
@@ -4401,6 +4276,7 @@ class ThemeEncoder {
   ///   "indicatorColor": "<Color>",
   ///   "indicatorShape": "<ShapeBorder>",
   ///   "labelBehavior": "<NavigationDestinationLabelBehavior>",
+  ///   "labelPadding": "<EdgeInsetsGeometry>",
   ///   "labelTextStyle": "<WidgetStateProperty<TextStyle>>",
   ///   "overlayColor": "<WidgetStateProperty<Color>",
   ///   "shadowColor": "<Color>",
@@ -4410,6 +4286,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeWidgetStatePropertyColor]
   ///  * [encodeWidgetStatePropertyIconThemeData]
   ///  * [encodeWidgetStatePropertyTextStyle]
@@ -4424,14 +4301,13 @@ class ThemeEncoder {
         'backgroundColor': encodeColor(value.backgroundColor),
         'elevation': value.elevation,
         'height': value.height,
-        'iconTheme': encodeWidgetStatePropertyIconThemeData(
-          value.iconTheme,
-        ),
+        'iconTheme': encodeWidgetStatePropertyIconThemeData(value.iconTheme),
         'indicatorColor': encodeColor(value.indicatorColor),
         'indicatorShape': encodeShapeBorder(value.indicatorShape),
         'labelBehavior': encodeNavigationDestinationLabelBehavior(
           value.labelBehavior,
         ),
+        'labelPadding': encodeEdgeInsetsGeometry(value.labelPadding),
         'labelTextStyle': encodeWidgetStatePropertyTextStyle(
           value.labelTextStyle,
         ),
@@ -4547,9 +4423,7 @@ class ThemeEncoder {
         'minExtendedWidth': value.minExtendedWidth,
         'minWidth': value.minWidth,
         'selectedIconTheme': encodeIconThemeData(value.selectedIconTheme),
-        'selectedLabelTextStyle': encodeTextStyle(
-          value.selectedLabelTextStyle,
-        ),
+        'selectedLabelTextStyle': encodeTextStyle(value.selectedLabelTextStyle),
         'unselectedIconTheme': encodeIconThemeData(value.unselectedIconTheme),
         'unselectedLabelTextStyle': encodeTextStyle(
           value.unselectedLabelTextStyle,
@@ -4589,10 +4463,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = <String, dynamic>{
-        'dx': value.dx,
-        'dy': value.dy,
-      };
+      result = <String, dynamic>{'dx': value.dx, 'dy': value.dy};
     }
 
     return _stripDynamicNull(result);
@@ -4611,10 +4482,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'name': value.name,
-        'order': value.order,
-      };
+      result = {'name': value.name, 'order': value.order};
     }
 
     return _stripDynamicNull(result);
@@ -4670,19 +4538,22 @@ class ThemeEncoder {
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
   static Map<String, dynamic>? encodeOutlinedBorder(ShapeBorder? value) {
-    assert(value == null ||
-        value is BeveledRectangleBorder ||
-        value is CircleBorder ||
-        value is ContinuousRectangleBorder ||
-        value is RoundedRectangleBorder ||
-        value is StadiumBorder);
+    assert(
+      value == null ||
+          value is BeveledRectangleBorder ||
+          value is CircleBorder ||
+          value is ContinuousRectangleBorder ||
+          value is RoundedRectangleBorder ||
+          value is StadiumBorder,
+    );
     Map<String, dynamic>? result;
 
     if (value != null) {
       if (value is BeveledRectangleBorder) {
         result = <String, dynamic>{
-          'borderRadius':
-              encodeBorderRadius(value.borderRadius as BorderRadius?),
+          'borderRadius': encodeBorderRadius(
+            value.borderRadius as BorderRadius?,
+          ),
           'side': encodeBorderSide(value.side),
           'type': 'beveled',
         };
@@ -4693,15 +4564,17 @@ class ThemeEncoder {
         };
       } else if (value is ContinuousRectangleBorder) {
         result = <String, dynamic>{
-          'borderRadius':
-              encodeBorderRadius(value.borderRadius as BorderRadius?),
+          'borderRadius': encodeBorderRadius(
+            value.borderRadius as BorderRadius?,
+          ),
           'side': encodeBorderSide(value.side),
           'type': 'rectangle',
         };
       } else if (value is RoundedRectangleBorder) {
         result = <String, dynamic>{
-          'borderRadius':
-              encodeBorderRadius(value.borderRadius as BorderRadius?),
+          'borderRadius': encodeBorderRadius(
+            value.borderRadius as BorderRadius?,
+          ),
           'side': encodeBorderSide(value.side),
           'type': 'rounded',
         };
@@ -4732,9 +4605,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = <String, dynamic>{
-        'style': encodeButtonStyle(value.style),
-      };
+      result = <String, dynamic>{'style': encodeButtonStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -4802,13 +4673,11 @@ class ThemeEncoder {
       value.builders.forEach(
         (key, value) =>
             builders[encodeTargetPlatform(key)!] = encodePageTransitionsBuilder(
-          value,
-        ),
+              value,
+            ),
       );
 
-      result = {
-        'builders': builders,
-      };
+      result = {'builders': builders};
     }
 
     return _stripDynamicNull(result);
@@ -4946,9 +4815,7 @@ class ThemeEncoder {
           value.labelTextStyle,
         ),
         'menuPadding': encodeEdgeInsetsGeometry(value.menuPadding),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
         'position': encodePopupMenuPosition(value.position),
         'shadowColor': encodeColor(value.shadowColor),
         'shape': encodeShapeBorder(value.shape),
@@ -4964,28 +4831,54 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
+  ///   "borderRadius": "<BorderRadius>",
   ///   "circularTrackColor": "<Color>",
+  ///   "circularTrackPadding": "<EdgeInsetsGeometry>",
   ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
   ///   "linearMinHeight": "<double>",
   ///   "linearTrackColor": "<Color>",
-  ///   "refreshBackgroundColor": "<Color>"
+  ///   "refreshBackgroundColor": "<Color>",
+  ///   "stopIndicatorColor": "<Color>",
+  ///   "stopIndicatorRadius": "<double>",
+  ///   "strokeAlign": "<double>",
+  ///   "strokeWidth": "<double>",
+  ///   "trackGap": "<double>"
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [encodeBorderRadius]
+  ///  * [encodeBoxConstraints]
   ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
+  ///  * [encodeStrokeCap]
   static Map<String, dynamic>? encodeProgressIndicatorThemeData(
-    ProgressIndicatorThemeData? value,
-  ) {
+    ProgressIndicatorThemeData? value, {
+    TextDirection direction = TextDirection.ltr,
+  }) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = <String, dynamic>{
+        'borderRadius': encodeBorderRadius(
+          value.borderRadius?.resolve(direction),
+        ),
         'circularTrackColor': encodeColor(value.circularTrackColor),
+        'circularTrackPadding': encodeEdgeInsetsGeometry(
+          value.circularTrackPadding,
+        ),
         'color': encodeColor(value.color),
+        'constraints': encodeBoxConstraints(value.constraints),
         'linearMinHeight': value.linearMinHeight,
         'linearTrackColor': encodeColor(value.linearTrackColor),
         'refreshBackgroundColor': encodeColor(value.refreshBackgroundColor),
+        'stopIndicatorColor': encodeColor(value.stopIndicatorColor),
+        'stopIndicatorRadius': value.stopIndicatorRadius,
+        'strokeAlign': value.strokeAlign,
+        'strokeCap': encodeStrokeCap(value.strokeCap),
+        'strokeWidth': value.strokeWidth,
+        'trackGap': value.trackGap,
       };
     }
 
@@ -5018,18 +4911,12 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'fillColor': encodeWidgetStatePropertyColor(
-          value.fillColor,
-        ),
+        'fillColor': encodeWidgetStatePropertyColor(value.fillColor),
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
-        'overlayColor': encodeWidgetStatePropertyColor(
-          value.overlayColor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
+        'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
         'splashRadius': value.splashRadius,
         'visualDensity': encodeVisualDensity(value.visualDensity),
       };
@@ -5132,9 +5019,11 @@ class ThemeEncoder {
   ///
   /// All other values, including `null`, will result in `null`.
   static String? encodeRangeSliderTrackShape(RangeSliderTrackShape? value) {
-    assert(value == null ||
-        value is RectangularRangeSliderTrackShape ||
-        value is RoundedRectRangeSliderTrackShape);
+    assert(
+      value == null ||
+          value is RectangularRangeSliderTrackShape ||
+          value is RoundedRectRangeSliderTrackShape,
+    );
     String? result;
 
     if (value != null) {
@@ -5157,9 +5046,11 @@ class ThemeEncoder {
   static String? encodeRangeSliderValueIndicatorShape(
     RangeSliderValueIndicatorShape? value,
   ) {
-    assert(value == null ||
-        value is PaddleRangeSliderValueIndicatorShape ||
-        value is RectangularRangeSliderValueIndicatorShape);
+    assert(
+      value == null ||
+          value is PaddleRangeSliderValueIndicatorShape ||
+          value is RectangularRangeSliderValueIndicatorShape,
+    );
     String? result;
 
     if (value != null) {
@@ -5244,14 +5135,16 @@ class ThemeEncoder {
   ///  * `page`
   ///  * `rangeMaintaining`
   static Map<String, dynamic>? encodeScrollPhysics(ScrollPhysics? value) {
-    assert(value == null ||
-        value is AlwaysScrollableScrollPhysics ||
-        value is BouncingScrollPhysics ||
-        value is ClampingScrollPhysics ||
-        value is FixedExtentScrollPhysics ||
-        value is NeverScrollableScrollPhysics ||
-        value is PageScrollPhysics ||
-        value is RangeMaintainingScrollPhysics);
+    assert(
+      value == null ||
+          value is AlwaysScrollableScrollPhysics ||
+          value is BouncingScrollPhysics ||
+          value is ClampingScrollPhysics ||
+          value is FixedExtentScrollPhysics ||
+          value is NeverScrollableScrollPhysics ||
+          value is PageScrollPhysics ||
+          value is RangeMaintainingScrollPhysics,
+    );
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5275,12 +5168,10 @@ class ThemeEncoder {
 
       if (type == null) {
         throw Exception(
-            'Unknown ScrollPhysics class encounted: ${value.runtimeType}');
+          'Unknown ScrollPhysics class encounted: ${value.runtimeType}',
+        );
       }
-      result = {
-        'parent': encodeScrollPhysics(value.parent),
-        'type': type,
-      };
+      result = {'parent': encodeScrollPhysics(value.parent), 'type': type};
     }
 
     return _stripDynamicNull(result);
@@ -5290,7 +5181,8 @@ class ThemeEncoder {
   ///  * `manual`
   ///  * `onDrag`
   static String? encodeScrollViewKeyboardDismissBehavior(
-      ScrollViewKeyboardDismissBehavior? value) {
+    ScrollViewKeyboardDismissBehavior? value,
+  ) {
     String? result;
 
     if (value != null) {
@@ -5375,20 +5267,14 @@ class ThemeEncoder {
         'mainAxisMargin': value.mainAxisMargin,
         'minThumbLength': value.minThumbLength,
         'radius': encodeRadius(value.radius),
-        'thickness': encodeWidgetStatePropertyDouble(
-          value.thickness,
-        ),
+        'thickness': encodeWidgetStatePropertyDouble(value.thickness),
         'thumbColor': encodeWidgetStatePropertyColor(value.thumbColor),
-        'thumbVisibility': encodeWidgetStatePropertyBool(
-          value.thumbVisibility,
-        ),
+        'thumbVisibility': encodeWidgetStatePropertyBool(value.thumbVisibility),
         'trackBorderColor': encodeWidgetStatePropertyColor(
           value.trackBorderColor,
         ),
         'trackColor': encodeWidgetStatePropertyColor(value.trackColor),
-        'trackVisibility': encodeWidgetStatePropertyBool(
-          value.trackVisibility,
-        ),
+        'trackVisibility': encodeWidgetStatePropertyBool(value.trackVisibility),
       };
     }
 
@@ -5459,12 +5345,16 @@ class ThemeEncoder {
   /// ```json
   /// {
   ///   "backgroundColor": "<Color>",
+  ///   "barPadding": "<EdgeInsetsGeometry>",
   ///   "constraints": "<BoxConstraints>",
   ///   "dividerColor": "<Color>",
   ///   "elevation": "<double>",
+  ///   "headerHeight": "<double>",
   ///   "headerHintStyle": "<TextStyle>",
   ///   "headerTextStyle": "<TextStyle>",
+  ///   "padding": "<EdgeInsetsGeometry>",
   ///   "shape": "<OutlinedBorder>",
+  ///   "shrinkWrap": "<bool>",
   ///   "side": "<BorderSide>",
   ///   "surfaceTintColor": "<Color>"
   /// }
@@ -5474,6 +5364,7 @@ class ThemeEncoder {
   ///  * [encodeBorderSide]
   ///  * [encodeBoxConstraints]
   ///  * [encodeColor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeOutlinedBorder]
   ///  * [encodeTextStyle]
   static Map<String, dynamic>? encodeSearchViewThemeData(
@@ -5484,13 +5375,17 @@ class ThemeEncoder {
     if (value != null) {
       result = {
         'backgroundColor': encodeColor(value.backgroundColor),
+        'barPadding': encodeEdgeInsetsGeometry(value.barPadding),
         'constraints': encodeBoxConstraints(value.constraints),
         'dividerColor': encodeColor(value.dividerColor),
         'elevation': value.elevation,
+        'headerHeight': value.headerHeight,
         'headerHintStyle': encodeTextStyle(value.headerHintStyle),
         'headerTextStyle': encodeTextStyle(value.headerTextStyle),
+        'padding': encodeEdgeInsetsGeometry(value.padding),
         'shape': encodeOutlinedBorder(value.shape),
         'side': encodeBorderSide(value.side),
+        'shrinkWrap': value.shrinkWrap,
         'surfaceTintColor': encodeColor(value.surfaceTintColor),
       };
     }
@@ -5539,9 +5434,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'name': value.name,
-      };
+      result = {'name': value.name};
     }
 
     return _stripDynamicNull(result);
@@ -5615,11 +5508,13 @@ class ThemeEncoder {
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
   static Map<String, dynamic>? encodeShapeBorder(ShapeBorder? value) {
-    assert(value == null ||
-        value is CircleBorder ||
-        value is ContinuousRectangleBorder ||
-        value is RoundedRectangleBorder ||
-        value is StadiumBorder);
+    assert(
+      value == null ||
+          value is CircleBorder ||
+          value is ContinuousRectangleBorder ||
+          value is RoundedRectangleBorder ||
+          value is StadiumBorder,
+    );
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5630,15 +5525,17 @@ class ThemeEncoder {
         };
       } else if (value is ContinuousRectangleBorder) {
         result = <String, dynamic>{
-          'borderRadius':
-              encodeBorderRadius(value.borderRadius as BorderRadius?),
+          'borderRadius': encodeBorderRadius(
+            value.borderRadius as BorderRadius?,
+          ),
           'side': encodeBorderSide(value.side),
           'type': 'rectangle',
         };
       } else if (value is RoundedRectangleBorder) {
         result = <String, dynamic>{
-          'borderRadius':
-              encodeBorderRadius(value.borderRadius as BorderRadius?),
+          'borderRadius': encodeBorderRadius(
+            value.borderRadius as BorderRadius?,
+          ),
           'side': encodeBorderSide(value.side),
           'type': 'rounded',
         };
@@ -5700,10 +5597,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = {
-        'height': value.height,
-        'width': value.width,
-      };
+      result = {'height': value.height, 'width': value.width};
     }
 
     return _stripDynamicNull(result);
@@ -5714,9 +5608,7 @@ class ThemeEncoder {
   ///  * `noOverlay`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSliderComponentShape(
-    SliderComponentShape? value,
-  ) {
+  static String? encodeSliderComponentShape(SliderComponentShape? value) {
     String? result;
 
     if (value != null) {
@@ -5740,9 +5632,7 @@ class ThemeEncoder {
   ///  * `tapOnly`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSliderInteraction(
-    SliderInteraction? value,
-  ) {
+  static String? encodeSliderInteraction(SliderInteraction? value) {
     String? result;
 
     if (value != null) {
@@ -5785,6 +5675,7 @@ class ThemeEncoder {
   ///   "overlappingShapeStrokeColor": "<Color>",
   ///   "overlayColor": "<Color>",
   ///   "overlayShape": "<SliderComponentShape>",
+  ///   "padding": "<EdgeInsetsGeometry>",
   ///   "rangeThumbShape": "<RangeSliderThumbShape>",
   ///   "rangeTickMarkShape": "<RangeSliderTickMarkShape>",
   ///   "rangeTrackShape": "<RangeSliderTrackShape>",
@@ -5793,7 +5684,9 @@ class ThemeEncoder {
   ///   "showValueIndicator": "<ShowValueIndicator>",
   ///   "thumbColor": "<Color>",
   ///   "thumbShape": "<SliderComponentShape>",
+  ///   "thumbSize": "<WidgetStateProperty<Size>>",
   ///   "tickMarkShape": "<SliderTickMarkShape>",
+  ///   "trackGap": "<double>",
   ///   "trackHeight": "<double>",
   ///   "trackShape": "<SliderTrackShape>",
   ///   "valueIndicatorColor": "<Color>",
@@ -5805,7 +5698,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShowValueIndicator]
   ///  * [encodeSliderComponentShape]
   ///  * [encodeSliderInteraction]
@@ -5814,6 +5707,8 @@ class ThemeEncoder {
   ///  * [encodeRangeSliderTickMarkShape]
   ///  * [encodeRangeSliderTrackShape]
   ///  * [encodeRangeSliderValueIndicatorShape]
+  ///  * [encodeWidgetStatePropertyMouseCursor]
+  ///  * [encodeWidgetStatePropertySize]
   static Map<String, dynamic>? encodeSliderThemeData(SliderThemeData? value) {
     Map<String, dynamic>? result;
 
@@ -5838,16 +5733,16 @@ class ThemeEncoder {
         'inactiveTickMarkColor': encodeColor(value.inactiveTickMarkColor),
         'inactiveTrackColor': encodeColor(value.inactiveTrackColor),
         'minThumbSeparation': (value.minThumbSeparation),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
         'overlappingShapeStrokeColor': encodeColor(
           value.overlappingShapeStrokeColor,
         ),
         'overlayColor': encodeColor(value.overlayColor),
         'overlayShape': encodeSliderComponentShape(value.overlayShape),
+        'padding': encodeEdgeInsetsGeometry(value.padding),
         'rangeThumbShape': encodeRangeSliderThumbShape(
-            value.rangeThumbShape as RoundRangeSliderThumbShape?),
+          value.rangeThumbShape as RoundRangeSliderThumbShape?,
+        ),
         'rangeTickMarkShape': encodeRangeSliderTickMarkShape(
           value.rangeTickMarkShape,
         ),
@@ -5863,7 +5758,9 @@ class ThemeEncoder {
         ),
         'thumbColor': encodeColor(value.thumbColor),
         'thumbShape': encodeSliderComponentShape(value.thumbShape),
+        'thumbSize': encodeWidgetStatePropertySize(value.thumbSize),
         'tickMarkShape': encodeSliderTickMarkShape(value.tickMarkShape),
+        'trackGap': value.trackGap,
         'trackHeight': value.trackHeight,
         'trackShape': encodeSliderTrackShape(value.trackShape),
         'valueIndicatorColor': encodeColor(value.valueIndicatorColor),
@@ -5918,20 +5815,18 @@ class ThemeEncoder {
   /// }
   /// ```
   static Map<String, dynamic>? encodeSliderTrackShape(SliderTrackShape? value) {
-    assert(value == null ||
-        value is RectangularSliderTrackShape ||
-        value is RoundedRectSliderTrackShape);
+    assert(
+      value == null ||
+          value is RectangularSliderTrackShape ||
+          value is RoundedRectSliderTrackShape,
+    );
     Map<String, dynamic>? result;
 
     if (value != null) {
       if (value is RectangularSliderTrackShape) {
-        result = <String, dynamic>{
-          'type': 'rectangular',
-        };
+        result = <String, dynamic>{'type': 'rectangular'};
       } else if (value is RoundedRectSliderTrackShape) {
-        result = <String, dynamic>{
-          'type': 'rounded',
-        };
+        result = <String, dynamic>{'type': 'rounded'};
       }
     }
 
@@ -6094,6 +5989,33 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `butt`
+  ///  * `round`
+  ///  * `square`
+  static String? encodeStrokeCap(StrokeCap? value) {
+    String? result;
+
+    if (value != null) {
+      switch (value) {
+        case StrokeCap.butt:
+          result = 'butt';
+          break;
+
+        case StrokeCap.round:
+          result = 'round';
+          break;
+
+        case StrokeCap.square:
+          result = 'square';
+          break;
+      }
+    }
+
+    return result;
+  }
+
   /// Encodes the given [value] to the JSON representation.
   ///
   /// ```json
@@ -6172,23 +6094,13 @@ class ThemeEncoder {
         'materialTapTargetSize': encodeMaterialTapTargetSize(
           value.materialTapTargetSize,
         ),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
-        'overlayColor': encodeWidgetStatePropertyColor(
-          value.overlayColor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
+        'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
         'padding': encodeEdgeInsetsGeometry(value.padding),
         'splashRadius': value.splashRadius,
-        'thumbColor': encodeWidgetStatePropertyColor(
-          value.thumbColor,
-        ),
-        'trackColor': encodeWidgetStatePropertyColor(
-          value.trackColor,
-        ),
-        'trackOutlineColor': encodeWidgetStatePropertyColor(
-          value.trackColor,
-        ),
+        'thumbColor': encodeWidgetStatePropertyColor(value.thumbColor),
+        'trackColor': encodeWidgetStatePropertyColor(value.trackColor),
+        'trackOutlineColor': encodeWidgetStatePropertyColor(value.trackColor),
         'trackOutlineWidth': encodeWidgetStatePropertyDouble(
           value.trackOutlineWidth,
         ),
@@ -6219,9 +6131,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// All other values, including `null`, will result in `null`.
-  static dynamic encodeSystemUiOverlayStyle(
-    SystemUiOverlayStyle? value,
-  ) {
+  static dynamic encodeSystemUiOverlayStyle(SystemUiOverlayStyle? value) {
     dynamic result;
 
     if (value != null) {
@@ -6353,16 +6263,13 @@ class ThemeEncoder {
           'dividerHeight': data.dividerHeight,
           'indicatorColor': encodeColor(data.dividerColor),
           'indicatorSize': encodeTabBarIndicatorSize(data.indicatorSize),
-          'labelPadding':
-              encodeEdgeInsetsGeometry(data.labelPadding as EdgeInsets?),
+          'labelPadding': encodeEdgeInsetsGeometry(
+            data.labelPadding as EdgeInsets?,
+          ),
           'labelColor': encodeColor(data.labelColor),
           'labelStyle': encodeTextStyle(data.labelStyle),
-          'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-            data.mouseCursor,
-          ),
-          'overlayColor': encodeWidgetStatePropertyColor(
-            data.overlayColor,
-          ),
+          'mouseCursor': encodeWidgetStatePropertyMouseCursor(data.mouseCursor),
+          'overlayColor': encodeWidgetStatePropertyColor(data.overlayColor),
           'splashFactory': encodeInteractiveInkFeatureFactory(
             data.splashFactory,
           ),
@@ -6390,6 +6297,7 @@ class ThemeEncoder {
   ///   "labelStyle": "<TextStyle>",
   ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
   ///   "overlayColor": "<WidgetStateProperty<Color>>",
+  ///   "splashBorderRadius": "<BorderRadius>",
   ///   "splashFactory": "<InteractiveInkSplashFactory>",
   ///   "tabAlignment": "<TabAlignment>",
   ///   "textScaler": "<TextScaler>",
@@ -6399,6 +6307,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// See also:
+  ///  * [encodeBorderRadius]
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeInteractiveInkFeatureFactory]
@@ -6417,16 +6326,14 @@ class ThemeEncoder {
         'dividerHeight': value.dividerHeight,
         'indicatorColor': encodeColor(value.dividerColor),
         'indicatorSize': encodeTabBarIndicatorSize(value.indicatorSize),
-        'labelPadding':
-            encodeEdgeInsetsGeometry(value.labelPadding as EdgeInsets?),
+        'labelPadding': encodeEdgeInsetsGeometry(
+          value.labelPadding as EdgeInsets?,
+        ),
         'labelColor': encodeColor(value.labelColor),
         'labelStyle': encodeTextStyle(value.labelStyle),
-        'mouseCursor': encodeWidgetStatePropertyMouseCursor(
-          value.mouseCursor,
-        ),
-        'overlayColor': encodeWidgetStatePropertyColor(
-          value.overlayColor,
-        ),
+        'mouseCursor': encodeWidgetStatePropertyMouseCursor(value.mouseCursor),
+        'overlayColor': encodeWidgetStatePropertyColor(value.overlayColor),
+        'splashBorderRadius': encodeBorderRadius(value.splashBorderRadius),
         'splashFactory': encodeInteractiveInkFeatureFactory(
           value.splashFactory,
         ),
@@ -6517,25 +6424,13 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value is FixedColumnWidth) {
-      result = {
-        'type': 'fixed',
-        'value': value.value,
-      };
+      result = {'type': 'fixed', 'value': value.value};
     } else if (value is FlexColumnWidth) {
-      result = {
-        'type': 'flex',
-        'value': value.value,
-      };
+      result = {'type': 'flex', 'value': value.value};
     } else if (value is FractionColumnWidth) {
-      result = {
-        'type': 'fraction',
-        'value': value.value,
-      };
+      result = {'type': 'fraction', 'value': value.value};
     } else if (value is IntrinsicColumnWidth) {
-      result = {
-        'type': 'intrinsic',
-        'value': value.flex(const <RenderBox>[]),
-      };
+      result = {'type': 'intrinsic', 'value': value.flex(const <RenderBox>[])};
     } else if (value is MaxColumnWidth) {
       result = {
         'a': encodeTableColumnWidth(value.a),
@@ -6707,9 +6602,7 @@ class ThemeEncoder {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = <String, dynamic>{
-        'style': encodeButtonStyle(value.style),
-      };
+      result = <String, dynamic>{'style': encodeButtonStyle(value.style)};
     }
 
     return _stripDynamicNull(result);
@@ -6951,10 +6844,14 @@ class ThemeEncoder {
         result = 'streetAddress';
       } else if (value.index == TextInputType.text.index) {
         result = 'text';
+      } else if (value.index == TextInputType.twitter.index) {
+        result = 'twitter';
       } else if (value.index == TextInputType.url.index) {
         result = 'url';
       } else if (value.index == TextInputType.visiblePassword.index) {
         result = 'visiblePassword';
+      } else if (value.index == TextInputType.webSearch.index) {
+        result = 'webSearch';
       }
     }
 
@@ -7081,15 +6978,9 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'cursorColor': encodeColor(
-          value.cursorColor,
-        ),
-        'selectionColor': encodeColor(
-          value.selectionColor,
-        ),
-        'selectionHandleColor': encodeColor(
-          value.selectionHandleColor,
-        ),
+        'cursorColor': encodeColor(value.cursorColor),
+        'selectionColor': encodeColor(value.selectionColor),
+        'selectionHandleColor': encodeColor(value.selectionHandleColor),
       };
     }
 
@@ -7122,10 +7013,11 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'children': value.children
-            ?.whereType<TextSpan>()
-            .map((e) => encodeTextSpan(e)!)
-            .toList(),
+        'children':
+            value.children
+                ?.whereType<TextSpan>()
+                .map((e) => encodeTextSpan(e)!)
+                .toList(),
         'locale': encodeLocale(value.locale),
         'mouseCursor': encodeMouseCursor(value.mouseCursor),
         // 'onEnter': @unencodable,
@@ -7198,18 +7090,14 @@ class ThemeEncoder {
         'decorationThickness': value.decorationThickness,
         'fontFamily': value.fontFamily,
         'fontFamilyFallback': value.fontFamilyFallback,
-        'fontFeatures': value.fontFeatures
-            ?.map(
-              (value) => encodeFontFeature(value),
-            )
-            .toList(),
+        'fontFeatures':
+            value.fontFeatures
+                ?.map((value) => encodeFontFeature(value))
+                .toList(),
         'fontSize': value.fontSize,
         'fontStyle': encodeFontStyle(value.fontStyle),
-        'fontVariations': value.fontVariations
-            ?.map(
-              (e) => encodeFontVariation(e),
-            )
-            .toList(),
+        'fontVariations':
+            value.fontVariations?.map((e) => encodeFontVariation(e)).toList(),
         'fontWeight': encodeFontWeight(value.fontWeight),
         'height': value.height,
         'inherit': value.inherit,
@@ -7219,11 +7107,7 @@ class ThemeEncoder {
         'letterSpacing': value.letterSpacing,
         'locale': encodeLocale(value.locale),
         'overflow': encodeTextOverflow(value.overflow),
-        'shadows': value.shadows
-            ?.map(
-              (value) => encodeShadow(value),
-            )
-            .toList(),
+        'shadows': value.shadows?.map((value) => encodeShadow(value)).toList(),
         'textBaseline': encodeTextBaseline(value.textBaseline),
         'wordSpacing': value.wordSpacing,
       };
@@ -7340,7 +7224,7 @@ class ThemeEncoder {
   ///   "dropdownMenuTheme": "<DropDownMenuThemeData>",
   ///   "elevatedButtonTheme": "<ElevatedButtonThemeData>",
   ///   "expansionTileTheme": "<ExpansionTileThemeData>",
-  ///   "filledButtonTheme": "<FilledButtonThemeDataScheme>"",
+  ///   "filledButtonTheme": "<FilledButtonThemeDataScheme>",
   ///   "floatingActionButtonTheme": "<FloatingActionButtonThemeData>",
   ///   "focusColor": "<Color>",
   ///   "fontFamily": "<String>",
@@ -7542,8 +7426,9 @@ class ThemeEncoder {
         'sliderTheme': encodeSliderThemeData(value.sliderTheme),
         'snackBarTheme': encodeSnackBarThemeData(value.snackBarTheme),
         'splashColor': encodeColor(value.splashColor),
-        'splashFactory':
-            encodeInteractiveInkFeatureFactory(value.splashFactory),
+        'splashFactory': encodeInteractiveInkFeatureFactory(
+          value.splashFactory,
+        ),
         'switchTheme': encodeSwitchThemeData(value.switchTheme),
         'tabBarTheme': encodeTabBarThemeData(value.tabBarTheme),
         'textButtonTheme': encodeTextButtonThemeData(value.textButtonTheme),
@@ -7744,6 +7629,7 @@ class ThemeEncoder {
   /// {
   ///   "enableFeedback": "<bool>",
   ///   "excludeFromSemantics": "<bool>",
+  ///   "exitDuration": "<int>",
   ///   "height": "<double>",
   ///   "margin": "<EdgeInsetsGeometry>",
   ///   "padding": "<EdgeInsetsGeometry>",
@@ -7768,6 +7654,7 @@ class ThemeEncoder {
       result = <String, dynamic>{
         'enableFeedback': value.enableFeedback,
         'excludeFromSemantics': value.excludeFromSemantics,
+        'exitDuration': value.exitDuration?.inMilliseconds,
         'height': value.height,
         'margin': encodeEdgeInsetsGeometry(value.margin as EdgeInsets?),
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
@@ -7920,9 +7807,9 @@ class ThemeEncoder {
         'focused': encodeColor(value.resolve({WidgetState.focused})),
         'hovered': encodeColor(value.resolve({WidgetState.hovered})),
         'pressed': encodeColor(value.resolve({WidgetState.pressed})),
-        'scrolledUnder': encodeColor(value.resolve(
-          {WidgetState.scrolledUnder},
-        )),
+        'scrolledUnder': encodeColor(
+          value.resolve({WidgetState.scrolledUnder}),
+        ),
         'selected': encodeColor(value.resolve({WidgetState.selected})),
       };
     }
@@ -8003,9 +7890,9 @@ class ThemeEncoder {
         'focused': encodeBorderSide(value.resolve({WidgetState.focused})),
         'hovered': encodeBorderSide(value.resolve({WidgetState.hovered})),
         'pressed': encodeBorderSide(value.resolve({WidgetState.pressed})),
-        'scrolledUnder': encodeBorderSide(value.resolve(
-          {WidgetState.scrolledUnder},
-        )),
+        'scrolledUnder': encodeBorderSide(
+          value.resolve({WidgetState.scrolledUnder}),
+        ),
         'selected': encodeBorderSide(value.resolve({WidgetState.selected})),
       };
     }
@@ -8047,9 +7934,9 @@ class ThemeEncoder {
         'focused': encodeColor(value.resolve({WidgetState.focused})),
         'hovered': encodeColor(value.resolve({WidgetState.hovered})),
         'pressed': encodeColor(value.resolve({WidgetState.pressed})),
-        'scrolledUnder': encodeColor(value.resolve(
-          {WidgetState.scrolledUnder},
-        )),
+        'scrolledUnder': encodeColor(
+          value.resolve({WidgetState.scrolledUnder}),
+        ),
         'selected': encodeColor(value.resolve({WidgetState.selected})),
       };
     }
@@ -8129,9 +8016,7 @@ class ThemeEncoder {
         'dragged': encodeEdgeInsetsGeometry(
           value.resolve({WidgetState.dragged}) as EdgeInsets?,
         ),
-        'empty': encodeEdgeInsetsGeometry(
-          value.resolve({}) as EdgeInsets?,
-        ),
+        'empty': encodeEdgeInsetsGeometry(value.resolve({}) as EdgeInsets?),
         'error': encodeEdgeInsetsGeometry(
           value.resolve({WidgetState.error}) as EdgeInsets?,
         ),
@@ -8183,9 +8068,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'disabled': encodeIconThemeData(
-          value.resolve({WidgetState.disabled}),
-        ),
+        'disabled': encodeIconThemeData(value.resolve({WidgetState.disabled})),
         'dragged': encodeIconThemeData(value.resolve({WidgetState.dragged})),
         'empty': encodeIconThemeData(value.resolve({})),
         'error': encodeIconThemeData(value.resolve({WidgetState.error})),
@@ -8195,9 +8078,7 @@ class ThemeEncoder {
         'scrolledUnder': encodeIconThemeData(
           value.resolve({WidgetState.selected}),
         ),
-        'selected': encodeIconThemeData(
-          value.resolve({WidgetState.selected}),
-        ),
+        'selected': encodeIconThemeData(value.resolve({WidgetState.selected})),
       };
     }
 
@@ -8238,9 +8119,9 @@ class ThemeEncoder {
         'focused': encodeMouseCursor(value.resolve({WidgetState.focused})),
         'hovered': encodeMouseCursor(value.resolve({WidgetState.hovered})),
         'pressed': encodeMouseCursor(value.resolve({WidgetState.pressed})),
-        'scrolledUnder': encodeMouseCursor(value.resolve(
-          {WidgetState.scrolledUnder},
-        )),
+        'scrolledUnder': encodeMouseCursor(
+          value.resolve({WidgetState.scrolledUnder}),
+        ),
         'selected': encodeMouseCursor(value.resolve({WidgetState.selected})),
       };
     }
@@ -8275,9 +8156,7 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'disabled': encodeOutlinedBorder(
-          value.resolve({WidgetState.disabled}),
-        ),
+        'disabled': encodeOutlinedBorder(value.resolve({WidgetState.disabled})),
         'dragged': encodeOutlinedBorder(value.resolve({WidgetState.dragged})),
         'empty': encodeOutlinedBorder(value.resolve({})),
         'error': encodeOutlinedBorder(value.resolve({WidgetState.error})),
@@ -8287,9 +8166,7 @@ class ThemeEncoder {
         'scrolledUnder': encodeOutlinedBorder(
           value.resolve({WidgetState.scrolledUnder}),
         ),
-        'selected': encodeOutlinedBorder(
-          value.resolve({WidgetState.selected}),
-        ),
+        'selected': encodeOutlinedBorder(value.resolve({WidgetState.selected})),
       };
     }
 
@@ -8372,9 +8249,9 @@ class ThemeEncoder {
         'focused': encodeTextStyle(value.resolve({WidgetState.focused})),
         'hovered': encodeTextStyle(value.resolve({WidgetState.hovered})),
         'pressed': encodeTextStyle(value.resolve({WidgetState.pressed})),
-        'scrolledUnder': encodeTextStyle(value.resolve(
-          {WidgetState.scrolledUnder},
-        )),
+        'scrolledUnder': encodeTextStyle(
+          value.resolve({WidgetState.scrolledUnder}),
+        ),
         'selected': encodeTextStyle(value.resolve({WidgetState.selected})),
       };
     }

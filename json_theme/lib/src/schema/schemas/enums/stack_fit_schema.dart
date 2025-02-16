@@ -11,10 +11,6 @@ class StackFitSchema {
         'https://api.flutter.dev/flutter/rendering/StackFit-class.html',
     'title': 'StackFit',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'expand',
-      'loose',
-      'passthrough',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['expand', 'loose', 'passthrough']),
   };
 }

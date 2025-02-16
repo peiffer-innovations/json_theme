@@ -11,9 +11,6 @@ class VerticalDirectionSchema {
         'https://api.flutter.dev/flutter/painting/VerticalDirection-class.html',
     'title': 'VerticalDirection',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'down',
-      'up',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['down', 'up']),
   };
 }

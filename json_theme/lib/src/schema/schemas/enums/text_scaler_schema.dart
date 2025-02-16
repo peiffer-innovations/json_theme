@@ -9,8 +9,6 @@ class TextScalerSchema {
     r'$id': id,
     'type': 'string',
     'title': 'TextScaler',
-    'oneOf': SchemaHelper.enumSchema([
-      'noScaling',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['noScaling']),
   };
 }

@@ -15,9 +15,7 @@ class RangeSliderTickMarkShapeSchema {
       'tickMarkRadius': SchemaHelper.numberSchema,
       'type': {
         'type': 'string',
-        'enum': [
-          'round',
-        ]
+        'enum': ['round'],
       },
     },
   };

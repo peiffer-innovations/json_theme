@@ -11,9 +11,6 @@ class TextDirectionSchema {
         'https://api.flutter.dev/flutter/dart-ui/TextDirection-class.html',
     'title': 'TextDirection',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'ltr',
-      'rtl',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['ltr', 'rtl']),
   };
 }

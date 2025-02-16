@@ -9,9 +9,6 @@ class BoxWidthStyleSchema {
     r'$id': id,
     'type': 'string',
     'title': 'BoxWidthStyle',
-    'oneOf': SchemaHelper.enumSchema([
-      'max',
-      'tight',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['max', 'tight']),
   };
 }

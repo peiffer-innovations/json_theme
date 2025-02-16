@@ -9,8 +9,6 @@ class AnimationStyleSchema {
     r'$id': id,
     'type': 'string',
     'title': 'AnimationStyle',
-    'oneOf': SchemaHelper.enumSchema([
-      'noAnimation',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['noAnimation']),
   };
 }

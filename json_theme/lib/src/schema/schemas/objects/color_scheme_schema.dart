@@ -56,7 +56,7 @@ class ColorSchemeSchema {
       'tertiary': SchemaHelper.objectSchema(ColorSchema.id),
       'tertiaryContainer': SchemaHelper.objectSchema(ColorSchema.id),
       'tertiaryFixed': SchemaHelper.objectSchema(ColorSchema.id),
-      'tertiaryFixedDim': SchemaHelper.objectSchema(ColorSchema.id)
+      'tertiaryFixedDim': SchemaHelper.objectSchema(ColorSchema.id),
     },
   };
 }

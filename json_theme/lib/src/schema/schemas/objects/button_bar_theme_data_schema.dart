@@ -22,11 +22,13 @@ class ButtonBarThemeDataSchema {
       'landscapeLayout': SchemaHelper.objectSchema(
         BottomNavigationBarLandscapeLayoutSchema.id,
       ),
-      'layoutBehavior':
-          SchemaHelper.objectSchema(ButtonBarLayoutBehaviorSchema.id),
+      'layoutBehavior': SchemaHelper.objectSchema(
+        ButtonBarLayoutBehaviorSchema.id,
+      ),
       'mainAxisSize': SchemaHelper.objectSchema(MainAxisSizeSchema.id),
-      'overflowDirection':
-          SchemaHelper.objectSchema(VerticalDirectionSchema.id),
+      'overflowDirection': SchemaHelper.objectSchema(
+        VerticalDirectionSchema.id,
+      ),
     },
   };
 }

@@ -10,9 +10,7 @@ class ShadowSchema {
     r'$comment': 'https://api.flutter.dev/flutter/dart-ui/Shadow-class.html',
     'title': 'Shadow',
     'type': 'object',
-    'required': [
-      'color',
-    ],
+    'required': ['color'],
     'properties': {
       'blurRadius': SchemaHelper.numberSchema,
       'color': SchemaHelper.objectSchema(ColorSchema.id),

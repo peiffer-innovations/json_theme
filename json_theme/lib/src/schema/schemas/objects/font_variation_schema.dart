@@ -12,10 +12,7 @@ class FontVariationSchema {
     'type': 'object',
     'title': 'FontVariation',
     'additionalProperties': false,
-    'required': [
-      'axis',
-      'value',
-    ],
+    'required': ['axis', 'value'],
     'properties': {
       'axis': SchemaHelper.stringSchema,
       'value': SchemaHelper.numberSchema,

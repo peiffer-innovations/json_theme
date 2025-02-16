@@ -16,8 +16,9 @@ class TextStyleSchema {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'decoration': SchemaHelper.objectSchema(TextDecorationSchema.id),
       'decorationColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'decorationStyle':
-          SchemaHelper.objectSchema(TextDecorationStyleSchema.id),
+      'decorationStyle': SchemaHelper.objectSchema(
+        TextDecorationStyleSchema.id,
+      ),
       'decorationThickness': SchemaHelper.numberSchema,
       'fontFamily': SchemaHelper.stringSchema,
       'fontFamilyFallback': {

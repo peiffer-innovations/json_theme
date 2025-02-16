@@ -15,9 +15,7 @@ class CheckboxThemeDataSchema {
       'checkColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
-      'fillColor': SchemaHelper.objectSchema(
-        WidgetStatePropertyColorSchema.id,
-      ),
+      'fillColor': SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),

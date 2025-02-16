@@ -11,9 +11,7 @@ class IconSchema {
     'type': 'object',
     'title': 'Icon',
     'additionalProperties': false,
-    'required': [
-      'icon',
-    ],
+    'required': ['icon'],
     'properties': {
       'applyTextScaling': SchemaHelper.boolSchema,
       'blendMode': SchemaHelper.objectSchema(BlendModeSchema.id),

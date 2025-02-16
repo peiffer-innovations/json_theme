@@ -11,11 +11,6 @@ class FilterQualitySchema {
         'https://api.flutter.dev/flutter/dart-ui/FilterQuality-class.html',
     'type': 'string',
     'title': 'FilterQuality',
-    'oneOf': SchemaHelper.enumSchema([
-      'high',
-      'low',
-      'medium',
-      'none',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['high', 'low', 'medium', 'none']),
   };
 }

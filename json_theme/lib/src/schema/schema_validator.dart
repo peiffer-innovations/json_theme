@@ -82,17 +82,14 @@ class SchemaValidator {
       schemaId += '.json';
     }
     var result = true;
-    final refProvider = RefProvider(
-      (ref) {
-        final schema = SchemaCache().getSchema(ref);
-        if (schema == null) {
-          throw Exception('Unable to find schema: [$ref].');
-        }
+    final refProvider = RefProvider((ref) {
+      final schema = SchemaCache().getSchema(ref);
+      if (schema == null) {
+        throw Exception('Unable to find schema: [$ref].');
+      }
 
-        return schema;
-      },
-      true,
-    );
+      return schema;
+    }, true);
 
     final schemaData = SchemaCache().getSchema(schemaId);
     if (schemaData == null) {
@@ -104,9 +101,10 @@ class SchemaValidator {
         refProvider: refProvider,
       );
 
-      var removed = value is Map
-          ? JsonClass.removeNull(Map<String, dynamic>.from(value))
-          : value;
+      var removed =
+          value is Map
+              ? JsonClass.removeNull(Map<String, dynamic>.from(value))
+              : value;
 
       if (removed == null && value is Map) {
         removed = {};
@@ -126,9 +124,7 @@ class SchemaValidator {
           throw Exception(errorStr);
         } else {
           FlutterError.reportError(
-            FlutterErrorDetails(
-              exception: Exception(errorStr),
-            ),
+            FlutterErrorDetails(exception: Exception(errorStr)),
           );
         }
       }

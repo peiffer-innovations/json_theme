@@ -11,8 +11,6 @@ class ElevatedButtonThemeDataSchema {
         'https://api.flutter.dev/flutter/material/ElevatedButtonThemeData-class.html',
     'title': 'ElevatedButtonThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(ButtonStyleSchema.id)},
   };
 }

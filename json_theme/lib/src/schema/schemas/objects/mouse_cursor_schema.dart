@@ -9,9 +9,7 @@ class MouseCursorSchema {
         'https://api.flutter.dev/flutter/rendering/MouseCursor-class.html',
     'title': 'MouseCursor',
     'type': 'object',
-    'required': [
-      'type',
-    ],
+    'required': ['type'],
     'properties': {
       'cursor': {
         'type': 'string',
@@ -58,12 +56,7 @@ class MouseCursorSchema {
       },
       'type': {
         'type': 'string',
-        'enum': [
-          'defer',
-          'material',
-          'system',
-          'uncontrolled',
-        ],
+        'enum': ['defer', 'material', 'system', 'uncontrolled'],
       },
     },
   };

@@ -9,10 +9,6 @@ class ListTileControlAffinitySchema {
     r'$id': id,
     'title': 'ListTileControlAffinity',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'leading',
-      'platform',
-      'trailing',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['leading', 'platform', 'trailing']),
   };
 }

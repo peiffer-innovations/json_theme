@@ -14,6 +14,7 @@ class AppBarThemeSchema {
     'additionalProperties': false,
     'properties': {
       'actionsIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      'actionsPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'centerTitle': SchemaHelper.boolSchema,
       'color': SchemaHelper.objectSchema(ColorSchema.id),
@@ -22,8 +23,9 @@ class AppBarThemeSchema {
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'scrolledUnderElevation': SchemaHelper.numberSchema,
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'systemOverlayStyle':
-          SchemaHelper.objectSchema(SystemUiOverlayStyleSchema.id),
+      'systemOverlayStyle': SchemaHelper.objectSchema(
+        SystemUiOverlayStyleSchema.id,
+      ),
       'titleSpacing': SchemaHelper.numberSchema,
       'titleTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'toolbarHeight': SchemaHelper.numberSchema,

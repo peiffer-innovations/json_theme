@@ -19,10 +19,12 @@ class ButtonThemeDataSchema {
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'height': SchemaHelper.numberSchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'layoutBehavior':
-          SchemaHelper.objectSchema(ButtonBarLayoutBehaviorSchema.id),
-      'materialTapTargetSize':
-          SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
+      'layoutBehavior': SchemaHelper.objectSchema(
+        ButtonBarLayoutBehaviorSchema.id,
+      ),
+      'materialTapTargetSize': SchemaHelper.objectSchema(
+        MaterialTapTargetSizeSchema.id,
+      ),
       'minWidth': SchemaHelper.numberSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),

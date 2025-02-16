@@ -11,64 +11,43 @@ class ColorFilterSchema {
         'https://api.flutter.dev/flutter/widgets/ColorFiltered-class.html',
     'title': 'ColorFilter',
     'oneOf': [
-      {
-        'type': 'string',
-      },
+      {'type': 'string'},
       {
         'type': 'object',
         'oneOf': [
           {
-            'required': [
-              'type',
-            ],
+            'required': ['type'],
             'properties': {
               'type': {
                 'type': 'string',
-                'enum': [
-                  'linearToSrgbGamma',
-                  'srgbToLinearGamma',
-                ]
+                'enum': ['linearToSrgbGamma', 'srgbToLinearGamma'],
               },
             },
           },
           {
-            'required': [
-              'matrix',
-              'type',
-            ],
+            'required': ['matrix', 'type'],
             'properties': {
               'matrix': {
                 'oneOf': [
                   {'type': 'string'},
-                  {
-                    'type': 'array',
-                    'items': SchemaHelper.numberSchema,
-                  },
+                  {'type': 'array', 'items': SchemaHelper.numberSchema},
                 ],
               },
               'mode': SchemaHelper.objectSchema(BlendModeSchema.id),
               'type': {
                 'type': 'string',
-                'enum': [
-                  'matrix',
-                ]
+                'enum': ['matrix'],
               },
             },
           },
           {
-            'required': [
-              'color',
-              'mode',
-              'type',
-            ],
+            'required': ['color', 'mode', 'type'],
             'properties': {
               'color': SchemaHelper.objectSchema(ColorSchema.id),
               'mode': SchemaHelper.objectSchema(BlendModeSchema.id),
               'type': {
                 'type': 'string',
-                'enum': [
-                  'mode',
-                ]
+                'enum': ['mode'],
               },
             },
           },

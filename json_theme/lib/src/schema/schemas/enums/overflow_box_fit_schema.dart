@@ -11,9 +11,6 @@ class OverflowBoxFitSchema {
         'https://api.flutter.dev/flutter/rendering/OverflowBoxFit.html',
     'title': 'OverflowBoxFit',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'deferToChild',
-      'max',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['deferToChild', 'max']),
   };
 }

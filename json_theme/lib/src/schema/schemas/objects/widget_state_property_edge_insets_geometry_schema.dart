@@ -9,19 +9,13 @@ class WidgetStatePropertyEdgeInsetsGeometrySchema {
     r'$id': id,
     'title': 'WidgetStatePropertyEdgeInsetsGeometry',
     'oneOf': [
-      {
-        'type': 'string',
-      },
-      {
-        'type': 'number',
-      },
+      {'type': 'string'},
+      {'type': 'number'},
       {
         'type': 'array',
         'array': [
-          {
-            'type': 'number',
-          },
-        ]
+          {'type': 'number'},
+        ],
       },
       {
         'type': 'object',
@@ -33,11 +27,12 @@ class WidgetStatePropertyEdgeInsetsGeometrySchema {
           'focused': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'hovered': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'pressed': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-          'scrolledUnder':
-              SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          'scrolledUnder': SchemaHelper.objectSchema(
+            EdgeInsetsGeometrySchema.id,
+          ),
           'selected': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
         },
-      }
-    ]
+      },
+    ],
   };
 }

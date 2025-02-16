@@ -10,10 +10,7 @@ class SizeSchema {
     r'$comment': 'https://api.flutter.dev/flutter/dart-ui/Size-class.html',
     'title': 'Size',
     'additionalProperties': false,
-    'required': [
-      'height',
-      'width',
-    ],
+    'required': ['height', 'width'],
     'properties': {
       'height': SchemaHelper.numberSchema,
       'width': SchemaHelper.numberSchema,

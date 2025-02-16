@@ -11,9 +11,6 @@ class BorderStyleSchema {
         'https://api.flutter.dev/flutter/painting/BorderStyle-class.html',
     'type': 'string',
     'title': 'BorderStyle',
-    'oneOf': SchemaHelper.enumSchema([
-      'none',
-      'solid',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['none', 'solid']),
   };
 }

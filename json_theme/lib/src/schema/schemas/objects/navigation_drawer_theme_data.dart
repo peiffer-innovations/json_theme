@@ -25,7 +25,7 @@ class NavigationDrawerThemeDataSchema {
       ),
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'tileHeight': SchemaHelper.numberSchema
+      'tileHeight': SchemaHelper.numberSchema,
     },
   };
 }

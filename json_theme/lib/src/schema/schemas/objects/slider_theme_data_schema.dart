@@ -37,6 +37,7 @@ class SliderThemeDataSchema {
       'overlappingShapeStrokeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'overlayColor': SchemaHelper.objectSchema(ColorSchema.id),
       'overlayShape': SchemaHelper.objectSchema(SliderComponentShapeSchema.id),
+      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'rangeThumbShape': SchemaHelper.objectSchema(
         RangeSliderThumbShapeSchema.id,
       ),
@@ -49,14 +50,13 @@ class SliderThemeDataSchema {
       'rangeValueIndicatorShape': SchemaHelper.objectSchema(
         RangeSliderValueIndicatorShapeSchema.id,
       ),
-      'secondaryActiveTrackColor': SchemaHelper.objectSchema(
-        ColorSchema.id,
-      ),
+      'secondaryActiveTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'showValueIndicator': SchemaHelper.objectSchema(
         ShowValueIndicatorSchema.id,
       ),
       'thumbColor': SchemaHelper.objectSchema(ColorSchema.id),
       'thumbShape': SchemaHelper.objectSchema(SliderComponentShapeSchema.id),
+      'thumbSize': SchemaHelper.objectSchema(WidgetStatePropertySizeSchema.id),
       'trackHeight': SchemaHelper.numberSchema,
       'trackShape': SchemaHelper.objectSchema(SliderTrackShapeSchema.id),
       'valueIndicatorColor': SchemaHelper.objectSchema(ColorSchema.id),

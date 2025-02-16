@@ -11,9 +11,6 @@ class BrightnessSchema {
         'https://api.flutter.dev/flutter/dart-ui/Brightness-class.html',
     'type': 'string',
     'title': 'Brightness',
-    'oneOf': SchemaHelper.enumSchema([
-      'dark',
-      'light',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['dark', 'light']),
   };
 }

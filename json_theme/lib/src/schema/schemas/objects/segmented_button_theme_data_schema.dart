@@ -14,6 +14,6 @@ class SegmentedButtonThemeDataSchema {
     'properties': {
       'selectedIcon': SchemaHelper.objectSchema(IconSchema.id),
       'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    }
+    },
   };
 }

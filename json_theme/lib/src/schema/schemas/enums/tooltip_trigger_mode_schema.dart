@@ -11,10 +11,6 @@ class TooltipTriggerModeSchema {
         'https://api.flutter.dev/flutter/material/TooltipTriggerMode-class.html',
     'title': 'TooltipTriggerMode',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'longPress',
-      'manual',
-      'tap',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['longPress', 'manual', 'tap']),
   };
 }

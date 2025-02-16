@@ -13,14 +13,18 @@ class SearchViewThemeDataSchema {
     'additionalProperties': false,
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'barPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'headerHeight': SchemaHelper.numberSchema,
       'headerHintStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'headerTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(OutlinedBorderSchema.id),
+      'shrinkWrap': SchemaHelper.boolSchema,
       'side': SchemaHelper.objectSchema(BorderSideSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
-    }
+    },
   };
 }

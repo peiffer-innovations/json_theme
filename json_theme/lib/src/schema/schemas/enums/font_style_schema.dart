@@ -10,9 +10,6 @@ class FontStyleSchema {
     r'$comment': 'https://api.flutter.dev/flutter/dart-ui/FontStyle-class.html',
     'type': 'string',
     'title': 'FontStyle',
-    'oneOf': SchemaHelper.enumSchema([
-      'italic',
-      'normal',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['italic', 'normal']),
   };
 }

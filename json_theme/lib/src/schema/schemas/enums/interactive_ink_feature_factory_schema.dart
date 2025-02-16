@@ -11,10 +11,6 @@ class InteractiveInkFeatureFactorySchema {
         'https://api.flutter.dev/flutter/material/InteractiveInkFeatureFactory-class.html',
     'type': 'string',
     'title': 'InteractiveInkFeatureFactory',
-    'oneOf': SchemaHelper.enumSchema([
-      'splash',
-      'ripple',
-      'sparkle',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['splash', 'ripple', 'sparkle']),
   };
 }

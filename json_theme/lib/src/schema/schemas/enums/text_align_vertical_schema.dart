@@ -11,10 +11,6 @@ class TextAlignVerticalSchema {
         'https://api.flutter.dev/flutter/painting/TextAlignVertical-class.html',
     'title': 'TextAlignVertical',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'bottom',
-      'center',
-      'top',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['bottom', 'center', 'top']),
   };
 }

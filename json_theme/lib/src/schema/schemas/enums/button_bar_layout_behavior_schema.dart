@@ -11,9 +11,6 @@ class ButtonBarLayoutBehaviorSchema {
         'https://api.flutter.dev/flutter/material/ButtonBarLayoutBehavior-class.html',
     'type': 'string',
     'title': 'ButtonBarLayoutBehavior',
-    'oneOf': SchemaHelper.enumSchema([
-      'constrained',
-      'padded',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['constrained', 'padded']),
   };
 }

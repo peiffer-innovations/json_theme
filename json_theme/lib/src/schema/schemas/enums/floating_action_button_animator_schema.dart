@@ -11,8 +11,6 @@ class FloatingActionButtonAnimatorSchema {
         'https://api.flutter.dev/flutter/material/FloatingActionButtonAnimator-class.html',
     'type': 'string',
     'title': 'FloatingActionButtonAnimator',
-    'oneOf': SchemaHelper.enumSchema([
-      'scaling',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['noAnimation', 'scaling']),
   };
 }

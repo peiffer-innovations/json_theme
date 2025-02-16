@@ -10,9 +10,6 @@ class AxisSchema {
     r'$comment': 'https://api.flutter.dev/flutter/painting/Axis-class.html',
     'type': 'string',
     'title': 'Axis',
-    'oneOf': SchemaHelper.enumSchema([
-      'horizontal',
-      'vertical',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['horizontal', 'vertical']),
   };
 }

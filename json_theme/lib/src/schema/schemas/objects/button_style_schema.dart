@@ -19,38 +19,23 @@ class ButtonStyleSchema {
       ),
       'elevation': {
         'anyOf': [
-          {
-            'type': 'number',
-          },
-          {
-            'type': 'string',
-          },
-          {
-            r'$ref': WidgetStatePropertyDoubleSchema.id,
-          },
+          {'type': 'number'},
+          {'type': 'string'},
+          {r'$ref': WidgetStatePropertyDoubleSchema.id},
         ],
       },
       'enableFeedback': SchemaHelper.boolSchema,
-      'fixedSize': SchemaHelper.objectSchema(
-        WidgetStatePropertySizeSchema.id,
-      ),
+      'fixedSize': SchemaHelper.objectSchema(WidgetStatePropertySizeSchema.id),
       'foregroundColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),
-      'iconColor': SchemaHelper.objectSchema(
-        WidgetStatePropertyColorSchema.id,
-      ),
+      'iconAlignment': SchemaHelper.objectSchema(IconAlignmentSchema.id),
+      'iconColor': SchemaHelper.objectSchema(WidgetStatePropertyColorSchema.id),
       'iconSize': {
         'anyOf': [
-          {
-            'type': 'number',
-          },
-          {
-            'type': 'string',
-          },
-          {
-            r'$ref': WidgetStatePropertyDoubleSchema.id,
-          },
+          {'type': 'number'},
+          {'type': 'string'},
+          {r'$ref': WidgetStatePropertyDoubleSchema.id},
         ],
       },
       'maximumSize': SchemaHelper.objectSchema(
@@ -74,9 +59,7 @@ class ButtonStyleSchema {
       'shape': SchemaHelper.objectSchema(
         WidgetStatePropertyOutlinedBorderSchema.id,
       ),
-      'side': SchemaHelper.objectSchema(
-        WidgetStatePropertyBorderSideSchema.id,
-      ),
+      'side': SchemaHelper.objectSchema(WidgetStatePropertyBorderSideSchema.id),
       'tapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),

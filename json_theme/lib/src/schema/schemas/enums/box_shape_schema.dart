@@ -10,9 +10,6 @@ class BoxShapeSchema {
     r'$comment': 'https://api.flutter.dev/flutter/painting/BoxShape-class.html',
     'type': 'string',
     'title': 'BoxShape',
-    'oneOf': SchemaHelper.enumSchema([
-      'circle',
-      'rectangle',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['circle', 'rectangle']),
   };
 }

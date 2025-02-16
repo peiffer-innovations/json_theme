@@ -19,9 +19,7 @@ class MenuStyleSchema {
       'elevation': SchemaHelper.objectSchema(
         WidgetStatePropertyDoubleSchema.id,
       ),
-      'fixedSize': SchemaHelper.objectSchema(
-        WidgetStatePropertySizeSchema.id,
-      ),
+      'fixedSize': SchemaHelper.objectSchema(WidgetStatePropertySizeSchema.id),
       'maximumSize': SchemaHelper.objectSchema(
         WidgetStatePropertySizeSchema.id,
       ),
@@ -37,9 +35,7 @@ class MenuStyleSchema {
       'shape': SchemaHelper.objectSchema(
         WidgetStatePropertyOutlinedBorderSchema.id,
       ),
-      'side': SchemaHelper.objectSchema(
-        WidgetStatePropertyBorderSideSchema.id,
-      ),
+      'side': SchemaHelper.objectSchema(WidgetStatePropertyBorderSideSchema.id),
       'surfaceTintColor': SchemaHelper.objectSchema(
         WidgetStatePropertyColorSchema.id,
       ),

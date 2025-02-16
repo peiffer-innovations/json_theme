@@ -11,20 +11,15 @@ class AlignmentSchema {
         'https://api.flutter.dev/flutter/painting/Alignment-class.html',
     'title': 'Alignment',
     'oneOf': [
-      {
-        'type': 'string',
-      },
+      {'type': 'string'},
       {
         'type': 'object',
-        'required': [
-          'x',
-          'y',
-        ],
+        'required': ['x', 'y'],
         'properties': {
           'x': SchemaHelper.numberSchema,
           'y': SchemaHelper.numberSchema,
         },
-      }
+      },
     ],
   };
 }

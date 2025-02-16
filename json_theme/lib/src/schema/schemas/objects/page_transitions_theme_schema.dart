@@ -11,8 +11,6 @@ class PageTransitionsThemeSchema {
         'https://api.flutter.dev/flutter/material/PageTransitionsTheme-class.html',
     'title': 'PageTransitionsTheme',
     'type': 'object',
-    'properties': {
-      'builders': SchemaHelper.anySchema,
-    },
+    'properties': {'builders': SchemaHelper.anySchema},
   };
 }

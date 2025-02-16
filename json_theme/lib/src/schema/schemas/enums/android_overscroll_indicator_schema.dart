@@ -11,9 +11,6 @@ class AndroidOverscrollIndicatorSchema {
         'https://api.flutter.dev/flutter/widgets/AndroidOverscrollIndicator-class.html',
     'type': 'string',
     'title': 'AndroidOverscrollIndicator',
-    'oneOf': SchemaHelper.enumSchema([
-      'glow',
-      'stretch',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['glow', 'stretch']),
   };
 }

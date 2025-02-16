@@ -11,9 +11,6 @@ class FloatingLabelAlignmentSchema {
         'https://api.flutter.dev/flutter/material/FloatingLabelAlignment-class.html',
     'type': 'string',
     'title': 'FloatingLabelAlignment',
-    'oneOf': SchemaHelper.enumSchema([
-      'center',
-      'start',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['center', 'start']),
   };
 }

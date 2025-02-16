@@ -12,22 +12,13 @@ class TableColumnWidthSchema {
     'type': 'object',
     'title': 'TableColumnWidth',
     'additionalProperties': false,
-    'required': [
-      'type',
-    ],
+    'required': ['type'],
     'properties': {
       'a': SchemaHelper.objectSchema(TableColumnWidthSchema.id),
       'b': SchemaHelper.objectSchema(TableColumnWidthSchema.id),
       'type': {
         'type': 'string',
-        'enum': [
-          'fixed',
-          'flex',
-          'fraction',
-          'intrinsic',
-          'max',
-          'min',
-        ],
+        'enum': ['fixed', 'flex', 'fraction', 'intrinsic', 'max', 'min'],
       },
       'value': SchemaHelper.numberSchema,
     },

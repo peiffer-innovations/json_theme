@@ -12,11 +12,21 @@ class ProgressIndicatorThemeDataSchema {
     'title': 'ProgressIndicatorThemeData',
     'type': 'object',
     'properties': {
+      'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
       'circularTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'circularTrackPadding': SchemaHelper.objectSchema(
+        EdgeInsetsGeometrySchema.id,
+      ),
       'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'linearMinHeight': SchemaHelper.numberSchema,
       'linearTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'refreshBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'stopIndicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'stopIndicatorRadius': SchemaHelper.numberSchema,
+      'strokeAlign': SchemaHelper.numberSchema,
+      'strokeWidth': SchemaHelper.numberSchema,
+      'trackGap': SchemaHelper.numberSchema,
     },
   };
 }

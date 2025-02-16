@@ -11,9 +11,6 @@ class SnackBarBehaviorSchema {
         'https://api.flutter.dev/flutter/material/SnackBarBehavior-class.html',
     'title': 'SnackBarBehavior',
     'type': 'string',
-    'oneOf': SchemaHelper.enumSchema([
-      'fixed',
-      'floating',
-    ]),
+    'oneOf': SchemaHelper.enumSchema(['fixed', 'floating']),
   };
 }

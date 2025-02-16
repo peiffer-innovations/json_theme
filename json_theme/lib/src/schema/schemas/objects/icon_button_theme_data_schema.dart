@@ -11,8 +11,6 @@ class IconButtonThemeDataSchema {
         'https://api.flutter.dev/flutter/material/IconButtonThemeData-class.html',
     'title': 'IconButtonThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(ButtonStyleSchema.id)},
   };
 }

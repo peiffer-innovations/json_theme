@@ -11,8 +11,6 @@ class MenuButtonThemeDataSchema {
         'https://api.flutter.dev/flutter/material/MenuButtonThemeData-class.html',
     'title': 'MenuButtonThemeData',
     'additionalProperties': false,
-    'properties': {
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-    },
+    'properties': {'style': SchemaHelper.objectSchema(ButtonStyleSchema.id)},
   };
 }

@@ -8641,7 +8641,6 @@ void main() {
         'headingTextStyle': {'inherit': true},
         'horizontalMargin': 1.0,
       },
-      'dialogBackgroundColor': '#ff121212',
       'dialogTheme': {'backgroundColor': '#ee999999'},
       'disabledColor': '#ee000000',
       'dividerColor': '#eeaaaaaa',

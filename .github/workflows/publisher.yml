@@ -27,7 +27,7 @@ jobs:
         working-directory: json_theme
 
       - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
+        uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           path: json_theme
 

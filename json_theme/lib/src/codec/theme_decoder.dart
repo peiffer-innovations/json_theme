@@ -2295,10 +2295,10 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
-  static CardTheme? decodeCardTheme(dynamic value, {bool validate = true}) {
-    CardTheme? result;
+  static CardThemeData? decodeCardTheme(dynamic value, {bool validate = true}) {
+    CardThemeData? result;
 
-    if (value is CardTheme) {
+    if (value is CardThemeData) {
       result = value;
     } else if (value != null) {
       assert(
@@ -2308,10 +2308,9 @@ class ThemeDecoder {
           validate: validate,
         ),
       );
-      result = CardTheme(
+      result = CardThemeData(
         clipBehavior: decodeClip(value['clipBehavior'], validate: false),
         color: decodeColor(value['color'], validate: false),
-        data: decodeCardThemeData(value['data'], validate: false),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         margin: decodeEdgeInsetsGeometry(value['margin'], validate: false),
         shadowColor: decodeColor(value['shadowColor'], validate: false),
@@ -3583,10 +3582,13 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static DialogTheme? decodeDialogTheme(dynamic value, {bool validate = true}) {
-    DialogTheme? result;
+  static DialogThemeData? decodeDialogTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    DialogThemeData? result;
 
-    if (value is DialogTheme) {
+    if (value is DialogThemeData) {
       result = value;
     } else if (value != null) {
       assert(
@@ -3596,7 +3598,7 @@ class ThemeDecoder {
           validate: validate,
         ),
       );
-      result = DialogTheme(
+      result = DialogThemeData(
         actionsPadding: decodeEdgeInsetsGeometry(
           value['actionsPadding'],
           validate: false,
@@ -3609,7 +3611,6 @@ class ThemeDecoder {
           value['contentTextStyle'],
           validate: false,
         ),
-        data: decodeDialogThemeData(value['data'], validate: false),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         iconColor: decodeColor(value['iconColor'], validate: false),
         insetPadding: decodeEdgeInsets(value['insetPadding'], validate: false),
@@ -10219,10 +10220,13 @@ class ThemeDecoder {
   ///  * [decodeTabBarIndicatorSize]
   ///  * [decodeTextScaler]
   ///  * [decodeTextStyle]
-  static TabBarTheme? decodeTabBarTheme(dynamic value, {bool validate = true}) {
-    TabBarTheme? result;
+  static TabBarThemeData? decodeTabBarTheme(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    TabBarThemeData? result;
 
-    if (value is TabBarTheme) {
+    if (value is TabBarThemeData) {
       result = value;
     } else if (value != null) {
       assert(
@@ -10236,8 +10240,7 @@ class ThemeDecoder {
         value['indicator'] == null,
         'TabBarTheme.indicator is not supported',
       );
-      result = TabBarTheme(
-        data: decodeTabBarThemeData(value['data'], validate: false),
+      result = TabBarThemeData(
         dividerColor: decodeColor(value['dividerColor'], validate: false),
         dividerHeight: JsonClass.maybeParseDouble(value['dividerHeight']),
         // @unencodable

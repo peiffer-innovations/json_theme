@@ -1653,17 +1653,15 @@ void main() {
       },
     });
 
-    entry = CardTheme(
-      data: CardThemeData(
-        clipBehavior: Clip.hardEdge,
-        color: const Color(0xff111111),
-        elevation: 3.0,
-        margin: const EdgeInsets.all(10.0),
-        shadowColor: const Color(0xff222222),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-          side: BorderSide.none,
-        ),
+    entry = CardThemeData(
+      clipBehavior: Clip.hardEdge,
+      color: const Color(0xff111111),
+      elevation: 3.0,
+      margin: const EdgeInsets.all(10.0),
+      shadowColor: const Color(0xff222222),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide.none,
       ),
     );
 

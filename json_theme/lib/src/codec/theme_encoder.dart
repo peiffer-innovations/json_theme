@@ -1332,11 +1332,11 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeCardTheme(CardTheme? value) {
+  static Map<String, dynamic>? encodeCardTheme(CardThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
-      result = <String, dynamic>{'data': encodeCardThemeData(value.data)};
+      result = <String, dynamic>{'data': encodeCardThemeData(value)};
     }
 
     return _stripDynamicNull(result);

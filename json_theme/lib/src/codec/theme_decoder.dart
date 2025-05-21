@@ -4065,7 +4065,7 @@ class ThemeDecoder {
       if (value is String || value is double || value is int) {
         result = EdgeInsets.all(JsonClass.parseDouble(value));
       } else if (value is List) {
-        assert(value.length == 2 || value.length == 4);
+        assert(value.length == 2 || value.length == 3 || value.length == 4);
         // LR,TB
         if (value.length == 1) {
           result = EdgeInsets.all(JsonClass.maybeParseDouble(value[0]) ?? 0.0);

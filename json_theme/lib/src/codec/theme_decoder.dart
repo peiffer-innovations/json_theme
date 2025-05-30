@@ -11942,7 +11942,7 @@ class ThemeDecoder {
         ),
         canvasColor: decodeColor(value['canvasColor'], validate: false),
         cardColor: decodeColor(value['cardColor'], validate: false),
-        cardTheme: decodeCardTheme(value['cardTheme'], validate: false),
+        cardTheme: decodeCardThemeData(value['cardTheme'], validate: false),
         checkboxTheme: decodeCheckboxThemeData(
           value['checkboxTheme'],
           validate: false,
@@ -11962,7 +11962,10 @@ class ThemeDecoder {
           value['dataTableTheme'],
           validate: false,
         ),
-        dialogTheme: decodeDialogTheme(value['dialogTheme'], validate: false),
+        dialogTheme: decodeDialogThemeData(
+          value['dialogTheme'],
+          validate: false,
+        ),
         disabledColor: decodeColor(value['disabledColor'], validate: false),
         dividerColor: decodeColor(value['dividerColor'], validate: false),
         dividerTheme: decodeDividerThemeData(
@@ -12124,7 +12127,10 @@ class ThemeDecoder {
           value['switchTheme'],
           validate: false,
         ),
-        tabBarTheme: decodeTabBarTheme(value['tabBarTheme'], validate: false),
+        tabBarTheme: decodeTabBarThemeData(
+          value['tabBarTheme'],
+          validate: false,
+        ),
         textButtonTheme: decodeTextButtonThemeData(
           value['textButtonTheme'],
           validate: false,

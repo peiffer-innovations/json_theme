@@ -830,8 +830,9 @@ class ThemeEncoder {
 
     if (value != null) {
       result = <String, dynamic>{
-        'maxHeight':
-            value.maxHeight == double.infinity ? null : value.maxHeight,
+        'maxHeight': value.maxHeight == double.infinity
+            ? null
+            : value.maxHeight,
         'maxWidth': value.maxWidth == double.infinity ? null : value.maxWidth,
         'minHeight': value.minHeight,
         'minWidth': value.minWidth,
@@ -4585,10 +4586,8 @@ class ThemeEncoder {
     if (value != null) {
       final builders = <String, String?>{};
       value.builders.forEach(
-        (key, value) =>
-            builders[encodeTargetPlatform(key)!] = encodePageTransitionsBuilder(
-              value,
-            ),
+        (key, value) => builders[encodeTargetPlatform(key)!] =
+            encodePageTransitionsBuilder(value),
       );
 
       result = {'builders': builders};
@@ -6864,11 +6863,10 @@ class ThemeEncoder {
 
     if (value != null) {
       result = {
-        'children':
-            value.children
-                ?.whereType<TextSpan>()
-                .map((e) => encodeTextSpan(e)!)
-                .toList(),
+        'children': value.children
+            ?.whereType<TextSpan>()
+            .map((e) => encodeTextSpan(e)!)
+            .toList(),
         'locale': encodeLocale(value.locale),
         'mouseCursor': encodeMouseCursor(value.mouseCursor),
         // 'onEnter': @unencodable,
@@ -6941,14 +6939,14 @@ class ThemeEncoder {
         'decorationThickness': value.decorationThickness,
         'fontFamily': value.fontFamily,
         'fontFamilyFallback': value.fontFamilyFallback,
-        'fontFeatures':
-            value.fontFeatures
-                ?.map((value) => encodeFontFeature(value))
-                .toList(),
+        'fontFeatures': value.fontFeatures
+            ?.map((value) => encodeFontFeature(value))
+            .toList(),
         'fontSize': value.fontSize,
         'fontStyle': encodeFontStyle(value.fontStyle),
-        'fontVariations':
-            value.fontVariations?.map((e) => encodeFontVariation(e)).toList(),
+        'fontVariations': value.fontVariations
+            ?.map((e) => encodeFontVariation(e))
+            .toList(),
         'fontWeight': encodeFontWeight(value.fontWeight),
         'height': value.height,
         'inherit': value.inherit,

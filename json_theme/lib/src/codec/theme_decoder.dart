@@ -1866,12 +1866,11 @@ class ThemeDecoder {
           validate: validate,
         ),
       );
-      result =
-          value == 'light'
-              ? Brightness.light
-              : value == 'dark'
-              ? Brightness.dark
-              : null;
+      result = value == 'light'
+          ? Brightness.light
+          : value == 'dark'
+          ? Brightness.dark
+          : null;
     }
 
     return result;
@@ -4889,12 +4888,11 @@ class ThemeDecoder {
               begin:
                   decodeAlignment(value['begin'], validate: false) ??
                   Alignment.centerLeft,
-              colors:
-                  _decodeStringList<Color>(value['colors'], (value) {
-                    final color = decodeColor(value, validate: false);
+              colors: _decodeStringList<Color>(value['colors'], (value) {
+                final color = decodeColor(value, validate: false);
 
-                    return color!;
-                  })!,
+                return color!;
+              })!,
               end:
                   decodeAlignment(value['end'], validate: false) ??
                   Alignment.centerRight,
@@ -4916,14 +4914,15 @@ class ThemeDecoder {
               center:
                   decodeAlignment(value['center'], validate: false) ??
                   Alignment.center,
-              colors:
-                  _decodeStringList<Color>(
-                    value['colors'],
-                    (value) => decodeColor(value, validate: false)!,
-                  )!,
+              colors: _decodeStringList<Color>(
+                value['colors'],
+                (value) => decodeColor(value, validate: false)!,
+              )!,
               focal: decodeAlignment(value['focal'], validate: false),
-              focalRadius:
-                  JsonClass.maybeParseDouble(value['focalRadius'], 0.0)!,
+              focalRadius: JsonClass.maybeParseDouble(
+                value['focalRadius'],
+                0.0,
+              )!,
               radius: JsonClass.maybeParseDouble(value['radius'], 0.5)!,
               stops: _decodeDynamicList<double>(
                 value['stops'],
@@ -4943,13 +4942,14 @@ class ThemeDecoder {
               center:
                   decodeAlignment(value['center'], validate: false) ??
                   Alignment.center,
-              colors:
-                  _decodeStringList<Color>(
-                    value['colors'],
-                    (value) => decodeColor(value, validate: false)!,
-                  )!,
-              endAngle:
-                  JsonClass.maybeParseDouble(value['endAngle'], math.pi * 2)!,
+              colors: _decodeStringList<Color>(
+                value['colors'],
+                (value) => decodeColor(value, validate: false)!,
+              )!,
+              endAngle: JsonClass.maybeParseDouble(
+                value['endAngle'],
+                math.pi * 2,
+              )!,
               startAngle: JsonClass.maybeParseDouble(value['startAngle'], 0.0)!,
               stops: _decodeDynamicList<double>(
                 value['stops'],
@@ -6132,9 +6132,10 @@ class ThemeDecoder {
 
       final swatchesIn = value['swatches'];
       swatchesIn.forEach(
-        (key, value) =>
-            swatches[JsonClass.maybeParseInt(key)!] =
-                decodeColor(value, validate: false)!,
+        (key, value) => swatches[JsonClass.maybeParseInt(key)!] = decodeColor(
+          value,
+          validate: false,
+        )!,
       );
 
       result = MaterialColor(
@@ -7530,9 +7531,8 @@ class ThemeDecoder {
 
       final builders = <TargetPlatform, PageTransitionsBuilder>{};
       value['builders']?.forEach(
-        (key, value) =>
-            builders[decodeTargetPlatform(key, validate: false)!] =
-                decodePageTransitionsBuilder(value, validate: false)!,
+        (key, value) => builders[decodeTargetPlatform(key, validate: false)!] =
+            decodePageTransitionsBuilder(value, validate: false)!,
       );
 
       result = PageTransitionsTheme(builders: builders);
@@ -11209,10 +11209,9 @@ class ThemeDecoder {
       );
 
       result = TextSpan(
-        children:
-            (value['children'] as List?)
-                ?.map((e) => decodeTextSpan(e, validate: false)!)
-                .toList(),
+        children: (value['children'] as List?)
+            ?.map((e) => decodeTextSpan(e, validate: false)!)
+            .toList(),
         locale: decodeLocale(value['locale'], validate: false),
         mouseCursor: decodeMouseCursor(value['mouseCursor'], validate: false),
         onEnter: value['onEnter'],
@@ -11298,24 +11297,21 @@ class ThemeDecoder {
           value['decorationThickness'],
         ),
         fontFamily: value['fontFamily'],
-        fontFamilyFallback:
-            value['fontFamilyFallback'] == null
-                ? null
-                : List<String>.from(value['fontFamilyFallback']),
-        fontFeatures:
-            value['fontFeatures'] == null
-                ? null
-                : List<FontFeature>.from(
-                  value['fontFeatures'].map(
-                    (value) => decodeFontFeature(value, validate: false),
-                  ),
+        fontFamilyFallback: value['fontFamilyFallback'] == null
+            ? null
+            : List<String>.from(value['fontFamilyFallback']),
+        fontFeatures: value['fontFeatures'] == null
+            ? null
+            : List<FontFeature>.from(
+                value['fontFeatures'].map(
+                  (value) => decodeFontFeature(value, validate: false),
                 ),
-        fontVariations:
-            (value['fontVariations'] as List?)
-                ?.map<FontVariation>(
-                  (e) => decodeFontVariation(e, validate: false)!,
-                )
-                .toList(),
+              ),
+        fontVariations: (value['fontVariations'] as List?)
+            ?.map<FontVariation>(
+              (e) => decodeFontVariation(e, validate: false)!,
+            )
+            .toList(),
         fontWeight: decodeFontWeight(value['fontWeight'], validate: false),
         fontSize: JsonClass.maybeParseDouble(value['fontSize']),
         fontStyle: decodeFontStyle(value['fontStyle'], validate: false),
@@ -11330,14 +11326,13 @@ class ThemeDecoder {
         locale: decodeLocale(value['locale'], validate: false),
         overflow: decodeTextOverflow(value['overflow'], validate: false),
         package: value['package'],
-        shadows:
-            value['shadows'] == null
-                ? null
-                : List<Shadow>.from(
-                  value['shadows'].map(
-                    (value) => decodeShadow(value, validate: false),
-                  ),
+        shadows: value['shadows'] == null
+            ? null
+            : List<Shadow>.from(
+                value['shadows'].map(
+                  (value) => decodeShadow(value, validate: false),
                 ),
+              ),
         textBaseline: decodeTextBaseline(
           value['textBaseline'],
           validate: false,
@@ -11769,10 +11764,9 @@ class ThemeDecoder {
         ),
         focusColor: decodeColor(value['focusColor'], validate: false),
         fontFamily: value['fontFamily'],
-        fontFamilyFallback:
-            value['fontFamilyFallback'] == null
-                ? null
-                : List<String>.from(value['fontFamilyFallback']),
+        fontFamilyFallback: value['fontFamilyFallback'] == null
+            ? null
+            : List<String>.from(value['fontFamilyFallback']),
         highlightColor: decodeColor(value['highlightColor'], validate: false),
         hintColor: decodeColor(value['hintColor'], validate: false),
         hoverColor: decodeColor(value['hoverColor'], validate: false),
@@ -12064,11 +12058,10 @@ class ThemeDecoder {
           value['dayPeriodColor'],
           validate: false,
         ),
-        dayPeriodShape:
-            value['dayPeriodShape'] == null
-                ? null
-                : decodeShapeBorder(value['dayPeriodShape'], validate: false)
-                    as OutlinedBorder?,
+        dayPeriodShape: value['dayPeriodShape'] == null
+            ? null
+            : decodeShapeBorder(value['dayPeriodShape'], validate: false)
+                  as OutlinedBorder?,
         dayPeriodTextColor: decodeColor(
           value['dayPeriodTextColor'],
           validate: false,

@@ -101,10 +101,9 @@ class SchemaValidator {
         refProvider: refProvider,
       );
 
-      var removed =
-          value is Map
-              ? JsonClass.removeNull(Map<String, dynamic>.from(value))
-              : value;
+      var removed = value is Map
+          ? JsonClass.removeNull(Map<String, dynamic>.from(value))
+          : value;
 
       if (removed == null && value is Map) {
         removed = {};

@@ -1332,35 +1332,6 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeCardTheme(CardTheme? value) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      result = <String, dynamic>{'data': encodeCardThemeData(value.data)};
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the given [value] to a JSON representation.
-  ///
-  /// ```json
-  /// {
-  ///   "clipBehavior": "<Clip>",
-  ///   "color": "<Color>",
-  ///   "elevation": "<double>",
-  ///   "margin": "<EdgeInsetsGeometry>",
-  ///   "shadowColor": "<Color>",
-  ///   "shape": "<ShapeBorder>",
-  ///   "surfaceTintColor": "<Color>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeClip]
-  ///  * [encodeColor]
-  ///  * [encodeEdgeInsetsGeometry]
-  ///  * [encodeShapeBorder]
   static Map<String, dynamic>? encodeCardThemeData(CardThemeData? value) {
     Map<String, dynamic>? result;
 
@@ -2078,63 +2049,6 @@ class ThemeEncoder {
           result = 'foreground';
           break;
       }
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the given [value] to a JSON representation.
-  ///
-  /// ```json
-  /// {
-  ///   "actionsPadding": "<EdgeInsetsGeometry>",
-  ///   "alignment": "<Alignment>",
-  ///   "backgroundColor": "<Color>",
-  ///   "barrierColor": "<Color>",
-  ///   "clipBehavior": "<Clip>",
-  ///   "contentTextStyle": "<TextStyle>",
-  ///   "elevation": "<double>",
-  ///   "iconColor": "<Color>",
-  ///   "insetPadding": "<EdgeInsets>",
-  ///   "shadowColor": "<Color>",
-  ///   "shape": "<ShapeBorder>",
-  ///   "surfaceColor": "<Color>",
-  ///   "titleTextStyle": "<TextStyle>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeAlignment]
-  ///  * [encodeBrightness]
-  ///  * [encodeClip]
-  ///  * [encodeColor]
-  ///  * [encodeEdgeInsets]
-  ///  * [encodeEdgeInsetsGeometry]
-  ///  * [encodeShapeBorder]
-  ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDialogTheme(DialogTheme? value) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      final data = value.data;
-      result = <String, dynamic>{
-        'data': {
-          'actionsPadding': encodeEdgeInsetsGeometry(
-            data.actionsPadding as EdgeInsets?,
-          ),
-          'alignment': encodeAlignmentGeometry(data.alignment),
-          'backgroundColor': encodeColor(data.backgroundColor),
-          'clipBehavior': encodeClip(data.clipBehavior),
-          'barrierColor': encodeColor(data.barrierColor),
-          'contentTextStyle': encodeTextStyle(data.contentTextStyle),
-          'elevation': data.elevation,
-          'insetsPadding': encodeEdgeInsets(data.insetPadding),
-          'shadowColor': encodeColor(data.shadowColor),
-          'shape': encodeShapeBorder(data.shape),
-          'surfaceTintColor': encodeColor(data.shadowColor),
-          'titleTextStyle': encodeTextStyle(data.titleTextStyle),
-        },
-      };
     }
 
     return _stripDynamicNull(result);
@@ -6225,69 +6139,6 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "data": "<TabBarThemeData>",
-  ///   "dividerColor": "<Color>",
-  ///   "dividerHeight": "<double>",
-  ///   "indicatorColor": "<Color>",
-  ///   "indicatorSize": "<TabBarIndicatorSize>",
-  ///   "labelPadding": "<EdgeInsetsGeometry>",
-  ///   "labelColor": "<Color>",
-  ///   "labelStyle": "<TextStyle>",
-  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<WidgetStateProperty<Color>>",
-  ///   "splashFactory": "<InteractiveInkSplashFactory>",
-  ///   "tabAlignment": "<TabAlignment>"
-  ///   "textScaler": "<TextScaler>",
-  ///   "unselectedLabelColor": "<Color>",
-  ///   "unselectedLabelStyle": "<TextStyle>",
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [encodeColor]
-  ///  * [encodeEdgeInsetsGeometry]
-  ///  * [encodeInteractiveInkFeatureFactory]
-  ///  * [encodeWidgetStatePropertyMouseCursor]
-  ///  * [encodeWidgetStatePropertyMouseCursor]
-  ///  * [encodeTabAlignment]
-  ///  * [encodeTabBarIndicatorSize]
-  ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTabBarTheme(TabBarTheme? value) {
-    Map<String, dynamic>? result;
-
-    if (value != null) {
-      final data = value.data;
-      result = <String, dynamic>{
-        'data': {
-          'dividerColor': encodeColor(data.dividerColor),
-          'dividerHeight': data.dividerHeight,
-          'indicatorColor': encodeColor(data.dividerColor),
-          'indicatorSize': encodeTabBarIndicatorSize(data.indicatorSize),
-          'labelPadding': encodeEdgeInsetsGeometry(
-            data.labelPadding as EdgeInsets?,
-          ),
-          'labelColor': encodeColor(data.labelColor),
-          'labelStyle': encodeTextStyle(data.labelStyle),
-          'mouseCursor': encodeWidgetStatePropertyMouseCursor(data.mouseCursor),
-          'overlayColor': encodeWidgetStatePropertyColor(data.overlayColor),
-          'splashFactory': encodeInteractiveInkFeatureFactory(
-            data.splashFactory,
-          ),
-          'tabAlignment': encodeTabAlignment(data.tabAlignment),
-          'textScaler': encodeTextScaler(data.textScaler),
-          'unselectedLabelColor': encodeColor(data.unselectedLabelColor),
-          'unselectedLabelStyle': encodeTextStyle(data.unselectedLabelStyle),
-        },
-      };
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the given [value] to the JSON representation.
-  ///
-  /// ```json
-  /// {
   ///   "dividerColor": "<Color>",
   ///   "dividerHeight": "<double>",
   ///   "indicatorColor": "<Color>",
@@ -7388,7 +7239,7 @@ class ThemeEncoder {
         'hoverColor': encodeColor(value.hoverColor),
         'iconButtonTheme': encodeIconButtonThemeData(value.iconButtonTheme),
         'iconTheme': encodeIconThemeData(value.iconTheme),
-        'indicatorColor': encodeColor(value.indicatorColor),
+        // 'indicatorColor': encodeColor(value.indicatorColor),
         'inputDecorationTheme': encodeInputDecorationTheme(
           value.inputDecorationTheme,
         ),
@@ -7653,7 +7504,7 @@ class ThemeEncoder {
         'enableFeedback': value.enableFeedback,
         'excludeFromSemantics': value.excludeFromSemantics,
         'exitDuration': value.exitDuration?.inMilliseconds,
-        'height': value.height,
+        'height': value.constraints?.minHeight,
         'margin': encodeEdgeInsetsGeometry(value.margin as EdgeInsets?),
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
         'preferBelow': value.preferBelow,

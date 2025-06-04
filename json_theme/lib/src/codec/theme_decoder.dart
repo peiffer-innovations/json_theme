@@ -2275,57 +2275,6 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [CardTheme].  This expects the
-  /// given [value] to follow the structure below:
-  ///
-  /// ```json
-  /// {
-  ///   "clipBehavior": "<Clip>",
-  ///   "color": "<Color>",
-  ///   "elevation": "<double>",
-  ///   "margin": "<EdgeInsetsGeometry>",
-  ///   "shadowColor": "<Color>",
-  ///   "shape": "<ShapeBorder>",
-  ///   "surfaceTintColor": "<Color>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeClip]
-  ///  * [decodeColor]
-  ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeShapeBorder]
-  static CardTheme? decodeCardTheme(dynamic value, {bool validate = true}) {
-    CardTheme? result;
-
-    if (value is CardTheme) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/card_theme',
-          value: value,
-          validate: validate,
-        ),
-      );
-      result = CardTheme(
-        clipBehavior: decodeClip(value['clipBehavior'], validate: false),
-        color: decodeColor(value['color'], validate: false),
-        data: decodeCardThemeData(value['data'], validate: false),
-        elevation: JsonClass.maybeParseDouble(value['elevation']),
-        margin: decodeEdgeInsetsGeometry(value['margin'], validate: false),
-        shadowColor: decodeColor(value['shadowColor'], validate: false),
-        shape: decodeShapeBorder(value['shape'], validate: false),
-        surfaceTintColor: decodeColor(
-          value['surfaceTintColor'],
-          validate: false,
-        ),
-      );
-    }
-
-    return result;
-  }
-
   /// Decodes the given [value] to an [CardThemeData].  This expects the
   /// given [value] to follow the structure below:
   ///
@@ -3546,84 +3495,6 @@ class ThemeDecoder {
             break;
         }
       }
-    }
-
-    return result;
-  }
-
-  /// Decodes the given [value] to an [DialogTheme].  This expects the given
-  /// [value] to follow the structure below:
-  ///
-  /// ```json
-  /// {
-  ///   "actionsPadding": "<EdgeInsetsGeometry>",
-  ///   "alignment": "<Alignment>",
-  ///   "backgroundColor": "<Color>",
-  ///   "barrierColor": "<Color>",
-  ///   "clipBehavior": "<Clip>",
-  ///   "contentTextStyle": "<TextStyle>",
-  ///   "data": "<DialogThemeData>",
-  ///   "elevation": "<double>",
-  ///   "iconColor": "<Color>",
-  ///   "insetPadding": "<EdgeInsets>",
-  ///   "shadowColor": "<Color>",
-  ///   "shape": "<ShapeBorder>",
-  ///   "surfaceColor": "<Color>",
-  ///   "titleTextStyle": "<TextStyle>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeAlignment]
-  ///  * [decodeBrightness]
-  ///  * [decodeClip]
-  ///  * [decodeColor]
-  ///  * [decodeDialogThemeData]
-  ///  * [decodeEdgeInsets]
-  ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeShapeBorder]
-  ///  * [decodeTextStyle]
-  static DialogTheme? decodeDialogTheme(dynamic value, {bool validate = true}) {
-    DialogTheme? result;
-
-    if (value is DialogTheme) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/dialog_theme',
-          value: value,
-          validate: validate,
-        ),
-      );
-      result = DialogTheme(
-        actionsPadding: decodeEdgeInsetsGeometry(
-          value['actionsPadding'],
-          validate: false,
-        ),
-        alignment: decodeAlignment(value['alignment'], validate: false),
-        backgroundColor: decodeColor(value['backgroundColor'], validate: false),
-        barrierColor: decodeColor(value['barrierColor'], validate: false),
-        clipBehavior: decodeClip(value['clipBehavior'], validate: false),
-        contentTextStyle: decodeTextStyle(
-          value['contentTextStyle'],
-          validate: false,
-        ),
-        data: decodeDialogThemeData(value['data'], validate: false),
-        elevation: JsonClass.maybeParseDouble(value['elevation']),
-        iconColor: decodeColor(value['iconColor'], validate: false),
-        insetPadding: decodeEdgeInsets(value['insetPadding'], validate: false),
-        shadowColor: decodeColor(value['shadowColor'], validate: false),
-        shape: decodeShapeBorder(value['shape'], validate: false),
-        surfaceTintColor: decodeColor(
-          value['surfaceTintColor'],
-          validate: false,
-        ),
-        titleTextStyle: decodeTextStyle(
-          value['titleTextStyle'],
-          validate: false,
-        ),
-      );
     }
 
     return result;
@@ -10184,110 +10055,6 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to a [TabBarTheme].  This expects the
-  /// [value] to have the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "data": "<TabBarThemeData>",
-  ///   "dividerColor": "<Color>",
-  ///   "dividerHeight": "<double>",
-  ///   "indicatorAnimation": "<TabIndicatorAnimation>",
-  ///   "indicatorColor": "<Color>",
-  ///   "indicatorSize": "<TabBarIndicatorSize>",
-  ///   "labelPadding": "<EdgeInsetsGeometry>",
-  ///   "labelColor": "<Color>",
-  ///   "labelStyle": "<TextStyle>",
-  ///   "mouseCursor": "<WidgetStateProperty<MouseCursor>>",
-  ///   "overlayColor": "<WidgetStateProperty<Color>>",
-  ///   "splashFactory": "<InteractiveInkSplashFactory>",
-  ///   "tabAlignment": "<TabAlignment>",
-  ///   "textScaler": "<TextScaler>",
-  ///   "unselectedLabelColor": "<Color>",
-  ///   "unselectedLabelStyle": "<TextStyle>",
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [decodeColor]
-  ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeInteractiveInkFeatureFactory]
-  ///  * [decodeWidgetStatePropertyColor]
-  ///  * [decodeWidgetStatePropertyMouseCursor]
-  ///  * [decodeTabAlignment]
-  ///  * [decodeTabIndicatorAnimation]
-  ///  * [decodeTabBarIndicatorSize]
-  ///  * [decodeTextScaler]
-  ///  * [decodeTextStyle]
-  static TabBarTheme? decodeTabBarTheme(dynamic value, {bool validate = true}) {
-    TabBarTheme? result;
-
-    if (value is TabBarTheme) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/tab_bar_theme',
-          value: value,
-          validate: validate,
-        ),
-      );
-      assert(
-        value['indicator'] == null,
-        'TabBarTheme.indicator is not supported',
-      );
-      result = TabBarTheme(
-        data: decodeTabBarThemeData(value['data'], validate: false),
-        dividerColor: decodeColor(value['dividerColor'], validate: false),
-        dividerHeight: JsonClass.maybeParseDouble(value['dividerHeight']),
-        // @unencodable
-        // indicator
-        indicatorAnimation: decodeTabIndicatorAnimation(
-          value[''],
-          validate: false,
-        ),
-        indicatorColor: decodeColor(value['indicatorColor'], validate: false),
-        indicatorSize: decodeTabBarIndicatorSize(
-          value['indicatorSize'],
-          validate: false,
-        ),
-        labelPadding: decodeEdgeInsetsGeometry(
-          value['labelPadding'],
-          validate: false,
-        ),
-        labelColor: decodeColor(value['labelColor'], validate: false),
-        labelStyle: decodeTextStyle(value['labelStyle'], validate: false),
-        mouseCursor: decodeWidgetStatePropertyMouseCursor(
-          value['mouseCursor'],
-          validate: false,
-        ),
-        overlayColor: decodeWidgetStatePropertyColor(
-          value['overlayColor'],
-          validate: false,
-        ),
-        tabAlignment: decodeTabAlignment(
-          value['tabAlignment'],
-          validate: false,
-        ),
-        textScaler: decodeTextScaler(value['textScaler'], validate: false),
-        splashFactory: decodeInteractiveInkFeatureFactory(
-          value['splashFactory'],
-          validate: false,
-        ),
-        unselectedLabelColor: decodeColor(
-          value['unselectedLabelColor'],
-          validate: false,
-        ),
-        unselectedLabelStyle: decodeTextStyle(
-          value['unselectedLabelStyle'],
-          validate: false,
-        ),
-      );
-    }
-
-    return result;
-  }
-
   /// Decodes the given [value] to a [TabBarThemeData].  This expects the
   /// [value] to have the following structure:
   ///
@@ -11770,7 +11537,7 @@ class ThemeDecoder {
   ///   "datePickerTheme": "<DatePickerThemeData>",
   ///   "dataTableTheme": "<DataTableThemeData>",
   ///   "dialogBackgroundColor": "<Color>",
-  ///   "dialogTheme": "<DialogTheme>",
+  ///   "dialogTheme": "<DialogThemeData>",
   ///   "disabledColor": "<Color>",
   ///   "dividerColor": "<Color>",
   ///   "dividerTheme": "<DividerThemeData>",
@@ -11823,7 +11590,7 @@ class ThemeDecoder {
   ///   "splashColor": "<Color>",
   ///   "splashFactory": "<InteractiveInkFeatureFactory>",
   ///   "switchTheme": "<SwitchThemeData>",
-  ///   "tabBarTheme": "<TabBarTheme>",
+  ///   "tabBarTheme": "<TabBarThemeData>",
   ///   "textButtonTheme": "<TextButtonThemeData>",
   ///   "textSelectionTheme": "<TextSelectionThemeData>",
   ///   "textTheme": "<TextTheme>",
@@ -11854,7 +11621,7 @@ class ThemeDecoder {
   ///  * [decodeColorScheme]
   ///  * [decodeDatePickerThemeData]
   ///  * [decodeDataTableThemeData]
-  ///  * [decodeDialogTheme]
+  ///  * [decodeDialogThemeData]
   ///  * [decodeDividerThemeData]
   ///  * [decodeDrawerThemeData]
   ///  * [decodeElevatedButtonThemeData]
@@ -11886,7 +11653,7 @@ class ThemeDecoder {
   ///  * [decodeSliderThemeData]
   ///  * [decodeSnackBarThemeData]
   ///  * [decodeSwitchThemeData]
-  ///  * [decodeTabBarTheme]
+  ///  * [decodeTabBarThemeData]
   ///  * [decodeTargetPlatform]
   ///  * [decodeTextButtonThemeData]
   ///  * [decodeTextSelectionThemeData]
@@ -11942,7 +11709,10 @@ class ThemeDecoder {
         ),
         canvasColor: decodeColor(value['canvasColor'], validate: false),
         cardColor: decodeColor(value['cardColor'], validate: false),
-        cardTheme: decodeCardTheme(value['cardTheme'], validate: false),
+        cardTheme: decodeCardThemeData(
+          value['cardTheme'] ?? value['cardThemeData'],
+          validate: false,
+        ),
         checkboxTheme: decodeCheckboxThemeData(
           value['checkboxTheme'],
           validate: false,
@@ -11962,7 +11732,10 @@ class ThemeDecoder {
           value['dataTableTheme'],
           validate: false,
         ),
-        dialogTheme: decodeDialogTheme(value['dialogTheme'], validate: false),
+        dialogTheme: decodeDialogThemeData(
+          value['dialogTheme'] ?? value['dialogThemeData'],
+          validate: false,
+        ),
         disabledColor: decodeColor(value['disabledColor'], validate: false),
         dividerColor: decodeColor(value['dividerColor'], validate: false),
         dividerTheme: decodeDividerThemeData(
@@ -12008,7 +11781,6 @@ class ThemeDecoder {
           validate: false,
         ),
         iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
-        indicatorColor: decodeColor(value['indicatorColor'], validate: false),
         inputDecorationTheme: decodeInputDecorationTheme(
           value['inputDecorationTheme'],
           validate: false,
@@ -12124,7 +11896,10 @@ class ThemeDecoder {
           value['switchTheme'],
           validate: false,
         ),
-        tabBarTheme: decodeTabBarTheme(value['tabBarTheme'], validate: false),
+        tabBarTheme: decodeTabBarThemeData(
+          value['tabBarTheme'] ?? value['tabBarThemeData'],
+          validate: false,
+        ),
         textButtonTheme: decodeTextButtonThemeData(
           value['textButtonTheme'],
           validate: false,
@@ -12474,6 +12249,9 @@ class ThemeDecoder {
       );
       result = TooltipThemeData(
         // decoration: @unencodable
+        constraints: BoxConstraints(
+          minHeight: JsonClass.parseDouble(value['height'] ?? 0.0),
+        ),
         enableFeedback: JsonClass.maybeParseBool(value['enableFeedback']),
         excludeFromSemantics: JsonClass.maybeParseBool(
           value['excludeFromSemantics'],
@@ -12481,7 +12259,6 @@ class ThemeDecoder {
         exitDuration: JsonClass.maybeParseDurationFromMillis(
           value['exitDuration'],
         ),
-        height: JsonClass.maybeParseDouble(value['height']),
         margin: decodeEdgeInsetsGeometry(value['margin'], validate: false),
         padding: decodeEdgeInsetsGeometry(value['padding'], validate: false),
         preferBelow: JsonClass.maybeParseBool(value['preferBelow']),

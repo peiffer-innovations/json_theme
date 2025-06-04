@@ -34,6 +34,7 @@ class ThemeDataSchema {
       'canvasColor': SchemaHelper.objectSchema(ColorSchema.id),
       'cardColor': SchemaHelper.objectSchema(ColorSchema.id),
       'cardTheme': SchemaHelper.objectSchema(CardThemeDataSchema.id),
+      'cardThemeData': SchemaHelper.objectSchema(CardThemeDataSchema.id),
       'checkboxTheme': SchemaHelper.objectSchema(CheckboxThemeDataSchema.id),
       'chipTheme': SchemaHelper.objectSchema(ChipThemeDataSchema.id),
       'colorScheme': SchemaHelper.objectSchema(ColorSchemeSchema.id),
@@ -47,6 +48,7 @@ class ThemeDataSchema {
       'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeDataSchema.id),
+      'dialogThemeData': SchemaHelper.objectSchema(DialogThemeDataSchema.id),
       'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dividerTheme': SchemaHelper.objectSchema(DividerThemeDataSchema.id),
@@ -129,6 +131,7 @@ class ThemeDataSchema {
       ),
       'switchTheme': SchemaHelper.objectSchema(SwitchThemeDataSchema.id),
       'tabBarTheme': SchemaHelper.objectSchema(TabBarThemeDataSchema.id),
+      'tabBarThemeData': SchemaHelper.objectSchema(TabBarThemeDataSchema.id),
       'textButtonTheme': SchemaHelper.objectSchema(
         TextButtonThemeDataSchema.id,
       ),

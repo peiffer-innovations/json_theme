@@ -39995,7 +39995,8 @@ b6=A.n(g.h(c0,"primaryColor"),!1)
 if(b6==null)b6=B.fD
 c0=A.aCJ(a5,a7,a8,a9,b3,b4,b5,b6,A.av(g.h(c0,"tabLabelTextStyle"),!1),A.av(g.h(c0,"textStyle"),!1))}else c0=null
 c0=new A.lP(B.i1,d,c,b,c0,e,a3,f)}else c0=null
-c1=o.h(h9,"datePickerThemeData")
+g=o.h(h9,"datePickerTheme")
+c1=g==null?o.h(h9,"datePickerThemeData"):g
 if(!(c1 instanceof A.rC))if(c1!=null){g=J.Y(c1)
 c1=A.atg(A.n(g.h(c1,"backgroundColor"),!1),A.jz(g.h(c1,"cancelButtonStyle"),!1),A.jz(g.h(c1,"confirmButtonStyle"),!1),A.bI(g.h(c1,"dayBackgroundColor"),!1),A.bI(g.h(c1,"dayForegroundColor"),!1),A.bI(g.h(c1,"dayOverlayColor"),!1),A.ad6(g.h(c1,"dayShape"),!1),A.av(g.h(c1,"dayStyle"),!1),A.n(g.h(c1,"dividerColor"),!1),A.H(g.h(c1,"elevation"),null),A.n(g.h(c1,"headerBackgroundColor"),!1),A.n(g.h(c1,"headerForegroundColor"),!1),A.av(g.h(c1,"headerHeadlineStyle"),!1),A.av(g.h(c1,"headerHelpStyle"),!1),A.acR(g.h(c1,"inputDecorationTheme"),!1),A.aw6(c1,!1),A.n(g.h(c1,"rangePickerBackgroundColor"),!1),A.H(g.h(c1,"rangePickerElevation"),null),A.n(g.h(c1,"rangePickerHeaderBackgroundColor"),!1),A.n(g.h(c1,"rangePickerHeaderForegroundColor"),!1),A.av(g.h(c1,"rangePickerHeaderHeadlineStyle"),!1),A.av(g.h(c1,"rangePickerHeaderHelpStyle"),!1),A.n(g.h(c1,"rangePickerShadowColor"),!1),A.dw(g.h(c1,"rangePickerShape"),!1),A.n(g.h(c1,"rangePickerSurfaceTintColor"),!1),A.n(g.h(c1,"rangeSelectionBackgroundColor"),!1),A.bI(g.h(c1,"rangeSelectionOverlayColor"),!1),A.n(g.h(c1,"shadowColor"),!1),A.dw(g.h(c1,"shape"),!1),A.n(g.h(c1,"surfaceTintColor"),!1),A.bI(g.h(c1,"todayBackgroundColor"),!1),A.c7(g.h(c1,"todayBorder"),!1),A.bI(g.h(c1,"todayForegroundColor"),!1),A.av(g.h(c1,"weekdayStyle"),!1),A.bI(g.h(c1,"yearBackgroundColor"),!1),A.bI(g.h(c1,"yearForegroundColor"),!1),A.bI(g.h(c1,"yearOverlayColor"),!1),null,A.av(g.h(c1,"yearStyle"),!1))}else c1=null
 c2=o.h(h9,"dataTableTheme")
@@ -40041,7 +40042,8 @@ c=A.aqB(e.h(c6,"menuStyle"),!1)
 c6=new A.og(A.av(e.h(c6,"textStyle"),!1),d,c)}else c6=null
 c7=o.h(h9,"elevatedButtonTheme")
 if(!(c7 instanceof A.oi))c7=c7!=null?new A.oi(A.jz(J.bS(c7,"style"),!1)):null
-c8=o.h(h9,"expansionTileTheme")
+e=o.h(h9,"expansionTileTheme")
+c8=e==null?o.h(h9,"expansionTileThemeData"):e
 if(!(c8 instanceof A.om))if(c8!=null){e=J.Y(c8)
 d=A.n(e.h(c8,"backgroundColor"),!1)
 c=A.bO(e.h(c8,"childrenPadding"),!1)

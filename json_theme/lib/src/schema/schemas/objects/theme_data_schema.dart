@@ -45,6 +45,9 @@ class ThemeDataSchema {
       'datePickerTheme': SchemaHelper.objectSchema(
         DatePickerThemeDataSchema.id,
       ),
+      'datePickerThemeData': SchemaHelper.objectSchema(
+        DatePickerThemeDataSchema.id,
+      ),
       'dataTableTheme': SchemaHelper.objectSchema(DataTableThemeDataSchema.id),
       'dialogBackgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'dialogTheme': SchemaHelper.objectSchema(DialogThemeDataSchema.id),
@@ -60,6 +63,9 @@ class ThemeDataSchema {
         ElevatedButtonThemeDataSchema.id,
       ),
       'expansionTileTheme': SchemaHelper.objectSchema(
+        ExpansionTileThemeDataSchema.id,
+      ),
+      'expansionTileThemeData': SchemaHelper.objectSchema(
         ExpansionTileThemeDataSchema.id,
       ),
       'filledButtonTheme': SchemaHelper.objectSchema(

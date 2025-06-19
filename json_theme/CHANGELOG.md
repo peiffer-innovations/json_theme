@@ -1,3 +1,7 @@
+## [9.0.1] - June 18th, 2025
+
+* Added aliases for `cardDataTheme` and `expansionTileTheme` via `cardDataThemeData` and `expansionTileThemeData`.
+
 ## [9.0.0+3] - June 17, 2025
 
 * Automated dependency updates
@@ -10,7 +14,7 @@
 
 ## [9.0.0+1] - June 4th, 2025
 
-* Flutter 3.22
+* Flutter 3.32
 
 
 ## [8.0.0+3] - May 20, 2025

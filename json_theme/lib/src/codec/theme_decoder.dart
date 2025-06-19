@@ -11720,7 +11720,7 @@ class ThemeDecoder {
           validate: false,
         ),
         datePickerTheme: decodeDatePickerThemeData(
-          value['datePickerThemeData'],
+          value['datePickerTheme'] ?? value['datePickerThemeData'],
           validate: false,
         ),
         dataTableTheme: decodeDataTableThemeData(
@@ -11750,7 +11750,7 @@ class ThemeDecoder {
           validate: false,
         ),
         expansionTileTheme: decodeExpansionTileThemeData(
-          value['expansionTileTheme'],
+          value['expansionTileTheme'] ?? value['expansionTileThemeData'],
           validate: false,
         ),
         // extensions: @unencodable,

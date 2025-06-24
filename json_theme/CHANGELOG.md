@@ -1,3 +1,8 @@
+## [9.0.1+1] - June 24, 2025
+
+* Automated dependency updates
+
+
 ## [9.0.1] - June 18th, 2025
 
 * Added aliases for `cardDataTheme` and `expansionTileTheme` via `cardDataThemeData` and `expansionTileThemeData`.

@@ -7048,7 +7048,7 @@ class ThemeEncoder {
   ///   "applyElevationOverlayColor": "<bool>",
   ///   "badgeTheme": "<BadgeThemeData>",
   ///   "bannerTheme": "<MaterialBannerThemeData>",
-  ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id,
+  ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id>,
   ///   "bottomNavigationBarTheme": "<BottomNavigationBarThemeData>",
   ///   "bottomSheetTheme": "<BottomSheetThemeData>",
   ///   "brightness": "<Brightness>",

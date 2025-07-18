@@ -24,7 +24,7 @@ jobs:
         run: |
           flutter packages get
           dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: json_theme
+        working-directory: packagers/json_theme
 
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v2
@@ -46,23 +46,22 @@ jobs:
           git config --global user.name "action"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/
 
-          rm -rf ../schemas/schemas/json_theme
-          mkdir ../schemas/schemas/json_theme
-          cp output/* ../schemas/schemas/json_theme
-          cd ../schemas
+          rm -rf ../../schemas/schemas/json_theme
+          mkdir ../../schemas/schemas/json_theme
+          cp output/* ../../schemas/schemas/json_theme
+          cd ../../schemas
           git add .
           git commit --allow-empty -m "json_theme: schema update"
           git push origin HEAD:gh-pages
-          cd ..
-        working-directory: json_theme
+        working-directory: packagers/json_theme
 
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
         with:
           credentials: ${{ secrets.CREDENTIAL_JSON }}
-          path: json_theme
+          path: packagers/json_theme
 
       - uses: peiffer-innovations/actions-dart-version-autotag@v2
         with:
-          path: json_theme
+          path: packagers/json_theme
           token: ${{ secrets.REPO_TOKEN }}

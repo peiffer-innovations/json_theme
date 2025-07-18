@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - annotation/pubspec.yaml
+      - packagers/annotation/pubspec.yaml
 
 jobs:
   build:
@@ -17,10 +17,10 @@ jobs:
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
-          path: annotation
+          path: packagers/annotation
 
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
         with:
           credentials: ${{ secrets.CREDENTIAL_JSON }}
-          path: annotation
+          path: packagers/annotation

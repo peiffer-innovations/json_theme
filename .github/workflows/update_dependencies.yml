@@ -14,7 +14,7 @@ jobs:
         uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
-          paths: packagers/annotation
+          paths: packages/annotation
           pull_request: true
           token: ${{ secrets.REPO_TOKEN }}
 
@@ -28,7 +28,7 @@ jobs:
         uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
-          paths: packagers/codegen
+          paths: packages/codegen
           pull_request: true
           token: ${{ secrets.REPO_TOKEN }}
 
@@ -42,6 +42,6 @@ jobs:
         uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
-          paths: packagers/json_theme,json_theme/example
+          paths: packages/json_theme,json_theme/example
           pull_request: true
           token: ${{ secrets.REPO_TOKEN }}

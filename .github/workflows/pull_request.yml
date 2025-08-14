@@ -15,18 +15,18 @@ jobs:
       - name: Validate annotation
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
-          path: packagers/annotation
+          path: packages/annotation
           skip_sarif: true
 
       - name: Validate annotation
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
-          path: packagers/codegen
+          path: packages/codegen
           skip_sarif: true
 
       - name: Validate annotation
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           generate_code: true
-          path: packagers/json_theme
+          path: packages/json_theme
           

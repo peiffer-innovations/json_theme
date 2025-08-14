@@ -38,12 +38,12 @@ jobs:
         run: |
           flutter packages get
           dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: packagers/json_theme
+        working-directory: packages/json_theme
 
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
-          path: packagers/json_theme
+          path: packages/json_theme
 
       - name: Web
         uses: peiffer-innovations/actions-flutter-deploy-pages@v1
@@ -53,5 +53,5 @@ jobs:
           build_number: ${{ needs.build_number.outputs.buildnumber }}
           deploy_path: web
           repo_url: https://github.com/${{ github.repository }}
-          source_path: packagers/json_theme/example
+          source_path: packages/json_theme/example
           token: ${{ secrets.GITHUB_TOKEN }}

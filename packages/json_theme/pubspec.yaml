@@ -1,7 +1,7 @@
 name: 'json_theme'
 description: 'A library to dynamically generate a ThemeData object from a JSON file or dynamic map object'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '9.0.1+2'
+version: '9.0.2'
 
 environment:
   sdk: '^3.8.0'
@@ -22,7 +22,7 @@ dependencies:
   meta: '^1.12.0'
 
 dev_dependencies:
-  analyzer: '^6.7.0'
+  analyzer: '^7.7.0'
   build: '^2.5.4'
   build_runner: '^2.5.4'
   code_builder: '^4.10.1'
@@ -59,6 +59,8 @@ ignore_updates:
   - 'archive'
   - 'async'
   - 'boolean_selector'
+  - 'build'
+  - 'build_runner'
   - 'characters'
   - 'charcode'
   - 'collection'
@@ -70,14 +72,15 @@ ignore_updates:
   - 'material_color_utilities'
   - 'meta'
   - 'path'
+  - 'source_gen'
   - 'source_span'
   - 'stack_trace'
   - 'stream_channel'
   - 'string_scanner'
   - 'sync_http'
   - 'term_glyph'
+  - 'test'
   - 'test_api'
   - 'typed_data'
-  - 'uuid'
   - 'vector_math'
   - 'webdriver'

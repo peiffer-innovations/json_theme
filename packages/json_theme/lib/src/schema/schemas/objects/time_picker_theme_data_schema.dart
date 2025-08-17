@@ -32,7 +32,7 @@ class TimePickerThemeDataSchema {
       'hourMinuteTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hourMinuteTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'inputDecorationTheme': SchemaHelper.objectSchema(
-        InputDecorationThemeSchema.id,
+        InputDecorationThemeDataSchema.id,
       ),
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),

@@ -9,7 +9,7 @@ class Schemas {
     AndroidOverscrollIndicatorSchema.id:
         AndroidOverscrollIndicatorSchema.schema,
     AnimationStyleSchema.id: AnimationStyleSchema.schema,
-    AppBarThemeSchema.id: AppBarThemeSchema.schema,
+    AppBarThemeDataSchema.id: AppBarThemeDataSchema.schema,
     AutovalidateModeSchema.id: AutovalidateModeSchema.schema,
     AxisSchema.id: AxisSchema.schema,
     BadgeThemeDataSchema.id: BadgeThemeDataSchema.schema,
@@ -19,7 +19,7 @@ class Schemas {
     BorderRadiusSchema.id: BorderRadiusSchema.schema,
     BorderSideSchema.id: BorderSideSchema.schema,
     BorderStyleSchema.id: BorderStyleSchema.schema,
-    BottomAppBarThemeScheme.id: BottomAppBarThemeScheme.schema,
+    BottomAppBarThemeDataScheme.id: BottomAppBarThemeDataScheme.schema,
     BottomNavigationBarLandscapeLayoutSchema.id:
         BottomNavigationBarLandscapeLayoutSchema.schema,
     BottomNavigationBarThemeDataSchema.id:
@@ -92,7 +92,7 @@ class Schemas {
     ImageProviderSchema.id: ImageProviderSchema.schema,
     ImageRepeatSchema.id: ImageRepeatSchema.schema,
     InputBorderSchema.id: InputBorderSchema.schema,
-    InputDecorationThemeSchema.id: InputDecorationThemeSchema.schema,
+    InputDecorationThemeDataSchema.id: InputDecorationThemeDataSchema.schema,
     InteractiveInkFeatureFactorySchema.id:
         InteractiveInkFeatureFactorySchema.schema,
     ListTileControlAffinitySchema.id: ListTileControlAffinitySchema.schema,

@@ -4,7 +4,7 @@ import 'package:json_theme/json_theme.dart';
 
 void main() {
   test('issue 18', () {
-    final encoded = ThemeEncoder.encodeThemeData(ThemeData());
-    ThemeDecoder.decodeThemeData(encoded, validate: true);
+    final encoded = ThemeEncoder.instance.encodeThemeData(ThemeData());
+    ThemeDecoder.instance.decodeThemeData(encoded, validate: true);
   });
 }

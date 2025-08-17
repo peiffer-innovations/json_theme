@@ -13,14 +13,14 @@ class ThemeDataSchema {
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'appBarTheme': SchemaHelper.objectSchema(AppBarThemeSchema.id),
+      'appBarTheme': SchemaHelper.objectSchema(AppBarThemeDataSchema.id),
       'applyElevationOverlayColor': SchemaHelper.boolSchema,
       'badgeTheme': SchemaHelper.objectSchema(BadgeThemeDataSchema.id),
       'bannerTheme': SchemaHelper.objectSchema(
         MaterialBannerThemeDataSchema.id,
       ),
       'bottomAppBarTheme': SchemaHelper.objectSchema(
-        BottomAppBarThemeScheme.id,
+        BottomAppBarThemeDataScheme.id,
       ),
       'bottomNavigationBarTheme': SchemaHelper.objectSchema(
         BottomNavigationBarThemeDataSchema.id,
@@ -89,7 +89,7 @@ class ThemeDataSchema {
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'indicatorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'inputDecorationTheme': SchemaHelper.objectSchema(
-        InputDecorationThemeSchema.id,
+        InputDecorationThemeDataSchema.id,
       ),
       'listTileTheme': SchemaHelper.objectSchema(ListTileThemeDataSchema.id),
       'materialTapTargetSize': SchemaHelper.objectSchema(

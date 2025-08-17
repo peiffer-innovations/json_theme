@@ -1,3 +1,8 @@
+## [2.0.0] - August 17th, 2025
+
+* Updated `source_gen`, `codegen`, and `analyzer` to latest
+
+
 ## [1.1.3+12] - August 14th, 2025
 
 * Dependency updates

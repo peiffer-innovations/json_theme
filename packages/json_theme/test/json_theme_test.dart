@@ -30,328 +30,412 @@ void main() {
   });
 
   test('Alignment', () {
-    expect(ThemeDecoder.decodeAlignment(null), null);
-    expect(ThemeEncoder.encodeAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeAlignment(Alignment.bottomCenter),
+      ThemeDecoder.instance.decodeAlignment(Alignment.bottomCenter),
       Alignment.bottomCenter,
     );
 
     expect(
-      ThemeDecoder.decodeAlignment({'x': 0.2, 'y': 0.4}),
+      ThemeDecoder.instance.decodeAlignment({'x': 0.2, 'y': 0.4}),
       const Alignment(0.2, 0.4),
     );
-    expect(ThemeEncoder.encodeAlignment(const Alignment(0.2, 0.4)), {
+    expect(ThemeEncoder.instance.encodeAlignment(const Alignment(0.2, 0.4)), {
       'x': 0.2,
       'y': 0.4,
     });
 
     expect(
-      ThemeDecoder.decodeAlignment('bottomCenter'),
+      ThemeDecoder.instance.decodeAlignment('bottomCenter'),
       Alignment.bottomCenter,
     );
-    expect(ThemeDecoder.decodeAlignment('bottomLeft'), Alignment.bottomLeft);
-    expect(ThemeDecoder.decodeAlignment('bottomRight'), Alignment.bottomRight);
+    expect(
+      ThemeDecoder.instance.decodeAlignment('bottomLeft'),
+      Alignment.bottomLeft,
+    );
+    expect(
+      ThemeDecoder.instance.decodeAlignment('bottomRight'),
+      Alignment.bottomRight,
+    );
 
-    expect(ThemeDecoder.decodeAlignment('center'), Alignment.center);
-    expect(ThemeDecoder.decodeAlignment('centerLeft'), Alignment.centerLeft);
-    expect(ThemeDecoder.decodeAlignment('centerRight'), Alignment.centerRight);
-
-    expect(ThemeDecoder.decodeAlignment('topCenter'), Alignment.topCenter);
-    expect(ThemeDecoder.decodeAlignment('topLeft'), Alignment.topLeft);
-    expect(ThemeDecoder.decodeAlignment('topRight'), Alignment.topRight);
+    expect(ThemeDecoder.instance.decodeAlignment('center'), Alignment.center);
+    expect(
+      ThemeDecoder.instance.decodeAlignment('centerLeft'),
+      Alignment.centerLeft,
+    );
+    expect(
+      ThemeDecoder.instance.decodeAlignment('centerRight'),
+      Alignment.centerRight,
+    );
 
     expect(
-      ThemeEncoder.encodeAlignment(Alignment.bottomCenter),
+      ThemeDecoder.instance.decodeAlignment('topCenter'),
+      Alignment.topCenter,
+    );
+    expect(ThemeDecoder.instance.decodeAlignment('topLeft'), Alignment.topLeft);
+    expect(
+      ThemeDecoder.instance.decodeAlignment('topRight'),
+      Alignment.topRight,
+    );
+
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.bottomCenter),
       'bottomCenter',
     );
-    expect(ThemeEncoder.encodeAlignment(Alignment.bottomLeft), 'bottomLeft');
-    expect(ThemeEncoder.encodeAlignment(Alignment.bottomRight), 'bottomRight');
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.bottomLeft),
+      'bottomLeft',
+    );
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.bottomRight),
+      'bottomRight',
+    );
 
-    expect(ThemeEncoder.encodeAlignment(Alignment.center), 'center');
-    expect(ThemeEncoder.encodeAlignment(Alignment.centerLeft), 'centerLeft');
-    expect(ThemeEncoder.encodeAlignment(Alignment.centerRight), 'centerRight');
+    expect(ThemeEncoder.instance.encodeAlignment(Alignment.center), 'center');
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.centerLeft),
+      'centerLeft',
+    );
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.centerRight),
+      'centerRight',
+    );
 
-    expect(ThemeEncoder.encodeAlignment(Alignment.topCenter), 'topCenter');
-    expect(ThemeEncoder.encodeAlignment(Alignment.topLeft), 'topLeft');
-    expect(ThemeEncoder.encodeAlignment(Alignment.topRight), 'topRight');
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.topCenter),
+      'topCenter',
+    );
+    expect(ThemeEncoder.instance.encodeAlignment(Alignment.topLeft), 'topLeft');
+    expect(
+      ThemeEncoder.instance.encodeAlignment(Alignment.topRight),
+      'topRight',
+    );
   });
 
   test('AlignmentDirectional', () {
-    expect(ThemeDecoder.decodeAlignmentDirectional(null), null);
-    expect(ThemeEncoder.encodeAlignmentDirectional(null), null);
+    expect(ThemeDecoder.instance.decodeAlignmentDirectional(null), null);
+    expect(ThemeEncoder.instance.encodeAlignmentDirectional(null), null);
 
     expect(
-      ThemeDecoder.decodeAlignmentDirectional(
+      ThemeDecoder.instance.decodeAlignmentDirectional(
         AlignmentDirectional.bottomCenter,
       ),
       AlignmentDirectional.bottomCenter,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('bottomCenter'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('bottomCenter'),
       AlignmentDirectional.bottomCenter,
     );
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('bottomEnd'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('bottomEnd'),
       AlignmentDirectional.bottomEnd,
     );
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('bottomStart'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('bottomStart'),
       AlignmentDirectional.bottomStart,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('center'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('center'),
       AlignmentDirectional.center,
     );
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('centerEnd'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('centerEnd'),
       AlignmentDirectional.centerEnd,
     );
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('centerStart'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('centerStart'),
       AlignmentDirectional.centerStart,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('topCenter'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('topCenter'),
       AlignmentDirectional.topCenter,
     );
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('topEnd'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('topEnd'),
       AlignmentDirectional.topEnd,
     );
     expect(
-      ThemeDecoder.decodeAlignmentDirectional('topStart'),
+      ThemeDecoder.instance.decodeAlignmentDirectional('topStart'),
       AlignmentDirectional.topStart,
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(
+      ThemeEncoder.instance.encodeAlignmentDirectional(
         AlignmentDirectional.bottomCenter,
       ),
       'bottomCenter',
     );
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.bottomEnd),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.bottomEnd,
+      ),
       'bottomEnd',
     );
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.bottomStart),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.bottomStart,
+      ),
       'bottomStart',
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.center),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.center,
+      ),
       'center',
     );
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.centerEnd),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.centerEnd,
+      ),
       'centerEnd',
     );
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.centerStart),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.centerStart,
+      ),
       'centerStart',
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.topCenter),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.topCenter,
+      ),
       'topCenter',
     );
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.topEnd),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.topEnd,
+      ),
       'topEnd',
     );
     expect(
-      ThemeEncoder.encodeAlignmentDirectional(AlignmentDirectional.topStart),
+      ThemeEncoder.instance.encodeAlignmentDirectional(
+        AlignmentDirectional.topStart,
+      ),
       'topStart',
     );
   });
 
   test('AlignmentGeometry', () {
-    expect(ThemeDecoder.decodeAlignmentGeometry(null), null);
-    expect(ThemeEncoder.encodeAlignmentGeometry(null), null);
+    expect(ThemeDecoder.instance.decodeAlignmentGeometry(null), null);
+    expect(ThemeEncoder.instance.encodeAlignmentGeometry(null), null);
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry(Alignment.bottomCenter),
+      ThemeDecoder.instance.decodeAlignmentGeometry(Alignment.bottomCenter),
       Alignment.bottomCenter,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry({'x': 0.2, 'y': 0.4}),
+      ThemeDecoder.instance.decodeAlignmentGeometry({'x': 0.2, 'y': 0.4}),
       const Alignment(0.2, 0.4),
     );
-    expect(ThemeEncoder.encodeAlignmentGeometry(const Alignment(0.2, 0.4)), {
-      'x': 0.2,
-      'y': 0.4,
-    });
+    expect(
+      ThemeEncoder.instance.encodeAlignmentGeometry(const Alignment(0.2, 0.4)),
+      {'x': 0.2, 'y': 0.4},
+    );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('bottomCenter'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('bottomCenter'),
       Alignment.bottomCenter,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('bottomLeft'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('bottomLeft'),
       Alignment.bottomLeft,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('bottomRight'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('bottomRight'),
       Alignment.bottomRight,
     );
 
-    expect(ThemeDecoder.decodeAlignmentGeometry('center'), Alignment.center);
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('centerLeft'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('center'),
+      Alignment.center,
+    );
+    expect(
+      ThemeDecoder.instance.decodeAlignmentGeometry('centerLeft'),
       Alignment.centerLeft,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('centerRight'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('centerRight'),
       Alignment.centerRight,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('topCenter'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('topCenter'),
       Alignment.topCenter,
     );
-    expect(ThemeDecoder.decodeAlignmentGeometry('topLeft'), Alignment.topLeft);
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('topRight'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('topLeft'),
+      Alignment.topLeft,
+    );
+    expect(
+      ThemeDecoder.instance.decodeAlignmentGeometry('topRight'),
       Alignment.topRight,
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.bottomCenter),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.bottomCenter),
       'bottomCenter',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.bottomLeft),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.bottomLeft),
       'bottomLeft',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.bottomRight),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.bottomRight),
       'bottomRight',
     );
 
-    expect(ThemeEncoder.encodeAlignmentGeometry(Alignment.center), 'center');
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.centerLeft),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.center),
+      'center',
+    );
+    expect(
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.centerLeft),
       'centerLeft',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.centerRight),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.centerRight),
       'centerRight',
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.topCenter),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.topCenter),
       'topCenter',
     );
-    expect(ThemeEncoder.encodeAlignmentGeometry(Alignment.topLeft), 'topLeft');
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(Alignment.topRight),
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.topLeft),
+      'topLeft',
+    );
+    expect(
+      ThemeEncoder.instance.encodeAlignmentGeometry(Alignment.topRight),
       'topRight',
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry(AlignmentDirectional.bottomCenter),
+      ThemeDecoder.instance.decodeAlignmentGeometry(
+        AlignmentDirectional.bottomCenter,
+      ),
       AlignmentDirectional.bottomCenter,
     );
 
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('bottomEnd'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('bottomEnd'),
       AlignmentDirectional.bottomEnd,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('bottomStart'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('bottomStart'),
       AlignmentDirectional.bottomStart,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('centerEnd'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('centerEnd'),
       AlignmentDirectional.centerEnd,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('centerStart'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('centerStart'),
       AlignmentDirectional.centerStart,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('topEnd'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('topEnd'),
       AlignmentDirectional.topEnd,
     );
     expect(
-      ThemeDecoder.decodeAlignmentGeometry('topStart'),
+      ThemeDecoder.instance.decodeAlignmentGeometry('topStart'),
       AlignmentDirectional.topStart,
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.bottomCenter),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.bottomCenter,
+      ),
       'bottomCenter',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.bottomEnd),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.bottomEnd,
+      ),
       'bottomEnd',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.bottomStart),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.bottomStart,
+      ),
       'bottomStart',
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.center),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.center,
+      ),
       'center',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.centerEnd),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.centerEnd,
+      ),
       'centerEnd',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.centerStart),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.centerStart,
+      ),
       'centerStart',
     );
 
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.topCenter),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.topCenter,
+      ),
       'topCenter',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.topEnd),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.topEnd,
+      ),
       'topEnd',
     );
     expect(
-      ThemeEncoder.encodeAlignmentGeometry(AlignmentDirectional.topStart),
+      ThemeEncoder.instance.encodeAlignmentGeometry(
+        AlignmentDirectional.topStart,
+      ),
       'topStart',
     );
   });
 
   test('AndroidOverscrollIndicator', () {
-    expect(ThemeDecoder.decodeAndroidOverscrollIndicator(null), null);
-    expect(ThemeEncoder.encodeAndroidOverscrollIndicator(null), null);
+    expect(ThemeDecoder.instance.decodeAndroidOverscrollIndicator(null), null);
+    expect(ThemeEncoder.instance.encodeAndroidOverscrollIndicator(null), null);
 
     expect(
-      ThemeDecoder.decodeAndroidOverscrollIndicator(
+      ThemeDecoder.instance.decodeAndroidOverscrollIndicator(
         AndroidOverscrollIndicator.glow,
       ),
       AndroidOverscrollIndicator.glow,
     );
 
     expect(
-      ThemeDecoder.decodeAndroidOverscrollIndicator('glow'),
+      ThemeDecoder.instance.decodeAndroidOverscrollIndicator('glow'),
       AndroidOverscrollIndicator.glow,
     );
     expect(
-      ThemeDecoder.decodeAndroidOverscrollIndicator('stretch'),
+      ThemeDecoder.instance.decodeAndroidOverscrollIndicator('stretch'),
       AndroidOverscrollIndicator.stretch,
     );
 
     expect(
-      ThemeEncoder.encodeAndroidOverscrollIndicator(
+      ThemeEncoder.instance.encodeAndroidOverscrollIndicator(
         AndroidOverscrollIndicator.glow,
       ),
       'glow',
     );
     expect(
-      ThemeEncoder.encodeAndroidOverscrollIndicator(
+      ThemeEncoder.instance.encodeAndroidOverscrollIndicator(
         AndroidOverscrollIndicator.stretch,
       ),
       'stretch',
@@ -359,32 +443,32 @@ void main() {
   });
 
   test('AnimationStyle', () {
-    expect(ThemeDecoder.decodeAnimationStyle(null), null);
-    expect(ThemeEncoder.encodeAnimationStyle(null), null);
+    expect(ThemeDecoder.instance.decodeAnimationStyle(null), null);
+    expect(ThemeEncoder.instance.encodeAnimationStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeAnimationStyle(AnimationStyle.noAnimation),
+      ThemeDecoder.instance.decodeAnimationStyle(AnimationStyle.noAnimation),
       AnimationStyle.noAnimation,
     );
 
     expect(
-      ThemeDecoder.decodeAnimationStyle('noAnimation'),
+      ThemeDecoder.instance.decodeAnimationStyle('noAnimation'),
       AnimationStyle.noAnimation,
     );
 
     expect(
-      ThemeEncoder.encodeAnimationStyle(AnimationStyle.noAnimation),
+      ThemeEncoder.instance.encodeAnimationStyle(AnimationStyle.noAnimation),
       'noAnimation',
     );
   });
 
-  test('AppBarTheme', () {
-    expect(ThemeDecoder.decodeAppBarTheme(null), null);
-    expect(ThemeEncoder.encodeAppBarTheme(null), null);
+  test('AppBarThemeData', () {
+    expect(ThemeDecoder.instance.decodeAppBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeAppBarThemeData(null), null);
 
-    const entry = AppBarTheme(
+    const entry = AppBarThemeData(
       actionsPadding: EdgeInsets.all(8.0),
-      color: _kColor,
+      backgroundColor: _kColor,
       centerTitle: true,
       elevation: 6.0,
       foregroundColor: _kColor,
@@ -393,10 +477,10 @@ void main() {
       toolbarHeight: 64.0,
     );
 
-    expect(ThemeDecoder.decodeAppBarTheme(entry), entry);
+    expect(ThemeDecoder.instance.decodeAppBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeAppBarTheme(entry);
-    final decoded = ThemeDecoder.decodeAppBarTheme(encoded);
+    final encoded = ThemeEncoder.instance.encodeAppBarThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeAppBarThemeData(encoded);
 
     expect(
       json.encode(encoded),
@@ -421,37 +505,37 @@ void main() {
   });
 
   test('AutovalidateMode', () {
-    expect(ThemeDecoder.decodeAutovalidateMode(null), null);
-    expect(ThemeEncoder.encodeAutovalidateMode(null), null);
+    expect(ThemeDecoder.instance.decodeAutovalidateMode(null), null);
+    expect(ThemeEncoder.instance.encodeAutovalidateMode(null), null);
 
     expect(
-      ThemeDecoder.decodeAutovalidateMode(AutovalidateMode.always),
+      ThemeDecoder.instance.decodeAutovalidateMode(AutovalidateMode.always),
       AutovalidateMode.always,
     );
 
     // Test each values from AutovalidateMode enum
     for (var value in AutovalidateMode.values) {
-      expect(ThemeDecoder.decodeAutovalidateMode(value.name), value);
-      expect(ThemeEncoder.encodeAutovalidateMode(value), value.name);
+      expect(ThemeDecoder.instance.decodeAutovalidateMode(value.name), value);
+      expect(ThemeEncoder.instance.encodeAutovalidateMode(value), value.name);
     }
   });
 
   test('Axis', () {
-    expect(ThemeDecoder.decodeAxis(null), null);
-    expect(ThemeEncoder.encodeAxis(null), null);
+    expect(ThemeDecoder.instance.decodeAxis(null), null);
+    expect(ThemeEncoder.instance.encodeAxis(null), null);
 
-    expect(ThemeDecoder.decodeAxis(Axis.horizontal), Axis.horizontal);
+    expect(ThemeDecoder.instance.decodeAxis(Axis.horizontal), Axis.horizontal);
 
-    expect(ThemeDecoder.decodeAxis('horizontal'), Axis.horizontal);
-    expect(ThemeDecoder.decodeAxis('vertical'), Axis.vertical);
+    expect(ThemeDecoder.instance.decodeAxis('horizontal'), Axis.horizontal);
+    expect(ThemeDecoder.instance.decodeAxis('vertical'), Axis.vertical);
 
-    expect(ThemeEncoder.encodeAxis(Axis.horizontal), 'horizontal');
-    expect(ThemeEncoder.encodeAxis(Axis.vertical), 'vertical');
+    expect(ThemeEncoder.instance.encodeAxis(Axis.horizontal), 'horizontal');
+    expect(ThemeEncoder.instance.encodeAxis(Axis.vertical), 'vertical');
   });
 
   test('BadgeThemeData', () {
-    expect(ThemeDecoder.decodeBadgeThemeData(null), null);
-    expect(ThemeEncoder.encodeBadgeThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeBadgeThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeBadgeThemeData(null), null);
 
     const entry = BadgeThemeData(
       alignment: Alignment.bottomCenter,
@@ -464,9 +548,9 @@ void main() {
       textStyle: TextStyle(fontWeight: FontWeight.w400),
     );
 
-    expect(ThemeDecoder.decodeBadgeThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeBadgeThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBadgeThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeBadgeThemeData(entry);
 
     expect(encoded, {
       'alignment': 'bottomCenter',
@@ -480,97 +564,160 @@ void main() {
     });
   });
   test('BlendMode', () {
-    expect(ThemeDecoder.decodeBlendMode(null), null);
-    expect(ThemeEncoder.encodeBlendMode(null), null);
+    expect(ThemeDecoder.instance.decodeBlendMode(null), null);
+    expect(ThemeEncoder.instance.encodeBlendMode(null), null);
 
-    expect(ThemeDecoder.decodeBlendMode(BlendMode.clear), BlendMode.clear);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode(BlendMode.clear),
+      BlendMode.clear,
+    );
 
-    expect(ThemeDecoder.decodeBlendMode('clear'), BlendMode.clear);
-    expect(ThemeDecoder.decodeBlendMode('color'), BlendMode.color);
-    expect(ThemeDecoder.decodeBlendMode('colorBurn'), BlendMode.colorBurn);
-    expect(ThemeDecoder.decodeBlendMode('colorDodge'), BlendMode.colorDodge);
-    expect(ThemeDecoder.decodeBlendMode('darken'), BlendMode.darken);
-    expect(ThemeDecoder.decodeBlendMode('difference'), BlendMode.difference);
-    expect(ThemeDecoder.decodeBlendMode('dst'), BlendMode.dst);
-    expect(ThemeDecoder.decodeBlendMode('dstATop'), BlendMode.dstATop);
-    expect(ThemeDecoder.decodeBlendMode('dstIn'), BlendMode.dstIn);
-    expect(ThemeDecoder.decodeBlendMode('dstOut'), BlendMode.dstOut);
-    expect(ThemeDecoder.decodeBlendMode('dstOver'), BlendMode.dstOver);
-    expect(ThemeDecoder.decodeBlendMode('exclusion'), BlendMode.exclusion);
-    expect(ThemeDecoder.decodeBlendMode('hardLight'), BlendMode.hardLight);
-    expect(ThemeDecoder.decodeBlendMode('hue'), BlendMode.hue);
-    expect(ThemeDecoder.decodeBlendMode('lighten'), BlendMode.lighten);
-    expect(ThemeDecoder.decodeBlendMode('luminosity'), BlendMode.luminosity);
-    expect(ThemeDecoder.decodeBlendMode('modulate'), BlendMode.modulate);
-    expect(ThemeDecoder.decodeBlendMode('multiply'), BlendMode.multiply);
-    expect(ThemeDecoder.decodeBlendMode('overlay'), BlendMode.overlay);
-    expect(ThemeDecoder.decodeBlendMode('plus'), BlendMode.plus);
-    expect(ThemeDecoder.decodeBlendMode('saturation'), BlendMode.saturation);
-    expect(ThemeDecoder.decodeBlendMode('screen'), BlendMode.screen);
-    expect(ThemeDecoder.decodeBlendMode('softLight'), BlendMode.softLight);
-    expect(ThemeDecoder.decodeBlendMode('src'), BlendMode.src);
-    expect(ThemeDecoder.decodeBlendMode('srcATop'), BlendMode.srcATop);
-    expect(ThemeDecoder.decodeBlendMode('srcIn'), BlendMode.srcIn);
-    expect(ThemeDecoder.decodeBlendMode('srcOut'), BlendMode.srcOut);
-    expect(ThemeDecoder.decodeBlendMode('srcOver'), BlendMode.srcOver);
-    expect(ThemeDecoder.decodeBlendMode('xor'), BlendMode.xor);
+    expect(ThemeDecoder.instance.decodeBlendMode('clear'), BlendMode.clear);
+    expect(ThemeDecoder.instance.decodeBlendMode('color'), BlendMode.color);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('colorBurn'),
+      BlendMode.colorBurn,
+    );
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('colorDodge'),
+      BlendMode.colorDodge,
+    );
+    expect(ThemeDecoder.instance.decodeBlendMode('darken'), BlendMode.darken);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('difference'),
+      BlendMode.difference,
+    );
+    expect(ThemeDecoder.instance.decodeBlendMode('dst'), BlendMode.dst);
+    expect(ThemeDecoder.instance.decodeBlendMode('dstATop'), BlendMode.dstATop);
+    expect(ThemeDecoder.instance.decodeBlendMode('dstIn'), BlendMode.dstIn);
+    expect(ThemeDecoder.instance.decodeBlendMode('dstOut'), BlendMode.dstOut);
+    expect(ThemeDecoder.instance.decodeBlendMode('dstOver'), BlendMode.dstOver);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('exclusion'),
+      BlendMode.exclusion,
+    );
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('hardLight'),
+      BlendMode.hardLight,
+    );
+    expect(ThemeDecoder.instance.decodeBlendMode('hue'), BlendMode.hue);
+    expect(ThemeDecoder.instance.decodeBlendMode('lighten'), BlendMode.lighten);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('luminosity'),
+      BlendMode.luminosity,
+    );
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('modulate'),
+      BlendMode.modulate,
+    );
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('multiply'),
+      BlendMode.multiply,
+    );
+    expect(ThemeDecoder.instance.decodeBlendMode('overlay'), BlendMode.overlay);
+    expect(ThemeDecoder.instance.decodeBlendMode('plus'), BlendMode.plus);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('saturation'),
+      BlendMode.saturation,
+    );
+    expect(ThemeDecoder.instance.decodeBlendMode('screen'), BlendMode.screen);
+    expect(
+      ThemeDecoder.instance.decodeBlendMode('softLight'),
+      BlendMode.softLight,
+    );
+    expect(ThemeDecoder.instance.decodeBlendMode('src'), BlendMode.src);
+    expect(ThemeDecoder.instance.decodeBlendMode('srcATop'), BlendMode.srcATop);
+    expect(ThemeDecoder.instance.decodeBlendMode('srcIn'), BlendMode.srcIn);
+    expect(ThemeDecoder.instance.decodeBlendMode('srcOut'), BlendMode.srcOut);
+    expect(ThemeDecoder.instance.decodeBlendMode('srcOver'), BlendMode.srcOver);
+    expect(ThemeDecoder.instance.decodeBlendMode('xor'), BlendMode.xor);
 
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.clear), 'clear');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.color), 'color');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.colorBurn), 'colorBurn');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.colorDodge), 'colorDodge');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.darken), 'darken');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.difference), 'difference');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.dst), 'dst');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.dstATop), 'dstATop');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.dstIn), 'dstIn');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.dstOut), 'dstOut');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.dstOver), 'dstOver');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.exclusion), 'exclusion');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.hardLight), 'hardLight');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.hue), 'hue');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.lighten), 'lighten');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.luminosity), 'luminosity');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.modulate), 'modulate');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.multiply), 'multiply');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.overlay), 'overlay');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.plus), 'plus');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.saturation), 'saturation');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.screen), 'screen');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.softLight), 'softLight');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.src), 'src');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.srcATop), 'srcATop');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.srcIn), 'srcIn');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.srcOut), 'srcOut');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.srcOver), 'srcOver');
-    expect(ThemeEncoder.encodeBlendMode(BlendMode.xor), 'xor');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.clear), 'clear');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.color), 'color');
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.colorBurn),
+      'colorBurn',
+    );
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.colorDodge),
+      'colorDodge',
+    );
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.darken), 'darken');
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.difference),
+      'difference',
+    );
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.dst), 'dst');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.dstATop), 'dstATop');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.dstIn), 'dstIn');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.dstOut), 'dstOut');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.dstOver), 'dstOver');
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.exclusion),
+      'exclusion',
+    );
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.hardLight),
+      'hardLight',
+    );
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.hue), 'hue');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.lighten), 'lighten');
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.luminosity),
+      'luminosity',
+    );
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.modulate),
+      'modulate',
+    );
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.multiply),
+      'multiply',
+    );
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.overlay), 'overlay');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.plus), 'plus');
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.saturation),
+      'saturation',
+    );
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.screen), 'screen');
+    expect(
+      ThemeEncoder.instance.encodeBlendMode(BlendMode.softLight),
+      'softLight',
+    );
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.src), 'src');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.srcATop), 'srcATop');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.srcIn), 'srcIn');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.srcOut), 'srcOut');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.srcOver), 'srcOver');
+    expect(ThemeEncoder.instance.encodeBlendMode(BlendMode.xor), 'xor');
   });
 
   test('BlurStyle', () {
-    expect(ThemeDecoder.decodeBlurStyle(null), null);
-    expect(ThemeEncoder.encodeBlurStyle(null), null);
+    expect(ThemeDecoder.instance.decodeBlurStyle(null), null);
+    expect(ThemeEncoder.instance.encodeBlurStyle(null), null);
 
-    expect(ThemeDecoder.decodeBlurStyle('inner'), BlurStyle.inner);
-    expect(ThemeDecoder.decodeBlurStyle('normal'), BlurStyle.normal);
-    expect(ThemeDecoder.decodeBlurStyle('inner'), BlurStyle.inner);
-    expect(ThemeDecoder.decodeBlurStyle('outer'), BlurStyle.outer);
+    expect(ThemeDecoder.instance.decodeBlurStyle('inner'), BlurStyle.inner);
+    expect(ThemeDecoder.instance.decodeBlurStyle('normal'), BlurStyle.normal);
+    expect(ThemeDecoder.instance.decodeBlurStyle('inner'), BlurStyle.inner);
+    expect(ThemeDecoder.instance.decodeBlurStyle('outer'), BlurStyle.outer);
 
-    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.inner), 'inner');
-    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.normal), 'normal');
-    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.inner), 'inner');
-    expect(ThemeEncoder.encodeBlurStyle(BlurStyle.outer), 'outer');
+    expect(ThemeEncoder.instance.encodeBlurStyle(BlurStyle.inner), 'inner');
+    expect(ThemeEncoder.instance.encodeBlurStyle(BlurStyle.normal), 'normal');
+    expect(ThemeEncoder.instance.encodeBlurStyle(BlurStyle.inner), 'inner');
+    expect(ThemeEncoder.instance.encodeBlurStyle(BlurStyle.outer), 'outer');
   });
 
   test('BorderRadius', () {
-    expect(ThemeDecoder.decodeBorderRadius(null), null);
-    expect(ThemeEncoder.encodeBorderRadius(null), null);
+    expect(ThemeDecoder.instance.decodeBorderRadius(null), null);
+    expect(ThemeEncoder.instance.encodeBorderRadius(null), null);
 
     final entry = BorderRadius.circular(16.0);
 
-    expect(ThemeDecoder.decodeBorderRadius(entry), entry);
+    expect(ThemeDecoder.instance.decodeBorderRadius(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBorderRadius(entry);
-    final decoded = ThemeDecoder.decodeBorderRadius(encoded);
+    final encoded = ThemeEncoder.instance.encodeBorderRadius(entry);
+    final decoded = ThemeDecoder.instance.decodeBorderRadius(encoded);
 
     const corner = {'type': 'elliptical', 'x': 16.0, 'y': 16.0};
 
@@ -584,12 +731,15 @@ void main() {
 
     expect(entry, decoded);
 
-    expect(ThemeDecoder.decodeBorderRadius(16), BorderRadius.circular(16));
+    expect(
+      ThemeDecoder.instance.decodeBorderRadius(16),
+      BorderRadius.circular(16),
+    );
   });
 
   test('BorderSide', () {
-    expect(ThemeDecoder.decodeBorderSide(null), null);
-    expect(ThemeEncoder.encodeBorderSide(null), null);
+    expect(ThemeDecoder.instance.decodeBorderSide(null), null);
+    expect(ThemeEncoder.instance.encodeBorderSide(null), null);
 
     const entry = BorderSide(
       color: _kColor,
@@ -598,10 +748,10 @@ void main() {
       width: 5.0,
     );
 
-    expect(ThemeDecoder.decodeBorderSide(entry), entry);
+    expect(ThemeDecoder.instance.decodeBorderSide(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBorderSide(entry);
-    final decoded = ThemeDecoder.decodeBorderSide(encoded);
+    final encoded = ThemeEncoder.instance.encodeBorderSide(entry);
+    final decoded = ThemeDecoder.instance.decodeBorderSide(encoded);
 
     expect(encoded, {
       'color': _kColorStr,
@@ -614,23 +764,26 @@ void main() {
   });
 
   test('BorderStyle', () {
-    expect(ThemeDecoder.decodeBorderStyle(null), null);
-    expect(ThemeEncoder.encodeBorderStyle(null), null);
+    expect(ThemeDecoder.instance.decodeBorderStyle(null), null);
+    expect(ThemeEncoder.instance.encodeBorderStyle(null), null);
 
-    expect(ThemeDecoder.decodeBorderStyle(BorderStyle.none), BorderStyle.none);
+    expect(
+      ThemeDecoder.instance.decodeBorderStyle(BorderStyle.none),
+      BorderStyle.none,
+    );
 
-    expect(ThemeDecoder.decodeBorderStyle('none'), BorderStyle.none);
-    expect(ThemeDecoder.decodeBorderStyle('solid'), BorderStyle.solid);
+    expect(ThemeDecoder.instance.decodeBorderStyle('none'), BorderStyle.none);
+    expect(ThemeDecoder.instance.decodeBorderStyle('solid'), BorderStyle.solid);
 
-    expect(ThemeEncoder.encodeBorderStyle(BorderStyle.none), 'none');
-    expect(ThemeEncoder.encodeBorderStyle(BorderStyle.solid), 'solid');
+    expect(ThemeEncoder.instance.encodeBorderStyle(BorderStyle.none), 'none');
+    expect(ThemeEncoder.instance.encodeBorderStyle(BorderStyle.solid), 'solid');
   });
 
-  test('BottomAppBarTheme', () {
-    expect(ThemeDecoder.decodeBottomAppBarTheme(null), null);
-    expect(ThemeEncoder.encodeBottomAppBarTheme(null), null);
+  test('BottomAppBarThemeData', () {
+    expect(ThemeDecoder.instance.decodeBottomAppBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeBottomAppBarThemeData(null), null);
 
-    const entry = BottomAppBarTheme(
+    const entry = BottomAppBarThemeData(
       color: _kColor,
       elevation: 8.0,
       height: 20.0,
@@ -640,10 +793,10 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeBottomAppBarTheme(entry), entry);
+    expect(ThemeDecoder.instance.decodeBottomAppBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBottomAppBarTheme(entry);
-    final decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded)!;
+    final encoded = ThemeEncoder.instance.encodeBottomAppBarThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeBottomAppBarThemeData(encoded)!;
 
     expect(encoded, {
       'color': _kColorStr,
@@ -663,43 +816,51 @@ void main() {
   });
 
   test('BottomNavigationBarLandscapeLayout', () {
-    expect(ThemeDecoder.decodeBottomNavigationBarLandscapeLayout(null), null);
-    expect(ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(null), null);
+    expect(
+      ThemeDecoder.instance.decodeBottomNavigationBarLandscapeLayout(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeBottomNavigationBarLandscapeLayout(null),
+      null,
+    );
 
     expect(
-      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout(
+      ThemeDecoder.instance.decodeBottomNavigationBarLandscapeLayout(
         BottomNavigationBarLandscapeLayout.centered,
       ),
       BottomNavigationBarLandscapeLayout.centered,
     );
 
     expect(
-      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout('centered'),
+      ThemeDecoder.instance.decodeBottomNavigationBarLandscapeLayout(
+        'centered',
+      ),
       BottomNavigationBarLandscapeLayout.centered,
     );
     expect(
-      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout('linear'),
+      ThemeDecoder.instance.decodeBottomNavigationBarLandscapeLayout('linear'),
       BottomNavigationBarLandscapeLayout.linear,
     );
     expect(
-      ThemeDecoder.decodeBottomNavigationBarLandscapeLayout('spread'),
+      ThemeDecoder.instance.decodeBottomNavigationBarLandscapeLayout('spread'),
       BottomNavigationBarLandscapeLayout.spread,
     );
 
     expect(
-      ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(
+      ThemeEncoder.instance.encodeBottomNavigationBarLandscapeLayout(
         BottomNavigationBarLandscapeLayout.centered,
       ),
       'centered',
     );
     expect(
-      ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(
+      ThemeEncoder.instance.encodeBottomNavigationBarLandscapeLayout(
         BottomNavigationBarLandscapeLayout.linear,
       ),
       'linear',
     );
     expect(
-      ThemeEncoder.encodeBottomNavigationBarLandscapeLayout(
+      ThemeEncoder.instance.encodeBottomNavigationBarLandscapeLayout(
         BottomNavigationBarLandscapeLayout.spread,
       ),
       'spread',
@@ -707,8 +868,14 @@ void main() {
   });
 
   test('BottomNavigationBarThemeData', () {
-    expect(ThemeDecoder.decodeBottomNavigationBarThemeData(null), null);
-    expect(ThemeEncoder.encodeBottomNavigationBarThemeData(null), null);
+    expect(
+      ThemeDecoder.instance.decodeBottomNavigationBarThemeData(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeBottomNavigationBarThemeData(null),
+      null,
+    );
 
     const entry = BottomNavigationBarThemeData(
       backgroundColor: Color(0xff111111),
@@ -724,10 +891,17 @@ void main() {
       unselectedLabelStyle: TextStyle(fontSize: 5.0),
     );
 
-    expect(ThemeDecoder.decodeBottomNavigationBarThemeData(entry), entry);
+    expect(
+      ThemeDecoder.instance.decodeBottomNavigationBarThemeData(entry),
+      entry,
+    );
 
-    final encoded = ThemeEncoder.encodeBottomNavigationBarThemeData(entry);
-    final decoded = ThemeDecoder.decodeBottomNavigationBarThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeBottomNavigationBarThemeData(
+      entry,
+    );
+    final decoded = ThemeDecoder.instance.decodeBottomNavigationBarThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -747,29 +921,33 @@ void main() {
   });
 
   test('BottomNavigationBarType', () {
-    expect(ThemeDecoder.decodeBottomNavigationBarType(null), null);
-    expect(ThemeEncoder.encodeBottomNavigationBarType(null), null);
+    expect(ThemeDecoder.instance.decodeBottomNavigationBarType(null), null);
+    expect(ThemeEncoder.instance.encodeBottomNavigationBarType(null), null);
 
     expect(
-      ThemeDecoder.decodeBottomNavigationBarType(BottomNavigationBarType.fixed),
+      ThemeDecoder.instance.decodeBottomNavigationBarType(
+        BottomNavigationBarType.fixed,
+      ),
       BottomNavigationBarType.fixed,
     );
 
     expect(
-      ThemeDecoder.decodeBottomNavigationBarType('fixed'),
+      ThemeDecoder.instance.decodeBottomNavigationBarType('fixed'),
       BottomNavigationBarType.fixed,
     );
     expect(
-      ThemeDecoder.decodeBottomNavigationBarType('shifting'),
+      ThemeDecoder.instance.decodeBottomNavigationBarType('shifting'),
       BottomNavigationBarType.shifting,
     );
 
     expect(
-      ThemeEncoder.encodeBottomNavigationBarType(BottomNavigationBarType.fixed),
+      ThemeEncoder.instance.encodeBottomNavigationBarType(
+        BottomNavigationBarType.fixed,
+      ),
       'fixed',
     );
     expect(
-      ThemeEncoder.encodeBottomNavigationBarType(
+      ThemeEncoder.instance.encodeBottomNavigationBarType(
         BottomNavigationBarType.shifting,
       ),
       'shifting',
@@ -777,8 +955,8 @@ void main() {
   });
 
   test('BottomSheetThemeData', () {
-    expect(ThemeDecoder.decodeBottomSheetThemeData(null), null);
-    expect(ThemeEncoder.encodeBottomSheetThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeBottomSheetThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeBottomSheetThemeData(null), null);
 
     const entry = BottomSheetThemeData(
       backgroundColor: Color(0xff111111),
@@ -798,10 +976,10 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeBottomSheetThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeBottomSheetThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBottomSheetThemeData(entry);
-    final decoded = ThemeDecoder.decodeBottomSheetThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeBottomSheetThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeBottomSheetThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -835,14 +1013,14 @@ void main() {
     });
 
     expect(
-      ThemeEncoder.encodeBottomSheetThemeData(decoded),
-      ThemeEncoder.encodeBottomSheetThemeData(entry),
+      ThemeEncoder.instance.encodeBottomSheetThemeData(decoded),
+      ThemeEncoder.instance.encodeBottomSheetThemeData(entry),
     );
   });
 
   test('BoxBorder', () {
-    expect(ThemeDecoder.decodeBoxBorder(null), null);
-    expect(ThemeEncoder.encodeBoxBorder(null), null);
+    expect(ThemeDecoder.instance.decodeBoxBorder(null), null);
+    expect(ThemeEncoder.instance.encodeBoxBorder(null), null);
 
     const entry = Border(
       bottom: BorderSide(color: Color(0xff111111)),
@@ -851,10 +1029,10 @@ void main() {
       top: BorderSide(color: Color(0xff444444)),
     );
 
-    expect(ThemeDecoder.decodeBoxBorder(entry), entry);
+    expect(ThemeDecoder.instance.decodeBoxBorder(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBoxBorder(entry);
-    final decoded = ThemeDecoder.decodeBoxBorder(encoded);
+    final encoded = ThemeEncoder.instance.encodeBoxBorder(entry);
+    final decoded = ThemeDecoder.instance.decodeBoxBorder(encoded);
 
     expect(encoded, {
       'bottom': {
@@ -886,7 +1064,7 @@ void main() {
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.decodeBoxBorder({
+      ThemeDecoder.instance.decodeBoxBorder({
         'color': '#000',
         'style': 'solid',
         'width': 1,
@@ -900,8 +1078,8 @@ void main() {
   });
 
   test('BoxConstraints', () {
-    expect(ThemeDecoder.decodeBoxConstraints(null), null);
-    expect(ThemeEncoder.encodeBoxConstraints(null), null);
+    expect(ThemeDecoder.instance.decodeBoxConstraints(null), null);
+    expect(ThemeEncoder.instance.encodeBoxConstraints(null), null);
 
     const entry = BoxConstraints(
       maxHeight: 1000.0,
@@ -910,10 +1088,10 @@ void main() {
       minWidth: 101.0,
     );
 
-    expect(ThemeDecoder.decodeBoxConstraints(entry), entry);
+    expect(ThemeDecoder.instance.decodeBoxConstraints(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBoxConstraints(entry);
-    final decoded = ThemeDecoder.decodeBoxConstraints(encoded);
+    final encoded = ThemeEncoder.instance.encodeBoxConstraints(entry);
+    final decoded = ThemeDecoder.instance.decodeBoxConstraints(encoded);
 
     expect(encoded, {
       'maxHeight': 1000.0,
@@ -922,7 +1100,7 @@ void main() {
       'minWidth': 101.0,
     });
 
-    expect(ThemeEncoder.encodeBoxConstraints(const BoxConstraints()), {
+    expect(ThemeEncoder.instance.encodeBoxConstraints(const BoxConstraints()), {
       'minHeight': 0.0,
       'minWidth': 0.0,
     });
@@ -931,8 +1109,8 @@ void main() {
   });
 
   test('BoxDecoration', () {
-    expect(ThemeDecoder.decodeBoxDecoration(null), null);
-    expect(ThemeEncoder.encodeBoxDecoration(null), null);
+    expect(ThemeDecoder.instance.decodeBoxDecoration(null), null);
+    expect(ThemeEncoder.instance.encodeBoxDecoration(null), null);
 
     final entry = BoxDecoration(
       backgroundBlendMode: BlendMode.colorBurn,
@@ -950,10 +1128,10 @@ void main() {
       shape: BoxShape.circle,
     );
 
-    expect(ThemeDecoder.decodeBoxDecoration(entry), entry);
+    expect(ThemeDecoder.instance.decodeBoxDecoration(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBoxDecoration(entry);
-    final decoded = ThemeDecoder.decodeBoxDecoration(encoded);
+    final encoded = ThemeEncoder.instance.encodeBoxDecoration(entry);
+    final decoded = ThemeDecoder.instance.decodeBoxDecoration(encoded);
 
     expect(encoded, {
       'backgroundBlendMode': 'colorBurn',
@@ -1029,81 +1207,101 @@ void main() {
       'shape': 'circle',
     });
 
-    expect(ThemeEncoder.encodeBoxDecoration(decoded), encoded);
+    expect(ThemeEncoder.instance.encodeBoxDecoration(decoded), encoded);
   });
 
   test('BoxFit', () {
-    expect(ThemeDecoder.decodeBoxFit(null), null);
-    expect(ThemeEncoder.encodeBoxFit(null), null);
+    expect(ThemeDecoder.instance.decodeBoxFit(null), null);
+    expect(ThemeEncoder.instance.encodeBoxFit(null), null);
 
-    expect(ThemeDecoder.decodeBoxFit(BoxFit.contain), BoxFit.contain);
+    expect(ThemeDecoder.instance.decodeBoxFit(BoxFit.contain), BoxFit.contain);
 
-    expect(ThemeDecoder.decodeBoxFit('contain'), BoxFit.contain);
-    expect(ThemeDecoder.decodeBoxFit('cover'), BoxFit.cover);
-    expect(ThemeDecoder.decodeBoxFit('fill'), BoxFit.fill);
-    expect(ThemeDecoder.decodeBoxFit('fitHeight'), BoxFit.fitHeight);
-    expect(ThemeDecoder.decodeBoxFit('fitWidth'), BoxFit.fitWidth);
-    expect(ThemeDecoder.decodeBoxFit('none'), BoxFit.none);
-    expect(ThemeDecoder.decodeBoxFit('scaleDown'), BoxFit.scaleDown);
+    expect(ThemeDecoder.instance.decodeBoxFit('contain'), BoxFit.contain);
+    expect(ThemeDecoder.instance.decodeBoxFit('cover'), BoxFit.cover);
+    expect(ThemeDecoder.instance.decodeBoxFit('fill'), BoxFit.fill);
+    expect(ThemeDecoder.instance.decodeBoxFit('fitHeight'), BoxFit.fitHeight);
+    expect(ThemeDecoder.instance.decodeBoxFit('fitWidth'), BoxFit.fitWidth);
+    expect(ThemeDecoder.instance.decodeBoxFit('none'), BoxFit.none);
+    expect(ThemeDecoder.instance.decodeBoxFit('scaleDown'), BoxFit.scaleDown);
 
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.contain), 'contain');
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.cover), 'cover');
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.fill), 'fill');
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.fitHeight), 'fitHeight');
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.fitWidth), 'fitWidth');
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.none), 'none');
-    expect(ThemeEncoder.encodeBoxFit(BoxFit.scaleDown), 'scaleDown');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.contain), 'contain');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.cover), 'cover');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.fill), 'fill');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.fitHeight), 'fitHeight');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.fitWidth), 'fitWidth');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.none), 'none');
+    expect(ThemeEncoder.instance.encodeBoxFit(BoxFit.scaleDown), 'scaleDown');
   });
 
   test('BoxHeightStyle', () {
-    expect(ThemeDecoder.decodeBoxHeightStyle(null), null);
-    expect(ThemeEncoder.encodeBoxHeightStyle(null), null);
+    expect(ThemeDecoder.instance.decodeBoxHeightStyle(null), null);
+    expect(ThemeEncoder.instance.encodeBoxHeightStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeBoxHeightStyle(BoxHeightStyle.max),
+      ThemeDecoder.instance.decodeBoxHeightStyle(BoxHeightStyle.max),
       BoxHeightStyle.max,
     );
 
     expect(
-      ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingBottom'),
+      ThemeDecoder.instance.decodeBoxHeightStyle('includeLineSpacingBottom'),
       BoxHeightStyle.includeLineSpacingBottom,
     );
     expect(
-      ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingMiddle'),
+      ThemeDecoder.instance.decodeBoxHeightStyle('includeLineSpacingMiddle'),
       BoxHeightStyle.includeLineSpacingMiddle,
     );
     expect(
-      ThemeDecoder.decodeBoxHeightStyle('includeLineSpacingTop'),
+      ThemeDecoder.instance.decodeBoxHeightStyle('includeLineSpacingTop'),
       BoxHeightStyle.includeLineSpacingTop,
     );
-    expect(ThemeDecoder.decodeBoxHeightStyle('max'), BoxHeightStyle.max);
-    expect(ThemeDecoder.decodeBoxHeightStyle('strut'), BoxHeightStyle.strut);
-    expect(ThemeDecoder.decodeBoxHeightStyle('tight'), BoxHeightStyle.tight);
+    expect(
+      ThemeDecoder.instance.decodeBoxHeightStyle('max'),
+      BoxHeightStyle.max,
+    );
+    expect(
+      ThemeDecoder.instance.decodeBoxHeightStyle('strut'),
+      BoxHeightStyle.strut,
+    );
+    expect(
+      ThemeDecoder.instance.decodeBoxHeightStyle('tight'),
+      BoxHeightStyle.tight,
+    );
 
     expect(
-      ThemeEncoder.encodeBoxHeightStyle(
+      ThemeEncoder.instance.encodeBoxHeightStyle(
         BoxHeightStyle.includeLineSpacingBottom,
       ),
       'includeLineSpacingBottom',
     );
     expect(
-      ThemeEncoder.encodeBoxHeightStyle(
+      ThemeEncoder.instance.encodeBoxHeightStyle(
         BoxHeightStyle.includeLineSpacingMiddle,
       ),
       'includeLineSpacingMiddle',
     );
     expect(
-      ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.includeLineSpacingTop),
+      ThemeEncoder.instance.encodeBoxHeightStyle(
+        BoxHeightStyle.includeLineSpacingTop,
+      ),
       'includeLineSpacingTop',
     );
-    expect(ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.max), 'max');
-    expect(ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.strut), 'strut');
-    expect(ThemeEncoder.encodeBoxHeightStyle(BoxHeightStyle.tight), 'tight');
+    expect(
+      ThemeEncoder.instance.encodeBoxHeightStyle(BoxHeightStyle.max),
+      'max',
+    );
+    expect(
+      ThemeEncoder.instance.encodeBoxHeightStyle(BoxHeightStyle.strut),
+      'strut',
+    );
+    expect(
+      ThemeEncoder.instance.encodeBoxHeightStyle(BoxHeightStyle.tight),
+      'tight',
+    );
   });
 
   test('BoxShadow', () {
-    expect(ThemeDecoder.decodeBoxShadow(null), null);
-    expect(ThemeEncoder.encodeBoxShadow(null), null);
+    expect(ThemeDecoder.instance.decodeBoxShadow(null), null);
+    expect(ThemeEncoder.instance.encodeBoxShadow(null), null);
 
     const entry = BoxShadow(
       blurRadius: 1.0,
@@ -1113,10 +1311,10 @@ void main() {
       spreadRadius: 4.0,
     );
 
-    expect(ThemeDecoder.decodeBoxShadow(entry), entry);
+    expect(ThemeDecoder.instance.decodeBoxShadow(entry), entry);
 
-    final encoded = ThemeEncoder.encodeBoxShadow(entry);
-    final decoded = ThemeDecoder.decodeBoxShadow(encoded);
+    final encoded = ThemeEncoder.instance.encodeBoxShadow(entry);
+    final decoded = ThemeDecoder.instance.decodeBoxShadow(encoded);
 
     expect(encoded, {
       'blurRadius': entry.blurRadius,
@@ -1130,50 +1328,68 @@ void main() {
   });
 
   test('BoxShape', () {
-    expect(ThemeDecoder.decodeBoxShape(null), null);
-    expect(ThemeEncoder.encodeBoxShape(null), null);
+    expect(ThemeDecoder.instance.decodeBoxShape(null), null);
+    expect(ThemeEncoder.instance.encodeBoxShape(null), null);
 
-    expect(ThemeDecoder.decodeBoxShape(BoxShape.circle), BoxShape.circle);
+    expect(
+      ThemeDecoder.instance.decodeBoxShape(BoxShape.circle),
+      BoxShape.circle,
+    );
 
-    expect(ThemeDecoder.decodeBoxShape('circle'), BoxShape.circle);
-    expect(ThemeDecoder.decodeBoxShape('rectangle'), BoxShape.rectangle);
+    expect(ThemeDecoder.instance.decodeBoxShape('circle'), BoxShape.circle);
+    expect(
+      ThemeDecoder.instance.decodeBoxShape('rectangle'),
+      BoxShape.rectangle,
+    );
 
-    expect(ThemeEncoder.encodeBoxShape(BoxShape.circle), 'circle');
-    expect(ThemeEncoder.encodeBoxShape(BoxShape.rectangle), 'rectangle');
+    expect(ThemeEncoder.instance.encodeBoxShape(BoxShape.circle), 'circle');
+    expect(
+      ThemeEncoder.instance.encodeBoxShape(BoxShape.rectangle),
+      'rectangle',
+    );
   });
 
   test('BoxWidthStyle', () {
-    expect(ThemeDecoder.decodeBoxWidthStyle(null), null);
-    expect(ThemeEncoder.encodeBoxWidthStyle(null), null);
+    expect(ThemeDecoder.instance.decodeBoxWidthStyle(null), null);
+    expect(ThemeEncoder.instance.encodeBoxWidthStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeBoxWidthStyle(BoxWidthStyle.max),
+      ThemeDecoder.instance.decodeBoxWidthStyle(BoxWidthStyle.max),
       BoxWidthStyle.max,
     );
 
-    expect(ThemeDecoder.decodeBoxWidthStyle('max'), BoxWidthStyle.max);
-    expect(ThemeDecoder.decodeBoxWidthStyle('tight'), BoxWidthStyle.tight);
+    expect(ThemeDecoder.instance.decodeBoxWidthStyle('max'), BoxWidthStyle.max);
+    expect(
+      ThemeDecoder.instance.decodeBoxWidthStyle('tight'),
+      BoxWidthStyle.tight,
+    );
 
-    expect(ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.max), 'max');
-    expect(ThemeEncoder.encodeBoxWidthStyle(BoxWidthStyle.tight), 'tight');
+    expect(ThemeEncoder.instance.encodeBoxWidthStyle(BoxWidthStyle.max), 'max');
+    expect(
+      ThemeEncoder.instance.encodeBoxWidthStyle(BoxWidthStyle.tight),
+      'tight',
+    );
   });
 
   test('Brightness', () {
-    expect(ThemeDecoder.decodeBrightness(null), null);
-    expect(ThemeEncoder.encodeBrightness(null), null);
+    expect(ThemeDecoder.instance.decodeBrightness(null), null);
+    expect(ThemeEncoder.instance.encodeBrightness(null), null);
 
-    expect(ThemeDecoder.decodeBrightness(Brightness.dark), Brightness.dark);
+    expect(
+      ThemeDecoder.instance.decodeBrightness(Brightness.dark),
+      Brightness.dark,
+    );
 
-    expect(ThemeEncoder.encodeBrightness(Brightness.dark), 'dark');
-    expect(ThemeEncoder.encodeBrightness(Brightness.light), 'light');
+    expect(ThemeEncoder.instance.encodeBrightness(Brightness.dark), 'dark');
+    expect(ThemeEncoder.instance.encodeBrightness(Brightness.light), 'light');
 
-    expect(ThemeDecoder.decodeBrightness('dark'), Brightness.dark);
-    expect(ThemeDecoder.decodeBrightness('light'), Brightness.light);
+    expect(ThemeDecoder.instance.decodeBrightness('dark'), Brightness.dark);
+    expect(ThemeDecoder.instance.decodeBrightness('light'), Brightness.light);
   });
 
   test('ButtonBarThemeData', () {
-    expect(ThemeDecoder.decodeButtonBarThemeData(null), null);
-    expect(ThemeEncoder.encodeButtonBarThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeButtonBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeButtonBarThemeData(null), null);
 
     // ignore: deprecated_member_use
     const entry = ButtonBarThemeData(
@@ -1188,10 +1404,10 @@ void main() {
       overflowDirection: VerticalDirection.down,
     );
 
-    expect(ThemeDecoder.decodeButtonBarThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeButtonBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeButtonBarThemeData(entry);
-    final decoded = ThemeDecoder.decodeButtonBarThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeButtonBarThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeButtonBarThemeData(encoded);
 
     expect(encoded, {
       'alignment': 'spaceEvenly',
@@ -1214,33 +1430,33 @@ void main() {
   });
 
   test('ButtonBarLayoutBehavior', () {
-    expect(ThemeDecoder.decodeButtonBarLayoutBehavior(null), null);
-    expect(ThemeEncoder.encodeButtonBarLayoutBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeButtonBarLayoutBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeButtonBarLayoutBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeButtonBarLayoutBehavior(
+      ThemeDecoder.instance.decodeButtonBarLayoutBehavior(
         ButtonBarLayoutBehavior.constrained,
       ),
       ButtonBarLayoutBehavior.constrained,
     );
 
     expect(
-      ThemeDecoder.decodeButtonBarLayoutBehavior('constrained'),
+      ThemeDecoder.instance.decodeButtonBarLayoutBehavior('constrained'),
       ButtonBarLayoutBehavior.constrained,
     );
     expect(
-      ThemeDecoder.decodeButtonBarLayoutBehavior('padded'),
+      ThemeDecoder.instance.decodeButtonBarLayoutBehavior('padded'),
       ButtonBarLayoutBehavior.padded,
     );
 
     expect(
-      ThemeEncoder.encodeButtonBarLayoutBehavior(
+      ThemeEncoder.instance.encodeButtonBarLayoutBehavior(
         ButtonBarLayoutBehavior.constrained,
       ),
       'constrained',
     );
     expect(
-      ThemeEncoder.encodeButtonBarLayoutBehavior(
+      ThemeEncoder.instance.encodeButtonBarLayoutBehavior(
         ButtonBarLayoutBehavior.padded,
       ),
       'padded',
@@ -1248,8 +1464,8 @@ void main() {
   });
 
   test('ButtonStyle', () {
-    expect(ThemeDecoder.decodeButtonStyle(null), null);
-    expect(ThemeEncoder.encodeButtonStyle(null), null);
+    expect(ThemeDecoder.instance.decodeButtonStyle(null), null);
+    expect(ThemeEncoder.instance.encodeButtonStyle(null), null);
 
     final entry = ButtonStyle(
       alignment: Alignment.bottomCenter,
@@ -1275,10 +1491,10 @@ void main() {
       visualDensity: VisualDensity.standard,
     );
 
-    expect(ThemeDecoder.decodeButtonStyle(entry), entry);
+    expect(ThemeDecoder.instance.decodeButtonStyle(entry), entry);
 
-    final encoded = ThemeEncoder.encodeButtonStyle(entry);
-    final decoded = ThemeDecoder.decodeButtonStyle(encoded);
+    final encoded = ThemeEncoder.instance.encodeButtonStyle(entry);
+    final decoded = ThemeDecoder.instance.decodeButtonStyle(encoded);
 
     expect(encoded, {
       'alignment': 'bottomCenter',
@@ -1326,7 +1542,7 @@ void main() {
 
     expect(
       _buttonStylesAreEqual(
-        ThemeDecoder.decodeButtonStyle({
+        ThemeDecoder.instance.decodeButtonStyle({
           'padding': [1, 2],
         }),
         ButtonStyle(
@@ -1340,7 +1556,7 @@ void main() {
 
     expect(
       _buttonStylesAreEqual(
-        ThemeDecoder.decodeButtonStyle({
+        ThemeDecoder.instance.decodeButtonStyle({
           'padding': [1, 2, 3, 4],
         }),
         ButtonStyle(
@@ -1354,7 +1570,7 @@ void main() {
 
     expect(
       _buttonStylesAreEqual(
-        ThemeDecoder.decodeButtonStyle({'padding': 1}),
+        ThemeDecoder.instance.decodeButtonStyle({'padding': 1}),
         ButtonStyle(padding: WidgetStateProperty.all(const EdgeInsets.all(1))),
       ),
       true,
@@ -1362,7 +1578,7 @@ void main() {
 
     expect(
       _buttonStylesAreEqual(
-        ThemeDecoder.decodeButtonStyle({
+        ThemeDecoder.instance.decodeButtonStyle({
           'padding': {'left': 1, 'top': 2, 'right': 3, 'bottom': 4},
         }),
         ButtonStyle(
@@ -1376,44 +1592,44 @@ void main() {
   });
 
   test('ButtonTextTheme', () {
-    expect(ThemeDecoder.decodeButtonTextTheme(null), null);
-    expect(ThemeEncoder.encodeButtonTextTheme(null), null);
+    expect(ThemeDecoder.instance.decodeButtonTextTheme(null), null);
+    expect(ThemeEncoder.instance.encodeButtonTextTheme(null), null);
 
     expect(
-      ThemeDecoder.decodeButtonTextTheme(ButtonTextTheme.accent),
+      ThemeDecoder.instance.decodeButtonTextTheme(ButtonTextTheme.accent),
       ButtonTextTheme.accent,
     );
 
     expect(
-      ThemeDecoder.decodeButtonTextTheme('accent'),
+      ThemeDecoder.instance.decodeButtonTextTheme('accent'),
       ButtonTextTheme.accent,
     );
     expect(
-      ThemeDecoder.decodeButtonTextTheme('normal'),
+      ThemeDecoder.instance.decodeButtonTextTheme('normal'),
       ButtonTextTheme.normal,
     );
     expect(
-      ThemeDecoder.decodeButtonTextTheme('primary'),
+      ThemeDecoder.instance.decodeButtonTextTheme('primary'),
       ButtonTextTheme.primary,
     );
 
     expect(
-      ThemeEncoder.encodeButtonTextTheme(ButtonTextTheme.accent),
+      ThemeEncoder.instance.encodeButtonTextTheme(ButtonTextTheme.accent),
       'accent',
     );
     expect(
-      ThemeEncoder.encodeButtonTextTheme(ButtonTextTheme.normal),
+      ThemeEncoder.instance.encodeButtonTextTheme(ButtonTextTheme.normal),
       'normal',
     );
     expect(
-      ThemeEncoder.encodeButtonTextTheme(ButtonTextTheme.primary),
+      ThemeEncoder.instance.encodeButtonTextTheme(ButtonTextTheme.primary),
       'primary',
     );
   });
 
   test('ButtonThemeData', () {
-    expect(ThemeDecoder.decodeButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeButtonThemeData(null), null);
 
     final entry = ButtonThemeData(
       alignedDropdown: true,
@@ -1440,10 +1656,10 @@ void main() {
       textTheme: ButtonTextTheme.accent,
     );
 
-    expect(ThemeDecoder.decodeButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeButtonThemeData({
+    final encoded = ThemeEncoder.instance.encodeButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeButtonThemeData({
       'alignedDropdown': true,
       'buttonColor': '#ff111111',
       'colorScheme': {
@@ -1594,8 +1810,8 @@ void main() {
   });
 
   test('CardThemeData', () {
-    expect(ThemeDecoder.decodeCardThemeData(null), null);
-    expect(ThemeEncoder.encodeCardThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeCardThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeCardThemeData(null), null);
 
     final entry = CardThemeData(
       clipBehavior: Clip.hardEdge,
@@ -1609,12 +1825,12 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeCardThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeCardThemeData(entry), entry);
 
     const corner = {'type': 'elliptical', 'x': 12.0, 'y': 12.0};
 
-    final encoded = ThemeEncoder.encodeCardThemeData(entry);
-    final decoded = ThemeDecoder.decodeCardThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeCardThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeCardThemeData(encoded);
 
     expect(encoded, {
       'clipBehavior': 'hardEdge',
@@ -1643,8 +1859,8 @@ void main() {
     expect(decoded, entry);
   });
   test('CheckboxThemeData', () {
-    expect(ThemeDecoder.decodeCheckboxThemeData(null), null);
-    expect(ThemeEncoder.encodeCheckboxThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeCheckboxThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeCheckboxThemeData(null), null);
 
     final entry = CheckboxThemeData(
       checkColor: WidgetStateProperty.all(_kColor),
@@ -1656,10 +1872,10 @@ void main() {
       visualDensity: VisualDensity.comfortable,
     );
 
-    expect(ThemeDecoder.decodeCheckboxThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeCheckboxThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeCheckboxThemeData(entry);
-    final decoded = ThemeDecoder.decodeCheckboxThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeCheckboxThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeCheckboxThemeData(encoded);
 
     expect(
       decoded!.checkColor!.resolve({WidgetState.error}),
@@ -1683,8 +1899,8 @@ void main() {
   });
 
   test('ChipThemeData', () {
-    expect(ThemeDecoder.decodeChipThemeData(null), null);
-    expect(ThemeEncoder.encodeChipThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeChipThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeChipThemeData(null), null);
 
     final entry = ChipThemeData(
       avatarBoxConstraints: BoxConstraints(minWidth: 10),
@@ -1712,9 +1928,9 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeChipThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeChipThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeChipThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeChipThemeData(entry);
 
     expect(encoded, {
       'avatarBoxConstraints': {'minHeight': 0.0, 'minWidth': 10.0},
@@ -1772,69 +1988,93 @@ void main() {
   });
 
   test('Clip', () {
-    expect(ThemeDecoder.decodeClip(null), null);
-    expect(ThemeEncoder.encodeClip(null), null);
+    expect(ThemeDecoder.instance.decodeClip(null), null);
+    expect(ThemeEncoder.instance.encodeClip(null), null);
 
-    expect(ThemeDecoder.decodeClip(Clip.antiAlias), Clip.antiAlias);
+    expect(ThemeDecoder.instance.decodeClip(Clip.antiAlias), Clip.antiAlias);
 
-    expect(ThemeDecoder.decodeClip('antiAlias'), Clip.antiAlias);
+    expect(ThemeDecoder.instance.decodeClip('antiAlias'), Clip.antiAlias);
     expect(
-      ThemeDecoder.decodeClip('antiAliasWithSaveLayer'),
+      ThemeDecoder.instance.decodeClip('antiAliasWithSaveLayer'),
       Clip.antiAliasWithSaveLayer,
     );
-    expect(ThemeDecoder.decodeClip('hardEdge'), Clip.hardEdge);
-    expect(ThemeDecoder.decodeClip('none'), Clip.none);
+    expect(ThemeDecoder.instance.decodeClip('hardEdge'), Clip.hardEdge);
+    expect(ThemeDecoder.instance.decodeClip('none'), Clip.none);
 
-    expect(ThemeEncoder.encodeClip(Clip.antiAlias), 'antiAlias');
+    expect(ThemeEncoder.instance.encodeClip(Clip.antiAlias), 'antiAlias');
     expect(
-      ThemeEncoder.encodeClip(Clip.antiAliasWithSaveLayer),
+      ThemeEncoder.instance.encodeClip(Clip.antiAliasWithSaveLayer),
       'antiAliasWithSaveLayer',
     );
-    expect(ThemeEncoder.encodeClip(Clip.hardEdge), 'hardEdge');
-    expect(ThemeEncoder.encodeClip(Clip.none), 'none');
+    expect(ThemeEncoder.instance.encodeClip(Clip.hardEdge), 'hardEdge');
+    expect(ThemeEncoder.instance.encodeClip(Clip.none), 'none');
   });
 
   test('Color', () {
-    expect(ThemeDecoder.decodeColor(null), null);
-    expect(ThemeEncoder.encodeColor(null), null);
+    expect(ThemeDecoder.instance.decodeColor(null), null);
+    expect(ThemeEncoder.instance.encodeColor(null), null);
 
     const entry = _kColor;
 
-    expect(ThemeDecoder.decodeColor(entry), entry);
+    expect(ThemeDecoder.instance.decodeColor(entry), entry);
 
-    final encoded = ThemeEncoder.encodeColor(entry);
-    final decoded = ThemeDecoder.decodeColor(encoded);
+    final encoded = ThemeEncoder.instance.encodeColor(entry);
+    final decoded = ThemeDecoder.instance.decodeColor(encoded);
 
     expect(encoded, _kColorStr);
 
     expect(decoded, entry);
 
-    expect(ThemeDecoder.decodeColor('ddd'), const Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('#ddd'), const Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('DDD'), const Color(0xffdddddd));
-    expect(ThemeDecoder.decodeColor('#DDD'), const Color(0xffdddddd));
+    expect(ThemeDecoder.instance.decodeColor('ddd'), const Color(0xffdddddd));
+    expect(ThemeDecoder.instance.decodeColor('#ddd'), const Color(0xffdddddd));
+    expect(ThemeDecoder.instance.decodeColor('DDD'), const Color(0xffdddddd));
+    expect(ThemeDecoder.instance.decodeColor('#DDD'), const Color(0xffdddddd));
 
-    expect(ThemeDecoder.decodeColor('dadada'), const Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('#dadada'), const Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('DADADA'), const Color(0xffdadada));
-    expect(ThemeDecoder.decodeColor('#DADADA'), const Color(0xffdadada));
+    expect(
+      ThemeDecoder.instance.decodeColor('dadada'),
+      const Color(0xffdadada),
+    );
+    expect(
+      ThemeDecoder.instance.decodeColor('#dadada'),
+      const Color(0xffdadada),
+    );
+    expect(
+      ThemeDecoder.instance.decodeColor('DADADA'),
+      const Color(0xffdadada),
+    );
+    expect(
+      ThemeDecoder.instance.decodeColor('#DADADA'),
+      const Color(0xffdadada),
+    );
 
-    expect(ThemeDecoder.decodeColor('dadadada'), const Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('#dadadada'), const Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('DADADADA'), const Color(0xdadadada));
-    expect(ThemeDecoder.decodeColor('#DADADADA'), const Color(0xdadadada));
+    expect(
+      ThemeDecoder.instance.decodeColor('dadadada'),
+      const Color(0xdadadada),
+    );
+    expect(
+      ThemeDecoder.instance.decodeColor('#dadadada'),
+      const Color(0xdadadada),
+    );
+    expect(
+      ThemeDecoder.instance.decodeColor('DADADADA'),
+      const Color(0xdadadada),
+    );
+    expect(
+      ThemeDecoder.instance.decodeColor('#DADADADA'),
+      const Color(0xdadadada),
+    );
   });
 
   test('ColorScheme', () {
-    expect(ThemeDecoder.decodeColorScheme(null), null);
-    expect(ThemeEncoder.encodeColorScheme(null), null);
+    expect(ThemeDecoder.instance.decodeColorScheme(null), null);
+    expect(ThemeEncoder.instance.encodeColorScheme(null), null);
 
     const entry = ColorScheme.dark();
 
-    expect(ThemeDecoder.decodeColorScheme(entry), entry);
+    expect(ThemeDecoder.instance.decodeColorScheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeColorScheme(entry);
-    final decoded = ThemeDecoder.decodeColorScheme(encoded);
+    final encoded = ThemeEncoder.instance.encodeColorScheme(entry);
+    final decoded = ThemeDecoder.instance.decodeColorScheme(encoded);
 
     expect(encoded, {
       'brightness': 'dark',
@@ -1888,88 +2128,94 @@ void main() {
   });
 
   test('CrossAxisAlignment', () {
-    expect(ThemeDecoder.decodeCrossAxisAlignment(null), null);
-    expect(ThemeEncoder.encodeCrossAxisAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeCrossAxisAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeCrossAxisAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment(CrossAxisAlignment.baseline),
+      ThemeDecoder.instance.decodeCrossAxisAlignment(
+        CrossAxisAlignment.baseline,
+      ),
       CrossAxisAlignment.baseline,
     );
 
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment('baseline'),
+      ThemeDecoder.instance.decodeCrossAxisAlignment('baseline'),
       CrossAxisAlignment.baseline,
     );
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment('center'),
+      ThemeDecoder.instance.decodeCrossAxisAlignment('center'),
       CrossAxisAlignment.center,
     );
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment('end'),
+      ThemeDecoder.instance.decodeCrossAxisAlignment('end'),
       CrossAxisAlignment.end,
     );
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment('start'),
+      ThemeDecoder.instance.decodeCrossAxisAlignment('start'),
       CrossAxisAlignment.start,
     );
     expect(
-      ThemeDecoder.decodeCrossAxisAlignment('stretch'),
+      ThemeDecoder.instance.decodeCrossAxisAlignment('stretch'),
       CrossAxisAlignment.stretch,
     );
 
     expect(
-      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.baseline),
+      ThemeEncoder.instance.encodeCrossAxisAlignment(
+        CrossAxisAlignment.baseline,
+      ),
       'baseline',
     );
     expect(
-      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.center),
+      ThemeEncoder.instance.encodeCrossAxisAlignment(CrossAxisAlignment.center),
       'center',
     );
     expect(
-      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.end),
+      ThemeEncoder.instance.encodeCrossAxisAlignment(CrossAxisAlignment.end),
       'end',
     );
     expect(
-      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.start),
+      ThemeEncoder.instance.encodeCrossAxisAlignment(CrossAxisAlignment.start),
       'start',
     );
     expect(
-      ThemeEncoder.encodeCrossAxisAlignment(CrossAxisAlignment.stretch),
+      ThemeEncoder.instance.encodeCrossAxisAlignment(
+        CrossAxisAlignment.stretch,
+      ),
       'stretch',
     );
   });
 
   test('CrossFadeState', () {
-    expect(ThemeDecoder.decodeCrossFadeState(null), null);
-    expect(ThemeEncoder.encodeCrossFadeState(null), null);
+    expect(ThemeDecoder.instance.decodeCrossFadeState(null), null);
+    expect(ThemeEncoder.instance.encodeCrossFadeState(null), null);
 
     expect(
-      ThemeDecoder.decodeCrossFadeState(CrossFadeState.showFirst),
+      ThemeDecoder.instance.decodeCrossFadeState(CrossFadeState.showFirst),
       CrossFadeState.showFirst,
     );
 
     expect(
-      ThemeDecoder.decodeCrossFadeState('showFirst'),
+      ThemeDecoder.instance.decodeCrossFadeState('showFirst'),
       CrossFadeState.showFirst,
     );
     expect(
-      ThemeDecoder.decodeCrossFadeState('showSecond'),
+      ThemeDecoder.instance.decodeCrossFadeState('showSecond'),
       CrossFadeState.showSecond,
     );
 
     expect(
-      ThemeEncoder.encodeCrossFadeState(CrossFadeState.showFirst),
+      ThemeEncoder.instance.encodeCrossFadeState(CrossFadeState.showFirst),
       'showFirst',
     );
     expect(
-      ThemeEncoder.encodeCrossFadeState(CrossFadeState.showSecond),
+      ThemeEncoder.instance.encodeCrossFadeState(CrossFadeState.showSecond),
       'showSecond',
     );
   });
 
   test('CupertinoTextThemeData', () {
-    expect(ThemeDecoder.decodeCupertinoTextThemeData(null), null);
-    expect(ThemeEncoder.encodeCupertinoTextThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeCupertinoTextThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeCupertinoTextThemeData(null), null);
 
     const entry = CupertinoTextThemeData(
       actionSmallTextStyle: _kTextStyle,
@@ -1984,10 +2230,10 @@ void main() {
       textStyle: _kTextStyle,
     );
 
-    expect(ThemeDecoder.decodeCupertinoTextThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeCupertinoTextThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeCupertinoTextThemeData(entry);
-    final decoded = ThemeDecoder.decodeCupertinoTextThemeData({
+    final encoded = ThemeEncoder.instance.encodeCupertinoTextThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeCupertinoTextThemeData({
       'actionSmallTextStyle': _kTextStyleJson,
       'actionTextStyle': _kTextStyleJson,
       'dateTimePickerTextStyle': _kTextStyleJson,
@@ -2024,8 +2270,8 @@ void main() {
   });
 
   test('CupertinoThemeData', () {
-    expect(ThemeDecoder.decodeCupertinoThemeData(null), null);
-    expect(ThemeEncoder.encodeCupertinoThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeCupertinoThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeCupertinoThemeData(null), null);
 
     const entry = CupertinoThemeData(
       applyThemeToAll: true,
@@ -2047,10 +2293,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeCupertinoThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeCupertinoThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeCupertinoThemeData(entry);
-    final decoded = ThemeDecoder.decodeCupertinoThemeData(encoded)!;
+    final encoded = ThemeEncoder.instance.encodeCupertinoThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeCupertinoThemeData(encoded)!;
 
     expect(encoded, {
       'applyThemeToAll': true,
@@ -2116,21 +2362,21 @@ void main() {
   });
 
   test('DatePickerThemeData', () {
-    expect(ThemeDecoder.decodeDatePickerThemeData(null), null);
-    expect(ThemeEncoder.encodeDatePickerThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeDatePickerThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeDatePickerThemeData(null), null);
 
     const entry = DatePickerThemeData(backgroundColor: _kColor);
 
-    expect(ThemeDecoder.decodeDatePickerThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeDatePickerThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDatePickerThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeDatePickerThemeData(entry);
 
     expect(encoded, {'backgroundColor': _kColorStr});
   });
 
   test('DataTableThemeData', () {
-    expect(ThemeDecoder.decodeDataTableThemeData(null), null);
-    expect(ThemeEncoder.encodeDataTableThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeDataTableThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeDataTableThemeData(null), null);
 
     final entry = DataTableThemeData(
       checkboxHorizontalMargin: 24.0,
@@ -2150,10 +2396,10 @@ void main() {
       horizontalMargin: 1.0,
     );
 
-    expect(ThemeDecoder.decodeDataTableThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeDataTableThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDataTableThemeData(entry);
-    final decoded = ThemeDecoder.decodeDataTableThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeDataTableThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeDataTableThemeData(encoded);
 
     expect(encoded, {
       'checkboxHorizontalMargin': 24.0,
@@ -2223,8 +2469,8 @@ void main() {
   });
 
   test('DecorationImage', () {
-    expect(ThemeDecoder.decodeDecorationImage(null), null);
-    expect(ThemeEncoder.encodeDecorationImage(null), null);
+    expect(ThemeDecoder.instance.decodeDecorationImage(null), null);
+    expect(ThemeEncoder.instance.encodeDecorationImage(null), null);
 
     final entry = DecorationImage(
       alignment: Alignment.bottomCenter,
@@ -2240,10 +2486,10 @@ void main() {
       scale: 2.0,
     );
 
-    expect(ThemeDecoder.decodeDecorationImage(entry), entry);
+    expect(ThemeDecoder.instance.decodeDecorationImage(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDecorationImage(entry);
-    final decoded = ThemeDecoder.decodeDecorationImage(encoded);
+    final encoded = ThemeEncoder.instance.encodeDecorationImage(entry);
+    final decoded = ThemeDecoder.instance.decodeDecorationImage(encoded);
 
     expect(encoded, {
       'alignment': 'bottomCenter',
@@ -2265,7 +2511,7 @@ void main() {
       'scale': 2.0,
     });
 
-    expect(ThemeEncoder.encodeDecorationImage(decoded), {
+    expect(ThemeEncoder.instance.encodeDecorationImage(decoded), {
       'alignment': 'bottomCenter',
       'centerSlice': {
         'bottom': 0.0,
@@ -2287,36 +2533,42 @@ void main() {
   });
 
   test('DecorationPosition', () {
-    expect(ThemeDecoder.decodeDecorationPosition(null), null);
-    expect(ThemeEncoder.encodeDecorationPosition(null), null);
+    expect(ThemeDecoder.instance.decodeDecorationPosition(null), null);
+    expect(ThemeEncoder.instance.encodeDecorationPosition(null), null);
 
     expect(
-      ThemeDecoder.decodeDecorationPosition(DecorationPosition.background),
+      ThemeDecoder.instance.decodeDecorationPosition(
+        DecorationPosition.background,
+      ),
       DecorationPosition.background,
     );
 
     expect(
-      ThemeDecoder.decodeDecorationPosition('background'),
+      ThemeDecoder.instance.decodeDecorationPosition('background'),
       DecorationPosition.background,
     );
     expect(
-      ThemeDecoder.decodeDecorationPosition('foreground'),
+      ThemeDecoder.instance.decodeDecorationPosition('foreground'),
       DecorationPosition.foreground,
     );
 
     expect(
-      ThemeEncoder.encodeDecorationPosition(DecorationPosition.background),
+      ThemeEncoder.instance.encodeDecorationPosition(
+        DecorationPosition.background,
+      ),
       'background',
     );
     expect(
-      ThemeEncoder.encodeDecorationPosition(DecorationPosition.foreground),
+      ThemeEncoder.instance.encodeDecorationPosition(
+        DecorationPosition.foreground,
+      ),
       'foreground',
     );
   });
 
   test('DialogThemeData', () {
-    expect(ThemeDecoder.decodeDialogThemeData(null), null);
-    expect(ThemeEncoder.encodeDialogThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeDialogThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeDialogThemeData(null), null);
 
     const entry = DialogThemeData(
       actionsPadding: EdgeInsets.all(8.0),
@@ -2330,10 +2582,10 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeDialogThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeDialogThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDialogThemeData(entry);
-    final decoded = ThemeDecoder.decodeDialogThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeDialogThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeDialogThemeData(encoded);
 
     expect(encoded, {
       'actionsPadding': {'bottom': 8.0, 'left': 8.0, 'right': 8.0, 'top': 8.0},
@@ -2366,58 +2618,76 @@ void main() {
   });
 
   test('DismissDirection', () {
-    expect(ThemeDecoder.decodeDismissDirection(null), null);
-    expect(ThemeEncoder.encodeDismissDirection(null), null);
+    expect(ThemeDecoder.instance.decodeDismissDirection(null), null);
+    expect(ThemeEncoder.instance.encodeDismissDirection(null), null);
 
     expect(
-      ThemeDecoder.decodeDismissDirection(DismissDirection.down),
+      ThemeDecoder.instance.decodeDismissDirection(DismissDirection.down),
       DismissDirection.down,
     );
 
-    expect(ThemeDecoder.decodeDismissDirection('down'), DismissDirection.down);
     expect(
-      ThemeDecoder.decodeDismissDirection('endToStart'),
+      ThemeDecoder.instance.decodeDismissDirection('down'),
+      DismissDirection.down,
+    );
+    expect(
+      ThemeDecoder.instance.decodeDismissDirection('endToStart'),
       DismissDirection.endToStart,
     );
     expect(
-      ThemeDecoder.decodeDismissDirection('horizontal'),
+      ThemeDecoder.instance.decodeDismissDirection('horizontal'),
       DismissDirection.horizontal,
     );
-    expect(ThemeDecoder.decodeDismissDirection('none'), DismissDirection.none);
     expect(
-      ThemeDecoder.decodeDismissDirection('startToEnd'),
+      ThemeDecoder.instance.decodeDismissDirection('none'),
+      DismissDirection.none,
+    );
+    expect(
+      ThemeDecoder.instance.decodeDismissDirection('startToEnd'),
       DismissDirection.startToEnd,
     );
-    expect(ThemeDecoder.decodeDismissDirection('up'), DismissDirection.up);
     expect(
-      ThemeDecoder.decodeDismissDirection('vertical'),
+      ThemeDecoder.instance.decodeDismissDirection('up'),
+      DismissDirection.up,
+    );
+    expect(
+      ThemeDecoder.instance.decodeDismissDirection('vertical'),
       DismissDirection.vertical,
     );
 
-    expect(ThemeEncoder.encodeDismissDirection(DismissDirection.down), 'down');
     expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.endToStart),
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.down),
+      'down',
+    );
+    expect(
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.endToStart),
       'endToStart',
     );
     expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.horizontal),
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.horizontal),
       'horizontal',
     );
-    expect(ThemeEncoder.encodeDismissDirection(DismissDirection.none), 'none');
     expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.startToEnd),
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.startToEnd),
       'startToEnd',
     );
-    expect(ThemeEncoder.encodeDismissDirection(DismissDirection.up), 'up');
     expect(
-      ThemeEncoder.encodeDismissDirection(DismissDirection.vertical),
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.up),
+      'up',
+    );
+    expect(
+      ThemeEncoder.instance.encodeDismissDirection(DismissDirection.vertical),
       'vertical',
     );
   });
 
   test('DividerThemeData', () {
-    expect(ThemeDecoder.decodeDividerThemeData(null), null);
-    expect(ThemeEncoder.encodeDividerThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeDividerThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeDividerThemeData(null), null);
 
     const entry = DividerThemeData(
       color: _kColor,
@@ -2427,10 +2697,10 @@ void main() {
       thickness: 4.0,
     );
 
-    expect(ThemeDecoder.decodeDividerThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeDividerThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDividerThemeData(entry);
-    final decoded = ThemeDecoder.decodeDividerThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeDividerThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeDividerThemeData(encoded);
 
     expect(encoded, {
       'color': _kColorStr,
@@ -2444,36 +2714,36 @@ void main() {
   });
 
   test('DragStartBehavior', () {
-    expect(ThemeDecoder.decodeDragStartBehavior(null), null);
-    expect(ThemeEncoder.encodeDragStartBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeDragStartBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeDragStartBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeDragStartBehavior(DragStartBehavior.down),
+      ThemeDecoder.instance.decodeDragStartBehavior(DragStartBehavior.down),
       DragStartBehavior.down,
     );
 
     expect(
-      ThemeDecoder.decodeDragStartBehavior('down'),
+      ThemeDecoder.instance.decodeDragStartBehavior('down'),
       DragStartBehavior.down,
     );
     expect(
-      ThemeDecoder.decodeDragStartBehavior('start'),
+      ThemeDecoder.instance.decodeDragStartBehavior('start'),
       DragStartBehavior.start,
     );
 
     expect(
-      ThemeEncoder.encodeDragStartBehavior(DragStartBehavior.down),
+      ThemeEncoder.instance.encodeDragStartBehavior(DragStartBehavior.down),
       'down',
     );
     expect(
-      ThemeEncoder.encodeDragStartBehavior(DragStartBehavior.start),
+      ThemeEncoder.instance.encodeDragStartBehavior(DragStartBehavior.start),
       'start',
     );
   });
 
   test('DrawerThemeData', () {
-    expect(ThemeDecoder.decodeDrawerThemeData(null), null);
-    expect(ThemeEncoder.encodeDrawerThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeDrawerThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeDrawerThemeData(null), null);
 
     const entry = DrawerThemeData(
       backgroundColor: Color(0xff111111),
@@ -2485,10 +2755,10 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeDrawerThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeDrawerThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeDrawerThemeData(entry);
-    final decoded = ThemeDecoder.decodeDrawerThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeDrawerThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeDrawerThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -2519,71 +2789,77 @@ void main() {
   });
 
   test('DropdownMenuThemeData', () {
-    expect(ThemeDecoder.decodeDropdownMenuThemeData(null), null);
-    expect(ThemeEncoder.encodeDropdownMenuThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeDropdownMenuThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeDropdownMenuThemeData(null), null);
   });
 
   test('EdgeInsets', () {
-    expect(ThemeDecoder.decodeEdgeInsets(null), null);
-    expect(ThemeEncoder.encodeEdgeInsets(null), null);
+    expect(ThemeDecoder.instance.decodeEdgeInsets(null), null);
+    expect(ThemeEncoder.instance.encodeEdgeInsets(null), null);
 
     const entry = EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0);
 
-    expect(ThemeDecoder.decodeEdgeInsets(entry), entry);
+    expect(ThemeDecoder.instance.decodeEdgeInsets(entry), entry);
 
-    final encoded = ThemeEncoder.encodeEdgeInsets(entry);
-    final decoded = ThemeDecoder.decodeEdgeInsets(encoded);
+    final encoded = ThemeEncoder.instance.encodeEdgeInsets(entry);
+    final decoded = ThemeDecoder.instance.decodeEdgeInsets(encoded);
 
     expect(encoded, {'bottom': 4.0, 'left': 1.0, 'right': 3.0, 'top': 2.0});
 
     expect(decoded, entry);
 
-    expect(ThemeDecoder.decodeEdgeInsets('16'), const EdgeInsets.all(16.0));
-    expect(ThemeDecoder.decodeEdgeInsets(16), const EdgeInsets.all(16.0));
     expect(
-      ThemeDecoder.decodeEdgeInsets(['1', 2]),
+      ThemeDecoder.instance.decodeEdgeInsets('16'),
+      const EdgeInsets.all(16.0),
+    );
+    expect(
+      ThemeDecoder.instance.decodeEdgeInsets(16),
+      const EdgeInsets.all(16.0),
+    );
+    expect(
+      ThemeDecoder.instance.decodeEdgeInsets(['1', 2]),
       const EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsets(['1', 2, 3.0, '4.0']),
+      ThemeDecoder.instance.decodeEdgeInsets(['1', 2, 3.0, '4.0']),
       const EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
     );
   });
 
   test('EdgeInsetsDirectional', () {
-    expect(ThemeDecoder.decodeEdgeInsetsDirectional(null), null);
-    expect(ThemeEncoder.encodeEdgeInsetsDirectional(null), null);
+    expect(ThemeDecoder.instance.decodeEdgeInsetsDirectional(null), null);
+    expect(ThemeEncoder.instance.encodeEdgeInsetsDirectional(null), null);
 
     const entry = EdgeInsetsDirectional.fromSTEB(1.0, 2.0, 3.0, 4.0);
 
-    expect(ThemeDecoder.decodeEdgeInsetsDirectional(entry), entry);
+    expect(ThemeDecoder.instance.decodeEdgeInsetsDirectional(entry), entry);
 
-    final encoded = ThemeEncoder.encodeEdgeInsetsDirectional(entry);
-    final decoded = ThemeDecoder.decodeEdgeInsetsDirectional(encoded);
+    final encoded = ThemeEncoder.instance.encodeEdgeInsetsDirectional(entry);
+    final decoded = ThemeDecoder.instance.decodeEdgeInsetsDirectional(encoded);
 
     expect(encoded, {'bottom': 4.0, 'end': 3.0, 'start': 1.0, 'top': 2.0});
 
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.decodeEdgeInsetsDirectional('16'),
+      ThemeDecoder.instance.decodeEdgeInsetsDirectional('16'),
       const EdgeInsetsDirectional.all(16.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsetsDirectional(16),
+      ThemeDecoder.instance.decodeEdgeInsetsDirectional(16),
       const EdgeInsetsDirectional.all(16.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsetsDirectional(['1', 2]),
+      ThemeDecoder.instance.decodeEdgeInsetsDirectional(['1', 2]),
       const EdgeInsetsDirectional.symmetric(horizontal: 1.0, vertical: 2.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsetsDirectional(['1', 2, 3.0, '4.0']),
+      ThemeDecoder.instance.decodeEdgeInsetsDirectional(['1', 2, 3.0, '4.0']),
       const EdgeInsetsDirectional.fromSTEB(1.0, 2.0, 3.0, 4.0),
     );
 
     expect(
-      ThemeDecoder.decodeEdgeInsetsDirectional([
+      ThemeDecoder.instance.decodeEdgeInsetsDirectional([
         '1',
         2,
         3.0,
@@ -2594,41 +2870,41 @@ void main() {
   });
 
   test('EdgeInsetsGeometry', () {
-    expect(ThemeDecoder.decodeEdgeInsetsGeometry(null), null);
-    expect(ThemeEncoder.encodeEdgeInsetsGeometry(null), null);
+    expect(ThemeDecoder.instance.decodeEdgeInsetsGeometry(null), null);
+    expect(ThemeEncoder.instance.encodeEdgeInsetsGeometry(null), null);
 
     const entry = EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0);
 
-    expect(ThemeDecoder.decodeEdgeInsetsGeometry(entry), entry);
+    expect(ThemeDecoder.instance.decodeEdgeInsetsGeometry(entry), entry);
 
-    final encoded = ThemeEncoder.encodeEdgeInsetsGeometry(entry);
-    final decoded = ThemeDecoder.decodeEdgeInsetsGeometry(encoded);
+    final encoded = ThemeEncoder.instance.encodeEdgeInsetsGeometry(entry);
+    final decoded = ThemeDecoder.instance.decodeEdgeInsetsGeometry(encoded);
 
     expect(encoded, {'bottom': 4.0, 'left': 1.0, 'right': 3.0, 'top': 2.0});
 
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.decodeEdgeInsetsGeometry('16'),
+      ThemeDecoder.instance.decodeEdgeInsetsGeometry('16'),
       const EdgeInsets.all(16.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsetsGeometry(16),
+      ThemeDecoder.instance.decodeEdgeInsetsGeometry(16),
       const EdgeInsets.all(16.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2]),
+      ThemeDecoder.instance.decodeEdgeInsetsGeometry(['1', 2]),
       const EdgeInsets.symmetric(horizontal: 1.0, vertical: 2.0),
     );
     expect(
-      ThemeDecoder.decodeEdgeInsetsGeometry(['1', 2, 3.0, '4.0']),
+      ThemeDecoder.instance.decodeEdgeInsetsGeometry(['1', 2, 3.0, '4.0']),
       const EdgeInsets.fromLTRB(1.0, 2.0, 3.0, 4.0),
     );
   });
 
   test('ElevatedButtonThemeData', () {
-    expect(ThemeDecoder.decodeElevatedButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeElevatedButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeElevatedButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeElevatedButtonThemeData(null), null);
 
     final entry = ElevatedButtonThemeData(
       style: ButtonStyle(
@@ -2636,10 +2912,12 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeElevatedButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeElevatedButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeElevatedButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeElevatedButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeElevatedButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeElevatedButtonThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'style': {'backgroundColor': _materializeState('#ff222222')},
@@ -2663,8 +2941,8 @@ void main() {
   });
 
   test('ExpansionTileThemeData', () {
-    expect(ThemeDecoder.decodeExpansionTileThemeData(null), null);
-    expect(ThemeEncoder.encodeExpansionTileThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeExpansionTileThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeExpansionTileThemeData(null), null);
 
     final entry = ExpansionTileThemeData(
       backgroundColor: Color(0xff111111),
@@ -2678,12 +2956,12 @@ void main() {
       tilePadding: EdgeInsets.all(8.0),
     );
 
-    expect(ThemeDecoder.decodeExpansionTileThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeExpansionTileThemeData(entry), entry);
 
     final encoded = JsonClass.removeNull(
-      ThemeEncoder.encodeExpansionTileThemeData(entry),
+      ThemeEncoder.instance.encodeExpansionTileThemeData(entry),
     );
-    final decoded = ThemeDecoder.decodeExpansionTileThemeData(encoded);
+    final decoded = ThemeDecoder.instance.decodeExpansionTileThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -2701,8 +2979,8 @@ void main() {
   });
 
   test('FilledButtonThemeData', () {
-    expect(ThemeDecoder.decodeFilledButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeFilledButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeFilledButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeFilledButtonThemeData(null), null);
 
     final entry = FilledButtonThemeData(
       style: ButtonStyle(
@@ -2729,10 +3007,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeFilledButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeFilledButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeFilledButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeFilledButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeFilledButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeFilledButtonThemeData(encoded);
 
     expect(encoded, {
       'style': {
@@ -2781,65 +3059,89 @@ void main() {
   });
 
   test('FilterQuality', () {
-    expect(ThemeDecoder.decodeFilterQuality(null), null);
-    expect(ThemeEncoder.encodeFilterQuality(null), null);
+    expect(ThemeDecoder.instance.decodeFilterQuality(null), null);
+    expect(ThemeEncoder.instance.encodeFilterQuality(null), null);
 
     expect(
-      ThemeDecoder.decodeFilterQuality(FilterQuality.high),
+      ThemeDecoder.instance.decodeFilterQuality(FilterQuality.high),
       FilterQuality.high,
     );
 
-    expect(ThemeDecoder.decodeFilterQuality('high'), FilterQuality.high);
-    expect(ThemeDecoder.decodeFilterQuality('low'), FilterQuality.low);
-    expect(ThemeDecoder.decodeFilterQuality('medium'), FilterQuality.medium);
-    expect(ThemeDecoder.decodeFilterQuality('none'), FilterQuality.none);
+    expect(
+      ThemeDecoder.instance.decodeFilterQuality('high'),
+      FilterQuality.high,
+    );
+    expect(ThemeDecoder.instance.decodeFilterQuality('low'), FilterQuality.low);
+    expect(
+      ThemeDecoder.instance.decodeFilterQuality('medium'),
+      FilterQuality.medium,
+    );
+    expect(
+      ThemeDecoder.instance.decodeFilterQuality('none'),
+      FilterQuality.none,
+    );
 
-    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.high), 'high');
-    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.low), 'low');
-    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.medium), 'medium');
-    expect(ThemeEncoder.encodeFilterQuality(FilterQuality.none), 'none');
+    expect(
+      ThemeEncoder.instance.encodeFilterQuality(FilterQuality.high),
+      'high',
+    );
+    expect(ThemeEncoder.instance.encodeFilterQuality(FilterQuality.low), 'low');
+    expect(
+      ThemeEncoder.instance.encodeFilterQuality(FilterQuality.medium),
+      'medium',
+    );
+    expect(
+      ThemeEncoder.instance.encodeFilterQuality(FilterQuality.none),
+      'none',
+    );
   });
 
   test('FlexFit', () {
-    expect(ThemeDecoder.decodeFlexFit(null), null);
-    expect(ThemeEncoder.encodeFlexFit(null), null);
+    expect(ThemeDecoder.instance.decodeFlexFit(null), null);
+    expect(ThemeEncoder.instance.encodeFlexFit(null), null);
 
-    expect(ThemeDecoder.decodeFlexFit(FlexFit.loose), FlexFit.loose);
+    expect(ThemeDecoder.instance.decodeFlexFit(FlexFit.loose), FlexFit.loose);
 
-    expect(ThemeDecoder.decodeFlexFit('loose'), FlexFit.loose);
-    expect(ThemeDecoder.decodeFlexFit('tight'), FlexFit.tight);
+    expect(ThemeDecoder.instance.decodeFlexFit('loose'), FlexFit.loose);
+    expect(ThemeDecoder.instance.decodeFlexFit('tight'), FlexFit.tight);
 
-    expect(ThemeEncoder.encodeFlexFit(FlexFit.loose), 'loose');
-    expect(ThemeEncoder.encodeFlexFit(FlexFit.tight), 'tight');
+    expect(ThemeEncoder.instance.encodeFlexFit(FlexFit.loose), 'loose');
+    expect(ThemeEncoder.instance.encodeFlexFit(FlexFit.tight), 'tight');
   });
 
   test('FloatingActionButtonAnimator', () {
-    expect(ThemeDecoder.decodeFloatingActionButtonAnimator(null), null);
-    expect(ThemeEncoder.encodeFloatingActionButtonAnimator(null), null);
+    expect(
+      ThemeDecoder.instance.decodeFloatingActionButtonAnimator(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeFloatingActionButtonAnimator(null),
+      null,
+    );
 
     expect(
-      ThemeDecoder.decodeFloatingActionButtonAnimator(
+      ThemeDecoder.instance.decodeFloatingActionButtonAnimator(
         FloatingActionButtonAnimator.scaling,
       ),
       FloatingActionButtonAnimator.scaling,
     );
 
     expect(
-      ThemeDecoder.decodeFloatingActionButtonAnimator('noAnimation'),
+      ThemeDecoder.instance.decodeFloatingActionButtonAnimator('noAnimation'),
       FloatingActionButtonAnimator.noAnimation,
     );
     expect(
-      ThemeDecoder.decodeFloatingActionButtonAnimator('scaling'),
+      ThemeDecoder.instance.decodeFloatingActionButtonAnimator('scaling'),
       FloatingActionButtonAnimator.scaling,
     );
     expect(
-      ThemeEncoder.encodeFloatingActionButtonAnimator(
+      ThemeEncoder.instance.encodeFloatingActionButtonAnimator(
         FloatingActionButtonAnimator.noAnimation,
       ),
       'noAnimation',
     );
     expect(
-      ThemeEncoder.encodeFloatingActionButtonAnimator(
+      ThemeEncoder.instance.encodeFloatingActionButtonAnimator(
         FloatingActionButtonAnimator.scaling,
       ),
       'scaling',
@@ -2847,8 +3149,14 @@ void main() {
   });
 
   test('FloatingActionButtonLocation', () {
-    expect(ThemeDecoder.decodeFloatingActionButtonLocation(null), null);
-    expect(ThemeEncoder.encodeFloatingActionButtonLocation(null), null);
+    expect(
+      ThemeDecoder.instance.decodeFloatingActionButtonLocation(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeFloatingActionButtonLocation(null),
+      null,
+    );
 
     final values = <String, FloatingActionButtonLocation>{
       'centerDocked': FloatingActionButtonLocation.centerDocked,
@@ -2872,20 +3180,35 @@ void main() {
     };
 
     values.forEach((key, value) {
-      expect(ThemeDecoder.decodeFloatingActionButtonLocation(value), value);
+      expect(
+        ThemeDecoder.instance.decodeFloatingActionButtonLocation(value),
+        value,
+      );
 
-      expect(ThemeDecoder.decodeFloatingActionButtonLocation(key), value);
+      expect(
+        ThemeDecoder.instance.decodeFloatingActionButtonLocation(key),
+        value,
+      );
 
-      expect(ThemeEncoder.encodeFloatingActionButtonLocation(value), key);
+      expect(
+        ThemeEncoder.instance.encodeFloatingActionButtonLocation(value),
+        key,
+      );
     });
   });
 
   test('FloatingActionButtonThemeData', () {
-    expect(ThemeDecoder.decodeFloatingActionButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeFloatingActionButtonThemeData(null), null);
+    expect(
+      ThemeDecoder.instance.decodeFloatingActionButtonThemeData(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeFloatingActionButtonThemeData(null),
+      null,
+    );
 
     expect(
-      ThemeEncoder.encodeFloatingActionButtonThemeData(
+      ThemeEncoder.instance.encodeFloatingActionButtonThemeData(
         FloatingActionButtonThemeData(
           mouseCursor: WidgetStateProperty.all(SystemMouseCursors.basic),
         ),
@@ -2927,10 +3250,17 @@ void main() {
       splashColor: Color(0xff555555),
     );
 
-    expect(ThemeDecoder.decodeFloatingActionButtonThemeData(entry), entry);
+    expect(
+      ThemeDecoder.instance.decodeFloatingActionButtonThemeData(entry),
+      entry,
+    );
 
-    final encoded = ThemeEncoder.encodeFloatingActionButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeFloatingActionButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeFloatingActionButtonThemeData(
+      entry,
+    );
+    final decoded = ThemeDecoder.instance.decodeFloatingActionButtonThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -2973,79 +3303,93 @@ void main() {
   });
 
   test('FloatingLabelAlignment', () {
-    expect(ThemeDecoder.decodeFloatingLabelAlignment(null), null);
-    expect(ThemeEncoder.encodeFloatingLabelAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeFloatingLabelAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeFloatingLabelAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeFloatingLabelAlignment(FloatingLabelAlignment.center),
+      ThemeDecoder.instance.decodeFloatingLabelAlignment(
+        FloatingLabelAlignment.center,
+      ),
       FloatingLabelAlignment.center,
     );
 
     expect(
-      ThemeDecoder.decodeFloatingLabelAlignment('center'),
+      ThemeDecoder.instance.decodeFloatingLabelAlignment('center'),
       FloatingLabelAlignment.center,
     );
     expect(
-      ThemeDecoder.decodeFloatingLabelAlignment('start'),
+      ThemeDecoder.instance.decodeFloatingLabelAlignment('start'),
       FloatingLabelAlignment.start,
     );
 
     expect(
-      ThemeEncoder.encodeFloatingLabelAlignment(FloatingLabelAlignment.center),
+      ThemeEncoder.instance.encodeFloatingLabelAlignment(
+        FloatingLabelAlignment.center,
+      ),
       'center',
     );
     expect(
-      ThemeEncoder.encodeFloatingLabelAlignment(FloatingLabelAlignment.start),
+      ThemeEncoder.instance.encodeFloatingLabelAlignment(
+        FloatingLabelAlignment.start,
+      ),
       'start',
     );
   });
 
   test('FloatingLabelBehavior', () {
-    expect(ThemeDecoder.decodeFloatingLabelBehavior(null), null);
-    expect(ThemeEncoder.encodeFloatingLabelBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeFloatingLabelBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeFloatingLabelBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeFloatingLabelBehavior(FloatingLabelBehavior.always),
+      ThemeDecoder.instance.decodeFloatingLabelBehavior(
+        FloatingLabelBehavior.always,
+      ),
       FloatingLabelBehavior.always,
     );
 
     expect(
-      ThemeDecoder.decodeFloatingLabelBehavior('always'),
+      ThemeDecoder.instance.decodeFloatingLabelBehavior('always'),
       FloatingLabelBehavior.always,
     );
     expect(
-      ThemeDecoder.decodeFloatingLabelBehavior('auto'),
+      ThemeDecoder.instance.decodeFloatingLabelBehavior('auto'),
       FloatingLabelBehavior.auto,
     );
     expect(
-      ThemeDecoder.decodeFloatingLabelBehavior('never'),
+      ThemeDecoder.instance.decodeFloatingLabelBehavior('never'),
       FloatingLabelBehavior.never,
     );
 
     expect(
-      ThemeEncoder.encodeFloatingLabelBehavior(FloatingLabelBehavior.always),
+      ThemeEncoder.instance.encodeFloatingLabelBehavior(
+        FloatingLabelBehavior.always,
+      ),
       'always',
     );
     expect(
-      ThemeEncoder.encodeFloatingLabelBehavior(FloatingLabelBehavior.auto),
+      ThemeEncoder.instance.encodeFloatingLabelBehavior(
+        FloatingLabelBehavior.auto,
+      ),
       'auto',
     );
     expect(
-      ThemeEncoder.encodeFloatingLabelBehavior(FloatingLabelBehavior.never),
+      ThemeEncoder.instance.encodeFloatingLabelBehavior(
+        FloatingLabelBehavior.never,
+      ),
       'never',
     );
   });
 
   test('FontFeature', () {
-    expect(ThemeDecoder.decodeFontFeature(null), null);
-    expect(ThemeEncoder.encodeFontFeature(null), null);
+    expect(ThemeDecoder.instance.decodeFontFeature(null), null);
+    expect(ThemeEncoder.instance.encodeFontFeature(null), null);
 
     const entry = FontFeature('fooo', 2);
 
-    expect(ThemeDecoder.decodeFontFeature(entry), entry);
+    expect(ThemeDecoder.instance.decodeFontFeature(entry), entry);
 
-    final encoded = ThemeEncoder.encodeFontFeature(entry);
-    final decoded = ThemeDecoder.decodeFontFeature(encoded);
+    final encoded = ThemeEncoder.instance.encodeFontFeature(entry);
+    final decoded = ThemeDecoder.instance.decodeFontFeature(encoded);
 
     expect(encoded, {'feature': 'fooo', 'value': 2});
 
@@ -3053,21 +3397,24 @@ void main() {
   });
 
   test('FontStyle', () {
-    expect(ThemeDecoder.decodeFontStyle(null), null);
-    expect(ThemeEncoder.encodeFontStyle(null), null);
+    expect(ThemeDecoder.instance.decodeFontStyle(null), null);
+    expect(ThemeEncoder.instance.encodeFontStyle(null), null);
 
-    expect(ThemeDecoder.decodeFontStyle(FontStyle.italic), FontStyle.italic);
+    expect(
+      ThemeDecoder.instance.decodeFontStyle(FontStyle.italic),
+      FontStyle.italic,
+    );
 
-    expect(ThemeDecoder.decodeFontStyle('italic'), FontStyle.italic);
-    expect(ThemeDecoder.decodeFontStyle('normal'), FontStyle.normal);
+    expect(ThemeDecoder.instance.decodeFontStyle('italic'), FontStyle.italic);
+    expect(ThemeDecoder.instance.decodeFontStyle('normal'), FontStyle.normal);
 
-    expect(ThemeEncoder.encodeFontStyle(FontStyle.italic), 'italic');
-    expect(ThemeEncoder.encodeFontStyle(FontStyle.normal), 'normal');
+    expect(ThemeEncoder.instance.encodeFontStyle(FontStyle.italic), 'italic');
+    expect(ThemeEncoder.instance.encodeFontStyle(FontStyle.normal), 'normal');
   });
 
   test('FontWeight', () {
-    expect(ThemeDecoder.decodeFontWeight(null), null);
-    expect(ThemeEncoder.encodeFontWeight(null), null);
+    expect(ThemeDecoder.instance.decodeFontWeight(null), null);
+    expect(ThemeEncoder.instance.encodeFontWeight(null), null);
 
     const weights = {
       'bold': FontWeight.bold,
@@ -3084,25 +3431,25 @@ void main() {
     };
 
     weights.forEach((key, value) {
-      expect(ThemeDecoder.decodeFontWeight(value), value);
+      expect(ThemeDecoder.instance.decodeFontWeight(value), value);
 
-      expect(ThemeDecoder.decodeFontWeight(key), value);
+      expect(ThemeDecoder.instance.decodeFontWeight(key), value);
 
       // 'bold' and 'normal' are convenience keys that map to a w* value.  They
       // don't actually exist.
       if ('bold' != key && 'normal' != key) {
-        expect(ThemeEncoder.encodeFontWeight(value), key);
+        expect(ThemeEncoder.instance.encodeFontWeight(value), key);
       }
     });
   });
 
   test('FontVariation', () {
-    expect(ThemeDecoder.decodeFontVariation(null), null);
-    expect(ThemeEncoder.encodeFontVariation(null), null);
+    expect(ThemeDecoder.instance.decodeFontVariation(null), null);
+    expect(ThemeEncoder.instance.encodeFontVariation(null), null);
 
     const entry = FontVariation('slnt', 20.0);
-    final encoded = ThemeEncoder.encodeFontVariation(entry);
-    final decoded = ThemeDecoder.decodeFontVariation(encoded);
+    final encoded = ThemeEncoder.instance.encodeFontVariation(entry);
+    final decoded = ThemeDecoder.instance.decodeFontVariation(encoded);
 
     expect(encoded, {'axis': 'slnt', 'value': 20.0});
 
@@ -3110,8 +3457,8 @@ void main() {
   });
 
   test('Gradient', () {
-    expect(ThemeDecoder.decodeGradient(null), null);
-    expect(ThemeEncoder.encodeGradient(null), null);
+    expect(ThemeDecoder.instance.decodeGradient(null), null);
+    expect(ThemeEncoder.instance.encodeGradient(null), null);
 
     Gradient entry = const LinearGradient(
       colors: <Color>[Color(0xff111111), Color(0xff222222)],
@@ -3122,10 +3469,10 @@ void main() {
       transform: GradientRotation(4.0),
     );
 
-    expect(ThemeDecoder.decodeGradient(entry), entry);
+    expect(ThemeDecoder.instance.decodeGradient(entry), entry);
 
-    var encoded = ThemeEncoder.encodeGradient(entry);
-    var decoded = ThemeDecoder.decodeGradient(encoded);
+    var encoded = ThemeEncoder.instance.encodeGradient(entry);
+    var decoded = ThemeDecoder.instance.decodeGradient(encoded);
 
     expect(encoded, {
       'colors': ['#ff111111', '#ff222222'],
@@ -3150,8 +3497,8 @@ void main() {
       transform: GradientRotation(4.0),
     );
 
-    encoded = ThemeEncoder.encodeGradient(entry);
-    decoded = ThemeDecoder.decodeGradient(encoded);
+    encoded = ThemeEncoder.instance.encodeGradient(entry);
+    decoded = ThemeDecoder.instance.decodeGradient(encoded);
 
     expect(encoded, {
       'center': 'bottomCenter',
@@ -3177,8 +3524,8 @@ void main() {
       transform: GradientRotation(4.0),
     );
 
-    encoded = ThemeEncoder.encodeGradient(entry);
-    decoded = ThemeDecoder.decodeGradient(encoded);
+    encoded = ThemeEncoder.instance.encodeGradient(entry);
+    decoded = ThemeDecoder.instance.decodeGradient(encoded);
 
     expect(encoded, {
       'center': 'bottomCenter',
@@ -3195,15 +3542,15 @@ void main() {
   });
 
   test('GradientTransform', () {
-    expect(ThemeDecoder.decodeGradientTransform(null), null);
-    expect(ThemeEncoder.encodeGradientTransform(null), null);
+    expect(ThemeDecoder.instance.decodeGradientTransform(null), null);
+    expect(ThemeEncoder.instance.encodeGradientTransform(null), null);
 
     const entry = GradientRotation(10.0);
 
-    expect(ThemeDecoder.decodeGradientTransform(entry), entry);
+    expect(ThemeDecoder.instance.decodeGradientTransform(entry), entry);
 
-    final encoded = ThemeEncoder.encodeGradientTransform(entry);
-    final decoded = ThemeDecoder.decodeGradientTransform(encoded)!;
+    final encoded = ThemeEncoder.instance.encodeGradientTransform(entry);
+    final decoded = ThemeDecoder.instance.decodeGradientTransform(encoded)!;
 
     expect(encoded, {'radians': 10.0});
 
@@ -3213,44 +3560,44 @@ void main() {
   });
 
   test('HitTestBehavior', () {
-    expect(ThemeDecoder.decodeHitTestBehavior(null), null);
-    expect(ThemeEncoder.encodeHitTestBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeHitTestBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeHitTestBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeHitTestBehavior(HitTestBehavior.deferToChild),
+      ThemeDecoder.instance.decodeHitTestBehavior(HitTestBehavior.deferToChild),
       HitTestBehavior.deferToChild,
     );
 
     expect(
-      ThemeDecoder.decodeHitTestBehavior('deferToChild'),
+      ThemeDecoder.instance.decodeHitTestBehavior('deferToChild'),
       HitTestBehavior.deferToChild,
     );
     expect(
-      ThemeDecoder.decodeHitTestBehavior('opaque'),
+      ThemeDecoder.instance.decodeHitTestBehavior('opaque'),
       HitTestBehavior.opaque,
     );
     expect(
-      ThemeDecoder.decodeHitTestBehavior('translucent'),
+      ThemeDecoder.instance.decodeHitTestBehavior('translucent'),
       HitTestBehavior.translucent,
     );
 
     expect(
-      ThemeEncoder.encodeHitTestBehavior(HitTestBehavior.deferToChild),
+      ThemeEncoder.instance.encodeHitTestBehavior(HitTestBehavior.deferToChild),
       'deferToChild',
     );
     expect(
-      ThemeEncoder.encodeHitTestBehavior(HitTestBehavior.opaque),
+      ThemeEncoder.instance.encodeHitTestBehavior(HitTestBehavior.opaque),
       'opaque',
     );
     expect(
-      ThemeEncoder.encodeHitTestBehavior(HitTestBehavior.translucent),
+      ThemeEncoder.instance.encodeHitTestBehavior(HitTestBehavior.translucent),
       'translucent',
     );
   });
 
   test('Icon', () {
-    expect(ThemeDecoder.decodeIcon(null), null);
-    expect(ThemeEncoder.encodeIcon(null), null);
+    expect(ThemeDecoder.instance.decodeIcon(null), null);
+    expect(ThemeEncoder.instance.encodeIcon(null), null);
 
     const data = IconData(
       2,
@@ -3266,7 +3613,7 @@ void main() {
         'fontPackage': 'bar',
         'matchTextDirection': true,
       },
-    }, ThemeEncoder.encodeIcon(const Icon(data)));
+    }, ThemeEncoder.instance.encodeIcon(const Icon(data)));
     const entry = Icon(
       data,
       applyTextScaling: false,
@@ -3280,10 +3627,10 @@ void main() {
       weight: 400.0,
     );
 
-    expect(ThemeDecoder.decodeIcon(entry), entry);
+    expect(ThemeDecoder.instance.decodeIcon(entry), entry);
 
-    final encoded = ThemeEncoder.encodeIcon(entry);
-    final decoded = ThemeDecoder.decodeIcon(encoded);
+    final encoded = ThemeEncoder.instance.encodeIcon(entry);
+    final decoded = ThemeDecoder.instance.decodeIcon(encoded);
 
     expect(encoded, {
       'applyTextScaling': false,
@@ -3307,23 +3654,29 @@ void main() {
   });
 
   test('IconAlignment', () {
-    expect(ThemeDecoder.decodeIconAlignment(null), null);
-    expect(ThemeEncoder.encodeIconAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeIconAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeIconAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeIconAlignment(IconAlignment.end),
+      ThemeDecoder.instance.decodeIconAlignment(IconAlignment.end),
       IconAlignment.end,
     );
-    expect(ThemeDecoder.decodeIconAlignment('end'), IconAlignment.end);
-    expect(ThemeDecoder.decodeIconAlignment('start'), IconAlignment.start);
+    expect(ThemeDecoder.instance.decodeIconAlignment('end'), IconAlignment.end);
+    expect(
+      ThemeDecoder.instance.decodeIconAlignment('start'),
+      IconAlignment.start,
+    );
 
-    expect(ThemeEncoder.encodeIconAlignment(IconAlignment.end), 'end');
-    expect(ThemeEncoder.encodeIconAlignment(IconAlignment.start), 'start');
+    expect(ThemeEncoder.instance.encodeIconAlignment(IconAlignment.end), 'end');
+    expect(
+      ThemeEncoder.instance.encodeIconAlignment(IconAlignment.start),
+      'start',
+    );
   });
 
   test('IconButtonThemeData', () {
-    expect(ThemeDecoder.decodeIconButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeIconButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeIconButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeIconButtonThemeData(null), null);
 
     final entry = IconButtonThemeData(
       style: ButtonStyle(
@@ -3350,10 +3703,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeIconButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeIconButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeIconButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeIconButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeIconButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeIconButtonThemeData(encoded);
 
     expect(encoded, {
       'style': {
@@ -3402,8 +3755,8 @@ void main() {
   });
 
   test('IconData', () {
-    expect(ThemeDecoder.decodeIconData(null), null);
-    expect(ThemeEncoder.encodeIconData(null), null);
+    expect(ThemeDecoder.instance.decodeIconData(null), null);
+    expect(ThemeEncoder.instance.encodeIconData(null), null);
 
     const entry = IconData(
       2,
@@ -3413,10 +3766,10 @@ void main() {
       matchTextDirection: true,
     );
 
-    expect(ThemeDecoder.decodeIconData(entry), entry);
+    expect(ThemeDecoder.instance.decodeIconData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeIconData(entry);
-    final decoded = ThemeDecoder.decodeIconData(encoded);
+    final encoded = ThemeEncoder.instance.encodeIconData(entry);
+    final decoded = ThemeDecoder.instance.decodeIconData(encoded);
 
     expect(encoded, {
       'codePoint': 2,
@@ -3430,8 +3783,8 @@ void main() {
   });
 
   test('IconThemeData', () {
-    expect(ThemeDecoder.decodeIconThemeData(null), null);
-    expect(ThemeEncoder.encodeIconThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeIconThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeIconThemeData(null), null);
 
     const entry = IconThemeData(
       applyTextScaling: false,
@@ -3444,10 +3797,10 @@ void main() {
       weight: 5.0,
     );
 
-    expect(ThemeDecoder.decodeIconThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeIconThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeIconThemeData(entry);
-    final decoded = ThemeDecoder.decodeIconThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeIconThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeIconThemeData(encoded);
 
     expect(encoded, {
       'applyTextScaling': false,
@@ -3464,8 +3817,8 @@ void main() {
   });
 
   test('ImageProvider', () {
-    expect(ThemeDecoder.decodeImageProvider(null), null);
-    expect(ThemeEncoder.encodeImageProvider(null), null);
+    expect(ThemeDecoder.instance.decodeImageProvider(null), null);
+    expect(ThemeEncoder.instance.encodeImageProvider(null), null);
 
     final images = [
       {'assetName': 'asset', 'package': 'package', 'type': 'asset'},
@@ -3479,35 +3832,59 @@ void main() {
     ];
 
     for (var image in images) {
-      final decoded = ThemeDecoder.decodeImageProvider(image);
-      expect(ThemeDecoder.decodeImageProvider(decoded), decoded);
-      expect(ThemeEncoder.encodeImageProvider(decoded), image);
+      final decoded = ThemeDecoder.instance.decodeImageProvider(image);
+      expect(ThemeDecoder.instance.decodeImageProvider(decoded), decoded);
+      expect(ThemeEncoder.instance.encodeImageProvider(decoded), image);
     }
   });
 
   test('ImageRepeat', () {
-    expect(ThemeDecoder.decodeImageRepeat(null), null);
-    expect(ThemeEncoder.encodeImageRepeat(null), null);
+    expect(ThemeDecoder.instance.decodeImageRepeat(null), null);
+    expect(ThemeEncoder.instance.encodeImageRepeat(null), null);
 
     expect(
-      ThemeDecoder.decodeImageRepeat(ImageRepeat.noRepeat),
+      ThemeDecoder.instance.decodeImageRepeat(ImageRepeat.noRepeat),
       ImageRepeat.noRepeat,
     );
 
-    expect(ThemeDecoder.decodeImageRepeat('noRepeat'), ImageRepeat.noRepeat);
-    expect(ThemeDecoder.decodeImageRepeat('repeat'), ImageRepeat.repeat);
-    expect(ThemeDecoder.decodeImageRepeat('repeatX'), ImageRepeat.repeatX);
-    expect(ThemeDecoder.decodeImageRepeat('repeatY'), ImageRepeat.repeatY);
+    expect(
+      ThemeDecoder.instance.decodeImageRepeat('noRepeat'),
+      ImageRepeat.noRepeat,
+    );
+    expect(
+      ThemeDecoder.instance.decodeImageRepeat('repeat'),
+      ImageRepeat.repeat,
+    );
+    expect(
+      ThemeDecoder.instance.decodeImageRepeat('repeatX'),
+      ImageRepeat.repeatX,
+    );
+    expect(
+      ThemeDecoder.instance.decodeImageRepeat('repeatY'),
+      ImageRepeat.repeatY,
+    );
 
-    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.noRepeat), 'noRepeat');
-    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.repeat), 'repeat');
-    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.repeatX), 'repeatX');
-    expect(ThemeEncoder.encodeImageRepeat(ImageRepeat.repeatY), 'repeatY');
+    expect(
+      ThemeEncoder.instance.encodeImageRepeat(ImageRepeat.noRepeat),
+      'noRepeat',
+    );
+    expect(
+      ThemeEncoder.instance.encodeImageRepeat(ImageRepeat.repeat),
+      'repeat',
+    );
+    expect(
+      ThemeEncoder.instance.encodeImageRepeat(ImageRepeat.repeatX),
+      'repeatX',
+    );
+    expect(
+      ThemeEncoder.instance.encodeImageRepeat(ImageRepeat.repeatY),
+      'repeatY',
+    );
   });
 
   test('InputBorder', () {
-    expect(ThemeDecoder.decodeInputBorder(null), null);
-    expect(ThemeEncoder.encodeInputBorder(null), null);
+    expect(ThemeDecoder.instance.decodeInputBorder(null), null);
+    expect(ThemeEncoder.instance.encodeInputBorder(null), null);
 
     const entry = OutlineInputBorder(
       borderSide: BorderSide(
@@ -3518,10 +3895,10 @@ void main() {
       gapPadding: 1.0,
     );
 
-    expect(ThemeDecoder.decodeInputBorder(entry), entry);
+    expect(ThemeDecoder.instance.decodeInputBorder(entry), entry);
 
-    final encoded = ThemeEncoder.encodeInputBorder(entry);
-    final decoded = ThemeDecoder.decodeInputBorder(encoded);
+    final encoded = ThemeEncoder.instance.encodeInputBorder(entry);
+    final decoded = ThemeDecoder.instance.decodeInputBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -3551,8 +3928,8 @@ void main() {
       ),
     );
 
-    final encoded2 = ThemeEncoder.encodeInputBorder(entry2);
-    final decoded2 = ThemeDecoder.decodeInputBorder(encoded2);
+    final encoded2 = ThemeEncoder.instance.encodeInputBorder(entry2);
+    final decoded2 = ThemeDecoder.instance.decodeInputBorder(encoded2);
 
     expect(encoded2, {
       'borderRadius': {
@@ -3574,11 +3951,11 @@ void main() {
     expect(decoded2, entry2);
   });
 
-  test('InputDecorationTheme', () {
-    expect(ThemeDecoder.decodeInputDecorationTheme(null), null);
-    expect(ThemeEncoder.encodeInputDecorationTheme(null), null);
+  test('InputDecorationThemeData', () {
+    expect(ThemeDecoder.instance.decodeInputDecorationThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeInputDecorationThemeData(null), null);
 
-    final entry = InputDecorationTheme(
+    final entry = InputDecorationThemeData(
       activeIndicatorBorder: const BorderSide(
         color: _kColor,
         strokeAlign: -2.0,
@@ -3634,10 +4011,12 @@ void main() {
       suffixStyle: const TextStyle(color: Color(0xff000000)),
     );
 
-    expect(ThemeDecoder.decodeInputDecorationTheme(entry), entry);
+    expect(ThemeDecoder.instance.decodeInputDecorationThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeInputDecorationTheme(entry);
-    final decoded = ThemeDecoder.decodeInputDecorationTheme(encoded);
+    final encoded = ThemeEncoder.instance.encodeInputDecorationThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeInputDecorationThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'activeIndicatorBorder': {
@@ -3792,77 +4171,91 @@ void main() {
   });
 
   test('InteractiveInkFeatureFactory', () {
-    expect(ThemeDecoder.decodeInteractiveInkFeatureFactory(null), null);
-    expect(ThemeEncoder.encodeInteractiveInkFeatureFactory(null), null);
+    expect(
+      ThemeDecoder.instance.decodeInteractiveInkFeatureFactory(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeInteractiveInkFeatureFactory(null),
+      null,
+    );
 
     expect(
-      ThemeDecoder.decodeInteractiveInkFeatureFactory(InkSplash.splashFactory),
+      ThemeDecoder.instance.decodeInteractiveInkFeatureFactory(
+        InkSplash.splashFactory,
+      ),
       InkSplash.splashFactory,
     );
 
     expect(
-      ThemeDecoder.decodeInteractiveInkFeatureFactory('splash'),
+      ThemeDecoder.instance.decodeInteractiveInkFeatureFactory('splash'),
       InkSplash.splashFactory,
     );
     expect(
-      ThemeDecoder.decodeInteractiveInkFeatureFactory('ripple'),
+      ThemeDecoder.instance.decodeInteractiveInkFeatureFactory('ripple'),
       InkRipple.splashFactory,
     );
     expect(
-      ThemeDecoder.decodeInteractiveInkFeatureFactory('sparkle'),
+      ThemeDecoder.instance.decodeInteractiveInkFeatureFactory('sparkle'),
       InkSparkle.splashFactory,
     );
 
     expect(
-      ThemeEncoder.encodeInteractiveInkFeatureFactory(InkSplash.splashFactory),
+      ThemeEncoder.instance.encodeInteractiveInkFeatureFactory(
+        InkSplash.splashFactory,
+      ),
       'splash',
     );
     expect(
-      ThemeEncoder.encodeInteractiveInkFeatureFactory(InkRipple.splashFactory),
+      ThemeEncoder.instance.encodeInteractiveInkFeatureFactory(
+        InkRipple.splashFactory,
+      ),
       'ripple',
     );
     expect(
-      ThemeEncoder.encodeInteractiveInkFeatureFactory(InkSparkle.splashFactory),
+      ThemeEncoder.instance.encodeInteractiveInkFeatureFactory(
+        InkSparkle.splashFactory,
+      ),
       'sparkle',
     );
   });
 
   test('ListTileControlAffinity', () {
-    expect(ThemeDecoder.decodeListTileControlAffinity(null), null);
-    expect(ThemeEncoder.encodeListTileControlAffinity(null), null);
+    expect(ThemeDecoder.instance.decodeListTileControlAffinity(null), null);
+    expect(ThemeEncoder.instance.encodeListTileControlAffinity(null), null);
 
     expect(
-      ThemeDecoder.decodeListTileStyle(ListTileStyle.drawer),
+      ThemeDecoder.instance.decodeListTileStyle(ListTileStyle.drawer),
       ListTileStyle.drawer,
     );
 
     expect(
-      ThemeDecoder.decodeListTileControlAffinity('leading'),
+      ThemeDecoder.instance.decodeListTileControlAffinity('leading'),
       ListTileControlAffinity.leading,
     );
     expect(
-      ThemeDecoder.decodeListTileControlAffinity('platform'),
+      ThemeDecoder.instance.decodeListTileControlAffinity('platform'),
       ListTileControlAffinity.platform,
     );
     expect(
-      ThemeDecoder.decodeListTileControlAffinity('trailing'),
+      ThemeDecoder.instance.decodeListTileControlAffinity('trailing'),
       ListTileControlAffinity.trailing,
     );
 
     expect(
-      ThemeEncoder.encodeListTileControlAffinity(
+      ThemeEncoder.instance.encodeListTileControlAffinity(
         ListTileControlAffinity.leading,
       ),
       'leading',
     );
     expect(
-      ThemeEncoder.encodeListTileControlAffinity(
+      ThemeEncoder.instance.encodeListTileControlAffinity(
         ListTileControlAffinity.platform,
       ),
       'platform',
     );
     expect(
-      ThemeEncoder.encodeListTileControlAffinity(
+      ThemeEncoder.instance.encodeListTileControlAffinity(
         ListTileControlAffinity.trailing,
       ),
       'trailing',
@@ -3870,80 +4263,100 @@ void main() {
   });
 
   test('ListTileStyle', () {
-    expect(ThemeDecoder.decodeListTileStyle(null), null);
-    expect(ThemeEncoder.encodeListTileStyle(null), null);
+    expect(ThemeDecoder.instance.decodeListTileStyle(null), null);
+    expect(ThemeEncoder.instance.encodeListTileStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeListTileStyle(ListTileStyle.drawer),
+      ThemeDecoder.instance.decodeListTileStyle(ListTileStyle.drawer),
       ListTileStyle.drawer,
     );
 
-    expect(ThemeDecoder.decodeListTileStyle('drawer'), ListTileStyle.drawer);
-    expect(ThemeDecoder.decodeListTileStyle('list'), ListTileStyle.list);
+    expect(
+      ThemeDecoder.instance.decodeListTileStyle('drawer'),
+      ListTileStyle.drawer,
+    );
+    expect(
+      ThemeDecoder.instance.decodeListTileStyle('list'),
+      ListTileStyle.list,
+    );
 
-    expect(ThemeEncoder.encodeListTileStyle(ListTileStyle.drawer), 'drawer');
-    expect(ThemeEncoder.encodeListTileStyle(ListTileStyle.list), 'list');
+    expect(
+      ThemeEncoder.instance.encodeListTileStyle(ListTileStyle.drawer),
+      'drawer',
+    );
+    expect(
+      ThemeEncoder.instance.encodeListTileStyle(ListTileStyle.list),
+      'list',
+    );
   });
 
   test('ListTileTitleAlignment', () {
-    expect(ThemeDecoder.decodeListTileTitleAlignment(null), null);
-    expect(ThemeEncoder.encodeListTileTitleAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeListTileTitleAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeListTileTitleAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment(ListTileTitleAlignment.bottom),
+      ThemeDecoder.instance.decodeListTileTitleAlignment(
+        ListTileTitleAlignment.bottom,
+      ),
       ListTileTitleAlignment.bottom,
     );
 
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment('bottom'),
+      ThemeDecoder.instance.decodeListTileTitleAlignment('bottom'),
       ListTileTitleAlignment.bottom,
     );
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment('center'),
+      ThemeDecoder.instance.decodeListTileTitleAlignment('center'),
       ListTileTitleAlignment.center,
     );
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment('threeLine'),
+      ThemeDecoder.instance.decodeListTileTitleAlignment('threeLine'),
       ListTileTitleAlignment.threeLine,
     );
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment('titleHeight'),
+      ThemeDecoder.instance.decodeListTileTitleAlignment('titleHeight'),
       ListTileTitleAlignment.titleHeight,
     );
     expect(
-      ThemeDecoder.decodeListTileTitleAlignment('top'),
+      ThemeDecoder.instance.decodeListTileTitleAlignment('top'),
       ListTileTitleAlignment.top,
     );
 
     expect(
-      ThemeEncoder.encodeListTileTitleAlignment(ListTileTitleAlignment.bottom),
+      ThemeEncoder.instance.encodeListTileTitleAlignment(
+        ListTileTitleAlignment.bottom,
+      ),
       'bottom',
     );
     expect(
-      ThemeEncoder.encodeListTileTitleAlignment(ListTileTitleAlignment.center),
+      ThemeEncoder.instance.encodeListTileTitleAlignment(
+        ListTileTitleAlignment.center,
+      ),
       'center',
     );
     expect(
-      ThemeEncoder.encodeListTileTitleAlignment(
+      ThemeEncoder.instance.encodeListTileTitleAlignment(
         ListTileTitleAlignment.threeLine,
       ),
       'threeLine',
     );
     expect(
-      ThemeEncoder.encodeListTileTitleAlignment(
+      ThemeEncoder.instance.encodeListTileTitleAlignment(
         ListTileTitleAlignment.titleHeight,
       ),
       'titleHeight',
     );
     expect(
-      ThemeEncoder.encodeListTileTitleAlignment(ListTileTitleAlignment.top),
+      ThemeEncoder.instance.encodeListTileTitleAlignment(
+        ListTileTitleAlignment.top,
+      ),
       'top',
     );
   });
 
   test('ListTileThemeData', () {
-    expect(ThemeDecoder.decodeListTileThemeData(null), null);
-    expect(ThemeEncoder.encodeListTileThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeListTileThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeListTileThemeData(null), null);
 
     const entry = ListTileThemeData(
       contentPadding: EdgeInsets.fromLTRB(1, 2, 3, 4),
@@ -3963,8 +4376,8 @@ void main() {
       tileColor: Color(0xff555555),
     );
 
-    final decoded = ThemeDecoder.decodeListTileThemeData(entry);
-    final encoded = ThemeEncoder.encodeListTileThemeData(decoded);
+    final decoded = ThemeDecoder.instance.decodeListTileThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeListTileThemeData(decoded);
 
     expect(encoded, {
       'contentPadding': {'left': 1, 'top': 2, 'right': 3, 'bottom': 4},
@@ -4003,15 +4416,15 @@ void main() {
   });
 
   test('Locale', () {
-    expect(ThemeDecoder.decodeLocale(null), null);
-    expect(ThemeEncoder.encodeLocale(null), null);
+    expect(ThemeDecoder.instance.decodeLocale(null), null);
+    expect(ThemeEncoder.instance.encodeLocale(null), null);
 
     const entry = Locale('en', 'US');
 
-    expect(ThemeDecoder.decodeLocale(entry), entry);
+    expect(ThemeDecoder.instance.decodeLocale(entry), entry);
 
-    final encoded = ThemeEncoder.encodeLocale(entry);
-    final decoded = ThemeDecoder.decodeLocale(encoded);
+    final encoded = ThemeEncoder.instance.encodeLocale(entry);
+    final decoded = ThemeDecoder.instance.decodeLocale(encoded);
 
     expect(encoded, {'countryCode': 'US', 'languageCode': 'en'});
 
@@ -4019,75 +4432,90 @@ void main() {
   });
 
   test('MainAxisAlignment', () {
-    expect(ThemeDecoder.decodeMainAxisAlignment(null), null);
-    expect(ThemeEncoder.encodeMainAxisAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeMainAxisAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeMainAxisAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeMainAxisAlignment(MainAxisAlignment.center),
+      ThemeDecoder.instance.decodeMainAxisAlignment(MainAxisAlignment.center),
       MainAxisAlignment.center,
     );
 
     expect(
-      ThemeDecoder.decodeMainAxisAlignment('center'),
+      ThemeDecoder.instance.decodeMainAxisAlignment('center'),
       MainAxisAlignment.center,
     );
-    expect(ThemeDecoder.decodeMainAxisAlignment('end'), MainAxisAlignment.end);
     expect(
-      ThemeDecoder.decodeMainAxisAlignment('spaceAround'),
+      ThemeDecoder.instance.decodeMainAxisAlignment('end'),
+      MainAxisAlignment.end,
+    );
+    expect(
+      ThemeDecoder.instance.decodeMainAxisAlignment('spaceAround'),
       MainAxisAlignment.spaceAround,
     );
     expect(
-      ThemeDecoder.decodeMainAxisAlignment('spaceBetween'),
+      ThemeDecoder.instance.decodeMainAxisAlignment('spaceBetween'),
       MainAxisAlignment.spaceBetween,
     );
     expect(
-      ThemeDecoder.decodeMainAxisAlignment('spaceEvenly'),
+      ThemeDecoder.instance.decodeMainAxisAlignment('spaceEvenly'),
       MainAxisAlignment.spaceEvenly,
     );
     expect(
-      ThemeDecoder.decodeMainAxisAlignment('start'),
+      ThemeDecoder.instance.decodeMainAxisAlignment('start'),
       MainAxisAlignment.start,
     );
 
     expect(
-      ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.center),
+      ThemeEncoder.instance.encodeMainAxisAlignment(MainAxisAlignment.center),
       'center',
     );
-    expect(ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.end), 'end');
     expect(
-      ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.spaceAround),
+      ThemeEncoder.instance.encodeMainAxisAlignment(MainAxisAlignment.end),
+      'end',
+    );
+    expect(
+      ThemeEncoder.instance.encodeMainAxisAlignment(
+        MainAxisAlignment.spaceAround,
+      ),
       'spaceAround',
     );
     expect(
-      ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.spaceBetween),
+      ThemeEncoder.instance.encodeMainAxisAlignment(
+        MainAxisAlignment.spaceBetween,
+      ),
       'spaceBetween',
     );
     expect(
-      ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.spaceEvenly),
+      ThemeEncoder.instance.encodeMainAxisAlignment(
+        MainAxisAlignment.spaceEvenly,
+      ),
       'spaceEvenly',
     );
     expect(
-      ThemeEncoder.encodeMainAxisAlignment(MainAxisAlignment.start),
+      ThemeEncoder.instance.encodeMainAxisAlignment(MainAxisAlignment.start),
       'start',
     );
   });
 
   test('MainAxisSize', () {
-    expect(ThemeDecoder.decodeMainAxisSize(null), null);
-    expect(ThemeEncoder.encodeMainAxisSize(null), null);
+    expect(ThemeDecoder.instance.decodeMainAxisSize(null), null);
+    expect(ThemeEncoder.instance.encodeMainAxisSize(null), null);
 
-    expect(ThemeDecoder.decodeMainAxisSize(MainAxisSize.max), MainAxisSize.max);
+    expect(
+      ThemeDecoder.instance.decodeMainAxisSize(MainAxisSize.max),
+      MainAxisSize.max,
+    );
 
-    expect(ThemeDecoder.decodeMainAxisSize('max'), MainAxisSize.max);
-    expect(ThemeDecoder.decodeMainAxisSize('min'), MainAxisSize.min);
+    expect(ThemeDecoder.instance.decodeMainAxisSize('max'), MainAxisSize.max);
+    expect(ThemeDecoder.instance.decodeMainAxisSize('min'), MainAxisSize.min);
 
-    expect(ThemeEncoder.encodeMainAxisSize(MainAxisSize.max), 'max');
-    expect(ThemeEncoder.encodeMainAxisSize(MainAxisSize.min), 'min');
+    expect(ThemeEncoder.instance.encodeMainAxisSize(MainAxisSize.max), 'max');
+    expect(ThemeEncoder.instance.encodeMainAxisSize(MainAxisSize.min), 'min');
   });
 
   test('MaterialBannerThemeData', () {
-    expect(ThemeDecoder.decodeMaterialBannerThemeData(null), null);
-    expect(ThemeEncoder.encodeMaterialBannerThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeMaterialBannerThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeMaterialBannerThemeData(null), null);
 
     const entry = MaterialBannerThemeData(
       backgroundColor: _kColor,
@@ -4100,10 +4528,12 @@ void main() {
       surfaceTintColor: Color(0xff333333),
     );
 
-    expect(ThemeDecoder.decodeMaterialBannerThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeMaterialBannerThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeMaterialBannerThemeData(entry);
-    final decoded = ThemeDecoder.decodeMaterialBannerThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeMaterialBannerThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeMaterialBannerThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'backgroundColor': _kColorStr,
@@ -4120,8 +4550,8 @@ void main() {
   });
 
   test('MaterialColor', () {
-    expect(ThemeDecoder.decodeMaterialColor(null), null);
-    expect(ThemeEncoder.encodeMaterialColor(null), null);
+    expect(ThemeDecoder.instance.decodeMaterialColor(null), null);
+    expect(ThemeEncoder.instance.encodeMaterialColor(null), null);
 
     final entry = MaterialColor(colorToInt(_kColor)!, const {
       50: _kColor,
@@ -4136,10 +4566,10 @@ void main() {
       900: _kColor,
     });
 
-    expect(ThemeDecoder.decodeMaterialColor(entry), entry);
+    expect(ThemeDecoder.instance.decodeMaterialColor(entry), entry);
 
-    final encoded = ThemeEncoder.encodeMaterialColor(entry);
-    final decoded = ThemeDecoder.decodeMaterialColor(encoded);
+    final encoded = ThemeEncoder.instance.encodeMaterialColor(entry);
+    final decoded = ThemeDecoder.instance.decodeMaterialColor(encoded);
 
     expect(encoded, {
       'primary': _kColorStr,
@@ -4157,33 +4587,37 @@ void main() {
       },
     });
 
-    expect(ThemeEncoder.encodeMaterialColor(decoded), encoded);
+    expect(ThemeEncoder.instance.encodeMaterialColor(decoded), encoded);
   });
 
   test('MaterialTapTargetSize', () {
-    expect(ThemeDecoder.decodeMaterialTapTargetSize(null), null);
-    expect(ThemeEncoder.encodeMaterialTapTargetSize(null), null);
+    expect(ThemeDecoder.instance.decodeMaterialTapTargetSize(null), null);
+    expect(ThemeEncoder.instance.encodeMaterialTapTargetSize(null), null);
 
     expect(
-      ThemeDecoder.decodeMaterialTapTargetSize(MaterialTapTargetSize.padded),
+      ThemeDecoder.instance.decodeMaterialTapTargetSize(
+        MaterialTapTargetSize.padded,
+      ),
       MaterialTapTargetSize.padded,
     );
 
     expect(
-      ThemeDecoder.decodeMaterialTapTargetSize('padded'),
+      ThemeDecoder.instance.decodeMaterialTapTargetSize('padded'),
       MaterialTapTargetSize.padded,
     );
     expect(
-      ThemeDecoder.decodeMaterialTapTargetSize('shrinkWrap'),
+      ThemeDecoder.instance.decodeMaterialTapTargetSize('shrinkWrap'),
       MaterialTapTargetSize.shrinkWrap,
     );
 
     expect(
-      ThemeEncoder.encodeMaterialTapTargetSize(MaterialTapTargetSize.padded),
+      ThemeEncoder.instance.encodeMaterialTapTargetSize(
+        MaterialTapTargetSize.padded,
+      ),
       'padded',
     );
     expect(
-      ThemeEncoder.encodeMaterialTapTargetSize(
+      ThemeEncoder.instance.encodeMaterialTapTargetSize(
         MaterialTapTargetSize.shrinkWrap,
       ),
       'shrinkWrap',
@@ -4191,36 +4625,54 @@ void main() {
   });
 
   test('MaterialType', () {
-    expect(ThemeDecoder.decodeMaterialType(null), null);
-    expect(ThemeEncoder.encodeMaterialType(null), null);
+    expect(ThemeDecoder.instance.decodeMaterialType(null), null);
+    expect(ThemeEncoder.instance.encodeMaterialType(null), null);
 
     expect(
-      ThemeDecoder.decodeMaterialType(MaterialType.button),
+      ThemeDecoder.instance.decodeMaterialType(MaterialType.button),
       MaterialType.button,
     );
 
-    expect(ThemeDecoder.decodeMaterialType('button'), MaterialType.button);
-    expect(ThemeDecoder.decodeMaterialType('canvas'), MaterialType.canvas);
-    expect(ThemeDecoder.decodeMaterialType('card'), MaterialType.card);
-    expect(ThemeDecoder.decodeMaterialType('circle'), MaterialType.circle);
     expect(
-      ThemeDecoder.decodeMaterialType('transparency'),
+      ThemeDecoder.instance.decodeMaterialType('button'),
+      MaterialType.button,
+    );
+    expect(
+      ThemeDecoder.instance.decodeMaterialType('canvas'),
+      MaterialType.canvas,
+    );
+    expect(ThemeDecoder.instance.decodeMaterialType('card'), MaterialType.card);
+    expect(
+      ThemeDecoder.instance.decodeMaterialType('circle'),
+      MaterialType.circle,
+    );
+    expect(
+      ThemeDecoder.instance.decodeMaterialType('transparency'),
       MaterialType.transparency,
     );
 
-    expect(ThemeEncoder.encodeMaterialType(MaterialType.button), 'button');
-    expect(ThemeEncoder.encodeMaterialType(MaterialType.canvas), 'canvas');
-    expect(ThemeEncoder.encodeMaterialType(MaterialType.card), 'card');
-    expect(ThemeEncoder.encodeMaterialType(MaterialType.circle), 'circle');
     expect(
-      ThemeEncoder.encodeMaterialType(MaterialType.transparency),
+      ThemeEncoder.instance.encodeMaterialType(MaterialType.button),
+      'button',
+    );
+    expect(
+      ThemeEncoder.instance.encodeMaterialType(MaterialType.canvas),
+      'canvas',
+    );
+    expect(ThemeEncoder.instance.encodeMaterialType(MaterialType.card), 'card');
+    expect(
+      ThemeEncoder.instance.encodeMaterialType(MaterialType.circle),
+      'circle',
+    );
+    expect(
+      ThemeEncoder.instance.encodeMaterialType(MaterialType.transparency),
       'transparency',
     );
   });
 
   test('Matrix4', () {
-    expect(ThemeDecoder.decodeMatrix4(null), null);
-    expect(ThemeEncoder.encodeMatrix4(null), null);
+    expect(ThemeDecoder.instance.decodeMatrix4(null), null);
+    expect(ThemeEncoder.instance.encodeMatrix4(null), null);
 
     final entry = Matrix4(
       1.0,
@@ -4241,10 +4693,10 @@ void main() {
       16.0,
     );
 
-    expect(ThemeDecoder.decodeMatrix4(entry), entry);
+    expect(ThemeDecoder.instance.decodeMatrix4(entry), entry);
 
-    final encoded = ThemeEncoder.encodeMatrix4(entry);
-    final decoded = ThemeDecoder.decodeMatrix4(encoded);
+    final encoded = ThemeEncoder.instance.encodeMatrix4(entry);
+    final decoded = ThemeDecoder.instance.decodeMatrix4(encoded);
 
     expect(encoded, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
 
@@ -4252,32 +4704,38 @@ void main() {
   });
 
   test('MaxLengthEnforcement', () {
-    expect(ThemeDecoder.decodeMaxLengthEnforcement(null), null);
-    expect(ThemeEncoder.encodeMaxLengthEnforcement(null), null);
+    expect(ThemeDecoder.instance.decodeMaxLengthEnforcement(null), null);
+    expect(ThemeEncoder.instance.encodeMaxLengthEnforcement(null), null);
 
     expect(
-      ThemeDecoder.decodeMaxLengthEnforcement('enforced'),
+      ThemeDecoder.instance.decodeMaxLengthEnforcement('enforced'),
       MaxLengthEnforcement.enforced,
     );
     expect(
-      ThemeDecoder.decodeMaxLengthEnforcement('none'),
+      ThemeDecoder.instance.decodeMaxLengthEnforcement('none'),
       MaxLengthEnforcement.none,
     );
     expect(
-      ThemeDecoder.decodeMaxLengthEnforcement('truncateAfterCompositionEnds'),
+      ThemeDecoder.instance.decodeMaxLengthEnforcement(
+        'truncateAfterCompositionEnds',
+      ),
       MaxLengthEnforcement.truncateAfterCompositionEnds,
     );
 
     expect(
-      ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.enforced),
+      ThemeEncoder.instance.encodeMaxLengthEnforcement(
+        MaxLengthEnforcement.enforced,
+      ),
       'enforced',
     );
     expect(
-      ThemeEncoder.encodeMaxLengthEnforcement(MaxLengthEnforcement.none),
+      ThemeEncoder.instance.encodeMaxLengthEnforcement(
+        MaxLengthEnforcement.none,
+      ),
       'none',
     );
     expect(
-      ThemeEncoder.encodeMaxLengthEnforcement(
+      ThemeEncoder.instance.encodeMaxLengthEnforcement(
         MaxLengthEnforcement.truncateAfterCompositionEnds,
       ),
       'truncateAfterCompositionEnds',
@@ -4285,8 +4743,8 @@ void main() {
   });
 
   test('MenuButtonThemeData', () {
-    expect(ThemeDecoder.decodeMenuButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeMenuButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeMenuButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeMenuButtonThemeData(null), null);
 
     final entry = MenuButtonThemeData(
       style: ButtonStyle(
@@ -4313,10 +4771,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeMenuButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeMenuButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeMenuButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeMenuButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeMenuButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeMenuButtonThemeData(encoded);
 
     expect(encoded, {
       'style': {
@@ -4365,15 +4823,15 @@ void main() {
   });
 
   test('MenuStyle', () {
-    expect(ThemeDecoder.decodeMenuStyle(null), null);
-    expect(ThemeEncoder.encodeMenuStyle(null), null);
+    expect(ThemeDecoder.instance.decodeMenuStyle(null), null);
+    expect(ThemeEncoder.instance.encodeMenuStyle(null), null);
 
     const entry = MenuStyle(alignment: Alignment.center);
 
-    expect(ThemeDecoder.decodeMenuStyle(entry), entry);
+    expect(ThemeDecoder.instance.decodeMenuStyle(entry), entry);
 
-    final encoded = ThemeEncoder.encodeMenuStyle(entry);
-    final decoded = ThemeDecoder.decodeMenuStyle(encoded);
+    final encoded = ThemeEncoder.instance.encodeMenuStyle(entry);
+    final decoded = ThemeDecoder.instance.decodeMenuStyle(encoded);
 
     expect(encoded, {'alignment': 'center'});
 
@@ -4381,27 +4839,27 @@ void main() {
   });
 
   test('MouseCursor', () {
-    expect(ThemeDecoder.decodeMouseCursor(null), null);
-    expect(ThemeEncoder.encodeMouseCursor(null), null);
+    expect(ThemeDecoder.instance.decodeMouseCursor(null), null);
+    expect(ThemeEncoder.instance.encodeMouseCursor(null), null);
 
     expect(
-      ThemeDecoder.decodeMouseCursor(MouseCursor.defer),
+      ThemeDecoder.instance.decodeMouseCursor(MouseCursor.defer),
       MouseCursor.defer,
     );
 
     expect(
-      ThemeDecoder.decodeMouseCursor({'type': 'defer'}),
+      ThemeDecoder.instance.decodeMouseCursor({'type': 'defer'}),
       MouseCursor.defer,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'clickable',
         'type': 'material',
       }),
       WidgetStateMouseCursor.clickable,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'textable',
         'type': 'material',
       }),
@@ -4409,389 +4867,472 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'alias', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'alias',
+        'type': 'system',
+      }),
       SystemMouseCursors.alias,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'allScroll', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'allScroll',
+        'type': 'system',
+      }),
       SystemMouseCursors.allScroll,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'basic', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'basic',
+        'type': 'system',
+      }),
       SystemMouseCursors.basic,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'cell', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'cell',
+        'type': 'system',
+      }),
       SystemMouseCursors.cell,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'click', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'click',
+        'type': 'system',
+      }),
       SystemMouseCursors.click,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'contextMenu',
         'type': 'system',
       }),
       SystemMouseCursors.contextMenu,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'copy', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'copy',
+        'type': 'system',
+      }),
       SystemMouseCursors.copy,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'disappearing',
         'type': 'system',
       }),
       SystemMouseCursors.disappearing,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'forbidden', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'forbidden',
+        'type': 'system',
+      }),
       SystemMouseCursors.forbidden,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'grab', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'grab',
+        'type': 'system',
+      }),
       SystemMouseCursors.grab,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'grabbing', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'grabbing',
+        'type': 'system',
+      }),
       SystemMouseCursors.grabbing,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'help', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'help',
+        'type': 'system',
+      }),
       SystemMouseCursors.help,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'move', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'move',
+        'type': 'system',
+      }),
       SystemMouseCursors.move,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'noDrop', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'noDrop',
+        'type': 'system',
+      }),
       SystemMouseCursors.noDrop,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'none', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'none',
+        'type': 'system',
+      }),
       SystemMouseCursors.none,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'precise', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'precise',
+        'type': 'system',
+      }),
       SystemMouseCursors.precise,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'progress', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'progress',
+        'type': 'system',
+      }),
       SystemMouseCursors.progress,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeColumn',
         'type': 'system',
       }),
       SystemMouseCursors.resizeColumn,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeDown',
         'type': 'system',
       }),
       SystemMouseCursors.resizeDown,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeDownLeft',
         'type': 'system',
       }),
       SystemMouseCursors.resizeDownLeft,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeDownRight',
         'type': 'system',
       }),
       SystemMouseCursors.resizeDownRight,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeLeft',
         'type': 'system',
       }),
       SystemMouseCursors.resizeLeft,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeRight',
         'type': 'system',
       }),
       SystemMouseCursors.resizeRight,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'resizeRow', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'resizeRow',
+        'type': 'system',
+      }),
       SystemMouseCursors.resizeRow,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'resizeUp', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'resizeUp',
+        'type': 'system',
+      }),
       SystemMouseCursors.resizeUp,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeUpDown',
         'type': 'system',
       }),
       SystemMouseCursors.resizeUpDown,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeUpLeft',
         'type': 'system',
       }),
       SystemMouseCursors.resizeUpLeft,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeUpLeftDownRight',
         'type': 'system',
       }),
       SystemMouseCursors.resizeUpLeftDownRight,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeUpRight',
         'type': 'system',
       }),
       SystemMouseCursors.resizeUpRight,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'resizeUpRightDownLeft',
         'type': 'system',
       }),
       SystemMouseCursors.resizeUpRightDownLeft,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'text', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'text',
+        'type': 'system',
+      }),
       SystemMouseCursors.text,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({
+      ThemeDecoder.instance.decodeMouseCursor({
         'cursor': 'verticalText',
         'type': 'system',
       }),
       SystemMouseCursors.verticalText,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'wait', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'wait',
+        'type': 'system',
+      }),
       SystemMouseCursors.wait,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'zoomIn', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'zoomIn',
+        'type': 'system',
+      }),
       SystemMouseCursors.zoomIn,
     );
     expect(
-      ThemeDecoder.decodeMouseCursor({'cursor': 'zoomOut', 'type': 'system'}),
+      ThemeDecoder.instance.decodeMouseCursor({
+        'cursor': 'zoomOut',
+        'type': 'system',
+      }),
       SystemMouseCursors.zoomOut,
     );
 
     expect(
-      ThemeDecoder.decodeMouseCursor({'type': 'uncontrolled'}),
+      ThemeDecoder.instance.decodeMouseCursor({'type': 'uncontrolled'}),
       MouseCursor.uncontrolled,
     );
 
-    expect(ThemeEncoder.encodeMouseCursor(MouseCursor.defer), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(MouseCursor.defer), {
       'type': 'defer',
     });
-    expect(ThemeEncoder.encodeMouseCursor(WidgetStateMouseCursor.clickable), {
-      'cursor': 'clickable',
-      'type': 'material',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(WidgetStateMouseCursor.textable), {
-      'cursor': 'textable',
-      'type': 'material',
-    });
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(WidgetStateMouseCursor.clickable),
+      {'cursor': 'clickable', 'type': 'material'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(WidgetStateMouseCursor.textable),
+      {'cursor': 'textable', 'type': 'material'},
+    );
 
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.alias), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.alias), {
       'cursor': 'alias',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.allScroll), {
-      'cursor': 'allScroll',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.basic), {
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.allScroll),
+      {'cursor': 'allScroll', 'type': 'system'},
+    );
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.basic), {
       'cursor': 'basic',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.cell), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.cell), {
       'cursor': 'cell',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.click), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.click), {
       'cursor': 'click',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.contextMenu), {
-      'cursor': 'contextMenu',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.copy), {
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.contextMenu),
+      {'cursor': 'contextMenu', 'type': 'system'},
+    );
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.copy), {
       'cursor': 'copy',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.disappearing), {
-      'cursor': 'disappearing',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.forbidden), {
-      'cursor': 'forbidden',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.grab), {
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.disappearing),
+      {'cursor': 'disappearing', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.forbidden),
+      {'cursor': 'forbidden', 'type': 'system'},
+    );
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.grab), {
       'cursor': 'grab',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.grabbing), {
-      'cursor': 'grabbing',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.help), {
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.grabbing),
+      {'cursor': 'grabbing', 'type': 'system'},
+    );
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.help), {
       'cursor': 'help',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.move), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.move), {
       'cursor': 'move',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.noDrop), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.noDrop), {
       'cursor': 'noDrop',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.none), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.none), {
       'cursor': 'none',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.precise), {
-      'cursor': 'precise',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.progress), {
-      'cursor': 'progress',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeColumn), {
-      'cursor': 'resizeColumn',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeDown), {
-      'cursor': 'resizeDown',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeDownLeft), {
-      'cursor': 'resizeDownLeft',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeDownRight), {
-      'cursor': 'resizeDownRight',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeLeft), {
-      'cursor': 'resizeLeft',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeRight), {
-      'cursor': 'resizeRight',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeRow), {
-      'cursor': 'resizeRow',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUp), {
-      'cursor': 'resizeUp',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpDown), {
-      'cursor': 'resizeUpDown',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpLeft), {
-      'cursor': 'resizeUpLeft',
-      'type': 'system',
-    });
     expect(
-      ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpLeftDownRight),
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.precise),
+      {'cursor': 'precise', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.progress),
+      {'cursor': 'progress', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeColumn),
+      {'cursor': 'resizeColumn', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeDown),
+      {'cursor': 'resizeDown', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(
+        SystemMouseCursors.resizeDownLeft,
+      ),
+      {'cursor': 'resizeDownLeft', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(
+        SystemMouseCursors.resizeDownRight,
+      ),
+      {'cursor': 'resizeDownRight', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeLeft),
+      {'cursor': 'resizeLeft', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeRight),
+      {'cursor': 'resizeRight', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeRow),
+      {'cursor': 'resizeRow', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeUp),
+      {'cursor': 'resizeUp', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeUpDown),
+      {'cursor': 'resizeUpDown', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeUpLeft),
+      {'cursor': 'resizeUpLeft', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(
+        SystemMouseCursors.resizeUpLeftDownRight,
+      ),
       {'cursor': 'resizeUpLeftDownRight', 'type': 'system'},
     );
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpRight), {
-      'cursor': 'resizeUpRight',
-      'type': 'system',
-    });
     expect(
-      ThemeEncoder.encodeMouseCursor(SystemMouseCursors.resizeUpRightDownLeft),
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.resizeUpRight),
+      {'cursor': 'resizeUpRight', 'type': 'system'},
+    );
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(
+        SystemMouseCursors.resizeUpRightDownLeft,
+      ),
       {'cursor': 'resizeUpRightDownLeft', 'type': 'system'},
     );
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.text), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.text), {
       'cursor': 'text',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.verticalText), {
-      'cursor': 'verticalText',
-      'type': 'system',
-    });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.wait), {
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.verticalText),
+      {'cursor': 'verticalText', 'type': 'system'},
+    );
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.wait), {
       'cursor': 'wait',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.zoomIn), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.zoomIn), {
       'cursor': 'zoomIn',
       'type': 'system',
     });
-    expect(ThemeEncoder.encodeMouseCursor(SystemMouseCursors.zoomOut), {
-      'cursor': 'zoomOut',
-      'type': 'system',
-    });
+    expect(
+      ThemeEncoder.instance.encodeMouseCursor(SystemMouseCursors.zoomOut),
+      {'cursor': 'zoomOut', 'type': 'system'},
+    );
 
-    expect(ThemeEncoder.encodeMouseCursor(MouseCursor.uncontrolled), {
+    expect(ThemeEncoder.instance.encodeMouseCursor(MouseCursor.uncontrolled), {
       'type': 'uncontrolled',
     });
   });
 
   test('NavigationDestinationLabelBehavior', () {
-    expect(ThemeDecoder.decodeNavigationDestinationLabelBehavior(null), null);
-    expect(ThemeEncoder.encodeNavigationDestinationLabelBehavior(null), null);
+    expect(
+      ThemeDecoder.instance.decodeNavigationDestinationLabelBehavior(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeNavigationDestinationLabelBehavior(null),
+      null,
+    );
 
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior(
+      ThemeDecoder.instance.decodeNavigationDestinationLabelBehavior(
         NavigationDestinationLabelBehavior.alwaysHide,
       ),
       NavigationDestinationLabelBehavior.alwaysHide,
     );
 
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior('alwaysHide'),
+      ThemeDecoder.instance.decodeNavigationDestinationLabelBehavior(
+        'alwaysHide',
+      ),
       NavigationDestinationLabelBehavior.alwaysHide,
     );
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior('alwaysShow'),
+      ThemeDecoder.instance.decodeNavigationDestinationLabelBehavior(
+        'alwaysShow',
+      ),
       NavigationDestinationLabelBehavior.alwaysShow,
     );
     expect(
-      ThemeDecoder.decodeNavigationDestinationLabelBehavior('onlyShowSelected'),
+      ThemeDecoder.instance.decodeNavigationDestinationLabelBehavior(
+        'onlyShowSelected',
+      ),
       NavigationDestinationLabelBehavior.onlyShowSelected,
     );
 
     expect(
-      ThemeEncoder.encodeNavigationDestinationLabelBehavior(
+      ThemeEncoder.instance.encodeNavigationDestinationLabelBehavior(
         NavigationDestinationLabelBehavior.alwaysHide,
       ),
       'alwaysHide',
     );
     expect(
-      ThemeEncoder.encodeNavigationDestinationLabelBehavior(
+      ThemeEncoder.instance.encodeNavigationDestinationLabelBehavior(
         NavigationDestinationLabelBehavior.alwaysShow,
       ),
       'alwaysShow',
     );
     expect(
-      ThemeEncoder.encodeNavigationDestinationLabelBehavior(
+      ThemeEncoder.instance.encodeNavigationDestinationLabelBehavior(
         NavigationDestinationLabelBehavior.onlyShowSelected,
       ),
       'onlyShowSelected',
@@ -4799,37 +5340,43 @@ void main() {
   });
 
   test('NavigationRailLabelType', () {
-    expect(ThemeDecoder.decodeNavigationRailLabelType(null), null);
-    expect(ThemeEncoder.encodeNavigationRailLabelType(null), null);
+    expect(ThemeDecoder.instance.decodeNavigationRailLabelType(null), null);
+    expect(ThemeEncoder.instance.encodeNavigationRailLabelType(null), null);
 
     expect(
-      ThemeDecoder.decodeNavigationRailLabelType(NavigationRailLabelType.all),
+      ThemeDecoder.instance.decodeNavigationRailLabelType(
+        NavigationRailLabelType.all,
+      ),
       NavigationRailLabelType.all,
     );
 
     expect(
-      ThemeDecoder.decodeNavigationRailLabelType('all'),
+      ThemeDecoder.instance.decodeNavigationRailLabelType('all'),
       NavigationRailLabelType.all,
     );
     expect(
-      ThemeDecoder.decodeNavigationRailLabelType('none'),
+      ThemeDecoder.instance.decodeNavigationRailLabelType('none'),
       NavigationRailLabelType.none,
     );
     expect(
-      ThemeDecoder.decodeNavigationRailLabelType('selected'),
+      ThemeDecoder.instance.decodeNavigationRailLabelType('selected'),
       NavigationRailLabelType.selected,
     );
 
     expect(
-      ThemeEncoder.encodeNavigationRailLabelType(NavigationRailLabelType.all),
+      ThemeEncoder.instance.encodeNavigationRailLabelType(
+        NavigationRailLabelType.all,
+      ),
       'all',
     );
     expect(
-      ThemeEncoder.encodeNavigationRailLabelType(NavigationRailLabelType.none),
+      ThemeEncoder.instance.encodeNavigationRailLabelType(
+        NavigationRailLabelType.none,
+      ),
       'none',
     );
     expect(
-      ThemeEncoder.encodeNavigationRailLabelType(
+      ThemeEncoder.instance.encodeNavigationRailLabelType(
         NavigationRailLabelType.selected,
       ),
       'selected',
@@ -4837,8 +5384,8 @@ void main() {
   });
 
   test('NavigationBarThemeData', () {
-    expect(ThemeDecoder.decodeNavigationBarThemeData(null), null);
-    expect(ThemeEncoder.encodeNavigationBarThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeNavigationBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeNavigationBarThemeData(null), null);
 
     final entry = NavigationBarThemeData(
       backgroundColor: Color(0xff111111),
@@ -4852,8 +5399,8 @@ void main() {
       surfaceTintColor: Color(0xff444444),
     );
 
-    final encoded = ThemeEncoder.encodeNavigationBarThemeData(entry);
-    final decoded = ThemeDecoder.decodeNavigationBarThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeNavigationBarThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeNavigationBarThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -4866,12 +5413,15 @@ void main() {
       'shadowColor': '#ff333333',
       'surfaceTintColor': '#ff444444',
     });
-    expect(ThemeEncoder.encodeNavigationBarThemeData(decoded), encoded);
+    expect(
+      ThemeEncoder.instance.encodeNavigationBarThemeData(decoded),
+      encoded,
+    );
   });
 
   test('NavigationRailThemeData', () {
-    expect(ThemeDecoder.decodeNavigationRailThemeData(null), null);
-    expect(ThemeEncoder.encodeNavigationRailThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeNavigationRailThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeNavigationRailThemeData(null), null);
 
     const entry = NavigationRailThemeData(
       backgroundColor: Color(0xff111111),
@@ -4894,10 +5444,12 @@ void main() {
       useIndicator: true,
     );
 
-    expect(ThemeDecoder.decodeNavigationRailThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeNavigationRailThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeNavigationRailThemeData(entry);
-    final decoded = ThemeDecoder.decodeNavigationRailThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeNavigationRailThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeNavigationRailThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -4920,31 +5472,33 @@ void main() {
   });
 
   test('NotchedShape', () {
-    expect(ThemeDecoder.decodeNotchedShape(null), null);
-    expect(ThemeEncoder.encodeNotchedShape(null), null);
+    expect(ThemeDecoder.instance.decodeNotchedShape(null), null);
+    expect(ThemeEncoder.instance.encodeNotchedShape(null), null);
 
     const entry = CircularNotchedRectangle();
-    expect(ThemeDecoder.decodeNotchedShape(entry), entry);
+    expect(ThemeDecoder.instance.decodeNotchedShape(entry), entry);
     expect(
-      ThemeDecoder.decodeNotchedShape('circular')?.runtimeType,
+      ThemeDecoder.instance.decodeNotchedShape('circular')?.runtimeType,
       const CircularNotchedRectangle().runtimeType,
     );
     expect(
-      ThemeEncoder.encodeNotchedShape(const CircularNotchedRectangle()),
+      ThemeEncoder.instance.encodeNotchedShape(
+        const CircularNotchedRectangle(),
+      ),
       'circular',
     );
   });
 
   test('OrdinalSortKey', () {
-    expect(ThemeDecoder.decodeOrdinalSortKey(null), null);
-    expect(ThemeEncoder.encodeOrdinalSortKey(null), null);
+    expect(ThemeDecoder.instance.decodeOrdinalSortKey(null), null);
+    expect(ThemeEncoder.instance.encodeOrdinalSortKey(null), null);
 
     const entry = OrdinalSortKey(1.0, name: 'foo');
 
-    expect(ThemeDecoder.decodeOrdinalSortKey(entry), entry);
+    expect(ThemeDecoder.instance.decodeOrdinalSortKey(entry), entry);
 
-    final encoded = ThemeEncoder.encodeOrdinalSortKey(entry);
-    final decoded = ThemeDecoder.decodeOrdinalSortKey(encoded);
+    final encoded = ThemeEncoder.instance.encodeOrdinalSortKey(entry);
+    final decoded = ThemeDecoder.instance.decodeOrdinalSortKey(encoded);
 
     expect(encoded, {'name': 'foo', 'order': 1.0});
 
@@ -4953,15 +5507,15 @@ void main() {
   });
 
   test('Offset', () {
-    expect(ThemeDecoder.decodeOffset(null), null);
-    expect(ThemeEncoder.encodeOffset(null), null);
+    expect(ThemeDecoder.instance.decodeOffset(null), null);
+    expect(ThemeEncoder.instance.encodeOffset(null), null);
 
     const entry = Offset(1.0, 2.0);
 
-    expect(ThemeDecoder.decodeOffset(entry), entry);
+    expect(ThemeDecoder.instance.decodeOffset(entry), entry);
 
-    final encoded = ThemeEncoder.encodeOffset(entry);
-    final decoded = ThemeDecoder.decodeOffset(encoded);
+    final encoded = ThemeEncoder.instance.encodeOffset(entry);
+    final decoded = ThemeDecoder.instance.decodeOffset(encoded);
 
     expect(encoded, {'dx': 1.0, 'dy': 2.0});
 
@@ -4969,8 +5523,8 @@ void main() {
   });
 
   test('OutlinedBorder', () {
-    expect(ThemeDecoder.decodeOutlinedBorder(null), null);
-    expect(ThemeEncoder.encodeOutlinedBorder(null), null);
+    expect(ThemeDecoder.instance.decodeOutlinedBorder(null), null);
+    expect(ThemeEncoder.instance.encodeOutlinedBorder(null), null);
 
     OutlinedBorder entry = BeveledRectangleBorder(
       borderRadius: BorderRadius.circular(2.0),
@@ -4981,10 +5535,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeOutlinedBorder(entry), entry);
+    expect(ThemeDecoder.instance.decodeOutlinedBorder(entry), entry);
 
-    var encoded = ThemeEncoder.encodeOutlinedBorder(entry);
-    var decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+    var encoded = ThemeEncoder.instance.encodeOutlinedBorder(entry);
+    var decoded = ThemeDecoder.instance.decodeOutlinedBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -5009,8 +5563,8 @@ void main() {
       side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
-    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
-    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.instance.decodeOutlinedBorder(encoded);
 
     expect(encoded, {
       'side': {
@@ -5033,8 +5587,8 @@ void main() {
       ),
     );
 
-    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
-    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.instance.decodeOutlinedBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -5064,8 +5618,8 @@ void main() {
       ),
     );
 
-    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
-    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.instance.decodeOutlinedBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -5090,8 +5644,8 @@ void main() {
       side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
-    encoded = ThemeEncoder.encodeOutlinedBorder(entry);
-    decoded = ThemeDecoder.decodeOutlinedBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeOutlinedBorder(entry);
+    decoded = ThemeDecoder.instance.decodeOutlinedBorder(encoded);
 
     expect(encoded, {
       'side': {
@@ -5107,8 +5661,8 @@ void main() {
   });
 
   test('OutlinedButtonThemeData', () {
-    expect(ThemeDecoder.decodeOutlinedButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeOutlinedButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeOutlinedButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeOutlinedButtonThemeData(null), null);
 
     final entry = OutlinedButtonThemeData(
       style: ButtonStyle(
@@ -5116,10 +5670,12 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeOutlinedButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeOutlinedButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeOutlinedButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeOutlinedButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeOutlinedButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeOutlinedButtonThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'style': {'backgroundColor': _materializeState('#ff222222')},
@@ -5143,68 +5699,80 @@ void main() {
   });
 
   test('OverflowBoxFit', () {
-    expect(ThemeDecoder.decodeOverflowBoxFit(null), null);
-    expect(ThemeEncoder.encodeOverflowBoxFit(null), null);
+    expect(ThemeDecoder.instance.decodeOverflowBoxFit(null), null);
+    expect(ThemeEncoder.instance.encodeOverflowBoxFit(null), null);
 
     expect(
-      ThemeDecoder.decodeOverflowBoxFit(OverflowBoxFit.deferToChild),
+      ThemeDecoder.instance.decodeOverflowBoxFit(OverflowBoxFit.deferToChild),
       OverflowBoxFit.deferToChild,
     );
 
     expect(
-      ThemeDecoder.decodeOverflowBoxFit('deferToChild'),
+      ThemeDecoder.instance.decodeOverflowBoxFit('deferToChild'),
       OverflowBoxFit.deferToChild,
     );
-    expect(ThemeDecoder.decodeOverflowBoxFit('max'), OverflowBoxFit.max);
+    expect(
+      ThemeDecoder.instance.decodeOverflowBoxFit('max'),
+      OverflowBoxFit.max,
+    );
 
     expect(
-      ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.deferToChild),
+      ThemeEncoder.instance.encodeOverflowBoxFit(OverflowBoxFit.deferToChild),
       'deferToChild',
     );
-    expect(ThemeEncoder.encodeOverflowBoxFit(OverflowBoxFit.max), 'max');
+    expect(
+      ThemeEncoder.instance.encodeOverflowBoxFit(OverflowBoxFit.max),
+      'max',
+    );
   });
 
   test('PageTransitionsBuilder', () {
-    expect(ThemeDecoder.decodePageTransitionsBuilder(null), null);
-    expect(ThemeEncoder.encodePageTransitionsBuilder(null), null);
+    expect(ThemeDecoder.instance.decodePageTransitionsBuilder(null), null);
+    expect(ThemeEncoder.instance.encodePageTransitionsBuilder(null), null);
 
     expect(
-      ThemeDecoder.decodePageTransitionsBuilder('cupertino').runtimeType,
+      ThemeDecoder.instance
+          .decodePageTransitionsBuilder('cupertino')
+          .runtimeType,
       CupertinoPageTransitionsBuilder,
     );
     expect(
-      ThemeDecoder.decodePageTransitionsBuilder('fadeUpwards').runtimeType,
+      ThemeDecoder.instance
+          .decodePageTransitionsBuilder('fadeUpwards')
+          .runtimeType,
       FadeUpwardsPageTransitionsBuilder,
     );
     expect(
-      ThemeDecoder.decodePageTransitionsBuilder('openUpwards').runtimeType,
+      ThemeDecoder.instance
+          .decodePageTransitionsBuilder('openUpwards')
+          .runtimeType,
       OpenUpwardsPageTransitionsBuilder,
     );
     expect(
-      ThemeDecoder.decodePageTransitionsBuilder('zoom').runtimeType,
+      ThemeDecoder.instance.decodePageTransitionsBuilder('zoom').runtimeType,
       ZoomPageTransitionsBuilder,
     );
 
     expect(
-      ThemeEncoder.encodePageTransitionsBuilder(
+      ThemeEncoder.instance.encodePageTransitionsBuilder(
         const CupertinoPageTransitionsBuilder(),
       ),
       'cupertino',
     );
     expect(
-      ThemeEncoder.encodePageTransitionsBuilder(
+      ThemeEncoder.instance.encodePageTransitionsBuilder(
         const FadeUpwardsPageTransitionsBuilder(),
       ),
       'fadeUpwards',
     );
     expect(
-      ThemeEncoder.encodePageTransitionsBuilder(
+      ThemeEncoder.instance.encodePageTransitionsBuilder(
         const OpenUpwardsPageTransitionsBuilder(),
       ),
       'openUpwards',
     );
     expect(
-      ThemeEncoder.encodePageTransitionsBuilder(
+      ThemeEncoder.instance.encodePageTransitionsBuilder(
         const ZoomPageTransitionsBuilder(),
       ),
       'zoom',
@@ -5212,8 +5780,8 @@ void main() {
   });
 
   test('PageTransitionsTheme', () {
-    expect(ThemeDecoder.decodePageTransitionsTheme(null), null);
-    expect(ThemeEncoder.encodePageTransitionsTheme(null), null);
+    expect(ThemeDecoder.instance.decodePageTransitionsTheme(null), null);
+    expect(ThemeEncoder.instance.encodePageTransitionsTheme(null), null);
 
     final builders = {
       TargetPlatform.fuchsia: const CupertinoPageTransitionsBuilder(),
@@ -5222,7 +5790,7 @@ void main() {
       TargetPlatform.windows: const ZoomPageTransitionsBuilder(),
     };
 
-    final encoded = ThemeEncoder.encodePageTransitionsTheme(
+    final encoded = ThemeEncoder.instance.encodePageTransitionsTheme(
       PageTransitionsTheme(builders: builders),
     );
 
@@ -5235,7 +5803,7 @@ void main() {
       },
     });
 
-    final decoded = ThemeDecoder.decodePageTransitionsTheme(encoded);
+    final decoded = ThemeDecoder.instance.decodePageTransitionsTheme(encoded);
     for (var entry in builders.entries) {
       expect(
         decoded?.builders[entry.key]?.runtimeType,
@@ -5245,110 +5813,121 @@ void main() {
   });
 
   test('PanAxis', () {
-    expect(ThemeDecoder.decodePanAxis(null), null);
-    expect(ThemeEncoder.encodePanAxis(null), null);
+    expect(ThemeDecoder.instance.decodePanAxis(null), null);
+    expect(ThemeEncoder.instance.encodePanAxis(null), null);
 
-    expect(ThemeDecoder.decodePanAxis(PanAxis.aligned), PanAxis.aligned);
-    expect(ThemeDecoder.decodePanAxis('aligned'), PanAxis.aligned);
-    expect(ThemeDecoder.decodePanAxis('free'), PanAxis.free);
-    expect(ThemeDecoder.decodePanAxis('horizontal'), PanAxis.horizontal);
-    expect(ThemeDecoder.decodePanAxis('vertical'), PanAxis.vertical);
+    expect(
+      ThemeDecoder.instance.decodePanAxis(PanAxis.aligned),
+      PanAxis.aligned,
+    );
+    expect(ThemeDecoder.instance.decodePanAxis('aligned'), PanAxis.aligned);
+    expect(ThemeDecoder.instance.decodePanAxis('free'), PanAxis.free);
+    expect(
+      ThemeDecoder.instance.decodePanAxis('horizontal'),
+      PanAxis.horizontal,
+    );
+    expect(ThemeDecoder.instance.decodePanAxis('vertical'), PanAxis.vertical);
 
-    expect(ThemeEncoder.encodePanAxis(PanAxis.aligned), 'aligned');
-    expect(ThemeEncoder.encodePanAxis(PanAxis.free), 'free');
-    expect(ThemeEncoder.encodePanAxis(PanAxis.horizontal), 'horizontal');
-    expect(ThemeEncoder.encodePanAxis(PanAxis.vertical), 'vertical');
+    expect(ThemeEncoder.instance.encodePanAxis(PanAxis.aligned), 'aligned');
+    expect(ThemeEncoder.instance.encodePanAxis(PanAxis.free), 'free');
+    expect(
+      ThemeEncoder.instance.encodePanAxis(PanAxis.horizontal),
+      'horizontal',
+    );
+    expect(ThemeEncoder.instance.encodePanAxis(PanAxis.vertical), 'vertical');
   });
 
   test('PointerDeviceKind', () {
-    expect(ThemeDecoder.decodePointerDeviceKind(null), null);
-    expect(ThemeEncoder.encodePointerDeviceKind(null), null);
+    expect(ThemeDecoder.instance.decodePointerDeviceKind(null), null);
+    expect(ThemeEncoder.instance.encodePointerDeviceKind(null), null);
 
     expect(
-      ThemeDecoder.decodePointerDeviceKind(PointerDeviceKind.mouse),
+      ThemeDecoder.instance.decodePointerDeviceKind(PointerDeviceKind.mouse),
       PointerDeviceKind.mouse,
     );
     expect(
-      ThemeDecoder.decodePointerDeviceKind('invertedStylus'),
+      ThemeDecoder.instance.decodePointerDeviceKind('invertedStylus'),
       PointerDeviceKind.invertedStylus,
     );
     expect(
-      ThemeDecoder.decodePointerDeviceKind('mouse'),
+      ThemeDecoder.instance.decodePointerDeviceKind('mouse'),
       PointerDeviceKind.mouse,
     );
     expect(
-      ThemeDecoder.decodePointerDeviceKind('stylus'),
+      ThemeDecoder.instance.decodePointerDeviceKind('stylus'),
       PointerDeviceKind.stylus,
     );
     expect(
-      ThemeDecoder.decodePointerDeviceKind('touch'),
+      ThemeDecoder.instance.decodePointerDeviceKind('touch'),
       PointerDeviceKind.touch,
     );
     expect(
-      ThemeDecoder.decodePointerDeviceKind('trackpad'),
+      ThemeDecoder.instance.decodePointerDeviceKind('trackpad'),
       PointerDeviceKind.trackpad,
     );
     expect(
-      ThemeDecoder.decodePointerDeviceKind('unknown'),
+      ThemeDecoder.instance.decodePointerDeviceKind('unknown'),
       PointerDeviceKind.unknown,
     );
 
     expect(
-      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.invertedStylus),
+      ThemeEncoder.instance.encodePointerDeviceKind(
+        PointerDeviceKind.invertedStylus,
+      ),
       'invertedStylus',
     );
     expect(
-      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.mouse),
+      ThemeEncoder.instance.encodePointerDeviceKind(PointerDeviceKind.mouse),
       'mouse',
     );
     expect(
-      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.stylus),
+      ThemeEncoder.instance.encodePointerDeviceKind(PointerDeviceKind.stylus),
       'stylus',
     );
     expect(
-      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.touch),
+      ThemeEncoder.instance.encodePointerDeviceKind(PointerDeviceKind.touch),
       'touch',
     );
     expect(
-      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.trackpad),
+      ThemeEncoder.instance.encodePointerDeviceKind(PointerDeviceKind.trackpad),
       'trackpad',
     );
     expect(
-      ThemeEncoder.encodePointerDeviceKind(PointerDeviceKind.unknown),
+      ThemeEncoder.instance.encodePointerDeviceKind(PointerDeviceKind.unknown),
       'unknown',
     );
   });
 
   test('PopupMenuPosition', () {
-    expect(ThemeDecoder.decodePopupMenuPosition(null), null);
-    expect(ThemeEncoder.encodePopupMenuPosition(null), null);
+    expect(ThemeDecoder.instance.decodePopupMenuPosition(null), null);
+    expect(ThemeEncoder.instance.encodePopupMenuPosition(null), null);
 
     expect(
-      ThemeDecoder.decodePopupMenuPosition(PopupMenuPosition.over),
+      ThemeDecoder.instance.decodePopupMenuPosition(PopupMenuPosition.over),
       PopupMenuPosition.over,
     );
     expect(
-      ThemeDecoder.decodePopupMenuPosition('over'),
+      ThemeDecoder.instance.decodePopupMenuPosition('over'),
       PopupMenuPosition.over,
     );
     expect(
-      ThemeDecoder.decodePopupMenuPosition('under'),
+      ThemeDecoder.instance.decodePopupMenuPosition('under'),
       PopupMenuPosition.under,
     );
 
     expect(
-      ThemeEncoder.encodePopupMenuPosition(PopupMenuPosition.over),
+      ThemeEncoder.instance.encodePopupMenuPosition(PopupMenuPosition.over),
       'over',
     );
     expect(
-      ThemeEncoder.encodePopupMenuPosition(PopupMenuPosition.under),
+      ThemeEncoder.instance.encodePopupMenuPosition(PopupMenuPosition.under),
       'under',
     );
   });
 
   test('PopupMenuThemeData', () {
-    expect(ThemeDecoder.decodePopupMenuThemeData(null), null);
-    expect(ThemeEncoder.encodePopupMenuThemeData(null), null);
+    expect(ThemeDecoder.instance.decodePopupMenuThemeData(null), null);
+    expect(ThemeEncoder.instance.encodePopupMenuThemeData(null), null);
 
     const entry = PopupMenuThemeData(
       color: _kColor,
@@ -5364,10 +5943,10 @@ void main() {
       textStyle: _kTextStyle,
     );
 
-    expect(ThemeDecoder.decodePopupMenuThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodePopupMenuThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodePopupMenuThemeData(entry);
-    final decoded = ThemeDecoder.decodePopupMenuThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodePopupMenuThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodePopupMenuThemeData(encoded);
 
     expect(encoded, {
       'color': '#00123456',
@@ -5402,8 +5981,8 @@ void main() {
   });
 
   test('ProgressIndicatorThemeData', () {
-    expect(ThemeDecoder.decodeProgressIndicatorThemeData(null), null);
-    expect(ThemeEncoder.encodeProgressIndicatorThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeProgressIndicatorThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeProgressIndicatorThemeData(null), null);
 
     const entry = ProgressIndicatorThemeData(
       circularTrackColor: _kColor,
@@ -5414,10 +5993,17 @@ void main() {
       strokeCap: StrokeCap.butt,
     );
 
-    expect(ThemeDecoder.decodeProgressIndicatorThemeData(entry), entry);
+    expect(
+      ThemeDecoder.instance.decodeProgressIndicatorThemeData(entry),
+      entry,
+    );
 
-    final encoded = ThemeEncoder.encodeProgressIndicatorThemeData(entry);
-    final decoded = ThemeDecoder.decodeProgressIndicatorThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeProgressIndicatorThemeData(
+      entry,
+    );
+    final decoded = ThemeDecoder.instance.decodeProgressIndicatorThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'circularTrackColor': _kColorStr,
@@ -5432,8 +6018,8 @@ void main() {
   });
 
   test('RadioThemeData', () {
-    expect(ThemeDecoder.decodeRadioThemeData(null), null);
-    expect(ThemeEncoder.encodeRadioThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeRadioThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeRadioThemeData(null), null);
 
     final entry = RadioThemeData(
       fillColor: WidgetStateProperty.all(_kColor),
@@ -5444,10 +6030,10 @@ void main() {
       visualDensity: VisualDensity.comfortable,
     );
 
-    expect(ThemeDecoder.decodeRadioThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeRadioThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeRadioThemeData(entry);
-    final decoded = ThemeDecoder.decodeRadioThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeRadioThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeRadioThemeData(encoded);
 
     expect(
       decoded!.fillColor!.resolve({WidgetState.error}),
@@ -5466,36 +6052,40 @@ void main() {
     expect(decoded.visualDensity, entry.visualDensity);
   });
   test('Radius', () {
-    expect(ThemeDecoder.decodeRadius(null), null);
-    expect(ThemeEncoder.encodeRadius(null), null);
+    expect(ThemeDecoder.instance.decodeRadius(null), null);
+    expect(ThemeEncoder.instance.encodeRadius(null), null);
 
     const entry = Radius.circular(1.0);
 
-    expect(ThemeDecoder.decodeRadius(entry), entry);
+    expect(ThemeDecoder.instance.decodeRadius(entry), entry);
 
-    final encoded = ThemeEncoder.encodeRadius(entry);
-    final decoded = ThemeDecoder.decodeRadius(encoded);
+    final encoded = ThemeEncoder.instance.encodeRadius(entry);
+    final decoded = ThemeDecoder.instance.decodeRadius(encoded);
 
     expect(encoded, {'type': 'elliptical', 'x': 1.0, 'y': 1.0});
 
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.decodeRadius({'radius': 4.0, 'type': 'circular'}),
+      ThemeDecoder.instance.decodeRadius({'radius': 4.0, 'type': 'circular'}),
       const Radius.circular(4.0),
     );
     expect(
-      ThemeDecoder.decodeRadius({'type': 'elliptical', 'x': 1.0, 'y': 2.0}),
+      ThemeDecoder.instance.decodeRadius({
+        'type': 'elliptical',
+        'x': 1.0,
+        'y': 2.0,
+      }),
       const Radius.elliptical(1.0, 2.0),
     );
-    expect(ThemeDecoder.decodeRadius({'type': 'zero'}), Radius.zero);
+    expect(ThemeDecoder.instance.decodeRadius({'type': 'zero'}), Radius.zero);
 
-    expect(ThemeDecoder.decodeRadius(16), const Radius.circular(16));
+    expect(ThemeDecoder.instance.decodeRadius(16), const Radius.circular(16));
   });
 
   test('RangeSliderThumbShape', () {
-    expect(ThemeDecoder.decodeRangeSliderThumbShape(null), null);
-    expect(ThemeEncoder.encodeRangeSliderThumbShape(null), null);
+    expect(ThemeDecoder.instance.decodeRangeSliderThumbShape(null), null);
+    expect(ThemeEncoder.instance.encodeRangeSliderThumbShape(null), null);
 
     const entry = RoundRangeSliderThumbShape(
       disabledThumbRadius: 1.0,
@@ -5504,11 +6094,11 @@ void main() {
       pressedElevation: 4.0,
     );
 
-    expect(ThemeDecoder.decodeRangeSliderThumbShape(entry), entry);
+    expect(ThemeDecoder.instance.decodeRangeSliderThumbShape(entry), entry);
 
-    final encoded = ThemeEncoder.encodeRangeSliderThumbShape(entry);
+    final encoded = ThemeEncoder.instance.encodeRangeSliderThumbShape(entry);
     final decoded =
-        ThemeDecoder.decodeRangeSliderThumbShape(encoded)
+        ThemeDecoder.instance.decodeRangeSliderThumbShape(encoded)
             as RoundRangeSliderThumbShape;
 
     expect(encoded, {
@@ -5525,16 +6115,16 @@ void main() {
   });
 
   test('RangeSliderTickMarkShape', () {
-    expect(ThemeDecoder.decodeRangeSliderTickMarkShape(null), null);
-    expect(ThemeEncoder.encodeRangeSliderTickMarkShape(null), null);
+    expect(ThemeDecoder.instance.decodeRangeSliderTickMarkShape(null), null);
+    expect(ThemeEncoder.instance.encodeRangeSliderTickMarkShape(null), null);
 
     const entry = RoundRangeSliderTickMarkShape(tickMarkRadius: 1.0);
 
-    expect(ThemeDecoder.decodeRangeSliderTickMarkShape(entry), entry);
+    expect(ThemeDecoder.instance.decodeRangeSliderTickMarkShape(entry), entry);
 
-    final encoded = ThemeEncoder.encodeRangeSliderTickMarkShape(entry);
+    final encoded = ThemeEncoder.instance.encodeRangeSliderTickMarkShape(entry);
     final decoded =
-        ThemeDecoder.decodeRangeSliderTickMarkShape(encoded)
+        ThemeDecoder.instance.decodeRangeSliderTickMarkShape(encoded)
             as RoundRangeSliderTickMarkShape;
 
     expect(encoded, {'tickMarkRadius': 1.0, 'type': 'round'});
@@ -5543,25 +6133,25 @@ void main() {
   });
 
   test('RangeSliderTrackShape', () {
-    expect(ThemeDecoder.decodeRangeSliderTrackShape(null), null);
-    expect(ThemeEncoder.encodeRangeSliderTrackShape(null), null);
+    expect(ThemeDecoder.instance.decodeRangeSliderTrackShape(null), null);
+    expect(ThemeEncoder.instance.encodeRangeSliderTrackShape(null), null);
 
     const entry = RectangularRangeSliderTrackShape();
 
-    expect(ThemeDecoder.decodeRangeSliderTrackShape(entry), entry);
+    expect(ThemeDecoder.instance.decodeRangeSliderTrackShape(entry), entry);
 
-    final encoded = ThemeEncoder.encodeRangeSliderTrackShape(entry);
-    final decoded = ThemeDecoder.decodeRangeSliderTrackShape(encoded);
+    final encoded = ThemeEncoder.instance.encodeRangeSliderTrackShape(entry);
+    final decoded = ThemeDecoder.instance.decodeRangeSliderTrackShape(encoded);
 
     expect(encoded, 'rectangular');
     expect(
-      ThemeEncoder.encodeRangeSliderTrackShape(
+      ThemeEncoder.instance.encodeRangeSliderTrackShape(
         const RoundedRectRangeSliderTrackShape(),
       ),
       'rounded',
     );
     expect(
-      ThemeDecoder.decodeRangeSliderTrackShape('rounded').runtimeType,
+      ThemeDecoder.instance.decodeRangeSliderTrackShape('rounded').runtimeType,
       const RoundedRectRangeSliderTrackShape().runtimeType,
     );
 
@@ -5569,15 +6159,28 @@ void main() {
   });
 
   test('RangeSliderValueIndicatorShape', () {
-    expect(ThemeDecoder.decodeRangeSliderValueIndicatorShape(null), null);
-    expect(ThemeEncoder.encodeRangeSliderValueIndicatorShape(null), null);
+    expect(
+      ThemeDecoder.instance.decodeRangeSliderValueIndicatorShape(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeRangeSliderValueIndicatorShape(null),
+      null,
+    );
 
     const entry = PaddleRangeSliderValueIndicatorShape();
 
-    expect(ThemeDecoder.decodeRangeSliderValueIndicatorShape(entry), entry);
+    expect(
+      ThemeDecoder.instance.decodeRangeSliderValueIndicatorShape(entry),
+      entry,
+    );
 
-    final encoded = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry);
-    final decoded = ThemeDecoder.decodeRangeSliderValueIndicatorShape(encoded);
+    final encoded = ThemeEncoder.instance.encodeRangeSliderValueIndicatorShape(
+      entry,
+    );
+    final decoded = ThemeDecoder.instance.decodeRangeSliderValueIndicatorShape(
+      encoded,
+    );
 
     expect(encoded, 'paddle');
 
@@ -5585,8 +6188,10 @@ void main() {
 
     const entry2 = RectangularRangeSliderValueIndicatorShape();
 
-    final encoded2 = ThemeEncoder.encodeRangeSliderValueIndicatorShape(entry2);
-    final decoded2 = ThemeDecoder.decodeRangeSliderValueIndicatorShape(
+    final encoded2 = ThemeEncoder.instance.encodeRangeSliderValueIndicatorShape(
+      entry2,
+    );
+    final decoded2 = ThemeDecoder.instance.decodeRangeSliderValueIndicatorShape(
       encoded2,
     );
 
@@ -5596,15 +6201,15 @@ void main() {
   });
 
   test('Rect', () {
-    expect(ThemeDecoder.decodeRect(null), null);
-    expect(ThemeEncoder.encodeRect(null), null);
+    expect(ThemeDecoder.instance.decodeRect(null), null);
+    expect(ThemeEncoder.instance.encodeRect(null), null);
 
     const entry = Rect.fromLTRB(1.0, 2.0, 3.0, 4.0);
 
-    expect(ThemeDecoder.decodeRect(entry), entry);
+    expect(ThemeDecoder.instance.decodeRect(entry), entry);
 
-    final encoded = ThemeEncoder.encodeRect(entry);
-    final decoded = ThemeDecoder.decodeRect(encoded);
+    final encoded = ThemeEncoder.instance.encodeRect(entry);
+    final decoded = ThemeDecoder.instance.decodeRect(encoded);
 
     expect(encoded, {
       'bottom': 4.0,
@@ -5617,7 +6222,7 @@ void main() {
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.decodeRect({
+      ThemeDecoder.instance.decodeRect({
         'center': {'dx': 1.0, 'dy': 2.0},
         'height': 3.0,
         'width': 4.0,
@@ -5627,16 +6232,16 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeRect({
+      ThemeDecoder.instance.decodeRect({
         'center': {'dx': 1.0, 'dy': 2.0},
         'radius': 3.0,
         'type': 'circle',
       }),
       Rect.fromCircle(center: const Offset(1.0, 2.0), radius: 3.0),
     );
-    expect(ThemeDecoder.decodeRect({'type': 'largest'}), Rect.largest);
+    expect(ThemeDecoder.instance.decodeRect({'type': 'largest'}), Rect.largest);
     expect(
-      ThemeDecoder.decodeRect({
+      ThemeDecoder.instance.decodeRect({
         'bottom': 4.0,
         'left': 1.0,
         'right': 3.0,
@@ -5646,7 +6251,7 @@ void main() {
       const Rect.fromLTRB(1.0, 2.0, 3.0, 4.0),
     );
     expect(
-      ThemeDecoder.decodeRect({
+      ThemeDecoder.instance.decodeRect({
         'height': 4.0,
         'left': 1.0,
         'top': 2.0,
@@ -5656,160 +6261,199 @@ void main() {
       const Rect.fromLTWH(1.0, 2.0, 3.0, 4.0),
     );
     expect(
-      ThemeDecoder.decodeRect({
+      ThemeDecoder.instance.decodeRect({
         'a': {'dx': 1.0, 'dy': 2.0},
         'b': {'dx': 3.0, 'dy': 4.0},
         'type': 'points',
       }),
       Rect.fromPoints(const Offset(1.0, 2.0), const Offset(3.0, 4.0)),
     );
-    expect(ThemeDecoder.decodeRect({'type': 'zero'}), Rect.zero);
+    expect(ThemeDecoder.instance.decodeRect({'type': 'zero'}), Rect.zero);
   });
 
   test('ScrollBehavior', () {
-    expect(ThemeDecoder.decodeScrollBehavior(null), null);
-    expect(ThemeEncoder.encodeScrollBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeScrollBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeScrollBehavior(null), null);
 
     const entry = ScrollBehavior();
 
-    expect(ThemeDecoder.decodeScrollBehavior(entry), entry);
+    expect(ThemeDecoder.instance.decodeScrollBehavior(entry), entry);
 
-    ThemeEncoder.encodeScrollBehavior(entry);
+    ThemeEncoder.instance.encodeScrollBehavior(entry);
   });
 
   test('ScrollPhysics', () {
-    expect(ThemeDecoder.decodeScrollPhysics(null), null);
-    expect(ThemeEncoder.encodeScrollPhysics(null), null);
+    expect(ThemeDecoder.instance.decodeScrollPhysics(null), null);
+    expect(ThemeEncoder.instance.encodeScrollPhysics(null), null);
 
     const entry = AlwaysScrollableScrollPhysics();
-    expect(ThemeDecoder.decodeScrollPhysics(entry), entry);
+    expect(ThemeDecoder.instance.decodeScrollPhysics(entry), entry);
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'always'}).runtimeType,
+      ThemeDecoder.instance.decodeScrollPhysics({'type': 'always'}).runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'bouncing'}).runtimeType,
+      ThemeDecoder.instance.decodeScrollPhysics({
+        'type': 'bouncing',
+      }).runtimeType,
       const BouncingScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'clamping'}).runtimeType,
+      ThemeDecoder.instance.decodeScrollPhysics({
+        'type': 'clamping',
+      }).runtimeType,
       const ClampingScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'fixedExtent'}).runtimeType,
+      ThemeDecoder.instance.decodeScrollPhysics({
+        'type': 'fixedExtent',
+      }).runtimeType,
       const FixedExtentScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'never'}).runtimeType,
+      ThemeDecoder.instance.decodeScrollPhysics({'type': 'never'}).runtimeType,
       const NeverScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({'type': 'page'}).runtimeType,
+      ThemeDecoder.instance.decodeScrollPhysics({'type': 'page'}).runtimeType,
       const PageScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
+      ThemeDecoder.instance.decodeScrollPhysics({
         'type': 'rangeMaintaining',
       }).runtimeType,
       const RangeMaintainingScrollPhysics().runtimeType,
     );
 
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'always',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'always',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'bouncing',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'bouncing',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'clamping',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'clamping',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'fixedExtent',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'fixedExtent',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'never',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'never',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'page',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'page',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
     expect(
-      ThemeDecoder.decodeScrollPhysics({
-        'parent': {'type': 'always'},
-        'type': 'rangeMaintaining',
-      })!.parent.runtimeType,
+      ThemeDecoder.instance
+          .decodeScrollPhysics({
+            'parent': {'type': 'always'},
+            'type': 'rangeMaintaining',
+          })!
+          .parent
+          .runtimeType,
       const AlwaysScrollableScrollPhysics().runtimeType,
     );
 
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const AlwaysScrollableScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(
+          const AlwaysScrollableScrollPhysics(),
+        ),
       ),
       {'type': 'always'},
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const BouncingScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(
+          const BouncingScrollPhysics(),
+        ),
       ),
       {'type': 'bouncing'},
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const ClampingScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(
+          const ClampingScrollPhysics(),
+        ),
       ),
       {'type': 'clamping'},
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const FixedExtentScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(
+          const FixedExtentScrollPhysics(),
+        ),
       ),
       {'type': 'fixedExtent'},
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const NeverScrollableScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(
+          const NeverScrollableScrollPhysics(),
+        ),
       ),
       {'type': 'never'},
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const PageScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(const PageScrollPhysics()),
       ),
       {'type': 'page'},
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(const RangeMaintainingScrollPhysics()),
+        ThemeEncoder.instance.encodeScrollPhysics(
+          const RangeMaintainingScrollPhysics(),
+        ),
       ),
       {'type': 'rangeMaintaining'},
     );
 
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const AlwaysScrollableScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -5822,7 +6466,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
@@ -5833,7 +6477,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const ClampingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
@@ -5844,7 +6488,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const FixedExtentScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -5857,7 +6501,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const NeverScrollableScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -5870,7 +6514,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const PageScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         ),
       ),
@@ -5881,7 +6525,7 @@ void main() {
     );
     expect(
       JsonClass.removeNull(
-        ThemeEncoder.encodeScrollPhysics(
+        ThemeEncoder.instance.encodeScrollPhysics(
           const RangeMaintainingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics(),
           ),
@@ -5895,33 +6539,39 @@ void main() {
   });
 
   test('ScrollViewKeyboardDismissBehavior', () {
-    expect(ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(null), null);
-    expect(ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(null), null);
+    expect(
+      ThemeDecoder.instance.decodeScrollViewKeyboardDismissBehavior(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeScrollViewKeyboardDismissBehavior(null),
+      null,
+    );
 
     expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+      ThemeDecoder.instance.decodeScrollViewKeyboardDismissBehavior(
         ScrollViewKeyboardDismissBehavior.manual,
       ),
       ScrollViewKeyboardDismissBehavior.manual,
     );
 
     expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior('manual'),
+      ThemeDecoder.instance.decodeScrollViewKeyboardDismissBehavior('manual'),
       ScrollViewKeyboardDismissBehavior.manual,
     );
     expect(
-      ThemeDecoder.decodeScrollViewKeyboardDismissBehavior('onDrag'),
+      ThemeDecoder.instance.decodeScrollViewKeyboardDismissBehavior('onDrag'),
       ScrollViewKeyboardDismissBehavior.onDrag,
     );
 
     expect(
-      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
+      ThemeEncoder.instance.encodeScrollViewKeyboardDismissBehavior(
         ScrollViewKeyboardDismissBehavior.manual,
       ),
       'manual',
     );
     expect(
-      ThemeEncoder.encodeScrollViewKeyboardDismissBehavior(
+      ThemeEncoder.instance.encodeScrollViewKeyboardDismissBehavior(
         ScrollViewKeyboardDismissBehavior.onDrag,
       ),
       'onDrag',
@@ -5929,52 +6579,62 @@ void main() {
   });
 
   test('ScrollbarOrientation', () {
-    expect(ThemeDecoder.decodeScrollbarOrientation(null), null);
-    expect(ThemeEncoder.encodeScrollbarOrientation(null), null);
+    expect(ThemeDecoder.instance.decodeScrollbarOrientation(null), null);
+    expect(ThemeEncoder.instance.encodeScrollbarOrientation(null), null);
 
     expect(
-      ThemeDecoder.decodeScrollbarOrientation(ScrollbarOrientation.top),
+      ThemeDecoder.instance.decodeScrollbarOrientation(
+        ScrollbarOrientation.top,
+      ),
       ScrollbarOrientation.top,
     );
 
     expect(
-      ThemeDecoder.decodeScrollbarOrientation('bottom'),
+      ThemeDecoder.instance.decodeScrollbarOrientation('bottom'),
       ScrollbarOrientation.bottom,
     );
     expect(
-      ThemeDecoder.decodeScrollbarOrientation('left'),
+      ThemeDecoder.instance.decodeScrollbarOrientation('left'),
       ScrollbarOrientation.left,
     );
     expect(
-      ThemeDecoder.decodeScrollbarOrientation('right'),
+      ThemeDecoder.instance.decodeScrollbarOrientation('right'),
       ScrollbarOrientation.right,
     );
     expect(
-      ThemeDecoder.decodeScrollbarOrientation('top'),
+      ThemeDecoder.instance.decodeScrollbarOrientation('top'),
       ScrollbarOrientation.top,
     );
 
     expect(
-      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.bottom),
+      ThemeEncoder.instance.encodeScrollbarOrientation(
+        ScrollbarOrientation.bottom,
+      ),
       'bottom',
     );
     expect(
-      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.left),
+      ThemeEncoder.instance.encodeScrollbarOrientation(
+        ScrollbarOrientation.left,
+      ),
       'left',
     );
     expect(
-      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.right),
+      ThemeEncoder.instance.encodeScrollbarOrientation(
+        ScrollbarOrientation.right,
+      ),
       'right',
     );
     expect(
-      ThemeEncoder.encodeScrollbarOrientation(ScrollbarOrientation.top),
+      ThemeEncoder.instance.encodeScrollbarOrientation(
+        ScrollbarOrientation.top,
+      ),
       'top',
     );
   });
 
   test('ScrollbarThemeData', () {
-    expect(ThemeDecoder.decodeScrollbarThemeData(null), null);
-    expect(ThemeEncoder.encodeScrollbarThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeScrollbarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeScrollbarThemeData(null), null);
 
     final entry = ScrollbarThemeData(
       crossAxisMargin: 1.0,
@@ -5986,9 +6646,9 @@ void main() {
       thumbVisibility: WidgetStateProperty.all(true),
     );
 
-    expect(ThemeDecoder.decodeScrollbarThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeScrollbarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeScrollbarThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeScrollbarThemeData(entry);
     expect(encoded!['crossAxisMargin'], entry.crossAxisMargin);
 
     expect(encoded['interactive'], entry.interactive);
@@ -5997,7 +6657,7 @@ void main() {
 
     expect(encoded['minThumbLength'], entry.minThumbLength);
 
-    expect(encoded['radius'], ThemeEncoder.encodeRadius(entry.radius));
+    expect(encoded['radius'], ThemeEncoder.instance.encodeRadius(entry.radius));
 
     expect(
       encoded['thickness']['error'],
@@ -6009,7 +6669,7 @@ void main() {
       entry.thumbVisibility!.resolve({WidgetState.error}),
     );
 
-    final decoded = ThemeDecoder.decodeScrollbarThemeData(encoded);
+    final decoded = ThemeDecoder.instance.decodeScrollbarThemeData(encoded);
     expect(decoded!.crossAxisMargin, entry.crossAxisMargin);
 
     expect(decoded.interactive, entry.interactive);
@@ -6032,8 +6692,8 @@ void main() {
   });
 
   test('SearchBarThemeData', () {
-    expect(ThemeDecoder.decodeSearchBarThemeData(null), null);
-    expect(ThemeEncoder.encodeSearchBarThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeSearchBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeSearchBarThemeData(null), null);
 
     final entry = SearchBarThemeData(
       backgroundColor: WidgetStateProperty.all(_kColor),
@@ -6047,9 +6707,9 @@ void main() {
       textStyle: WidgetStateProperty.all(_kTextStyle),
     );
 
-    expect(ThemeDecoder.decodeSearchBarThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeSearchBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeSearchBarThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeSearchBarThemeData(entry);
 
     expect(encoded, {
       'backgroundColor': {
@@ -6140,8 +6800,8 @@ void main() {
   });
 
   test('SearchViewThemeData', () {
-    expect(ThemeDecoder.decodeSearchViewThemeData(null), null);
-    expect(ThemeEncoder.encodeSearchViewThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeSearchViewThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeSearchViewThemeData(null), null);
 
     const entry = SearchViewThemeData(
       backgroundColor: _kColor,
@@ -6157,10 +6817,10 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeSearchViewThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeSearchViewThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeSearchViewThemeData(entry);
-    final decoded = ThemeDecoder.decodeSearchViewThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeSearchViewThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeSearchViewThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#00123456',
@@ -6180,16 +6840,18 @@ void main() {
   });
 
   test('SegmentedButton', () {
-    expect(ThemeDecoder.decodeSegmentedButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeSegmentedButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeSegmentedButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeSegmentedButtonThemeData(null), null);
 
     const entry = SegmentedButtonThemeData(
       selectedIcon: Icon(Icons.abc),
       style: ButtonStyle(enableFeedback: false),
     );
 
-    final encoded = ThemeEncoder.encodeSegmentedButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeSegmentedButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeSegmentedButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeSegmentedButtonThemeData(
+      encoded,
+    );
 
     expect(encoded, {
       'selectedIcon': {
@@ -6207,15 +6869,15 @@ void main() {
   });
 
   test('SemanticsTag', () {
-    expect(ThemeDecoder.decodeSemanticsTag(null), null);
-    expect(ThemeEncoder.encodeSemanticsTag(null), null);
+    expect(ThemeDecoder.instance.decodeSemanticsTag(null), null);
+    expect(ThemeEncoder.instance.encodeSemanticsTag(null), null);
 
     const entry = SemanticsTag('foo');
 
-    expect(ThemeDecoder.decodeSemanticsTag(entry), entry);
+    expect(ThemeDecoder.instance.decodeSemanticsTag(entry), entry);
 
-    final encoded = ThemeEncoder.encodeSemanticsTag(entry);
-    final decoded = ThemeDecoder.decodeSemanticsTag(encoded);
+    final encoded = ThemeEncoder.instance.encodeSemanticsTag(entry);
+    final decoded = ThemeDecoder.instance.decodeSemanticsTag(encoded);
 
     expect(encoded, {'name': 'foo'});
 
@@ -6223,8 +6885,8 @@ void main() {
   });
 
   test('Shadow', () {
-    expect(ThemeDecoder.decodeShadow(null), null);
-    expect(ThemeEncoder.encodeShadow(null), null);
+    expect(ThemeDecoder.instance.decodeShadow(null), null);
+    expect(ThemeEncoder.instance.encodeShadow(null), null);
 
     const entry = Shadow(
       color: _kColor,
@@ -6232,10 +6894,10 @@ void main() {
       offset: Offset(2.0, 3.0),
     );
 
-    expect(ThemeDecoder.decodeShadow(entry), entry);
+    expect(ThemeDecoder.instance.decodeShadow(entry), entry);
 
-    final encoded = ThemeEncoder.encodeShadow(entry);
-    final decoded = ThemeDecoder.decodeShadow(encoded);
+    final encoded = ThemeEncoder.instance.encodeShadow(entry);
+    final decoded = ThemeDecoder.instance.decodeShadow(encoded);
 
     expect(encoded, {
       'blurRadius': 1.0,
@@ -6247,17 +6909,17 @@ void main() {
   });
 
   test('ShapeBorder', () {
-    expect(ThemeDecoder.decodeShapeBorder(null), null);
-    expect(ThemeEncoder.encodeShapeBorder(null), null);
+    expect(ThemeDecoder.instance.decodeShapeBorder(null), null);
+    expect(ThemeEncoder.instance.encodeShapeBorder(null), null);
 
     ShapeBorder entry = const CircleBorder(
       side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
-    expect(ThemeDecoder.decodeShapeBorder(entry), entry);
+    expect(ThemeDecoder.instance.decodeShapeBorder(entry), entry);
 
-    var encoded = ThemeEncoder.encodeShapeBorder(entry);
-    var decoded = ThemeDecoder.decodeShapeBorder(encoded);
+    var encoded = ThemeEncoder.instance.encodeShapeBorder(entry);
+    var decoded = ThemeDecoder.instance.decodeShapeBorder(encoded);
 
     expect(encoded, {
       'side': {
@@ -6280,8 +6942,8 @@ void main() {
       ),
     );
 
-    encoded = ThemeEncoder.encodeShapeBorder(entry);
-    decoded = ThemeDecoder.decodeShapeBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeShapeBorder(entry);
+    decoded = ThemeDecoder.instance.decodeShapeBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -6311,8 +6973,8 @@ void main() {
       ),
     );
 
-    encoded = ThemeEncoder.encodeShapeBorder(entry);
-    decoded = ThemeDecoder.decodeShapeBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeShapeBorder(entry);
+    decoded = ThemeDecoder.instance.decodeShapeBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -6337,8 +6999,8 @@ void main() {
       side: BorderSide(color: _kColor, width: 1.0, style: BorderStyle.solid),
     );
 
-    encoded = ThemeEncoder.encodeShapeBorder(entry);
-    decoded = ThemeDecoder.decodeShapeBorder(encoded);
+    encoded = ThemeEncoder.instance.encodeShapeBorder(entry);
+    decoded = ThemeDecoder.instance.decodeShapeBorder(encoded);
 
     expect(encoded, {
       'side': {
@@ -6354,61 +7016,63 @@ void main() {
   });
 
   test('ShowValueIndicator', () {
-    expect(ThemeDecoder.decodeShowValueIndicator(null), null);
-    expect(ThemeEncoder.encodeShowValueIndicator(null), null);
+    expect(ThemeDecoder.instance.decodeShowValueIndicator(null), null);
+    expect(ThemeEncoder.instance.encodeShowValueIndicator(null), null);
 
     expect(
-      ThemeDecoder.decodeShowValueIndicator(ShowValueIndicator.always),
-      ShowValueIndicator.always,
+      ThemeDecoder.instance.decodeShowValueIndicator(ShowValueIndicator.onDrag),
+      ShowValueIndicator.onDrag,
     );
 
     expect(
-      ThemeDecoder.decodeShowValueIndicator('always'),
-      ShowValueIndicator.always,
+      ThemeDecoder.instance.decodeShowValueIndicator('always'),
+      ShowValueIndicator.onDrag,
     );
     expect(
-      ThemeDecoder.decodeShowValueIndicator('never'),
+      ThemeDecoder.instance.decodeShowValueIndicator('never'),
       ShowValueIndicator.never,
     );
     expect(
-      ThemeDecoder.decodeShowValueIndicator('onlyForContinuous'),
+      ThemeDecoder.instance.decodeShowValueIndicator('onlyForContinuous'),
       ShowValueIndicator.onlyForContinuous,
     );
     expect(
-      ThemeDecoder.decodeShowValueIndicator('onlyForDiscrete'),
+      ThemeDecoder.instance.decodeShowValueIndicator('onlyForDiscrete'),
       ShowValueIndicator.onlyForDiscrete,
     );
 
     expect(
-      ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.always),
+      ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.onDrag),
       'always',
     );
     expect(
-      ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.never),
+      ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.never),
       'never',
     );
     expect(
-      ThemeEncoder.encodeShowValueIndicator(
+      ThemeEncoder.instance.encodeShowValueIndicator(
         ShowValueIndicator.onlyForContinuous,
       ),
       'onlyForContinuous',
     );
     expect(
-      ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.onlyForDiscrete),
+      ThemeEncoder.instance.encodeShowValueIndicator(
+        ShowValueIndicator.onlyForDiscrete,
+      ),
       'onlyForDiscrete',
     );
   });
 
   test('Size', () {
-    expect(ThemeDecoder.decodeSize(null), null);
-    expect(ThemeEncoder.encodeSize(null), null);
+    expect(ThemeDecoder.instance.decodeSize(null), null);
+    expect(ThemeEncoder.instance.encodeSize(null), null);
 
     const entry = Size(0.0, 0.0);
 
-    expect(ThemeDecoder.decodeSize(entry), entry);
+    expect(ThemeDecoder.instance.decodeSize(entry), entry);
 
-    final encoded = ThemeEncoder.encodeSize(entry);
-    final decoded = ThemeDecoder.decodeSize(encoded);
+    final encoded = ThemeEncoder.instance.encodeSize(entry);
+    final decoded = ThemeDecoder.instance.decodeSize(encoded);
 
     expect(encoded, {'height': 0.0, 'width': 0.0});
 
@@ -6416,80 +7080,94 @@ void main() {
   });
 
   test('SliderComponentShape', () {
-    expect(ThemeDecoder.decodeSliderComponentShape(null), null);
-    expect(ThemeEncoder.encodeSliderComponentShape(null), null);
+    expect(ThemeDecoder.instance.decodeSliderComponentShape(null), null);
+    expect(ThemeEncoder.instance.encodeSliderComponentShape(null), null);
 
     expect(
-      ThemeDecoder.decodeSliderComponentShape(SliderComponentShape.noOverlay),
+      ThemeDecoder.instance.decodeSliderComponentShape(
+        SliderComponentShape.noOverlay,
+      ),
       SliderComponentShape.noOverlay,
     );
 
     expect(
-      ThemeDecoder.decodeSliderComponentShape('noOverlay'),
+      ThemeDecoder.instance.decodeSliderComponentShape('noOverlay'),
       SliderComponentShape.noOverlay,
     );
     expect(
-      ThemeDecoder.decodeSliderComponentShape('noThumb'),
+      ThemeDecoder.instance.decodeSliderComponentShape('noThumb'),
       SliderComponentShape.noThumb,
     );
 
     expect(
-      ThemeEncoder.encodeSliderComponentShape(SliderComponentShape.noOverlay),
+      ThemeEncoder.instance.encodeSliderComponentShape(
+        SliderComponentShape.noOverlay,
+      ),
       'noOverlay',
     );
     expect(
-      ThemeEncoder.encodeSliderComponentShape(SliderComponentShape.noThumb),
+      ThemeEncoder.instance.encodeSliderComponentShape(
+        SliderComponentShape.noThumb,
+      ),
       'noOverlay',
     );
   });
 
   test('SliderInteraction', () {
-    expect(ThemeDecoder.decodeSliderInteraction(null), null);
-    expect(ThemeEncoder.encodeSliderInteraction(null), null);
+    expect(ThemeDecoder.instance.decodeSliderInteraction(null), null);
+    expect(ThemeEncoder.instance.encodeSliderInteraction(null), null);
 
     expect(
-      ThemeDecoder.decodeSliderInteraction(SliderInteraction.slideOnly),
+      ThemeDecoder.instance.decodeSliderInteraction(
+        SliderInteraction.slideOnly,
+      ),
       SliderInteraction.slideOnly,
     );
 
     expect(
-      ThemeDecoder.decodeSliderInteraction('slideOnly'),
+      ThemeDecoder.instance.decodeSliderInteraction('slideOnly'),
       SliderInteraction.slideOnly,
     );
     expect(
-      ThemeDecoder.decodeSliderInteraction('slideThumb'),
+      ThemeDecoder.instance.decodeSliderInteraction('slideThumb'),
       SliderInteraction.slideThumb,
     );
     expect(
-      ThemeDecoder.decodeSliderInteraction('tapAndSlide'),
+      ThemeDecoder.instance.decodeSliderInteraction('tapAndSlide'),
       SliderInteraction.tapAndSlide,
     );
     expect(
-      ThemeDecoder.decodeSliderInteraction('tapOnly'),
+      ThemeDecoder.instance.decodeSliderInteraction('tapOnly'),
       SliderInteraction.tapOnly,
     );
 
     expect(
-      ThemeEncoder.encodeSliderInteraction(SliderInteraction.slideOnly),
+      ThemeEncoder.instance.encodeSliderInteraction(
+        SliderInteraction.slideOnly,
+      ),
       'slideOnly',
     );
     expect(
-      ThemeEncoder.encodeSliderInteraction(SliderInteraction.slideThumb),
+      ThemeEncoder.instance.encodeSliderInteraction(
+        SliderInteraction.slideThumb,
+      ),
       'slideThumb',
     );
     expect(
-      ThemeEncoder.encodeSliderInteraction(SliderInteraction.tapAndSlide),
+      ThemeEncoder.instance.encodeSliderInteraction(
+        SliderInteraction.tapAndSlide,
+      ),
       'tapAndSlide',
     );
     expect(
-      ThemeEncoder.encodeSliderInteraction(SliderInteraction.tapOnly),
+      ThemeEncoder.instance.encodeSliderInteraction(SliderInteraction.tapOnly),
       'tapOnly',
     );
   });
 
   test('SliderThemeData', () {
-    expect(ThemeDecoder.decodeSliderThemeData(null), null);
-    expect(ThemeEncoder.encodeSliderThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeSliderThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeSliderThemeData(null), null);
 
     final entry = SliderThemeData(
       activeTickMarkColor: const Color(0xff111111),
@@ -6511,7 +7189,7 @@ void main() {
       rangeTrackShape: const RectangularRangeSliderTrackShape(),
       rangeValueIndicatorShape: const PaddleRangeSliderValueIndicatorShape(),
       secondaryActiveTrackColor: const Color(0xffababab),
-      showValueIndicator: ShowValueIndicator.always,
+      showValueIndicator: ShowValueIndicator.onDrag,
       thumbColor: const Color(0xffbbbbbb),
       thumbShape: SliderComponentShape.noOverlay,
       trackGap: 11.0,
@@ -6523,10 +7201,10 @@ void main() {
       valueIndicatorTextStyle: _kTextStyle,
     );
 
-    expect(ThemeDecoder.decodeSliderThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeSliderThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeSliderThemeData(entry);
-    final decoded = ThemeDecoder.decodeSliderThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeSliderThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeSliderThemeData(encoded);
 
     expect(encoded, {
       'activeTickMarkColor': '#ff111111',
@@ -6565,39 +7243,43 @@ void main() {
       'valueIndicatorTextStyle': {'color': '#00123456', 'inherit': true},
     });
 
-    expect(ThemeEncoder.encodeSliderThemeData(decoded), encoded);
+    expect(ThemeEncoder.instance.encodeSliderThemeData(decoded), encoded);
   });
 
   test('SliderTickMarkShape', () {
-    expect(ThemeDecoder.decodeSliderTickMarkShape(null), null);
-    expect(ThemeEncoder.encodeSliderTickMarkShape(null), null);
+    expect(ThemeDecoder.instance.decodeSliderTickMarkShape(null), null);
+    expect(ThemeEncoder.instance.encodeSliderTickMarkShape(null), null);
 
     expect(
-      ThemeDecoder.decodeSliderTickMarkShape(SliderTickMarkShape.noTickMark),
+      ThemeDecoder.instance.decodeSliderTickMarkShape(
+        SliderTickMarkShape.noTickMark,
+      ),
       SliderTickMarkShape.noTickMark,
     );
 
     expect(
-      ThemeDecoder.decodeSliderTickMarkShape('noTickMark'),
+      ThemeDecoder.instance.decodeSliderTickMarkShape('noTickMark'),
       SliderTickMarkShape.noTickMark,
     );
 
     expect(
-      ThemeEncoder.encodeSliderTickMarkShape(SliderTickMarkShape.noTickMark),
+      ThemeEncoder.instance.encodeSliderTickMarkShape(
+        SliderTickMarkShape.noTickMark,
+      ),
       'noTickMark',
     );
   });
 
   test('SliderTrackShape', () {
-    expect(ThemeDecoder.decodeSliderTrackShape(null), null);
-    expect(ThemeEncoder.encodeSliderTrackShape(null), null);
+    expect(ThemeDecoder.instance.decodeSliderTrackShape(null), null);
+    expect(ThemeEncoder.instance.encodeSliderTrackShape(null), null);
 
     SliderTrackShape entry = const RectangularSliderTrackShape();
 
-    expect(ThemeDecoder.decodeSliderTrackShape(entry), entry);
+    expect(ThemeDecoder.instance.decodeSliderTrackShape(entry), entry);
 
-    var encoded = ThemeEncoder.encodeSliderTrackShape(entry);
-    var decoded = ThemeDecoder.decodeSliderTrackShape(encoded);
+    var encoded = ThemeEncoder.instance.encodeSliderTrackShape(entry);
+    var decoded = ThemeDecoder.instance.decodeSliderTrackShape(encoded);
 
     expect(encoded, {'type': 'rectangular'});
 
@@ -6605,8 +7287,8 @@ void main() {
 
     entry = const RoundedRectSliderTrackShape();
 
-    encoded = ThemeEncoder.encodeSliderTrackShape(entry);
-    decoded = ThemeDecoder.decodeSliderTrackShape(encoded);
+    encoded = ThemeEncoder.instance.encodeSliderTrackShape(entry);
+    decoded = ThemeDecoder.instance.decodeSliderTrackShape(encoded);
 
     expect(encoded, {'type': 'rounded'});
 
@@ -6614,36 +7296,36 @@ void main() {
   });
 
   test('SnackBarBehavior', () {
-    expect(ThemeDecoder.decodeSnackBarBehavior(null), null);
-    expect(ThemeEncoder.encodeSnackBarBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeSnackBarBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeSnackBarBehavior(null), null);
 
     expect(
-      ThemeDecoder.decodeSnackBarBehavior(SnackBarBehavior.fixed),
+      ThemeDecoder.instance.decodeSnackBarBehavior(SnackBarBehavior.fixed),
       SnackBarBehavior.fixed,
     );
 
     expect(
-      ThemeDecoder.decodeSnackBarBehavior('fixed'),
+      ThemeDecoder.instance.decodeSnackBarBehavior('fixed'),
       SnackBarBehavior.fixed,
     );
     expect(
-      ThemeDecoder.decodeSnackBarBehavior('floating'),
+      ThemeDecoder.instance.decodeSnackBarBehavior('floating'),
       SnackBarBehavior.floating,
     );
 
     expect(
-      ThemeEncoder.encodeSnackBarBehavior(SnackBarBehavior.fixed),
+      ThemeEncoder.instance.encodeSnackBarBehavior(SnackBarBehavior.fixed),
       'fixed',
     );
     expect(
-      ThemeEncoder.encodeSnackBarBehavior(SnackBarBehavior.floating),
+      ThemeEncoder.instance.encodeSnackBarBehavior(SnackBarBehavior.floating),
       'floating',
     );
   });
 
   test('SnackBarThemeData', () {
-    expect(ThemeDecoder.decodeSnackBarThemeData(null), null);
-    expect(ThemeEncoder.encodeSnackBarThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeSnackBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeSnackBarThemeData(null), null);
 
     const entry = SnackBarThemeData(
       actionTextColor: Color(0xff111111),
@@ -6657,10 +7339,10 @@ void main() {
       width: 12.0,
     );
 
-    expect(ThemeDecoder.decodeSnackBarThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeSnackBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeSnackBarThemeData(entry);
-    final decoded = ThemeDecoder.decodeSnackBarThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeSnackBarThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeSnackBarThemeData(encoded);
 
     expect(encoded, {
       'actionTextColor': '#ff111111',
@@ -6693,93 +7375,105 @@ void main() {
   });
 
   test('SmartDashesType', () {
-    expect(ThemeDecoder.decodeSmartDashesType(null), null);
-    expect(ThemeEncoder.encodeSmartDashesType(null), null);
+    expect(ThemeDecoder.instance.decodeSmartDashesType(null), null);
+    expect(ThemeEncoder.instance.encodeSmartDashesType(null), null);
 
     expect(
-      ThemeDecoder.decodeSmartDashesType(SmartDashesType.disabled),
+      ThemeDecoder.instance.decodeSmartDashesType(SmartDashesType.disabled),
       SmartDashesType.disabled,
     );
 
     expect(
-      ThemeDecoder.decodeSmartDashesType('disabled'),
+      ThemeDecoder.instance.decodeSmartDashesType('disabled'),
       SmartDashesType.disabled,
     );
     expect(
-      ThemeDecoder.decodeSmartDashesType('enabled'),
+      ThemeDecoder.instance.decodeSmartDashesType('enabled'),
       SmartDashesType.enabled,
     );
 
     expect(
-      ThemeEncoder.encodeSmartDashesType(SmartDashesType.disabled),
+      ThemeEncoder.instance.encodeSmartDashesType(SmartDashesType.disabled),
       'disabled',
     );
     expect(
-      ThemeEncoder.encodeSmartDashesType(SmartDashesType.enabled),
+      ThemeEncoder.instance.encodeSmartDashesType(SmartDashesType.enabled),
       'enabled',
     );
   });
 
   test('SmartQuotesType', () {
-    expect(ThemeDecoder.decodeSmartQuotesType(null), null);
-    expect(ThemeEncoder.encodeSmartQuotesType(null), null);
+    expect(ThemeDecoder.instance.decodeSmartQuotesType(null), null);
+    expect(ThemeEncoder.instance.encodeSmartQuotesType(null), null);
 
     expect(
-      ThemeDecoder.decodeSmartQuotesType(SmartQuotesType.disabled),
+      ThemeDecoder.instance.decodeSmartQuotesType(SmartQuotesType.disabled),
       SmartQuotesType.disabled,
     );
 
     expect(
-      ThemeDecoder.decodeSmartQuotesType('disabled'),
+      ThemeDecoder.instance.decodeSmartQuotesType('disabled'),
       SmartQuotesType.disabled,
     );
     expect(
-      ThemeDecoder.decodeSmartQuotesType('enabled'),
+      ThemeDecoder.instance.decodeSmartQuotesType('enabled'),
       SmartQuotesType.enabled,
     );
 
     expect(
-      ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.disabled),
+      ThemeEncoder.instance.encodeSmartQuotesType(SmartQuotesType.disabled),
       'disabled',
     );
     expect(
-      ThemeEncoder.encodeSmartQuotesType(SmartQuotesType.enabled),
+      ThemeEncoder.instance.encodeSmartQuotesType(SmartQuotesType.enabled),
       'enabled',
     );
   });
   test('StackFit', () {
-    expect(ThemeDecoder.decodeStackFit(null), null);
-    expect(ThemeEncoder.encodeStackFit(null), null);
+    expect(ThemeDecoder.instance.decodeStackFit(null), null);
+    expect(ThemeEncoder.instance.encodeStackFit(null), null);
 
-    expect(ThemeDecoder.decodeStackFit(StackFit.expand), StackFit.expand);
+    expect(
+      ThemeDecoder.instance.decodeStackFit(StackFit.expand),
+      StackFit.expand,
+    );
 
-    expect(ThemeDecoder.decodeStackFit('expand'), StackFit.expand);
-    expect(ThemeDecoder.decodeStackFit('loose'), StackFit.loose);
-    expect(ThemeDecoder.decodeStackFit('passthrough'), StackFit.passthrough);
+    expect(ThemeDecoder.instance.decodeStackFit('expand'), StackFit.expand);
+    expect(ThemeDecoder.instance.decodeStackFit('loose'), StackFit.loose);
+    expect(
+      ThemeDecoder.instance.decodeStackFit('passthrough'),
+      StackFit.passthrough,
+    );
 
-    expect(ThemeEncoder.encodeStackFit(StackFit.expand), 'expand');
-    expect(ThemeEncoder.encodeStackFit(StackFit.loose), 'loose');
-    expect(ThemeEncoder.encodeStackFit(StackFit.passthrough), 'passthrough');
+    expect(ThemeEncoder.instance.encodeStackFit(StackFit.expand), 'expand');
+    expect(ThemeEncoder.instance.encodeStackFit(StackFit.loose), 'loose');
+    expect(
+      ThemeEncoder.instance.encodeStackFit(StackFit.passthrough),
+      'passthrough',
+    );
   });
 
   test('StrokeCap', () {
-    expect(ThemeDecoder.decodeStrokeCap(null), null);
-    expect(ThemeEncoder.encodeStrokeCap(null), null);
+    expect(ThemeDecoder.instance.decodeStrokeCap(null), null);
+    expect(ThemeEncoder.instance.encodeStrokeCap(null), null);
 
-    expect(ThemeDecoder.decodeStrokeCap(StrokeCap.butt), StrokeCap.butt);
+    expect(
+      ThemeDecoder.instance.decodeStrokeCap(StrokeCap.butt),
+      StrokeCap.butt,
+    );
 
-    expect(ThemeDecoder.decodeStrokeCap('butt'), StrokeCap.butt);
-    expect(ThemeDecoder.decodeStrokeCap('round'), StrokeCap.round);
-    expect(ThemeDecoder.decodeStrokeCap('square'), StrokeCap.square);
+    expect(ThemeDecoder.instance.decodeStrokeCap('butt'), StrokeCap.butt);
+    expect(ThemeDecoder.instance.decodeStrokeCap('round'), StrokeCap.round);
+    expect(ThemeDecoder.instance.decodeStrokeCap('square'), StrokeCap.square);
 
-    expect(ThemeEncoder.encodeStrokeCap(StrokeCap.butt), 'butt');
-    expect(ThemeEncoder.encodeStrokeCap(StrokeCap.round), 'round');
-    expect(ThemeEncoder.encodeStrokeCap(StrokeCap.square), 'square');
+    expect(ThemeEncoder.instance.encodeStrokeCap(StrokeCap.butt), 'butt');
+    expect(ThemeEncoder.instance.encodeStrokeCap(StrokeCap.round), 'round');
+    expect(ThemeEncoder.instance.encodeStrokeCap(StrokeCap.square), 'square');
   });
 
   test('StrutStyle', () {
-    expect(ThemeDecoder.decodeStrutStyle(null), null);
-    expect(ThemeEncoder.encodeStrutStyle(null), null);
+    expect(ThemeDecoder.instance.decodeStrutStyle(null), null);
+    expect(ThemeEncoder.instance.encodeStrutStyle(null), null);
 
     const entry = StrutStyle(
       fontFamily: 'foo',
@@ -6794,10 +7488,10 @@ void main() {
       package: 'bar',
     );
 
-    expect(ThemeDecoder.decodeStrutStyle(entry), entry);
+    expect(ThemeDecoder.instance.decodeStrutStyle(entry), entry);
 
-    final encoded = ThemeEncoder.encodeStrutStyle(entry);
-    final decoded = ThemeDecoder.decodeStrutStyle(encoded);
+    final encoded = ThemeEncoder.instance.encodeStrutStyle(entry);
+    final decoded = ThemeDecoder.instance.decodeStrutStyle(encoded);
 
     expect(encoded, {
       'fontFamily': 'packages/bar/foo',
@@ -6815,12 +7509,12 @@ void main() {
       'leadingDistribution': 'even',
     });
 
-    expect(ThemeEncoder.encodeStrutStyle(decoded), encoded);
+    expect(ThemeEncoder.instance.encodeStrutStyle(decoded), encoded);
   });
 
   test('SwitchThemeData', () {
-    expect(ThemeDecoder.decodeSwitchThemeData(null), null);
-    expect(ThemeEncoder.encodeSwitchThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeSwitchThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeSwitchThemeData(null), null);
 
     final entry = SwitchThemeData(
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -6905,10 +7599,10 @@ void main() {
       },
     };
 
-    expect(ThemeDecoder.decodeSwitchThemeData(entry), entry);
-    expect(ThemeEncoder.encodeSwitchThemeData(entry), encoded);
+    expect(ThemeDecoder.instance.decodeSwitchThemeData(entry), entry);
+    expect(ThemeEncoder.instance.encodeSwitchThemeData(entry), encoded);
 
-    final theme = ThemeDecoder.decodeSwitchThemeData({
+    final theme = ThemeDecoder.instance.decodeSwitchThemeData({
       'thumbColor': {
         'disabled': '#ff9e9e9e',
         'dragged': '#fff44336',
@@ -6928,34 +7622,40 @@ void main() {
   });
 
   test('SystemUiOverlayStyle', () {
-    expect(ThemeDecoder.decodeSystemUiOverlayStyle(null), null);
-    expect(ThemeEncoder.encodeSystemUiOverlayStyle(null), null);
+    expect(ThemeDecoder.instance.decodeSystemUiOverlayStyle(null), null);
+    expect(ThemeEncoder.instance.encodeSystemUiOverlayStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeSystemUiOverlayStyle(SystemUiOverlayStyle.dark),
+      ThemeDecoder.instance.decodeSystemUiOverlayStyle(
+        SystemUiOverlayStyle.dark,
+      ),
       SystemUiOverlayStyle.dark,
     );
 
     expect(
-      ThemeDecoder.decodeSystemUiOverlayStyle('dark'),
+      ThemeDecoder.instance.decodeSystemUiOverlayStyle('dark'),
       SystemUiOverlayStyle.dark,
     );
     expect(
-      ThemeDecoder.decodeSystemUiOverlayStyle('light'),
+      ThemeDecoder.instance.decodeSystemUiOverlayStyle('light'),
       SystemUiOverlayStyle.light,
     );
 
     expect(
-      ThemeEncoder.encodeSystemUiOverlayStyle(SystemUiOverlayStyle.dark),
+      ThemeEncoder.instance.encodeSystemUiOverlayStyle(
+        SystemUiOverlayStyle.dark,
+      ),
       'dark',
     );
     expect(
-      ThemeEncoder.encodeSystemUiOverlayStyle(SystemUiOverlayStyle.light),
+      ThemeEncoder.instance.encodeSystemUiOverlayStyle(
+        SystemUiOverlayStyle.light,
+      ),
       'light',
     );
 
     expect(
-      ThemeDecoder.decodeSystemUiOverlayStyle({
+      ThemeDecoder.instance.decodeSystemUiOverlayStyle({
         'statusBarBrightness': 'light',
         'statusBarColor': '#ff000000',
         'statusBarIconBrightness': 'dark',
@@ -6978,7 +7678,7 @@ void main() {
     );
 
     expect(
-      ThemeEncoder.encodeSystemUiOverlayStyle(
+      ThemeEncoder.instance.encodeSystemUiOverlayStyle(
         const SystemUiOverlayStyle(
           statusBarBrightness: Brightness.light,
           statusBarColor: Color(0xff000000),
@@ -7004,65 +7704,81 @@ void main() {
   });
 
   test('TabAlignment', () {
-    expect(ThemeDecoder.decodeTabAlignment(null), null);
-    expect(ThemeEncoder.encodeTabAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeTabAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeTabAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeTabAlignment(TabAlignment.center),
+      ThemeDecoder.instance.decodeTabAlignment(TabAlignment.center),
       TabAlignment.center,
     );
 
-    expect(ThemeDecoder.decodeTabAlignment('center'), TabAlignment.center);
-    expect(ThemeDecoder.decodeTabAlignment('fill'), TabAlignment.fill);
-    expect(ThemeDecoder.decodeTabAlignment('start'), TabAlignment.start);
     expect(
-      ThemeDecoder.decodeTabAlignment('startOffset'),
+      ThemeDecoder.instance.decodeTabAlignment('center'),
+      TabAlignment.center,
+    );
+    expect(ThemeDecoder.instance.decodeTabAlignment('fill'), TabAlignment.fill);
+    expect(
+      ThemeDecoder.instance.decodeTabAlignment('start'),
+      TabAlignment.start,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTabAlignment('startOffset'),
       TabAlignment.startOffset,
     );
 
-    expect(ThemeEncoder.encodeTabAlignment(TabAlignment.center), 'center');
-    expect(ThemeEncoder.encodeTabAlignment(TabAlignment.fill), 'fill');
-    expect(ThemeEncoder.encodeTabAlignment(TabAlignment.start), 'start');
     expect(
-      ThemeEncoder.encodeTabAlignment(TabAlignment.startOffset),
+      ThemeEncoder.instance.encodeTabAlignment(TabAlignment.center),
+      'center',
+    );
+    expect(ThemeEncoder.instance.encodeTabAlignment(TabAlignment.fill), 'fill');
+    expect(
+      ThemeEncoder.instance.encodeTabAlignment(TabAlignment.start),
+      'start',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTabAlignment(TabAlignment.startOffset),
       'startOffset',
     );
   });
 
   test('TabBarIndicatorSize', () {
-    expect(ThemeDecoder.decodeTabBarIndicatorSize(null), null);
-    expect(ThemeEncoder.encodeTabBarIndicatorSize(null), null);
+    expect(ThemeDecoder.instance.decodeTabBarIndicatorSize(null), null);
+    expect(ThemeEncoder.instance.encodeTabBarIndicatorSize(null), null);
 
     expect(
-      ThemeDecoder.decodeTabBarIndicatorSize(TabBarIndicatorSize.label),
+      ThemeDecoder.instance.decodeTabBarIndicatorSize(
+        TabBarIndicatorSize.label,
+      ),
       TabBarIndicatorSize.label,
     );
 
     expect(
-      ThemeDecoder.decodeTabBarIndicatorSize('label'),
+      ThemeDecoder.instance.decodeTabBarIndicatorSize('label'),
       TabBarIndicatorSize.label,
     );
     expect(
-      ThemeDecoder.decodeTabBarIndicatorSize('tab'),
+      ThemeDecoder.instance.decodeTabBarIndicatorSize('tab'),
       TabBarIndicatorSize.tab,
     );
 
     expect(
-      ThemeEncoder.encodeTabBarIndicatorSize(TabBarIndicatorSize.label),
+      ThemeEncoder.instance.encodeTabBarIndicatorSize(
+        TabBarIndicatorSize.label,
+      ),
       'label',
     );
     expect(
-      ThemeEncoder.encodeTabBarIndicatorSize(TabBarIndicatorSize.tab),
+      ThemeEncoder.instance.encodeTabBarIndicatorSize(TabBarIndicatorSize.tab),
       'tab',
     );
   });
 
   test('TabBarThemeData', () {
-    expect(ThemeDecoder.decodeTabBarThemeData(null), null);
-    expect(ThemeEncoder.encodeTabBarThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeTabBarThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeTabBarThemeData(null), null);
 
     try {
-      ThemeDecoder.decodeTabBarThemeData({'indicator': 'foo'});
+      ThemeDecoder.instance.decodeTabBarThemeData({'indicator': 'foo'});
       fail('exception expected');
     } catch (e) {
       // pass
@@ -7079,10 +7795,10 @@ void main() {
       unselectedLabelStyle: TextStyle(color: Color(0xff333333)),
     );
 
-    expect(ThemeDecoder.decodeTabBarThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeTabBarThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTabBarThemeData(entry);
-    final decoded = ThemeDecoder.decodeTabBarThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeTabBarThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeTabBarThemeData(encoded);
 
     expect(encoded, {
       'indicatorSize': 'label',
@@ -7105,36 +7821,42 @@ void main() {
   });
 
   test('TabIndicatorAnimation', () {
-    expect(ThemeDecoder.decodeTabIndicatorAnimation(null), null);
-    expect(ThemeEncoder.encodeTabIndicatorAnimation(null), null);
+    expect(ThemeDecoder.instance.decodeTabIndicatorAnimation(null), null);
+    expect(ThemeEncoder.instance.encodeTabIndicatorAnimation(null), null);
 
     expect(
-      ThemeDecoder.decodeTabIndicatorAnimation(TabIndicatorAnimation.elastic),
+      ThemeDecoder.instance.decodeTabIndicatorAnimation(
+        TabIndicatorAnimation.elastic,
+      ),
       TabIndicatorAnimation.elastic,
     );
 
     expect(
-      ThemeDecoder.decodeTabIndicatorAnimation('elastic'),
+      ThemeDecoder.instance.decodeTabIndicatorAnimation('elastic'),
       TabIndicatorAnimation.elastic,
     );
     expect(
-      ThemeDecoder.decodeTabIndicatorAnimation('linear'),
+      ThemeDecoder.instance.decodeTabIndicatorAnimation('linear'),
       TabIndicatorAnimation.linear,
     );
 
     expect(
-      ThemeEncoder.encodeTabIndicatorAnimation(TabIndicatorAnimation.elastic),
+      ThemeEncoder.instance.encodeTabIndicatorAnimation(
+        TabIndicatorAnimation.elastic,
+      ),
       'elastic',
     );
     expect(
-      ThemeEncoder.encodeTabIndicatorAnimation(TabIndicatorAnimation.linear),
+      ThemeEncoder.instance.encodeTabIndicatorAnimation(
+        TabIndicatorAnimation.linear,
+      ),
       'linear',
     );
   });
 
   test('TableBorder', () {
-    expect(ThemeDecoder.decodeTableBorder(null), null);
-    expect(ThemeEncoder.encodeTableBorder(null), null);
+    expect(ThemeDecoder.instance.decodeTableBorder(null), null);
+    expect(ThemeEncoder.instance.encodeTableBorder(null), null);
 
     final entry = TableBorder(
       borderRadius: BorderRadius.circular(1.0),
@@ -7170,10 +7892,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeTableBorder(entry), entry);
+    expect(ThemeDecoder.instance.decodeTableBorder(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTableBorder(entry);
-    final decoded = ThemeDecoder.decodeTableBorder(encoded);
+    final encoded = ThemeEncoder.instance.encodeTableBorder(entry);
+    final decoded = ThemeDecoder.instance.decodeTableBorder(encoded);
 
     expect(encoded, {
       'borderRadius': {
@@ -7225,43 +7947,43 @@ void main() {
   });
 
   test('TableColumnWidth', () {
-    expect(ThemeDecoder.decodeTableColumnWidth(null), null);
-    expect(ThemeEncoder.encodeTableColumnWidth(null), null);
+    expect(ThemeDecoder.instance.decodeTableColumnWidth(null), null);
+    expect(ThemeEncoder.instance.encodeTableColumnWidth(null), null);
 
     const entry = FlexColumnWidth();
 
-    expect(ThemeDecoder.decodeTableColumnWidth(entry), entry);
+    expect(ThemeDecoder.instance.decodeTableColumnWidth(entry), entry);
 
     expect(
-      ThemeDecoder.decodeTableColumnWidth({
+      ThemeDecoder.instance.decodeTableColumnWidth({
         'type': 'fixed',
         'value': 1.0,
       }).toString(),
       const FixedColumnWidth(1.0).toString(),
     );
     expect(
-      ThemeDecoder.decodeTableColumnWidth({
+      ThemeDecoder.instance.decodeTableColumnWidth({
         'type': 'flex',
         'value': 2.0,
       }).toString(),
       const FlexColumnWidth(2.0).toString(),
     );
     expect(
-      ThemeDecoder.decodeTableColumnWidth({
+      ThemeDecoder.instance.decodeTableColumnWidth({
         'type': 'fraction',
         'value': 3.0,
       }).toString(),
       const FractionColumnWidth(3.0).toString(),
     );
     expect(
-      ThemeDecoder.decodeTableColumnWidth({
+      ThemeDecoder.instance.decodeTableColumnWidth({
         'type': 'intrinsic',
         'value': 4.0,
       }).toString(),
       const IntrinsicColumnWidth(flex: 4.0).toString(),
     );
     expect(
-      ThemeDecoder.decodeTableColumnWidth({
+      ThemeDecoder.instance.decodeTableColumnWidth({
         'a': {'type': 'fixed', 'value': 5.0},
         'b': {'type': 'fixed', 'value': 6.0},
         'type': 'max',
@@ -7272,7 +7994,7 @@ void main() {
       ).toString(),
     );
     expect(
-      ThemeDecoder.decodeTableColumnWidth({
+      ThemeDecoder.instance.decodeTableColumnWidth({
         'a': {'type': 'fixed', 'value': 5.0},
         'b': {'type': 'fixed', 'value': 6.0},
         'type': 'min',
@@ -7283,26 +8005,28 @@ void main() {
       ).toString(),
     );
 
-    expect(ThemeEncoder.encodeTableColumnWidth(const FixedColumnWidth(1.0)), {
-      'type': 'fixed',
-      'value': 1.0,
-    });
-    expect(ThemeEncoder.encodeTableColumnWidth(const FlexColumnWidth(2.0)), {
-      'type': 'flex',
-      'value': 2.0,
-    });
     expect(
-      ThemeEncoder.encodeTableColumnWidth(const FractionColumnWidth(3.0)),
+      ThemeEncoder.instance.encodeTableColumnWidth(const FixedColumnWidth(1.0)),
+      {'type': 'fixed', 'value': 1.0},
+    );
+    expect(
+      ThemeEncoder.instance.encodeTableColumnWidth(const FlexColumnWidth(2.0)),
+      {'type': 'flex', 'value': 2.0},
+    );
+    expect(
+      ThemeEncoder.instance.encodeTableColumnWidth(
+        const FractionColumnWidth(3.0),
+      ),
       {'type': 'fraction', 'value': 3.0},
     );
     expect(
-      ThemeEncoder.encodeTableColumnWidth(
+      ThemeEncoder.instance.encodeTableColumnWidth(
         const IntrinsicColumnWidth(flex: 4.0),
       ),
       {'type': 'intrinsic', 'value': 4.0},
     );
     expect(
-      ThemeEncoder.encodeTableColumnWidth(
+      ThemeEncoder.instance.encodeTableColumnWidth(
         const MaxColumnWidth(FixedColumnWidth(5.0), FixedColumnWidth(6.0)),
       ),
       {
@@ -7312,7 +8036,7 @@ void main() {
       },
     );
     expect(
-      ThemeEncoder.encodeTableColumnWidth(
+      ThemeEncoder.instance.encodeTableColumnWidth(
         const MinColumnWidth(FixedColumnWidth(5.0), FixedColumnWidth(6.0)),
       ),
       {
@@ -7324,129 +8048,156 @@ void main() {
   });
 
   test('TargetPlatform', () {
-    expect(ThemeDecoder.decodeTargetPlatform(null), null);
-    expect(ThemeEncoder.encodeTargetPlatform(null), null);
+    expect(ThemeDecoder.instance.decodeTargetPlatform(null), null);
+    expect(ThemeEncoder.instance.encodeTargetPlatform(null), null);
 
     expect(
-      ThemeDecoder.decodeTargetPlatform(TargetPlatform.android),
+      ThemeDecoder.instance.decodeTargetPlatform(TargetPlatform.android),
       TargetPlatform.android,
     );
 
     expect(
-      ThemeDecoder.decodeTargetPlatform('android'),
+      ThemeDecoder.instance.decodeTargetPlatform('android'),
       TargetPlatform.android,
     );
     expect(
-      ThemeDecoder.decodeTargetPlatform('fuchsia'),
+      ThemeDecoder.instance.decodeTargetPlatform('fuchsia'),
       TargetPlatform.fuchsia,
     );
-    expect(ThemeDecoder.decodeTargetPlatform('iOS'), TargetPlatform.iOS);
-    expect(ThemeDecoder.decodeTargetPlatform('linux'), TargetPlatform.linux);
-    expect(ThemeDecoder.decodeTargetPlatform('macOS'), TargetPlatform.macOS);
     expect(
-      ThemeDecoder.decodeTargetPlatform('windows'),
+      ThemeDecoder.instance.decodeTargetPlatform('iOS'),
+      TargetPlatform.iOS,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTargetPlatform('linux'),
+      TargetPlatform.linux,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTargetPlatform('macOS'),
+      TargetPlatform.macOS,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTargetPlatform('windows'),
       TargetPlatform.windows,
     );
 
     expect(
-      ThemeEncoder.encodeTargetPlatform(TargetPlatform.android),
+      ThemeEncoder.instance.encodeTargetPlatform(TargetPlatform.android),
       'android',
     );
     expect(
-      ThemeEncoder.encodeTargetPlatform(TargetPlatform.fuchsia),
+      ThemeEncoder.instance.encodeTargetPlatform(TargetPlatform.fuchsia),
       'fuchsia',
     );
-    expect(ThemeEncoder.encodeTargetPlatform(TargetPlatform.iOS), 'iOS');
-    expect(ThemeEncoder.encodeTargetPlatform(TargetPlatform.linux), 'linux');
-    expect(ThemeEncoder.encodeTargetPlatform(TargetPlatform.macOS), 'macOS');
     expect(
-      ThemeEncoder.encodeTargetPlatform(TargetPlatform.windows),
+      ThemeEncoder.instance.encodeTargetPlatform(TargetPlatform.iOS),
+      'iOS',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTargetPlatform(TargetPlatform.linux),
+      'linux',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTargetPlatform(TargetPlatform.macOS),
+      'macOS',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTargetPlatform(TargetPlatform.windows),
       'windows',
     );
   });
 
   test('TextAlign', () {
-    expect(ThemeDecoder.decodeTextAlign(null), null);
-    expect(ThemeEncoder.encodeTextAlign(null), null);
+    expect(ThemeDecoder.instance.decodeTextAlign(null), null);
+    expect(ThemeEncoder.instance.encodeTextAlign(null), null);
 
-    expect(ThemeDecoder.decodeTextAlign(TextAlign.center), TextAlign.center);
+    expect(
+      ThemeDecoder.instance.decodeTextAlign(TextAlign.center),
+      TextAlign.center,
+    );
 
-    expect(ThemeDecoder.decodeTextAlign('center'), TextAlign.center);
-    expect(ThemeDecoder.decodeTextAlign('end'), TextAlign.end);
-    expect(ThemeDecoder.decodeTextAlign('justify'), TextAlign.justify);
-    expect(ThemeDecoder.decodeTextAlign('left'), TextAlign.left);
-    expect(ThemeDecoder.decodeTextAlign('right'), TextAlign.right);
-    expect(ThemeDecoder.decodeTextAlign('start'), TextAlign.start);
+    expect(ThemeDecoder.instance.decodeTextAlign('center'), TextAlign.center);
+    expect(ThemeDecoder.instance.decodeTextAlign('end'), TextAlign.end);
+    expect(ThemeDecoder.instance.decodeTextAlign('justify'), TextAlign.justify);
+    expect(ThemeDecoder.instance.decodeTextAlign('left'), TextAlign.left);
+    expect(ThemeDecoder.instance.decodeTextAlign('right'), TextAlign.right);
+    expect(ThemeDecoder.instance.decodeTextAlign('start'), TextAlign.start);
 
-    expect(ThemeEncoder.encodeTextAlign(TextAlign.center), 'center');
-    expect(ThemeEncoder.encodeTextAlign(TextAlign.end), 'end');
-    expect(ThemeEncoder.encodeTextAlign(TextAlign.justify), 'justify');
-    expect(ThemeEncoder.encodeTextAlign(TextAlign.left), 'left');
-    expect(ThemeEncoder.encodeTextAlign(TextAlign.right), 'right');
-    expect(ThemeEncoder.encodeTextAlign(TextAlign.start), 'start');
+    expect(ThemeEncoder.instance.encodeTextAlign(TextAlign.center), 'center');
+    expect(ThemeEncoder.instance.encodeTextAlign(TextAlign.end), 'end');
+    expect(ThemeEncoder.instance.encodeTextAlign(TextAlign.justify), 'justify');
+    expect(ThemeEncoder.instance.encodeTextAlign(TextAlign.left), 'left');
+    expect(ThemeEncoder.instance.encodeTextAlign(TextAlign.right), 'right');
+    expect(ThemeEncoder.instance.encodeTextAlign(TextAlign.start), 'start');
   });
 
   test('TextAlignVertical', () {
-    expect(ThemeDecoder.decodeTextAlignVertical(null), null);
-    expect(ThemeEncoder.encodeTextAlignVertical(null), null);
+    expect(ThemeDecoder.instance.decodeTextAlignVertical(null), null);
+    expect(ThemeEncoder.instance.encodeTextAlignVertical(null), null);
 
     expect(
-      ThemeDecoder.decodeTextAlignVertical(TextAlignVertical.bottom),
+      ThemeDecoder.instance.decodeTextAlignVertical(TextAlignVertical.bottom),
       TextAlignVertical.bottom,
     );
 
     expect(
-      ThemeDecoder.decodeTextAlignVertical('bottom'),
+      ThemeDecoder.instance.decodeTextAlignVertical('bottom'),
       TextAlignVertical.bottom,
     );
     expect(
-      ThemeDecoder.decodeTextAlignVertical('center'),
+      ThemeDecoder.instance.decodeTextAlignVertical('center'),
       TextAlignVertical.center,
     );
-    expect(ThemeDecoder.decodeTextAlignVertical('top'), TextAlignVertical.top);
+    expect(
+      ThemeDecoder.instance.decodeTextAlignVertical('top'),
+      TextAlignVertical.top,
+    );
 
     expect(
-      ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.bottom),
+      ThemeEncoder.instance.encodeTextAlignVertical(TextAlignVertical.bottom),
       'bottom',
     );
     expect(
-      ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.center),
+      ThemeEncoder.instance.encodeTextAlignVertical(TextAlignVertical.center),
       'center',
     );
-    expect(ThemeEncoder.encodeTextAlignVertical(TextAlignVertical.top), 'top');
+    expect(
+      ThemeEncoder.instance.encodeTextAlignVertical(TextAlignVertical.top),
+      'top',
+    );
   });
 
   test('TextBaseline', () {
-    expect(ThemeDecoder.decodeTextBaseline(null), null);
-    expect(ThemeEncoder.encodeTextBaseline(null), null);
+    expect(ThemeDecoder.instance.decodeTextBaseline(null), null);
+    expect(ThemeEncoder.instance.encodeTextBaseline(null), null);
 
     expect(
-      ThemeDecoder.decodeTextBaseline(TextBaseline.alphabetic),
+      ThemeDecoder.instance.decodeTextBaseline(TextBaseline.alphabetic),
       TextBaseline.alphabetic,
     );
 
     expect(
-      ThemeDecoder.decodeTextBaseline('alphabetic'),
+      ThemeDecoder.instance.decodeTextBaseline('alphabetic'),
       TextBaseline.alphabetic,
     );
     expect(
-      ThemeDecoder.decodeTextBaseline('ideographic'),
+      ThemeDecoder.instance.decodeTextBaseline('ideographic'),
       TextBaseline.ideographic,
     );
 
     expect(
-      ThemeEncoder.encodeTextBaseline(TextBaseline.alphabetic),
+      ThemeEncoder.instance.encodeTextBaseline(TextBaseline.alphabetic),
       'alphabetic',
     );
     expect(
-      ThemeEncoder.encodeTextBaseline(TextBaseline.ideographic),
+      ThemeEncoder.instance.encodeTextBaseline(TextBaseline.ideographic),
       'ideographic',
     );
   });
 
   test('TextButtonThemeData', () {
-    expect(ThemeDecoder.decodeTextButtonThemeData(null), null);
-    expect(ThemeEncoder.encodeTextButtonThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeTextButtonThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeTextButtonThemeData(null), null);
 
     final entry = TextButtonThemeData(
       style: ButtonStyle(
@@ -7454,10 +8205,10 @@ void main() {
       ),
     );
 
-    expect(ThemeDecoder.decodeTextButtonThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeTextButtonThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTextButtonThemeData(entry);
-    final decoded = ThemeDecoder.decodeTextButtonThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeTextButtonThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeTextButtonThemeData(encoded);
 
     expect(encoded, {
       'style': {'backgroundColor': _materializeState('#ff222222')},
@@ -7481,158 +8232,180 @@ void main() {
   });
 
   test('TextCapitalization', () {
-    expect(ThemeDecoder.decodeTextCapitalization(null), null);
-    expect(ThemeEncoder.encodeTextCapitalization(null), null);
+    expect(ThemeDecoder.instance.decodeTextCapitalization(null), null);
+    expect(ThemeEncoder.instance.encodeTextCapitalization(null), null);
 
     expect(
-      ThemeDecoder.decodeTextCapitalization(TextCapitalization.characters),
+      ThemeDecoder.instance.decodeTextCapitalization(
+        TextCapitalization.characters,
+      ),
       TextCapitalization.characters,
     );
 
     expect(
-      ThemeDecoder.decodeTextCapitalization('characters'),
+      ThemeDecoder.instance.decodeTextCapitalization('characters'),
       TextCapitalization.characters,
     );
     expect(
-      ThemeDecoder.decodeTextCapitalization('none'),
+      ThemeDecoder.instance.decodeTextCapitalization('none'),
       TextCapitalization.none,
     );
     expect(
-      ThemeDecoder.decodeTextCapitalization('sentences'),
+      ThemeDecoder.instance.decodeTextCapitalization('sentences'),
       TextCapitalization.sentences,
     );
     expect(
-      ThemeDecoder.decodeTextCapitalization('words'),
+      ThemeDecoder.instance.decodeTextCapitalization('words'),
       TextCapitalization.words,
     );
 
     expect(
-      ThemeEncoder.encodeTextCapitalization(TextCapitalization.characters),
+      ThemeEncoder.instance.encodeTextCapitalization(
+        TextCapitalization.characters,
+      ),
       'characters',
     );
     expect(
-      ThemeEncoder.encodeTextCapitalization(TextCapitalization.none),
+      ThemeEncoder.instance.encodeTextCapitalization(TextCapitalization.none),
       'none',
     );
     expect(
-      ThemeEncoder.encodeTextCapitalization(TextCapitalization.sentences),
+      ThemeEncoder.instance.encodeTextCapitalization(
+        TextCapitalization.sentences,
+      ),
       'sentences',
     );
     expect(
-      ThemeEncoder.encodeTextCapitalization(TextCapitalization.words),
+      ThemeEncoder.instance.encodeTextCapitalization(TextCapitalization.words),
       'words',
     );
   });
 
   test('TextDecoration', () {
-    expect(ThemeDecoder.decodeTextDecoration(null), null);
-    expect(ThemeEncoder.encodeTextDecoration(null), null);
+    expect(ThemeDecoder.instance.decodeTextDecoration(null), null);
+    expect(ThemeEncoder.instance.encodeTextDecoration(null), null);
 
     expect(
-      ThemeDecoder.decodeTextDecoration(TextDecoration.lineThrough),
+      ThemeDecoder.instance.decodeTextDecoration(TextDecoration.lineThrough),
       TextDecoration.lineThrough,
     );
 
     expect(
-      ThemeDecoder.decodeTextDecoration('lineThrough'),
+      ThemeDecoder.instance.decodeTextDecoration('lineThrough'),
       TextDecoration.lineThrough,
     );
-    expect(ThemeDecoder.decodeTextDecoration('none'), TextDecoration.none);
     expect(
-      ThemeDecoder.decodeTextDecoration('overline'),
+      ThemeDecoder.instance.decodeTextDecoration('none'),
+      TextDecoration.none,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextDecoration('overline'),
       TextDecoration.overline,
     );
     expect(
-      ThemeDecoder.decodeTextDecoration('underline'),
+      ThemeDecoder.instance.decodeTextDecoration('underline'),
       TextDecoration.underline,
     );
 
     expect(
-      ThemeEncoder.encodeTextDecoration(TextDecoration.lineThrough),
+      ThemeEncoder.instance.encodeTextDecoration(TextDecoration.lineThrough),
       'lineThrough',
     );
-    expect(ThemeEncoder.encodeTextDecoration(TextDecoration.none), 'none');
     expect(
-      ThemeEncoder.encodeTextDecoration(TextDecoration.overline),
+      ThemeEncoder.instance.encodeTextDecoration(TextDecoration.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextDecoration(TextDecoration.overline),
       'overline',
     );
     expect(
-      ThemeEncoder.encodeTextDecoration(TextDecoration.underline),
+      ThemeEncoder.instance.encodeTextDecoration(TextDecoration.underline),
       'underline',
     );
   });
 
   test('TextDecorationStyle', () {
-    expect(ThemeDecoder.decodeTextDecorationStyle(null), null);
-    expect(ThemeEncoder.encodeTextDecorationStyle(null), null);
+    expect(ThemeDecoder.instance.decodeTextDecorationStyle(null), null);
+    expect(ThemeEncoder.instance.encodeTextDecorationStyle(null), null);
 
     expect(
-      ThemeDecoder.decodeTextDecorationStyle(TextDecorationStyle.dashed),
+      ThemeDecoder.instance.decodeTextDecorationStyle(
+        TextDecorationStyle.dashed,
+      ),
       TextDecorationStyle.dashed,
     );
 
     expect(
-      ThemeDecoder.decodeTextDecorationStyle('dashed'),
+      ThemeDecoder.instance.decodeTextDecorationStyle('dashed'),
       TextDecorationStyle.dashed,
     );
     expect(
-      ThemeDecoder.decodeTextDecorationStyle('dotted'),
+      ThemeDecoder.instance.decodeTextDecorationStyle('dotted'),
       TextDecorationStyle.dotted,
     );
     expect(
-      ThemeDecoder.decodeTextDecorationStyle('double'),
+      ThemeDecoder.instance.decodeTextDecorationStyle('double'),
       TextDecorationStyle.double,
     );
     expect(
-      ThemeDecoder.decodeTextDecorationStyle('solid'),
+      ThemeDecoder.instance.decodeTextDecorationStyle('solid'),
       TextDecorationStyle.solid,
     );
     expect(
-      ThemeDecoder.decodeTextDecorationStyle('wavy'),
+      ThemeDecoder.instance.decodeTextDecorationStyle('wavy'),
       TextDecorationStyle.wavy,
     );
 
     expect(
-      ThemeEncoder.encodeTextDecorationStyle(TextDecorationStyle.dashed),
+      ThemeEncoder.instance.encodeTextDecorationStyle(
+        TextDecorationStyle.dashed,
+      ),
       'dashed',
     );
     expect(
-      ThemeEncoder.encodeTextDecorationStyle(TextDecorationStyle.dotted),
+      ThemeEncoder.instance.encodeTextDecorationStyle(
+        TextDecorationStyle.dotted,
+      ),
       'dotted',
     );
     expect(
-      ThemeEncoder.encodeTextDecorationStyle(TextDecorationStyle.double),
+      ThemeEncoder.instance.encodeTextDecorationStyle(
+        TextDecorationStyle.double,
+      ),
       'double',
     );
     expect(
-      ThemeEncoder.encodeTextDecorationStyle(TextDecorationStyle.solid),
+      ThemeEncoder.instance.encodeTextDecorationStyle(
+        TextDecorationStyle.solid,
+      ),
       'solid',
     );
     expect(
-      ThemeEncoder.encodeTextDecorationStyle(TextDecorationStyle.wavy),
+      ThemeEncoder.instance.encodeTextDecorationStyle(TextDecorationStyle.wavy),
       'wavy',
     );
   });
 
   test('TextDirection', () {
-    expect(ThemeDecoder.decodeTextDirection(null), null);
-    expect(ThemeEncoder.encodeTextDirection(null), null);
+    expect(ThemeDecoder.instance.decodeTextDirection(null), null);
+    expect(ThemeEncoder.instance.encodeTextDirection(null), null);
 
     expect(
-      ThemeDecoder.decodeTextDirection(TextDirection.ltr),
+      ThemeDecoder.instance.decodeTextDirection(TextDirection.ltr),
       TextDirection.ltr,
     );
 
-    expect(ThemeDecoder.decodeTextDirection('ltr'), TextDirection.ltr);
-    expect(ThemeDecoder.decodeTextDirection('rtl'), TextDirection.rtl);
+    expect(ThemeDecoder.instance.decodeTextDirection('ltr'), TextDirection.ltr);
+    expect(ThemeDecoder.instance.decodeTextDirection('rtl'), TextDirection.rtl);
 
-    expect(ThemeEncoder.encodeTextDirection(TextDirection.ltr), 'ltr');
-    expect(ThemeEncoder.encodeTextDirection(TextDirection.rtl), 'rtl');
+    expect(ThemeEncoder.instance.encodeTextDirection(TextDirection.ltr), 'ltr');
+    expect(ThemeEncoder.instance.encodeTextDirection(TextDirection.rtl), 'rtl');
   });
 
   test('TextHeightBehavior', () {
-    expect(ThemeDecoder.decodeTextHeightBehavior(null), null);
-    expect(ThemeEncoder.encodeTextHeightBehavior(null), null);
+    expect(ThemeDecoder.instance.decodeTextHeightBehavior(null), null);
+    expect(ThemeEncoder.instance.encodeTextHeightBehavior(null), null);
 
     const entry = TextHeightBehavior(
       applyHeightToFirstAscent: true,
@@ -7640,10 +8413,10 @@ void main() {
       leadingDistribution: TextLeadingDistribution.even,
     );
 
-    expect(ThemeDecoder.decodeTextHeightBehavior(entry), entry);
+    expect(ThemeDecoder.instance.decodeTextHeightBehavior(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTextHeightBehavior(entry);
-    final decoded = ThemeDecoder.decodeTextHeightBehavior(encoded);
+    final encoded = ThemeEncoder.instance.encodeTextHeightBehavior(entry);
+    final decoded = ThemeDecoder.instance.decodeTextHeightBehavior(encoded);
 
     expect(encoded, {
       'applyHeightToFirstAscent': true,
@@ -7655,177 +8428,265 @@ void main() {
   });
 
   test('TextInputAction', () {
-    expect(ThemeDecoder.decodeTextInputAction(null), null);
-    expect(ThemeEncoder.encodeTextInputAction(null), null);
+    expect(ThemeDecoder.instance.decodeTextInputAction(null), null);
+    expect(ThemeEncoder.instance.encodeTextInputAction(null), null);
 
     expect(
-      ThemeDecoder.decodeTextInputAction(TextInputAction.continueAction),
+      ThemeDecoder.instance.decodeTextInputAction(
+        TextInputAction.continueAction,
+      ),
       TextInputAction.continueAction,
     );
 
     expect(
-      ThemeDecoder.decodeTextInputAction('continueAction'),
+      ThemeDecoder.instance.decodeTextInputAction('continueAction'),
       TextInputAction.continueAction,
     );
-    expect(ThemeDecoder.decodeTextInputAction('done'), TextInputAction.done);
     expect(
-      ThemeDecoder.decodeTextInputAction('emergencyCall'),
+      ThemeDecoder.instance.decodeTextInputAction('done'),
+      TextInputAction.done,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('emergencyCall'),
       TextInputAction.emergencyCall,
     );
-    expect(ThemeDecoder.decodeTextInputAction('go'), TextInputAction.go);
-    expect(ThemeDecoder.decodeTextInputAction('join'), TextInputAction.join);
     expect(
-      ThemeDecoder.decodeTextInputAction('newline'),
+      ThemeDecoder.instance.decodeTextInputAction('go'),
+      TextInputAction.go,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('join'),
+      TextInputAction.join,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('newline'),
       TextInputAction.newline,
     );
-    expect(ThemeDecoder.decodeTextInputAction('next'), TextInputAction.next);
-    expect(ThemeDecoder.decodeTextInputAction('none'), TextInputAction.none);
     expect(
-      ThemeDecoder.decodeTextInputAction('previous'),
+      ThemeDecoder.instance.decodeTextInputAction('next'),
+      TextInputAction.next,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('none'),
+      TextInputAction.none,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('previous'),
       TextInputAction.previous,
     );
-    expect(ThemeDecoder.decodeTextInputAction('route'), TextInputAction.route);
     expect(
-      ThemeDecoder.decodeTextInputAction('search'),
+      ThemeDecoder.instance.decodeTextInputAction('route'),
+      TextInputAction.route,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('search'),
       TextInputAction.search,
     );
-    expect(ThemeDecoder.decodeTextInputAction('send'), TextInputAction.send);
     expect(
-      ThemeDecoder.decodeTextInputAction('unspecified'),
+      ThemeDecoder.instance.decodeTextInputAction('send'),
+      TextInputAction.send,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputAction('unspecified'),
       TextInputAction.unspecified,
     );
 
     expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.continueAction),
+      ThemeEncoder.instance.encodeTextInputAction(
+        TextInputAction.continueAction,
+      ),
       'continueAction',
     );
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.done), 'done');
     expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.emergencyCall),
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.done),
+      'done',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(
+        TextInputAction.emergencyCall,
+      ),
       'emergencyCall',
     );
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.go), 'go');
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.join), 'join');
     expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.newline),
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.go),
+      'go',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.join),
+      'join',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.newline),
       'newline',
     );
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.next), 'next');
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.none), 'none');
     expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.previous),
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.next),
+      'next',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.previous),
       'previous',
     );
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.route), 'route');
     expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.search),
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.route),
+      'route',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.search),
       'search',
     );
-    expect(ThemeEncoder.encodeTextInputAction(TextInputAction.send), 'send');
     expect(
-      ThemeEncoder.encodeTextInputAction(TextInputAction.unspecified),
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.send),
+      'send',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputAction(TextInputAction.unspecified),
       'unspecified',
     );
   });
 
   test('TextInputType', () {
-    expect(ThemeDecoder.decodeTextInputType(null), null);
-    expect(ThemeEncoder.encodeTextInputType(null), null);
+    expect(ThemeDecoder.instance.decodeTextInputType(null), null);
+    expect(ThemeEncoder.instance.encodeTextInputType(null), null);
 
     expect(
-      ThemeDecoder.decodeTextInputType(TextInputType.datetime),
+      ThemeDecoder.instance.decodeTextInputType(TextInputType.datetime),
       TextInputType.datetime,
     );
 
     expect(
-      ThemeDecoder.decodeTextInputType('datetime'),
+      ThemeDecoder.instance.decodeTextInputType('datetime'),
       TextInputType.datetime,
     );
     expect(
-      ThemeDecoder.decodeTextInputType('emailAddress'),
+      ThemeDecoder.instance.decodeTextInputType('emailAddress'),
       TextInputType.emailAddress,
     );
     expect(
-      ThemeDecoder.decodeTextInputType('multiline'),
+      ThemeDecoder.instance.decodeTextInputType('multiline'),
       TextInputType.multiline,
     );
-    expect(ThemeDecoder.decodeTextInputType('name'), TextInputType.name);
-    expect(ThemeDecoder.decodeTextInputType('none'), TextInputType.none);
-    expect(ThemeDecoder.decodeTextInputType('number'), TextInputType.number);
-    expect(ThemeDecoder.decodeTextInputType('phone'), TextInputType.phone);
     expect(
-      ThemeDecoder.decodeTextInputType('streetAddress'),
+      ThemeDecoder.instance.decodeTextInputType('name'),
+      TextInputType.name,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputType('none'),
+      TextInputType.none,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputType('number'),
+      TextInputType.number,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputType('phone'),
+      TextInputType.phone,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputType('streetAddress'),
       TextInputType.streetAddress,
     );
-    expect(ThemeDecoder.decodeTextInputType('text'), TextInputType.text);
-    expect(ThemeDecoder.decodeTextInputType('twitter'), TextInputType.twitter);
-    expect(ThemeDecoder.decodeTextInputType('url'), TextInputType.url);
     expect(
-      ThemeDecoder.decodeTextInputType('visiblePassword'),
+      ThemeDecoder.instance.decodeTextInputType('text'),
+      TextInputType.text,
+    );
+    expect(
+      ThemeDecoder.instance.decodeTextInputType('twitter'),
+      TextInputType.twitter,
+    );
+    expect(ThemeDecoder.instance.decodeTextInputType('url'), TextInputType.url);
+    expect(
+      ThemeDecoder.instance.decodeTextInputType('visiblePassword'),
       TextInputType.visiblePassword,
     );
     expect(
-      ThemeDecoder.decodeTextInputType('webSearch'),
+      ThemeDecoder.instance.decodeTextInputType('webSearch'),
       TextInputType.webSearch,
     );
 
     expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.datetime),
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.datetime),
       'datetime',
     );
     expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.emailAddress),
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.emailAddress),
       'emailAddress',
     );
     expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.multiline),
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.multiline),
       'multiline',
     );
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.name), 'name');
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.none), 'none');
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.number), 'number');
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.phone), 'phone');
     expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.streetAddress),
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.name),
+      'name',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.none),
+      'none',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.number),
+      'number',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.phone),
+      'phone',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.streetAddress),
       'streetAddress',
     );
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.text), 'text');
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.twitter), 'twitter');
-    expect(ThemeEncoder.encodeTextInputType(TextInputType.url), 'url');
     expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.visiblePassword),
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.text),
+      'text',
+    );
+    expect(
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.twitter),
+      'twitter',
+    );
+    expect(ThemeEncoder.instance.encodeTextInputType(TextInputType.url), 'url');
+    expect(
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.visiblePassword),
       'visiblePassword',
     );
     expect(
-      ThemeEncoder.encodeTextInputType(TextInputType.webSearch),
+      ThemeEncoder.instance.encodeTextInputType(TextInputType.webSearch),
       'webSearch',
     );
   });
 
   test('TextLeadingDistribution', () {
-    expect(ThemeDecoder.decodeTextLeadingDistribution(null), null);
-    expect(ThemeEncoder.encodeTextLeadingDistribution(null), null);
+    expect(ThemeDecoder.instance.decodeTextLeadingDistribution(null), null);
+    expect(ThemeEncoder.instance.encodeTextLeadingDistribution(null), null);
 
     expect(
-      ThemeDecoder.decodeTextLeadingDistribution(TextLeadingDistribution.even),
+      ThemeDecoder.instance.decodeTextLeadingDistribution(
+        TextLeadingDistribution.even,
+      ),
       TextLeadingDistribution.even,
     );
 
     expect(
-      ThemeDecoder.decodeTextLeadingDistribution('even'),
+      ThemeDecoder.instance.decodeTextLeadingDistribution('even'),
       TextLeadingDistribution.even,
     );
     expect(
-      ThemeDecoder.decodeTextLeadingDistribution('proportional'),
+      ThemeDecoder.instance.decodeTextLeadingDistribution('proportional'),
       TextLeadingDistribution.proportional,
     );
 
     expect(
-      ThemeEncoder.encodeTextLeadingDistribution(TextLeadingDistribution.even),
+      ThemeEncoder.instance.encodeTextLeadingDistribution(
+        TextLeadingDistribution.even,
+      ),
       'even',
     );
     expect(
-      ThemeEncoder.encodeTextLeadingDistribution(
+      ThemeEncoder.instance.encodeTextLeadingDistribution(
         TextLeadingDistribution.proportional,
       ),
       'proportional',
@@ -7833,42 +8694,60 @@ void main() {
   });
 
   test('TextOverflow', () {
-    expect(ThemeDecoder.decodeTextOverflow(null), null);
-    expect(ThemeEncoder.encodeTextOverflow(null), null);
+    expect(ThemeDecoder.instance.decodeTextOverflow(null), null);
+    expect(ThemeEncoder.instance.encodeTextOverflow(null), null);
 
     expect(
-      ThemeDecoder.decodeTextOverflow(TextOverflow.clip),
+      ThemeDecoder.instance.decodeTextOverflow(TextOverflow.clip),
       TextOverflow.clip,
     );
 
-    expect(ThemeDecoder.decodeTextOverflow('clip'), TextOverflow.clip);
-    expect(ThemeDecoder.decodeTextOverflow('ellipsis'), TextOverflow.ellipsis);
-    expect(ThemeDecoder.decodeTextOverflow('fade'), TextOverflow.fade);
-    expect(ThemeDecoder.decodeTextOverflow('visible'), TextOverflow.visible);
+    expect(ThemeDecoder.instance.decodeTextOverflow('clip'), TextOverflow.clip);
+    expect(
+      ThemeDecoder.instance.decodeTextOverflow('ellipsis'),
+      TextOverflow.ellipsis,
+    );
+    expect(ThemeDecoder.instance.decodeTextOverflow('fade'), TextOverflow.fade);
+    expect(
+      ThemeDecoder.instance.decodeTextOverflow('visible'),
+      TextOverflow.visible,
+    );
 
-    expect(ThemeEncoder.encodeTextOverflow(TextOverflow.clip), 'clip');
-    expect(ThemeEncoder.encodeTextOverflow(TextOverflow.ellipsis), 'ellipsis');
-    expect(ThemeEncoder.encodeTextOverflow(TextOverflow.fade), 'fade');
-    expect(ThemeEncoder.encodeTextOverflow(TextOverflow.visible), 'visible');
+    expect(ThemeEncoder.instance.encodeTextOverflow(TextOverflow.clip), 'clip');
+    expect(
+      ThemeEncoder.instance.encodeTextOverflow(TextOverflow.ellipsis),
+      'ellipsis',
+    );
+    expect(ThemeEncoder.instance.encodeTextOverflow(TextOverflow.fade), 'fade');
+    expect(
+      ThemeEncoder.instance.encodeTextOverflow(TextOverflow.visible),
+      'visible',
+    );
   });
 
   test('TextScaler', () {
-    expect(ThemeDecoder.decodeTextScaler(null), null);
-    expect(ThemeEncoder.encodeTextScaler(null), null);
+    expect(ThemeDecoder.instance.decodeTextScaler(null), null);
+    expect(ThemeEncoder.instance.encodeTextScaler(null), null);
 
     expect(
-      ThemeDecoder.decodeTextScaler(TextScaler.noScaling),
+      ThemeDecoder.instance.decodeTextScaler(TextScaler.noScaling),
       TextScaler.noScaling,
     );
 
-    expect(ThemeDecoder.decodeTextScaler('noScaling'), TextScaler.noScaling);
+    expect(
+      ThemeDecoder.instance.decodeTextScaler('noScaling'),
+      TextScaler.noScaling,
+    );
 
-    expect(ThemeEncoder.encodeTextScaler(TextScaler.noScaling), 'noScaling');
+    expect(
+      ThemeEncoder.instance.encodeTextScaler(TextScaler.noScaling),
+      'noScaling',
+    );
   });
 
   test('TextSelectionThemeData', () {
-    expect(ThemeDecoder.decodeTextSelectionThemeData(null), null);
-    expect(ThemeEncoder.encodeTextSelectionThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeTextSelectionThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeTextSelectionThemeData(null), null);
 
     const entry = TextSelectionThemeData(
       cursorColor: Color(0xff222222),
@@ -7876,10 +8755,10 @@ void main() {
       selectionHandleColor: Color(0xff222222),
     );
 
-    expect(ThemeDecoder.decodeTextSelectionThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeTextSelectionThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTextSelectionThemeData(entry);
-    final decoded = ThemeDecoder.decodeTextSelectionThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeTextSelectionThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeTextSelectionThemeData(encoded);
 
     expect(encoded, {
       'cursorColor': '#ff222222',
@@ -7891,8 +8770,8 @@ void main() {
   });
 
   test('TextSpan', () {
-    expect(ThemeDecoder.decodeTextSpan(null), null);
-    expect(ThemeEncoder.encodeTextSpan(null), null);
+    expect(ThemeDecoder.instance.decodeTextSpan(null), null);
+    expect(ThemeEncoder.instance.encodeTextSpan(null), null);
 
     const entry = TextSpan(
       children: [
@@ -7902,8 +8781,8 @@ void main() {
       mouseCursor: SystemMouseCursors.copy,
       style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w100),
     );
-    final encoded = ThemeEncoder.encodeTextSpan(entry);
-    final decoded = ThemeDecoder.decodeTextSpan(encoded);
+    final encoded = ThemeEncoder.instance.encodeTextSpan(entry);
+    final decoded = ThemeDecoder.instance.decodeTextSpan(encoded);
 
     expect(encoded, {
       'children': [
@@ -7924,14 +8803,14 @@ void main() {
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.decodeTextSpan('Hello World'),
+      ThemeDecoder.instance.decodeTextSpan('Hello World'),
       const TextSpan(text: 'Hello World'),
     );
   });
 
   test('TextStyle', () {
-    expect(ThemeDecoder.decodeTextStyle(null), null);
-    expect(ThemeEncoder.encodeTextStyle(null), null);
+    expect(ThemeDecoder.instance.decodeTextStyle(null), null);
+    expect(ThemeEncoder.instance.encodeTextStyle(null), null);
 
     const entry = TextStyle(
       backgroundColor: Color(0xff111111),
@@ -7965,10 +8844,10 @@ void main() {
       wordSpacing: 8.0,
     );
 
-    expect(ThemeDecoder.decodeTextStyle(entry), entry);
+    expect(ThemeDecoder.instance.decodeTextStyle(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTextStyle(entry);
-    final decoded = ThemeDecoder.decodeTextStyle(encoded);
+    final encoded = ThemeEncoder.instance.encodeTextStyle(entry);
+    final decoded = ThemeDecoder.instance.decodeTextStyle(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff111111',
@@ -8009,8 +8888,8 @@ void main() {
   });
 
   test('TextTheme', () {
-    expect(ThemeDecoder.decodeTextTheme(null), null);
-    expect(ThemeEncoder.encodeTextTheme(null), null);
+    expect(ThemeDecoder.instance.decodeTextTheme(null), null);
+    expect(ThemeEncoder.instance.encodeTextTheme(null), null);
 
     const entry = TextTheme(
       bodyLarge: TextStyle(color: Color(0xff111111)),
@@ -8030,10 +8909,10 @@ void main() {
       titleSmall: TextStyle(color: Color(0xffeeeeee)),
     );
 
-    expect(ThemeDecoder.decodeTextTheme(entry), entry);
+    expect(ThemeDecoder.instance.decodeTextTheme(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTextTheme(entry);
-    final decoded = ThemeDecoder.decodeTextTheme(encoded);
+    final encoded = ThemeEncoder.instance.encodeTextTheme(entry);
+    final decoded = ThemeDecoder.instance.decodeTextTheme(encoded);
 
     expect(encoded, {
       'bodyLarge': {'color': '#ff111111', 'inherit': true},
@@ -8057,45 +8936,54 @@ void main() {
   });
 
   test('TextWidthBasis', () {
-    expect(ThemeDecoder.decodeTextWidthBasis(null), null);
-    expect(ThemeEncoder.encodeTextWidthBasis(null), null);
+    expect(ThemeDecoder.instance.decodeTextWidthBasis(null), null);
+    expect(ThemeEncoder.instance.encodeTextWidthBasis(null), null);
 
     expect(
-      ThemeDecoder.decodeTextWidthBasis(TextWidthBasis.longestLine),
+      ThemeDecoder.instance.decodeTextWidthBasis(TextWidthBasis.longestLine),
       TextWidthBasis.longestLine,
     );
 
     expect(
-      ThemeDecoder.decodeTextWidthBasis('longestLine'),
+      ThemeDecoder.instance.decodeTextWidthBasis('longestLine'),
       TextWidthBasis.longestLine,
     );
-    expect(ThemeDecoder.decodeTextWidthBasis('parent'), TextWidthBasis.parent);
+    expect(
+      ThemeDecoder.instance.decodeTextWidthBasis('parent'),
+      TextWidthBasis.parent,
+    );
 
     expect(
-      ThemeEncoder.encodeTextWidthBasis(TextWidthBasis.longestLine),
+      ThemeEncoder.instance.encodeTextWidthBasis(TextWidthBasis.longestLine),
       'longestLine',
     );
-    expect(ThemeEncoder.encodeTextWidthBasis(TextWidthBasis.parent), 'parent');
+    expect(
+      ThemeEncoder.instance.encodeTextWidthBasis(TextWidthBasis.parent),
+      'parent',
+    );
   });
 
   test('TileMode', () {
-    expect(ThemeDecoder.decodeTileMode(null), null);
-    expect(ThemeEncoder.encodeTileMode(null), null);
+    expect(ThemeDecoder.instance.decodeTileMode(null), null);
+    expect(ThemeEncoder.instance.encodeTileMode(null), null);
 
-    expect(ThemeDecoder.decodeTileMode(TileMode.clamp), TileMode.clamp);
+    expect(
+      ThemeDecoder.instance.decodeTileMode(TileMode.clamp),
+      TileMode.clamp,
+    );
 
-    expect(ThemeDecoder.decodeTileMode('clamp'), TileMode.clamp);
-    expect(ThemeDecoder.decodeTileMode('mirror'), TileMode.mirror);
-    expect(ThemeDecoder.decodeTileMode('repeated'), TileMode.repeated);
+    expect(ThemeDecoder.instance.decodeTileMode('clamp'), TileMode.clamp);
+    expect(ThemeDecoder.instance.decodeTileMode('mirror'), TileMode.mirror);
+    expect(ThemeDecoder.instance.decodeTileMode('repeated'), TileMode.repeated);
 
-    expect(ThemeEncoder.encodeTileMode(TileMode.clamp), 'clamp');
-    expect(ThemeEncoder.encodeTileMode(TileMode.mirror), 'mirror');
-    expect(ThemeEncoder.encodeTileMode(TileMode.repeated), 'repeated');
+    expect(ThemeEncoder.instance.encodeTileMode(TileMode.clamp), 'clamp');
+    expect(ThemeEncoder.instance.encodeTileMode(TileMode.mirror), 'mirror');
+    expect(ThemeEncoder.instance.encodeTileMode(TileMode.repeated), 'repeated');
   });
 
   test('TimePickerThemeData', () {
-    expect(ThemeDecoder.decodeTimePickerThemeData(null), null);
-    expect(ThemeEncoder.encodeTimePickerThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeTimePickerThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeTimePickerThemeData(null), null);
 
     final entry = TimePickerThemeData(
       backgroundColor: const Color(0xff000001),
@@ -8129,10 +9017,10 @@ void main() {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
     );
 
-    expect(ThemeDecoder.decodeTimePickerThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeTimePickerThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTimePickerThemeData(entry);
-    final decoded = ThemeDecoder.decodeTimePickerThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeTimePickerThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeTimePickerThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff000001',
@@ -8216,8 +9104,8 @@ void main() {
   });
 
   test('ToggleButtonsThemeData', () {
-    expect(ThemeDecoder.decodeToggleButtonsThemeData(null), null);
-    expect(ThemeEncoder.encodeToggleButtonsThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeToggleButtonsThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeToggleButtonsThemeData(null), null);
 
     final entry = ToggleButtonsThemeData(
       borderColor: const Color(0xff111111),
@@ -8242,10 +9130,10 @@ void main() {
       textStyle: const TextStyle(color: Color(0xffbbbbbb)),
     );
 
-    expect(ThemeDecoder.decodeToggleButtonsThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeToggleButtonsThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeToggleButtonsThemeData(entry);
-    final decoded = ThemeDecoder.decodeToggleButtonsThemeData(encoded);
+    final encoded = ThemeEncoder.instance.encodeToggleButtonsThemeData(entry);
+    final decoded = ThemeDecoder.instance.decodeToggleButtonsThemeData(encoded);
 
     expect(encoded, {
       'borderColor': '#ff111111',
@@ -8280,8 +9168,8 @@ void main() {
   });
 
   test('TooltipThemeData', () {
-    expect(ThemeDecoder.decodeTooltipThemeData(null), null);
-    expect(ThemeEncoder.encodeTooltipThemeData(null), null);
+    expect(ThemeDecoder.instance.decodeTooltipThemeData(null), null);
+    expect(ThemeEncoder.instance.encodeTooltipThemeData(null), null);
 
     const entry = TooltipThemeData(
       constraints: BoxConstraints(minHeight: 1.0),
@@ -8299,9 +9187,9 @@ void main() {
       waitDuration: Duration(milliseconds: 6),
     );
 
-    expect(ThemeDecoder.decodeTooltipThemeData(entry), entry);
+    expect(ThemeDecoder.instance.decodeTooltipThemeData(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTooltipThemeData(entry);
+    final encoded = ThemeEncoder.instance.encodeTooltipThemeData(entry);
 
     expect(encoded, {
       'enableFeedback': true,
@@ -8321,44 +9209,48 @@ void main() {
   });
 
   test('TooltipTriggerMode', () {
-    expect(ThemeDecoder.decodeTooltipTriggerMode(null), null);
-    expect(ThemeEncoder.encodeTooltipTriggerMode(null), null);
+    expect(ThemeDecoder.instance.decodeTooltipTriggerMode(null), null);
+    expect(ThemeEncoder.instance.encodeTooltipTriggerMode(null), null);
 
     expect(
-      ThemeDecoder.decodeTooltipTriggerMode(TooltipTriggerMode.longPress),
+      ThemeDecoder.instance.decodeTooltipTriggerMode(
+        TooltipTriggerMode.longPress,
+      ),
       TooltipTriggerMode.longPress,
     );
 
     expect(
-      ThemeDecoder.decodeTooltipTriggerMode('longPress'),
+      ThemeDecoder.instance.decodeTooltipTriggerMode('longPress'),
       TooltipTriggerMode.longPress,
     );
     expect(
-      ThemeDecoder.decodeTooltipTriggerMode('manual'),
+      ThemeDecoder.instance.decodeTooltipTriggerMode('manual'),
       TooltipTriggerMode.manual,
     );
     expect(
-      ThemeDecoder.decodeTooltipTriggerMode('tap'),
+      ThemeDecoder.instance.decodeTooltipTriggerMode('tap'),
       TooltipTriggerMode.tap,
     );
 
     expect(
-      ThemeEncoder.encodeTooltipTriggerMode(TooltipTriggerMode.longPress),
+      ThemeEncoder.instance.encodeTooltipTriggerMode(
+        TooltipTriggerMode.longPress,
+      ),
       'longPress',
     );
     expect(
-      ThemeEncoder.encodeTooltipTriggerMode(TooltipTriggerMode.manual),
+      ThemeEncoder.instance.encodeTooltipTriggerMode(TooltipTriggerMode.manual),
       'manual',
     );
     expect(
-      ThemeEncoder.encodeTooltipTriggerMode(TooltipTriggerMode.tap),
+      ThemeEncoder.instance.encodeTooltipTriggerMode(TooltipTriggerMode.tap),
       'tap',
     );
   });
 
   test('Typography', () {
-    expect(ThemeDecoder.decodeTypography(null), null);
-    expect(ThemeEncoder.encodeTypography(null), null);
+    expect(ThemeDecoder.instance.decodeTypography(null), null);
+    expect(ThemeEncoder.instance.encodeTypography(null), null);
 
     final entry = Typography.material2018(
       black: const TextTheme(bodyLarge: TextStyle(color: Color(0xff111111))),
@@ -8370,10 +9262,10 @@ void main() {
       white: const TextTheme(bodyLarge: TextStyle(color: Color(0xff555555))),
     );
 
-    expect(ThemeDecoder.decodeTypography(entry), entry);
+    expect(ThemeDecoder.instance.decodeTypography(entry), entry);
 
-    final encoded = ThemeEncoder.encodeTypography(entry);
-    final decoded = ThemeDecoder.decodeTypography(encoded);
+    final encoded = ThemeEncoder.instance.encodeTypography(entry);
+    final decoded = ThemeDecoder.instance.decodeTypography(encoded);
 
     expect(encoded, {
       'black': {
@@ -8396,64 +9288,78 @@ void main() {
     expect(decoded, entry);
   });
   test('VerticalDirection', () {
-    expect(ThemeDecoder.decodeVerticalDirection(null), null);
-    expect(ThemeEncoder.encodeVerticalDirection(null), null);
+    expect(ThemeDecoder.instance.decodeVerticalDirection(null), null);
+    expect(ThemeEncoder.instance.encodeVerticalDirection(null), null);
 
     expect(
-      ThemeDecoder.decodeVerticalDirection(VerticalDirection.down),
+      ThemeDecoder.instance.decodeVerticalDirection(VerticalDirection.down),
       VerticalDirection.down,
     );
 
     expect(
-      ThemeDecoder.decodeVerticalDirection('down'),
+      ThemeDecoder.instance.decodeVerticalDirection('down'),
       VerticalDirection.down,
     );
-    expect(ThemeDecoder.decodeVerticalDirection('up'), VerticalDirection.up);
+    expect(
+      ThemeDecoder.instance.decodeVerticalDirection('up'),
+      VerticalDirection.up,
+    );
 
     expect(
-      ThemeEncoder.encodeVerticalDirection(VerticalDirection.down),
+      ThemeEncoder.instance.encodeVerticalDirection(VerticalDirection.down),
       'down',
     );
-    expect(ThemeEncoder.encodeVerticalDirection(VerticalDirection.up), 'up');
+    expect(
+      ThemeEncoder.instance.encodeVerticalDirection(VerticalDirection.up),
+      'up',
+    );
   });
 
   test('VisualDensity', () {
-    expect(ThemeDecoder.decodeVisualDensity(null), null);
-    expect(ThemeEncoder.encodeVisualDensity(null), null);
+    expect(ThemeDecoder.instance.decodeVisualDensity(null), null);
+    expect(ThemeEncoder.instance.encodeVisualDensity(null), null);
 
     expect(
-      ThemeDecoder.decodeVisualDensity(VisualDensity.adaptivePlatformDensity),
+      ThemeDecoder.instance.decodeVisualDensity(
+        VisualDensity.adaptivePlatformDensity,
+      ),
       VisualDensity.adaptivePlatformDensity,
     );
 
     expect(
-      ThemeDecoder.decodeVisualDensity('adaptivePlatformDensity'),
+      ThemeDecoder.instance.decodeVisualDensity('adaptivePlatformDensity'),
       VisualDensity.adaptivePlatformDensity,
     );
     expect(
-      ThemeDecoder.decodeVisualDensity('comfortable'),
+      ThemeDecoder.instance.decodeVisualDensity('comfortable'),
       VisualDensity.comfortable,
     );
-    expect(ThemeDecoder.decodeVisualDensity('compact'), VisualDensity.compact);
     expect(
-      ThemeDecoder.decodeVisualDensity('standard'),
+      ThemeDecoder.instance.decodeVisualDensity('compact'),
+      VisualDensity.compact,
+    );
+    expect(
+      ThemeDecoder.instance.decodeVisualDensity('standard'),
       VisualDensity.standard,
     );
 
     expect(
-      ThemeEncoder.encodeVisualDensity(VisualDensity.comfortable),
+      ThemeEncoder.instance.encodeVisualDensity(VisualDensity.comfortable),
       'comfortable',
     );
-    expect(ThemeEncoder.encodeVisualDensity(VisualDensity.compact), 'compact');
     expect(
-      ThemeEncoder.encodeVisualDensity(VisualDensity.standard),
+      ThemeEncoder.instance.encodeVisualDensity(VisualDensity.compact),
+      'compact',
+    );
+    expect(
+      ThemeEncoder.instance.encodeVisualDensity(VisualDensity.standard),
       'standard',
     );
   });
 
   test('WidgetStateColor', () {
-    expect(ThemeDecoder.decodeWidgetStateColor(null), null);
-    expect(ThemeEncoder.encodeWidgetStateColor(null), null);
+    expect(ThemeDecoder.instance.decodeWidgetStateColor(null), null);
+    expect(ThemeEncoder.instance.encodeWidgetStateColor(null), null);
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -8483,15 +9389,15 @@ void main() {
       final state = entry.value;
 
       final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
+      final color = ThemeDecoder.instance.decodeColor(colorStr);
 
-      var decoded = ThemeDecoder.decodeWidgetStateColor(color);
+      var decoded = ThemeDecoder.instance.decodeWidgetStateColor(color);
       expect(decoded!.resolve({state}), color);
 
-      decoded = ThemeDecoder.decodeWidgetStateColor(colorStr);
+      decoded = ThemeDecoder.instance.decodeWidgetStateColor(colorStr);
       expect(decoded!.resolve({state}), color);
 
-      final encoded = ThemeEncoder.encodeWidgetStateColor(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStateColor(decoded);
       expect(encoded![stateKey], colorStr);
     }
 
@@ -8500,27 +9406,29 @@ void main() {
       final state = entry.value;
 
       final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
-      final encodedColor = ThemeEncoder.encodeColor(color);
+      final color = ThemeDecoder.instance.decodeColor(colorStr);
+      final encodedColor = ThemeEncoder.instance.encodeColor(color);
 
-      final decoded = ThemeDecoder.decodeWidgetStateColor(encodedColor);
+      final decoded = ThemeDecoder.instance.decodeWidgetStateColor(
+        encodedColor,
+      );
 
       expect(decoded!.resolve({state}), color);
 
-      final encoded = ThemeEncoder.encodeWidgetStateColor(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStateColor(decoded);
 
       expect(encoded![stateKey], colorStr);
     }
 
     /// Test if pressed takes precedence over hovered
-    final materialColor = ThemeDecoder.decodeWidgetStateColor(colors);
+    final materialColor = ThemeDecoder.instance.decodeWidgetStateColor(colors);
     final color = materialColor?.resolve({states['pressed']!});
-    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
+    expect(ThemeEncoder.instance.encodeColor(color), colors['pressed']);
   });
 
   test('WidgetStatePropertyBool', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyBool(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyBool(null), null);
+    expect(ThemeDecoder.instance.decodeWidgetStatePropertyBool(null), null);
+    expect(ThemeEncoder.instance.encodeWidgetStatePropertyBool(null), null);
 
     final stateMap = {
       WidgetState.disabled: 'disabled',
@@ -8561,13 +9469,17 @@ void main() {
 
       final value = values[stateKey];
 
-      var decoded = ThemeDecoder.decodeWidgetStatePropertyBool(value);
+      var decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBool(value);
       expect(decoded?.resolve({state}), value);
 
-      decoded = ThemeDecoder.decodeWidgetStatePropertyBool(value.toString());
+      decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBool(
+        value.toString(),
+      );
       expect(decoded?.resolve({state}), value);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyBool(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyBool(
+        decoded,
+      );
       expect(encoded![stateKey], value);
     }
 
@@ -8575,13 +9487,15 @@ void main() {
         states.isEmpty ? null : values[stateMap[states.first]!];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyBool(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBool(prop);
     for (var entry in states.entries) {
       final value = values[stateMap[entry.value]!];
 
       expect(decoded!.resolve({entry.value}), value);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyBool(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyBool(
+        decoded,
+      );
 
       expect(encoded?[entry.key], value);
     }
@@ -8592,19 +9506,29 @@ void main() {
 
       final value = values[stateKey];
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyBool(value);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBool(
+        value,
+      );
 
       expect(decoded!.resolve({state}), value);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyBool(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyBool(
+        decoded,
+      );
 
       expect(encoded![stateKey], value);
     }
   });
 
   test('WidgetStatePropertyBorderSide', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyBorderSide(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyBorderSide(null), null);
+    expect(
+      ThemeDecoder.instance.decodeWidgetStatePropertyBorderSide(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeWidgetStatePropertyBorderSide(null),
+      null,
+    );
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -8631,11 +9555,15 @@ void main() {
       );
       sides[state] = side;
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyBorderSide(side);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBorderSide(
+        side,
+      );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyBorderSide(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyBorderSide(
+        decoded,
+      );
 
       expect(encoded![stateKey]['width'], side.width);
     }
@@ -8644,13 +9572,17 @@ void main() {
         states.isEmpty ? null : sides[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyBorderSide(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBorderSide(
+      prop,
+    );
     for (var entry in states.entries) {
       final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyBorderSide(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyBorderSide(
+        decoded,
+      );
 
       expect(encoded![entry.key]['width'], side!.width);
     }
@@ -8664,23 +9596,25 @@ void main() {
         style: BorderStyle.solid,
         width: ++count,
       );
-      final encodedSide = ThemeEncoder.encodeBorderSide(side);
+      final encodedSide = ThemeEncoder.instance.encodeBorderSide(side);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyBorderSide(
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyBorderSide(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyBorderSide(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyBorderSide(
+        decoded,
+      );
 
       expect(encoded![stateKey]['width'], side.width);
     }
   });
 
   test('WidgetStatePropertyColor', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyColor(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyColor(null), null);
+    expect(ThemeDecoder.instance.decodeWidgetStatePropertyColor(null), null);
+    expect(ThemeEncoder.instance.encodeWidgetStatePropertyColor(null), null);
 
     final stateMap = {
       WidgetState.disabled: 'disabled',
@@ -8719,31 +9653,35 @@ void main() {
       final state = entry.value;
 
       final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
+      final color = ThemeDecoder.instance.decodeColor(colorStr);
 
-      var decoded = ThemeDecoder.decodeWidgetStatePropertyColor(color);
+      var decoded = ThemeDecoder.instance.decodeWidgetStatePropertyColor(color);
       expect(decoded!.resolve({state}), color);
 
-      decoded = ThemeDecoder.decodeWidgetStatePropertyColor(colorStr);
+      decoded = ThemeDecoder.instance.decodeWidgetStatePropertyColor(colorStr);
       expect(decoded!.resolve({state}), color);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyColor(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyColor(
+        decoded,
+      );
       expect(encoded![stateKey], colorStr);
     }
 
     Color? func(Set<WidgetState> states) => states.isEmpty
         ? null
-        : ThemeDecoder.decodeColor(colors[stateMap[states.first]]);
+        : ThemeDecoder.instance.decodeColor(colors[stateMap[states.first]]);
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyColor(prop);
     for (var entry in states.entries) {
       final colorStr = colors[stateMap[entry.value]];
-      final color = ThemeDecoder.decodeColor(colorStr);
+      final color = ThemeDecoder.instance.decodeColor(colorStr);
 
       expect(decoded!.resolve({entry.value}), color);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyColor(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyColor(
+        decoded,
+      );
 
       expect(encoded?[entry.key], colorStr);
     }
@@ -8753,30 +9691,36 @@ void main() {
       final state = entry.value;
 
       final colorStr = colors[stateKey];
-      final color = ThemeDecoder.decodeColor(colorStr);
-      final encodedColor = ThemeEncoder.encodeColor(color);
+      final color = ThemeDecoder.instance.decodeColor(colorStr);
+      final encodedColor = ThemeEncoder.instance.encodeColor(color);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyColor(encodedColor);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyColor(
+        encodedColor,
+      );
 
       expect(decoded!.resolve({state}), color);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyColor(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyColor(
+        decoded,
+      );
 
       expect(encoded![stateKey], colorStr);
     }
 
     /// Test if pressed takes precedence over hovered
-    final materialColor = ThemeDecoder.decodeWidgetStatePropertyColor(colors);
+    final materialColor = ThemeDecoder.instance.decodeWidgetStatePropertyColor(
+      colors,
+    );
     final color = materialColor?.resolve({
       states['hovered']!,
       states['pressed']!,
     });
-    expect(ThemeEncoder.encodeColor(color), colors['pressed']);
+    expect(ThemeEncoder.instance.encodeColor(color), colors['pressed']);
   });
 
   test('WidgetStatePropertyDouble', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyDouble(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyDouble(null), null);
+    expect(ThemeDecoder.instance.decodeWidgetStatePropertyDouble(null), null);
+    expect(ThemeEncoder.instance.encodeWidgetStatePropertyDouble(null), null);
     final stateMap = {
       WidgetState.disabled: 'disabled',
       WidgetState.dragged: 'dragged',
@@ -8816,13 +9760,19 @@ void main() {
 
       final value = values[stateKey];
 
-      var decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(value);
+      var decoded = ThemeDecoder.instance.decodeWidgetStatePropertyDouble(
+        value,
+      );
       expect(decoded!.resolve({state}), value);
 
-      decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(value.toString());
+      decoded = ThemeDecoder.instance.decodeWidgetStatePropertyDouble(
+        value.toString(),
+      );
       expect(decoded!.resolve({state}), value);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyDouble(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyDouble(
+        decoded,
+      );
       expect(encoded![stateKey], value);
     }
 
@@ -8830,13 +9780,15 @@ void main() {
         states.isEmpty ? null : values[stateMap[states.first]];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyDouble(prop);
     for (var entry in states.entries) {
       final value = values[stateMap[entry.value]];
 
       expect(decoded!.resolve({entry.value}), value);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyDouble(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyDouble(
+        decoded,
+      );
 
       expect(encoded?[entry.key], value);
     }
@@ -8847,11 +9799,15 @@ void main() {
 
       final value = values[stateKey];
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyDouble(value);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyDouble(
+        value,
+      );
 
       expect(decoded!.resolve({state}), value);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyDouble(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyDouble(
+        decoded,
+      );
 
       expect(encoded![stateKey], value);
     }
@@ -8859,11 +9815,11 @@ void main() {
 
   test('WidgetStatePropertyEdgeInsetsGeometry', () {
     expect(
-      ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(null),
+      ThemeDecoder.instance.decodeWidgetStatePropertyEdgeInsetsGeometry(null),
       null,
     );
     expect(
-      ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(null),
+      ThemeEncoder.instance.encodeWidgetStatePropertyEdgeInsetsGeometry(null),
       null,
     );
 
@@ -8888,15 +9844,13 @@ void main() {
       final side = EdgeInsets.all(++count);
       sides[state] = side;
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
-        side,
-      );
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyEdgeInsetsGeometry(side);
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![stateKey]['bottom'], side.bottom);
     }
@@ -8905,17 +9859,15 @@ void main() {
         states.isEmpty ? null : sides[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
-      prop,
-    );
+    final decoded = ThemeDecoder.instance
+        .decodeWidgetStatePropertyEdgeInsetsGeometry(prop);
     for (var entry in states.entries) {
       final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![entry.key]['bottom'], (side as EdgeInsets).bottom);
     }
@@ -8925,23 +9877,21 @@ void main() {
       final state = entry.value;
 
       final side = EdgeInsets.all(++count);
-      final encodedSide = ThemeEncoder.encodeEdgeInsetsGeometry(side);
+      final encodedSide = ThemeEncoder.instance.encodeEdgeInsetsGeometry(side);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
-        encodedSide,
-      );
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyEdgeInsetsGeometry(encodedSide);
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyEdgeInsetsGeometry(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyEdgeInsetsGeometry(decoded);
 
       expect(encoded![stateKey]['bottom'], side.bottom);
     }
 
-    final symmetricDecoded =
-        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2]);
+    final symmetricDecoded = ThemeDecoder.instance
+        .decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2]);
     for (var state in states.values) {
       expect(
         symmetricDecoded!.resolve({state}),
@@ -8949,8 +9899,8 @@ void main() {
       );
     }
 
-    final ltrbDecoded =
-        ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2, 3, 4]);
+    final ltrbDecoded = ThemeDecoder.instance
+        .decodeWidgetStatePropertyEdgeInsetsGeometry([1, 2, 3, 4]);
     for (var state in states.values) {
       expect(
         ltrbDecoded!.resolve({state}),
@@ -8958,17 +9908,22 @@ void main() {
       );
     }
 
-    final allDecoded = ThemeDecoder.decodeWidgetStatePropertyEdgeInsetsGeometry(
-      1,
-    );
+    final allDecoded = ThemeDecoder.instance
+        .decodeWidgetStatePropertyEdgeInsetsGeometry(1);
     for (var state in states.values) {
       expect(allDecoded!.resolve({state}), const EdgeInsets.all(1));
     }
   });
 
   test('WidgetStatePropertyIconThemeData', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyIconThemeData(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyIconThemeData(null), null);
+    expect(
+      ThemeDecoder.instance.decodeWidgetStatePropertyIconThemeData(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeWidgetStatePropertyIconThemeData(null),
+      null,
+    );
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -8990,13 +9945,13 @@ void main() {
       const icon = IconThemeData(color: _kColor, opacity: 0.5, size: 12.0);
       icons[state] = icon;
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(icon);
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyIconThemeData(icon);
 
       expect(decoded!.resolve({state}), icon);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyIconThemeData(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyIconThemeData(decoded);
 
       expect(encoded![stateKey]['color'], _kColorStr);
     }
@@ -9005,15 +9960,15 @@ void main() {
         states.isEmpty ? null : icons[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(prop);
+    final decoded = ThemeDecoder.instance
+        .decodeWidgetStatePropertyIconThemeData(prop);
     for (var entry in states.entries) {
       final icon = icons[entry.value];
 
       expect(decoded!.resolve({entry.value}), icon);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyIconThemeData(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyIconThemeData(decoded);
 
       expect(encoded![entry.key]['color'], _kColorStr);
     }
@@ -9023,25 +9978,23 @@ void main() {
       final state = entry.value;
 
       final icon = icons[state];
-      final encodedSide = ThemeEncoder.encodeIconThemeData(icon);
+      final encodedSide = ThemeEncoder.instance.encodeIconThemeData(icon);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyIconThemeData(
-        encodedSide,
-      );
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyIconThemeData(encodedSide);
 
       expect(decoded!.resolve({state}), icon);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyIconThemeData(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyIconThemeData(decoded);
 
       expect(encoded![stateKey]['color'], _kColorStr);
     }
   });
 
   test('WidgetStatePropertyMouseCursor', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyColor(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyColor(null), null);
+    expect(ThemeDecoder.instance.decodeWidgetStatePropertyColor(null), null);
+    expect(ThemeEncoder.instance.encodeWidgetStatePropertyColor(null), null);
     final stateMap = {
       WidgetState.disabled: 'disabled',
       WidgetState.dragged: 'dragged',
@@ -9080,35 +10033,41 @@ void main() {
       final state = entry.value;
 
       final cursorStr = cursors[stateKey];
-      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+      final cursor = ThemeDecoder.instance.decodeMouseCursor(cursorStr);
 
-      var decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(cursor);
-      expect(decoded!.resolve({state}), cursor);
-
-      decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(cursorStr);
-      expect(decoded!.resolve({state}), cursor);
-
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyMouseCursor(
-        decoded,
+      var decoded = ThemeDecoder.instance.decodeWidgetStatePropertyMouseCursor(
+        cursor,
       );
+      expect(decoded!.resolve({state}), cursor);
+
+      decoded = ThemeDecoder.instance.decodeWidgetStatePropertyMouseCursor(
+        cursorStr,
+      );
+      expect(decoded!.resolve({state}), cursor);
+
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyMouseCursor(decoded);
       expect(encoded![stateKey], cursorStr);
     }
 
     MouseCursor? func(Set<WidgetState> states) => states.isEmpty
         ? null
-        : ThemeDecoder.decodeMouseCursor(cursors[stateMap[states.first]]);
+        : ThemeDecoder.instance.decodeMouseCursor(
+            cursors[stateMap[states.first]],
+          );
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyMouseCursor(
+      prop,
+    );
     for (var entry in states.entries) {
       final cursorStr = cursors[stateMap[entry.value]];
-      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
+      final cursor = ThemeDecoder.instance.decodeMouseCursor(cursorStr);
 
       expect(decoded!.resolve({entry.value}), cursor);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyMouseCursor(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyMouseCursor(decoded);
 
       expect(encoded?[entry.key], cursorStr);
     }
@@ -9118,26 +10077,30 @@ void main() {
       final state = entry.value;
 
       final cursorStr = cursors[stateKey];
-      final cursor = ThemeDecoder.decodeMouseCursor(cursorStr);
-      final encodedCursor = ThemeEncoder.encodeMouseCursor(cursor);
+      final cursor = ThemeDecoder.instance.decodeMouseCursor(cursorStr);
+      final encodedCursor = ThemeEncoder.instance.encodeMouseCursor(cursor);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyMouseCursor(
-        encodedCursor,
-      );
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyMouseCursor(encodedCursor);
 
       expect(decoded!.resolve({state}), cursor);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyMouseCursor(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyMouseCursor(decoded);
 
       expect(encoded![stateKey], cursorStr);
     }
   });
 
   test('WidgetStatePropertyOutlinedBorder', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(null), null);
+    expect(
+      ThemeDecoder.instance.decodeWidgetStatePropertyOutlinedBorder(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeWidgetStatePropertyOutlinedBorder(null),
+      null,
+    );
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -9166,15 +10129,13 @@ void main() {
       );
       sides[state] = side;
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(
-        side,
-      );
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyOutlinedBorder(side);
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyOutlinedBorder(decoded);
 
       expect(encoded![stateKey]['side']['width'], side.side.width);
     }
@@ -9183,15 +10144,15 @@ void main() {
         states.isEmpty ? null : sides[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(prop);
+    final decoded = ThemeDecoder.instance
+        .decodeWidgetStatePropertyOutlinedBorder(prop);
     for (var entry in states.entries) {
       final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyOutlinedBorder(decoded);
 
       expect(encoded![entry.key]['side']['width'], side!.side.width);
     }
@@ -9201,25 +10162,23 @@ void main() {
       final state = entry.value;
 
       final side = sides[state];
-      final encodedSide = ThemeEncoder.encodeOutlinedBorder(side);
+      final encodedSide = ThemeEncoder.instance.encodeOutlinedBorder(side);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyOutlinedBorder(
-        encodedSide,
-      );
+      final decoded = ThemeDecoder.instance
+          .decodeWidgetStatePropertyOutlinedBorder(encodedSide);
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyOutlinedBorder(
-        decoded,
-      );
+      final encoded = ThemeEncoder.instance
+          .encodeWidgetStatePropertyOutlinedBorder(decoded);
 
       expect(encoded![stateKey]['side']['width'], side!.side.width);
     }
   });
 
   test('WidgetStatePropertySize', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertySize(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertySize(null), null);
+    expect(ThemeDecoder.instance.decodeWidgetStatePropertySize(null), null);
+    expect(ThemeEncoder.instance.encodeWidgetStatePropertySize(null), null);
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -9242,11 +10201,13 @@ void main() {
       final side = Size(++count, ++count);
       sides[state] = side;
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertySize(side);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertySize(side);
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertySize(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertySize(
+        decoded,
+      );
 
       expect(encoded![stateKey]['width'], side.width);
     }
@@ -9255,13 +10216,15 @@ void main() {
         states.isEmpty ? null : sides[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertySize(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertySize(prop);
     for (var entry in states.entries) {
       final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertySize(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertySize(
+        decoded,
+      );
 
       expect(encoded![entry.key]['width'], side!.width);
     }
@@ -9271,21 +10234,31 @@ void main() {
       final state = entry.value;
 
       final side = sides[state];
-      final encodedSide = ThemeEncoder.encodeSize(side);
+      final encodedSide = ThemeEncoder.instance.encodeSize(side);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertySize(encodedSide);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertySize(
+        encodedSide,
+      );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertySize(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertySize(
+        decoded,
+      );
 
       expect(encoded![stateKey]['width'], side!.width);
     }
   });
 
   test('WidgetStatePropertyTextStyle', () {
-    expect(ThemeDecoder.decodeWidgetStatePropertyTextStyle(null), null);
-    expect(ThemeEncoder.encodeWidgetStatePropertyTextStyle(null), null);
+    expect(
+      ThemeDecoder.instance.decodeWidgetStatePropertyTextStyle(null),
+      null,
+    );
+    expect(
+      ThemeEncoder.instance.encodeWidgetStatePropertyTextStyle(null),
+      null,
+    );
 
     final states = {
       'disabled': WidgetState.disabled,
@@ -9308,11 +10281,15 @@ void main() {
       final side = TextStyle(fontSize: ++count);
       sides[state] = side;
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyTextStyle(side);
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyTextStyle(
+        side,
+      );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyTextStyle(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyTextStyle(
+        decoded,
+      );
 
       expect(encoded![stateKey]['fontSize'], side.fontSize);
     }
@@ -9321,13 +10298,17 @@ void main() {
         states.isEmpty ? null : sides[states.first];
 
     final prop = WidgetStateProperty.resolveWith(func);
-    final decoded = ThemeDecoder.decodeWidgetStatePropertyTextStyle(prop);
+    final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyTextStyle(
+      prop,
+    );
     for (var entry in states.entries) {
       final side = sides[entry.value];
 
       expect(decoded!.resolve({entry.value}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyTextStyle(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyTextStyle(
+        decoded,
+      );
 
       expect(encoded![entry.key]['fontSize'], side!.fontSize);
     }
@@ -9337,94 +10318,108 @@ void main() {
       final state = entry.value;
 
       final side = sides[state];
-      final encodedSide = ThemeEncoder.encodeTextStyle(side);
+      final encodedSide = ThemeEncoder.instance.encodeTextStyle(side);
 
-      final decoded = ThemeDecoder.decodeWidgetStatePropertyTextStyle(
+      final decoded = ThemeDecoder.instance.decodeWidgetStatePropertyTextStyle(
         encodedSide,
       );
 
       expect(decoded!.resolve({state}), side);
 
-      final encoded = ThemeEncoder.encodeWidgetStatePropertyTextStyle(decoded);
+      final encoded = ThemeEncoder.instance.encodeWidgetStatePropertyTextStyle(
+        decoded,
+      );
 
       expect(encoded![stateKey]['fontSize'], side!.fontSize);
     }
   });
 
   test('WrapAlignment', () {
-    expect(ThemeDecoder.decodeWrapAlignment(null), null);
-    expect(ThemeEncoder.encodeWrapAlignment(null), null);
+    expect(ThemeDecoder.instance.decodeWrapAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeWrapAlignment(null), null);
 
     expect(
-      ThemeDecoder.decodeWrapAlignment(WrapAlignment.start),
+      ThemeDecoder.instance.decodeWrapAlignment(WrapAlignment.start),
       WrapAlignment.start,
     );
 
-    expect(ThemeDecoder.decodeWrapAlignment('center'), WrapAlignment.center);
-    expect(ThemeDecoder.decodeWrapAlignment('end'), WrapAlignment.end);
     expect(
-      ThemeDecoder.decodeWrapAlignment('spaceAround'),
+      ThemeDecoder.instance.decodeWrapAlignment('center'),
+      WrapAlignment.center,
+    );
+    expect(ThemeDecoder.instance.decodeWrapAlignment('end'), WrapAlignment.end);
+    expect(
+      ThemeDecoder.instance.decodeWrapAlignment('spaceAround'),
       WrapAlignment.spaceAround,
     );
     expect(
-      ThemeDecoder.decodeWrapAlignment('spaceBetween'),
+      ThemeDecoder.instance.decodeWrapAlignment('spaceBetween'),
       WrapAlignment.spaceBetween,
     );
     expect(
-      ThemeDecoder.decodeWrapAlignment('spaceEvenly'),
+      ThemeDecoder.instance.decodeWrapAlignment('spaceEvenly'),
       WrapAlignment.spaceEvenly,
     );
-    expect(ThemeDecoder.decodeWrapAlignment('start'), WrapAlignment.start);
-
-    expect(ThemeEncoder.encodeWrapAlignment(WrapAlignment.center), 'center');
-    expect(ThemeEncoder.encodeWrapAlignment(WrapAlignment.end), 'end');
     expect(
-      ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceAround),
-      'spaceAround',
-    );
-    expect(
-      ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceBetween),
-      'spaceBetween',
-    );
-    expect(
-      ThemeEncoder.encodeWrapAlignment(WrapAlignment.spaceEvenly),
-      'spaceEvenly',
-    );
-    expect(ThemeEncoder.encodeWrapAlignment(WrapAlignment.start), 'start');
-  });
-
-  test('WrapCrossAlignment', () {
-    expect(ThemeDecoder.decodeWrapCrossAlignment(null), null);
-    expect(ThemeEncoder.encodeWrapCrossAlignment(null), null);
-
-    expect(
-      ThemeDecoder.decodeWrapAlignment(WrapAlignment.start),
+      ThemeDecoder.instance.decodeWrapAlignment('start'),
       WrapAlignment.start,
     );
 
     expect(
-      ThemeDecoder.decodeWrapCrossAlignment('center'),
+      ThemeEncoder.instance.encodeWrapAlignment(WrapAlignment.center),
+      'center',
+    );
+    expect(ThemeEncoder.instance.encodeWrapAlignment(WrapAlignment.end), 'end');
+    expect(
+      ThemeEncoder.instance.encodeWrapAlignment(WrapAlignment.spaceAround),
+      'spaceAround',
+    );
+    expect(
+      ThemeEncoder.instance.encodeWrapAlignment(WrapAlignment.spaceBetween),
+      'spaceBetween',
+    );
+    expect(
+      ThemeEncoder.instance.encodeWrapAlignment(WrapAlignment.spaceEvenly),
+      'spaceEvenly',
+    );
+    expect(
+      ThemeEncoder.instance.encodeWrapAlignment(WrapAlignment.start),
+      'start',
+    );
+  });
+
+  test('WrapCrossAlignment', () {
+    expect(ThemeDecoder.instance.decodeWrapCrossAlignment(null), null);
+    expect(ThemeEncoder.instance.encodeWrapCrossAlignment(null), null);
+
+    expect(
+      ThemeDecoder.instance.decodeWrapAlignment(WrapAlignment.start),
+      WrapAlignment.start,
+    );
+
+    expect(
+      ThemeDecoder.instance.decodeWrapCrossAlignment('center'),
       WrapCrossAlignment.center,
     );
     expect(
-      ThemeDecoder.decodeWrapCrossAlignment('end'),
+      ThemeDecoder.instance.decodeWrapCrossAlignment('end'),
       WrapCrossAlignment.end,
     );
     expect(
-      ThemeDecoder.decodeWrapCrossAlignment('start'),
+      ThemeDecoder.instance.decodeWrapCrossAlignment('start'),
       WrapCrossAlignment.start,
     );
 
     expect(
-      ThemeEncoder.encodeWrapCrossAlignment(WrapCrossAlignment.center),
+      ThemeEncoder.instance.encodeWrapCrossAlignment(WrapCrossAlignment.center),
       'center',
     );
     expect(
-      ThemeEncoder.encodeWrapCrossAlignment(WrapCrossAlignment.end),
+      ThemeEncoder.instance.encodeWrapCrossAlignment(WrapCrossAlignment.end),
       'end',
     );
     expect(
-      ThemeEncoder.encodeWrapCrossAlignment(WrapCrossAlignment.start),
+      ThemeEncoder.instance.encodeWrapCrossAlignment(WrapCrossAlignment.start),
       'start',
     );
   });

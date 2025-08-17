@@ -17,28 +17,35 @@ class CodecLibraryBuilder extends GeneratorForAnnotation<JsonThemeCodec> {
   }
 
   String _process(Element element, String codec) {
-    final name = element.name;
-    if (name == null) {
-      throw Exception(
-        'Annotation found on unnamed location, cannot continue.',
-      );
+    final eName = element.name;
+    if (eName == null) {
+      throw Exception('Annotation found on unnamed location, cannot continue.');
     }
+
+    final name = eName.substring(1);
 
     if (element is! ClassElement) {
       throw Exception('Annotation found but is ${element.runtimeType}');
     }
+    final methodMapperBuf = StringBuffer();
+    final classBuf = StringBuffer();
+    final schemaBuf = StringBuffer();
+
     final methods = <String, String>{};
     for (var m in element.methods) {
-      if (m.isStatic && m.name.startsWith(codec)) {
-        final mName = m.name;
+      if (m.isStatic && m.displayName.startsWith(codec)) {
+        final mName = m.displayName;
         methods[mName.substring(codec.length)] = '$name.$mName';
+
+        if (m.isAbstract) {
+          classBuf.write(_processMethod(m));
+          schemaBuf.write(_processSchema(m));
+        }
         print(mName);
       }
     }
 
-    final buf = StringBuffer();
-
-    buf.write('''
+    methodMapperBuf.write('''
 const k${name}s = <String, String>{
 ''');
 
@@ -53,11 +60,48 @@ const k${name}s = <String, String>{
         }
         key = '$msp<$type>';
       }
-      buf.write("  '$key': '${entry.value}',\n");
+      methodMapperBuf.write("  '$key': '${entry.value}',\n");
     }
 
-    buf.write('};');
+    methodMapperBuf.write('};');
 
+    return '''
+class $name extends _$name {
+  factory $name() => instance;
+
+  const $name._(): super._();
+
+  static const instance = $name._();
+$classBuf
+}
+
+$methodMapperBuf
+''';
+  }
+
+  String _processMethod(MethodElement method) {
+    final buf = StringBuffer();
+
+    final name = method.displayName;
+    final isEnum = method.returnType.isDartCoreEnum;
+
+    if (!isEnum) {
+      throw Exception('Encountered non-enum method in codec');
+    }
+
+    final element = method.returnType.element;
+    if (element is! EnumElement) {
+      throw Exception('Encountered non-enum method in codec');
+    }
+
+    buf.writeln();
+
+    return buf.toString();
+  }
+
+  String _processSchema(MethodElement method) {
+    final buf = StringBuffer();
+    final name = method.displayName;
     return buf.toString();
   }
 }

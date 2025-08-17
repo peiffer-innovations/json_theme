@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:json_theme/json_theme.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
+part 'theme_encoder.g.dart';
+
 /// Encoder capable of converting Flutter Theme related classes and enums into
 /// JSON compatible values.
 ///
@@ -16,12 +18,10 @@ import 'package:json_theme_annotation/json_theme_annotation.dart';
 /// input of `null`.
 @immutable
 @JsonThemeCodec('encode')
-class ThemeEncoder {
-  const ThemeEncoder._();
+class _ThemeEncoder {
+  const _ThemeEncoder._();
 
-  static Map<String, dynamic>? encodeActionIconThemeData(
-    ActionIconThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeActionIconThemeData(ActionIconThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -58,7 +58,7 @@ class ThemeEncoder {
   ///  * `topRight`
   ///
   /// All other values, including `null`, will result in `null`.
-  static dynamic encodeAlignment(Alignment? value) {
+  dynamic encodeAlignment(Alignment? value) {
     dynamic result;
 
     if (value != null) {
@@ -107,7 +107,7 @@ class ThemeEncoder {
   ///  * `topCenter`
   ///  * `topEnd`
   ///  * `topStart`
-  static String? encodeAlignmentDirectional(
+  String? encodeAlignmentDirectional(
     AlignmentDirectional? value, {
     bool validate = true,
   }) {
@@ -139,7 +139,7 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to a [String].  This delegates to either
   /// [encodeAlignment] or [encodeAlignmentDirectional]
-  static dynamic encodeAlignmentGeometry(
+  dynamic encodeAlignmentGeometry(
     AlignmentGeometry? value, {
     bool validate = true,
   }) {
@@ -162,9 +162,7 @@ class ThemeEncoder {
   /// Encodes the given [value] to a [String].  Supported values are:
   /// * `glow`
   /// * `stretch`
-  static String? encodeAndroidOverscrollIndicator(
-    AndroidOverscrollIndicator? value,
-  ) {
+  String? encodeAndroidOverscrollIndicator(AndroidOverscrollIndicator? value) {
     String? result;
 
     if (value != null) {
@@ -184,7 +182,7 @@ class ThemeEncoder {
 
   /// Encodes the given [value] to a [String].  Supported values are:
   /// * `noAnimation`
-  static String? encodeAnimationStyle(AnimationStyle? value) {
+  String? encodeAnimationStyle(AnimationStyle? value) {
     String? result;
 
     if (value != null) {
@@ -225,7 +223,7 @@ class ThemeEncoder {
   ///  * [encodeIconThemeData]
   ///  * [encodeSystemUiOverlayStyle]
   ///  * [encodeToolbarTextStyle]
-  static Map<String, dynamic>? encodeAppBarTheme(AppBarTheme? value) {
+  Map<String, dynamic>? encodeAppBarThemeData(AppBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -258,13 +256,13 @@ class ThemeEncoder {
   ///   * `disabled`
   ///   * `onUnfocus`
   ///   * `onUserInteraction`
-  static String? encodeAutovalidateMode(AutovalidateMode? value) => value?.name;
+  String? encodeAutovalidateMode(AutovalidateMode? value) => value?.name;
 
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `horizontal`
   ///  * `vertical`
-  static String? encodeAxis(Axis? value) {
+  String? encodeAxis(Axis? value) {
     String? result;
 
     if (value != null) {
@@ -304,7 +302,7 @@ class ThemeEncoder {
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeOffset]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeBadgeThemeData(BadgeThemeData? value) {
+  Map<String, dynamic>? encodeBadgeThemeData(BadgeThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -353,7 +351,7 @@ class ThemeEncoder {
   /// * `srcOut`
   /// * `srcOver`
   /// * `xor`
-  static String? encodeBlendMode(BlendMode? value) {
+  String? encodeBlendMode(BlendMode? value) {
     String? result;
 
     if (value != null) {
@@ -479,7 +477,7 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
-  static String? encodeBlurStyle(BlurStyle? value) {
+  String? encodeBlurStyle(BlurStyle? value) {
     String? result;
 
     if (value != null) {
@@ -519,7 +517,7 @@ class ThemeEncoder {
   ///  ///
   /// See also:
   ///  * [encodeRadius]
-  static Map<String, dynamic>? encodeBorderRadius(BorderRadius? value) {
+  Map<String, dynamic>? encodeBorderRadius(BorderRadius? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -548,7 +546,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBorderStyle]
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeBorderSide(BorderSide? value) {
+  Map<String, dynamic>? encodeBorderSide(BorderSide? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -569,7 +567,7 @@ class ThemeEncoder {
   ///  * `solid`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeBorderStyle(BorderStyle? value) {
+  String? encodeBorderStyle(BorderStyle? value) {
     String? result;
 
     if (value != null) {
@@ -605,8 +603,8 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeNotchedShape]
-  static Map<String, dynamic>? encodeBottomAppBarTheme(
-    BottomAppBarTheme? value,
+  Map<String, dynamic>? encodeBottomAppBarThemeData(
+    BottomAppBarThemeData? value,
   ) {
     Map<String, dynamic>? result;
 
@@ -649,7 +647,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeIconThemeData]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeBottomNavigationBarThemeData(
+  Map<String, dynamic>? encodeBottomNavigationBarThemeData(
     BottomNavigationBarThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -683,7 +681,7 @@ class ThemeEncoder {
   ///  * `spread`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeBottomNavigationBarLandscapeLayout(
+  String? encodeBottomNavigationBarLandscapeLayout(
     BottomNavigationBarLandscapeLayout? value,
   ) {
     String? result;
@@ -713,7 +711,7 @@ class ThemeEncoder {
   ///  * `shifting`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeBottomNavigationBarType(BottomNavigationBarType? value) {
+  String? encodeBottomNavigationBarType(BottomNavigationBarType? value) {
     String? result;
 
     if (value != null) {
@@ -756,7 +754,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
   ///  * [encodeSize]
-  static Map<String, dynamic>? encodeBottomSheetThemeData(
+  Map<String, dynamic>? encodeBottomSheetThemeData(
     BottomSheetThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -797,7 +795,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeBoxBorder(Border? value) {
+  Map<String, dynamic>? encodeBoxBorder(Border? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -825,7 +823,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// A [value] of `null` will result in `null` being returned.
-  static Map<String, dynamic>? encodeBoxConstraints(BoxConstraints? value) {
+  Map<String, dynamic>? encodeBoxConstraints(BoxConstraints? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -869,7 +867,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeDecorationImage]
   ///  * [encodeGradient]
-  static Map<String, dynamic>? encodeBoxDecoration(BoxDecoration? value) {
+  Map<String, dynamic>? encodeBoxDecoration(BoxDecoration? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -900,7 +898,7 @@ class ThemeEncoder {
   ///  * `fitWidth`
   ///  * `none`
   ///  * `scaleDown`
-  static String? encodeBoxFit(BoxFit? value) {
+  String? encodeBoxFit(BoxFit? value) {
     String? result;
 
     if (value != null) {
@@ -945,7 +943,7 @@ class ThemeEncoder {
   ///  * `max`
   ///  * `strut`
   ///  * `tight`
-  static String? encodeBoxHeightStyle(BoxHeightStyle? value) {
+  String? encodeBoxHeightStyle(BoxHeightStyle? value) {
     String? result;
 
     if (value != null) {
@@ -990,7 +988,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeOffset]
-  static Map<String, dynamic>? encodeBoxShadow(dynamic value) {
+  Map<String, dynamic>? encodeBoxShadow(dynamic value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1009,7 +1007,7 @@ class ThemeEncoder {
   /// Encodes the given [value] to a [BoxShape].  Supported values are:
   ///  * `circle`
   ///  * `rectangle`
-  static String? encodeBoxShape(BoxShape? value) {
+  String? encodeBoxShape(BoxShape? value) {
     String? result;
 
     if (value != null) {
@@ -1030,7 +1028,7 @@ class ThemeEncoder {
   /// Encodes the [value] to a `String`.  Supported values are:
   ///  * `max`
   ///  * `tight`
-  static String? encodeBoxWidthStyle(BoxWidthStyle? value) {
+  String? encodeBoxWidthStyle(BoxWidthStyle? value) {
     String? result;
 
     if (value != null) {
@@ -1053,7 +1051,7 @@ class ThemeEncoder {
   ///  * `light`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeBrightness(Brightness? value) {
+  String? encodeBrightness(Brightness? value) {
     String? result;
 
     if (value != null) {
@@ -1077,7 +1075,7 @@ class ThemeEncoder {
   ///  * `padded`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeButtonBarLayoutBehavior(ButtonBarLayoutBehavior? value) {
+  String? encodeButtonBarLayoutBehavior(ButtonBarLayoutBehavior? value) {
     String? result;
 
     if (value != null) {
@@ -1117,7 +1115,7 @@ class ThemeEncoder {
   ///  * [encodeMainAxisAlignment]
   ///  * [encodeMainAxisSize]
   ///  * [encodeVerticalDirection]
-  static Map<String, dynamic>? encodeButtonBarThemeData(
+  Map<String, dynamic>? encodeButtonBarThemeData(
     // ignore: deprecated_member_use
     ButtonBarThemeData? value,
   ) {
@@ -1196,7 +1194,7 @@ class ThemeEncoder {
   ///  * [encodeSize]
   ///  * [encodeTextStyle]
   ///  * [encodeVisualDensity]
-  static Map<String, dynamic>? encodeButtonStyle(ButtonStyle? value) {
+  Map<String, dynamic>? encodeButtonStyle(ButtonStyle? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1245,7 +1243,7 @@ class ThemeEncoder {
   ///  * `primary`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeButtonTextTheme(ButtonTextTheme? value) {
+  String? encodeButtonTextTheme(ButtonTextTheme? value) {
     String? result;
 
     if (value != null) {
@@ -1295,7 +1293,7 @@ class ThemeEncoder {
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeButtonThemeData(ButtonThemeData? value) {
+  Map<String, dynamic>? encodeButtonThemeData(ButtonThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1333,7 +1331,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeCardThemeData(CardThemeData? value) {
+  Map<String, dynamic>? encodeCardThemeData(CardThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1372,7 +1370,7 @@ class ThemeEncoder {
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeMouseCursor]
   ///  * [encodeVisualDensity]
-  static Map<String, dynamic>? encodeCheckboxThemeData(
+  Map<String, dynamic>? encodeCheckboxThemeData(
     CheckboxThemeData? value, {
     bool validate = true,
   }) {
@@ -1437,7 +1435,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStateProperty]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeChipThemeData(ChipThemeData? value) {
+  Map<String, dynamic>? encodeChipThemeData(ChipThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1485,7 +1483,7 @@ class ThemeEncoder {
   ///  * `none`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeClip(Clip? value) {
+  String? encodeClip(Clip? value) {
     String? result;
 
     if (value != null) {
@@ -1512,7 +1510,7 @@ class ThemeEncoder {
   /// use a hash encoded 8 digit string: "#aarrbbgg" format.
   ///
   /// This will return `null` if the value is `null`.
-  static String? encodeColor(Color? value) {
+  String? encodeColor(Color? value) {
     String? result;
 
     if (value != null) {
@@ -1583,7 +1581,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBrightness]
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeColorScheme(ColorScheme? value) {
+  Map<String, dynamic>? encodeColorScheme(ColorScheme? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1649,7 +1647,7 @@ class ThemeEncoder {
   ///  * `stretch`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeCrossAxisAlignment(CrossAxisAlignment? value) {
+  String? encodeCrossAxisAlignment(CrossAxisAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -1681,7 +1679,7 @@ class ThemeEncoder {
   ///  * `showSecond`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeCrossFadeState(CrossFadeState? value) {
+  String? encodeCrossFadeState(CrossFadeState? value) {
     String? result;
 
     if (value != null) {
@@ -1718,7 +1716,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeCupertinoTextThemeData(
+  Map<String, dynamic>? encodeCupertinoTextThemeData(
     CupertinoTextThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -1760,7 +1758,7 @@ class ThemeEncoder {
   ///  * [encodeBrightness]
   ///  * [encodeColor]
   ///  * [encodeCupertinoTextThemeData]
-  static Map<String, dynamic>? encodeCupertinoThemeData(
+  Map<String, dynamic>? encodeCupertinoThemeData(
     NoDefaultCupertinoThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -1828,14 +1826,12 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBorderSide]
   ///  * [encodeColor]
-  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeInputDecorationThemeData]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
   ///  * [encodeWidgetStatePropertyColor]
   ///  * [encodeWidgetStatePropertyOutlinedBorder]
-  static Map<String, dynamic>? encodeDatePickerThemeData(
-    DatePickerThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeDatePickerThemeData(DatePickerThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1858,7 +1854,7 @@ class ThemeEncoder {
         'headerForegroundColor': encodeColor(value.headerForegroundColor),
         'headerHeadlineStyle': encodeTextStyle(value.headerHeadlineStyle),
         'headerHelpStyle': encodeTextStyle(value.headerHelpStyle),
-        'inputDecorationTheme': encodeInputDecorationTheme(
+        'inputDecorationTheme': encodeInputDecorationThemeData(
           value.inputDecorationTheme,
         ),
         'locale': encodeLocale(value.locale),
@@ -1945,9 +1941,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDataTableThemeData(
-    DataTableThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeDataTableThemeData(DataTableThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2010,7 +2004,7 @@ class ThemeEncoder {
   ///  * [encodeImageProvider]
   ///  * [encodeImageRepeat]
   ///  * [encodeRect]
-  static Map<String, dynamic>? encodeDecorationImage(DecorationImage? value) {
+  Map<String, dynamic>? encodeDecorationImage(DecorationImage? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2038,7 +2032,7 @@ class ThemeEncoder {
   ///  * `foreground`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeDecorationPosition(DecorationPosition? value) {
+  String? encodeDecorationPosition(DecorationPosition? value) {
     String? result;
 
     if (value != null) {
@@ -2084,7 +2078,7 @@ class ThemeEncoder {
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDialogThemeData(DialogThemeData? value) {
+  Map<String, dynamic>? encodeDialogThemeData(DialogThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2120,7 +2114,7 @@ class ThemeEncoder {
   ///  * `vertical`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeDismissDirection(DismissDirection? value) {
+  String? encodeDismissDirection(DismissDirection? value) {
     String? result;
 
     if (value != null) {
@@ -2166,7 +2160,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeDividerThemeData(DividerThemeData? value) {
+  Map<String, dynamic>? encodeDividerThemeData(DividerThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2186,7 +2180,7 @@ class ThemeEncoder {
   /// are:
   ///  * `down`
   ///  * `start`
-  static String? encodeDragStartBehavior(DragStartBehavior? value) {
+  String? encodeDragStartBehavior(DragStartBehavior? value) {
     String? result;
 
     if (value != null) {
@@ -2223,7 +2217,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeDrawerThemeData(
+  Map<String, dynamic>? encodeDrawerThemeData(
     DrawerThemeData? value, {
     bool validate = true,
   }) {
@@ -2250,24 +2244,24 @@ class ThemeEncoder {
   ///
   /// ```json
   /// {
-  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "inputDecorationTheme": "<InputDecorationThemeData>",
   ///   "menuStyle": "<MenuStyle>",
   ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
-  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeInputDecorationThemeData]
   ///  * [encodeMenuStyle]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeDropdownMenuThemeData(
+  Map<String, dynamic>? encodeDropdownMenuThemeData(
     DropdownMenuThemeData? value,
   ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = {
-        'inputDecorationTheme': encodeInputDecorationTheme(
+        'inputDecorationTheme': encodeInputDecorationThemeData(
           value.inputDecorationTheme,
         ),
         'menuStyle': encodeMenuStyle(value.menuStyle),
@@ -2289,7 +2283,7 @@ class ThemeEncoder {
   ///   "top": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeEdgeInsets(EdgeInsets? value) {
+  Map<String, dynamic>? encodeEdgeInsets(EdgeInsets? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2315,7 +2309,7 @@ class ThemeEncoder {
   ///   "top": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeEdgeInsetsDirectional(
+  Map<String, dynamic>? encodeEdgeInsetsDirectional(
     EdgeInsetsDirectional? value,
   ) {
     Map<String, dynamic>? result;
@@ -2356,9 +2350,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeEdgeInsets]
   ///  * [encodeEdgeInsetsDirectional]
-  static Map<String, dynamic>? encodeEdgeInsetsGeometry(
-    EdgeInsetsGeometry? value,
-  ) {
+  Map<String, dynamic>? encodeEdgeInsetsGeometry(EdgeInsetsGeometry? value) {
     Map<String, dynamic>? result;
 
     if (value is EdgeInsets) {
@@ -2384,7 +2376,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeButtonStyle]
-  static Map<String, dynamic>? encodeElevatedButtonThemeData(
+  Map<String, dynamic>? encodeElevatedButtonThemeData(
     ElevatedButtonThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -2421,7 +2413,7 @@ class ThemeEncoder {
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeExpansionAnimationStyle]
   ///  * [encodeShapeBorder]
-  static Map<String, dynamic>? encodeExpansionTileThemeData(
+  Map<String, dynamic>? encodeExpansionTileThemeData(
     ExpansionTileThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -2462,7 +2454,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeButtonStyle]
-  static Map<String, dynamic>? encodeFilledButtonThemeData(
+  Map<String, dynamic>? encodeFilledButtonThemeData(
     FilledButtonThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -2480,7 +2472,7 @@ class ThemeEncoder {
   ///  * `low`
   ///  * `medium`
   ///  * `none`
-  static String? encodeFilterQuality(FilterQuality? value) {
+  String? encodeFilterQuality(FilterQuality? value) {
     String? result;
 
     if (value != null) {
@@ -2510,7 +2502,7 @@ class ThemeEncoder {
   /// are:
   ///  * `loose`
   ///  * `tight`
-  static String? encodeFlexFit(FlexFit? value) {
+  String? encodeFlexFit(FlexFit? value) {
     String? result;
 
     if (value != null) {
@@ -2532,7 +2524,7 @@ class ThemeEncoder {
   /// are:
   ///  * `noAnimation`
   ///  * `scaling`
-  static String? encodeFloatingActionButtonAnimator(
+  String? encodeFloatingActionButtonAnimator(
     FloatingActionButtonAnimator? value,
   ) {
     assert(
@@ -2573,7 +2565,7 @@ class ThemeEncoder {
   ///  * `startDocked`
   ///  * `startFloat`
   ///  * `startTop`
-  static String? encodeFloatingActionButtonLocation(
+  String? encodeFloatingActionButtonLocation(
     FloatingActionButtonLocation? value,
   ) {
     String? result;
@@ -2654,7 +2646,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeFloatingActionButtonThemeData(
+  Map<String, dynamic>? encodeFloatingActionButtonThemeData(
     FloatingActionButtonThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -2702,7 +2694,7 @@ class ThemeEncoder {
   ///  * `start`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeFloatingLabelAlignment(FloatingLabelAlignment? value) {
+  String? encodeFloatingLabelAlignment(FloatingLabelAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -2723,7 +2715,7 @@ class ThemeEncoder {
   ///  * `never`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeFloatingLabelBehavior(FloatingLabelBehavior? value) {
+  String? encodeFloatingLabelBehavior(FloatingLabelBehavior? value) {
     String? result;
 
     if (value != null) {
@@ -2753,7 +2745,7 @@ class ThemeEncoder {
   ///   "value": "<int>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeFontFeature(FontFeature? value) {
+  Map<String, dynamic>? encodeFontFeature(FontFeature? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2772,7 +2764,7 @@ class ThemeEncoder {
   ///  * `normal`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeFontStyle(FontStyle? value) {
+  String? encodeFontStyle(FontStyle? value) {
     String? result;
 
     if (value != null) {
@@ -2803,7 +2795,7 @@ class ThemeEncoder {
   ///  * `w900`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeFontWeight(FontWeight? value) {
+  String? encodeFontWeight(FontWeight? value) {
     String? result;
 
     if (value != null) {
@@ -2866,7 +2858,7 @@ class ThemeEncoder {
   ///   "value": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeFontVariation(FontVariation? value) {
+  Map<String, dynamic>? encodeFontVariation(FontVariation? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -2931,7 +2923,7 @@ class ThemeEncoder {
   ///  * [encodeAlignment]
   ///  * [encodeGradientTransform]
   ///  * [encodeTileMode]
-  static Map<String, dynamic>? encodeGradient(Gradient? value) {
+  Map<String, dynamic>? encodeGradient(Gradient? value) {
     assert(
       value == null ||
           value is LinearGradient ||
@@ -3002,9 +2994,7 @@ class ThemeEncoder {
   ///   "radians": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeGradientTransform(
-    GradientTransform? value,
-  ) {
+  Map<String, dynamic>? encodeGradientTransform(GradientTransform? value) {
     assert(value == null || value is GradientRotation);
     Map<String, dynamic>? result;
 
@@ -3020,7 +3010,7 @@ class ThemeEncoder {
   ///  * `deferToChild`
   ///  * `opaque`
   ///  * `translucent`
-  static String? encodeHitTestBehavior(HitTestBehavior? value) {
+  String? encodeHitTestBehavior(HitTestBehavior? value) {
     String? result;
 
     if (value != null) {
@@ -3060,7 +3050,7 @@ class ThemeEncoder {
   ///   "weight": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeIcon(Icon? value) {
+  Map<String, dynamic>? encodeIcon(Icon? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3087,7 +3077,7 @@ class ThemeEncoder {
   /// are:
   ///  * `end`
   ///  * `start`
-  static String? encodeIconAlignment(IconAlignment? value) {
+  String? encodeIconAlignment(IconAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -3115,9 +3105,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeButtonStyle]
-  static Map<String, dynamic>? encodeIconButtonThemeData(
-    IconButtonThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeIconButtonThemeData(IconButtonThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3138,7 +3126,7 @@ class ThemeEncoder {
   ///   "matchTextDirection": "<bool>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeIconData(IconData? value) {
+  Map<String, dynamic>? encodeIconData(IconData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3172,7 +3160,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeIconThemeData(IconThemeData? value) {
+  Map<String, dynamic>? encodeIconThemeData(IconThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3227,7 +3215,7 @@ class ThemeEncoder {
   ///   "url": "<String>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeImageProvider(
+  Map<String, dynamic>? encodeImageProvider(
     ImageProvider? value, {
     bool validate = true,
   }) {
@@ -3268,7 +3256,7 @@ class ThemeEncoder {
   /// * `repeat`
   /// * `repeatX`
   /// * `repeatY`
-  static String? encodeImageRepeat(ImageRepeat? value) {
+  String? encodeImageRepeat(ImageRepeat? value) {
     String? result;
 
     if (value != null) {
@@ -3319,7 +3307,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeInputBorder(InputBorder? value) {
+  Map<String, dynamic>? encodeInputBorder(InputBorder? value) {
     assert(
       value == null ||
           value is OutlineInputBorder ||
@@ -3397,8 +3385,8 @@ class ThemeEncoder {
   ///  * [encodeInputBorder]
   ///  * [encodeFloatingLabelBehavior]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeInputDecorationTheme(
-    InputDecorationTheme? value,
+  Map<String, dynamic>? encodeInputDecorationThemeData(
+    InputDecorationThemeData? value,
   ) {
     Map<String, dynamic>? result;
 
@@ -3462,7 +3450,7 @@ class ThemeEncoder {
   ///  * `sparkle`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeInteractiveInkFeatureFactory(
+  String? encodeInteractiveInkFeatureFactory(
     InteractiveInkFeatureFactory? value,
   ) {
     final splashType = InkSplash.splashFactory.runtimeType;
@@ -3497,7 +3485,7 @@ class ThemeEncoder {
   ///  * `trailing`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeListTileControlAffinity(ListTileControlAffinity? value) {
+  String? encodeListTileControlAffinity(ListTileControlAffinity? value) {
     String? result;
 
     if (value != null) {
@@ -3523,7 +3511,7 @@ class ThemeEncoder {
   ///  * `list`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeListTileStyle(ListTileStyle? value) {
+  String? encodeListTileStyle(ListTileStyle? value) {
     String? result;
 
     if (value != null) {
@@ -3549,7 +3537,7 @@ class ThemeEncoder {
   ///  * `top`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeListTileTitleAlignment(ListTileTitleAlignment? value) {
+  String? encodeListTileTitleAlignment(ListTileTitleAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -3597,9 +3585,7 @@ class ThemeEncoder {
   ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeListTileThemeData(
-    ListTileThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeListTileThemeData(ListTileThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3644,7 +3630,7 @@ class ThemeEncoder {
   ///   "languageCode": "<String>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeLocale(Locale? value) {
+  Map<String, dynamic>? encodeLocale(Locale? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3667,7 +3653,7 @@ class ThemeEncoder {
   ///  * `start`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeMainAxisAlignment(MainAxisAlignment? value) {
+  String? encodeMainAxisAlignment(MainAxisAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -3702,7 +3688,7 @@ class ThemeEncoder {
   ///  * `min`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeMainAxisSize(MainAxisSize? value) {
+  String? encodeMainAxisSize(MainAxisSize? value) {
     String? result;
     if (value != null) {
       switch (value) {
@@ -3737,7 +3723,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeMaterialBannerThemeData(
+  Map<String, dynamic>? encodeMaterialBannerThemeData(
     MaterialBannerThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -3771,7 +3757,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeMaterialColor(MaterialColor? value) {
+  Map<String, dynamic>? encodeMaterialColor(MaterialColor? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3801,7 +3787,7 @@ class ThemeEncoder {
   ///  * `shrinkWrap`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeMaterialTapTargetSize(MaterialTapTargetSize? value) {
+  String? encodeMaterialTapTargetSize(MaterialTapTargetSize? value) {
     String? result;
 
     if (value != null) {
@@ -3827,7 +3813,7 @@ class ThemeEncoder {
   ///  * `transparency`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeMaterialType(MaterialType? value) {
+  String? encodeMaterialType(MaterialType? value) {
     String? result;
 
     if (value != null) {
@@ -3877,7 +3863,7 @@ class ThemeEncoder {
   ///   w3
   /// ]
   /// ```
-  static List<double>? encodeMatrix4(Matrix4? value) {
+  List<double>? encodeMatrix4(Matrix4? value) {
     List<double>? result;
 
     if (value != null) {
@@ -3908,7 +3894,7 @@ class ThemeEncoder {
   ///  * `enforced`
   ///  * `none`
   ///  * `truncateAfterCompositionEnds`
-  static String? encodeMaxLengthEnforcement(
+  String? encodeMaxLengthEnforcement(
     MaxLengthEnforcement? value, {
     bool validate = true,
   }) {
@@ -3940,7 +3926,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeMenuStyle]
-  static Map<String, dynamic>? encodeMenuBarThemeData(MenuBarThemeData? value) {
+  Map<String, dynamic>? encodeMenuBarThemeData(MenuBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -3960,9 +3946,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeButtonStyle]
-  static Map<String, dynamic>? encodeMenuButtonThemeData(
-    MenuButtonThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeMenuButtonThemeData(MenuButtonThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4000,7 +3984,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeWidgetStatePropertySize]
   ///  * [encodeVisualDensity]
-  static Map<String, dynamic>? encodeMenuStyle(MenuStyle? value) {
+  Map<String, dynamic>? encodeMenuStyle(MenuStyle? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4038,7 +4022,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeMenuStyle]
-  static Map<String, dynamic>? encodeMenuThemeData(MenuThemeData? value) {
+  Map<String, dynamic>? encodeMenuThemeData(MenuThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4090,7 +4074,7 @@ class ThemeEncoder {
   ///  * `wait`
   ///  * `zoomIn`
   ///  * `zoomOut`
-  static Map<String, dynamic>? encodeMouseCursor(MouseCursor? value) {
+  Map<String, dynamic>? encodeMouseCursor(MouseCursor? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4206,7 +4190,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStatePropertyIconThemeData]
   ///  * [encodeWidgetStatePropertyTextStyle]
   ///  * [encodeNavigationDestinationLabelBehavior]
-  static Map<String, dynamic>? encodeNavigationBarThemeData(
+  Map<String, dynamic>? encodeNavigationBarThemeData(
     NavigationBarThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -4242,7 +4226,7 @@ class ThemeEncoder {
   ///  * `onlyShowSelected`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeNavigationDestinationLabelBehavior(
+  String? encodeNavigationDestinationLabelBehavior(
     NavigationDestinationLabelBehavior? value, {
     bool validate = true,
   }) {
@@ -4274,7 +4258,7 @@ class ThemeEncoder {
   ///  * `selected`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeNavigationRailLabelType(NavigationRailLabelType? value) {
+  String? encodeNavigationRailLabelType(NavigationRailLabelType? value) {
     String? result;
 
     if (value != null) {
@@ -4322,7 +4306,7 @@ class ThemeEncoder {
   ///  * [encodeNavigationRailLabelType]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeNavigationRailThemeData(
+  Map<String, dynamic>? encodeNavigationRailThemeData(
     NavigationRailThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -4355,7 +4339,7 @@ class ThemeEncoder {
   ///  * `circular`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeNotchedShape(NotchedShape? value) {
+  String? encodeNotchedShape(NotchedShape? value) {
     assert(value == null || value is CircularNotchedRectangle);
     String? result;
 
@@ -4374,7 +4358,7 @@ class ThemeEncoder {
   ///   "dy": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeOffset(Offset? value) {
+  Map<String, dynamic>? encodeOffset(Offset? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4393,7 +4377,7 @@ class ThemeEncoder {
   ///   "order": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeOrdinalSortKey(OrdinalSortKey? value) {
+  Map<String, dynamic>? encodeOrdinalSortKey(OrdinalSortKey? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4452,7 +4436,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeOutlinedBorder(ShapeBorder? value) {
+  Map<String, dynamic>? encodeOutlinedBorder(ShapeBorder? value) {
     assert(
       value == null ||
           value is BeveledRectangleBorder ||
@@ -4514,7 +4498,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeButtonStyle]
-  static Map<String, dynamic>? encodeOutlinedButtonThemeData(
+  Map<String, dynamic>? encodeOutlinedButtonThemeData(
     OutlinedButtonThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -4529,7 +4513,7 @@ class ThemeEncoder {
   /// Encodes the [value] to a [String].  Supported values are:
   /// * `deferToChild`
   /// * `max`
-  static String? encodeOverflowBoxFit(OverflowBoxFit? value) {
+  String? encodeOverflowBoxFit(OverflowBoxFit? value) {
     String? result;
 
     if (value != null) {
@@ -4551,7 +4535,7 @@ class ThemeEncoder {
   /// * `fadeUpwards`
   /// * `openUpwards`
   /// * `zoom`
-  static String? encodePageTransitionsBuilder(PageTransitionsBuilder? value) {
+  String? encodePageTransitionsBuilder(PageTransitionsBuilder? value) {
     String? result;
 
     if (value is CupertinoPageTransitionsBuilder) {
@@ -4578,7 +4562,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodePageTransitionsBuilder]
   ///  * [encodeTargetPlatform]
-  static Map<String, dynamic>? encodePageTransitionsTheme(
+  Map<String, dynamic>? encodePageTransitionsTheme(
     PageTransitionsTheme? value,
   ) {
     Map<String, dynamic>? result;
@@ -4601,7 +4585,7 @@ class ThemeEncoder {
   ///  * `free`
   ///  * `horizontal`
   ///  * `vertical`
-  static String? encodePanAxis(PanAxis? value) {
+  String? encodePanAxis(PanAxis? value) {
     String? result;
 
     if (value != null) {
@@ -4634,7 +4618,7 @@ class ThemeEncoder {
   ///  * `touch`
   ///  * `trackpad`
   ///  * `unknown`
-  static String? encodePointerDeviceKind(PointerDeviceKind? value) {
+  String? encodePointerDeviceKind(PointerDeviceKind? value) {
     String? result;
 
     if (value != null) {
@@ -4666,7 +4650,7 @@ class ThemeEncoder {
   /// Encodes the [PopupMenuPosition] to a string:
   ///  * `over`
   ///  * `under`
-  static String? encodePopupMenuPosition(PopupMenuPosition? value) {
+  String? encodePopupMenuPosition(PopupMenuPosition? value) {
     String? result;
 
     if (value != null) {
@@ -4712,9 +4696,7 @@ class ThemeEncoder {
   ///  * [encodeTextStyle]
   ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeWidgetStatePropertyTextStyle]
-  static Map<String, dynamic>? encodePopupMenuThemeData(
-    PopupMenuThemeData? value,
-  ) {
+  Map<String, dynamic>? encodePopupMenuThemeData(PopupMenuThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4766,7 +4748,7 @@ class ThemeEncoder {
   ///  * [encodeColor]
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeStrokeCap]
-  static Map<String, dynamic>? encodeProgressIndicatorThemeData(
+  Map<String, dynamic>? encodeProgressIndicatorThemeData(
     ProgressIndicatorThemeData? value, {
     TextDirection direction = TextDirection.ltr,
   }) {
@@ -4816,7 +4798,7 @@ class ThemeEncoder {
   ///  * [encodeMaterialTapTargetSize]
   ///  * [encodeMouseCursor]
   ///  * [encodeVisualDensity]
-  static Map<String, dynamic>? encodeRadioThemeData(
+  Map<String, dynamic>? encodeRadioThemeData(
     RadioThemeData? value, {
     bool validate = true,
   }) {
@@ -4847,7 +4829,7 @@ class ThemeEncoder {
   ///   "y": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeRadius(Radius? value) {
+  Map<String, dynamic>? encodeRadius(Radius? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -4877,7 +4859,7 @@ class ThemeEncoder {
   ///   "type": "round"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeRangeSliderThumbShape(
+  Map<String, dynamic>? encodeRangeSliderThumbShape(
     RoundRangeSliderThumbShape? value,
   ) {
     Map<String, dynamic>? result;
@@ -4908,7 +4890,7 @@ class ThemeEncoder {
   ///   "type": "round"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeRangeSliderTickMarkShape(
+  Map<String, dynamic>? encodeRangeSliderTickMarkShape(
     RangeSliderTickMarkShape? value,
   ) {
     assert(value == null || value is RoundRangeSliderTickMarkShape);
@@ -4931,7 +4913,7 @@ class ThemeEncoder {
   ///  * `rounded`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeRangeSliderTrackShape(RangeSliderTrackShape? value) {
+  String? encodeRangeSliderTrackShape(RangeSliderTrackShape? value) {
     assert(
       value == null ||
           value is RectangularRangeSliderTrackShape ||
@@ -4956,7 +4938,7 @@ class ThemeEncoder {
   ///  * `rectangular`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeRangeSliderValueIndicatorShape(
+  String? encodeRangeSliderValueIndicatorShape(
     RangeSliderValueIndicatorShape? value,
   ) {
     assert(
@@ -4989,7 +4971,7 @@ class ThemeEncoder {
   ///   "type": "ltrb"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeRect(Rect? value) {
+  Map<String, dynamic>? encodeRect(Rect? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5016,7 +4998,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeAndroidOverscrollIndicator]
-  static Map<String, dynamic>? encodeScrollBehavior(
+  Map<String, dynamic>? encodeScrollBehavior(
     ScrollBehavior? value, {
     bool validate = true,
   }) {
@@ -5047,7 +5029,7 @@ class ThemeEncoder {
   ///  * `never`
   ///  * `page`
   ///  * `rangeMaintaining`
-  static Map<String, dynamic>? encodeScrollPhysics(ScrollPhysics? value) {
+  Map<String, dynamic>? encodeScrollPhysics(ScrollPhysics? value) {
     assert(
       value == null ||
           value is AlwaysScrollableScrollPhysics ||
@@ -5093,7 +5075,7 @@ class ThemeEncoder {
   /// Encodes the [value] to a String.  Supported values are:
   ///  * `manual`
   ///  * `onDrag`
-  static String? encodeScrollViewKeyboardDismissBehavior(
+  String? encodeScrollViewKeyboardDismissBehavior(
     ScrollViewKeyboardDismissBehavior? value,
   ) {
     String? result;
@@ -5118,7 +5100,7 @@ class ThemeEncoder {
   ///  * `left`
   ///  * `right`
   ///  * `top`
-  static String? encodeScrollbarOrientation(ScrollbarOrientation? value) {
+  String? encodeScrollbarOrientation(ScrollbarOrientation? value) {
     String? result;
 
     if (value != null) {
@@ -5168,9 +5150,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStatePropertyColor]
   ///  * [encodeWidgetStatePropertyDouble]
   ///  * [encodeRadius]
-  static Map<String, dynamic>? encodeScrollbarThemeData(
-    ScrollbarThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeScrollbarThemeData(ScrollbarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5222,9 +5202,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStatePropertyEdgeInsetsGeometry]
   ///  * [encodeWidgetStatePropertyOutlinedBorder]
   ///  * [encodeWidgetStatePropertyTextStyle]
-  static Map<String, dynamic>? encodeSearchBarThemeData(
-    SearchBarThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeSearchBarThemeData(SearchBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5280,9 +5258,7 @@ class ThemeEncoder {
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeOutlinedBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeSearchViewThemeData(
-    SearchViewThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeSearchViewThemeData(SearchViewThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5318,7 +5294,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeButtonStyle]
   ///  * [encodeIcon]
-  static Map<String, dynamic>? encodeSegmentedButtonThemeData(
+  Map<String, dynamic>? encodeSegmentedButtonThemeData(
     SegmentedButtonThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -5343,7 +5319,7 @@ class ThemeEncoder {
   ///   "name": "<String>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeSemanticsTag(SemanticsTag? value) {
+  Map<String, dynamic>? encodeSemanticsTag(SemanticsTag? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5366,7 +5342,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeColor]
   ///  * [encodeOffset]
-  static Map<String, dynamic>? encodeShadow(Shadow? value) {
+  Map<String, dynamic>? encodeShadow(Shadow? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5420,7 +5396,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeShapeBorder(ShapeBorder? value) {
+  Map<String, dynamic>? encodeShapeBorder(ShapeBorder? value) {
     assert(
       value == null ||
           value is CircleBorder ||
@@ -5471,13 +5447,17 @@ class ThemeEncoder {
   ///  * `onlyForDiscrete`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeShowValueIndicator(ShowValueIndicator? value) {
+  String? encodeShowValueIndicator(ShowValueIndicator? value) {
     String? result;
 
     if (value != null) {
       switch (value) {
-        case ShowValueIndicator.always:
-          result = 'always';
+        case ShowValueIndicator.alwaysVisible:
+          result = 'alwaysVisible';
+          break;
+
+        case ShowValueIndicator.onDrag:
+          result = 'onDrag';
           break;
 
         case ShowValueIndicator.never:
@@ -5491,6 +5471,9 @@ class ThemeEncoder {
         case ShowValueIndicator.onlyForDiscrete:
           result = 'onlyForDiscrete';
           break;
+
+        default:
+          result = value.name;
       }
     }
 
@@ -5506,7 +5489,7 @@ class ThemeEncoder {
   ///   "width": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeSize(Size? value) {
+  Map<String, dynamic>? encodeSize(Size? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5521,7 +5504,7 @@ class ThemeEncoder {
   ///  * `noOverlay`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSliderComponentShape(SliderComponentShape? value) {
+  String? encodeSliderComponentShape(SliderComponentShape? value) {
     String? result;
 
     if (value != null) {
@@ -5545,7 +5528,7 @@ class ThemeEncoder {
   ///  * `tapOnly`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSliderInteraction(SliderInteraction? value) {
+  String? encodeSliderInteraction(SliderInteraction? value) {
     String? result;
 
     if (value != null) {
@@ -5622,7 +5605,7 @@ class ThemeEncoder {
   ///  * [encodeRangeSliderValueIndicatorShape]
   ///  * [encodeWidgetStatePropertyMouseCursor]
   ///  * [encodeWidgetStatePropertySize]
-  static Map<String, dynamic>? encodeSliderThemeData(SliderThemeData? value) {
+  Map<String, dynamic>? encodeSliderThemeData(SliderThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5694,7 +5677,7 @@ class ThemeEncoder {
 
   /// Encodes the [SliderTickMarkShape] to a [String].  Supported values are:
   ///  * `noTickMark`
-  static String? encodeSliderTickMarkShape(
+  String? encodeSliderTickMarkShape(
     SliderTickMarkShape? value, {
     bool validate = true,
   }) {
@@ -5727,7 +5710,7 @@ class ThemeEncoder {
   ///   "type": "round"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeSliderTrackShape(SliderTrackShape? value) {
+  Map<String, dynamic>? encodeSliderTrackShape(SliderTrackShape? value) {
     assert(
       value == null ||
           value is RectangularSliderTrackShape ||
@@ -5752,7 +5735,7 @@ class ThemeEncoder {
   ///  * `enabled`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSmartDashesType(SmartDashesType? value) {
+  String? encodeSmartDashesType(SmartDashesType? value) {
     String? result;
 
     if (value != null) {
@@ -5775,7 +5758,7 @@ class ThemeEncoder {
   ///  * `enabled`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSmartQuotesType(SmartQuotesType? value) {
+  String? encodeSmartQuotesType(SmartQuotesType? value) {
     String? result;
 
     if (value != null) {
@@ -5798,7 +5781,7 @@ class ThemeEncoder {
   ///  * `floating`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeSnackBarBehavior(SnackBarBehavior? value) {
+  String? encodeSnackBarBehavior(SnackBarBehavior? value) {
     String? result;
 
     if (value != null) {
@@ -5845,9 +5828,7 @@ class ThemeEncoder {
   ///  * [encodeSnackBarBehavior]
   ///  * [encodeShapeBorder]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeSnackBarThemeData(
-    SnackBarThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeSnackBarThemeData(SnackBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5880,7 +5861,7 @@ class ThemeEncoder {
   ///  * `expand`
   ///  * `loose`
   ///  * `passthrough`
-  static String? encodeStackFit(StackFit? value) {
+  String? encodeStackFit(StackFit? value) {
     String? result;
 
     if (value != null) {
@@ -5907,7 +5888,7 @@ class ThemeEncoder {
   ///  * `butt`
   ///  * `round`
   ///  * `square`
-  static String? encodeStrokeCap(StrokeCap? value) {
+  String? encodeStrokeCap(StrokeCap? value) {
     String? result;
 
     if (value != null) {
@@ -5950,7 +5931,7 @@ class ThemeEncoder {
   ///  * [encodeFontStyle]
   ///  * [encodeFontWeight]
   ///  * [encodeTextLeadingDistribution]
-  static Map<String, dynamic>? encodeStrutStyle(StrutStyle? value) {
+  Map<String, dynamic>? encodeStrutStyle(StrutStyle? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -5996,7 +5977,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStatePropertyColor]
   ///  * [encodeWidgetStatePropertyDouble]
   ///  * [encodeWidgetStatePropertyMouseCursor]
-  static Map<String, dynamic>? encodeSwitchThemeData(
+  Map<String, dynamic>? encodeSwitchThemeData(
     SwitchThemeData? value, {
     bool validate = true,
   }) {
@@ -6044,7 +6025,7 @@ class ThemeEncoder {
   /// ```
   ///
   /// All other values, including `null`, will result in `null`.
-  static dynamic encodeSystemUiOverlayStyle(SystemUiOverlayStyle? value) {
+  dynamic encodeSystemUiOverlayStyle(SystemUiOverlayStyle? value) {
     dynamic result;
 
     if (value != null) {
@@ -6087,7 +6068,7 @@ class ThemeEncoder {
   ///  * `startOffset`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTabAlignment(TabAlignment? value) {
+  String? encodeTabAlignment(TabAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -6116,7 +6097,7 @@ class ThemeEncoder {
   ///  * `tab`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTabBarIndicatorSize(TabBarIndicatorSize? value) {
+  String? encodeTabBarIndicatorSize(TabBarIndicatorSize? value) {
     String? result;
 
     if (value != null) {
@@ -6167,7 +6148,7 @@ class ThemeEncoder {
   ///  * [encodeTabBarIndicatorSize]
   ///  * [encodeTextScaler]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTabBarThemeData(TabBarThemeData? value) {
+  Map<String, dynamic>? encodeTabBarThemeData(TabBarThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6203,7 +6184,7 @@ class ThemeEncoder {
   ///  * `linear`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTabIndicatorAnimation(TabIndicatorAnimation? value) {
+  String? encodeTabIndicatorAnimation(TabIndicatorAnimation? value) {
     String? result;
 
     if (value != null) {
@@ -6238,7 +6219,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeBorderRadius]
   ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeTableBorder(TableBorder? value) {
+  Map<String, dynamic>? encodeTableBorder(TableBorder? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6270,7 +6251,7 @@ class ThemeEncoder {
   ///   "value": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeTableColumnWidth(TableColumnWidth? value) {
+  Map<String, dynamic>? encodeTableColumnWidth(TableColumnWidth? value) {
     Map<String, dynamic>? result;
 
     if (value is FixedColumnWidth) {
@@ -6312,7 +6293,7 @@ class ThemeEncoder {
   ///  * `windows`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTargetPlatform(TargetPlatform? value) {
+  String? encodeTargetPlatform(TargetPlatform? value) {
     String? result;
 
     if (value != null) {
@@ -6356,7 +6337,7 @@ class ThemeEncoder {
   ///  * `start`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextAlign(TextAlign? value) {
+  String? encodeTextAlign(TextAlign? value) {
     String? result;
 
     if (value != null) {
@@ -6392,7 +6373,7 @@ class ThemeEncoder {
   ///  * `top`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextAlignVertical(TextAlignVertical? value) {
+  String? encodeTextAlignVertical(TextAlignVertical? value) {
     String? result;
 
     if (value != null) {
@@ -6418,7 +6399,7 @@ class ThemeEncoder {
   ///  * `ideographic`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextBaseline(TextBaseline? value) {
+  String? encodeTextBaseline(TextBaseline? value) {
     String? result;
 
     if (value != null) {
@@ -6446,9 +6427,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeButtonStyle]
-  static Map<String, dynamic>? encodeTextButtonThemeData(
-    TextButtonThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeTextButtonThemeData(TextButtonThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6466,7 +6445,7 @@ class ThemeEncoder {
   ///  * `words`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextCapitalization(TextCapitalization? value) {
+  String? encodeTextCapitalization(TextCapitalization? value) {
     String? result;
 
     if (value != null) {
@@ -6500,7 +6479,7 @@ class ThemeEncoder {
   ///  * `underline`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextDecoration(TextDecoration? value) {
+  String? encodeTextDecoration(TextDecoration? value) {
     String? result;
 
     if (value != null) {
@@ -6527,7 +6506,7 @@ class ThemeEncoder {
   ///  * `wavy`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextDecorationStyle(TextDecorationStyle? value) {
+  String? encodeTextDecorationStyle(TextDecorationStyle? value) {
     String? result;
 
     if (value != null) {
@@ -6562,7 +6541,7 @@ class ThemeEncoder {
   ///  * `rtl`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextDirection(TextDirection? value) {
+  String? encodeTextDirection(TextDirection? value) {
     String? result;
 
     if (value != null) {
@@ -6596,7 +6575,7 @@ class ThemeEncoder {
   ///  * `unspecified`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextInputAction(TextInputAction? value) {
+  String? encodeTextInputAction(TextInputAction? value) {
     String? result;
 
     if (value != null) {
@@ -6672,7 +6651,7 @@ class ThemeEncoder {
   ///  * `visiblePassword`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextInputType(TextInputType? value) {
+  String? encodeTextInputType(TextInputType? value) {
     String? result;
 
     if (value != null) {
@@ -6717,9 +6696,7 @@ class ThemeEncoder {
   ///   "leadingDistribution": "<TextLeadingDistribution>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeTextHeightBehavior(
-    TextHeightBehavior? value,
-  ) {
+  Map<String, dynamic>? encodeTextHeightBehavior(TextHeightBehavior? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6740,7 +6717,7 @@ class ThemeEncoder {
   ///  * `proportional`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextLeadingDistribution(TextLeadingDistribution? value) {
+  String? encodeTextLeadingDistribution(TextLeadingDistribution? value) {
     String? result;
 
     if (value != null) {
@@ -6765,7 +6742,7 @@ class ThemeEncoder {
   ///  * `visible`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextOverflow(TextOverflow? value) {
+  String? encodeTextOverflow(TextOverflow? value) {
     String? result;
 
     if (value != null) {
@@ -6796,7 +6773,7 @@ class ThemeEncoder {
   ///  * `noScaling`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextScaler(TextScaler? value) {
+  String? encodeTextScaler(TextScaler? value) {
     String? result;
 
     if (value != null) {
@@ -6821,7 +6798,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeTextSelectionThemeData(
+  Map<String, dynamic>? encodeTextSelectionThemeData(
     TextSelectionThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -6858,7 +6835,7 @@ class ThemeEncoder {
   ///  * [encodeLocale]
   ///  * [encodeMouseCursor]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTextSpan(TextSpan? value) {
+  Map<String, dynamic>? encodeTextSpan(TextSpan? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6926,7 +6903,7 @@ class ThemeEncoder {
   ///  * [encodeTextDecorationStyle]
   ///  * [encodeTextLeadingDistribution]
   ///  * [encodeTextOverflow]
-  static Map<String, dynamic>? encodeTextStyle(TextStyle? value) {
+  Map<String, dynamic>? encodeTextStyle(TextStyle? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -6990,7 +6967,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeTextTheme(TextTheme? value) {
+  Map<String, dynamic>? encodeTextTheme(TextTheme? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7021,7 +6998,7 @@ class ThemeEncoder {
   ///  * `parent`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTextWidthBasis(TextWidthBasis? value) {
+  String? encodeTextWidthBasis(TextWidthBasis? value) {
     String? result;
 
     if (value != null) {
@@ -7133,10 +7110,10 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeActionIconThemeData]
-  ///  * [encodeAppBarTheme]
+  ///  * [encodeAppBarThemeData]
   ///  * [encodeBadgeThemeData]
   ///  * [encodeBrightness]
-  ///  * [encodeBottomAppBarTheme]
+  ///  * [encodeBottomAppBarThemeData]
   ///  * [encodeBottomSheetThemeData]
   ///  * [encodeButtonBarThemeData]
   ///  * [encodeButtonThemeData]
@@ -7156,7 +7133,7 @@ class ThemeEncoder {
   ///  * [encodeFloatingActionButtonThemeData]
   ///  * [encodeIconButtonThemeData]
   ///  * [encodeIconThemeData]
-  ///  * [encodeInputDecorationTheme]
+  ///  * [encodeInputDecorationThemeData]
   ///  * [encodeInteractiveInkFeatureFactory]
   ///  * [encodeListTileThemeData]
   ///  * [encodeMaterialBannerThemeData]
@@ -7183,17 +7160,19 @@ class ThemeEncoder {
   ///  * [encodeToggleButtonsThemeData]
   ///  * [encodeTypography]
   ///  * [encodeVisualDensity]
-  static Map<String, dynamic>? encodeThemeData(ThemeData? value) {
+  Map<String, dynamic>? encodeThemeData(ThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
       result = <String, dynamic>{
         'actionIconTheme': encodeActionIconThemeData(value.actionIconTheme),
-        'appBarTheme': encodeAppBarTheme(value.appBarTheme),
+        'appBarTheme': encodeAppBarThemeData(value.appBarTheme),
         'applyElevationOverlayColor': value.applyElevationOverlayColor,
         'badgeTheme': encodeBadgeThemeData(value.badgeTheme),
         'bannerTheme': encodeMaterialBannerThemeData(value.bannerTheme),
-        'bottomAppBarTheme': encodeBottomAppBarTheme(value.bottomAppBarTheme),
+        'bottomAppBarTheme': encodeBottomAppBarThemeData(
+          value.bottomAppBarTheme,
+        ),
         'bottomNavigationBarTheme': encodeBottomNavigationBarThemeData(
           value.bottomNavigationBarTheme,
         ),
@@ -7238,7 +7217,7 @@ class ThemeEncoder {
         'iconButtonTheme': encodeIconButtonThemeData(value.iconButtonTheme),
         'iconTheme': encodeIconThemeData(value.iconTheme),
         // 'indicatorColor': encodeColor(value.indicatorColor),
-        'inputDecorationTheme': encodeInputDecorationTheme(
+        'inputDecorationTheme': encodeInputDecorationThemeData(
           value.inputDecorationTheme,
         ),
         'listTileTheme': encodeListTileThemeData(value.listTileTheme),
@@ -7302,7 +7281,7 @@ class ThemeEncoder {
   ///  * `decal`
   ///  * `mirror`
   ///  * `repeated`
-  static String? encodeTileMode(TileMode? value) {
+  String? encodeTileMode(TileMode? value) {
     String? result;
 
     if (value != null) {
@@ -7370,9 +7349,7 @@ class ThemeEncoder {
   ///  * [encodeWidgetStateColor]
   ///  * [encodeWidgetStatePropertyColor]
   ///  * [encodeWidgetStatePropertyTextStyle]
-  static Map<String, dynamic>? encodeTimePickerThemeData(
-    TimePickerThemeData? value,
-  ) {
+  Map<String, dynamic>? encodeTimePickerThemeData(TimePickerThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7396,7 +7373,7 @@ class ThemeEncoder {
         'hourMinuteShape': encodeShapeBorder(value.hourMinuteShape),
         'hourMinuteTextColor': encodeColor(value.hourMinuteTextColor),
         'hourMinuteTextStyle': encodeTextStyle(value.hourMinuteTextStyle),
-        'inputDecorationTheme': encodeInputDecorationTheme(
+        'inputDecorationTheme': encodeInputDecorationThemeData(
           value.inputDecorationTheme,
         ),
         'padding': encodeEdgeInsetsGeometry(value.padding as EdgeInsets?),
@@ -7441,7 +7418,7 @@ class ThemeEncoder {
   ///  * [encodeBoxConstraints]
   ///  * [encodeColor]
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeToggleButtonsThemeData(
+  Map<String, dynamic>? encodeToggleButtonsThemeData(
     ToggleButtonsThemeData? value,
   ) {
     Map<String, dynamic>? result;
@@ -7494,7 +7471,7 @@ class ThemeEncoder {
   ///  * [encodeEdgeInsetsGeometry]
   ///  * [encodeTextStyle]
   ///  * [encodeTooltipTriggerMode]
-  static Map<String, dynamic>? encodeTooltipThemeData(TooltipThemeData? value) {
+  Map<String, dynamic>? encodeTooltipThemeData(TooltipThemeData? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7525,7 +7502,7 @@ class ThemeEncoder {
   ///  * `tap`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeTooltipTriggerMode(TooltipTriggerMode? value) {
+  String? encodeTooltipTriggerMode(TooltipTriggerMode? value) {
     String? result;
 
     if (value != null) {
@@ -7558,7 +7535,7 @@ class ThemeEncoder {
   /// See also:
   ///  * [encodeTargetPlatform]
   ///  * [encodeTextTheme]
-  static Map<String, dynamic>? encodeTypography(Typography? value) {
+  Map<String, dynamic>? encodeTypography(Typography? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -7580,7 +7557,7 @@ class ThemeEncoder {
   ///  * `up`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeVerticalDirection(VerticalDirection? value) {
+  String? encodeVerticalDirection(VerticalDirection? value) {
     String? result;
 
     if (value != null) {
@@ -7604,7 +7581,7 @@ class ThemeEncoder {
   ///  * `standard`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeVisualDensity(VisualDensity? value) {
+  String? encodeVisualDensity(VisualDensity? value) {
     String? result;
 
     if (value != null) {
@@ -7639,7 +7616,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeWidgetStateColor(
+  Map<String, dynamic>? encodeWidgetStateColor(
     WidgetStateColor? value, {
     bool validate = true,
   }) {
@@ -7680,7 +7657,7 @@ class ThemeEncoder {
   ///   "selected": "<bool>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeWidgetStatePropertyBool(
+  Map<String, dynamic>? encodeWidgetStatePropertyBool(
     WidgetStateProperty<bool?>? value, {
     bool validate = true,
   }) {
@@ -7722,7 +7699,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeBorderSide]
-  static Map<String, dynamic>? encodeWidgetStatePropertyBorderSide(
+  Map<String, dynamic>? encodeWidgetStatePropertyBorderSide(
     WidgetStateProperty<BorderSide?>? value, {
     bool validate = true,
   }) {
@@ -7766,7 +7743,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeColor]
-  static Map<String, dynamic>? encodeWidgetStatePropertyColor(
+  Map<String, dynamic>? encodeWidgetStatePropertyColor(
     WidgetStateProperty<Color?>? value, {
     bool validate = true,
   }) {
@@ -7807,7 +7784,7 @@ class ThemeEncoder {
   ///   "selected": "<double>"
   /// }
   /// ```
-  static Map<String, dynamic>? encodeWidgetStatePropertyDouble(
+  Map<String, dynamic>? encodeWidgetStatePropertyDouble(
     WidgetStateProperty<double?>? value, {
     bool validate = true,
   }) {
@@ -7849,7 +7826,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeEdgeInsetsGeometry]
-  static Map<String, dynamic>? encodeWidgetStatePropertyEdgeInsetsGeometry(
+  Map<String, dynamic>? encodeWidgetStatePropertyEdgeInsetsGeometry(
     WidgetStateProperty<EdgeInsetsGeometry?>? value, {
     bool validate = true,
   }) {
@@ -7907,7 +7884,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeIconThemeData]
-  static Map<String, dynamic>? encodeWidgetStatePropertyIconThemeData(
+  Map<String, dynamic>? encodeWidgetStatePropertyIconThemeData(
     WidgetStateProperty<IconThemeData?>? value, {
     bool validate = true,
   }) {
@@ -7951,7 +7928,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeMouseCursor]
-  static Map<String, dynamic>? encodeWidgetStatePropertyMouseCursor(
+  Map<String, dynamic>? encodeWidgetStatePropertyMouseCursor(
     WidgetStateProperty<MouseCursor?>? value, {
     bool validate = true,
   }) {
@@ -7995,7 +7972,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeOutlinedBorder]
-  static Map<String, dynamic>? encodeWidgetStatePropertyOutlinedBorder(
+  Map<String, dynamic>? encodeWidgetStatePropertyOutlinedBorder(
     WidgetStateProperty<OutlinedBorder?>? value, {
     bool validate = true,
   }) {
@@ -8039,7 +8016,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeSize]
-  static Map<String, dynamic>? encodeWidgetStatePropertySize(
+  Map<String, dynamic>? encodeWidgetStatePropertySize(
     WidgetStateProperty<Size?>? value, {
     bool validate = true,
   }) {
@@ -8081,7 +8058,7 @@ class ThemeEncoder {
   ///
   /// See also:
   ///  * [encodeTextStyle]
-  static Map<String, dynamic>? encodeWidgetStatePropertyTextStyle(
+  Map<String, dynamic>? encodeWidgetStatePropertyTextStyle(
     WidgetStateProperty<TextStyle?>? value, {
     bool validate = true,
   }) {
@@ -8116,7 +8093,7 @@ class ThemeEncoder {
   ///  * `start`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeWrapAlignment(WrapAlignment? value) {
+  String? encodeWrapAlignment(WrapAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -8152,7 +8129,7 @@ class ThemeEncoder {
   ///  * `start`
   ///
   /// All other values, including `null`, will result in `null`.
-  static String? encodeWrapCrossAlignment(WrapCrossAlignment? value) {
+  String? encodeWrapCrossAlignment(WrapCrossAlignment? value) {
     String? result;
 
     if (value != null) {
@@ -8172,7 +8149,7 @@ class ThemeEncoder {
     return _stripDynamicNull(result);
   }
 
-  static dynamic _stripDynamicNull(dynamic input) {
+  dynamic _stripDynamicNull(dynamic input) {
     var result = input;
 
     if (input is Map<String, dynamic>) {
@@ -8182,7 +8159,7 @@ class ThemeEncoder {
     return result;
   }
 
-  static Map<String, dynamic>? _stripNull(Map<String, dynamic>? input) {
+  Map<String, dynamic>? _stripNull(Map<String, dynamic>? input) {
     Map<String, dynamic>? result;
 
     if (input != null) {
@@ -8205,7 +8182,7 @@ class ThemeEncoder {
     return result?.isNotEmpty == true ? result : null;
   }
 
-  static List<T>? _encodeList<T>(
+  List<T>? _encodeList<T>(
     Iterable<dynamic>? list,
     T Function(dynamic value) encoder,
   ) {

@@ -13,6 +13,11 @@ import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 import '../model/map_widget_state_property.dart';
 
+part 'theme_decoder.g.dart';
+
+const _baseSchemaUrl =
+    'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme';
+
 /// Decoder capable of converting JSON compatible values into Flutter Theme
 /// related classes and enums.
 ///
@@ -25,11 +30,8 @@ import '../model/map_widget_state_property.dart';
 /// input of `null`.
 @immutable
 @JsonThemeCodec('decode')
-class ThemeDecoder {
-  const ThemeDecoder._();
-
-  static const _baseSchemaUrl =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme';
+class _ThemeDecoder {
+  const _ThemeDecoder._();
 
   /// Decodes the given [value] to an [ActionIconThemeData].  This expects the
   /// following JSON structure:
@@ -40,7 +42,7 @@ class ThemeDecoder {
   ///   "drawerButtonIconBuilder": "<Widget Function(BuildContext)>",
   ///   "endDrawerButtonIconBuilder": "<Widget Function(BuildContext)>"
   /// }
-  static ActionIconThemeData? decodeActionIconThemeData(
+  ActionIconThemeData? decodeActionIconThemeData(
     dynamic value, {
     bool validate = false,
   }) {
@@ -87,7 +89,7 @@ class ThemeDecoder {
   ///  * `topCenter`
   ///  * `topLeft`
   ///  * `topRight`
-  static Alignment? decodeAlignment(dynamic value, {bool validate = true}) {
+  Alignment? decodeAlignment(dynamic value, {bool validate = true}) {
     Alignment? result;
 
     if (value is Alignment) {
@@ -171,7 +173,7 @@ class ThemeDecoder {
   ///  * `topCenter`
   ///  * `topEnd`
   ///  * `topStart`
-  static AlignmentDirectional? decodeAlignmentDirectional(
+  AlignmentDirectional? decodeAlignmentDirectional(
     dynamic value, {
     bool validate = true,
   }) {
@@ -251,7 +253,7 @@ class ThemeDecoder {
   ///  * `topLeft`
   ///  * `topRight`
   ///  * `topStart`
-  static AlignmentGeometry? decodeAlignmentGeometry(
+  AlignmentGeometry? decodeAlignmentGeometry(
     dynamic value, {
     bool validate = true,
   }) {
@@ -354,7 +356,7 @@ class ThemeDecoder {
   /// values are:
   /// * `glow`
   /// * `stretch`
-  static AndroidOverscrollIndicator? decodeAndroidOverscrollIndicator(
+  AndroidOverscrollIndicator? decodeAndroidOverscrollIndicator(
     dynamic value, {
     bool validate = true,
   }) {
@@ -390,10 +392,7 @@ class ThemeDecoder {
   /// Decodes the given [value] to an [AnimationStyle].  Supported
   /// values are:
   /// * `noAnimation`
-  static AnimationStyle? decodeAnimationStyle(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  AnimationStyle? decodeAnimationStyle(dynamic value, {bool validate = true}) {
     AnimationStyle? result;
 
     if (value is AnimationStyle) {
@@ -419,7 +418,7 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [AppBarTheme].  This expects the given
+  /// Decodes the given [value] to an [AppBarThemeData].  This expects the given
   /// [value] to follow the structure below:
   ///
   /// ```json
@@ -449,20 +448,23 @@ class ThemeDecoder {
   ///  * [decodeIconThemeData]
   ///  * [decodeSystemUiOverlayStyle]
   ///  * [decodeTextStyle]
-  static AppBarTheme? decodeAppBarTheme(dynamic value, {bool validate = true}) {
-    AppBarTheme? result;
+  AppBarThemeData? decodeAppBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    AppBarThemeData? result;
 
-    if (value is AppBarTheme) {
+    if (value is AppBarThemeData) {
       result = value;
     } else if (value != null) {
       assert(
         SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/app_bar_theme',
+          schemaId: '$_baseSchemaUrl/app_bar_theme_data',
           value: value,
           validate: validate,
         ),
       );
-      result = AppBarTheme(
+      result = AppBarThemeData(
         actionsIconTheme: decodeIconThemeData(
           value['actionsIconTheme'],
           validate: false,
@@ -481,10 +483,11 @@ class ThemeDecoder {
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         foregroundColor: decodeColor(value['foregroundColor'], validate: false),
         iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
+        leadingWidth: JsonClass.maybeParseDouble(value['leadingWidth']),
         scrolledUnderElevation: JsonClass.maybeParseDouble(
           value['scrolledUnderElevation'],
         ),
-        shape: ThemeDecoder.decodeShapeBorder(value['shape'], validate: false),
+        shape: decodeShapeBorder(value['shape'], validate: false),
         shadowColor: decodeColor(value['shadowColor'], validate: false),
         systemOverlayStyle: decodeSystemUiOverlayStyle(
           value['systemOverlayStyle'],
@@ -515,7 +518,7 @@ class ThemeDecoder {
   /// * `disabled`
   /// * `onUnfocus`
   /// * `onUserInteraction`
-  static AutovalidateMode? decodeAutovalidateMode(
+  AutovalidateMode? decodeAutovalidateMode(
     dynamic value, {
     bool validate = true,
   }) {
@@ -552,7 +555,7 @@ class ThemeDecoder {
   /// Decodes the given [value] to an [Axis].  Supported values are:
   ///  * `horizontal`
   ///  * `vertical`
-  static Axis? decodeAxis(dynamic value, {bool validate = true}) {
+  Axis? decodeAxis(dynamic value, {bool validate = true}) {
     Axis? result;
     if (value is Axis) {
       result = value;
@@ -603,10 +606,7 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeOffset]
   ///  * [decodeTextStyle]
-  static BadgeThemeData? decodeBadgeThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  BadgeThemeData? decodeBadgeThemeData(dynamic value, {bool validate = true}) {
     BadgeThemeData? result;
 
     if (value is BadgeThemeData) {
@@ -664,7 +664,7 @@ class ThemeDecoder {
   /// * `srcOut`
   /// * `srcOver`
   /// * `xor`
-  static BlendMode? decodeBlendMode(dynamic value, {bool validate = true}) {
+  BlendMode? decodeBlendMode(dynamic value, {bool validate = true}) {
     BlendMode? result;
 
     if (value is BlendMode) {
@@ -838,7 +838,7 @@ class ThemeDecoder {
   /// * `normal`
   /// * `outer`
   /// * `solid`
-  static BlurStyle? decodeBlurStyle(dynamic value, {bool validate = true}) {
+  BlurStyle? decodeBlurStyle(dynamic value, {bool validate = true}) {
     BlurStyle? result;
 
     if (value is BlurStyle) {
@@ -943,10 +943,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeRadius]
-  static BorderRadius? decodeBorderRadius(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  BorderRadius? decodeBorderRadius(dynamic value, {bool validate = true}) {
     BorderRadius? result;
 
     if (value is BorderRadius) {
@@ -1090,7 +1087,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeBorderRadius]
-  static BorderRadius? decodeBorderRadiusGeometry(
+  BorderRadius? decodeBorderRadiusGeometry(
     dynamic value, {
     bool validate = true,
   }) => decodeBorderRadius(value, validate: validate);
@@ -1110,7 +1107,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderStyle]
   ///  * [decodeColor]
-  static BorderSide? decodeBorderSide(dynamic value, {bool validate = true}) {
+  BorderSide? decodeBorderSide(dynamic value, {bool validate = true}) {
     BorderSide? result;
 
     if (value is BorderSide) {
@@ -1143,7 +1140,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BorderStyle].  Supported values are:
   ///  * `none`
   ///  * `solid`
-  static BorderStyle? decodeBorderStyle(dynamic value, {bool validate = true}) {
+  BorderStyle? decodeBorderStyle(dynamic value, {bool validate = true}) {
     BorderStyle? result;
 
     if (value is BorderStyle) {
@@ -1174,7 +1171,7 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [BottomAppBarTheme].  This expects the
+  /// Decodes the given [value] to an [BottomAppBarThemeData].  This expects the
   /// given [value] to follow the structure below:
   ///
   /// ```json
@@ -1193,23 +1190,23 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeNotchedShape]
-  static BottomAppBarTheme? decodeBottomAppBarTheme(
+  BottomAppBarThemeData? decodeBottomAppBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
-    BottomAppBarTheme? result;
+    BottomAppBarThemeData? result;
 
-    if (value is BottomAppBarTheme) {
+    if (value is BottomAppBarThemeData) {
       result = value;
     } else if (value != null) {
       assert(
         SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/bottom_app_bar_theme',
+          schemaId: '$_baseSchemaUrl/bottom_app_bar_theme_data',
           value: value,
           validate: validate,
         ),
       );
-      result = BottomAppBarTheme(
+      result = BottomAppBarThemeData(
         color: decodeColor(value['color'], validate: false),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         height: JsonClass.maybeParseDouble(value['height']),
@@ -1255,7 +1252,7 @@ class ThemeDecoder {
   ///  * [decodeIconThemeData]
   ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeTextStyle]
-  static BottomNavigationBarThemeData? decodeBottomNavigationBarThemeData(
+  BottomNavigationBarThemeData? decodeBottomNavigationBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -1317,8 +1314,7 @@ class ThemeDecoder {
   ///  * `centered`
   ///  * `linear`
   ///  * `spread`
-  static BottomNavigationBarLandscapeLayout?
-  decodeBottomNavigationBarLandscapeLayout(
+  BottomNavigationBarLandscapeLayout? decodeBottomNavigationBarLandscapeLayout(
     dynamic value, {
     bool validate = true,
   }) {
@@ -1361,7 +1357,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BottomNavigationBarType].  Supported values are:
   ///  * `fixed`
   ///  * `shifting`
-  static BottomNavigationBarType? decodeBottomNavigationBarType(
+  BottomNavigationBarType? decodeBottomNavigationBarType(
     dynamic value, {
     bool validate = true,
   }) {
@@ -1421,7 +1417,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeSize]
   ///  * [decodeShapeBorder]
-  static BottomSheetThemeData? decodeBottomSheetThemeData(
+  BottomSheetThemeData? decodeBottomSheetThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -1459,7 +1455,7 @@ class ThemeDecoder {
         shadowColor: decodeColor(value['shadowColor'], validate: false),
         shape: decodeShapeBorder(value['shape'], validate: false),
         showDragHandle: JsonClass.maybeParseBool(value['showDragHandle']),
-        surfaceTintColor: ThemeDecoder.decodeColor(
+        surfaceTintColor: decodeColor(
           value['surfaceTintColor'],
           validate: false,
         ),
@@ -1490,7 +1486,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeBorderSide]
-  static BoxBorder? decodeBoxBorder(dynamic value, {bool validate = true}) {
+  BoxBorder? decodeBoxBorder(dynamic value, {bool validate = true}) {
     BoxBorder? result;
 
     if (value is BoxBorder) {
@@ -1545,10 +1541,7 @@ class ThemeDecoder {
   ///   "minWidth": "<double>"
   /// }
   /// ```
-  static BoxConstraints? decodeBoxConstraints(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  BoxConstraints? decodeBoxConstraints(dynamic value, {bool validate = true}) {
     BoxConstraints? result;
 
     if (value is BoxConstraints) {
@@ -1600,10 +1593,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeDecorationImage]
   ///  * [decodeGradient]
-  static BoxDecoration? decodeBoxDecoration(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  BoxDecoration? decodeBoxDecoration(dynamic value, {bool validate = true}) {
     BoxDecoration? result;
 
     if (value is BoxDecoration) {
@@ -1650,7 +1640,7 @@ class ThemeDecoder {
   ///  * `fitWidth`
   ///  * `none`
   ///  * `scaleDown`
-  static BoxFit? decodeBoxFit(dynamic value, {bool validate = true}) {
+  BoxFit? decodeBoxFit(dynamic value, {bool validate = true}) {
     BoxFit? result;
 
     if (value is BoxFit) {
@@ -1698,10 +1688,7 @@ class ThemeDecoder {
   ///  * `max`
   ///  * `strut`
   ///  * `tight`
-  static BoxHeightStyle? decodeBoxHeightStyle(
-    dynamic value, {
-    bool validate = false,
-  }) {
+  BoxHeightStyle? decodeBoxHeightStyle(dynamic value, {bool validate = false}) {
     BoxHeightStyle? result;
 
     if (value is BoxHeightStyle) {
@@ -1758,7 +1745,7 @@ class ThemeDecoder {
   ///  * [decodeBlurStyle]
   ///  * [decodeColor]
   ///  * [decodeOffset]
-  static BoxShadow? decodeBoxShadow(dynamic value, {bool validate = true}) {
+  BoxShadow? decodeBoxShadow(dynamic value, {bool validate = true}) {
     BoxShadow? result;
 
     if (value is BoxShadow) {
@@ -1790,7 +1777,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BoxShape].  Supported values are:
   ///  * `circle`
   ///  * `rectangle`
-  static BoxShape? decodeBoxShape(dynamic value, {bool validate = true}) {
+  BoxShape? decodeBoxShape(dynamic value, {bool validate = true}) {
     BoxShape? result;
 
     if (value is BoxShape) {
@@ -1820,10 +1807,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [BoxWidthStyle].  Supported values are:
   ///  * `max`
   ///  * `tight`
-  static BoxWidthStyle? decodeBoxWidthStyle(
-    dynamic value, {
-    bool validate = false,
-  }) {
+  BoxWidthStyle? decodeBoxWidthStyle(dynamic value, {bool validate = false}) {
     BoxWidthStyle? result;
 
     if (value is BoxWidthStyle) {
@@ -1853,7 +1837,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [Brightness].  Supported values are:
   ///  * `light`
   ///  * `dark`
-  static Brightness? decodeBrightness(dynamic value, {bool validate = true}) {
+  Brightness? decodeBrightness(dynamic value, {bool validate = true}) {
     Brightness? result;
 
     if (value is Brightness) {
@@ -1879,7 +1863,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [ButtonBarLayoutBehavior].  Supported values are:
   ///  * `constrained`
   ///  * `padded`
-  static ButtonBarLayoutBehavior? decodeButtonBarLayoutBehavior(
+  ButtonBarLayoutBehavior? decodeButtonBarLayoutBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -1941,7 +1925,7 @@ class ThemeDecoder {
   ///  * [decodeMainAxisSize]
   ///  * [decodeVerticalDirection]
   // ignore: deprecated_member_use
-  static ButtonBarThemeData? decodeButtonBarThemeData(
+  ButtonBarThemeData? decodeButtonBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -2047,7 +2031,7 @@ class ThemeDecoder {
   ///  * [decodeSize]
   ///  * [decodeTextStyle]
   ///  * [decodeVisualDensity]
-  static ButtonStyle? decodeButtonStyle(dynamic value, {bool validate = true}) {
+  ButtonStyle? decodeButtonStyle(dynamic value, {bool validate = true}) {
     ButtonStyle? result;
 
     if (value is ButtonStyle) {
@@ -2157,7 +2141,7 @@ class ThemeDecoder {
   ///  * `accent`
   ///  * `normal`
   ///  * `primary`
-  static ButtonTextTheme? decodeButtonTextTheme(
+  ButtonTextTheme? decodeButtonTextTheme(
     dynamic value, {
     bool validate = true,
   }) {
@@ -2228,7 +2212,7 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeShapeBorder]
-  static ButtonThemeData? decodeButtonThemeData(
+  ButtonThemeData? decodeButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -2294,10 +2278,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
-  static CardThemeData? decodeCardThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  CardThemeData? decodeCardThemeData(dynamic value, {bool validate = true}) {
     CardThemeData? result;
 
     if (value is CardThemeData) {
@@ -2353,7 +2334,7 @@ class ThemeDecoder {
   ///  * [decodeMouseCursor]
   ///  * [decodeOutlinedBorder]
   ///  * [decodeVisualDensity]
-  static CheckboxThemeData? decodeCheckboxThemeData(
+  CheckboxThemeData? decodeCheckboxThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -2444,10 +2425,7 @@ class ThemeDecoder {
   ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static ChipThemeData? decodeChipThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  ChipThemeData? decodeChipThemeData(dynamic value, {bool validate = true}) {
     ChipThemeData? result;
 
     if (value is ChipThemeData) {
@@ -2518,7 +2496,7 @@ class ThemeDecoder {
   ///  * `antiAliasWithSaveLayer`
   ///  * `hardEdge`
   ///  * `none`
-  static Clip? decodeClip(dynamic value, {bool validate = true}) {
+  Clip? decodeClip(dynamic value, {bool validate = true}) {
     Clip? result;
 
     if (value is Clip) {
@@ -2569,7 +2547,7 @@ class ThemeDecoder {
   ///  * `#rgb`
   ///  * `#rrggbb`
   ///  * `#aarrggbb`
-  static Color? decodeColor(dynamic value, {bool validate = true}) {
+  Color? decodeColor(dynamic value, {bool validate = true}) {
     Color? result;
 
     if (value is Color) {
@@ -2632,7 +2610,7 @@ class ThemeDecoder {
   ///
   /// Neither type of `linearToSrgbGamma` or `srgbToLinearGamma` requires any
   /// additional properties.
-  static ColorFilter? decodeColorFilter(dynamic value, {bool validate = true}) {
+  ColorFilter? decodeColorFilter(dynamic value, {bool validate = true}) {
     ColorFilter? result;
 
     if (value is ColorFilter) {
@@ -2735,7 +2713,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBrightness]
   ///  * [decodeColor]
-  static ColorScheme? decodeColorScheme(dynamic value, {bool validate = true}) {
+  ColorScheme? decodeColorScheme(dynamic value, {bool validate = true}) {
     ColorScheme? result;
 
     if (value is ColorScheme) {
@@ -2871,7 +2849,7 @@ class ThemeDecoder {
   ///  * `end`
   ///  * `start`
   ///  * `stretch`
-  static CrossAxisAlignment? decodeCrossAxisAlignment(
+  CrossAxisAlignment? decodeCrossAxisAlignment(
     dynamic value, {
     bool validate = true,
   }) {
@@ -2922,10 +2900,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [CrossFadeState].  Supported values are:
   ///  * `showFirst`
   ///  * `showSecond`
-  static CrossFadeState? decodeCrossFadeState(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  CrossFadeState? decodeCrossFadeState(dynamic value, {bool validate = true}) {
     CrossFadeState? result;
 
     if (value is CrossFadeState) {
@@ -2976,7 +2951,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeTextStyle]
-  static CupertinoTextThemeData? decodeCupertinoTextThemeData(
+  CupertinoTextThemeData? decodeCupertinoTextThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3054,7 +3029,7 @@ class ThemeDecoder {
   ///  * [decodeBrightness]
   ///  * [decodeColor]
   ///  * [decodeCupertinoTextThemeData]
-  static CupertinoThemeData? decodeCupertinoThemeData(
+  CupertinoThemeData? decodeCupertinoThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3115,7 +3090,7 @@ class ThemeDecoder {
   ///   "headerForegroundColor": "<Color>",
   ///   "headerHeadlineStyle": "<TextStyle>",
   ///   "headerHelpStyle": "<TextStyle>",
-  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "inputDecorationTheme": "<InputDecorationThemeData>",
   ///   "rangePickerBackgroundColor": "<Color>",
   ///   "rangePickerElevation": "<double>",
   ///   "rangePickerHeaderBackgroundColor": "<Color>",
@@ -3149,12 +3124,12 @@ class ThemeDecoder {
   ///  * [decodeBorderSide]
   ///  * [decodeButtonStyle]
   ///  * [decodeColor]
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeWidgetStatePropertyOutlinedBorder]
-  static DatePickerThemeData? decodeDatePickerThemeData(
+  DatePickerThemeData? decodeDatePickerThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3215,7 +3190,7 @@ class ThemeDecoder {
           value['headerHelpStyle'],
           validate: false,
         ),
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -3332,7 +3307,7 @@ class ThemeDecoder {
   ///  * [decodeTextStyle]
   ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeWidgetStatePropertyMouseCursor]
-  static DataTableThemeData? decodeDataTableThemeData(
+  DataTableThemeData? decodeDataTableThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3418,7 +3393,7 @@ class ThemeDecoder {
   ///  * [decodeImageProvider]
   ///  * [decodeImageRepeat]
   ///  * [decodeRect]
-  static DecorationImage? decodeDecorationImage(
+  DecorationImage? decodeDecorationImage(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3463,7 +3438,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [DecorationPosition].  Supported values are:
   ///  * `background`
   ///  * `foreground`
-  static DecorationPosition? decodeDecorationPosition(
+  DecorationPosition? decodeDecorationPosition(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3529,7 +3504,7 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static DialogThemeData? decodeDialogThemeData(
+  DialogThemeData? decodeDialogThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3585,7 +3560,7 @@ class ThemeDecoder {
   ///  * `startToEnd`
   ///  * `up`
   ///  * `vertical`
-  static DismissDirection? decodeDismissDirection(
+  DismissDirection? decodeDismissDirection(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3656,7 +3631,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static DividerThemeData? decodeDividerThemeData(
+  DividerThemeData? decodeDividerThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3687,7 +3662,7 @@ class ThemeDecoder {
   /// Decodes the given [value] to an [DragStartBehavior].  Supported values are:
   ///  * `horizontal`
   ///  * `start`
-  static DragStartBehavior? decodeDragStartBehavior(
+  DragStartBehavior? decodeDragStartBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3740,7 +3715,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeShapeBorder]
-  static DrawerThemeData? decodeDrawerThemeData(
+  DrawerThemeData? decodeDrawerThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3781,17 +3756,17 @@ class ThemeDecoder {
   ///
   /// ```json
   /// {
-  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "inputDecorationTheme": "<InputDecorationThemeData>",
   ///   "menuStyle": "<MenuStyle>",
   ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
   /// See also:
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeMenuStyle]
   ///  * [decodeTextStyle]
-  static DropdownMenuThemeData? decodeDropdownMenuThemeData(
+  DropdownMenuThemeData? decodeDropdownMenuThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -3809,7 +3784,7 @@ class ThemeDecoder {
       );
 
       result = DropdownMenuThemeData(
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -3842,7 +3817,7 @@ class ThemeDecoder {
   ///   "top": "<double>"
   /// }
   /// ```
-  static EdgeInsets? decodeEdgeInsets(dynamic value, {bool validate = true}) =>
+  EdgeInsets? decodeEdgeInsets(dynamic value, {bool validate = true}) =>
       decodeEdgeInsetsGeometry(value, validate: validate) as EdgeInsets?;
 
   /// Decodes the [value] into an [EdgeInsetsGeometry].
@@ -3866,7 +3841,7 @@ class ThemeDecoder {
   ///   "top": "<double>"
   /// }
   /// ```
-  static EdgeInsetsDirectional? decodeEdgeInsetsDirectional(
+  EdgeInsetsDirectional? decodeEdgeInsetsDirectional(
     dynamic value, {
     bool ltr = true,
     bool validate = true,
@@ -3919,7 +3894,7 @@ class ThemeDecoder {
   ///   "top": "<double>"
   /// }
   /// ```
-  static EdgeInsetsGeometry? decodeEdgeInsetsGeometry(
+  EdgeInsetsGeometry? decodeEdgeInsetsGeometry(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4008,7 +3983,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeButtonStyle]
-  static ElevatedButtonThemeData? decodeElevatedButtonThemeData(
+  ElevatedButtonThemeData? decodeElevatedButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4060,7 +4035,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeShapeBorder]
-  static ExpansionTileThemeData? decodeExpansionTileThemeData(
+  ExpansionTileThemeData? decodeExpansionTileThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4132,7 +4107,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeButtonStyle]
-  static FilledButtonThemeData? decodeFilledButtonThemeData(
+  FilledButtonThemeData? decodeFilledButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4162,10 +4137,7 @@ class ThemeDecoder {
   ///  * `low`
   ///  * `medium`
   ///  * `none`
-  static FilterQuality? decodeFilterQuality(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  FilterQuality? decodeFilterQuality(dynamic value, {bool validate = true}) {
     FilterQuality? result;
 
     if (value is FilterQuality) {
@@ -4215,7 +4187,7 @@ class ThemeDecoder {
   ///  * `end`
   ///  * `start`
   ///  * `stretch`
-  static FlexFit? decodeFlexFit(dynamic value, {bool validate = true}) {
+  FlexFit? decodeFlexFit(dynamic value, {bool validate = true}) {
     FlexFit? result;
 
     if (value is FlexFit) {
@@ -4249,7 +4221,7 @@ class ThemeDecoder {
   /// are:
   ///  * `noAnimation`
   ///  * `scaling`
-  static FloatingActionButtonAnimator? decodeFloatingActionButtonAnimator(
+  FloatingActionButtonAnimator? decodeFloatingActionButtonAnimator(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4305,7 +4277,7 @@ class ThemeDecoder {
   ///  * `startDocked`
   ///  * `startFloat`
   ///  * `startTop`
-  static FloatingActionButtonLocation? decodeFloatingActionButtonLocation(
+  FloatingActionButtonLocation? decodeFloatingActionButtonLocation(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4456,7 +4428,7 @@ class ThemeDecoder {
   ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static FloatingActionButtonThemeData? decodeFloatingActionButtonThemeData(
+  FloatingActionButtonThemeData? decodeFloatingActionButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4531,7 +4503,7 @@ class ThemeDecoder {
   ///  * `always`
   ///  * `auto`
   ///  * `never`
-  static FloatingLabelAlignment? decodeFloatingLabelAlignment(
+  FloatingLabelAlignment? decodeFloatingLabelAlignment(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4569,7 +4541,7 @@ class ThemeDecoder {
   ///  * `always`
   ///  * `auto`
   ///  * `never`
-  static FloatingLabelBehavior? decodeFloatingLabelBehavior(
+  FloatingLabelBehavior? decodeFloatingLabelBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -4620,7 +4592,7 @@ class ThemeDecoder {
   ///   "value": "<int>"
   /// }
   /// ```
-  static FontFeature? decodeFontFeature(dynamic value, {bool validate = true}) {
+  FontFeature? decodeFontFeature(dynamic value, {bool validate = true}) {
     FontFeature? result;
 
     if (value is FontFeature) {
@@ -4645,7 +4617,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [FontStyle].  Supported values are:
   ///  * `italic`
   ///  * `normal`
-  static FontStyle? decodeFontStyle(dynamic value, {bool validate = true}) {
+  FontStyle? decodeFontStyle(dynamic value, {bool validate = true}) {
     FontStyle? result;
 
     if (value is FontStyle) {
@@ -4688,7 +4660,7 @@ class ThemeDecoder {
   ///  * `w700`
   ///  * `w800`
   ///  * `w900`
-  static FontWeight? decodeFontWeight(dynamic value, {bool validate = true}) {
+  FontWeight? decodeFontWeight(dynamic value, {bool validate = true}) {
     FontWeight? result;
 
     if (value is FontWeight) {
@@ -4777,10 +4749,7 @@ class ThemeDecoder {
   ///   "value": "<double>"
   /// }
   /// ```
-  static FontVariation? decodeFontVariation(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  FontVariation? decodeFontVariation(dynamic value, {bool validate = true}) {
     FontVariation? result;
 
     if (value is FontVariation) {
@@ -4860,7 +4829,7 @@ class ThemeDecoder {
   ///  * [decodeAlignment]
   ///  * [decodeGradientTransform]
   ///  * [decodeTileMode]
-  static Gradient? decodeGradient(dynamic value, {bool validate = true}) {
+  Gradient? decodeGradient(dynamic value, {bool validate = true}) {
     Gradient? result;
     if (value is Gradient) {
       result = value;
@@ -4982,7 +4951,7 @@ class ThemeDecoder {
   ///   "radians": "<double>"
   /// }
   /// ```
-  static GradientTransform? decodeGradientTransform(
+  GradientTransform? decodeGradientTransform(
     dynamic value, {
     bool validate = true,
   }) {
@@ -5008,7 +4977,7 @@ class ThemeDecoder {
   /// * `deferToChild`
   /// * `opaque`
   /// * `translucent`
-  static HitTestBehavior? decodeHitTestBehavior(
+  HitTestBehavior? decodeHitTestBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -5075,7 +5044,7 @@ class ThemeDecoder {
   ///  * [decodeIconData]
   ///  * [decodeShadow]
   ///  * [decodeTextDirection]
-  static Icon? decodeIcon(dynamic value, {bool validate = true}) {
+  Icon? decodeIcon(dynamic value, {bool validate = true}) {
     Icon? result;
 
     if (value is Icon) {
@@ -5092,17 +5061,17 @@ class ThemeDecoder {
         decodeIconData(value['icon'], validate: false)!,
         applyTextScaling: JsonClass.maybeParseBool(value['applyTextScaling']),
         blendMode: decodeBlendMode(value['blendMode'], validate: false),
-        color: ThemeDecoder.decodeColor(value['color'], validate: false),
+        color: decodeColor(value['color'], validate: false),
         fill: JsonClass.maybeParseDouble(value['fill']),
         grade: JsonClass.maybeParseDouble(value['grade']),
         opticalSize: JsonClass.maybeParseDouble(value['opticalSize']),
         semanticLabel: value['semanticLabel'],
         shadows: JsonClass.maybeFromDynamicList(
           value['shadows'],
-          (map) => ThemeDecoder.decodeShadow(map, validate: false)!,
+          (map) => decodeShadow(map, validate: false)!,
         ),
         size: JsonClass.maybeParseDouble(value['size']),
-        textDirection: ThemeDecoder.decodeTextDirection(
+        textDirection: decodeTextDirection(
           value['textDirection'],
           validate: false,
         ),
@@ -5116,10 +5085,7 @@ class ThemeDecoder {
   /// Decodes the given [value] into a [IconAlignment].  Supported values are:
   /// * `end`
   /// * `start`
-  static IconAlignment? decodeIconAlignment(
-    dynamic value, {
-    bool validate = false,
-  }) {
+  IconAlignment? decodeIconAlignment(dynamic value, {bool validate = false}) {
     IconAlignment? result;
 
     if (value is IconAlignment) {
@@ -5161,7 +5127,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeButtonStyle]
-  static IconButtonThemeData? decodeIconButtonThemeData(
+  IconButtonThemeData? decodeIconButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -5197,7 +5163,7 @@ class ThemeDecoder {
   ///   "matchTextDirection": "<bool>"
   /// }
   /// ```
-  static IconData? decodeIconData(dynamic value, {bool validate = true}) {
+  IconData? decodeIconData(dynamic value, {bool validate = true}) {
     IconData? result;
 
     if (value is IconData) {
@@ -5241,10 +5207,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static IconThemeData? decodeIconThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  IconThemeData? decodeIconThemeData(dynamic value, {bool validate = true}) {
     IconThemeData? result;
 
     if (value is IconThemeData) {
@@ -5311,10 +5274,7 @@ class ThemeDecoder {
   ///   "url": "<String>"
   /// }
   /// ```
-  static ImageProvider? decodeImageProvider(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  ImageProvider? decodeImageProvider(dynamic value, {bool validate = true}) {
     ImageProvider? result;
     if (value is ImageProvider) {
       result = value;
@@ -5363,7 +5323,7 @@ class ThemeDecoder {
   /// * `repeat`
   /// * `repeatX`
   /// * `repeatY`
-  static ImageRepeat? decodeImageRepeat(dynamic value, {bool validate = true}) {
+  ImageRepeat? decodeImageRepeat(dynamic value, {bool validate = true}) {
     ImageRepeat? result;
     if (value is ImageRepeat) {
       result = value;
@@ -5430,7 +5390,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
-  static InputBorder? decodeInputBorder(dynamic value, {bool validate = true}) {
+  InputBorder? decodeInputBorder(dynamic value, {bool validate = true}) {
     InputBorder? result;
     if (value is InputBorder) {
       result = value;
@@ -5536,23 +5496,23 @@ class ThemeDecoder {
   ///  * [decodeInputBorder]
   ///  * [decodeFloatingLabelBehavior]
   ///  * [decodeTextStyle]
-  static InputDecorationTheme? decodeInputDecorationTheme(
+  InputDecorationThemeData? decodeInputDecorationThemeData(
     dynamic value, {
     bool validate = true,
   }) {
-    InputDecorationTheme? result;
+    InputDecorationThemeData? result;
 
-    if (value is InputDecorationTheme) {
+    if (value is InputDecorationThemeData) {
       result = value;
     } else if (value != null) {
       assert(
         SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/input_decoration_theme',
+          schemaId: '$_baseSchemaUrl/input_decoration_theme_data',
           value: value,
           validate: validate,
         ),
       );
-      result = InputDecorationTheme(
+      result = InputDecorationThemeData(
         activeIndicatorBorder: decodeBorderSide(
           value['activeIndicatorBorder'],
           validate: false,
@@ -5611,6 +5571,7 @@ class ThemeDecoder {
         hintFadeDuration: JsonClass.maybeParseDurationFromMillis(
           value['hintFadeDuration'],
         ),
+        hintMaxLines: JsonClass.maybeParseInt(value['hintMaxLines']),
         hintStyle: decodeTextStyle(value['hintStyle'], validate: false),
         hoverColor: decodeColor(value['hoverColor'], validate: false),
         iconColor: decodeColor(value['iconColor'], validate: false),
@@ -5633,6 +5594,10 @@ class ThemeDecoder {
           validate: false,
         ),
         suffixStyle: decodeTextStyle(value['suffixStyle'], validate: false),
+        visualDensity: decodeVisualDensity(
+          value['visualDensity'],
+          validate: false,
+        ),
       );
     }
 
@@ -5645,7 +5610,7 @@ class ThemeDecoder {
   ///  * `ripple`
   ///  * `sparkle`
   ///
-  static InteractiveInkFeatureFactory? decodeInteractiveInkFeatureFactory(
+  InteractiveInkFeatureFactory? decodeInteractiveInkFeatureFactory(
     dynamic value, {
     bool validate = true,
   }) {
@@ -5690,7 +5655,7 @@ class ThemeDecoder {
   ///  * `leading`
   ///  * `platform`
   ///  * `trailing`
-  static ListTileControlAffinity? decodeListTileControlAffinity(
+  ListTileControlAffinity? decodeListTileControlAffinity(
     dynamic value, {
     bool validate = true,
   }) {
@@ -5733,10 +5698,7 @@ class ThemeDecoder {
   /// values are:
   ///  * `drawer`
   ///  * `list`
-  static ListTileStyle? decodeListTileStyle(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  ListTileStyle? decodeListTileStyle(dynamic value, {bool validate = true}) {
     ListTileStyle? result;
 
     if (value is ListTileStyle) {
@@ -5772,7 +5734,7 @@ class ThemeDecoder {
   ///  * `threeLine`
   ///  * `titleHeight`
   ///  * `top`
-  static ListTileTitleAlignment? decodeListTileTitleAlignment(
+  ListTileTitleAlignment? decodeListTileTitleAlignment(
     dynamic value, {
     bool validate = false,
   }) {
@@ -5844,7 +5806,7 @@ class ThemeDecoder {
   ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
-  static ListTileThemeData? decodeListTileThemeData(
+  ListTileThemeData? decodeListTileThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -5929,7 +5891,7 @@ class ThemeDecoder {
   ///   "languageCode": "<String>"
   /// }
   /// ```
-  static Locale? decodeLocale(dynamic value, {bool validate = true}) {
+  Locale? decodeLocale(dynamic value, {bool validate = true}) {
     Locale? result;
 
     if (value is Locale) {
@@ -5955,7 +5917,7 @@ class ThemeDecoder {
   ///  * `spaceBetween`
   ///  * `spaceEvenly`
   ///  * `start`
-  static MainAxisAlignment? decodeMainAxisAlignment(
+  MainAxisAlignment? decodeMainAxisAlignment(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6009,10 +5971,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [MainAxisSize].  Supported values are:
   ///  * `max`
   ///  * `min`
-  static MainAxisSize? decodeMainAxisSize(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  MainAxisSize? decodeMainAxisSize(dynamic value, {bool validate = true}) {
     MainAxisSize? result;
     if (value is MainAxisSize) {
       result = value;
@@ -6060,7 +6019,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeTextStyle]
-  static MaterialBannerThemeData? decodeMaterialBannerThemeData(
+  MaterialBannerThemeData? decodeMaterialBannerThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6112,10 +6071,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static MaterialColor? decodeMaterialColor(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  MaterialColor? decodeMaterialColor(dynamic value, {bool validate = true}) {
     MaterialColor? result;
 
     if (value is MaterialColor) {
@@ -6150,7 +6106,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [MaterialTargetTapSize].  Supported values are:
   ///  * `padded`
   ///  * `shrinkWrap`
-  static MaterialTapTargetSize? decodeMaterialTapTargetSize(
+  MaterialTapTargetSize? decodeMaterialTapTargetSize(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6187,10 +6143,7 @@ class ThemeDecoder {
   ///  * `card`
   ///  * `circle`
   ///  * `transparency`
-  static MaterialType? decodeMaterialType(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  MaterialType? decodeMaterialType(dynamic value, {bool validate = true}) {
     MaterialType? result;
     if (value is MaterialType) {
       result = value;
@@ -6258,7 +6211,7 @@ class ThemeDecoder {
   ///   w3
   /// ]
   /// ```
-  static Matrix4? decodeMatrix4(dynamic value, {bool validate = true}) {
+  Matrix4? decodeMatrix4(dynamic value, {bool validate = true}) {
     Matrix4? result;
 
     if (value is Matrix4) {
@@ -6301,7 +6254,7 @@ class ThemeDecoder {
   ///  * `enforced`
   ///  * `none`
   ///  * `truncateAfterCompositionEnds`
-  static MaxLengthEnforcement? decodeMaxLengthEnforcement(
+  MaxLengthEnforcement? decodeMaxLengthEnforcement(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6351,7 +6304,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeMenuStyle]
-  static MenuBarThemeData? decodeMenuBarThemeData(
+  MenuBarThemeData? decodeMenuBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6385,7 +6338,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeButtonStyle]
-  static MenuButtonThemeData? decodeMenuButtonThemeData(
+  MenuButtonThemeData? decodeMenuButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6439,7 +6392,7 @@ class ThemeDecoder {
   ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeWidgetStatePropertySize]
   ///  * [decodeVisualDensity]
-  static MenuStyle? decodeMenuStyle(dynamic value, {bool validate = true}) {
+  MenuStyle? decodeMenuStyle(dynamic value, {bool validate = true}) {
     MenuStyle? result;
 
     if (value is MenuStyle) {
@@ -6520,10 +6473,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeMenuStyle]
-  static MenuThemeData? decodeMenuThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  MenuThemeData? decodeMenuThemeData(dynamic value, {bool validate = true}) {
     MenuThemeData? result;
 
     if (value is MenuThemeData) {
@@ -6592,7 +6542,7 @@ class ThemeDecoder {
   ///  * `wait`
   ///  * `zoomIn`
   ///  * `zoomOut`
-  static MouseCursor? decodeMouseCursor(dynamic value, {bool validate = true}) {
+  MouseCursor? decodeMouseCursor(dynamic value, {bool validate = true}) {
     MouseCursor? result;
     if (value is MouseCursor) {
       result = value;
@@ -6856,7 +6806,7 @@ class ThemeDecoder {
   ///  * [decodeWidgetStatePropertyIconThemeData]
   ///  * [decodeWidgetStatePropertyTextStyle]
   ///  * [decodeNavigationDestinationLabelBehavior]
-  static NavigationBarThemeData? decodeNavigationBarThemeData(
+  NavigationBarThemeData? decodeNavigationBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6917,8 +6867,7 @@ class ThemeDecoder {
   ///  * `alwaysHide`
   ///  * `alwaysShow`
   ///  * `onlyShowSelected`
-  static NavigationDestinationLabelBehavior?
-  decodeNavigationDestinationLabelBehavior(
+  NavigationDestinationLabelBehavior? decodeNavigationDestinationLabelBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -6973,7 +6922,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeWidgetStatePropertyIconThemeData]
   ///  * [decodeShapeBorder]
-  static NavigationDrawerThemeData? decodeNavigationDrawerThemeData(
+  NavigationDrawerThemeData? decodeNavigationDrawerThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7023,7 +6972,7 @@ class ThemeDecoder {
   ///  * `all`
   ///  * `none`
   ///  * `selected`
-  static NavigationRailLabelType? decodeNavigationRailLabelType(
+  NavigationRailLabelType? decodeNavigationRailLabelType(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7091,7 +7040,7 @@ class ThemeDecoder {
   ///  * [decodeNavigationRailLabelType]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static NavigationRailThemeData? decodeNavigationRailThemeData(
+  NavigationRailThemeData? decodeNavigationRailThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7147,10 +7096,7 @@ class ThemeDecoder {
 
   /// Decodes the [value] to a [NotchedShape].  Supported values are:
   ///  * `circular`
-  static NotchedShape? decodeNotchedShape(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  NotchedShape? decodeNotchedShape(dynamic value, {bool validate = true}) {
     NotchedShape? result;
     if (value is NotchedShape) {
       result = value;
@@ -7184,7 +7130,7 @@ class ThemeDecoder {
   ///   "dy": "<double>"
   /// }
   /// ```
-  static Offset? decodeOffset(dynamic value, {bool validate = true}) {
+  Offset? decodeOffset(dynamic value, {bool validate = true}) {
     Offset? result;
 
     if (value is Offset) {
@@ -7215,10 +7161,7 @@ class ThemeDecoder {
   ///   "order": "<double>"
   /// }
   /// ```
-  static OrdinalSortKey? decodeOrdinalSortKey(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  OrdinalSortKey? decodeOrdinalSortKey(dynamic value, {bool validate = true}) {
     OrdinalSortKey? result;
 
     if (value is OrdinalSortKey) {
@@ -7297,10 +7240,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
-  static OutlinedBorder? decodeOutlinedBorder(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  OutlinedBorder? decodeOutlinedBorder(dynamic value, {bool validate = true}) {
     OutlinedBorder? result;
     if (value is OutlinedBorder) {
       result = value;
@@ -7391,7 +7331,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeButtonStyle]
-  static OutlinedButtonThemeData? decodeOutlinedButtonThemeData(
+  OutlinedButtonThemeData? decodeOutlinedButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7418,10 +7358,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [OverflowBoxFit].  Supported values are:
   /// * `deferToChild`
   /// * `max`
-  static OverflowBoxFit? decodeOverflowBoxFit(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  OverflowBoxFit? decodeOverflowBoxFit(dynamic value, {bool validate = true}) {
     OverflowBoxFit? result;
 
     if (value is OverflowBoxFit) {
@@ -7455,7 +7392,7 @@ class ThemeDecoder {
   /// * `fadeUpwards`
   /// * `openUpwards`
   /// * `zoom`
-  static PageTransitionsBuilder? decodePageTransitionsBuilder(
+  PageTransitionsBuilder? decodePageTransitionsBuilder(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7512,7 +7449,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodePageTransitionsBuilder]
   ///  * [decodeTargetPlatform]
-  static PageTransitionsTheme? decodePageTransitionsTheme(
+  PageTransitionsTheme? decodePageTransitionsTheme(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7546,7 +7483,7 @@ class ThemeDecoder {
   ///  * `free`
   ///  * `horizontal`
   ///  * `vertical`
-  static PanAxis? decodePanAxis(dynamic value, {bool validate = true}) {
+  PanAxis? decodePanAxis(dynamic value, {bool validate = true}) {
     PanAxis? result;
 
     if (value is PanAxis) {
@@ -7595,7 +7532,7 @@ class ThemeDecoder {
   ///  * `touch`
   ///  * `trackpad`
   ///  * `unknown`
-  static PointerDeviceKind? decodePointerDeviceKind(
+  PointerDeviceKind? decodePointerDeviceKind(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7648,7 +7585,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [PopupMenuPosition].  Supported values are:
   ///  * `over`
   ///  * `under`
-  static PopupMenuPosition? decodePopupMenuPosition(
+  PopupMenuPosition? decodePopupMenuPosition(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7709,7 +7646,7 @@ class ThemeDecoder {
   ///  * [decodeTextStyle]
   ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeWidgetStatePropertyTextStyle]
-  static PopupMenuThemeData? decodePopupMenuThemeData(
+  PopupMenuThemeData? decodePopupMenuThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7784,7 +7721,7 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeStrokeCap]
-  static ProgressIndicatorThemeData? decodeProgressIndicatorThemeData(
+  ProgressIndicatorThemeData? decodeProgressIndicatorThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -7867,10 +7804,7 @@ class ThemeDecoder {
   ///  * [decodeMaterialTapTargetSize]
   ///  * [decodeMouseCursor]
   ///  * [decodeVisualDensity]
-  static RadioThemeData? decodeRadioThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  RadioThemeData? decodeRadioThemeData(dynamic value, {bool validate = true}) {
     RadioThemeData? result;
 
     if (value is RadioThemeData) {
@@ -7948,7 +7882,7 @@ class ThemeDecoder {
   ///   "type": "zero"
   /// }
   /// ```
-  static Radius? decodeRadius(dynamic value, {bool validate = true}) {
+  Radius? decodeRadius(dynamic value, {bool validate = true}) {
     Radius? result;
     if (value is Radius) {
       result = value;
@@ -8016,7 +7950,7 @@ class ThemeDecoder {
   ///   "type": "round"
   /// }
   /// ```
-  static RangeSliderThumbShape? decodeRangeSliderThumbShape(
+  RangeSliderThumbShape? decodeRangeSliderThumbShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8073,7 +8007,7 @@ class ThemeDecoder {
   ///   "type": "round"
   /// }
   /// ```
-  static RangeSliderTickMarkShape? decodeRangeSliderTickMarkShape(
+  RangeSliderTickMarkShape? decodeRangeSliderTickMarkShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8114,7 +8048,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [RangeSliderTrackShape].  Supported values are:
   ///  * `rectangular`
   ///  * `rounded`
-  static RangeSliderTrackShape? decodeRangeSliderTrackShape(
+  RangeSliderTrackShape? decodeRangeSliderTrackShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8153,7 +8087,7 @@ class ThemeDecoder {
   /// values are:
   ///  * `paddle`
   ///  * `rectangular`
-  static RangeSliderValueIndicatorShape? decodeRangeSliderValueIndicatorShape(
+  RangeSliderValueIndicatorShape? decodeRangeSliderValueIndicatorShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8279,7 +8213,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeOffset]
-  static Rect? decodeRect(dynamic value, {bool validate = true}) {
+  Rect? decodeRect(dynamic value, {bool validate = true}) {
     Rect? result;
     if (value is Rect) {
       result = value;
@@ -8366,10 +8300,7 @@ class ThemeDecoder {
   /// {
   /// }
   /// ```
-  static ScrollBehavior? decodeScrollBehavior(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  ScrollBehavior? decodeScrollBehavior(dynamic value, {bool validate = true}) {
     ScrollBehavior? result;
 
     if (value is ScrollBehavior) {
@@ -8405,10 +8336,7 @@ class ThemeDecoder {
   ///   "type": "<String>"
   /// }
   /// ```
-  static ScrollPhysics? decodeScrollPhysics(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  ScrollPhysics? decodeScrollPhysics(dynamic value, {bool validate = true}) {
     ScrollPhysics? result;
     if (value is ScrollPhysics) {
       result = value;
@@ -8487,8 +8415,7 @@ class ThemeDecoder {
   /// values are:
   ///  * `manual`
   ///  * `onDrag`
-  static ScrollViewKeyboardDismissBehavior?
-  decodeScrollViewKeyboardDismissBehavior(
+  ScrollViewKeyboardDismissBehavior? decodeScrollViewKeyboardDismissBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8524,7 +8451,7 @@ class ThemeDecoder {
   ///  * `left`
   ///  * `right`
   ///  * `top`
-  static ScrollbarOrientation? decodeScrollbarOrientation(
+  ScrollbarOrientation? decodeScrollbarOrientation(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8586,7 +8513,7 @@ class ThemeDecoder {
   ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeWidgetStatePropertyDouble]
   ///  * [decodeRadius]
-  static ScrollbarThemeData? decodeScrollbarThemeData(
+  ScrollbarThemeData? decodeScrollbarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8667,7 +8594,7 @@ class ThemeDecoder {
   ///  * [decodeWidgetStatePropertyOutlinedBorder]
   ///  * [decodeWidgetStatePropertyTextStyle]
   ///  * [decodeTextCapitalization]
-  static SearchBarThemeData? decodeSearchBarThemeData(
+  SearchBarThemeData? decodeSearchBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8767,7 +8694,7 @@ class ThemeDecoder {
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeOutlinedBorder]
   ///  * [decodeTextStyle]
-  static SearchViewThemeData? decodeSearchViewThemeData(
+  SearchViewThemeData? decodeSearchViewThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -8832,7 +8759,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeButtonStyle]
   ///  * [decodeIcon]
-  static SegmentedButtonThemeData? decodeSegmentedButtonThemeData(
+  SegmentedButtonThemeData? decodeSegmentedButtonThemeData(
     dynamic value, {
     validate = true,
   }) {
@@ -8866,10 +8793,7 @@ class ThemeDecoder {
   ///   "name": "<String>"
   /// }
   /// ```
-  static SemanticsTag? decodeSemanticsTag(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  SemanticsTag? decodeSemanticsTag(dynamic value, {bool validate = true}) {
     SemanticsTag? result;
 
     if (value is SemanticsTag) {
@@ -8903,7 +8827,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeColor]
   ///  * [decodeOffset]
-  static Shadow? decodeShadow(dynamic value, {bool validate = true}) {
+  Shadow? decodeShadow(dynamic value, {bool validate = true}) {
     Shadow? result;
 
     if (value is Shadow) {
@@ -8972,7 +8896,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
-  static ShapeBorder? decodeShapeBorder(dynamic value, {bool validate = true}) {
+  ShapeBorder? decodeShapeBorder(dynamic value, {bool validate = true}) {
     ShapeBorder? result;
     if (value is ShapeBorder) {
       result = value;
@@ -9045,7 +8969,7 @@ class ThemeDecoder {
   ///  * `never`
   ///  * `onlyForContinuous`
   ///  * `onlyForDiscrete`
-  static ShowValueIndicator? decodeShowValueIndicator(
+  ShowValueIndicator? decodeShowValueIndicator(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9070,7 +8994,7 @@ class ThemeDecoder {
         );
         switch (value) {
           case 'always':
-            result = ShowValueIndicator.always;
+            result = ShowValueIndicator.onDrag;
             break;
 
           case 'never':
@@ -9099,7 +9023,7 @@ class ThemeDecoder {
   ///   "width": "<double>"
   /// }
   /// ```
-  static Size? decodeSize(dynamic value, {bool validate = true}) {
+  Size? decodeSize(dynamic value, {bool validate = true}) {
     Size? result;
 
     if (value is Size) {
@@ -9124,7 +9048,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
   ///  * `noOverlay`
   ///  * `noThumb`
-  static SliderComponentShape? decodeSliderComponentShape(
+  SliderComponentShape? decodeSliderComponentShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9162,7 +9086,7 @@ class ThemeDecoder {
   ///  * `slideThumb`
   ///  * `tapAndSlide``
   ///  * `tapOnly`
-  static SliderInteraction? decodeSliderInteraction(
+  SliderInteraction? decodeSliderInteraction(
     dynamic value, {
     bool validate = false,
   }) {
@@ -9258,7 +9182,7 @@ class ThemeDecoder {
   ///  * [decodeRangeSliderValueIndicatorShape]
   ///  * [decodeWidgetStatePropertyMouseCursor]
   ///  * [decodeWidgetStatePropertySize]
-  static SliderThemeData? decodeSliderThemeData(
+  SliderThemeData? decodeSliderThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9404,7 +9328,7 @@ class ThemeDecoder {
 
   /// Decodes the [value] to a [SliderTickMarkShape].  Supported values are:
   ///  * `noTickMark`
-  static SliderTickMarkShape? decodeSliderTickMarkShape(
+  SliderTickMarkShape? decodeSliderTickMarkShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9453,7 +9377,7 @@ class ThemeDecoder {
   ///   "type": "rounded"
   /// }
   /// ```
-  static SliderTrackShape? decodeSliderTrackShape(
+  SliderTrackShape? decodeSliderTrackShape(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9494,7 +9418,7 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SmartDashesType].  Supported values are:
   ///  * `disabled`
   ///  * `enabled`
-  static SmartDashesType? decodeSmartDashesType(
+  SmartDashesType? decodeSmartDashesType(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9529,7 +9453,7 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SmartQuotesType].  Supported values are:
   ///  * `disabled`
   ///  * `enabled`
-  static SmartQuotesType? decodeSmartQuotesType(
+  SmartQuotesType? decodeSmartQuotesType(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9564,7 +9488,7 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SnackBarBehavior].  Supported values are:
   ///  * `fixed`
   ///  * `floating`
-  static SnackBarBehavior? decodeSnackBarBehavior(
+  SnackBarBehavior? decodeSnackBarBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9627,7 +9551,7 @@ class ThemeDecoder {
   ///  * [decodeSnackBarBehavior]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
-  static SnackBarThemeData? decodeSnackBarThemeData(
+  SnackBarThemeData? decodeSnackBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9686,7 +9610,7 @@ class ThemeDecoder {
   ///  * `expand`
   ///  * `loose`
   ///  * `passthrough`
-  static StackFit? decodeStackFit(dynamic value, {bool validate = true}) {
+  StackFit? decodeStackFit(dynamic value, {bool validate = true}) {
     StackFit? result;
 
     if (value is StackFit) {
@@ -9721,7 +9645,7 @@ class ThemeDecoder {
   ///  * `butt`
   ///  * `round`
   ///  * `square`
-  static StrokeCap? decodeStrokeCap(dynamic value, {bool validate = true}) {
+  StrokeCap? decodeStrokeCap(dynamic value, {bool validate = true}) {
     StrokeCap? result;
 
     if (value is StrokeCap) {
@@ -9775,7 +9699,7 @@ class ThemeDecoder {
   ///  * [decodeFontStyle]
   ///  * [decodeFontWeight]
   ///  * [decodeTextLeadingDistribution]
-  static StrutStyle? decodeStrutStyle(dynamic value, {bool validate = true}) {
+  StrutStyle? decodeStrutStyle(dynamic value, {bool validate = true}) {
     StrutStyle? result;
 
     if (value is StrutStyle) {
@@ -9836,7 +9760,7 @@ class ThemeDecoder {
   ///  * [decodeMouseCursor]
   ///  * [decodeWidgetStatePropertyDouble]
   ///  * [decodeWidgetStatePropertyMouseCursor]
-  static SwitchThemeData? decodeSwitchThemeData(
+  SwitchThemeData? decodeSwitchThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9897,7 +9821,7 @@ class ThemeDecoder {
   /// Decodes a [value] to a [SystemUiOverlayStyle].  Supported values are:
   ///  * `dark`
   ///  * `light`
-  static SystemUiOverlayStyle? decodeSystemUiOverlayStyle(
+  SystemUiOverlayStyle? decodeSystemUiOverlayStyle(
     dynamic value, {
     bool validate = true,
   }) {
@@ -9973,10 +9897,7 @@ class ThemeDecoder {
   ///  * `fill`
   ///  * `start`
   ///  * `startOffset`
-  static TabAlignment? decodeTabAlignment(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TabAlignment? decodeTabAlignment(dynamic value, {bool validate = true}) {
     TabAlignment? result;
     if (value is TabAlignment) {
       result = value;
@@ -10022,7 +9943,7 @@ class ThemeDecoder {
   /// Decodes a [value] to a [TabBarIndicatorSize].  Supported values are:
   ///  * `label`
   ///  * `tab`
-  static TabBarIndicatorSize? decodeTabBarIndicatorSize(
+  TabBarIndicatorSize? decodeTabBarIndicatorSize(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10091,7 +10012,7 @@ class ThemeDecoder {
   ///  * [decodeTabBarIndicatorSize]
   ///  * [decodeTextScaler]
   ///  * [decodeTextStyle]
-  static TabBarThemeData? decodeTabBarThemeData(
+  TabBarThemeData? decodeTabBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10184,7 +10105,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeBorderRadius]
   ///  * [decodeBorderSide]
-  static TableBorder? decodeTableBorder(dynamic value, {bool validate = true}) {
+  TableBorder? decodeTableBorder(dynamic value, {bool validate = true}) {
     TableBorder? result;
 
     if (value is TableBorder) {
@@ -10233,7 +10154,7 @@ class ThemeDecoder {
   ///   "value": "<double>"
   /// }
   /// ```
-  static TableColumnWidth? decodeTableColumnWidth(
+  TableColumnWidth? decodeTableColumnWidth(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10303,7 +10224,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextAlign].  Supported values are:
   ///  * `elastic`
   ///  * `linear`
-  static TabIndicatorAnimation? decodeTabIndicatorAnimation(
+  TabIndicatorAnimation? decodeTabIndicatorAnimation(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10342,10 +10263,7 @@ class ThemeDecoder {
   ///  * `linux`
   ///  * `macOS`
   ///  * `windows`
-  static TargetPlatform? decodeTargetPlatform(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TargetPlatform? decodeTargetPlatform(dynamic value, {bool validate = true}) {
     TargetPlatform? result;
     if (value is TargetPlatform) {
       result = value;
@@ -10405,7 +10323,7 @@ class ThemeDecoder {
   ///  * `left`
   ///  * `right`
   ///  * `start`
-  static TextAlign? decodeTextAlign(dynamic value, {bool validate = true}) {
+  TextAlign? decodeTextAlign(dynamic value, {bool validate = true}) {
     TextAlign? result;
     if (value is TextAlign) {
       result = value;
@@ -10457,7 +10375,7 @@ class ThemeDecoder {
   ///  * `bottom`
   ///  * `center`
   ///  * `top`
-  static TextAlignVertical? decodeTextAlignVertical(
+  TextAlignVertical? decodeTextAlignVertical(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10492,10 +10410,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextBaseline].  Supported values are:
   ///  * `alphabetic`
   ///  * `ideographic`
-  static TextBaseline? decodeTextBaseline(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TextBaseline? decodeTextBaseline(dynamic value, {bool validate = true}) {
     TextBaseline? result;
     if (value is TextBaseline) {
       result = value;
@@ -10536,7 +10451,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeButtonStyle]
-  static TextButtonThemeData? decodeTextButtonThemeData(
+  TextButtonThemeData? decodeTextButtonThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10565,7 +10480,7 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `sentences`
   ///  * `words`
-  static TextCapitalization? decodeTextCapitalization(
+  TextCapitalization? decodeTextCapitalization(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10616,10 +10531,7 @@ class ThemeDecoder {
   ///  * `none`
   ///  * `overline`
   ///  * `underline`
-  static TextDecoration? decodeTextDecoration(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TextDecoration? decodeTextDecoration(dynamic value, {bool validate = true}) {
     TextDecoration? result;
     if (value is TextDecoration) {
       result = value;
@@ -10668,7 +10580,7 @@ class ThemeDecoder {
   ///  * `double`
   ///  * `solid`
   ///  * `wavy`
-  static TextDecorationStyle? decodeTextDecorationStyle(
+  TextDecorationStyle? decodeTextDecorationStyle(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10722,10 +10634,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextDirection].  Supported values are:
   ///  * `ltr`
   ///  * `rtl`
-  static TextDirection? decodeTextDirection(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TextDirection? decodeTextDirection(dynamic value, {bool validate = true}) {
     TextDirection? result;
     if (value is TextDirection) {
       result = value;
@@ -10766,7 +10675,7 @@ class ThemeDecoder {
   ///   "leadingDistribution": "<TextLeadingDistribution>"
   /// }
   /// ```
-  static TextHeightBehavior? decodeTextHeightBehavior(
+  TextHeightBehavior? decodeTextHeightBehavior(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10817,7 +10726,7 @@ class ThemeDecoder {
   ///  * `search`
   ///  * `send`
   ///  * `unspecified`
-  static TextInputAction? decodeTextInputAction(
+  TextInputAction? decodeTextInputAction(
     dynamic value, {
     bool validate = true,
   }) {
@@ -10923,10 +10832,7 @@ class ThemeDecoder {
   ///  * `url`
   ///  * `visiblePassword`
   ///  * `webSearch`
-  static TextInputType? decodeTextInputType(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TextInputType? decodeTextInputType(dynamic value, {bool validate = true}) {
     TextInputType? result;
     if (value is TextInputType) {
       result = value;
@@ -11016,7 +10922,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextLeadingDistribution].  Supported values are:
   ///  * `even`
   ///  * `proportional`
-  static TextLeadingDistribution? decodeTextLeadingDistribution(
+  TextLeadingDistribution? decodeTextLeadingDistribution(
     dynamic value, {
     bool validate = true,
   }) {
@@ -11057,10 +10963,7 @@ class ThemeDecoder {
   ///  * `ellipsis`
   ///  * `fade`
   ///  * `visible`
-  static TextOverflow? decodeTextOverflow(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TextOverflow? decodeTextOverflow(dynamic value, {bool validate = true}) {
     TextOverflow? result;
     if (value is TextOverflow) {
       result = value;
@@ -11102,7 +11005,7 @@ class ThemeDecoder {
 
   /// Decodes the [value] to a [TextScaler].  Supported values are:
   ///  * `noScaling`
-  static TextScaler? decodeTextScaler(dynamic value, {bool validate = true}) {
+  TextScaler? decodeTextScaler(dynamic value, {bool validate = true}) {
     TextScaler? result;
     if (value is TextScaler) {
       result = value;
@@ -11141,7 +11044,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static TextSelectionThemeData? decodeTextSelectionThemeData(
+  TextSelectionThemeData? decodeTextSelectionThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -11192,7 +11095,7 @@ class ThemeDecoder {
   ///  * [decodeLocale]
   ///  * [decodeMouseCursor]
   ///  * [decodeTextStyle]
-  static TextSpan? decodeTextSpan(dynamic value, {bool validate = true}) {
+  TextSpan? decodeTextSpan(dynamic value, {bool validate = true}) {
     TextSpan? result;
 
     if (value is TextSpan) {
@@ -11270,7 +11173,7 @@ class ThemeDecoder {
   ///  * [decodeTextDecorationStyle]
   ///  * [decodeTextLeadingDistribution]
   ///  * [decodeTextOverflow]
-  static TextStyle? decodeTextStyle(dynamic value, {bool validate = true}) {
+  TextStyle? decodeTextStyle(dynamic value, {bool validate = true}) {
     TextStyle? result;
 
     if (value is TextStyle) {
@@ -11389,7 +11292,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeTextStyle]
-  static TextTheme? decodeTextTheme(dynamic value, {bool validate = true}) {
+  TextTheme? decodeTextTheme(dynamic value, {bool validate = true}) {
     TextTheme? result;
 
     if (value is TextTheme) {
@@ -11472,10 +11375,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [TextWidthBasis].  Supported values are:
   ///  * `longestLine`
   ///  * `parent`
-  static TextWidthBasis? decodeTextWidthBasis(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  TextWidthBasis? decodeTextWidthBasis(dynamic value, {bool validate = true}) {
     TextWidthBasis? result;
 
     if (value is TextWidthBasis) {
@@ -11511,11 +11411,11 @@ class ThemeDecoder {
   /// ```json
   /// {
   ///   "actionIconTheme": "<ActionIconTheme>",
-  ///   "appBarTheme": "<AppBarTheme>",
+  ///   "appBarTheme": "<AppBarThemeData>",
   ///   "applyElevationOverlayColor": "<bool>",
   ///   "badgeTheme": "<BadgeThemeData>",
   ///   "bannerTheme": "<MaterialBannerThemeData>",
-  ///   "bottomAppBarTheme": "<BottomAppBarThemeScheme.id,
+  ///   "bottomAppBarTheme": "<BottomAppBarThemeData>,
   ///   "bottomNavigationBarTheme": "<BottomNavigationBarThemeData>",
   ///   "bottomSheetTheme": "<BottomSheetThemeData>",
   ///   "brightness": "<Brightness>",
@@ -11601,15 +11501,15 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeActionIconThemeData]
-  ///  * [decodeAppBarTheme]
+  ///  * [decodeAppBarThemeData]
   ///  * [decodeBadgeThemeData]
-  ///  * [decodeBottomAppBarTheme]
+  ///  * [decodeBottomAppBarThemeData]
   ///  * [decodeBottomNavigationBarThemeData]
   ///  * [decodeBottomSheetThemeData]
   ///  * [decodeBrightness]
   ///  * [decodeButtonBarThemeData]
   ///  * [decodeButtonThemeData]
-  ///  * [decodeCardTheme]
+  ///  * [decodeCardThemeData]
   ///  * [decodeCheckboxThemeData]
   ///  * [decodeChipThemeData]
   ///  * [decodeColor]
@@ -11625,7 +11525,7 @@ class ThemeDecoder {
   ///  * [decodeFloatingActionButtonThemeData]
   ///  * [decodeIconButtonThemeData]
   ///  * [decodeIconThemeData]
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeInteractiveInkFeatureFactory]
   ///  * [decodeListTileThemeData]
   ///  * [decodeMaterialBannerThemeData]
@@ -11657,7 +11557,7 @@ class ThemeDecoder {
   ///  * [decodeToggleButtonsThemeData]
   ///  * [decodeTypography]
   ///  * [decodeVisualDensity]
-  static ThemeData? decodeThemeData(dynamic value, {bool validate = true}) {
+  ThemeData? decodeThemeData(dynamic value, {bool validate = true}) {
     ThemeData? result;
 
     if (value is ThemeData) {
@@ -11676,7 +11576,10 @@ class ThemeDecoder {
           value['actionIconThemeData'],
           validate: false,
         ),
-        appBarTheme: decodeAppBarTheme(value['appBarTheme'], validate: false),
+        appBarTheme: decodeAppBarThemeData(
+          value['appBarTheme'],
+          validate: false,
+        ),
         applyElevationOverlayColor: JsonClass.maybeParseBool(
           value['applyElevationOverlayColor'],
         ),
@@ -11685,7 +11588,7 @@ class ThemeDecoder {
           value['bannerTheme'],
           validate: false,
         ),
-        bottomAppBarTheme: decodeBottomAppBarTheme(
+        bottomAppBarTheme: decodeBottomAppBarThemeData(
           value['bottomAppBarTheme'],
           validate: false,
         ),
@@ -11775,7 +11678,7 @@ class ThemeDecoder {
           validate: false,
         ),
         iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -11937,7 +11840,7 @@ class ThemeDecoder {
   ///  * `decal`
   ///  * `mirror`
   ///  * `repeated`
-  static TileMode? decodeTileMode(dynamic value, {bool validate = true}) {
+  TileMode? decodeTileMode(dynamic value, {bool validate = true}) {
     TileMode? result;
     if (value is TileMode) {
       result = value;
@@ -12004,7 +11907,7 @@ class ThemeDecoder {
   ///   "hourMinuteShape": "<ShapeBorder>",
   ///   "hourMinuteTextColor": "<Color>",
   ///   "hourMinuteTextStyle": "<TextStyle>",
-  ///   "inputDecorationTheme": "<InputDecorationTheme>",
+  ///   "inputDecorationTheme": "<InputDecorationThemeData>",
   ///   "padding": "<EdgeInsetsGeometry>",
   ///   "shape": "<ShapeBorder>",
   ///   "timeSelectorSeparatorColor": "<WidgetStatePropertyColor>",
@@ -12017,13 +11920,13 @@ class ThemeDecoder {
   ///  * [decodeButtonStyle]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   ///  * [decodeWidgetStateColor]
   ///  * [decodeWidgetStatePropertyColor]
   ///  * [decodeWidgetStatePropertyTextStyle]
-  static TimePickerThemeData? decodeTimePickerThemeData(
+  TimePickerThemeData? decodeTimePickerThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12096,7 +11999,7 @@ class ThemeDecoder {
           value['hourMinuteTextStyle'],
           validate: false,
         ),
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -12144,7 +12047,7 @@ class ThemeDecoder {
   ///  * [decodeBoxConstraints]
   ///  * [decodeColor]
   ///  * [decodeTextStyle]
-  static ToggleButtonsThemeData? decodeToggleButtonsThemeData(
+  ToggleButtonsThemeData? decodeToggleButtonsThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12220,7 +12123,7 @@ class ThemeDecoder {
   ///  * [decodeTextAlign]
   ///  * [decodeTextStyle]
   ///  * [decodeTooltipTriggerMode]
-  static TooltipThemeData? decodeTooltipThemeData(
+  TooltipThemeData? decodeTooltipThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12278,7 +12181,7 @@ class ThemeDecoder {
   ///  * `longPress`
   ///  * `manual`
   ///  * `tap`
-  static TooltipTriggerMode? decodeTooltipTriggerMode(
+  TooltipTriggerMode? decodeTooltipTriggerMode(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12328,7 +12231,7 @@ class ThemeDecoder {
   /// See also:
   ///  * [decodeTargetPlatform]
   ///  * [decodeTextTheme]
-  static Typography? decodeTypography(dynamic value, {bool validate = true}) {
+  Typography? decodeTypography(dynamic value, {bool validate = true}) {
     Typography? result;
 
     if (value is Typography) {
@@ -12357,7 +12260,7 @@ class ThemeDecoder {
   /// Decodes the [value] to a [VerticalDirection].  Supported values are:
   ///  * `down`
   ///  * `up`
-  static VerticalDirection? decodeVerticalDirection(
+  VerticalDirection? decodeVerticalDirection(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12387,10 +12290,7 @@ class ThemeDecoder {
   ///  * `comfortable`
   ///  * `compact`
   ///  * `standard`
-  static VisualDensity? decodeVisualDensity(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  VisualDensity? decodeVisualDensity(dynamic value, {bool validate = true}) {
     VisualDensity? result;
     if (value is VisualDensity) {
       result = value;
@@ -12454,7 +12354,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// The "empty" will be used for when any other value is missing.
-  static WidgetStateColor? decodeWidgetStateColor(
+  WidgetStateColor? decodeWidgetStateColor(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12531,7 +12431,7 @@ class ThemeDecoder {
   ///   "selected": "<bool>"
   /// }
   /// ```
-  static WidgetStateProperty<bool?>? decodeWidgetStatePropertyBool(
+  WidgetStateProperty<bool?>? decodeWidgetStatePropertyBool(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12605,7 +12505,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeBorderSide]
-  static WidgetStateProperty<BorderSide?>? decodeWidgetStatePropertyBorderSide(
+  WidgetStateProperty<BorderSide?>? decodeWidgetStatePropertyBorderSide(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12711,7 +12611,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeColor]
-  static WidgetStateProperty<Color?>? decodeWidgetStatePropertyColor(
+  WidgetStateProperty<Color?>? decodeWidgetStatePropertyColor(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12785,7 +12685,7 @@ class ThemeDecoder {
   ///   "selected": "<double>"
   /// }
   /// ```
-  static WidgetStateProperty<double?>? decodeWidgetStatePropertyDouble(
+  WidgetStateProperty<double?>? decodeWidgetStatePropertyDouble(
     dynamic value, {
     bool validate = true,
   }) {
@@ -12883,7 +12783,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeEdgeInsetsGeometry]
-  static WidgetStateProperty<EdgeInsetsGeometry?>?
+  WidgetStateProperty<EdgeInsetsGeometry?>?
   decodeWidgetStatePropertyEdgeInsetsGeometry(
     dynamic value, {
     bool validate = true,
@@ -13015,7 +12915,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeIconData]
-  static WidgetStateProperty<Icon?>? decodeWidgetStatePropertyIcon(
+  WidgetStateProperty<Icon?>? decodeWidgetStatePropertyIcon(
     dynamic value, {
     bool validate = true,
   }) {
@@ -13091,8 +12991,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeIconThemeData]
-  static WidgetStateProperty<IconThemeData?>?
-  decodeWidgetStatePropertyIconThemeData(
+  WidgetStateProperty<IconThemeData?>? decodeWidgetStatePropertyIconThemeData(
     dynamic value, {
     bool validate = true,
   }) {
@@ -13199,8 +13098,10 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeMouseCursor]
-  static WidgetStateProperty<MouseCursor?>?
-  decodeWidgetStatePropertyMouseCursor(dynamic value, {bool validate = true}) {
+  WidgetStateProperty<MouseCursor?>? decodeWidgetStatePropertyMouseCursor(
+    dynamic value, {
+    bool validate = true,
+  }) {
     WidgetStateProperty<MouseCursor?>? result;
 
     if (value is WidgetStateProperty<MouseCursor?>) {
@@ -13304,8 +13205,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeOutlinedBorder]
-  static WidgetStateProperty<OutlinedBorder?>?
-  decodeWidgetStatePropertyOutlinedBorder(
+  WidgetStateProperty<OutlinedBorder?>? decodeWidgetStatePropertyOutlinedBorder(
     dynamic value, {
     bool validate = true,
   }) {
@@ -13411,7 +13311,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeSize]
-  static WidgetStateProperty<Size?>? decodeWidgetStatePropertySize(
+  WidgetStateProperty<Size?>? decodeWidgetStatePropertySize(
     dynamic value, {
     bool validate = true,
   }) {
@@ -13514,7 +13414,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeTextStyle]
-  static WidgetStateProperty<TextStyle?>? decodeWidgetStatePropertyTextStyle(
+  WidgetStateProperty<TextStyle?>? decodeWidgetStatePropertyTextStyle(
     dynamic value, {
     bool validate = true,
   }) {
@@ -13602,10 +13502,7 @@ class ThemeDecoder {
   ///  * `spaceBetween`
   ///  * `spaceEvenly`
   ///  * `start`
-  static WrapAlignment? decodeWrapAlignment(
-    dynamic value, {
-    bool validate = true,
-  }) {
+  WrapAlignment? decodeWrapAlignment(dynamic value, {bool validate = true}) {
     WrapAlignment? result;
     if (value is WrapAlignment) {
       result = value;
@@ -13662,7 +13559,7 @@ class ThemeDecoder {
   ///  * `center`
   ///  * `end`
   ///  * `start`
-  static WrapCrossAlignment? decodeWrapCrossAlignment(
+  WrapCrossAlignment? decodeWrapCrossAlignment(
     dynamic value, {
     bool validate = true,
   }) {
@@ -13699,11 +13596,7 @@ class ThemeDecoder {
     return result;
   }
 
-  static void _checkSupported(
-    String type,
-    List<String> supported,
-    dynamic value,
-  ) {
+  void _checkSupported(String type, List<String> supported, dynamic value) {
     assert(value == null || value is String);
     assert(
       value == null || supported.contains(value),
@@ -13711,7 +13604,7 @@ class ThemeDecoder {
     );
   }
 
-  static List<T>? _decodeDynamicList<T>(
+  List<T>? _decodeDynamicList<T>(
     Iterable<dynamic>? list,
     T Function(dynamic value) decoder,
   ) {
@@ -13727,7 +13620,7 @@ class ThemeDecoder {
     return result;
   }
 
-  static List<T>? _decodeStringList<T>(
+  List<T>? _decodeStringList<T>(
     Iterable<dynamic>? list,
     T Function(String value) decoder,
   ) {

@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
@@ -379,12 +380,12 @@ void main() {
   });
 
   test('AppBarTheme', () {
-    expect(ThemeDecoder.decodeAppBarTheme(null), null);
+    expect(ThemeDecoder.decodeAppBarThemeData(null), null);
     expect(ThemeEncoder.encodeAppBarTheme(null), null);
 
-    const entry = AppBarTheme(
+    const entry = AppBarThemeData(
       actionsPadding: EdgeInsets.all(8.0),
-      color: _kColor,
+      backgroundColor: _kColor,
       centerTitle: true,
       elevation: 6.0,
       foregroundColor: _kColor,
@@ -393,10 +394,10 @@ void main() {
       toolbarHeight: 64.0,
     );
 
-    expect(ThemeDecoder.decodeAppBarTheme(entry), entry);
+    expect(ThemeDecoder.decodeAppBarThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeAppBarTheme(entry);
-    final decoded = ThemeDecoder.decodeAppBarTheme(encoded);
+    final decoded = ThemeDecoder.decodeAppBarThemeData(encoded);
 
     expect(
       json.encode(encoded),
@@ -627,10 +628,10 @@ void main() {
   });
 
   test('BottomAppBarTheme', () {
-    expect(ThemeDecoder.decodeBottomAppBarTheme(null), null);
+    expect(ThemeDecoder.decodeBottomAppBarThemeData(null), null);
     expect(ThemeEncoder.encodeBottomAppBarTheme(null), null);
 
-    const entry = BottomAppBarTheme(
+    const entry = BottomAppBarThemeData(
       color: _kColor,
       elevation: 8.0,
       height: 20.0,
@@ -640,10 +641,10 @@ void main() {
       surfaceTintColor: _kColor,
     );
 
-    expect(ThemeDecoder.decodeBottomAppBarTheme(entry), entry);
+    expect(ThemeDecoder.decodeBottomAppBarThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeBottomAppBarTheme(entry);
-    final decoded = ThemeDecoder.decodeBottomAppBarTheme(encoded)!;
+    final decoded = ThemeDecoder.decodeBottomAppBarThemeData(encoded)!;
 
     expect(encoded, {
       'color': _kColorStr,
@@ -1175,7 +1176,6 @@ void main() {
     expect(ThemeDecoder.decodeButtonBarThemeData(null), null);
     expect(ThemeEncoder.encodeButtonBarThemeData(null), null);
 
-    // ignore: deprecated_member_use
     const entry = ButtonBarThemeData(
       alignment: MainAxisAlignment.spaceEvenly,
       buttonAlignedDropdown: true,
@@ -3575,10 +3575,10 @@ void main() {
   });
 
   test('InputDecorationTheme', () {
-    expect(ThemeDecoder.decodeInputDecorationTheme(null), null);
+    expect(ThemeDecoder.decodeInputDecorationThemeData(null), null);
     expect(ThemeEncoder.encodeInputDecorationTheme(null), null);
 
-    final entry = InputDecorationTheme(
+    final entry = InputDecorationThemeData(
       activeIndicatorBorder: const BorderSide(
         color: _kColor,
         strokeAlign: -2.0,
@@ -3634,10 +3634,10 @@ void main() {
       suffixStyle: const TextStyle(color: Color(0xff000000)),
     );
 
-    expect(ThemeDecoder.decodeInputDecorationTheme(entry), entry);
+    expect(ThemeDecoder.decodeInputDecorationThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeInputDecorationTheme(entry);
-    final decoded = ThemeDecoder.decodeInputDecorationTheme(encoded);
+    final decoded = ThemeDecoder.decodeInputDecorationThemeData(encoded);
 
     expect(encoded, {
       'activeIndicatorBorder': {
@@ -6358,18 +6358,22 @@ void main() {
     expect(ThemeEncoder.encodeShowValueIndicator(null), null);
 
     expect(
-      ThemeDecoder.decodeShowValueIndicator(ShowValueIndicator.always),
+      ThemeDecoder.decodeShowValueIndicator('always'),
+
+      // ignore: deprecated_member_use
       ShowValueIndicator.always,
     );
 
     expect(
-      ThemeDecoder.decodeShowValueIndicator('always'),
-      ShowValueIndicator.always,
-    );
-    expect(
       ThemeDecoder.decodeShowValueIndicator('never'),
       ShowValueIndicator.never,
     );
+
+    expect(
+      ThemeDecoder.decodeShowValueIndicator('onDrag'),
+      ShowValueIndicator.onDrag,
+    );
+
     expect(
       ThemeDecoder.decodeShowValueIndicator('onlyForContinuous'),
       ShowValueIndicator.onlyForContinuous,
@@ -6380,19 +6384,28 @@ void main() {
     );
 
     expect(
+      // ignore: deprecated_member_use
       ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.always),
       'always',
     );
+
     expect(
       ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.never),
       'never',
     );
+
+    expect(
+      ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.onDrag),
+      'onDrag',
+    );
+
     expect(
       ThemeEncoder.encodeShowValueIndicator(
         ShowValueIndicator.onlyForContinuous,
       ),
       'onlyForContinuous',
     );
+
     expect(
       ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.onlyForDiscrete),
       'onlyForDiscrete',
@@ -6511,7 +6524,7 @@ void main() {
       rangeTrackShape: const RectangularRangeSliderTrackShape(),
       rangeValueIndicatorShape: const PaddleRangeSliderValueIndicatorShape(),
       secondaryActiveTrackColor: const Color(0xffababab),
-      showValueIndicator: ShowValueIndicator.always,
+      showValueIndicator: ShowValueIndicator.onDrag,
       thumbColor: const Color(0xffbbbbbb),
       thumbShape: SliderComponentShape.noOverlay,
       trackGap: 11.0,
@@ -6526,7 +6539,10 @@ void main() {
     expect(ThemeDecoder.decodeSliderThemeData(entry), entry);
 
     final encoded = ThemeEncoder.encodeSliderThemeData(entry);
-    final decoded = ThemeDecoder.decodeSliderThemeData(encoded);
+    final decoded = ThemeDecoder.decodeSliderThemeData(
+      encoded,
+      validate: false,
+    );
 
     expect(encoded, {
       'activeTickMarkColor': '#ff111111',
@@ -6553,7 +6569,7 @@ void main() {
       'rangeTrackShape': 'rectangular',
       'rangeValueIndicatorShape': 'paddle',
       'secondaryActiveTrackColor': '#ffababab',
-      'showValueIndicator': 'always',
+      'showValueIndicator': 'onDrag',
       'thumbColor': '#ffbbbbbb',
       'thumbShape': 'noOverlay',
       'trackGap': 11.0,

@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
@@ -419,7 +420,7 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [AppBarTheme].  This expects the given
+  /// Decodes the given [value] to an [AppBarThemeData].  This expects the given
   /// [value] to follow the structure below:
   ///
   /// ```json
@@ -431,6 +432,7 @@ class ThemeDecoder {
   ///   "elevation": "<double>",
   ///   "foregroundColor": "<Color>",
   ///   "iconTheme": "<IconThemeData>",
+  ///   "leadingWidth": "<double>"
   ///   "scrolledUnderElevation": "<double>",
   ///   "shadowColor": "<Color>",
   ///   "surfaceTintColor": "<Color>",
@@ -449,10 +451,13 @@ class ThemeDecoder {
   ///  * [decodeIconThemeData]
   ///  * [decodeSystemUiOverlayStyle]
   ///  * [decodeTextStyle]
-  static AppBarTheme? decodeAppBarTheme(dynamic value, {bool validate = true}) {
-    AppBarTheme? result;
+  static AppBarThemeData? decodeAppBarThemeData(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    AppBarThemeData? result;
 
-    if (value is AppBarTheme) {
+    if (value is AppBarThemeData) {
       result = value;
     } else if (value != null) {
       assert(
@@ -462,7 +467,7 @@ class ThemeDecoder {
           validate: validate,
         ),
       );
-      result = AppBarTheme(
+      result = AppBarThemeData(
         actionsIconTheme: decodeIconThemeData(
           value['actionsIconTheme'],
           validate: false,
@@ -481,6 +486,7 @@ class ThemeDecoder {
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         foregroundColor: decodeColor(value['foregroundColor'], validate: false),
         iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
+        leadingWidth: JsonClass.maybeParseDouble(value['leadingWidth']),
         scrolledUnderElevation: JsonClass.maybeParseDouble(
           value['scrolledUnderElevation'],
         ),
@@ -1174,7 +1180,7 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [BottomAppBarTheme].  This expects the
+  /// Decodes the given [value] to an [BottomAppBarThemeData].  This expects the
   /// given [value] to follow the structure below:
   ///
   /// ```json
@@ -1193,13 +1199,13 @@ class ThemeDecoder {
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
   ///  * [decodeNotchedShape]
-  static BottomAppBarTheme? decodeBottomAppBarTheme(
+  static BottomAppBarThemeData? decodeBottomAppBarThemeData(
     dynamic value, {
     bool validate = true,
   }) {
-    BottomAppBarTheme? result;
+    BottomAppBarThemeData? result;
 
-    if (value is BottomAppBarTheme) {
+    if (value is BottomAppBarThemeData) {
       result = value;
     } else if (value != null) {
       assert(
@@ -1209,7 +1215,7 @@ class ThemeDecoder {
           validate: validate,
         ),
       );
-      result = BottomAppBarTheme(
+      result = BottomAppBarThemeData(
         color: decodeColor(value['color'], validate: false),
         elevation: JsonClass.maybeParseDouble(value['elevation']),
         height: JsonClass.maybeParseDouble(value['height']),
@@ -3149,7 +3155,7 @@ class ThemeDecoder {
   ///  * [decodeBorderSide]
   ///  * [decodeButtonStyle]
   ///  * [decodeColor]
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   ///  * [decodeWidgetStatePropertyColor]
@@ -3215,7 +3221,7 @@ class ThemeDecoder {
           value['headerHelpStyle'],
           validate: false,
         ),
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -3788,7 +3794,7 @@ class ThemeDecoder {
   /// ```
   ///
   /// See also:
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeMenuStyle]
   ///  * [decodeTextStyle]
   static DropdownMenuThemeData? decodeDropdownMenuThemeData(
@@ -3809,7 +3815,7 @@ class ThemeDecoder {
       );
 
       result = DropdownMenuThemeData(
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -5484,7 +5490,7 @@ class ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [InputDecorationTheme].  This expects the
+  /// Decodes the given [value] to an [InputDecorationThemeData].  This expects the
   /// given [value] to be of the following structure:
   ///
   /// ```json
@@ -5511,6 +5517,7 @@ class ThemeDecoder {
   ///   "helperMaxLines": "<int>",
   ///   "helperStyle": "<TextStyle>",
   ///   "hintFadeDuration": "<Duration>",
+  ///   "hintMaxLines": "<int>"
   ///   "hintStyle": "<TextStyle>",
   ///   "hoverColor": "<Color>",
   ///   "iconColor": "<Color>",
@@ -5536,13 +5543,13 @@ class ThemeDecoder {
   ///  * [decodeInputBorder]
   ///  * [decodeFloatingLabelBehavior]
   ///  * [decodeTextStyle]
-  static InputDecorationTheme? decodeInputDecorationTheme(
+  static InputDecorationThemeData? decodeInputDecorationThemeData(
     dynamic value, {
     bool validate = true,
   }) {
-    InputDecorationTheme? result;
+    InputDecorationThemeData? result;
 
-    if (value is InputDecorationTheme) {
+    if (value is InputDecorationThemeData) {
       result = value;
     } else if (value != null) {
       assert(
@@ -5552,7 +5559,7 @@ class ThemeDecoder {
           validate: validate,
         ),
       );
-      result = InputDecorationTheme(
+      result = InputDecorationThemeData(
         activeIndicatorBorder: decodeBorderSide(
           value['activeIndicatorBorder'],
           validate: false,
@@ -5611,6 +5618,7 @@ class ThemeDecoder {
         hintFadeDuration: JsonClass.maybeParseDurationFromMillis(
           value['hintFadeDuration'],
         ),
+        hintMaxLines: JsonClass.maybeParseInt(value['hintMaxLines']),
         hintStyle: decodeTextStyle(value['hintStyle'], validate: false),
         hoverColor: decodeColor(value['hoverColor'], validate: false),
         iconColor: decodeColor(value['iconColor'], validate: false),
@@ -9056,6 +9064,7 @@ class ThemeDecoder {
       _checkSupported('ShowValueIndicator', [
         'always',
         'never',
+        'onDrag',
         'onlyForContinuous',
         'onlyForDiscrete',
       ], value);
@@ -9069,12 +9078,18 @@ class ThemeDecoder {
           ),
         );
         switch (value) {
+          // @deprecated after v3.28.0-1.0.pre
           case 'always':
+            // ignore: deprecated_member_use
             result = ShowValueIndicator.always;
             break;
 
           case 'never':
             result = ShowValueIndicator.never;
+            break;
+
+          case 'onDrag':
+            result = ShowValueIndicator.onDrag;
             break;
 
           case 'onlyForContinuous':
@@ -11601,7 +11616,7 @@ class ThemeDecoder {
   ///
   /// See also:
   ///  * [decodeActionIconThemeData]
-  ///  * [decodeAppBarTheme]
+  ///  * [decodeAppBarThemeData]
   ///  * [decodeBadgeThemeData]
   ///  * [decodeBottomAppBarTheme]
   ///  * [decodeBottomNavigationBarThemeData]
@@ -11625,7 +11640,7 @@ class ThemeDecoder {
   ///  * [decodeFloatingActionButtonThemeData]
   ///  * [decodeIconButtonThemeData]
   ///  * [decodeIconThemeData]
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeInteractiveInkFeatureFactory]
   ///  * [decodeListTileThemeData]
   ///  * [decodeMaterialBannerThemeData]
@@ -11676,7 +11691,10 @@ class ThemeDecoder {
           value['actionIconThemeData'],
           validate: false,
         ),
-        appBarTheme: decodeAppBarTheme(value['appBarTheme'], validate: false),
+        appBarTheme: decodeAppBarThemeData(
+          value['appBarTheme'],
+          validate: false,
+        ),
         applyElevationOverlayColor: JsonClass.maybeParseBool(
           value['applyElevationOverlayColor'],
         ),
@@ -11685,7 +11703,7 @@ class ThemeDecoder {
           value['bannerTheme'],
           validate: false,
         ),
-        bottomAppBarTheme: decodeBottomAppBarTheme(
+        bottomAppBarTheme: decodeBottomAppBarThemeData(
           value['bottomAppBarTheme'],
           validate: false,
         ),
@@ -11775,7 +11793,7 @@ class ThemeDecoder {
           validate: false,
         ),
         iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),
@@ -12017,7 +12035,7 @@ class ThemeDecoder {
   ///  * [decodeButtonStyle]
   ///  * [decodeColor]
   ///  * [decodeEdgeInsetsGeometry]
-  ///  * [decodeInputDecorationTheme]
+  ///  * [decodeInputDecorationThemeData]
   ///  * [decodeShapeBorder]
   ///  * [decodeTextStyle]
   ///  * [decodeWidgetStateColor]
@@ -12096,7 +12114,7 @@ class ThemeDecoder {
           value['hourMinuteTextStyle'],
           validate: false,
         ),
-        inputDecorationTheme: decodeInputDecorationTheme(
+        inputDecorationTheme: decodeInputDecorationThemeData(
           value['inputDecorationTheme'],
           validate: false,
         ),

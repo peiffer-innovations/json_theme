@@ -29,46 +29,14 @@ const _baseSchemaUrl =
 /// Unless otherwise stated, each function will return `null` when given an
 /// input of `null`.
 @immutable
-@JsonThemeCodec('decode')
-class _ThemeDecoder {
+@JsonThemeCodec(CodecMode.decode, baseSchemaUrl: _baseSchemaUrl)
+abstract class _ThemeDecoder {
   const _ThemeDecoder._();
 
-  /// Decodes the given [value] to an [ActionIconThemeData].  This expects the
-  /// following JSON structure:
-  /// ```json
-  /// {
-  ///   "backButtonIconBuilder": "<Widget Function(BuildContext)>",
-  ///   "closeButtonIconBuilder": "<Widget Function(BuildContext)>",
-  ///   "drawerButtonIconBuilder": "<Widget Function(BuildContext)>",
-  ///   "endDrawerButtonIconBuilder": "<Widget Function(BuildContext)>"
-  /// }
   ActionIconThemeData? decodeActionIconThemeData(
     dynamic value, {
     bool validate = false,
-  }) {
-    ActionIconThemeData? result;
-
-    if (value is ActionIconThemeData) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/action_icon_theme_data',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      result = ActionIconThemeData(
-        backButtonIconBuilder: value['backButtonIconBuilder'],
-        closeButtonIconBuilder: value['closeButtonIconBuilder'],
-        drawerButtonIconBuilder: value['drawerButtonIconBuilder'],
-        endDrawerButtonIconBuilder: value['endDrawerButtonIconBuilder'],
-      );
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [Alignment].  If the given value is a
   /// `Map` then this expects the following JSON structure:
@@ -359,35 +327,7 @@ class _ThemeDecoder {
   AndroidOverscrollIndicator? decodeAndroidOverscrollIndicator(
     dynamic value, {
     bool validate = true,
-  }) {
-    AndroidOverscrollIndicator? result;
-
-    if (value is AndroidOverscrollIndicator) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('AndroidOverscrollIndicator', ['glow', 'stretch'], value);
-
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/android_overscroll_indicator',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'glow':
-          result = AndroidOverscrollIndicator.glow;
-          break;
-
-        case 'stretch':
-          result = AndroidOverscrollIndicator.stretch;
-          break;
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [AnimationStyle].  Supported
   /// values are:
@@ -448,70 +388,68 @@ class _ThemeDecoder {
   ///  * [decodeIconThemeData]
   ///  * [decodeSystemUiOverlayStyle]
   ///  * [decodeTextStyle]
-  AppBarThemeData? decodeAppBarThemeData(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    AppBarThemeData? result;
+  AppBarThemeData? decodeAppBarThemeData(dynamic value, {bool validate = true});
+  //  {
+  //   AppBarThemeData? result;
 
-    if (value is AppBarThemeData) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/app_bar_theme_data',
-          value: value,
-          validate: validate,
-        ),
-      );
-      result = AppBarThemeData(
-        actionsIconTheme: decodeIconThemeData(
-          value['actionsIconTheme'],
-          validate: false,
-        ),
-        actionsPadding: decodeEdgeInsetsGeometry(
-          value['actionsPadding'],
-          validate: false,
-        ),
-        backgroundColor: decodeColor(
-          value['backgroundColor'] ?? value['color'],
-          validate: false,
-        ),
-        centerTitle: JsonClass.maybeParseBool(value['centerTitle']),
-        // Covered via backgroundColor
-        // color:
-        elevation: JsonClass.maybeParseDouble(value['elevation']),
-        foregroundColor: decodeColor(value['foregroundColor'], validate: false),
-        iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
-        leadingWidth: JsonClass.maybeParseDouble(value['leadingWidth']),
-        scrolledUnderElevation: JsonClass.maybeParseDouble(
-          value['scrolledUnderElevation'],
-        ),
-        shape: decodeShapeBorder(value['shape'], validate: false),
-        shadowColor: decodeColor(value['shadowColor'], validate: false),
-        systemOverlayStyle: decodeSystemUiOverlayStyle(
-          value['systemOverlayStyle'],
-          validate: false,
-        ),
-        surfaceTintColor: decodeColor(
-          value['surfaceTintColor'],
-          validate: false,
-        ),
-        titleSpacing: JsonClass.maybeParseDouble(value['titleSpacing']),
-        titleTextStyle: decodeTextStyle(
-          value['titleTextStyle'],
-          validate: false,
-        ),
-        toolbarHeight: JsonClass.maybeParseDouble(value['toolbarHeight']),
-        toolbarTextStyle: decodeTextStyle(
-          value['toolbarTextStyle'],
-          validate: false,
-        ),
-      );
-    }
+  //   if (value is AppBarThemeData) {
+  //     result = value;
+  //   } else if (value != null) {
+  //     assert(
+  //       SchemaValidator.validate(
+  //         schemaId: '$_baseSchemaUrl/app_bar_theme_data',
+  //         value: value,
+  //         validate: validate,
+  //       ),
+  //     );
+  //     result = AppBarThemeData(
+  //       actionsIconTheme: decodeIconThemeData(
+  //         value['actionsIconTheme'],
+  //         validate: false,
+  //       ),
+  //       actionsPadding: decodeEdgeInsetsGeometry(
+  //         value['actionsPadding'],
+  //         validate: false,
+  //       ),
+  //       backgroundColor: decodeColor(
+  //         value['backgroundColor'] ?? value['color'],
+  //         validate: false,
+  //       ),
+  //       centerTitle: JsonClass.maybeParseBool(value['centerTitle']),
+  //       // Covered via backgroundColor
+  //       // color:
+  //       elevation: JsonClass.maybeParseDouble(value['elevation']),
+  //       foregroundColor: decodeColor(value['foregroundColor'], validate: false),
+  //       iconTheme: decodeIconThemeData(value['iconTheme'], validate: false),
+  //       leadingWidth: JsonClass.maybeParseDouble(value['leadingWidth']),
+  //       scrolledUnderElevation: JsonClass.maybeParseDouble(
+  //         value['scrolledUnderElevation'],
+  //       ),
+  //       shape: decodeShapeBorder(value['shape'], validate: false),
+  //       shadowColor: decodeColor(value['shadowColor'], validate: false),
+  //       systemOverlayStyle: decodeSystemUiOverlayStyle(
+  //         value['systemOverlayStyle'],
+  //         validate: false,
+  //       ),
+  //       surfaceTintColor: decodeColor(
+  //         value['surfaceTintColor'],
+  //         validate: false,
+  //       ),
+  //       titleSpacing: JsonClass.maybeParseDouble(value['titleSpacing']),
+  //       titleTextStyle: decodeTextStyle(
+  //         value['titleTextStyle'],
+  //         validate: false,
+  //       ),
+  //       toolbarHeight: JsonClass.maybeParseDouble(value['toolbarHeight']),
+  //       toolbarTextStyle: decodeTextStyle(
+  //         value['toolbarTextStyle'],
+  //         validate: false,
+  //       ),
+  //     );
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
   /// Decodes the given [value] to an [AutovalidateMode].  Supported values are:
   /// * `always`
@@ -521,68 +459,12 @@ class _ThemeDecoder {
   AutovalidateMode? decodeAutovalidateMode(
     dynamic value, {
     bool validate = true,
-  }) {
-    AutovalidateMode? result;
-
-    if (value is AutovalidateMode) {
-      result = value;
-    } else {
-      _checkSupported('AutovalidateMode', [
-        'always',
-        'disabled',
-        'onUnfocus',
-        'onUserInteraction',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/autovalidate_mode',
-            value: value,
-            validate: validate,
-          ),
-        );
-
-        result = AutovalidateMode.values.firstWhere(
-          (e) => e.toString() == 'AutovalidateMode.$value',
-        );
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [Axis].  Supported values are:
   ///  * `horizontal`
   ///  * `vertical`
-  Axis? decodeAxis(dynamic value, {bool validate = true}) {
-    Axis? result;
-    if (value is Axis) {
-      result = value;
-    } else {
-      _checkSupported('Axis', ['horizontal', 'vertical'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/axis',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'horizontal':
-            result = Axis.horizontal;
-            break;
-          case 'vertical':
-            result = Axis.vertical;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  Axis? decodeAxis(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [BadgeThemeData].  This expects the given
   /// [value] to follow the structure below:
@@ -634,251 +516,9 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [BlendMode].  Supported values are:
-  /// * `clear`
-  /// * `color`
-  /// * `colorBurn`
-  /// * `colorDodge`
-  /// * `darken`
-  /// * `difference`
-  /// * `dst`
-  /// * `dstATop`
-  /// * `dstIn`
-  /// * `dstOut`
-  /// * `dstOver`
-  /// * `exclusion`
-  /// * `hardLight`
-  /// * `hue`
-  /// * `lighten`
-  /// * `luminosity`
-  /// * `modulate`
-  /// * `multiply`
-  /// * `overlay`
-  /// * `plus`
-  /// * `saturation`
-  /// * `screen`
-  /// * `softLight`
-  /// * `src`
-  /// * `srcATop`
-  /// * `srcIn`
-  /// * `srcOut`
-  /// * `srcOver`
-  /// * `xor`
-  BlendMode? decodeBlendMode(dynamic value, {bool validate = true}) {
-    BlendMode? result;
+  BlendMode? decodeBlendMode(dynamic value, {bool validate = true});
 
-    if (value is BlendMode) {
-      result = value;
-    } else {
-      _checkSupported('BlendMode', [
-        'clear',
-        'color',
-        'colorBurn',
-        'colorDodge',
-        'darken',
-        'difference',
-        'dst',
-        'dstATop',
-        'dstIn',
-        'dstOut',
-        'dstOver',
-        'exclusion',
-        'hardLight',
-        'hue',
-        'lighten',
-        'luminosity',
-        'modulate',
-        'multiply',
-        'overlay',
-        'plus',
-        'saturation',
-        'screen',
-        'softLight',
-        'src',
-        'srcATop',
-        'srcIn',
-        'srcOut',
-        'srcOver',
-        'xor',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/blend_mode',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'clear':
-            result = BlendMode.clear;
-            break;
-
-          case 'color':
-            result = BlendMode.color;
-            break;
-
-          case 'colorBurn':
-            result = BlendMode.colorBurn;
-            break;
-
-          case 'colorDodge':
-            result = BlendMode.colorDodge;
-            break;
-
-          case 'darken':
-            result = BlendMode.darken;
-            break;
-
-          case 'difference':
-            result = BlendMode.difference;
-            break;
-
-          case 'dst':
-            result = BlendMode.dst;
-            break;
-
-          case 'dstATop':
-            result = BlendMode.dstATop;
-            break;
-
-          case 'dstIn':
-            result = BlendMode.dstIn;
-            break;
-
-          case 'dstOut':
-            result = BlendMode.dstOut;
-            break;
-
-          case 'dstOver':
-            result = BlendMode.dstOver;
-            break;
-
-          case 'exclusion':
-            result = BlendMode.exclusion;
-            break;
-
-          case 'hardLight':
-            result = BlendMode.hardLight;
-            break;
-
-          case 'hue':
-            result = BlendMode.hue;
-            break;
-
-          case 'lighten':
-            result = BlendMode.lighten;
-            break;
-
-          case 'luminosity':
-            result = BlendMode.luminosity;
-            break;
-
-          case 'modulate':
-            result = BlendMode.modulate;
-            break;
-
-          case 'multiply':
-            result = BlendMode.multiply;
-            break;
-
-          case 'overlay':
-            result = BlendMode.overlay;
-            break;
-
-          case 'plus':
-            result = BlendMode.plus;
-            break;
-
-          case 'saturation':
-            result = BlendMode.saturation;
-            break;
-
-          case 'screen':
-            result = BlendMode.screen;
-            break;
-
-          case 'softLight':
-            result = BlendMode.softLight;
-            break;
-
-          case 'src':
-            result = BlendMode.src;
-            break;
-
-          case 'srcATop':
-            result = BlendMode.srcATop;
-            break;
-
-          case 'srcIn':
-            result = BlendMode.srcIn;
-            break;
-
-          case 'srcOut':
-            result = BlendMode.srcOut;
-            break;
-
-          case 'srcOver':
-            result = BlendMode.srcOver;
-            break;
-
-          case 'xor':
-            result = BlendMode.xor;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the given [value] to an [BlurStyle].  Supported values are:
-  /// * `inner`
-  /// * `normal`
-  /// * `outer`
-  /// * `solid`
-  BlurStyle? decodeBlurStyle(dynamic value, {bool validate = true}) {
-    BlurStyle? result;
-
-    if (value is BlurStyle) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('BlendMode', [
-        'inner',
-        'normal',
-        'outer',
-        'solid',
-      ], value);
-
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/blur_style',
-          value: value,
-          validate: validate,
-        ),
-      );
-      switch (value) {
-        case 'inner':
-          result = BlurStyle.inner;
-          break;
-
-        case 'normal':
-          result = BlurStyle.normal;
-          break;
-
-        case 'outer':
-          result = BlurStyle.outer;
-          break;
-
-        case 'solid':
-          result = BlurStyle.solid;
-          break;
-      }
-    }
-
-    return result;
-  }
+  BlurStyle? decodeBlurStyle(dynamic value, {bool validate = true});
 
   /// Decodes the given value to a [BorderRadius].  The [value] may be a
   /// [String], an [int], a [double], or a Map-like object.
@@ -1137,39 +777,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [BorderStyle].  Supported values are:
-  ///  * `none`
-  ///  * `solid`
-  BorderStyle? decodeBorderStyle(dynamic value, {bool validate = true}) {
-    BorderStyle? result;
-
-    if (value is BorderStyle) {
-      result = value;
-    } else {
-      _checkSupported('BorderStyle', ['none', 'solid'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/border_style',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'none':
-            result = BorderStyle.none;
-            break;
-
-          case 'solid':
-            result = BorderStyle.solid;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  BorderStyle? decodeBorderStyle(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [BottomAppBarThemeData].  This expects the
   /// given [value] to follow the structure below:
@@ -1310,85 +918,15 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [BottomNavigationBarLandscapeLayout].  Supported values are:
-  ///  * `centered`
-  ///  * `linear`
-  ///  * `spread`
   BottomNavigationBarLandscapeLayout? decodeBottomNavigationBarLandscapeLayout(
     dynamic value, {
     bool validate = true,
-  }) {
-    BottomNavigationBarLandscapeLayout? result;
+  });
 
-    if (value is BottomNavigationBarLandscapeLayout) {
-      result = value;
-    } else {
-      _checkSupported('BottomNavigationBarLandscapeLayout', [
-        'centered',
-        'linear',
-        'spread',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/bottom_navigation_bar_landscape_layout',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'centered':
-            result = BottomNavigationBarLandscapeLayout.centered;
-            break;
-          case 'linear':
-            result = BottomNavigationBarLandscapeLayout.linear;
-            break;
-          case 'spread':
-            result = BottomNavigationBarLandscapeLayout.spread;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [BottomNavigationBarType].  Supported values are:
-  ///  * `fixed`
-  ///  * `shifting`
   BottomNavigationBarType? decodeBottomNavigationBarType(
     dynamic value, {
     bool validate = true,
-  }) {
-    BottomNavigationBarType? result;
-
-    if (value is BottomNavigationBarType) {
-      result = value;
-    } else {
-      _checkSupported('BottomNavigationBarType', ['fixed', 'shifting'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/bottom_navigation_bar_type',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'fixed':
-            result = BottomNavigationBarType.fixed;
-            break;
-          case 'shifting':
-            result = BottomNavigationBarType.shifting;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [BottomSheetThemeData].  This expects the
   /// given [value] to follow the structure below:
@@ -1632,100 +1170,9 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [BoxFit].  Supported values are:
-  ///  * `contain`
-  ///  * `cover`
-  ///  * `fill`
-  ///  * `fitHeight`
-  ///  * `fitWidth`
-  ///  * `none`
-  ///  * `scaleDown`
-  BoxFit? decodeBoxFit(dynamic value, {bool validate = true}) {
-    BoxFit? result;
+  BoxFit? decodeBoxFit(dynamic value, {bool validate = true});
 
-    if (value is BoxFit) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/box_fit',
-          value: value,
-          validate: validate,
-        ),
-      );
-      switch (value) {
-        case 'contain':
-          result = BoxFit.contain;
-          break;
-        case 'cover':
-          result = BoxFit.cover;
-          break;
-        case 'fill':
-          result = BoxFit.fill;
-          break;
-        case 'fitHeight':
-          result = BoxFit.fitHeight;
-          break;
-        case 'fitWidth':
-          result = BoxFit.fitWidth;
-          break;
-        case 'none':
-          result = BoxFit.none;
-          break;
-        case 'scaleDown':
-          result = BoxFit.scaleDown;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [BoxHeightStyle].  Supported values are:
-  ///  * `includeLineSpacingBottom`
-  ///  * `includeLineSpacingMiddle`
-  ///  * `includeLineSpacingTop`
-  ///  * `max`
-  ///  * `strut`
-  ///  * `tight`
-  BoxHeightStyle? decodeBoxHeightStyle(dynamic value, {bool validate = false}) {
-    BoxHeightStyle? result;
-
-    if (value is BoxHeightStyle) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/box_height_style',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'includeLineSpacingBottom':
-          result = BoxHeightStyle.includeLineSpacingBottom;
-          break;
-        case 'includeLineSpacingMiddle':
-          result = BoxHeightStyle.includeLineSpacingMiddle;
-          break;
-        case 'includeLineSpacingTop':
-          result = BoxHeightStyle.includeLineSpacingTop;
-          break;
-        case 'max':
-          result = BoxHeightStyle.max;
-          break;
-        case 'strut':
-          result = BoxHeightStyle.strut;
-          break;
-        case 'tight':
-          result = BoxHeightStyle.tight;
-          break;
-      }
-    }
-
-    return result;
-  }
+  BoxHeightStyle? decodeBoxHeightStyle(dynamic value, {bool validate = false});
 
   /// Decodes the given [value] into a [BoxDecoration].  If the value is `null`
   /// then `null` will be returned.  Otherwise, this expects a Map like value
@@ -1774,130 +1221,16 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [BoxShape].  Supported values are:
-  ///  * `circle`
-  ///  * `rectangle`
-  BoxShape? decodeBoxShape(dynamic value, {bool validate = true}) {
-    BoxShape? result;
+  BoxShape? decodeBoxShape(dynamic value, {bool validate = true});
 
-    if (value is BoxShape) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/box_shape',
-          value: value,
-          validate: validate,
-        ),
-      );
-      switch (value) {
-        case 'circle':
-          result = BoxShape.circle;
-          break;
+  BoxWidthStyle? decodeBoxWidthStyle(dynamic value, {bool validate = false});
 
-        case 'rectangle':
-          result = BoxShape.rectangle;
-          break;
-      }
-    }
+  Brightness? decodeBrightness(dynamic value, {bool validate = true});
 
-    return result;
-  }
-
-  /// Decodes the [value] to a [BoxWidthStyle].  Supported values are:
-  ///  * `max`
-  ///  * `tight`
-  BoxWidthStyle? decodeBoxWidthStyle(dynamic value, {bool validate = false}) {
-    BoxWidthStyle? result;
-
-    if (value is BoxWidthStyle) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/box_width_style',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'max':
-          result = BoxWidthStyle.max;
-          break;
-        case 'tight':
-          result = BoxWidthStyle.tight;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [Brightness].  Supported values are:
-  ///  * `light`
-  ///  * `dark`
-  Brightness? decodeBrightness(dynamic value, {bool validate = true}) {
-    Brightness? result;
-
-    if (value is Brightness) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/brightness',
-          value: value,
-          validate: validate,
-        ),
-      );
-      result = value == 'light'
-          ? Brightness.light
-          : value == 'dark'
-          ? Brightness.dark
-          : null;
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [ButtonBarLayoutBehavior].  Supported values are:
-  ///  * `constrained`
-  ///  * `padded`
   ButtonBarLayoutBehavior? decodeButtonBarLayoutBehavior(
     dynamic value, {
     bool validate = true,
-  }) {
-    ButtonBarLayoutBehavior? result;
-
-    if (value is ButtonBarLayoutBehavior) {
-      result = value;
-    } else {
-      _checkSupported('ButtonBarLayoutBehavior', [
-        'constrained',
-        'padded',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/button_bar_layout_behavior',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'constrained':
-            result = ButtonBarLayoutBehavior.constrained;
-            break;
-          case 'padded':
-            result = ButtonBarLayoutBehavior.padded;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   // ignore: deprecated_member_use
   /// Decodes the given [value] to an [ButtonBarThemeData].  This expects the
@@ -2137,49 +1470,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [ButtonTextTheme].  Supported values are:
-  ///  * `accent`
-  ///  * `normal`
-  ///  * `primary`
-  ButtonTextTheme? decodeButtonTextTheme(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    ButtonTextTheme? result;
-
-    if (value is ButtonTextTheme) {
-      result = value;
-    } else {
-      _checkSupported('ButtonTextTheme', [
-        'accent',
-        'normal',
-        'primary',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/button_text_theme',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'accent':
-            result = ButtonTextTheme.accent;
-            break;
-          case 'normal':
-            result = ButtonTextTheme.normal;
-            break;
-          case 'primary':
-            result = ButtonTextTheme.primary;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  ButtonTextTheme? decodeButtonTextTheme(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [ButtonThemeData].  This expects the
   /// given [value] to follow the structure below:
@@ -2491,51 +1782,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [Clip].  Supported values are:
-  ///  * `antiAlias`
-  ///  * `antiAliasWithSaveLayer`
-  ///  * `hardEdge`
-  ///  * `none`
-  Clip? decodeClip(dynamic value, {bool validate = true}) {
-    Clip? result;
-
-    if (value is Clip) {
-      result = value;
-    } else {
-      _checkSupported('Clip', [
-        'antiAlias',
-        'antiAliasWithSaveLayer',
-        'hardEdge',
-        'none',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/clip',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'antiAlias':
-            result = Clip.antiAlias;
-            break;
-          case 'antiAliasWithSaveLayer':
-            result = Clip.antiAliasWithSaveLayer;
-            break;
-          case 'hardEdge':
-            result = Clip.hardEdge;
-            break;
-          case 'none':
-            result = Clip.none;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  Clip? decodeClip(dynamic value, {bool validate = true});
 
   /// Decodes a given [value] into a color.  A [value] of `null` will result in
   /// `null` being returned.
@@ -2843,92 +2090,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [CrossAxisAlignment].  Supported values are:
-  ///  * `baseLine`
-  ///  * `center`
-  ///  * `end`
-  ///  * `start`
-  ///  * `stretch`
   CrossAxisAlignment? decodeCrossAxisAlignment(
     dynamic value, {
     bool validate = true,
-  }) {
-    CrossAxisAlignment? result;
+  });
 
-    if (value is CrossAxisAlignment) {
-      result = value;
-    } else {
-      _checkSupported('CrossAxisAlignment', [
-        'baseline',
-        'center',
-        'end',
-        'start',
-        'stretch',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/cross_axis_alignment',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'baseline':
-            result = CrossAxisAlignment.baseline;
-            break;
-          case 'center':
-            result = CrossAxisAlignment.center;
-            break;
-          case 'end':
-            result = CrossAxisAlignment.end;
-            break;
-          case 'start':
-            result = CrossAxisAlignment.start;
-            break;
-          case 'stretch':
-            result = CrossAxisAlignment.stretch;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [CrossFadeState].  Supported values are:
-  ///  * `showFirst`
-  ///  * `showSecond`
-  CrossFadeState? decodeCrossFadeState(dynamic value, {bool validate = true}) {
-    CrossFadeState? result;
-
-    if (value is CrossFadeState) {
-      result = value;
-    } else {
-      _checkSupported('CrossFadeState', ['showFirst', 'showSecond'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/cross_fade_state',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'showFirst':
-            result = CrossFadeState.showFirst;
-            break;
-          case 'showSecond':
-            result = CrossFadeState.showSecond;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  CrossFadeState? decodeCrossFadeState(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [CupertinoTextThemeData].  This expects the
   /// given [value] to follow the structure below:
@@ -3435,44 +2602,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [DecorationPosition].  Supported values are:
-  ///  * `background`
-  ///  * `foreground`
   DecorationPosition? decodeDecorationPosition(
     dynamic value, {
     bool validate = true,
-  }) {
-    DecorationPosition? result;
-
-    if (value is DecorationPosition) {
-      result = value;
-    } else {
-      _checkSupported('DecorationPosition', [
-        'background',
-        'foreground',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/decoration_position',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'background':
-            result = DecorationPosition.background;
-            break;
-          case 'foreground':
-            result = DecorationPosition.foreground;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [DialogThemeData].  This expects the given
   /// [value] to follow the structure below:
@@ -3552,69 +2685,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [DismissDirection].  Supported values are:
-  ///  * `down`
-  ///  * `endToStart`
-  ///  * `horizontal'
-  ///  * `none'
-  ///  * `startToEnd`
-  ///  * `up`
-  ///  * `vertical`
   DismissDirection? decodeDismissDirection(
     dynamic value, {
     bool validate = true,
-  }) {
-    DismissDirection? result;
-
-    if (value is DismissDirection) {
-      result = value;
-    } else {
-      _checkSupported('DismissDirection', [
-        'down',
-        'endToStart',
-        'horizontal',
-        'none',
-        'startToEnd',
-        'up',
-        'vertical',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/dismiss_direction',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'down':
-            result = DismissDirection.down;
-            break;
-          case 'endToStart':
-            result = DismissDirection.endToStart;
-            break;
-          case 'horizontal':
-            result = DismissDirection.horizontal;
-            break;
-          case 'none':
-            result = DismissDirection.none;
-            break;
-          case 'startToEnd':
-            result = DismissDirection.startToEnd;
-            break;
-          case 'up':
-            result = DismissDirection.up;
-            break;
-          case 'vertical':
-            result = DismissDirection.vertical;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [DividerThemeData].  This expects the given
   /// [value] to follow the structure below:
@@ -3659,41 +2733,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] to an [DragStartBehavior].  Supported values are:
-  ///  * `horizontal`
-  ///  * `start`
   DragStartBehavior? decodeDragStartBehavior(
     dynamic value, {
     bool validate = true,
-  }) {
-    DragStartBehavior? result;
-
-    if (value is DragStartBehavior) {
-      result = value;
-    } else {
-      _checkSupported('DragStartBehavior', ['down', 'start'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/drag_start_behavior',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'down':
-            result = DragStartBehavior.down;
-            break;
-          case 'start':
-            result = DragStartBehavior.start;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [DrawerThemeData].  This expects the
   /// given [value] to be of the following structure:
@@ -4132,90 +3175,9 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [FilterQuality].  Supported values are:
-  ///  * `high`
-  ///  * `low`
-  ///  * `medium`
-  ///  * `none`
-  FilterQuality? decodeFilterQuality(dynamic value, {bool validate = true}) {
-    FilterQuality? result;
+  FilterQuality? decodeFilterQuality(dynamic value, {bool validate = true});
 
-    if (value is FilterQuality) {
-      result = value;
-    } else {
-      _checkSupported('FilterQuality', [
-        'high',
-        'low',
-        'medium',
-        'none',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/filter_quality',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'high':
-            result = FilterQuality.high;
-            break;
-
-          case 'low':
-            result = FilterQuality.low;
-            break;
-
-          case 'medium':
-            result = FilterQuality.medium;
-            break;
-
-          case 'none':
-            result = FilterQuality.none;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [FlexFit].  Supported values are:
-  ///  * `baseLine`
-  ///  * `center`
-  ///  * `end`
-  ///  * `start`
-  ///  * `stretch`
-  FlexFit? decodeFlexFit(dynamic value, {bool validate = true}) {
-    FlexFit? result;
-
-    if (value is FlexFit) {
-      result = value;
-    } else {
-      _checkSupported('FlexFit', ['loose', 'tight'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/flex_fit',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'loose':
-            result = FlexFit.loose;
-            break;
-          case 'tight':
-            result = FlexFit.tight;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  FlexFit? decodeFlexFit(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [FloatingActionButtonAnimator].  Supported values
   /// are:
@@ -4537,51 +3499,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [FloatingLabelBehavior].  Supported values are:
-  ///  * `always`
-  ///  * `auto`
-  ///  * `never`
   FloatingLabelBehavior? decodeFloatingLabelBehavior(
     dynamic value, {
     bool validate = true,
-  }) {
-    FloatingLabelBehavior? result;
-
-    if (value is FloatingLabelBehavior) {
-      result = value;
-    } else {
-      _checkSupported('FloatingLabelBehavior', [
-        'always',
-        'auto',
-        'never',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/floating_label_behavior',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'always':
-            result = FloatingLabelBehavior.always;
-            break;
-
-          case 'auto':
-            result = FloatingLabelBehavior.auto;
-            break;
-
-          case 'never':
-            result = FloatingLabelBehavior.never;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [FontFeature].  This expects the given
   /// [value] to follow the structure below:
@@ -4614,39 +3535,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [FontStyle].  Supported values are:
-  ///  * `italic`
-  ///  * `normal`
-  FontStyle? decodeFontStyle(dynamic value, {bool validate = true}) {
-    FontStyle? result;
-
-    if (value is FontStyle) {
-      result = value;
-    } else {
-      _checkSupported('FontStyle', ['italic', 'normal'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/font_style',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'italic':
-            result = FontStyle.italic;
-            break;
-
-          case 'normal':
-            result = FontStyle.normal;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  FontStyle? decodeFontStyle(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [FontWeight].  Supported values are:
   ///  * `bold`
@@ -4973,50 +3862,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [HitTestBehavior].  Supported values are:
-  /// * `deferToChild`
-  /// * `opaque`
-  /// * `translucent`
-  HitTestBehavior? decodeHitTestBehavior(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    HitTestBehavior? result;
-    if (value is HitTestBehavior) {
-      result = value;
-    } else {
-      _checkSupported('HitTestBehavior', [
-        'deferToChild',
-        'opaque',
-        'translucent',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/hit_test_behavior',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'deferToChild':
-            result = HitTestBehavior.deferToChild;
-            break;
-
-          case 'opaque':
-            result = HitTestBehavior.opaque;
-            break;
-
-          case 'translucent':
-            result = HitTestBehavior.translucent;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  HitTestBehavior? decodeHitTestBehavior(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] into an [IconData].  If the value is `null` then
   /// `null` will be returned.
@@ -5082,39 +3928,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into a [IconAlignment].  Supported values are:
-  /// * `end`
-  /// * `start`
-  IconAlignment? decodeIconAlignment(dynamic value, {bool validate = false}) {
-    IconAlignment? result;
-
-    if (value is IconAlignment) {
-      result = value;
-    } else {
-      _checkSupported('IconAlignment', ['end', 'start'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/icon_alignment',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'end':
-            result = IconAlignment.end;
-            break;
-
-          case 'start':
-            result = IconAlignment.start;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  IconAlignment? decodeIconAlignment(dynamic value, {bool validate = false});
 
   /// Decodes the given [value] to an [IconButtonThemeData].  This
   /// expects the given [value] to follow the structure below:
@@ -5318,50 +4132,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the given [value] into an [ImageRepeat].  Supported values are:
-  /// * `noRepeat`
-  /// * `repeat`
-  /// * `repeatX`
-  /// * `repeatY`
-  ImageRepeat? decodeImageRepeat(dynamic value, {bool validate = true}) {
-    ImageRepeat? result;
-    if (value is ImageRepeat) {
-      result = value;
-    } else {
-      _checkSupported('ImageRepeat', [
-        'noRepeat',
-        'repeat',
-        'repeatX',
-        'repeatY',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/image_repeat',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'noRepeat':
-            result = ImageRepeat.noRepeat;
-            break;
-          case 'repeat':
-            result = ImageRepeat.repeat;
-            break;
-          case 'repeatX':
-            result = ImageRepeat.repeatX;
-            break;
-          case 'repeatY':
-            result = ImageRepeat.repeatY;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  ImageRepeat? decodeImageRepeat(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [InputBorder].  This expects a specific
   /// "type" attribute to be one of:
@@ -5650,136 +4421,17 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to an [ListTileControlAffinity].  Supported
-  /// values are:
-  ///  * `leading`
-  ///  * `platform`
-  ///  * `trailing`
   ListTileControlAffinity? decodeListTileControlAffinity(
     dynamic value, {
     bool validate = true,
-  }) {
-    ListTileControlAffinity? result;
+  });
 
-    if (value is ListTileControlAffinity) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('ListTileControlAffinity', [
-        'leading',
-        'platform',
-        'trailing',
-      ], value);
+  ListTileStyle? decodeListTileStyle(dynamic value, {bool validate = true});
 
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/list_tile_control_affinity',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'leading':
-          result = ListTileControlAffinity.leading;
-          break;
-        case 'platform':
-          result = ListTileControlAffinity.platform;
-          break;
-        case 'trailing':
-          result = ListTileControlAffinity.trailing;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to an [ListTileStyle].  Supported
-  /// values are:
-  ///  * `drawer`
-  ///  * `list`
-  ListTileStyle? decodeListTileStyle(dynamic value, {bool validate = true}) {
-    ListTileStyle? result;
-
-    if (value is ListTileStyle) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('ListTileStyle', ['drawer', 'list'], value);
-
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/list_tile_style',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'drawer':
-          result = ListTileStyle.drawer;
-          break;
-        case 'list':
-          result = ListTileStyle.list;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to an [ListTileTitleAlignment].  Supported
-  /// values are:
-  ///  * `bottom`
-  ///  * `center`
-  ///  * `threeLine`
-  ///  * `titleHeight`
-  ///  * `top`
   ListTileTitleAlignment? decodeListTileTitleAlignment(
     dynamic value, {
     bool validate = false,
-  }) {
-    ListTileTitleAlignment? result;
-
-    if (value is ListTileTitleAlignment) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('ListTileTitleAlignment', [
-        'bottom',
-        'center',
-        'threeLine',
-        'titleHeight',
-        'top',
-      ], value);
-
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/list_tile_title_alignment',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'bottom':
-          result = ListTileTitleAlignment.bottom;
-          break;
-        case 'center':
-          result = ListTileTitleAlignment.center;
-          break;
-        case 'threeLine':
-          result = ListTileTitleAlignment.threeLine;
-          break;
-        case 'titleHeight':
-          result = ListTileTitleAlignment.titleHeight;
-          break;
-        case 'top':
-          result = ListTileTitleAlignment.top;
-          break;
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [Locale].  This expects the
   /// given [value] to be of the following structure:
@@ -5910,94 +4562,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [MainAxisAlignment].  Supported values are:
-  ///  * `center`
-  ///  * `end`
-  ///  * `spaceAround`
-  ///  * `spaceBetween`
-  ///  * `spaceEvenly`
-  ///  * `start`
   MainAxisAlignment? decodeMainAxisAlignment(
     dynamic value, {
     bool validate = true,
-  }) {
-    MainAxisAlignment? result;
-    if (value is MainAxisAlignment) {
-      result = value;
-    } else {
-      _checkSupported('MainAxisAlignment', [
-        'center',
-        'end',
-        'spaceAround',
-        'spaceBetween',
-        'spaceEvenly',
-        'start',
-      ], value);
+  });
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/main_axis_alignment',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'center':
-            result = MainAxisAlignment.center;
-            break;
-          case 'end':
-            result = MainAxisAlignment.end;
-            break;
-          case 'spaceAround':
-            result = MainAxisAlignment.spaceAround;
-            break;
-          case 'spaceBetween':
-            result = MainAxisAlignment.spaceBetween;
-            break;
-          case 'spaceEvenly':
-            result = MainAxisAlignment.spaceEvenly;
-            break;
-          case 'start':
-            result = MainAxisAlignment.start;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [MainAxisSize].  Supported values are:
-  ///  * `max`
-  ///  * `min`
-  MainAxisSize? decodeMainAxisSize(dynamic value, {bool validate = true}) {
-    MainAxisSize? result;
-    if (value is MainAxisSize) {
-      result = value;
-    } else {
-      _checkSupported('MainAxisSize', ['max', 'min'], value);
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/main_axis_size',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'max':
-            result = MainAxisSize.max;
-            break;
-          case 'min':
-            result = MainAxisSize.min;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  MainAxisSize? decodeMainAxisSize(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [MaterialBannerThemeData].  This expects the
   /// given [value] to be of the following structure:
@@ -6103,89 +4673,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [MaterialTargetTapSize].  Supported values are:
-  ///  * `padded`
-  ///  * `shrinkWrap`
   MaterialTapTargetSize? decodeMaterialTapTargetSize(
     dynamic value, {
     bool validate = true,
-  }) {
-    MaterialTapTargetSize? result;
-    if (value is MaterialTapTargetSize) {
-      result = value;
-    } else {
-      _checkSupported('MaterialTapTargetSize', ['padded', 'shrinkWrap'], value);
+  });
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_tap_target_size',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'padded':
-            result = MaterialTapTargetSize.padded;
-            break;
-          case 'shrinkWrap':
-            result = MaterialTapTargetSize.shrinkWrap;
-            break;
-        }
-      }
-    }
-    return result;
-  }
-
-  /// Decodes the [value] to a [MaterialType].  Supported values are:
-  ///  * `button`
-  ///  * `canvas`
-  ///  * `card`
-  ///  * `circle`
-  ///  * `transparency`
-  MaterialType? decodeMaterialType(dynamic value, {bool validate = true}) {
-    MaterialType? result;
-    if (value is MaterialType) {
-      result = value;
-    } else {
-      _checkSupported('MaterialType', [
-        'button',
-        'canvas',
-        'card',
-        'circle',
-        'transparency',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/material_type',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'button':
-            result = MaterialType.button;
-            break;
-          case 'canvas':
-            result = MaterialType.canvas;
-            break;
-          case 'card':
-            result = MaterialType.card;
-            break;
-          case 'circle':
-            result = MaterialType.circle;
-            break;
-          case 'transparency':
-            result = MaterialType.transparency;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  MaterialType? decodeMaterialType(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [Matrix4]. This requires the value to be an
   /// [Iterable] of [double] with exactly 16 elements in it.
@@ -6250,48 +4743,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [MaxLengthEnforcement].  Supported values are:
-  ///  * `enforced`
-  ///  * `none`
-  ///  * `truncateAfterCompositionEnds`
   MaxLengthEnforcement? decodeMaxLengthEnforcement(
     dynamic value, {
     bool validate = true,
-  }) {
-    MaxLengthEnforcement? result;
-    if (value is MaxLengthEnforcement) {
-      result = value;
-    } else {
-      _checkSupported('MaxLengthEnforcement', [
-        'enforced',
-        'none',
-        'truncateAfterCompositionEnds',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/max_length_enforcement',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'enforced':
-            result = MaxLengthEnforcement.enforced;
-            break;
-          case 'none':
-            result = MaxLengthEnforcement.none;
-            break;
-          case 'truncateAfterCompositionEnds':
-            result = MaxLengthEnforcement.truncateAfterCompositionEnds;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [MenuBarThemeData].  This expects the
   /// given [value] to be of the following structure:
@@ -6862,43 +5317,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [NavigationDestinationLabelBehavior].  Supported
-  /// values are:
-  ///  * `alwaysHide`
-  ///  * `alwaysShow`
-  ///  * `onlyShowSelected`
   NavigationDestinationLabelBehavior? decodeNavigationDestinationLabelBehavior(
     dynamic value, {
     bool validate = true,
-  }) {
-    NavigationDestinationLabelBehavior? result;
-
-    if (value is NavigationDestinationLabelBehavior) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('NavigationDestinationLabelBehavior', [
-        'alwaysHide',
-        'alwaysShow',
-        'onlyShowSelected',
-      ], value);
-
-      switch (value) {
-        case 'alwaysHide':
-          result = NavigationDestinationLabelBehavior.alwaysHide;
-          break;
-
-        case 'alwaysShow':
-          result = NavigationDestinationLabelBehavior.alwaysShow;
-          break;
-
-        case 'onlyShowSelected':
-          result = NavigationDestinationLabelBehavior.onlyShowSelected;
-          break;
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [NavigationDrawerThemeData].  This expects
   /// the given [value] to be of the following structure:
@@ -6968,50 +5390,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [NavigationRailLabelType].  Supported values are:
-  ///  * `all`
-  ///  * `none`
-  ///  * `selected`
   NavigationRailLabelType? decodeNavigationRailLabelType(
     dynamic value, {
     bool validate = true,
-  }) {
-    NavigationRailLabelType? result;
-    if (value is NavigationRailLabelType) {
-      result = value;
-    } else {
-      _checkSupported('NavigationRailLabelType', [
-        'all',
-        'none',
-        'selected',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/navigation_rail_label_type',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'all':
-            result = NavigationRailLabelType.all;
-            break;
-
-          case 'none':
-            result = NavigationRailLabelType.none;
-            break;
-
-          case 'selected':
-            result = NavigationRailLabelType.selected;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [NavigationRailThemeData].  This expects
   /// the given [value] to be of the following structure:
@@ -7355,37 +5737,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [OverflowBoxFit].  Supported values are:
-  /// * `deferToChild`
-  /// * `max`
-  OverflowBoxFit? decodeOverflowBoxFit(dynamic value, {bool validate = true}) {
-    OverflowBoxFit? result;
-
-    if (value is OverflowBoxFit) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('OverflowBoxFit', ['deferToChild', 'max'], value);
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/overflow_box_fit',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'deferToChild':
-          result = OverflowBoxFit.deferToChild;
-          break;
-
-        case 'max':
-          result = OverflowBoxFit.max;
-          break;
-      }
-    }
-
-    return result;
-  }
+  OverflowBoxFit? decodeOverflowBoxFit(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [PageTransitionsBuilder].  Supported values are:
   /// * `cupertino`
@@ -7478,144 +5830,17 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [PanAxis].  Supported values are:
-  ///  * `aligned`
-  ///  * `free`
-  ///  * `horizontal`
-  ///  * `vertical`
-  PanAxis? decodePanAxis(dynamic value, {bool validate = true}) {
-    PanAxis? result;
+  PanAxis? decodePanAxis(dynamic value, {bool validate = true});
 
-    if (value is PanAxis) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('PanAxis', [
-        'aligned',
-        'free',
-        'horizontal',
-        'vertical',
-      ], value);
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/pan_axis',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'aligned':
-          result = PanAxis.aligned;
-          break;
-
-        case 'free':
-          result = PanAxis.free;
-          break;
-
-        case 'horizontal':
-          result = PanAxis.horizontal;
-          break;
-
-        case 'vertical':
-          result = PanAxis.vertical;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [PointerDeviceKind].  Supported values are:
-  ///  * `invertedStylus`
-  ///  * `mouse`
-  ///  * `stylus`
-  ///  * `touch`
-  ///  * `trackpad`
-  ///  * `unknown`
   PointerDeviceKind? decodePointerDeviceKind(
     dynamic value, {
     bool validate = true,
-  }) {
-    PointerDeviceKind? result;
+  });
 
-    if (value is PointerDeviceKind) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('PointerDeviceKind', [
-        'invertedStylus',
-        'mouse',
-        'stylus',
-        'touch',
-        'trackpad',
-        'unknown',
-      ], value);
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/pointer_device_kind',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'invertedStylus':
-          result = PointerDeviceKind.invertedStylus;
-          break;
-        case 'mouse':
-          result = PointerDeviceKind.mouse;
-          break;
-        case 'stylus':
-          result = PointerDeviceKind.stylus;
-          break;
-        case 'touch':
-          result = PointerDeviceKind.touch;
-          break;
-        case 'trackpad':
-          result = PointerDeviceKind.trackpad;
-          break;
-        case 'unknown':
-          result = PointerDeviceKind.unknown;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [PopupMenuPosition].  Supported values are:
-  ///  * `over`
-  ///  * `under`
   PopupMenuPosition? decodePopupMenuPosition(
     dynamic value, {
     bool validate = true,
-  }) {
-    PopupMenuPosition? result;
-
-    if (value is PopupMenuPosition) {
-      result = value;
-    } else if (value != null) {
-      _checkSupported('PopupMenuPosition', ['over', 'under'], value);
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/popup_menu_position',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'over':
-          result = PopupMenuPosition.over;
-          break;
-
-        case 'under':
-          result = PopupMenuPosition.under;
-          break;
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to a [PopupMenuThemeData].  This expects the
   /// given [value] to be of the following structure:
@@ -8411,83 +6636,15 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [ScrollViewKeyboardDismissBehavior].  Supported
-  /// values are:
-  ///  * `manual`
-  ///  * `onDrag`
   ScrollViewKeyboardDismissBehavior? decodeScrollViewKeyboardDismissBehavior(
     dynamic value, {
     bool validate = true,
-  }) {
-    ScrollViewKeyboardDismissBehavior? result;
+  });
 
-    if (value is ScrollViewKeyboardDismissBehavior) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/scroll_view_keyboard_dismiss_behavior',
-          value: value,
-          validate: validate,
-        ),
-      );
-
-      switch (value) {
-        case 'manual':
-          result = ScrollViewKeyboardDismissBehavior.manual;
-          break;
-
-        case 'onDrag':
-          result = ScrollViewKeyboardDismissBehavior.onDrag;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [ScrollbarOrientation].  Supported values are:
-  ///  * `bottom`
-  ///  * `left`
-  ///  * `right`
-  ///  * `top`
   ScrollbarOrientation? decodeScrollbarOrientation(
     dynamic value, {
     bool validate = true,
-  }) {
-    ScrollbarOrientation? result;
-
-    if (value is ScrollbarOrientation) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/scrollbar_orientation',
-          value: value,
-          validate: validate,
-        ),
-      );
-      switch (value) {
-        case 'bottom':
-          result = ScrollbarOrientation.bottom;
-          break;
-
-        case 'left':
-          result = ScrollbarOrientation.left;
-          break;
-
-        case 'right':
-          result = ScrollbarOrientation.right;
-          break;
-
-        case 'top':
-          result = ScrollbarOrientation.top;
-          break;
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to an [ScrollbarThemeData].  This expects the given
   /// [value] to follow the structure below:
@@ -8964,55 +7121,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [ShowValueIndicator].  Supported values are:
-  ///  * `always`
-  ///  * `never`
-  ///  * `onlyForContinuous`
-  ///  * `onlyForDiscrete`
   ShowValueIndicator? decodeShowValueIndicator(
     dynamic value, {
     bool validate = true,
-  }) {
-    ShowValueIndicator? result;
-    if (value is ShowValueIndicator) {
-      result = value;
-    } else {
-      _checkSupported('ShowValueIndicator', [
-        'always',
-        'never',
-        'onlyForContinuous',
-        'onlyForDiscrete',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/show_value_indicator',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'always':
-            result = ShowValueIndicator.onDrag;
-            break;
-
-          case 'never':
-            result = ShowValueIndicator.never;
-            break;
-
-          case 'onlyForContinuous':
-            result = ShowValueIndicator.onlyForContinuous;
-            break;
-
-          case 'onlyForDiscrete':
-            result = ShowValueIndicator.onlyForDiscrete;
-            break;
-        }
-      }
-    }
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to a [Size].  This expects the
   /// [value] to have the following structure:
@@ -9081,53 +7193,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [SliderComponentShape].  Supported values are:
-  ///  * `slideOnly`
-  ///  * `slideThumb`
-  ///  * `tapAndSlide``
-  ///  * `tapOnly`
   SliderInteraction? decodeSliderInteraction(
     dynamic value, {
     bool validate = false,
-  }) {
-    SliderInteraction? result;
-    if (value is SliderInteraction) {
-      result = value;
-    } else {
-      _checkSupported('SliderInteraction', [
-        'slideOnly',
-        'slideThumb',
-        'tapAndSlide',
-        'tapOnly',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/slider_interaction',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'slideOnly':
-            result = SliderInteraction.slideOnly;
-            break;
-          case 'slideThumb':
-            result = SliderInteraction.slideThumb;
-            break;
-          case 'tapAndSlide':
-            result = SliderInteraction.tapAndSlide;
-            break;
-          case 'tapOnly':
-            result = SliderInteraction.tapOnly;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to a [SliderThemeData].  This expects the
   /// [value] to have the following structure:
@@ -9415,111 +7484,14 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes a [value] to a [SmartDashesType].  Supported values are:
-  ///  * `disabled`
-  ///  * `enabled`
-  SmartDashesType? decodeSmartDashesType(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    SmartDashesType? result;
-    if (value is SmartDashesType) {
-      result = value;
-    } else {
-      _checkSupported('SmartDashesType', ['disabled', 'enabled'], value);
+  SmartDashesType? decodeSmartDashesType(dynamic value, {bool validate = true});
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/smart_dashes_type',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'disabled':
-            result = SmartDashesType.disabled;
-            break;
-          case 'enabled':
-            result = SmartDashesType.enabled;
-            break;
-        }
-      }
-    }
+  SmartQuotesType? decodeSmartQuotesType(dynamic value, {bool validate = true});
 
-    return result;
-  }
-
-  /// Decodes a [value] to a [SmartQuotesType].  Supported values are:
-  ///  * `disabled`
-  ///  * `enabled`
-  SmartQuotesType? decodeSmartQuotesType(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    SmartQuotesType? result;
-    if (value is SmartQuotesType) {
-      result = value;
-    } else {
-      _checkSupported('SmartQuotesType', ['disabled', 'enabled'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/smart_quotes_type',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'disabled':
-            result = SmartQuotesType.disabled;
-            break;
-          case 'enabled':
-            result = SmartQuotesType.enabled;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes a [value] to a [SnackBarBehavior].  Supported values are:
-  ///  * `fixed`
-  ///  * `floating`
   SnackBarBehavior? decodeSnackBarBehavior(
     dynamic value, {
     bool validate = true,
-  }) {
-    SnackBarBehavior? result;
-    if (value is SnackBarBehavior) {
-      result = value;
-    } else {
-      _checkSupported('SnackBarBehavior', ['fixed', 'floating'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/snack_bar_behavior',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'fixed':
-            result = SnackBarBehavior.fixed;
-            break;
-
-          case 'floating':
-            result = SnackBarBehavior.floating;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to a [SnackBarThemeData].  This expects the
   /// [value] to have the following structure:
@@ -9606,75 +7578,9 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes a [value] to a [StackFit].  Supported values are:
-  ///  * `expand`
-  ///  * `loose`
-  ///  * `passthrough`
-  StackFit? decodeStackFit(dynamic value, {bool validate = true}) {
-    StackFit? result;
+  StackFit? decodeStackFit(dynamic value, {bool validate = true});
 
-    if (value is StackFit) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/stack_fit',
-          value: value,
-          validate: validate,
-        ),
-      );
-      switch (value) {
-        case 'expand':
-          result = StackFit.expand;
-          break;
-
-        case 'loose':
-          result = StackFit.loose;
-          break;
-
-        case 'passthrough':
-          result = StackFit.passthrough;
-          break;
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes a [value] to a [StrokeCap].  Supported values are:
-  ///  * `butt`
-  ///  * `round`
-  ///  * `square`
-  StrokeCap? decodeStrokeCap(dynamic value, {bool validate = true}) {
-    StrokeCap? result;
-
-    if (value is StrokeCap) {
-      result = value;
-    } else if (value != null) {
-      assert(
-        SchemaValidator.validate(
-          schemaId: '$_baseSchemaUrl/stroke_cap',
-          value: value,
-          validate: validate,
-        ),
-      );
-      switch (value) {
-        case 'butt':
-          result = StrokeCap.butt;
-          break;
-
-        case 'round':
-          result = StrokeCap.round;
-          break;
-
-        case 'square':
-          result = StrokeCap.square;
-          break;
-      }
-    }
-
-    return result;
-  }
+  StrokeCap? decodeStrokeCap(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] into a [StrutStyle].  If the value is `null`
   /// then `null` will be returned.  Otherwise, this expects a Map like value
@@ -9892,89 +7798,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes a [value] to a [TabAlignment].  Supported values are:
-  ///  * `center`
-  ///  * `fill`
-  ///  * `start`
-  ///  * `startOffset`
-  TabAlignment? decodeTabAlignment(dynamic value, {bool validate = true}) {
-    TabAlignment? result;
-    if (value is TabAlignment) {
-      result = value;
-    } else {
-      _checkSupported('TabAlignment', [
-        'center',
-        'fill',
-        'start',
-        'startOffset',
-      ], value);
+  TabAlignment? decodeTabAlignment(dynamic value, {bool validate = true});
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/tab_alignment',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'center':
-            result = TabAlignment.center;
-            break;
-
-          case 'fill':
-            result = TabAlignment.fill;
-            break;
-
-          case 'start':
-            result = TabAlignment.start;
-            break;
-
-          case 'startOffset':
-            result = TabAlignment.startOffset;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes a [value] to a [TabBarIndicatorSize].  Supported values are:
-  ///  * `label`
-  ///  * `tab`
   TabBarIndicatorSize? decodeTabBarIndicatorSize(
     dynamic value, {
     bool validate = true,
-  }) {
-    TabBarIndicatorSize? result;
-    if (value is TabBarIndicatorSize) {
-      result = value;
-    } else {
-      _checkSupported('TabBarIndicatorSize', ['label', 'tab'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/tab_bar_indicator_size',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'label':
-            result = TabBarIndicatorSize.label;
-            break;
-
-          case 'tab':
-            result = TabBarIndicatorSize.tab;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the given [value] to a [TabBarThemeData].  This expects the
   /// [value] to have the following structure:
@@ -10221,155 +8050,14 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextAlign].  Supported values are:
-  ///  * `elastic`
-  ///  * `linear`
   TabIndicatorAnimation? decodeTabIndicatorAnimation(
     dynamic value, {
     bool validate = true,
-  }) {
-    TabIndicatorAnimation? result;
-    if (value is TabIndicatorAnimation) {
-      result = value;
-    } else {
-      _checkSupported('TabIndicatorAnimation', ['elastic', 'linear'], value);
+  });
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/tab_indicator_animation',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'elastic':
-            result = TabIndicatorAnimation.elastic;
-            break;
-          case 'linear':
-            result = TabIndicatorAnimation.linear;
-            break;
-        }
-      }
-    }
+  TargetPlatform? decodeTargetPlatform(dynamic value, {bool validate = true});
 
-    return result;
-  }
-
-  /// Decodes a [value] to a [TargetPlatform].  Supported values are:
-  ///  * `android`
-  ///  * `fuchsia`
-  ///  * `iOS`
-  ///  * `linux`
-  ///  * `macOS`
-  ///  * `windows`
-  TargetPlatform? decodeTargetPlatform(dynamic value, {bool validate = true}) {
-    TargetPlatform? result;
-    if (value is TargetPlatform) {
-      result = value;
-    } else {
-      _checkSupported('TargetPlatform', [
-        'android',
-        'fuchsia',
-        'iOS',
-        'linux',
-        'macOS',
-        'windows',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/target_platform',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'android':
-            result = TargetPlatform.android;
-            break;
-
-          case 'fuchsia':
-            result = TargetPlatform.fuchsia;
-            break;
-
-          case 'iOS':
-            result = TargetPlatform.iOS;
-            break;
-
-          case 'linux':
-            result = TargetPlatform.linux;
-            break;
-
-          case 'macOS':
-            result = TargetPlatform.macOS;
-            break;
-
-          case 'windows':
-            result = TargetPlatform.windows;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [TextAlign].  Supported values are:
-  ///  * `center`
-  ///  * `end`
-  ///  * `justify`
-  ///  * `left`
-  ///  * `right`
-  ///  * `start`
-  TextAlign? decodeTextAlign(dynamic value, {bool validate = true}) {
-    TextAlign? result;
-    if (value is TextAlign) {
-      result = value;
-    } else {
-      _checkSupported('TextAlign', [
-        'center',
-        'end',
-        'justify',
-        'left',
-        'right',
-        'start',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_align',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'center':
-            result = TextAlign.center;
-            break;
-          case 'end':
-            result = TextAlign.end;
-            break;
-          case 'justify':
-            result = TextAlign.justify;
-            break;
-          case 'left':
-            result = TextAlign.left;
-            break;
-          case 'right':
-            result = TextAlign.right;
-            break;
-          case 'start':
-            result = TextAlign.start;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TextAlign? decodeTextAlign(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [TextAlignVertical].  Supported values are:
   ///  * `bottom`
@@ -10407,38 +8095,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextBaseline].  Supported values are:
-  ///  * `alphabetic`
-  ///  * `ideographic`
-  TextBaseline? decodeTextBaseline(dynamic value, {bool validate = true}) {
-    TextBaseline? result;
-    if (value is TextBaseline) {
-      result = value;
-    } else {
-      _checkSupported('TextBaseline', ['alphabetic', 'ideographic'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_baseline',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'alphabetic':
-            result = TextBaseline.alphabetic;
-            break;
-
-          case 'ideographic':
-            result = TextBaseline.ideographic;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TextBaseline? decodeTextBaseline(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to an [TextButtonThemeData].  This expects the
   /// given [value] to be of the following structure:
@@ -10475,56 +8132,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextCapitalization].  Supported values are:
-  ///  * `characters`
-  ///  * `none`
-  ///  * `sentences`
-  ///  * `words`
   TextCapitalization? decodeTextCapitalization(
     dynamic value, {
     bool validate = true,
-  }) {
-    TextCapitalization? result;
-    if (value is TextCapitalization) {
-      result = value;
-    } else {
-      _checkSupported('TextCapitalization', [
-        'characters',
-        'none',
-        'sentences',
-        'words',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_capitalization',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'characters':
-            result = TextCapitalization.characters;
-            break;
-
-          case 'none':
-            result = TextCapitalization.none;
-            break;
-
-          case 'sentences':
-            result = TextCapitalization.sentences;
-            break;
-
-          case 'words':
-            result = TextCapitalization.words;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the [value] to a [TextDecoration].  Supported values are:
   ///  * `lineThrough`
@@ -10574,95 +8185,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextDecorationStyle].  Supported values are:
-  ///  * `dashed`
-  ///  * `dotted`
-  ///  * `double`
-  ///  * `solid`
-  ///  * `wavy`
   TextDecorationStyle? decodeTextDecorationStyle(
     dynamic value, {
     bool validate = true,
-  }) {
-    TextDecorationStyle? result;
-    if (value is TextDecorationStyle) {
-      result = value;
-    } else {
-      _checkSupported('TextDecorationStyle', [
-        'dashed',
-        'dotted',
-        'double',
-        'solid',
-        'wavy',
-      ], value);
+  });
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_decoration_style',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'dashed':
-            result = TextDecorationStyle.dashed;
-            break;
-
-          case 'dotted':
-            result = TextDecorationStyle.dotted;
-            break;
-
-          case 'double':
-            result = TextDecorationStyle.double;
-            break;
-
-          case 'solid':
-            result = TextDecorationStyle.solid;
-            break;
-
-          case 'wavy':
-            result = TextDecorationStyle.wavy;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [TextDirection].  Supported values are:
-  ///  * `ltr`
-  ///  * `rtl`
-  TextDirection? decodeTextDirection(dynamic value, {bool validate = true}) {
-    TextDirection? result;
-    if (value is TextDirection) {
-      result = value;
-    } else {
-      _checkSupported('TextDirection', ['ltr', 'rtl'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_direction',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'ltr':
-            result = TextDirection.ltr;
-            break;
-
-          case 'rtl':
-            result = TextDirection.rtl;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TextDirection? decodeTextDirection(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] into a [TextHeightBehavior].  If the value is
   /// `null` then `null` will be returned.  Otherwise, this expects a Map like
@@ -10712,111 +8240,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextInputAction].  Supported values are:
-  ///  * `continueAction`
-  ///  * `done`
-  ///  * `emergencyCall`
-  ///  * `go`
-  ///  * `join`
-  ///  * `newline`
-  ///  * `next`
-  ///  * `none`
-  ///  * `previous`
-  ///  * `route`
-  ///  * `search`
-  ///  * `send`
-  ///  * `unspecified`
-  TextInputAction? decodeTextInputAction(
-    dynamic value, {
-    bool validate = true,
-  }) {
-    TextInputAction? result;
-    if (value is TextInputAction) {
-      result = value;
-    } else {
-      _checkSupported('TextInputAction', [
-        'continueAction',
-        'done',
-        'emergencyCall',
-        'go',
-        'join',
-        'newline',
-        'next',
-        'none',
-        'previous',
-        'route',
-        'search',
-        'send',
-        'unspecified',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_input_action',
-            value: value,
-            validate: validate,
-          ),
-        );
-
-        switch (value) {
-          case 'continueAction':
-            result = TextInputAction.continueAction;
-            break;
-
-          case 'done':
-            result = TextInputAction.done;
-            break;
-
-          case 'emergencyCall':
-            result = TextInputAction.emergencyCall;
-            break;
-
-          case 'go':
-            result = TextInputAction.go;
-            break;
-
-          case 'join':
-            result = TextInputAction.join;
-            break;
-
-          case 'newline':
-            result = TextInputAction.newline;
-            break;
-
-          case 'next':
-            result = TextInputAction.next;
-            break;
-
-          case 'none':
-            result = TextInputAction.none;
-            break;
-
-          case 'previous':
-            result = TextInputAction.previous;
-            break;
-
-          case 'route':
-            result = TextInputAction.route;
-            break;
-
-          case 'search':
-            result = TextInputAction.search;
-            break;
-
-          case 'send':
-            result = TextInputAction.send;
-            break;
-
-          case 'unspecified':
-            result = TextInputAction.unspecified;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TextInputAction? decodeTextInputAction(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [TextInputType].  Supported values are:
   ///  * `datetime`
@@ -10919,89 +8343,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextLeadingDistribution].  Supported values are:
-  ///  * `even`
-  ///  * `proportional`
   TextLeadingDistribution? decodeTextLeadingDistribution(
     dynamic value, {
     bool validate = true,
-  }) {
-    TextLeadingDistribution? result;
-    if (value is TextLeadingDistribution) {
-      result = value;
-    } else {
-      _checkSupported('TextLeadingDistribution', [
-        'even',
-        'proportional',
-      ], value);
+  });
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_leading_distribution',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'even':
-            result = TextLeadingDistribution.even;
-            break;
-
-          case 'proportional':
-            result = TextLeadingDistribution.proportional;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [TextOverflow].  Supported values are:
-  ///  * `clip`
-  ///  * `ellipsis`
-  ///  * `fade`
-  ///  * `visible`
-  TextOverflow? decodeTextOverflow(dynamic value, {bool validate = true}) {
-    TextOverflow? result;
-    if (value is TextOverflow) {
-      result = value;
-    } else {
-      _checkSupported('TextOverflow', [
-        'clip',
-        'ellipsis',
-        'fade',
-        'visible',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_overflow',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'clip':
-            result = TextOverflow.clip;
-            break;
-          case 'ellipsis':
-            result = TextOverflow.ellipsis;
-            break;
-          case 'fade':
-            result = TextOverflow.fade;
-            break;
-          case 'visible':
-            result = TextOverflow.visible;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TextOverflow? decodeTextOverflow(dynamic value, {bool validate = true});
 
   /// Decodes the [value] to a [TextScaler].  Supported values are:
   ///  * `noScaling`
@@ -11372,38 +8719,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TextWidthBasis].  Supported values are:
-  ///  * `longestLine`
-  ///  * `parent`
-  TextWidthBasis? decodeTextWidthBasis(dynamic value, {bool validate = true}) {
-    TextWidthBasis? result;
-
-    if (value is TextWidthBasis) {
-      result = value;
-    } else {
-      _checkSupported('TextWidthBasis', ['longestLine', 'parent'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/text_width_basis',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'longestLine':
-            result = TextWidthBasis.longestLine;
-            break;
-          case 'parent':
-            result = TextWidthBasis.parent;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TextWidthBasis? decodeTextWidthBasis(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to a [ThemeData].  This expects the [value] to
   /// have the following structure:
@@ -11835,53 +9151,7 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [TileMode].  Supported values are:
-  ///  * `clamp`
-  ///  * `decal`
-  ///  * `mirror`
-  ///  * `repeated`
-  TileMode? decodeTileMode(dynamic value, {bool validate = true}) {
-    TileMode? result;
-    if (value is TileMode) {
-      result = value;
-    } else {
-      _checkSupported('TileMode', [
-        'clamp',
-        'decal',
-        'mirror',
-        'repeated',
-      ], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/tile_mode',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'clamp':
-            result = TileMode.clamp;
-            break;
-
-          case 'decal':
-            result = TileMode.decal;
-            break;
-
-          case 'mirror':
-            result = TileMode.mirror;
-            break;
-
-          case 'repeated':
-            result = TileMode.repeated;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  TileMode? decodeTileMode(dynamic value, {bool validate = true});
 
   /// Decodes the given [value] to a [TimePickerThemeData].  This expects the
   /// [value] to have the following structure:
@@ -12257,33 +9527,10 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [VerticalDirection].  Supported values are:
-  ///  * `down`
-  ///  * `up`
   VerticalDirection? decodeVerticalDirection(
     dynamic value, {
     bool validate = true,
-  }) {
-    VerticalDirection? result;
-    if (value is VerticalDirection) {
-      result = value;
-    } else {
-      _checkSupported('VerticalDirection', ['down', 'up'], value);
-
-      if (value != null) {
-        switch (value) {
-          case 'down':
-            result = VerticalDirection.down;
-            break;
-          case 'up':
-            result = VerticalDirection.up;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   /// Decodes the [value] to a [VisualDensity].  Supported values are:
   ///  * `adaptivePlatformDensity`
@@ -13495,106 +10742,12 @@ class _ThemeDecoder {
     return result;
   }
 
-  /// Decodes the [value] to a [WrapAlignment].  Supported values are:
-  ///  * `center`
-  ///  * `end`
-  ///  * `spaceAround`
-  ///  * `spaceBetween`
-  ///  * `spaceEvenly`
-  ///  * `start`
-  WrapAlignment? decodeWrapAlignment(dynamic value, {bool validate = true}) {
-    WrapAlignment? result;
-    if (value is WrapAlignment) {
-      result = value;
-    } else {
-      _checkSupported('WrapAlignment', [
-        'center',
-        'end',
-        'spaceAround',
-        'spaceBetween',
-        'spaceEvenly',
-        'start',
-      ], value);
+  WrapAlignment? decodeWrapAlignment(dynamic value, {bool validate = true});
 
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/wrap_alignment',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'center':
-            result = WrapAlignment.center;
-            break;
-
-          case 'end':
-            result = WrapAlignment.end;
-            break;
-
-          case 'spaceAround':
-            result = WrapAlignment.spaceAround;
-            break;
-
-          case 'spaceBetween':
-            result = WrapAlignment.spaceBetween;
-            break;
-
-          case 'spaceEvenly':
-            result = WrapAlignment.spaceEvenly;
-            break;
-
-          case 'start':
-            result = WrapAlignment.start;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
-
-  /// Decodes the [value] to a [WrapCrossAlignment].  Supported values are:
-  ///  * `center`
-  ///  * `end`
-  ///  * `start`
   WrapCrossAlignment? decodeWrapCrossAlignment(
     dynamic value, {
     bool validate = true,
-  }) {
-    WrapCrossAlignment? result;
-    if (value is WrapCrossAlignment) {
-      result = value;
-    } else {
-      _checkSupported('WrapCrossAlignment', ['center', 'end', 'start'], value);
-
-      if (value != null) {
-        assert(
-          SchemaValidator.validate(
-            schemaId: '$_baseSchemaUrl/wrap_cross_alignment',
-            value: value,
-            validate: validate,
-          ),
-        );
-        switch (value) {
-          case 'center':
-            result = WrapCrossAlignment.center;
-            break;
-
-          case 'end':
-            result = WrapCrossAlignment.end;
-            break;
-
-          case 'start':
-            result = WrapCrossAlignment.start;
-            break;
-        }
-      }
-    }
-
-    return result;
-  }
+  });
 
   void _checkSupported(String type, List<String> supported, dynamic value) {
     assert(value == null || value is String);

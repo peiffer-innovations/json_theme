@@ -17,7 +17,7 @@ dependencies:
   build: '^3.0.2'
   build_runner: '^2.7.0'
   code_builder: '^4.10.1'
-  json_theme_annotation: '^1.0.3+18'
+  json_theme_annotation: '^2.0.0'
   recase: '^4.1.0'
   source_gen: '^3.1.0'
 

@@ -17,7 +17,7 @@ part 'theme_encoder.g.dart';
 /// Unless otherwise stated, each function will return `null` when given an
 /// input of `null`.
 @immutable
-@JsonThemeCodec('encode')
+@JsonThemeCodec(CodecMode.encode)
 class _ThemeEncoder {
   const _ThemeEncoder._();
 

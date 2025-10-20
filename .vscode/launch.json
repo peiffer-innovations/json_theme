@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Widgetbook Generator",
+      "name": "Debug Generator",
       "cwd": "packages/json_theme",
       "request": "launch",
       "program": ".dart_tool/build/entrypoint/build.dart",
@@ -70,6 +70,13 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"
+    },
+    {
+      "name": "Flutter (.dart_tool/build/entrypoint/build.dart)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "packages/json_theme",
+      "program": ".dart_tool/build/entrypoint/build.dart"
     }
   ]
 }

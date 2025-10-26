@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_schema/json_schema.dart';
+import 'package:json_theme/json_theme.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 import 'package:logging/logging.dart';
 

@@ -1,5 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
+import 'package:analyzer/dart/element/type.dart';
 
 typedef ParameterDecoder =
     String Function(
@@ -90,15 +91,16 @@ final kDecoders = <String, ParameterDecoder>{
                 : 'JsonClass.parseIntList',
             defaultValueCode,
           ),
+  'List<String>':
+      (element, {required String? defaultValueCode, required String name}) =>
+          "value['$name'] ${defaultValueCode == null ? '' : ' ?? $defaultValueCode'}",
+  'Object': (element, {required String? defaultValueCode, required String name}) =>
+      "value['$name'] ${defaultValueCode == null ? '' : ' ?? $defaultValueCode'}",
   'String': (element, {required String? defaultValueCode, required String name}) =>
       "value['$name'] ${defaultValueCode == null ? '' : ' ?? $defaultValueCode'}",
-  // ...kThemeDecoders.map(
-  //   (key, value) => MapEntry<String, ParameterDecoder>(
-  //     key,
-  //     (element, {required String? defaultValueCode, required String name}) =>
-  //         _themeDecoder(element, name, value, defaultValueCode),
-  //   ),
-  // ),
+  'Widget':
+      (element, {required String? defaultValueCode, required String name}) =>
+          'ThemeDecoder.instance.decodeIcon(value["$name"], validate: false)',
 };
 
 String decode(
@@ -121,9 +123,22 @@ String decode(
       }
     }
   }
-  var result =
-      "value['$name']${defaultValueCode == null ? '' : '?? $defaultValueCode'}";
 
+  final eType = element.type
+      .toString()
+      .replaceAll('?', '')
+      .replaceAll('<', '')
+      .replaceAll('>', '')
+      .replaceAll('double', 'Double')
+      .replaceAll('bool', 'Bool');
+
+  var result =
+      "ThemeDecoder.instance.decode$eType(value['$name'], validate: false,)${defaultValueCode == null ? '' : '?? $defaultValueCode'}";
+
+  if (element.type.nullabilitySuffix != NullabilitySuffix.question &&
+      defaultValueCode == null) {
+    result = '$result!';
+  }
   final typeStr = element.type.toString().replaceAll('?', '');
 
   var decoded = false;
@@ -136,32 +151,23 @@ String decode(
 
     if (decoder != null) {
       result = decoder(element, defaultValueCode: defaultValueCode, name: name);
+    } else if (typeStr.startsWith('List')) {
+      final type = element.type;
+      if (type is InterfaceType &&
+          (type.isDartCoreList || type.isDartCoreIterable)) {
+        final subtype = typeStr.replaceAll('List<', '').replaceAll('>', '');
+        result =
+            '''
+ThemeDecoder.instance._decodeDynamicList(
+        value['$name'],
+        (e) => ThemeDecoder.instance.decode$subtype(e, validate: false)!,
+      )
+''';
+      }
     }
   }
 
   return result;
-}
-
-String themeDecoder(
-  FormalParameterElement element,
-  String name,
-  String funName,
-  String? defaultValueCode,
-) {
-  return '''
-() {
-  dynamic parsed = $funName(value['$name'], validate: false,);
-  ${element.type.nullabilitySuffix == NullabilitySuffix.question && defaultValueCode != null ? '''
-  if (!map.containsKey('$name')) {
-    parsed ??= $defaultValueCode;
-  }
-''' : '''
-    ${defaultValueCode == null ? '' : 'parsed ??= $defaultValueCode;'}
-'''}
-  ${element.type.nullabilitySuffix != NullabilitySuffix.question && defaultValueCode == null ? "if (parsed == null) { throw Exception('Null value encountered for required parameter: [$name].',); }" : ''}
-  return parsed;
-}()
-''';
 }
 
 String _defaultDecoder(
@@ -170,19 +176,13 @@ String _defaultDecoder(
   String funName,
   String? defaultValueCode,
 ) {
-  return '''
-() {
-  dynamic parsed = $funName(value['$name']);
+  final buf = StringBuffer();
 
-  ${element.type.nullabilitySuffix == NullabilitySuffix.question && defaultValueCode != null ? '''
-  if (!map.containsKey('$name')) {
-    parsed ??= $defaultValueCode;
+  buf.write("$funName(value['$name'])");
+
+  if (defaultValueCode != null) {
+    buf.write(' ?? $defaultValueCode');
   }
-''' : '''
-    ${defaultValueCode == null ? '' : 'parsed ??= $defaultValueCode;'}
-'''}
-  ${element.type.nullabilitySuffix != NullabilitySuffix.question && defaultValueCode == null ? "if (parsed == null) { throw Exception('Null value encountered for required parameter: [$name].',); }" : ''}
-  return parsed;
-}()
-''';
+
+  return buf.toString();
 }

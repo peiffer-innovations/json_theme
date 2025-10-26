@@ -13,13 +13,13 @@ analyzer:
     - 'lib/**/*.g.dart'
 
 dependencies:
-  analyzer: '^8.1.1'
-  build: '^3.0.2'
-  build_runner: '^2.7.0'
+  analyzer: '^8.4.0'
+  build: '^4.0.0'
+  build_runner: '2.7.2'
   code_builder: '^4.10.1'
   json_theme_annotation: '^2.0.0'
   recase: '^4.1.0'
-  source_gen: '^3.1.0'
+  source_gen: '^4.0.2'
 
 dev_dependencies:
   flutter_lints: '^6.0.0'

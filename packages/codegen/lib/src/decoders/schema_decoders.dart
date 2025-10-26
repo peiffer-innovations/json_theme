@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:analyzer/dart/element/element.dart';
-import 'package:json_theme/json_theme.dart';
+import 'package:analyzer/dart/element/type.dart';
 
 typedef ParameterSchemaDecoder =
     String Function(FormalParameterElement element);
@@ -16,29 +16,44 @@ const _kNumberArraySchema = {
   ],
 };
 
+const _kStringArraySchema = {
+  'anyOf': [
+    {'type': 'string'},
+    {
+      'type': 'array',
+      'items': {'type': 'string'},
+    },
+  ],
+};
+
 final kSchemaDecoders = <String, ParameterSchemaDecoder>{
   'bool': (element) => 'SchemaHelper.boolSchema',
   'double': (element) => 'SchemaHelper.numberSchema',
+  'Duration': (element) => 'SchemaHelper.numberSchema',
   'int': (element) => 'SchemaHelper.numberSchema',
   'List<double>': (element) => json.encode(_kNumberArraySchema),
   'List<int>': (element) => json.encode(_kNumberArraySchema),
-  'List<JsonWidgetData>': (element) =>
-      'SchemaHelper.arraySchema(JsonWidgetDataSchema.id)',
-  'List<PreferredSizeWidget>': (element) =>
-      'SchemaHelper.arraySchema(JsonWidgetDataSchema.id)',
-  'List<Widget>': (element) =>
-      'SchemaHelper.arraySchema(JsonWidgetDataSchema.id)',
-  'JsonWidgetData': (element) =>
-      'SchemaHelper.objectSchema(JsonWidgetDataSchema.id)',
-  'PreferredSizeWidget': (element) =>
-      'SchemaHelper.objectSchema(JsonWidgetDataSchema.id)',
+  'List<String>': (element) => json.encode(_kStringArraySchema),
+  'Object': (element) => 'SchemaHelper.anySchema',
   'String': (element) => 'SchemaHelper.stringSchema',
-  'Widget': (element) => 'SchemaHelper.objectSchema(JsonWidgetDataSchema.id)',
-  ...kThemeDecoders.map(
-    (key, value) => MapEntry<String, ParameterSchemaDecoder>(
-      key,
-      (element) =>
-          'SchemaHelper.objectSchema(${key.replaceAll('<', '').replaceAll('>', '')}Schema.id)',
-    ),
-  ),
 };
+
+String decodeSchema(FormalParameterElement param) {
+  final typeStr = param.type.getDisplayString().replaceAll('?', '');
+
+  final decoder = kSchemaDecoders[typeStr];
+  if (decoder != null) {
+    return decoder(param);
+  }
+
+  if (typeStr.startsWith('List')) {
+    final type = param.type;
+    if (type is InterfaceType &&
+        (type.isDartCoreList || type.isDartCoreIterable)) {
+      final subtype = typeStr.replaceAll('List<', '').replaceAll('>', '');
+      return 'SchemaHelper.arraySchema(${subtype.replaceAll('<', '').replaceAll('>', '').replaceAll('bool', 'Bool').replaceAll('double', 'Double')}Schema.id)';
+    }
+  }
+
+  return 'SchemaHelper.objectSchema(${typeStr.replaceAll('<', '').replaceAll('>', '').replaceAll('bool', 'Bool').replaceAll('double', 'Double')}Schema.id)';
+}

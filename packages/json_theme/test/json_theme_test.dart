@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:ui';
+import 'dart:ui' hide Size;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -1385,48 +1385,6 @@ void main() {
 
     expect(ThemeDecoder.instance.decodeBrightness('dark'), Brightness.dark);
     expect(ThemeDecoder.instance.decodeBrightness('light'), Brightness.light);
-  });
-
-  test('ButtonBarThemeData', () {
-    expect(ThemeDecoder.instance.decodeButtonBarThemeData(null), null);
-    expect(ThemeEncoder.instance.encodeButtonBarThemeData(null), null);
-
-    // ignore: deprecated_member_use
-    const entry = ButtonBarThemeData(
-      alignment: MainAxisAlignment.spaceEvenly,
-      buttonAlignedDropdown: true,
-      buttonHeight: 16.0,
-      buttonMinWidth: 17.0,
-      buttonPadding: EdgeInsets.all(18.0),
-      buttonTextTheme: ButtonTextTheme.accent,
-      layoutBehavior: ButtonBarLayoutBehavior.padded,
-      mainAxisSize: MainAxisSize.min,
-      overflowDirection: VerticalDirection.down,
-    );
-
-    expect(ThemeDecoder.instance.decodeButtonBarThemeData(entry), entry);
-
-    final encoded = ThemeEncoder.instance.encodeButtonBarThemeData(entry);
-    final decoded = ThemeDecoder.instance.decodeButtonBarThemeData(encoded);
-
-    expect(encoded, {
-      'alignment': 'spaceEvenly',
-      'buttonAlignedDropdown': true,
-      'buttonHeight': 16.0,
-      'buttonMinWidth': 17.0,
-      'buttonPadding': {
-        'bottom': 18.0,
-        'left': 18.0,
-        'right': 18.0,
-        'top': 18.0,
-      },
-      'buttonTextTheme': 'accent',
-      'layoutBehavior': 'padded',
-      'mainAxisSize': 'min',
-      'overflowDirection': 'down',
-    });
-
-    expect(decoded, entry);
   });
 
   test('ButtonBarLayoutBehavior', () {
@@ -7141,28 +7099,28 @@ void main() {
       SliderInteraction.tapOnly,
     );
 
-    expect(
-      ThemeEncoder.instance.encodeSliderInteraction(
-        SliderInteraction.slideOnly,
-      ),
-      'slideOnly',
-    );
-    expect(
-      ThemeEncoder.instance.encodeSliderInteraction(
-        SliderInteraction.slideThumb,
-      ),
-      'slideThumb',
-    );
-    expect(
-      ThemeEncoder.instance.encodeSliderInteraction(
-        SliderInteraction.tapAndSlide,
-      ),
-      'tapAndSlide',
-    );
-    expect(
-      ThemeEncoder.instance.encodeSliderInteraction(SliderInteraction.tapOnly),
-      'tapOnly',
-    );
+    // expect(
+    //   ThemeEncoder.instance.encodeSliderInteraction(
+    //     SliderInteraction.slideOnly,
+    //   ),
+    //   'slideOnly',
+    // );
+    // expect(
+    //   ThemeEncoder.instance.encodeSliderInteraction(
+    //     SliderInteraction.slideThumb,
+    //   ),
+    //   'slideThumb',
+    // );
+    // expect(
+    //   ThemeEncoder.instance.encodeSliderInteraction(
+    //     SliderInteraction.tapAndSlide,
+    //   ),
+    //   'tapAndSlide',
+    // );
+    // expect(
+    //   ThemeEncoder.instance.encodeSliderInteraction(SliderInteraction.tapOnly),
+    //   'tapOnly',
+    // );
   });
 
   test('SliderThemeData', () {

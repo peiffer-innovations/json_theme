@@ -74,10 +74,7 @@ abstract class _ThemeEncoderFunctions {
   ///  * `topCenter`
   ///  * `topEnd`
   ///  * `topStart`
-  String? encodeAlignmentDirectional(
-    AlignmentDirectional? value, {
-    bool validate = true,
-  }) {
+  String? encodeAlignmentDirectional(AlignmentDirectional? value) {
     String? result;
 
     if (value != null) {
@@ -106,10 +103,7 @@ abstract class _ThemeEncoderFunctions {
 
   /// Encodes the given [value] to a [String].  This delegates to either
   /// [encodeAlignment] or [encodeAlignmentDirectional]
-  dynamic encodeAlignmentGeometry(
-    AlignmentGeometry? value, {
-    bool validate = true,
-  }) {
+  dynamic encodeAlignmentGeometry(AlignmentGeometry? value) {
     dynamic result;
 
     if (value != null) {
@@ -761,6 +755,10 @@ abstract class _ThemeEncoderFunctions {
     return _stripDynamicNull(result);
   }
 
+  Map<String, dynamic>? encodeNoDefaultCupertinoThemeData(
+    NoDefaultCupertinoThemeData? value,
+  ) => ThemeEncoder.instance.encodeCupertinoThemeData(value);
+
   /// Encodes the given [value] to the String representation.  Supported values
   /// are:
   ///  * `circular`
@@ -1253,10 +1251,7 @@ abstract class _ThemeEncoderFunctions {
 
   /// Encodes the [SliderTickMarkShape] to a [String].  Supported values are:
   ///  * `noTickMark`
-  String? encodeSliderTickMarkShape(
-    SliderTickMarkShape? value, {
-    bool validate = true,
-  }) {
+  String? encodeSliderTickMarkShape(SliderTickMarkShape? value) {
     String? result;
 
     if (value == SliderTickMarkShape.noTickMark) {
@@ -1407,10 +1402,7 @@ abstract class _ThemeEncoderFunctions {
     return _stripDynamicNull(result);
   }
 
-  Map<String, dynamic>? encodeWidgetStateColor(
-    WidgetStateColor? value, {
-    bool validate = true,
-  }) {
+  Map<String, dynamic>? encodeWidgetStateColor(WidgetStateColor? value) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1463,9 +1455,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyBool(
-    WidgetStateProperty<bool?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<bool?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1502,9 +1493,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyBorderSide(
-    WidgetStateProperty<BorderSide?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<BorderSide?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1557,9 +1547,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyColor(
-    WidgetStateProperty<Color?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<Color?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1612,9 +1601,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyDouble(
-    WidgetStateProperty<double?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<double?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1651,9 +1639,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyEdgeInsetsGeometry(
-    WidgetStateProperty<EdgeInsetsGeometry?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<EdgeInsetsGeometry?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1708,9 +1695,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyIconThemeData(
-    WidgetStateProperty<IconThemeData?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<IconThemeData?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1763,9 +1749,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyMouseCursor(
-    WidgetStateProperty<MouseCursor?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<MouseCursor?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1818,9 +1803,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertyOutlinedBorder(
-    WidgetStateProperty<OutlinedBorder?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<OutlinedBorder?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1873,9 +1857,8 @@ abstract class _ThemeEncoderFunctions {
   /// }
   /// ```
   Map<String, dynamic>? encodeWidgetStatePropertySize(
-    WidgetStateProperty<Size?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<Size?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {
@@ -1929,9 +1912,8 @@ abstract class _ThemeEncoderFunctions {
   /// ```
   ///
   Map<String, dynamic>? encodeWidgetStatePropertyTextStyle(
-    WidgetStateProperty<TextStyle?>? value, {
-    bool validate = true,
-  }) {
+    WidgetStateProperty<TextStyle?>? value,
+  ) {
     Map<String, dynamic>? result;
 
     if (value != null) {

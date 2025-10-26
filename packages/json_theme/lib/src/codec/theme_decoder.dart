@@ -1,20 +1,11 @@
 import 'dart:convert';
 import 'dart:math' as math;
-import 'dart:ui';
+import 'dart:ui' hide Size;
 
-import 'package:flutter/cupertino.dart' hide GradientTransform, IconData;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart'
-    hide
-        FontFeature,
-        FontVariation,
-        GradientTransform,
-        IconData,
-        Locale,
-        Offset,
-        Size;
-import 'package:flutter/rendering.dart'
-    hide GradientTransform, OrdinalSortKey, SemanticsTag;
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
@@ -262,16 +253,22 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  FontFeature? decodeFontFeature(dynamic value, {bool validate = true});
+  FontFeatureCodec? decodeFontFeatureCodec(
+    dynamic value, {
+    bool validate = true,
+  });
 
   FontStyle? decodeFontStyle(dynamic value, {bool validate = true});
 
   @CodecEnum()
   FontWeight? decodeFontWeight(dynamic value, {bool validate = true});
 
-  FontVariation? decodeFontVariation(dynamic value, {bool validate = true});
+  FontVariationCodec? decodeFontVariationCodec(
+    dynamic value, {
+    bool validate = true,
+  });
 
-  GradientTransform? decodeGradientTransform(
+  GradientTransformCodec? decodeGradientTransformCodec(
     dynamic value, {
     bool validate = true,
   });
@@ -285,7 +282,7 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  IconData? decodeIconData(dynamic value, {bool validate = true});
+  IconDataCodec? decodeIconDataCodec(dynamic value, {bool validate = true});
 
   IconThemeData? decodeIconThemeData(dynamic value, {bool validate = true});
 
@@ -313,7 +310,7 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  Locale? decodeLocale(dynamic value, {bool validate = true});
+  LocaleCodec? decodeLocaleCodec(dynamic value, {bool validate = true});
 
   MainAxisAlignment? decodeMainAxisAlignment(
     dynamic value, {
@@ -378,9 +375,12 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  Offset? decodeOffset(dynamic value, {bool validate = true});
+  OffsetCodec? decodeOffsetCodec(dynamic value, {bool validate = true});
 
-  OrdinalSortKey? decodeOrdinalSortKey(dynamic value, {bool validate = true});
+  OrdinalSortKeyCodec? decodeOrdinalSortKeyCodec(
+    dynamic value, {
+    bool validate = true,
+  });
 
   OutlinedButtonThemeData? decodeOutlinedButtonThemeData(
     dynamic value, {
@@ -443,7 +443,10 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  SemanticsTag? decodeSemanticsTag(dynamic value, {bool validate = true});
+  SemanticsTagCodec? decodeSemanticsTagCodec(
+    dynamic value, {
+    bool validate = true,
+  });
 
   @CodecDefaultValue('color', 'const Color(0xFF000000)')
   Shadow? decodeShadow(dynamic value, {bool validate = true});
@@ -453,7 +456,7 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  Size? decodeSize(dynamic value, {bool validate = true});
+  SizeCodec? decodeSizeCodec(dynamic value, {bool validate = true});
 
   @CodecEnum()
   SliderComponentShape? decodeSliderComponentShape(

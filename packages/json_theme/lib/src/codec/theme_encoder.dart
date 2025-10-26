@@ -97,10 +97,11 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   Map<String, dynamic>? encodeCardThemeData(CardThemeData? value);
 
-  Map<String, dynamic>? encodeCheckboxThemeData(
-    CheckboxThemeData? value, {
-    bool validate = true,
-  });
+  Map<String, dynamic>? encodeCarouselViewThemeData(
+    CarouselViewThemeData? value,
+  );
+
+  Map<String, dynamic>? encodeCheckboxThemeData(CheckboxThemeData? value);
 
   Map<String, dynamic>? encodeChipThemeData(ChipThemeData? value);
 
@@ -235,10 +236,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   String? encodeMaterialType(MaterialType? value);
 
-  String? encodeMaxLengthEnforcement(
-    MaxLengthEnforcement? value, {
-    bool validate = true,
-  });
+  String? encodeMaxLengthEnforcement(MaxLengthEnforcement? value);
 
   Map<String, dynamic>? encodeMenuBarThemeData(MenuBarThemeData? value);
 
@@ -254,12 +252,14 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
   );
 
   String? encodeNavigationDestinationLabelBehavior(
-    NavigationDestinationLabelBehavior? value, {
-    bool validate = true,
-  });
+    NavigationDestinationLabelBehavior? value,
+  );
+
+  Map<String, dynamic>? encodeNavigationDrawerThemeData(
+    NavigationDrawerThemeData? value,
+  );
 
   String? encodeNavigationRailLabelType(NavigationRailLabelType? value);
-
   Map<String, dynamic>? encodeNavigationRailThemeData(
     NavigationRailThemeData? value,
   );
@@ -283,14 +283,10 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
   Map<String, dynamic>? encodePopupMenuThemeData(PopupMenuThemeData? value);
 
   Map<String, dynamic>? encodeProgressIndicatorThemeData(
-    ProgressIndicatorThemeData? value, {
-    TextDirection direction = TextDirection.ltr,
-  });
+    ProgressIndicatorThemeData? value,
+  );
 
-  Map<String, dynamic>? encodeRadioThemeData(
-    RadioThemeData? value, {
-    bool validate = true,
-  });
+  Map<String, dynamic>? encodeRadioThemeData(RadioThemeData? value);
 
   Map<String, dynamic>? encodeRoundRangeSliderThumbShape(
     RoundRangeSliderThumbShape? value,
@@ -302,10 +298,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   Map<String, dynamic>? encodeRect(Rect? value);
 
-  Map<String, dynamic>? encodeScrollBehavior(
-    ScrollBehavior? value, {
-    bool validate = true,
-  });
+  Map<String, dynamic>? encodeScrollBehavior(ScrollBehavior? value);
 
   String? encodeScrollViewKeyboardDismissBehavior(
     ScrollViewKeyboardDismissBehavior? value,
@@ -327,6 +320,8 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   Map<String, dynamic>? encodeSize(Size? value);
 
+  String? encodeSliderInteraction(SliderInteraction? value);
+
   @CodecIgnore('allowedInteraction')
   Map<String, dynamic>? encodeSliderThemeData(SliderThemeData? value);
 
@@ -346,10 +341,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
   Map<String, dynamic>? encodeStrutStyle(StrutStyle? value);
 
   @CodecUnencodable('thumbIcon')
-  Map<String, dynamic>? encodeSwitchThemeData(
-    SwitchThemeData? value, {
-    bool validate = true,
-  });
+  Map<String, dynamic>? encodeSwitchThemeData(SwitchThemeData? value);
 
   String? encodeTabAlignment(TabAlignment? value);
 
@@ -414,11 +406,14 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
   String? encodeTextWidthBasis(TextWidthBasis? value);
 
   @CodecUnencodable('adaptations')
-  // @CodecIgnore('buttonBarTheme')
-  // @CodecIgnore('carouselViewTheme')
-  // @CodecIgnore('colorSchemeSeed')
+  @CodecIgnore('buttonBarTheme')
+  @CodecIgnore('colorSchemeSeed')
   @CodecUnencodable('extensions')
-  // @CodecIgnore('indicatorColor')
+  @CodecIgnore('fontFamily')
+  @CodecIgnore('fontFamilyFallback')
+  @CodecIgnore('package')
+  @CodecIgnore('primarySwatch')
+  @CodecIgnore('useSystemColors')
   Map<String, dynamic>? encodeThemeData(ThemeData? value);
 
   String? encodeTileMode(TileMode? value);
@@ -434,6 +429,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
   @CodecEnum()
   String? encodeTooltipTriggerMode(TooltipTriggerMode? value);
 
+  @CodecIgnore('platform')
   Map<String, dynamic>? encodeTypography(Typography? value);
 
   @CodecEnum()

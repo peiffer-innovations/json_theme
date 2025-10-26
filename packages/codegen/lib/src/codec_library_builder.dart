@@ -466,7 +466,7 @@ default:
     buf.writeln('''
 
 @override
-$returnType? $name(${element.displayName}? value, {bool validate = true}) {
+$returnType? $name(${element.displayName}? value) {
   if (value == null) {
     return null;
   }
@@ -510,7 +510,7 @@ $returnType? $name(${element.displayName}? value, {bool validate = true}) {
     buf.writeln('''
 
 @override
-$returnType? $name(${element.displayName}? value, {bool validate = true}) {
+$returnType? $name(${element.displayName}? value) {
   if (value == null) {
     return null;
   }

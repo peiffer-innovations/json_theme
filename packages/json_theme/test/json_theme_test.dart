@@ -6,7 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
@@ -6997,7 +6996,7 @@ void main() {
     );
 
     expect(
-      ThemeDecoder.decodeShowValueIndicator('onDrag'),
+      ThemeDecoder.instance.decodeShowValueIndicator('onDrag'),
       ShowValueIndicator.onDrag,
     );
 
@@ -7021,7 +7020,7 @@ void main() {
     );
 
     expect(
-      ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.onDrag),
+      ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.onDrag),
       'onDrag',
     );
 

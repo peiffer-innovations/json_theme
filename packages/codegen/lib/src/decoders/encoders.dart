@@ -31,9 +31,6 @@ String encode(
   required Map<String, String> aliases,
   required InterfaceType? override,
 }) {
-  if (override != null) {
-    print('override');
-  }
   final name = aliases[element.name] ?? element.name!;
 
   final type = override ?? element.type;

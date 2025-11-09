@@ -7,6 +7,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';

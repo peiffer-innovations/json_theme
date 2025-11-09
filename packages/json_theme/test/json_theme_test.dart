@@ -6,6 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
@@ -6989,10 +6990,17 @@ void main() {
       ThemeDecoder.instance.decodeShowValueIndicator(ShowValueIndicator.onDrag),
       ShowValueIndicator.onDrag,
     );
+
     expect(
       ThemeDecoder.instance.decodeShowValueIndicator('never'),
       ShowValueIndicator.never,
     );
+
+    expect(
+      ThemeDecoder.decodeShowValueIndicator('onDrag'),
+      ShowValueIndicator.onDrag,
+    );
+
     expect(
       ThemeDecoder.instance.decodeShowValueIndicator('onlyForContinuous'),
       ShowValueIndicator.onlyForContinuous,
@@ -7006,16 +7014,24 @@ void main() {
       ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.onDrag),
       'onDrag',
     );
+
     expect(
       ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.never),
       'never',
     );
+
+    expect(
+      ThemeEncoder.encodeShowValueIndicator(ShowValueIndicator.onDrag),
+      'onDrag',
+    );
+
     expect(
       ThemeEncoder.instance.encodeShowValueIndicator(
         ShowValueIndicator.onlyForContinuous,
       ),
       'onlyForContinuous',
     );
+
     expect(
       ThemeEncoder.instance.encodeShowValueIndicator(
         ShowValueIndicator.onlyForDiscrete,

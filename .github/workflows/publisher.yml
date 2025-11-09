@@ -29,7 +29,7 @@ jobs:
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
-          path: json_theme
+          path: packages/json_theme
 
       - name: Checkout Schemas
         uses: actions/checkout@v4

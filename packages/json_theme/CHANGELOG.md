@@ -4,6 +4,12 @@
 * Converted from manually built code to code generators for most codec items.
 
 
+## [9.0.3] - September 16th, 2025
+
+* Update ThemeDecoder and ThemeEncoder to use new ThemeData classes for `AppBarThemeData`, `BottomAppBarThemeData`, `InputDecorationThemeData`
+* Added `onDrag` enum property to `ShowValueIndicator` as `always` enum property will be depricated after v3.28.0-1.0.pre
+
+
 ## [9.0.2] - August 14th, 2025
 
 * Dependency updates

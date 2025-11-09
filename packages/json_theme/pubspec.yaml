@@ -44,18 +44,6 @@ permittedLicenses:
   - 'MPL-2.0'
   - 'Zlib'
 
-packageLicenseOverride:
-  flutter: 'BSD-3-Clause'
-  flutter_driver: 'BSD-3-Clause'
-  flutter_goldens: 'BSD-3-Clause'
-  flutter_localizations: 'BSD-3-Clause'
-  flutter_web_plugins: 'BSD-3-Clause'
-  flutter_test: 'BSD-3-Clause'
-  fuchsia_remote_debug_protocol: 'BSD-3-Clause'
-  integration_test: 'BSD-3-Clause'
-  rxdart: 'Apache-2.0'
-  sky_engine: 'BSD-3-Clause'
-
 ignore_updates:
   - 'analyzer'
   - 'archive'

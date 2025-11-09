@@ -605,6 +605,9 @@ abstract class _ThemeDecoderFunctions {
     return result;
   }
 
+  Decoration? decodeDecoration(dynamic value, {bool validate = true}) =>
+      ThemeDecoder.instance.decodeBoxDecoration(value, validate: validate);
+
   /// Decodes the [value] into an [EdgeInsetsGeometry].
   ///
   /// If the value is a [String], [double], or [int] then this will parse the
@@ -785,6 +788,69 @@ abstract class _ThemeDecoderFunctions {
     return result;
   }
 
+  /// Decodes the given [value] to an [FontFeature].  This expects the given
+  /// [value] to follow the structure below:
+  ///
+  /// ```json
+  /// {
+  ///   "feature": "<String>",
+  ///   "value": "<int>"
+  /// }
+  /// ```
+  FontFeature? decodeFontFeature(dynamic value, {bool validate = true}) {
+    FontFeature? result;
+
+    if (value is FontFeature) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/font_feature',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = FontFeature(
+        value['feature'],
+        JsonClass.maybeParseInt(value['value'])!,
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into a [FontVariation].  If the value is `null`
+  /// then `null` will be returned.
+  ///
+  /// This expects the format:
+  /// ```json
+  /// {
+  ///   "axis": "<String>",
+  ///   "value": "<double>"
+  /// }
+  /// ```
+  FontVariation? decodeFontVariation(dynamic value, {bool validate = true}) {
+    FontVariation? result;
+
+    if (value is FontVariation) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/font_variation',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = FontVariation(
+        value['axis'],
+        JsonClass.parseDouble(value['value']),
+      );
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] into a [Gradient].  If the value is `null`
   /// then `null` will be returned.
   ///
@@ -958,6 +1024,39 @@ abstract class _ThemeDecoderFunctions {
     return result;
   }
 
+  /// Decodes the given [value] into a [GradientTransform].  If the value is
+  /// `null` then `null` will be returned.
+  ///
+  /// When the [value] is not `null`, this will always return a concrete
+  /// implementation of [GradientRotation].
+  ///
+  /// ```json
+  /// {
+  ///   "radians": "<double>"
+  /// }
+  /// ```
+  GradientTransform? decodeGradientTransform(
+    dynamic value, {
+    bool validate = true,
+  }) {
+    GradientTransform? result;
+
+    if (value is GradientTransform) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/gradient_transform',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = GradientRotation(JsonClass.maybeParseDouble(value['radians'])!);
+    }
+
+    return result;
+  }
+
   /// Decodes the given [value] into an [IconData].  If the value is `null` then
   /// `null` will be returned.
   ///
@@ -1012,6 +1111,43 @@ abstract class _ThemeDecoderFunctions {
           validate: false,
         ),
         weight: JsonClass.maybeParseDouble(value['weight']),
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] into an [IconData].  If the value is `null` then
+  /// `null` will be returned.
+  ///
+  /// ```json
+  /// {
+  ///   "codePoint": "<int>",
+  ///   "fontFamily": "<String>",
+  ///   "fontFamilyFallback": "<List<String>>",
+  ///   "fontPackage": "<String>",
+  ///   "matchTextDirection": "<bool>"
+  /// }
+  /// ```
+  IconData? decodeIconData(dynamic value, {bool validate = true}) {
+    IconData? result;
+
+    if (value is IconData) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/icon_data',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = IconData(
+        JsonClass.maybeParseInt(value['codePoint'])!,
+        fontFamily: value['fontFamily'],
+        fontFamilyFallback: value['fontFamilyFallback'],
+        fontPackage: value['fontPackage'],
+        matchTextDirection: JsonClass.parseBool(value['matchTextDirection']),
       );
     }
 
@@ -1209,6 +1345,34 @@ abstract class _ThemeDecoderFunctions {
             result = InkSparkle.splashFactory;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [Locale].  This expects the
+  /// given [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "countryCode": "<String>",
+  ///   "languageCode": "<String>"
+  /// }
+  /// ```
+  Locale? decodeLocale(dynamic value, {bool validate = true}) {
+    Locale? result;
+
+    if (value is Locale) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/locale',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = Locale(value['languageCode'], value['countryCode']);
     }
 
     return result;
@@ -1576,6 +1740,69 @@ abstract class _ThemeDecoderFunctions {
         }
       }
     }
+    return result;
+  }
+
+  /// Decodes the given [value] to an [Offset].  This expects the given [value]
+  /// to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "dx": "<double>",
+  ///   "dy": "<double>"
+  /// }
+  /// ```
+  Offset? decodeOffset(dynamic value, {bool validate = true}) {
+    Offset? result;
+
+    if (value is Offset) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/offset',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = Offset(
+        JsonClass.maybeParseDouble(value['dx'], 0)!,
+        JsonClass.maybeParseDouble(value['dy'], 0)!,
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to an [OrdinalSortKey].  This expects the given
+  /// [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "name": "<String>",
+  ///   "order": "<double>"
+  /// }
+  /// ```
+  OrdinalSortKey? decodeOrdinalSortKey(dynamic value, {bool validate = true}) {
+    OrdinalSortKey? result;
+
+    if (value is OrdinalSortKey) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/ordinal_sort_key',
+          value: value,
+          validate: validate,
+        ),
+      );
+
+      result = OrdinalSortKey(
+        JsonClass.maybeParseDouble(value['order'])!,
+        name: value['name'],
+      );
+    }
+
     return result;
   }
 
@@ -2328,6 +2555,34 @@ abstract class _ThemeDecoderFunctions {
     return result;
   }
 
+  /// Decodes the given [value] to an [SemanticsTag].  This expects the given
+  /// [value] to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "name": "<String>"
+  /// }
+  /// ```
+  SemanticsTag? decodeSemanticsTag(dynamic value, {bool validate = true}) {
+    SemanticsTag? result;
+
+    if (value is SemanticsTag) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/semantics_tag',
+          value: value,
+          validate: validate,
+        ),
+      );
+
+      result = SemanticsTag(value['name']);
+    }
+
+    return result;
+  }
+
   /// Decodes a given Map-like value into a [ShapeBorder].  The value returned
   /// depends on the "type" parameter.  The "type" must be one of:
   ///  * `circle`
@@ -2437,6 +2692,37 @@ abstract class _ThemeDecoderFunctions {
             break;
         }
       }
+    }
+
+    return result;
+  }
+
+  /// Decodes the given [value] to a [Size].  This expects the
+  /// [value] to have the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "height": "<double>",
+  ///   "width": "<double>"
+  /// }
+  /// ```
+  Size? decodeSize(dynamic value, {bool validate = true}) {
+    Size? result;
+
+    if (value is Size) {
+      result = value;
+    } else if (value != null) {
+      assert(
+        SchemaValidator.validate(
+          schemaId: '$_baseSchemaUrl/size',
+          value: value,
+          validate: validate,
+        ),
+      );
+      result = Size(
+        JsonClass.maybeParseDouble(value['width'])!,
+        JsonClass.maybeParseDouble(value['height'])!,
+      );
     }
 
     return result;

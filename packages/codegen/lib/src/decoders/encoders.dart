@@ -29,10 +29,15 @@ String encode(
   ClassElement classElement,
   FormalParameterElement element, {
   required Map<String, String> aliases,
+  required InterfaceType? override,
 }) {
+  if (override != null) {
+    print('override');
+  }
   final name = aliases[element.name] ?? element.name!;
 
-  final eType = element.type
+  final type = override ?? element.type;
+  final eType = type
       .toString()
       .replaceAll('?', '')
       .replaceAll('<', '')
@@ -42,14 +47,13 @@ String encode(
 
   var result = 'ThemeEncoder.instance.encode$eType(value.$name)';
 
-  final typeStr = element.type.toString().replaceAll('?', '');
+  final typeStr = type.toString().replaceAll('?', '');
 
   final encoder = kEncoders[typeStr];
 
   if (encoder != null) {
     result = encoder(element, name: name);
   } else if (typeStr.startsWith('List')) {
-    final type = element.type;
     if (type is InterfaceType &&
         (type.isDartCoreList || type.isDartCoreIterable)) {
       final subtype = typeStr.replaceAll('List<', '').replaceAll('>', '');

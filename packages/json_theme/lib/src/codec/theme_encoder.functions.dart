@@ -173,6 +173,42 @@ abstract class _ThemeEncoderFunctions {
     return _stripDynamicNull(result);
   }
 
+  /// Encodes the given [value] into a JSON compatible map.  This produces a Map
+  /// in the following format:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": "<BorderSide>",
+  ///   "left": "<BorderSide>",
+  ///   "right": "<BorderSide>",
+  ///   "top": "<BorderSide>"
+  /// }
+  /// ```
+  /// A [value] of `null` will result in `null` being returned.
+  Map<String, dynamic>? encodeBoxBorder(BoxBorder? value) {
+    Map<String, dynamic>? result;
+
+    if (value == null) {
+      return null;
+    }
+
+    if (value is Border) {
+      result = {
+        'bottom': ThemeEncoder.instance.encodeBorderSide(value.bottom),
+        'left': ThemeEncoder.instance.encodeBorderSide(value.left),
+        'right': ThemeEncoder.instance.encodeBorderSide(value.right),
+        'top': ThemeEncoder.instance.encodeBorderSide(value.top),
+      };
+    } else {
+      result = {
+        'bottom': ThemeEncoder.instance.encodeBorderSide(value.bottom),
+        'top': ThemeEncoder.instance.encodeBorderSide(value.top),
+      };
+    }
+
+    return _stripDynamicNull(result);
+  }
+
   Map<String, dynamic>? encodeDecoration(Decoration? value) =>
       value is BoxDecoration
       ? ThemeEncoder.instance.encodeBoxDecoration(value)
@@ -209,41 +245,6 @@ abstract class _ThemeEncoderFunctions {
       throw Exception(
         'Unknown type of EdgeInsets detected: [${value.runtimeType}]',
       );
-    }
-
-    return _stripDynamicNull(result);
-  }
-
-  /// Encodes the given [value] to the String representation.  Supported values
-  /// are:
-  ///  * `splash`
-  ///  * `ripple`
-  ///  * `sparkle`
-  ///
-  /// All other values, including `null`, will result in `null`.
-  String? encodeInteractiveInkFeatureFactory(
-    InteractiveInkFeatureFactory? value,
-  ) {
-    final splashType = InkSplash.splashFactory.runtimeType;
-    final rippleType = InkRipple.splashFactory.runtimeType;
-    final sparkleType = InkSparkle.splashFactory.runtimeType;
-
-    assert(
-      value == null ||
-          value.runtimeType == splashType ||
-          value.runtimeType == rippleType ||
-          value.runtimeType == sparkleType,
-    );
-    String? result;
-
-    if (value != null) {
-      if (value.runtimeType == splashType) {
-        result = 'splash';
-      } else if (value.runtimeType == rippleType) {
-        result = 'ripple';
-      } else if (value.runtimeType == sparkleType) {
-        result = 'sparkle';
-      }
     }
 
     return _stripDynamicNull(result);
@@ -513,6 +514,41 @@ abstract class _ThemeEncoderFunctions {
           ),
           'type': 'underline',
         };
+      }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to the String representation.  Supported values
+  /// are:
+  ///  * `splash`
+  ///  * `ripple`
+  ///  * `sparkle`
+  ///
+  /// All other values, including `null`, will result in `null`.
+  String? encodeInteractiveInkFeatureFactory(
+    InteractiveInkFeatureFactory? value,
+  ) {
+    final splashType = InkSplash.splashFactory.runtimeType;
+    final rippleType = InkRipple.splashFactory.runtimeType;
+    final sparkleType = InkSparkle.splashFactory.runtimeType;
+
+    assert(
+      value == null ||
+          value.runtimeType == splashType ||
+          value.runtimeType == rippleType ||
+          value.runtimeType == sparkleType,
+    );
+    String? result;
+
+    if (value != null) {
+      if (value.runtimeType == splashType) {
+        result = 'splash';
+      } else if (value.runtimeType == rippleType) {
+        result = 'ripple';
+      } else if (value.runtimeType == sparkleType) {
+        result = 'sparkle';
       }
     }
 
@@ -1053,6 +1089,34 @@ abstract class _ThemeEncoderFunctions {
       } else if (value is RectangularRangeSliderValueIndicatorShape) {
         result = 'rectangular';
       }
+    }
+
+    return _stripDynamicNull(result);
+  }
+
+  /// Encodes the given [value] to a JSON compatible Map.
+  ///
+  /// This returns the JSON representation to follow the structure:
+  /// ```json
+  /// {
+  ///   "bottom": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>",
+  ///   "type": "ltrb"
+  /// }
+  /// ```
+  Map<String, dynamic>? encodeRect(Rect? value) {
+    Map<String, dynamic>? result;
+
+    if (value != null) {
+      result = {
+        'bottom': value.bottom,
+        'left': value.left,
+        'right': value.right,
+        'top': value.top,
+        'type': 'ltrb',
+      };
     }
 
     return _stripDynamicNull(result);

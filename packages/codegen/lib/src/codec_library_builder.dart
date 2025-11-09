@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:collection';
 import 'dart:io';
 
 import 'package:analyzer/dart/element/element.dart';
@@ -11,6 +12,8 @@ import 'package:json_theme_codegen/src/decoders/encoders.dart';
 import 'package:json_theme_codegen/src/decoders/schema_decoders.dart';
 import 'package:recase/recase.dart';
 import 'package:source_gen/source_gen.dart';
+
+const _deprecatedChecker = TypeChecker.typeNamed(Deprecated);
 
 const _enumChecker = TypeChecker.typeNamed(
   CodecEnum,
@@ -29,6 +32,11 @@ const _codecSchemaChecker = TypeChecker.typeNamed(
 
 const _codecDefaultValueChecker = TypeChecker.typeNamed(
   CodecDefaultValue,
+  inPackage: 'json_theme_annotation',
+);
+
+const _paramTypesChecker = TypeChecker.typeNamed(
+  CodecParamType,
   inPackage: 'json_theme_annotation',
 );
 
@@ -90,8 +98,23 @@ class CodecLibraryBuilder extends GeneratorForAnnotation<JsonThemeCodec> {
     final schemaMapBuf = StringBuffer();
     final schemaBuf = StringBuffer();
 
-    final methods = <String, String>{};
-    for (var m in element.methods) {
+    final methods = SplayTreeMap<String, String>();
+    for (final s in element.allSupertypes) {
+      for (final m in s.element.methods) {
+        if (m.isPublic && m.displayName.startsWith(codec)) {
+          final mName = m.displayName;
+          methods[mName.substring(codec.length)] = '$name.instance.$mName';
+        }
+      }
+    }
+
+    final sortedMethods = List<MethodElement>.from(element.methods);
+
+    sortedMethods.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+    for (var m in sortedMethods) {
       if (m.isPublic && m.displayName.startsWith(codec)) {
         final mName = m.displayName;
         methods[mName.substring(codec.length)] = '$name.instance.$mName';
@@ -156,13 +179,27 @@ $schemaMapBuf
 }
 ''';
 
+    final genFile = File('lib/src/$codec.g.dart');
+    if (genFile.existsSync()) {
+      genFile.deleteSync();
+    }
+    genFile.createSync(recursive: true);
+    genFile.writeAsStringSync('''
+// Dart SDK: ${Platform.version}
+// Flutter SDK:
+//   $_flutterVersion
+
+$methodMapperBuf
+''');
+
+    Process.runSync('dart', ['format', 'lib/src/$codec.g.dart']);
+
     return '''
 // Dart SDK: ${Platform.version}
 // Flutter SDK:
 //   $_flutterVersion
 
 // ignore_for_file: avoid_init_to_null
-// ignore_for_file: deprecated_member_use
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_constructors_in_immutables
 // ignore_for_file: prefer_final_locals
@@ -181,8 +218,6 @@ $classBuf
 }
 
 $schemas
-
-$methodMapperBuf
 ''';
   }
 
@@ -211,6 +246,19 @@ $methodMapperBuf
     final ignored = _ignoreChecker
         .annotationsOf(method)
         .map((a) => ConstantReader(a).read('name').stringValue);
+    final paramTypes = Map.fromEntries(
+      _paramTypesChecker
+          .annotationsOf(method)
+          .map(
+            (a) => MapEntry<String, MapEntry<InterfaceType, bool>>(
+              ConstantReader(a).read('name').stringValue,
+              MapEntry(
+                ConstantReader(a).read('type').typeValue as InterfaceType,
+                ConstantReader(a).read('nullable').boolValue,
+              ),
+            ),
+          ),
+    );
     final schemaOnly = _codecSchemaChecker.annotationsOf(method).isNotEmpty;
     final unencodable = _unencodableChecker
         .annotationsOf(method)
@@ -250,6 +298,7 @@ $methodMapperBuf
           method,
           element,
           ignored: ignored,
+          paramTypes: paramTypes,
           schemaMapBuf: schemaMapBuf,
           unencodable: unencodable,
         ),
@@ -262,6 +311,7 @@ $methodMapperBuf
           schemaUrl,
           defaultValues: defaultValues,
           ignored: ignored,
+          paramTypes: paramTypes,
           unencodable: unencodable,
         );
       } else {
@@ -280,6 +330,7 @@ $methodMapperBuf
     String schemaUrl, {
     required Map<String, String> defaultValues,
     required Iterable<String> ignored,
+    required Map<String, MapEntry<InterfaceType, bool>> paramTypes,
     required Iterable<String> unencodable,
   }) {
     final buf = StringBuffer();
@@ -311,14 +362,24 @@ ${element.displayName}? $name(dynamic value, {bool validate = true}) {
 
     final constructor = element.constructors.first;
 
+    final sortedParams = List<FormalParameterElement>.from(
+      constructor.formalParameters,
+    ).where((p) => !_deprecatedChecker.hasAnnotationOf(p)).toList();
+
+    sortedParams.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+
     buf.writeln('return ${constructor.displayName}(');
-    for (final p in constructor.formalParameters) {
+    for (final p in sortedParams) {
       final type = p.type;
       String? value;
 
       if (ignored.contains(p.displayName)) {
         continue;
       }
+
       if (type is FunctionType || unencodable.contains(p.displayName)) {
         value = "value['${p.displayName}']";
       } else {
@@ -327,6 +388,7 @@ ${element.displayName}? $name(dynamic value, {bool validate = true}) {
           p,
           aliases: {},
           defaults: defaultValues,
+          override: paramTypes[p.displayName],
           paramDecoders: [],
         );
       }
@@ -373,7 +435,17 @@ ${element.displayName}? $name(dynamic value, {bool validate = true}) {
 
   switch (value.toString()) {
 ''');
-    for (var f in element.fields) {
+
+    final sortedFields = List<FieldElement>.from(
+      element.fields.where((p) => !_deprecatedChecker.hasAnnotationOf(p)),
+    );
+
+    sortedFields.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+
+    for (var f in sortedFields) {
       if (f.displayName == 'values' ||
           f.isPrivate ||
           !f.isStatic ||
@@ -400,7 +472,29 @@ default:
     MethodElement method, {
     String schemaUrl = '',
   }) {
-    final element = method.formalParameters.first.type.element!;
+    final sortedParams = List<FormalParameterElement>.from(
+      method.formalParameters,
+    ).where((p) => !_deprecatedChecker.hasAnnotationOf(p)).toList();
+
+    final paramTypes = Map.fromEntries(
+      _paramTypesChecker
+          .annotationsOf(method)
+          .map(
+            (a) => MapEntry<String, MapEntry<InterfaceType, bool>>(
+              ConstantReader(a).read('name').stringValue,
+              MapEntry(
+                ConstantReader(a).read('type').typeValue as InterfaceType,
+                ConstantReader(a).read('nullable').boolValue,
+              ),
+            ),
+          ),
+    );
+    sortedParams.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+
+    final element = sortedParams.first.type.element!;
 
     final defaultValues = Map.fromEntries(
       _codecDefaultValueChecker
@@ -440,6 +534,7 @@ default:
         schemaUrl,
         defaultValues: defaultValues,
         ignored: ignored,
+        paramTypes: paramTypes,
         unencodable: unencodable,
       );
     } else {
@@ -455,6 +550,7 @@ default:
     String schemaUrl, {
     required Map<String, String> defaultValues,
     required Iterable<String> ignored,
+    required Map<String, MapEntry<InterfaceType, bool>> paramTypes,
     required Iterable<String> unencodable,
   }) {
     final buf = StringBuffer();
@@ -474,8 +570,17 @@ $returnType? $name(${element.displayName}? value) {
 
     final constructor = element.constructors.first;
 
-    buf.writeln('return {');
-    for (final p in constructor.formalParameters) {
+    final sortedParams = List<FormalParameterElement>.from(
+      constructor.formalParameters,
+    ).where((p) => !_deprecatedChecker.hasAnnotationOf(p)).toList();
+
+    sortedParams.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+
+    buf.writeln('return _stripDynamicNull(<String, dynamic>{');
+    for (final p in sortedParams) {
       final type = p.type;
       String? value;
 
@@ -484,11 +589,16 @@ $returnType? $name(${element.displayName}? value) {
           unencodable.contains(p.displayName)) {
         continue;
       }
-      value = encode(element, p, aliases: {});
+      value = encode(
+        element,
+        p,
+        aliases: {},
+        override: paramTypes[p.displayName]?.key,
+      );
 
       buf.writeln("'${p.displayName}': $value,");
     }
-    buf.writeln('};');
+    buf.writeln('});');
 
     buf.writeln('}');
     print('$buf');
@@ -517,7 +627,16 @@ $returnType? $name(${element.displayName}? value) {
 
   switch (value) {
 ''');
-    for (var f in element.fields) {
+
+    final sortedFields = List<FieldElement>.from(
+      element.fields.where((p) => !_deprecatedChecker.hasAnnotationOf(p)),
+    );
+
+    sortedFields.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+    for (var f in sortedFields) {
       if (f.displayName == 'values' ||
           f.isPrivate ||
           !f.isStatic ||
@@ -544,6 +663,7 @@ default:
     MethodElement method,
     ClassElement element, {
     required Iterable<String> ignored,
+    required Map<String, MapEntry<InterfaceType, bool>> paramTypes,
     required StringBuffer schemaMapBuf,
     required Iterable<String> unencodable,
   }) {
@@ -558,11 +678,20 @@ default:
 
     final constructor = element.constructors.first;
 
-    final properties = constructor.formalParameters
+    final sortedParams = List<FormalParameterElement>.from(
+      constructor.formalParameters,
+    ).where((p) => !_deprecatedChecker.hasAnnotationOf(p)).toList();
+
+    sortedParams.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+
+    final properties = sortedParams
         .where((p) => !ignored.contains(p.displayName))
         .map(
           (e) =>
-              "'${e.name}': ${unencodable.contains(e.name) || e.type is FunctionType ? 'SchemaHelper.stringSchema' : decodeSchema(e)}",
+              "'${e.name}': ${unencodable.contains(e.name) || e.type is FunctionType ? 'SchemaHelper.stringSchema' : decodeSchema(e, paramTypes[e.displayName])}",
         );
 
     schemaMapBuf.writeln('${clazz}Schema.id: ${clazz}Schema.schema,');
@@ -601,7 +730,13 @@ class ${clazz}Schema {
     final clazz = method.returnType.getDisplayString().replaceAll('?', '');
     final snakeCase = ReCase(clazz).snakeCase;
 
-    final options = element.fields
+    final sortedFields = List<FieldElement>.from(element.fields);
+
+    sortedFields.sort(
+      (a, b) =>
+          a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase()),
+    );
+    final options = sortedFields
         .where(
           (e) =>
               e.name != 'values' &&

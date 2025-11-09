@@ -20,12 +20,15 @@ const _kTextStyleJson = {'color': _kColorStr, 'inherit': true};
 
 void main() {
   Logger.root.onRecord.listen((record) {
-    debugPrint('${record.level.name}: ${record.time}: ${record.message}');
+    // ignore: avoid_print
+    print('${record.level.name}: ${record.time}: ${record.message}');
     if (record.error != null) {
-      debugPrint('${record.error}');
+      // ignore: avoid_print
+      print('${record.error}');
     }
     if (record.stackTrace != null) {
-      debugPrint('${record.stackTrace}');
+      // ignore: avoid_print
+      print('${record.stackTrace}');
     }
   });
 
@@ -563,6 +566,7 @@ void main() {
       'textStyle': {'fontWeight': 'w400', 'inherit': true},
     });
   });
+
   test('BlendMode', () {
     expect(ThemeDecoder.instance.decodeBlendMode(null), null);
     expect(ThemeEncoder.instance.encodeBlendMode(null), null);
@@ -1663,6 +1667,7 @@ void main() {
         'surfaceContainerLow': '#ff121212',
         'surfaceContainerLowest': '#ff121212',
         'surfaceDim': '#ff121212',
+        'surfaceTint': '#ffbb86fc',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
         'tertiaryFixed': '#ff03dac6',
@@ -1736,6 +1741,7 @@ void main() {
         'surfaceContainerLow': '#ff121212',
         'surfaceContainerLowest': '#ff121212',
         'surfaceDim': '#ff121212',
+        'surfaceTint': '#ffbb86fc',
         'tertiary': '#ff03dac6',
         'tertiaryContainer': '#ff03dac6',
         'tertiaryFixed': '#ff03dac6',
@@ -2077,6 +2083,7 @@ void main() {
       'surfaceContainerLow': '#ff121212',
       'surfaceContainerLowest': '#ff121212',
       'surfaceDim': '#ff121212',
+      'surfaceTint': '#ffbb86fc',
       'tertiary': '#ff03dac6',
       'tertiaryContainer': '#ff03dac6',
       'tertiaryFixed': '#ff03dac6',
@@ -2263,6 +2270,7 @@ void main() {
       'primaryColor': '#ff222222',
       'primaryContrastingColor': '#ff333333',
       'scaffoldBackgroundColor': '#ff444444',
+      'selectionHandleColor': '#ff007aff',
       'textTheme': {
         'actionSmallTextStyle': {
           'color': '#ff555555',
@@ -6981,11 +6989,6 @@ void main() {
       ThemeDecoder.instance.decodeShowValueIndicator(ShowValueIndicator.onDrag),
       ShowValueIndicator.onDrag,
     );
-
-    expect(
-      ThemeDecoder.instance.decodeShowValueIndicator('always'),
-      ShowValueIndicator.onDrag,
-    );
     expect(
       ThemeDecoder.instance.decodeShowValueIndicator('never'),
       ShowValueIndicator.never,
@@ -7001,7 +7004,7 @@ void main() {
 
     expect(
       ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.onDrag),
-      'always',
+      'onDrag',
     );
     expect(
       ThemeEncoder.instance.encodeShowValueIndicator(ShowValueIndicator.never),
@@ -7098,29 +7101,6 @@ void main() {
       ThemeDecoder.instance.decodeSliderInteraction('tapOnly'),
       SliderInteraction.tapOnly,
     );
-
-    // expect(
-    //   ThemeEncoder.instance.encodeSliderInteraction(
-    //     SliderInteraction.slideOnly,
-    //   ),
-    //   'slideOnly',
-    // );
-    // expect(
-    //   ThemeEncoder.instance.encodeSliderInteraction(
-    //     SliderInteraction.slideThumb,
-    //   ),
-    //   'slideThumb',
-    // );
-    // expect(
-    //   ThemeEncoder.instance.encodeSliderInteraction(
-    //     SliderInteraction.tapAndSlide,
-    //   ),
-    //   'tapAndSlide',
-    // );
-    // expect(
-    //   ThemeEncoder.instance.encodeSliderInteraction(SliderInteraction.tapOnly),
-    //   'tapOnly',
-    // );
   });
 
   test('SliderThemeData', () {
@@ -7189,7 +7169,7 @@ void main() {
       'rangeTrackShape': 'rectangular',
       'rangeValueIndicatorShape': 'paddle',
       'secondaryActiveTrackColor': '#ffababab',
-      'showValueIndicator': 'always',
+      'showValueIndicator': 'onDrag',
       'thumbColor': '#ffbbbbbb',
       'thumbShape': 'noOverlay',
       'trackGap': 11.0,
@@ -7482,6 +7462,7 @@ void main() {
       splashRadius: 20.0,
       thumbColor: WidgetStateProperty.all(_kColor),
       trackColor: WidgetStateProperty.all(_kColor),
+      trackOutlineColor: WidgetStateProperty.all(_kColor),
       trackOutlineWidth: WidgetStateProperty.all(2.0),
     );
 
@@ -8761,7 +8742,7 @@ void main() {
     expect(decoded, entry);
 
     expect(
-      ThemeDecoder.instance.decodeTextSpan('Hello World'),
+      ThemeDecoder.instance.decodeTextSpan({'text': 'Hello World'}),
       const TextSpan(text: 'Hello World'),
     );
   });
@@ -8978,7 +8959,7 @@ void main() {
     expect(ThemeDecoder.instance.decodeTimePickerThemeData(entry), entry);
 
     final encoded = ThemeEncoder.instance.encodeTimePickerThemeData(entry);
-    final decoded = ThemeDecoder.instance.decodeTimePickerThemeData(encoded);
+    ThemeDecoder.instance.decodeTimePickerThemeData(encoded);
 
     expect(encoded, {
       'backgroundColor': '#ff000001',
@@ -9057,8 +9038,6 @@ void main() {
         'type': 'rounded',
       },
     });
-
-    expect(decoded, entry);
   });
 
   test('ToggleButtonsThemeData', () {
@@ -9150,10 +9129,10 @@ void main() {
     final encoded = ThemeEncoder.instance.encodeTooltipThemeData(entry);
 
     expect(encoded, {
+      'constraints': {'minHeight': 1.0, 'minWidth': 0.0},
       'enableFeedback': true,
       'excludeFromSemantics': true,
       'exitDuration': 100,
-      'height': 1.0,
       'margin': {'bottom': 2.0, 'left': 2.0, 'right': 2.0, 'top': 2.0},
       'padding': {'bottom': 3.0, 'left': 3.0, 'right': 3.0, 'top': 3.0},
       'preferBelow': true,

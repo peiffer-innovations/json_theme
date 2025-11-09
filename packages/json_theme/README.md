@@ -37,7 +37,7 @@ Because this library allows for icons to be dynamically referenced, Flutter cann
 The framework accepts both JSON-compatible objects as well as actual concrete instances being passed to the `decode` functions.  For example, the following will properly decode:
 
 ```dart
-var appBarTheme = ThemeDecoder.decodeAppBarTheme({
+var appBarTheme = ThemeDecoder.instance.decodeAppBarTheme({
     'brightness': Brightness.dark,
     'color': '#ffdddddd'
   }, 

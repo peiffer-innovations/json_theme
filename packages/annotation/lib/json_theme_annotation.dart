@@ -22,6 +22,15 @@ class CodecEnum {
 }
 
 @Target({TargetKind.method})
+class CodecParamType {
+  const CodecParamType(this.name, this.type, {this.nullable = false});
+
+  final String name;
+  final bool nullable;
+  final Type type;
+}
+
+@Target({TargetKind.method})
 class CodecIgnore {
   /// Annotaion to instruct the code generator to completely ignore the
   /// parameter with the given name and to not try to ignore or decode it.

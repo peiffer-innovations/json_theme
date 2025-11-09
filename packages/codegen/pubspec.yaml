@@ -1,7 +1,7 @@
 name: 'json_theme_codegen'
 description: 'A library to generate the mapping of decoders to the class names they decode'
 homepage: 'https://github.com/peiffer-innovations/json_theme'
-version: '2.0.0'
+version: '3.0.0'
 
 environment:
   sdk: '^3.9.0'
@@ -15,15 +15,14 @@ analyzer:
 dependencies:
   analyzer: '^8.4.0'
   build: '^4.0.0'
-  build_runner: '2.7.2'
-  code_builder: '^4.10.1'
+  code_builder: '^4.11.0'
   json_theme_annotation: '^2.0.0'
   recase: '^4.1.0'
   source_gen: '^4.0.2'
 
 dev_dependencies:
   flutter_lints: '^6.0.0'
-  test: ^1.25.9
+  test: ^1.26.3
 
 permittedLicenses:
   - 'Apache-2.0'

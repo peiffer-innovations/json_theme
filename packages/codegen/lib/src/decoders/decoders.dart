@@ -108,6 +108,7 @@ String decode(
   FormalParameterElement element, {
   required Map<String, String> aliases,
   required Map<String, String> defaults,
+  required MapEntry<InterfaceType, bool>? override,
   required Iterable<String> paramDecoders,
 }) {
   final name = aliases[element.name] ?? element.name!;
@@ -124,7 +125,9 @@ String decode(
     }
   }
 
-  final eType = element.type
+  final type = override?.key ?? element.type;
+
+  final eType = type
       .toString()
       .replaceAll('?', '')
       .replaceAll('<', '')
@@ -135,11 +138,12 @@ String decode(
   var result =
       "ThemeDecoder.instance.decode$eType(value['$name'], validate: false,)${defaultValueCode == null ? '' : '?? $defaultValueCode'}";
 
-  if (element.type.nullabilitySuffix != NullabilitySuffix.question &&
+  if (type.nullabilitySuffix != NullabilitySuffix.question &&
+      override?.value != true &&
       defaultValueCode == null) {
     result = '$result!';
   }
-  final typeStr = element.type.toString().replaceAll('?', '');
+  final typeStr = type.toString().replaceAll('?', '');
 
   var decoded = false;
   if (paramDecoders.contains(name)) {
@@ -152,7 +156,6 @@ String decode(
     if (decoder != null) {
       result = decoder(element, defaultValueCode: defaultValueCode, name: name);
     } else if (typeStr.startsWith('List')) {
-      final type = element.type;
       if (type is InterfaceType &&
           (type.isDartCoreList || type.isDartCoreIterable)) {
         final subtype = typeStr.replaceAll('List<', '').replaceAll('>', '');

@@ -9,11 +9,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_theme/json_theme.dart';
-import 'package:json_theme/json_theme_schemas.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
 import '../model/map_widget_state_property.dart';
-import 'class_overrides.dart';
 
 part 'theme_decoder.functions.dart';
 part 'theme_decoder.g.dart';
@@ -164,12 +162,16 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
+  @CodecParamType(
+    'inputDecorationTheme',
+    InputDecorationThemeData,
+    nullable: true,
+  )
   DatePickerThemeData? decodeDatePickerThemeData(
     dynamic value, {
     bool validate = true,
   });
 
-  @CodecUnencodable('decoration')
   DataTableThemeData? decodeDataTableThemeData(
     dynamic value, {
     bool validate = true,
@@ -201,6 +203,11 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
 
   DrawerThemeData? decodeDrawerThemeData(dynamic value, {bool validate = true});
 
+  @CodecParamType(
+    'inputDecorationTheme',
+    InputDecorationThemeData,
+    nullable: true,
+  )
   DropdownMenuThemeData? decodeDropdownMenuThemeData(
     dynamic value, {
     bool validate = true,
@@ -253,25 +260,10 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  FontFeatureCodec? decodeFontFeatureCodec(
-    dynamic value, {
-    bool validate = true,
-  });
-
   FontStyle? decodeFontStyle(dynamic value, {bool validate = true});
 
   @CodecEnum()
   FontWeight? decodeFontWeight(dynamic value, {bool validate = true});
-
-  FontVariationCodec? decodeFontVariationCodec(
-    dynamic value, {
-    bool validate = true,
-  });
-
-  GradientTransformCodec? decodeGradientTransformCodec(
-    dynamic value, {
-    bool validate = true,
-  });
 
   HitTestBehavior? decodeHitTestBehavior(dynamic value, {bool validate = true});
 
@@ -281,8 +273,6 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     dynamic value, {
     bool validate = true,
   });
-
-  IconDataCodec? decodeIconDataCodec(dynamic value, {bool validate = true});
 
   IconThemeData? decodeIconThemeData(dynamic value, {bool validate = true});
 
@@ -309,8 +299,6 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     dynamic value, {
     bool validate = true,
   });
-
-  LocaleCodec? decodeLocaleCodec(dynamic value, {bool validate = true});
 
   MainAxisAlignment? decodeMainAxisAlignment(
     dynamic value, {
@@ -371,13 +359,6 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
   });
 
   NavigationRailThemeData? decodeNavigationRailThemeData(
-    dynamic value, {
-    bool validate = true,
-  });
-
-  OffsetCodec? decodeOffsetCodec(dynamic value, {bool validate = true});
-
-  OrdinalSortKeyCodec? decodeOrdinalSortKeyCodec(
     dynamic value, {
     bool validate = true,
   });
@@ -443,11 +424,6 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  SemanticsTagCodec? decodeSemanticsTagCodec(
-    dynamic value, {
-    bool validate = true,
-  });
-
   @CodecDefaultValue('color', 'const Color(0xFF000000)')
   Shadow? decodeShadow(dynamic value, {bool validate = true});
 
@@ -455,8 +431,6 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     dynamic value, {
     bool validate = true,
   });
-
-  SizeCodec? decodeSizeCodec(dynamic value, {bool validate = true});
 
   @CodecEnum()
   SliderComponentShape? decodeSliderComponentShape(
@@ -580,13 +554,24 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
 
   TextWidthBasis? decodeTextWidthBasis(dynamic value, {bool validate = true});
 
-  @CodecIgnore('buttonBarTheme')
+  @CodecParamType('appBarTheme', AppBarThemeData, nullable: true)
   @CodecUnencodable('adaptations')
+  @CodecIgnore('buttonBarTheme')
   @CodecUnencodable('extensions')
+  @CodecParamType(
+    'inputDecorationTheme',
+    InputDecorationThemeData,
+    nullable: true,
+  )
   ThemeData? decodeThemeData(dynamic value, {bool validate = true});
 
   TileMode? decodeTileMode(dynamic value, {bool validate = true});
 
+  @CodecParamType(
+    'inputDecorationTheme',
+    InputDecorationThemeData,
+    nullable: true,
+  )
   TimePickerThemeData? decodeTimePickerThemeData(
     dynamic value, {
     bool validate = true,
@@ -597,7 +582,6 @@ abstract class _ThemeDecoder extends _ThemeDecoderFunctions {
     bool validate = true,
   });
 
-  @CodecUnencodable('decoration')
   TooltipThemeData? decodeTooltipThemeData(
     dynamic value, {
     bool validate = true,

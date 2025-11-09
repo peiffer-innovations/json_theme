@@ -8,23 +8,31 @@ final _kCustomSchemas = {
   BoxBorderSchema.id: BoxBorderSchema.schema,
   ColorFilterSchema.id: ColorFilterSchema.schema,
   ColorSchema.id: ColorSchema.schema,
+  DecorationSchema.id: DecorationSchema.schema,
   EdgeInsetsDirectionalSchema.id: EdgeInsetsDirectionalSchema.schema,
   EdgeInsetsSchema.id: EdgeInsetsSchema.schema,
   EdgeInsetsGeometrySchema.id: EdgeInsetsGeometrySchema.schema,
+  FontFeatureSchema.id: FontFeatureSchema.schema,
+  FontVariationSchema.id: FontVariationSchema.schema,
   GradientSchema.id: GradientSchema.schema,
+  GradientTransformSchema.id: GradientTransformSchema.schema,
   IconSchema.id: IconSchema.schema,
+  IconDataSchema.id: IconDataSchema.schema,
   ImageProviderSchema.id: ImageProviderSchema.schema,
   ImageProviderObjectSchema.id: ImageProviderObjectSchema.schema,
   InlineSpanSchema.id: InlineSpanSchema.schema,
   InputBorderSchema.id: InputBorderSchema.schema,
   InteractiveInkFeatureFactorySchema.id:
       InteractiveInkFeatureFactorySchema.schema,
+  LocaleSchema.id: LocaleSchema.schema,
   MaterialColorSchema.id: MaterialColorSchema.schema,
   Matrix4Schema.id: Matrix4Schema.schema,
   MouseCursorSchema.id: MouseCursorSchema.schema,
   NoDefaultCupertinoThemeDataSchema.id:
       NoDefaultCupertinoThemeDataSchema.schema,
   NotchedShapeSchema.id: NotchedShapeSchema.schema,
+  OffsetSchema.id: OffsetSchema.schema,
+  OrdinalSortKeySchema.id: OrdinalSortKeySchema.schema,
   OutlinedBorderSchema.id: OutlinedBorderSchema.schema,
   PageTransitionsBuilderSchema.id: PageTransitionsBuilderSchema.schema,
   PageTransitionsThemeSchema.id: PageTransitionsThemeSchema.schema,
@@ -36,19 +44,26 @@ final _kCustomSchemas = {
       RangeSliderValueIndicatorShapeSchema.schema,
   RectSchema.id: RectSchema.schema,
   ScrollBehaviorSchema.id: ScrollBehaviorSchema.schema,
+  ScrollPhysicsSchema.id: ScrollPhysicsSchema.schema,
+  SemanticsTagSchema.id: SemanticsTagSchema.schema,
   ShapeBorderSchema.id: ShapeBorderSchema.schema,
-  SliderThemeDataSchema.id: SliderThemeDataSchema.schema,
+  SizeSchema.id: SizeSchema.schema,
+  SliderTrackShapeSchema.id: SliderTrackShapeSchema.schema,
   SystemUiOverlayStyleSchema.id: SystemUiOverlayStyleSchema.schema,
   TableColumnWidthSchema.id: TableColumnWidthSchema.schema,
   TextButtonThemeDataSchema.id: TextButtonThemeDataSchema.schema,
   WidgetSchema.id: WidgetSchema.schema,
   WidgetStateColorSchema.id: WidgetStateColorSchema.schema,
+  WidgetStatePropertyBorderSideSchema.id:
+      WidgetStatePropertyBorderSideSchema.schema,
   WidgetStatePropertyBoolSchema.id: WidgetStatePropertyBoolSchema.schema,
   WidgetStatePropertyColorSchema.id: WidgetStatePropertyColorSchema.schema,
   WidgetStatePropertyDoubleSchema.id: WidgetStatePropertyDoubleSchema.schema,
   WidgetStatePropertyEdgeInsetsGeometrySchema.id:
       WidgetStatePropertyEdgeInsetsGeometrySchema.schema,
   WidgetStatePropertyIconSchema.id: WidgetStatePropertyIconSchema.schema,
+  WidgetStatePropertyIconThemeDataSchema.id:
+      WidgetStatePropertyIconThemeDataSchema.schema,
   WidgetStatePropertyMouseCursorSchema.id:
       WidgetStatePropertyMouseCursorSchema.schema,
   WidgetStatePropertyOutlinedBorderSchema.id:
@@ -343,6 +358,13 @@ class ColorSchema {
   };
 }
 
+class DecorationSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/decoration.json';
+
+  static final schema = BoxDecorationSchema.schema;
+}
+
 class EdgeInsetsDirectionalSchema {
   static const id =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/edge_insets_directional.json';
@@ -410,6 +432,40 @@ class EdgeInsetsGeometrySchema {
   static final schema = EdgeInsetsSchema.schema;
 }
 
+class FontFeatureSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/font_feature.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'FontFeature',
+    'additionalProperties': false,
+    'properties': {
+      'feature': SchemaHelper.stringSchema,
+      'value': SchemaHelper.numberSchema,
+    },
+  };
+}
+
+class FontVariationSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/font_variation.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'FontVariation',
+    'additionalProperties': false,
+    'properties': {
+      'axis': SchemaHelper.stringSchema,
+      'value': SchemaHelper.numberSchema,
+    },
+  };
+}
+
 class GradientSchema {
   static const id =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/gradient.json';
@@ -472,6 +528,21 @@ class GradientSchema {
   };
 }
 
+class GradientTransformSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/gradient_transform.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    r'$comment':
+        'https://api.flutter.dev/flutter/painting/GradientTransform-class.html',
+    'title': 'GradientTransform',
+    'type': 'object',
+    'properties': {'radians': SchemaHelper.numberSchema},
+  };
+}
+
 class IconSchema {
   static const id =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/icon.json';
@@ -496,6 +567,29 @@ class IconSchema {
       'size': SchemaHelper.numberSchema,
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
       'weight': SchemaHelper.numberSchema,
+    },
+  };
+}
+
+class IconDataSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/icon_data.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'IconData',
+    'additionalProperties': false,
+    'properties': {
+      'codePoint': SchemaHelper.numberSchema,
+      'fontFamily': SchemaHelper.stringSchema,
+      'fontFamilyFallback': {
+        'type': 'array',
+        'items': SchemaHelper.stringSchema,
+      },
+      'fontPackage': SchemaHelper.stringSchema,
+      'matchTextDirection': SchemaHelper.boolSchema,
     },
   };
 }
@@ -578,6 +672,23 @@ class InteractiveInkFeatureFactorySchema {
     'type': 'string',
     'title': 'InteractiveInkFeatureFactory',
     'oneOf': SchemaHelper.enumSchema(['splash', 'ripple', 'sparkle']),
+  };
+}
+
+class LocaleSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/locale.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'Locale',
+    'additionalProperties': false,
+    'properties': {
+      'countryCode': SchemaHelper.stringSchema,
+      'languageCode': SchemaHelper.stringSchema,
+    },
   };
 }
 
@@ -708,6 +819,40 @@ class NotchedShapeSchema {
     'title': 'NotchedShape',
     'type': 'string',
     'oneOf': SchemaHelper.enumSchema(['circular']),
+  };
+}
+
+class OffsetSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/offset.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'Offset',
+    'additionalProperties': false,
+    'properties': {
+      'dx': SchemaHelper.numberSchema,
+      'dy': SchemaHelper.numberSchema,
+    },
+  };
+}
+
+class OrdinalSortKeySchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/ordinal_sort_key.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'OrdinalSortKey',
+    'additionalProperties': false,
+    'properties': {
+      'name': SchemaHelper.stringSchema,
+      'order': SchemaHelper.numberSchema,
+    },
   };
 }
 
@@ -1052,6 +1197,20 @@ class ScrollPhysicsSchema {
   };
 }
 
+class SemanticsTagSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/semantics_tag.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'SemanticsTag',
+    'additionalProperties': false,
+    'properties': {'name': SchemaHelper.stringSchema},
+  };
+}
+
 class ShapeBorderSchema {
   static const id =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/shape_border.json';
@@ -1068,6 +1227,23 @@ class ShapeBorderSchema {
         'type': 'string',
         'enum': ['circle', 'rectangle', 'rounded', 'stadium'],
       },
+    },
+  };
+}
+
+class SizeSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_theme/size.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
+    r'$id': id,
+    'type': 'object',
+    'title': 'Size',
+    'additionalProperties': false,
+    'properties': {
+      'height': SchemaHelper.numberSchema,
+      'width': SchemaHelper.numberSchema,
     },
   };
 }

@@ -1,3 +1,9 @@
+## [2.0.0] - October 29th, 2025
+
+* Flutter 3.35
+* Added several new annotations to assust with code generation.
+
+
 ## [1.0.3+18] - June 10, 2025
 
 * Automated dependency updates

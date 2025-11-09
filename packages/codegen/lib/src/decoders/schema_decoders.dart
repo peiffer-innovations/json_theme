@@ -38,8 +38,14 @@ final kSchemaDecoders = <String, ParameterSchemaDecoder>{
   'String': (element) => 'SchemaHelper.stringSchema',
 };
 
-String decodeSchema(FormalParameterElement param) {
-  final typeStr = param.type.getDisplayString().replaceAll('?', '');
+String decodeSchema(
+  FormalParameterElement param,
+  MapEntry<InterfaceType, bool>? override,
+) {
+  final typeStr = (override?.key ?? param.type).getDisplayString().replaceAll(
+    '?',
+    '',
+  );
 
   final decoder = kSchemaDecoders[typeStr];
   if (decoder != null) {
@@ -47,7 +53,7 @@ String decodeSchema(FormalParameterElement param) {
   }
 
   if (typeStr.startsWith('List')) {
-    final type = param.type;
+    final type = override ?? param.type;
     if (type is InterfaceType &&
         (type.isDartCoreList || type.isDartCoreIterable)) {
       final subtype = typeStr.replaceAll('List<', '').replaceAll('>', '');

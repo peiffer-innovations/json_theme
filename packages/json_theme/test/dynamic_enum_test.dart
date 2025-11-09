@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_theme/json_theme.dart';
-import 'package:json_theme/json_theme_schemas.dart';
 
 void main() {
   for (var id in Schemas.enums) {

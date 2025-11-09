@@ -62,8 +62,6 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   Map<String, dynamic>? encodeBottomSheetThemeData(BottomSheetThemeData? value);
 
-  Map<String, dynamic>? encodeBoxBorder(BoxBorder? value);
-
   Map<String, dynamic>? encodeBoxConstraints(BoxConstraints? value);
 
   Map<String, dynamic>? encodeBoxDecoration(BoxDecoration? value);
@@ -122,9 +120,11 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
     NoDefaultCupertinoThemeData? value,
   );
 
-  Map<String, dynamic>? encodeDatePickerThemeData(DatePickerThemeData? value);
-
+  @CodecIgnore('dataRowHeight')
   Map<String, dynamic>? encodeDataTableThemeData(DataTableThemeData? value);
+
+  @CodecParamType('inputDecorationTheme', InputDecorationThemeData)
+  Map<String, dynamic>? encodeDatePickerThemeData(DatePickerThemeData? value);
 
   @CodecIgnore('colorFilter')
   Map<String, dynamic>? encodeDecorationImage(DecorationImage? value);
@@ -141,6 +141,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   Map<String, dynamic>? encodeDrawerThemeData(DrawerThemeData? value);
 
+  @CodecParamType('inputDecorationTheme', InputDecorationThemeData)
   Map<String, dynamic>? encodeDropdownMenuThemeData(
     DropdownMenuThemeData? value,
   );
@@ -296,8 +297,6 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
     RoundedRectRangeSliderTrackShape? value,
   );
 
-  Map<String, dynamic>? encodeRect(Rect? value);
-
   Map<String, dynamic>? encodeScrollBehavior(ScrollBehavior? value);
 
   String? encodeScrollViewKeyboardDismissBehavior(
@@ -405,6 +404,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   String? encodeTextWidthBasis(TextWidthBasis? value);
 
+  @CodecParamType('appBarTheme', AppBarThemeData, nullable: true)
   @CodecUnencodable('adaptations')
   @CodecIgnore('buttonBarTheme')
   @CodecIgnore('colorSchemeSeed')
@@ -414,10 +414,12 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
   @CodecIgnore('package')
   @CodecIgnore('primarySwatch')
   @CodecIgnore('useSystemColors')
+  @CodecParamType('inputDecorationTheme', InputDecorationThemeData)
   Map<String, dynamic>? encodeThemeData(ThemeData? value);
 
   String? encodeTileMode(TileMode? value);
 
+  @CodecParamType('inputDecorationTheme', InputDecorationThemeData)
   Map<String, dynamic>? encodeTimePickerThemeData(TimePickerThemeData? value);
 
   Map<String, dynamic>? encodeToggleButtonsThemeData(

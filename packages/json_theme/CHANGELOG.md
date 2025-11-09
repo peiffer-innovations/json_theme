@@ -1,3 +1,9 @@
+## [10.0.0] - August 17th, 2025
+
+* Flutter 3.35
+* Converted from manually built code to code generators for most codec items.
+
+
 ## [9.0.3] - September 16th, 2025
 
 * Update ThemeDecoder and ThemeEncoder to use new ThemeData classes for `AppBarThemeData`, `BottomAppBarThemeData`, `InputDecorationThemeData`
@@ -22,6 +28,7 @@
 ## [9.0.1] - June 18th, 2025
 
 * Added aliases for `cardDataTheme` and `expansionTileTheme` via `cardDataThemeData` and `expansionTileThemeData`.
+
 
 ## [9.0.0+3] - June 17, 2025
 

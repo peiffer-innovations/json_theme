@@ -1,4 +1,4 @@
-import 'package:json_theme/json_theme_schemas.dart';
+import 'package:json_theme/src/codec/theme_decoder.dart';
 
 class SchemaHelper {
   static Map<String, List<Map<String, dynamic>>> get anySchema => const {
@@ -46,7 +46,7 @@ class SchemaHelper {
   static dynamic arraySchema(String id, {bool includeObject = false}) {
     dynamic result;
 
-    if (Enums.all.contains(id) || ColorSchema.id == id) {
+    if (Schemas.enums.contains(id) || ColorSchema.id == id) {
       result = {
         'type': 'array',
         'items': {r'$ref': id},
@@ -77,7 +77,7 @@ class SchemaHelper {
   static dynamic objectSchema(String id) {
     dynamic result;
 
-    if (Enums.all.contains(id) || ColorSchema.id == id) {
+    if (Schemas.enums.contains(id) || ColorSchema.id == id) {
       result = {r'$ref': id};
     } else {
       result = {

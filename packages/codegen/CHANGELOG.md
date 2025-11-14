@@ -1,4 +1,4 @@
-## [3.0.0] - October 29th, 2025
+## [3.0.0] - November 9th, 2025
 
 * Flutter 3.35
 * Updated code generator to be capable of generating the majority of the codecs and schemas to reduce effort required to upgrade Flutter versions.

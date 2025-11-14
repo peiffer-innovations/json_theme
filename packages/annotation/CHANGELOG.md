@@ -1,4 +1,4 @@
-## [2.0.0] - October 29th, 2025
+## [2.0.0+1] - November 9th, 2025
 
 * Flutter 3.35
 * Added several new annotations to assust with code generation.

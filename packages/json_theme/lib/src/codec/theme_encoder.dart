@@ -6,7 +6,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-
 import 'package:json_theme/json_theme.dart';
 import 'package:json_theme_annotation/json_theme_annotation.dart';
 
@@ -284,6 +283,7 @@ abstract class _ThemeEncoder extends _ThemeEncoderFunctions {
 
   Map<String, dynamic>? encodePopupMenuThemeData(PopupMenuThemeData? value);
 
+  @CodecUnencodable('controller')
   Map<String, dynamic>? encodeProgressIndicatorThemeData(
     ProgressIndicatorThemeData? value,
   );

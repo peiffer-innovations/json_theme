@@ -1,4 +1,9 @@
-## [10.0.0] - August 17th, 2025
+## [11.0.0] - November 13th, 2025
+
+* Flutter 3.38
+
+
+## [10.0.0] - November 9th, 2025
 
 * Flutter 3.35
 * Converted from manually built code to code generators for most codec items.

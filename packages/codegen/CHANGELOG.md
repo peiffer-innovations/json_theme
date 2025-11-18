@@ -1,3 +1,8 @@
+## [3.0.0+2] - November 18, 2025
+
+* Automated dependency updates
+
+
 ## [3.0.0] - November 9th, 2025
 
 * Flutter 3.35

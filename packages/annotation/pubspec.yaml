@@ -1,7 +1,7 @@
 name: "json_theme_annotation"
 description: "Simple package holding the annotations needed by the JsonTheme code generator."
 homepage: "https://github.com/peiffer-innovations/json_theme"
-version: "2.0.0+2"
+version: "2.0.0+3"
 
 environment:
   sdk: "^3.9.0"
@@ -17,7 +17,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: "^6.0.0"
-  test: "^1.27.0"
+  test: "^1.28.0"
 
 permittedLicenses:
   - "Apache-2.0"

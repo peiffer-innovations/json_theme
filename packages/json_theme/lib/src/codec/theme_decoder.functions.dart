@@ -727,7 +727,7 @@ abstract class _ThemeDecoderFunctions {
         result = EdgeInsets.all(JsonClass.parseDouble(value));
       } else if (value is List) {
         assert(value.length == 2 || value.length == 3 || value.length == 4);
-        // LR,TB
+        // LRTB
         if (value.length == 1) {
           result = EdgeInsets.all(JsonClass.maybeParseDouble(value[0]) ?? 0.0);
         }
